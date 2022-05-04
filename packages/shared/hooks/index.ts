@@ -1,1 +1,1 @@
-export { default } from './src/use-scroll-disabler.hook';
+export { default as useScrollDisabler } from './src/use-scroll-disabler.hook';
