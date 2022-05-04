@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 
 type OwnProps = {
-  disabled: boolean;
+  disabled?: boolean;
 };
 
 const useScrollDisabler = ({ disabled }: OwnProps) => {
