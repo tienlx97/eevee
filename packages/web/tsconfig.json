@@ -1,0 +1,10 @@
+{
+  "extends": "../../tsconfig.base.json",
+  "include": ["./src"],
+  "exclude": ["./webpack,**/node_modules"],
+  "compilerOptions": {
+    "allowJs": true,
+    "checkJs": false,
+    "typeRoots": ["../../node_modules/@types"]
+  }
+}

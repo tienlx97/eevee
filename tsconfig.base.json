@@ -1,0 +1,34 @@
+{
+  "compilerOptions": {
+    "baseUrl": ".",
+    "outDir": "dist",
+    "sourceMap": false,
+    "target": "es2016",
+    "useDefineForClassFields": false,
+    "module": "commonjs", //
+    "moduleResolution": "node",
+    "strict": true,
+    "noUnusedLocals": true,
+    "experimentalDecorators": true,
+    "resolveJsonModule": true,
+    "esModuleInterop": true,
+    "removeComments": false,
+    "lib": ["esnext", "dom"],
+    "types": ["jest", "node"],
+    "rootDir": ".",
+    "jsx": "react" /* Specify what JSX code is generated. */,
+    "forceConsistentCasingInFileNames": true /* Ensure that casing is correct in imports. */,
+    "strictNullChecks": true /* When type checking, take into account `null` and `undefined`. */,
+    "strictFunctionTypes": true /* When assigning functions, check to ensure parameters and the return values are subtype-compatible. */,
+    "strictPropertyInitialization": true /* Check for class properties that are declared but not set in the constructor. */,
+    "alwaysStrict": true /* Ensure 'use strict' is always emitted. */,
+    "skipLibCheck": true /* Skip type checking all .d.ts files. */,
+    "typeRoots": ["./node_modules/@types"]
+  },
+  "include": [
+    "packages/global.d.ts",
+    "packages/**/__tests__",
+    "packages/**/*.ts",
+    "packages/**/*.tsx"
+  ]
+}
