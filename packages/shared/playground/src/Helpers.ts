@@ -109,7 +109,7 @@ const usePrettier = ({
   return handleFormat;
 };
 
-const useFullscreen = (startFullscreened: boolean) => {
+const useFullscreen = (startFullscreened?: boolean) => {
   const [isFullscreened, setIsFullscreened] = useState(startFullscreened);
 
   useScrollDisabler({ disabled: isFullscreened });
