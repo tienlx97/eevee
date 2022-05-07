@@ -1,0 +1,16 @@
+{
+  "name": "@jolteon/sidenote",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "dependencies": {
+    "react": "*",
+    "@react-spring/web": "9.4.5",
+    "@vaporeon/constants": "*",
+    "@vaporeon/hooks": "*",
+    "@jolteon/base-ui": "*",
+    "@jolteon/icons": "*",
+    "@ladifire-opensource/stylex": "^0.1.0-beta.0",
+    "@vaporeon/utils": "*"
+  }
+}

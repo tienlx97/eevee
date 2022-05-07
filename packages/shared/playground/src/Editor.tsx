@@ -1,9 +1,9 @@
 import React, { CSSProperties, KeyboardEvent, useRef } from 'react';
 import SimpleEditor from 'react-simple-code-editor';
 import Highlight, { defaultProps } from 'prism-react-renderer';
-import { syntaxTheme } from '@eevee/helpers';
+import { syntaxTheme } from '@vaporeon/helpers';
 import stylex from '@ladifire-opensource/stylex';
-import { joinClasses, moveCursorWithinInput } from '@eevee/utils';
+import { joinClasses, moveCursorWithinInput } from '@vaporeon/utils';
 import { Language } from './types';
 
 const styles = stylex.create({

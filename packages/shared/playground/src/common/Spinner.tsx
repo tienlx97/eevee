@@ -2,7 +2,7 @@ import React, { CSSProperties } from 'react';
 import stylex from '@ladifire-opensource/stylex';
 import { Loader } from './Loader';
 import { SpinnerProps } from './types';
-import { joinClasses } from '@eevee/utils';
+import { joinClasses } from '@vaporeon/utils';
 
 const styles = stylex.create({
   wrapper: {

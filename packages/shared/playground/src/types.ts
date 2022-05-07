@@ -113,6 +113,7 @@ type TabbedEditorProps = {
   maxHeight?: string;
   splitRatio: number;
   handleFormat: () => void;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   xstyle?: any;
 };
 

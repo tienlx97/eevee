@@ -1,5 +1,5 @@
 import { useState, useEffect, useCallback, RefObject } from 'react';
-import { throttle } from '@eevee/utils';
+import { throttle } from '@vaporeon/utils';
 
 /**
  * NOTE: This implementation is hacky AF. It generates hard numbers,

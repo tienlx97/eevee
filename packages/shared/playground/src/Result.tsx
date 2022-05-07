@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import stylex from '@ladifire-opensource/stylex';
 import { Spinner } from './common/Spinner';
-import { useDebouncedValues } from '@eevee/hooks';
+import { useDebouncedValues } from '@vaporeon/hooks';
 import constructSnippet from './utils/constructSnippet';
 import { ErrorDisplay } from './ErrorDisplay';
 import { ResultProps } from './types';

@@ -5,7 +5,7 @@ import { useDrag } from './utils/useDrag';
 // import { BREAKPOINT } from './constants';
 
 import stylex from '@ladifire-opensource/stylex';
-import { joinClasses } from '@eevee/utils';
+import { joinClasses } from '@vaporeon/utils';
 import { SplitPaneProps } from './types';
 
 const styles = stylex.create({

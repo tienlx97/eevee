@@ -15,7 +15,7 @@ import { DebouncedResult } from './Result';
 import { SplitPane } from './SplitPane';
 import { Editor } from './Editor';
 import { TabbedEditors } from './TabbedEditors';
-import { joinClasses } from '@eevee/utils';
+import { joinClasses } from '@vaporeon/utils';
 
 const styles = stylex.create({
   resultPane: {

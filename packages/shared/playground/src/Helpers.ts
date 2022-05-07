@@ -10,7 +10,7 @@ import {
   UsePrettierProps,
 } from './types';
 
-import { useScrollDisabler } from '@eevee/hooks';
+import { useScrollDisabler } from '@vaporeon/hooks';
 
 // It is way too easy to accidentally use the same ID multiple
 // times in a given lesson. When this happens, editing one

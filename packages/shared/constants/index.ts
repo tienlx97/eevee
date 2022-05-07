@@ -22,3 +22,5 @@ export const SPRINGS = {
     friction: 75,
   },
 };
+
+export const COLOR_SWAP_TRANSITION_DURATION = 350;
