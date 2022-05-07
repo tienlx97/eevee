@@ -46,6 +46,7 @@ const UnstyledButton = ({
   onMouseEnter,
   onMouseLeave,
   ref,
+  style,
 }: ButtonProps) => {
   return (
     <div
@@ -53,6 +54,7 @@ const UnstyledButton = ({
       onMouseLeave={onMouseLeave}
       onClick={onclick}
       ref={ref}
+      style={style}
       className={stylex([$1.wrapper, $display[display], xstyle])}
     >
       {children}

@@ -6,6 +6,7 @@ import { useDrag } from './utils/useDrag';
 
 import stylex from '@ladifire-opensource/stylex';
 import { joinClasses } from '@eevee/utils';
+import { SplitPaneProps } from './types';
 
 const styles = stylex.create({
   wrapper: {
@@ -102,14 +103,6 @@ const styles = stylex.create({
 });
 
 const DIVIDER_WIDTH = 16;
-
-type SplitPaneProps = {
-  className: string;
-  splitRatio: number;
-  isFullscreened?: boolean;
-  leftChild: React.ReactNode;
-  rightChild: React.ReactNode;
-};
 
 const SplitPane = ({
   className = '',

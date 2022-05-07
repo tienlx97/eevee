@@ -11,11 +11,40 @@ import { Pane } from './Pane';
 
 import stylex from '@ladifire-opensource/stylex';
 import { RefreshButton } from './Toolbar/RefreshButton';
-import DebouncedResult from './Result';
+import { DebouncedResult } from './Result';
+import { SplitPane } from './SplitPane';
+import { Editor } from './Editor';
+import { TabbedEditors } from './TabbedEditors';
+import { joinClasses } from '@eevee/utils';
 
-const $1 = stylex.create({
+const styles = stylex.create({
   resultPane: {
     height: '100%',
+  },
+
+  bottomPaneWrapper: {
+    borderTop: '1px solid var(--color-gray-100)',
+    height: '100%',
+    flex: '1',
+  },
+
+  minHeight: {
+    minHeight: '100%',
+  },
+
+  verticalPaneCodeWrapper: {
+    display: 'flex',
+    flexDirection: 'column-reverse',
+
+    '@media (min-width: 960px)': {
+      flexDirection: 'column',
+      height: '100%',
+    },
+  },
+
+  line: {
+    borderTop: '1px solid var(--color-gray-100)',
+    /* margin: 6px 0; */
   },
 });
 
@@ -69,7 +98,7 @@ const Playground: FunctionComponent<OwnProps> = ({
   // That way, it forces a remount when it changes.
   const [randomId, setRandomId] = useState('initial');
 
-  const [isFullscreened, toggleFullscreen] = useFullscreen(startFullscreened);
+  const { isFullscreened, toggleFullscreen } = useFullscreen(startFullscreened);
 
   const handleFormat = usePrettier({
     htmlCode,
@@ -135,8 +164,7 @@ const Playground: FunctionComponent<OwnProps> = ({
   // We want to do this when it's alone in the column, so it reaches
   // the base of the editor. But in "codepen mode", doing so causes
   // its height to become locked rather than being resizable.
-  const stretchResults =
-    (isFullscreened as boolean) || layoutMode !== 'codepen';
+  const stretchResults = isFullscreened || layoutMode !== 'codepen';
 
   const resultPane = (
     <Pane
@@ -147,7 +175,7 @@ const Playground: FunctionComponent<OwnProps> = ({
           }}
         />
       }
-      xstyle={[stretchResults && $1.resultPane]}
+      xstyle={[stretchResults && styles.resultPane]}
       title="Result"
     >
       <DebouncedResult
@@ -175,10 +203,150 @@ const Playground: FunctionComponent<OwnProps> = ({
   switch (layoutMode) {
     case 'codepen': {
       const [firstPane, secondPane] = paneData;
+
+      contents = (
+        <>
+          <SplitPane
+            // TODO: SplitPane props object
+            splitRatio={Number(splitRatio)}
+            isFullscreened={isFullscreened}
+            leftChild={
+              <Pane title={firstPane.label}>
+                <Editor
+                  code={firstPane.code}
+                  language={firstPane.language}
+                  handleUpdate={firstPane.handleUpdate}
+                  handleFormat={handleFormat}
+                  maxHeight={isFullscreened ? undefined : '50vh'}
+                />
+              </Pane>
+            }
+            rightChild={
+              <Pane title={secondPane.label}>
+                <Editor
+                  code={secondPane.code}
+                  language={secondPane.language}
+                  handleUpdate={secondPane.handleUpdate}
+                  handleFormat={handleFormat}
+                  maxHeight={isFullscreened ? undefined : '50vh'}
+                />
+              </Pane>
+            }
+          />
+          <div className={stylex(styles.bottomPaneWrapper)}>{resultPane}</div>
+        </>
+      );
+      break;
+    }
+    case 'side-by-side': {
+      const [data] = paneData;
+      const { label, ...editorData } = data;
+
+      contents = (
+        <SplitPane
+          splitRatio={Number(splitRatio)}
+          isFullscreened={isFullscreened}
+          leftChild={
+            <Pane title={label} xstyle={styles.minHeight}>
+              <Editor
+                {...editorData}
+                handleFormat={handleFormat}
+                maxHeight={!isFullscreened ? '50vh' : '100%'}
+              />
+            </Pane>
+          }
+          rightChild={resultPane}
+        />
+      );
+      break;
+    }
+
+    case 'tabbed': {
+      contents = (
+        <SplitPane
+          splitRatio={Number(splitRatio)}
+          isFullscreened={isFullscreened}
+          leftChild={
+            <TabbedEditors
+              paneData={paneData}
+              splitRatio={Number(splitRatio)}
+              maxHeight={!isFullscreened ? '50vh' : '100%'}
+              handleFormat={handleFormat}
+            />
+          }
+          rightChild={resultPane}
+        />
+      );
+      break;
+    }
+
+    case 'vertical-stack': {
+      // Flip the order.
+      // This'll likely be HTML and CSS, and I want the
+      // CSS on top.
+      const [secondPane, firstPane] = paneData;
+
+      const classes = stylex.dedupe({
+        maxHeight: isFullscreened ? '100vh' : '80vh',
+      });
+
+      const paneClasses = stylex.dedupe({
+        flex: 1,
+        minHeight: 0,
+      });
+
+      contents = (
+        <SplitPane
+          splitRatio={Number(splitRatio)}
+          isFullscreened={isFullscreened}
+          leftChild={
+            <div
+              className={joinClasses(
+                stylex(styles.verticalPaneCodeWrapper),
+                classes
+              )}
+              style={{
+                maxHeight: isFullscreened ? '100vh' : '80vh',
+              }}
+            >
+              <Pane title={firstPane.label} xstyle={paneClasses}>
+                <Editor
+                  code={firstPane.code}
+                  language={firstPane.language}
+                  handleUpdate={firstPane.handleUpdate}
+                  handleFormat={handleFormat}
+                />
+              </Pane>
+              <div className={stylex(styles.line)} />
+              <Pane title={secondPane.label} xstyle={paneClasses}>
+                <Editor
+                  code={secondPane.code}
+                  language={secondPane.language}
+                  handleUpdate={secondPane.handleUpdate}
+                  handleFormat={handleFormat}
+                  // maxHeight={
+                  //   isFullscreened
+                  //     ? `calc(50vh - ${paneMinusEditor}px`
+                  //     : '38vh'
+                  // }
+                />
+              </Pane>
+            </div>
+          }
+          rightChild={resultPane}
+        />
+      );
+      break;
+    }
+    default: {
+      throw new Error('Unrecognized layout mode: ' + layoutMode);
     }
   }
 
-  return <></>;
+  // remove eslint
+  toggleFullscreen();
+  handleReset();
+  return <>{contents}</>;
 };
 
 export { Playground };

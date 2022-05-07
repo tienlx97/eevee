@@ -1,5 +1,6 @@
 import {
   BaseSyntheticEvent,
+  CSSProperties,
   Dispatch,
   SetStateAction,
   SyntheticEvent,
@@ -54,6 +55,7 @@ type ButtonProps = {
   onMouseEnter?: (event: SyntheticEvent) => void;
   onMouseLeave?: (event: SyntheticEvent) => void;
   ref?: React.LegacyRef<HTMLDivElement>;
+  style?: CSSProperties;
 };
 
 type CodeMap = {
@@ -72,10 +74,10 @@ type SnippetProps = {
 
 type PaneProps = {
   title: string;
-  children: React.ReactNode;
-  actions: React.ReactNode;
+  children?: React.ReactNode;
+  actions?: React.ReactNode;
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  xstyle: any;
+  xstyle?: any;
 };
 
 type ResultProps = SnippetProps & {
@@ -91,6 +93,63 @@ type ResreshButtonProps = {
   handleRefresh: (event: BaseSyntheticEvent) => void;
 };
 
+type SplitPaneProps = {
+  className?: string;
+  splitRatio: number;
+  isFullscreened?: boolean;
+  leftChild: React.ReactNode;
+  rightChild: React.ReactNode;
+};
+
+type PaneDataReturnProps = {
+  language: Language;
+  label: string;
+  code: string;
+  handleUpdate: Dispatcher<string | undefined>;
+};
+
+type TabbedEditorProps = {
+  paneData: PaneDataReturnProps[];
+  maxHeight?: string;
+  splitRatio: number;
+  handleFormat: () => void;
+  xstyle?: any;
+};
+
+type Language =
+  | 'markup'
+  | 'bash'
+  | 'clike'
+  | 'c'
+  | 'cpp'
+  | 'css'
+  | 'javascript'
+  | 'jsx'
+  | 'coffeescript'
+  | 'actionscript'
+  | 'css-extr'
+  | 'diff'
+  | 'git'
+  | 'go'
+  | 'graphql'
+  | 'handlebars'
+  | 'json'
+  | 'less'
+  | 'makefile'
+  | 'markdown'
+  | 'objectivec'
+  | 'ocaml'
+  | 'python'
+  | 'reason'
+  | 'sass'
+  | 'scss'
+  | 'sql'
+  | 'stylus'
+  | 'tsx'
+  | 'typescript'
+  | 'wasm'
+  | 'yaml';
+
 export {
   UsePrettierProps,
   JsPrettierState,
@@ -105,4 +164,9 @@ export {
   SnippetProps,
   PaneProps,
   ResreshButtonProps,
+  Language,
+  Dispatcher,
+  SplitPaneProps,
+  PaneDataReturnProps,
+  TabbedEditorProps,
 };

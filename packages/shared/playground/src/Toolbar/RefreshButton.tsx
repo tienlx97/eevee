@@ -1,4 +1,4 @@
-import React, { BaseSyntheticEvent, FunctionComponent, useState } from 'react';
+import React, { FunctionComponent, useState } from 'react';
 import stylex from '@ladifire-opensource/stylex';
 import { VisuallyHidden } from '../common/VisuallyHidden';
 import { ActionButton } from './ActionButton';

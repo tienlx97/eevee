@@ -3,8 +3,11 @@ import { useCallback, useEffect, useMemo, useState } from 'react';
 import {
   BabelPrettierState,
   CssPrettierState,
+  Dispatcher,
   HTMLPrettierState,
   JsPrettierState,
+  Language,
+  PaneDataReturnProps,
   UsePaneProps,
   UsePrettierProps,
 } from './types';
@@ -37,12 +40,10 @@ const usePrettier = ({
   jsCode,
   setJsCode,
 }: UsePrettierProps) => {
-  const [prettier, setPrettier] = useState<JsPrettierState | null>(null);
-  const [babelParser, setBabelParser] = useState<BabelPrettierState | null>(
-    null
-  );
-  const [cssParser, setCssParser] = useState<CssPrettierState | null>(null);
-  const [htmlParser, setHtmlParser] = useState<HTMLPrettierState | null>(null);
+  const [prettier, setPrettier] = useState<JsPrettierState>();
+  const [babelParser, setBabelParser] = useState<BabelPrettierState>();
+  const [cssParser, setCssParser] = useState<CssPrettierState>();
+  const [htmlParser, setHtmlParser] = useState<HTMLPrettierState>();
 
   useEffect(() => {
     Promise.all([
@@ -142,7 +143,12 @@ const useFullscreen = (startFullscreened?: boolean) => {
     };
   }, [isFullscreened]);
 
-  return [isFullscreened, () => setIsFullscreened((f) => !f)];
+  const obj = {
+    isFullscreened,
+    toggleFullscreen: () => setIsFullscreened((f) => !f),
+  };
+
+  return obj;
 };
 
 const usePaneData = ({
@@ -186,7 +192,9 @@ const usePaneData = ({
       });
     }
 
-    return paneData.filter(({ code }) => typeof code === 'string');
+    return paneData.filter(
+      ({ code }) => typeof code === 'string'
+    ) as PaneDataReturnProps[];
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [mode, htmlCode, cssCode, jsCode]);
 

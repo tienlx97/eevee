@@ -1,4 +1,4 @@
-import { CodeMap, ResultProps, SnippetProps } from '../types';
+import { CodeMap, SnippetProps } from '../types';
 
 const PACKAGE_VERSIONS = {};
 
@@ -83,11 +83,7 @@ export function applyCentering(snippet: CodeMap) {
   };
 }
 
-function constructJavaScript(
-  codeMap: CodeMap,
-  mode: string,
-  centered?: boolean
-) {
+function constructJavaScript(codeMap: CodeMap, mode: string) {
   const presets = mode === 'react' ? ['react'] : [];
 
   if (mode === 'react') {
@@ -277,7 +273,7 @@ function constructSnippet({
         }
       </script>
       <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
-      ${constructJavaScript(codeMapCopy, mode, centered)}
+      ${constructJavaScript(codeMapCopy, mode)}
     </body>
     </html>
   `;
