@@ -3,10 +3,8 @@ import { useCallback, useEffect, useMemo, useState } from 'react';
 import {
   BabelPrettierState,
   CssPrettierState,
-  Dispatcher,
   HTMLPrettierState,
   JsPrettierState,
-  Language,
   PaneDataReturnProps,
   UsePaneProps,
   UsePrettierProps,
