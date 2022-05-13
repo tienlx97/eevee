@@ -1,0 +1,16 @@
+{
+  "name": "@jolteon/sidenote",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "dependencies": {
+    "@griffel/react": "^1.0.4",
+    "@jolteon/icons": "*",
+    "@jolteon/react-base-ui": "*",
+    "@react-spring/web": "9.4.5",
+    "@vaporeon/constants": "*",
+    "@vaporeon/hooks": "*",
+    "@vaporeon/utils": "*",
+    "react": "*"
+  }
+}

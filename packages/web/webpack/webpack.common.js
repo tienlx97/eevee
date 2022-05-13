@@ -1,12 +1,12 @@
-const path = require("path");
-const { ROOT_DIR } = require("./envs");
+const path = require('path');
+const { ROOT_DIR } = require('./envs');
 const {
   htmlWebpackPlugin,
   miniCssExtactPlugin,
   definePlugin,
   esLintPlugin,
   forkTsPlugin,
-} = require("./plugins");
+} = require('./plugins');
 const {
   javascriptRule,
   fontsRule,
@@ -15,17 +15,16 @@ const {
   svgRule,
   cssRule,
   typescriptRule,
-} = require("./rules");
-const StylexPlugin = require("@ladifire-opensource/stylex-webpack-plugin");
+} = require('./rules');
 
 const commonConfig = {
   context: ROOT_DIR,
 
-  entry: [path.join(ROOT_DIR, "/src/index.tsx")],
+  entry: [path.join(ROOT_DIR, '/src/_app.tsx')],
 
   output: {
-    path: path.join(ROOT_DIR, "/dist"),
-    publicPath: "/",
+    path: path.join(ROOT_DIR, '/dist'),
+    publicPath: '/',
     // filename: "[name].bundle.js",
     // assetModuleFilename: "images/[hash][ext][query]",
     clean: true,
@@ -35,7 +34,7 @@ const commonConfig = {
   },
 
   resolve: {
-    extensions: [".tsx", ".ts", ".js"],
+    extensions: ['.tsx', '.ts', '.js'],
     alias: {},
   },
 
@@ -45,7 +44,6 @@ const commonConfig = {
     definePlugin,
     esLintPlugin,
     forkTsPlugin,
-    new StylexPlugin(),
   ],
 
   externals: {

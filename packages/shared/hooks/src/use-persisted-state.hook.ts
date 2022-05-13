@@ -1,7 +1,7 @@
 import React from 'react';
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-export default function usePersistedState(defaultValue: string, key: any) {
+export default function usePersistedState(defaultValue: any, key: any) {
   const [value, setValue] = React.useState(defaultValue);
 
   React.useEffect(() => {

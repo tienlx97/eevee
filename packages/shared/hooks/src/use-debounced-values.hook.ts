@@ -1,24 +1,24 @@
 import { useEffect, useState } from 'react';
 
-type OwnProps = {
-  key: string;
-  id: string;
-  mode: string;
-  boxSizing: string;
-  centered?: boolean;
-  stretched?: boolean;
-  codeMap: {
-    markup?: string;
-    css?: string;
-    javascript?: string;
-  };
-  layoutMode: string;
-  isFullscreened?: boolean;
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  xstyle: any;
-};
+// type OwnProps = {
+//   key: string;
+//   id: string;
+//   mode: string;
+//   boxSizing: string;
+//   centered?: boolean;
+//   stretched?: boolean;
+//   codeMap: {
+//     markup?: string;
+//     css?: string;
+//     javascript?: string;
+//   };
+//   layoutMode: string;
+//   isFullscreened?: boolean;
+//   // eslint-disable-next-line @typescript-eslint/no-explicit-any
+//   xstyle: any;
+// };
 
-function useDebouncedValues(debounceBy: number, props: OwnProps) {
+function useDebouncedValues<T>(debounceBy: number, props: T) {
   const [propsInState, setPropsInState] = useState(props);
 
   useEffect(() => {
