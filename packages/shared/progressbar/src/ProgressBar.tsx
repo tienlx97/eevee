@@ -85,6 +85,7 @@ const ProgressBar = ({
     >
       <div
         role="progressbar"
+        aria-label="Progress bar"
         aria-valuenow={value}
         aria-valuemin={0}
         aria-valuemax={max}

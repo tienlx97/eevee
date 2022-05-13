@@ -4,16 +4,20 @@ import client from 'react-dom/client';
 import 'tippy.js/dist/tippy.css';
 import '@vaporeon/global-styles/src/CssVariables.css';
 
+// import { useCssReset, useGlobalCss } from '@vaporeon/global-styles';
+
 import {
   ConfigProvider,
-  loadColorModeBeforeRender,
+  loadDefaultThemeBeforeReactRender,
 } from '@vaporeon/config-context';
 
-loadColorModeBeforeRender();
+loadDefaultThemeBeforeReactRender();
 
 import App from './App';
 
 const Index = () => {
+  // useCssReset();
+  // useGlobalCss();
   return (
     <ConfigProvider>
       <App />

@@ -40,6 +40,8 @@ const FormatButton = ({ handleFormat }: FormatButtonProps) => {
         as={animated.button}
         className={classes.root}
         style={style as any}
+        title="Format"
+        type="button"
       >
         <Zap size={16} />
         <VisuallyHidden>Format code using Prettier</VisuallyHidden>

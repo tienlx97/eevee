@@ -35,7 +35,10 @@ const useStyles = makeStyles({
     lineHeight: `${LINE_HEIGHT}px`,
 
     '& > textarea, & .token-line, & .token-line *': {
-      ...shorthands.outline('none !important'),
+      outlineColor: 'initial !important',
+      outlineStyle: 'none !important',
+      outlineWidth: 'initial !important',
+      // ...shorthands.outline('none !important'),
       fontSize: `${FONT_SIZE}px !important`,
       lineHeight: `${LINE_HEIGHT + 2}px !important`,
     },
@@ -87,6 +90,7 @@ const Editor = ({
         ignoreTabKey={disableTabInCodeSnippets}
         onKeyDown={handleKeyDown}
         ref={textareaRef}
+        title="Editor"
         highlight={(value) => (
           <Highlight
             {...defaultProps}

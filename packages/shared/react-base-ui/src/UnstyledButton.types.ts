@@ -8,4 +8,6 @@ export interface IButtonProps extends HTMLAttributes<HTMLOrSVGElement> {
    * Render the root element as another type.
    */
   as?: ElementType;
+
+  type?: string;
 }

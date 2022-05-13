@@ -1,2 +1,2 @@
 export { ConfigContext, ConfigProvider } from './src/ConfigContext';
-export { loadColorModeBeforeRender } from './src/FirtThingsFirst';
+export { loadDefaultThemeBeforeReactRender } from './src/FirtThingsFirst';

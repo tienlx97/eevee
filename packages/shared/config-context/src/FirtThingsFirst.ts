@@ -6,11 +6,13 @@ import {
   PREFERS_DARK_KEY,
 } from '@vaporeon/constants';
 
-export const loadColorModeBeforeRender = () => {
+export const loadDefaultThemeBeforeReactRender = () => {
   const initialColorValue =
     localStorage.getItem(PREFERS_DARK_KEY) === 'true' ? 'dark' : 'light';
 
   const root = window.document.documentElement;
+
+  root.classList.add('js-focus-visible');
 
   const prefersDark = initialColorValue === 'dark';
   root.style.setProperty(PREFERS_DARK_CSS_PROP, prefersDark as any);

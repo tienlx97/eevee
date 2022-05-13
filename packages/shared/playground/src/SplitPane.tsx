@@ -111,6 +111,7 @@ const SplitPane = ({
           {/* Divider */}
           <UnstyledButton
             id="divider"
+            title="Divider"
             ref={dividerRef}
             className={styles.divider}
           />
