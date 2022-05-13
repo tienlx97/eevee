@@ -1,16 +1,15 @@
 /* eslint-disable import/no-extraneous-dependencies */
 import { useCallback, useEffect, useMemo, useState } from 'react';
+import { useScrollDisabler } from '@vaporeon/hooks';
 import {
   BabelPrettierState,
   CssPrettierState,
   HTMLPrettierState,
+  IUsePaneProps,
   JsPrettierState,
   PaneDataReturnProps,
-  UsePaneProps,
-  UsePrettierProps,
-} from './types';
-
-import { useScrollDisabler } from '@vaporeon/hooks';
+  IUsePrettierProps,
+} from './Helper.types';
 
 // It is way too easy to accidentally use the same ID multiple
 // times in a given lesson. When this happens, editing one
@@ -37,7 +36,7 @@ const usePrettier = ({
   setCssCode,
   jsCode,
   setJsCode,
-}: UsePrettierProps) => {
+}: IUsePrettierProps) => {
   const [prettier, setPrettier] = useState<JsPrettierState>();
   const [babelParser, setBabelParser] = useState<BabelPrettierState>();
   const [cssParser, setCssParser] = useState<CssPrettierState>();
@@ -141,12 +140,7 @@ const useFullscreen = (startFullscreened?: boolean) => {
     };
   }, [isFullscreened]);
 
-  const obj = {
-    isFullscreened,
-    toggleFullscreen: () => setIsFullscreened((f) => !f),
-  };
-
-  return obj;
+  return [isFullscreened, () => setIsFullscreened((f) => !f)] as const;
 };
 
 const usePaneData = ({
@@ -157,7 +151,7 @@ const usePaneData = ({
   setCssCode,
   jsCode,
   setJsCode,
-}: UsePaneProps) => {
+}: IUsePaneProps) => {
   const panes = useMemo(() => {
     const paneData = [
       {

@@ -1,20 +1,19 @@
-const path = require("path");
-const { ROOT_DIR, isDevelopment } = require("./envs");
+const path = require('path');
+const { ROOT_DIR, isDevelopment } = require('./envs');
 const {
   babelLoader,
   miniCssExtractLoader,
   cssLoader,
   styleLoader,
   postCssLoader,
-} = require("./loaders");
+} = require('./loaders');
 
-const StylexPluginLoader = require("@ladifire-opensource/stylex-webpack-plugin");
-const ReactRefreshTypeScript = require("react-refresh-typescript");
+const ReactRefreshTypeScript = require('react-refresh-typescript');
 
 const javascriptRule = {
   test: /\.jsx?$/,
   exclude: /node_modules/,
-  include: path.join(ROOT_DIR, "/src"),
+  include: path.join(ROOT_DIR, '/src'),
   use: babelLoader,
 };
 const typescriptRule = {
@@ -22,7 +21,7 @@ const typescriptRule = {
   exclude: /node_modules/,
   use: [
     {
-      loader: "ts-loader",
+      loader: 'ts-loader',
       options: {
         getCustomTransformers: () => ({
           before: [isDevelopment && ReactRefreshTypeScript()].filter(Boolean),
@@ -30,23 +29,17 @@ const typescriptRule = {
         transpileOnly: isDevelopment,
       },
     },
-    {
-      loader: StylexPluginLoader.loader,
-      options: {
-        inject: false,
-      },
-    },
   ],
 };
 
 const fontsRule = {
   test: /\.(woff|woff2|eot|ttf|otf)$/i,
-  type: "asset/resource",
+  type: 'asset/resource',
 };
 
 const imagesRule = {
   test: /\.(?:ico|gif|png|jpg|jpeg)$/i,
-  type: "asset",
+  type: 'asset',
 };
 
 const svgReactComponentRule = {
@@ -54,7 +47,7 @@ const svgReactComponentRule = {
   issuer: /\.[jt]sx$/,
   use: [
     {
-      loader: "@svgr/webpack",
+      loader: '@svgr/webpack',
       options: {
         babel: false,
         icon: true,
@@ -66,7 +59,7 @@ const svgReactComponentRule = {
 const svgRule = {
   test: /\.svg(\?v=\d+\.\d+\.\d+)?$/,
   issuer: { not: [/\.[jt]sx$/] },
-  type: "asset/inline",
+  type: 'asset/inline',
 };
 
 const cssRule = {

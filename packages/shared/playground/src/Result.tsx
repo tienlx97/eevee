@@ -1,30 +1,32 @@
-import React, { useEffect } from 'react';
-import stylex from '@ladifire-opensource/stylex';
-import { Spinner } from './common/Spinner';
+/* eslint-disable @typescript-eslint/no-explicit-any */
+import React, { CSSProperties, useEffect, useState } from 'react';
+import { Spinner } from '@jolteon/spinner';
 import { useDebouncedValues } from '@vaporeon/hooks';
 import constructSnippet from './utils/constructSnippet';
 import { ErrorDisplay } from './ErrorDisplay';
-import { ResultProps } from './types';
+import { makeStyles, mergeClasses, shorthands } from '@griffel/react';
+import { IResultProps } from './Result.types';
 
-const $1 = stylex.create({
+const usestyles = makeStyles({
   wrapper: {
-    flex: 'var(--flex)',
+    // flex: 'var(--flex)',
     position: 'relative',
-    borderRadius: '4px',
-    background: 'white',
-    resize: 'var(--resize)',
+    ...shorthands.borderRadius('4px'),
+    // borderRadius: '4px',
+    backgroundColor: 'white',
+    resize: 'var(--resize)' as any,
     width: '100%',
     maxWidth: '100%',
     height: 'var(--height)',
     minHeight: '250px',
-    margin: '0 auto',
+    ...shorthands.margin('0', 'auto'),
 
     /*
     Hide the corners if the frame sets a background
     color / goes right to the edge.
     Plus, allows the 'resize' property to work
   */
-    overflow: 'hidden',
+    ...shorthands.overflow('hidden'),
 
     /* prettier-ignore */
     boxShadow:
@@ -68,10 +70,13 @@ const Result = ({
   boxSizing,
   layoutMode,
   isFullscreened,
-  xstyle,
-}: ResultProps) => {
-  const [error, setError] = React.useState<string | null>(null);
-  const [loading, setLoading] = React.useState(false);
+  appendClasses,
+}: IResultProps) => {
+  const [error, setError] = useState<string | null>(null);
+  const [loading, setLoading] = useState(false);
+
+  const styles = usestyles();
+  const classes = mergeClasses(styles.wrapper, appendClasses);
 
   // Alright, so I did a thing for 🎶 performance.
   // I have two frames loaded, A and B
@@ -83,9 +88,9 @@ const Result = ({
   // null to A. It means we start with only 1 iframe, and it's not
   // until the person edits it that we gain a second.
 
-  const [codeSlotA, setCodeSlotA] = React.useState<string | null>(null);
-  const [codeSlotB, setCodeSlotB] = React.useState<string | null>(null);
-  const [activeSlot, setActiveSlot] = React.useState<string | null>(null);
+  const [codeSlotA, setCodeSlotA] = useState<string | undefined>(undefined);
+  const [codeSlotB, setCodeSlotB] = useState<string | undefined>(undefined);
+  const [activeSlot, setActiveSlot] = useState<string | undefined>(undefined);
 
   useEffect(() => {
     setLoading(true);
@@ -140,13 +145,13 @@ const Result = ({
             data.data.message.type === 'loaded'
           ) {
             setActiveSlot('A');
-            setCodeSlotB(null);
+            setCodeSlotB(undefined);
           } else if (
             data.data.source === frameSlotIdB &&
             data.data.message.type === 'loaded'
           ) {
             setActiveSlot('B');
-            setCodeSlotA(null);
+            setCodeSlotA(undefined);
           }
 
           setLoading(false);
@@ -176,40 +181,47 @@ const Result = ({
         : 'both'
       : undefined;
 
-  const style = {
-    '--height': stretched ? '100%' : undefined,
-    '--resize': resize,
-    '--flex': stretched ? 1 : undefined,
-  } as React.CSSProperties;
-
   return (
-    <div style={style} className={stylex($1.wrapper, xstyle)}>
+    <div // Wrapper
+      style={
+        {
+          '--height': stretched && '100%',
+          '--resize': resize,
+          '--flex': stretched && 1,
+        } as CSSProperties
+      }
+      className={classes}
+    >
       {loading && (
-        <div className={stylex($1.spinnerWrapper)}>
+        <div // SpinnerWrapper
+          className={styles.spinnerWrapper}
+        >
           <Spinner size={24} />
         </div>
       )}
-      <iframe
-        className={stylex([
-          $1.frameElem,
-          activeSlot === 'A' ? $1.activeFrameStyles : $1.backgroundFrameStyles,
-        ])}
+      <iframe // FrameElem
+        className={mergeClasses(
+          styles.frameElem,
+          activeSlot === 'A'
+            ? styles.activeFrameStyles
+            : styles.backgroundFrameStyles
+        )}
         height="100%"
         width="100%"
         title={'example'}
         frameBorder="0"
-        srcDoc={codeSlotA as string}
+        srcDoc={codeSlotA}
         loading="lazy"
         // style={activeSlot === 'A' ? activeFrameStyles : backgroundFrameStyles}
-      />{' '}
+      />
       {codeSlotB && (
-        <iframe
-          className={stylex([
-            $1.frameElem,
+        <iframe // FrameElem
+          className={mergeClasses(
+            styles.frameElem,
             activeSlot === 'B'
-              ? $1.activeFrameStyles
-              : $1.backgroundFrameStyles,
-          ])}
+              ? styles.activeFrameStyles
+              : styles.backgroundFrameStyles
+          )}
           height="100%"
           width="100%"
           title={'example'}
@@ -230,7 +242,7 @@ const Result = ({
  * To improve performance, I'll debounce this component rendering
  * by 250ms.
  */
-const DebouncedResult = (props: ResultProps) => {
+const DebouncedResult = (props: IResultProps) => {
   const debouncedProps = useDebouncedValues(250, props);
 
   return <Result {...debouncedProps} />;

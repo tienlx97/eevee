@@ -14,6 +14,7 @@ const ChevronDown = ({ size }: Props) => (
     strokeLinecap="round"
     strokeLinejoin="round"
     className="feather feather-chevron-down"
+    id="ChevronDown"
   >
     <path d="m6 9 6 6 6-6" />
   </svg>

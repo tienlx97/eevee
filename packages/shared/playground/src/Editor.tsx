@@ -2,40 +2,45 @@ import React, { CSSProperties, KeyboardEvent, useRef } from 'react';
 import SimpleEditor from 'react-simple-code-editor';
 import Highlight, { defaultProps } from 'prism-react-renderer';
 import { syntaxTheme } from '@vaporeon/helpers';
-import stylex from '@ladifire-opensource/stylex';
-import { joinClasses, moveCursorWithinInput } from '@vaporeon/utils';
-import { Language } from './types';
+import { moveCursorWithinInput } from '@vaporeon/utils';
+import { IEditorProps } from './Editor.types';
 
-const styles = stylex.create({
+import { makeStyles, shorthands } from '@griffel/react';
+
+const FONT_SIZE = 14;
+const LINE_HEIGHT = 20;
+
+const useStyles = makeStyles({
   wrapper: {
     maxHeight: 'var(--max-height)',
-    overflow: 'auto',
-    flex: '1',
+    ...shorthands.overflow('auto'),
+    flexGrow: 1,
+    flexShrink: 1,
+    flexBasis: '0%',
+
+    /* Firefox scrollbars */
     scrollbarColor: 'var(--color-gray-300) var(--syntax-bg)',
     scrollbarWidth: 'thin',
   },
 
   codeEditor: {
-    // '-colorPrimary': 'hsl(210deg 13% 50% / 0.25)',
+    '-colorPrimary': 'hsl(210deg 13% 50% / 0.25)',
     backgroundColor: 'var(--syntax-bg)',
     color: 'var(--color-text)',
     fontFamily: 'var(--font-family-mono)',
     fontFeatureSettings: 'normal',
-    padding: '16px',
-    borderRadius: '0px',
+    ...shorthands.padding('16px'),
+    ...shorthands.borderRadius('0px'),
+    fontSize: `${FONT_SIZE}px`,
+    lineHeight: `${LINE_HEIGHT}px`,
+
+    '& > textarea, & .token-line, & .token-line *': {
+      ...shorthands.outline('none !important'),
+      fontSize: `${FONT_SIZE}px !important`,
+      lineHeight: `${LINE_HEIGHT + 2}px !important`,
+    },
   },
 });
-
-type EditorProps = {
-  code: string;
-  language: Language;
-  maxHeight?: string; // use vh
-  handleFormat: () => void;
-  handleUpdate: (value: string) => void;
-};
-
-const FONT_SIZE = 14;
-const LINE_HEIGHT = 20;
 
 const Editor = ({
   code,
@@ -43,7 +48,9 @@ const Editor = ({
   language,
   handleFormat,
   handleUpdate,
-}: EditorProps) => {
+}: IEditorProps) => {
+  const styles = useStyles();
+
   const textareaRef = useRef(null);
 
   const disableTabInCodeSnippets = false;
@@ -64,41 +71,28 @@ const Editor = ({
     }
   };
 
-  const labelVarsStyle = {
-    '--color-primary': 'hsl(210deg 13% 50% / 0.25)',
-  } as CSSProperties;
-
-  const editorVarsStyle = {
-    '--max-height': maxHeight,
-  } as CSSProperties;
-
-  const classes = stylex.dedupe({
-    fontSize: `${FONT_SIZE}px`,
-    lineHeight: `${LINE_HEIGHT}px`,
-
-    '& > textarea, & .token-line, & .token-line *': {
-      outline: 'none !important',
-      fontSize: `${FONT_SIZE}px !important`,
-      lineHeight: `${LINE_HEIGHT + 2}px !important`,
-    },
-  });
-
   return (
-    <label className={stylex(styles.wrapper)} style={labelVarsStyle}>
+    <label // Wrapper
+      style={{ '--max-height': maxHeight } as CSSProperties}
+      className={styles.wrapper}
+    >
       <SimpleEditor
-        style={editorVarsStyle}
-        className={joinClasses(stylex(styles.codeEditor), classes)}
+        // style={
+        //   /* Update text-select color by setting primary */
+        //   { '--color-primary': 'hsl(210deg 13% 50% / 0.25)' } as CSSProperties
+        // }
+        className={styles.codeEditor}
         onValueChange={handleUpdate}
         value={code}
         ignoreTabKey={disableTabInCodeSnippets}
         onKeyDown={handleKeyDown}
         ref={textareaRef}
-        highlight={(codee) => (
+        highlight={(value) => (
           <Highlight
             {...defaultProps}
             // eslint-disable-next-line @typescript-eslint/no-explicit-any
             theme={syntaxTheme as any}
-            code={codee}
+            code={value}
             language={language}
           >
             {({ tokens, getLineProps, getTokenProps }) => (

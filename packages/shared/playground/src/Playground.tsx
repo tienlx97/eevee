@@ -1,31 +1,36 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import React, { FunctionComponent, useMemo, useState } from 'react';
+import React, { useMemo, useState } from 'react';
 import {
   useDuplicateIdWarning,
   useFullscreen,
+  // useFullscreen,
   usePaneData,
   usePrettier,
 } from './Helpers';
 
 import { Pane } from './Pane';
 
-import stylex from '@ladifire-opensource/stylex';
 import { RefreshButton } from './Toolbar/RefreshButton';
 import { DebouncedResult } from './Result';
 import { SplitPane } from './SplitPane';
 import { Editor } from './Editor';
 import { TabbedEditors } from './TabbedEditors';
-import { joinClasses } from '@vaporeon/utils';
+import { CodeWrapper } from './CodeWrapper';
+import { Toolbar } from './Toolbar/Toolbar';
+import { makeStyles, mergeClasses, shorthands } from '@griffel/react';
+import { IPlaygroundProps } from './Playground.types';
 
-const styles = stylex.create({
+const useStyles = makeStyles({
   resultPane: {
     height: '100%',
   },
 
   bottomPaneWrapper: {
-    borderTop: '1px solid var(--color-gray-100)',
+    ...shorthands.borderTop('1px solid var(--color-gray-100)'),
     height: '100%',
-    flex: '1',
+    flexGrow: 1,
+    flexShrink: 1,
+    flexBasis: '0%',
   },
 
   minHeight: {
@@ -43,29 +48,27 @@ const styles = stylex.create({
   },
 
   line: {
-    borderTop: '1px solid var(--color-gray-100)',
+    ...shorthands.borderTop('1px solid var(--color-gray-100)'),
     /* margin: 6px 0; */
+  },
+
+  maxHeight100: {
+    maxHeight: '100vh',
+  },
+
+  maxHeight80: {
+    maxHeight: '80vh',
+  },
+
+  pane: {
+    flexGrow: 1,
+    flexShrink: 1,
+    flexBasis: '0%',
+    minHeight: 0,
   },
 });
 
-type OwnProps = {
-  id: string;
-  title?: string;
-  html?: string;
-  css?: string;
-  js?: string;
-  mode: string;
-  layoutMode: string;
-  centered?: boolean;
-  boxSizing: string;
-  splitRatio: string;
-  xstyle: any;
-  stacked?: boolean;
-  startFullscreened?: boolean;
-  cssCode?: string;
-};
-
-const Playground: FunctionComponent<OwnProps> = ({
+const Playground = ({
   id,
   title,
   html,
@@ -76,11 +79,14 @@ const Playground: FunctionComponent<OwnProps> = ({
   centered,
   boxSizing = 'border-box',
   splitRatio = '0.5',
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   xstyle = {},
   stacked,
   startFullscreened,
   ...rest
-}) => {
+}: IPlaygroundProps) => {
+  const styles = useStyles();
+
   // So, `css` as a prop is taken over by styled-components.
   // In the course platform, this doesn't matter, but it
   // seems to cause problems here.
@@ -98,7 +104,7 @@ const Playground: FunctionComponent<OwnProps> = ({
   // That way, it forces a remount when it changes.
   const [randomId, setRandomId] = useState('initial');
 
-  const { isFullscreened, toggleFullscreen } = useFullscreen(startFullscreened);
+  const [isFullscreened, toggleFullscreen] = useFullscreen(startFullscreened);
 
   const handleFormat = usePrettier({
     htmlCode,
@@ -166,6 +172,11 @@ const Playground: FunctionComponent<OwnProps> = ({
   // its height to become locked rather than being resizable.
   const stretchResults = isFullscreened || layoutMode !== 'codepen';
 
+  let paneClass;
+  if (stretchResults) {
+    paneClass = styles.resultPane;
+  }
+
   const resultPane = (
     <Pane
       actions={
@@ -175,7 +186,7 @@ const Playground: FunctionComponent<OwnProps> = ({
           }}
         />
       }
-      xstyle={[stretchResults && styles.resultPane]}
+      appendClasses={paneClass}
       title="Result"
     >
       <DebouncedResult
@@ -186,9 +197,9 @@ const Playground: FunctionComponent<OwnProps> = ({
         centered={centered}
         stretched={stretchResults}
         layoutMode={layoutMode}
-        isFullscreened={isFullscreened as boolean}
+        isFullscreened={isFullscreened}
         boxSizing={boxSizing}
-        xstyle={xstyle}
+        appendClasses={''}
       />
     </Pane>
   );
@@ -233,7 +244,7 @@ const Playground: FunctionComponent<OwnProps> = ({
               </Pane>
             }
           />
-          <div className={stylex(styles.bottomPaneWrapper)}>{resultPane}</div>
+          <div className={styles.bottomPaneWrapper}>{resultPane}</div>
         </>
       );
       break;
@@ -247,7 +258,7 @@ const Playground: FunctionComponent<OwnProps> = ({
           splitRatio={Number(splitRatio)}
           isFullscreened={isFullscreened}
           leftChild={
-            <Pane title={label} xstyle={styles.minHeight}>
+            <Pane title={label} appendClasses={styles.minHeight}>
               <Editor
                 {...editorData}
                 handleFormat={handleFormat}
@@ -286,30 +297,21 @@ const Playground: FunctionComponent<OwnProps> = ({
       // CSS on top.
       const [secondPane, firstPane] = paneData;
 
-      const classes = stylex.dedupe({
-        maxHeight: isFullscreened ? '100vh' : '80vh',
-      });
-
-      const paneClasses = stylex.dedupe({
-        flex: 1,
-        minHeight: 0,
-      });
-
       contents = (
         <SplitPane
           splitRatio={Number(splitRatio)}
           isFullscreened={isFullscreened}
           leftChild={
             <div
-              className={joinClasses(
-                stylex(styles.verticalPaneCodeWrapper),
-                classes
+              className={mergeClasses(
+                styles.verticalPaneCodeWrapper,
+                isFullscreened ? styles.maxHeight100 : styles.maxHeight80
               )}
-              style={{
-                maxHeight: isFullscreened ? '100vh' : '80vh',
-              }}
+              // style={{
+              //   maxHeight: isFullscreened ? '100vh' : '80vh',
+              // }}
             >
-              <Pane title={firstPane.label} xstyle={paneClasses}>
+              <Pane title={firstPane.label} appendClasses={styles.pane}>
                 <Editor
                   code={firstPane.code}
                   language={firstPane.language}
@@ -317,8 +319,8 @@ const Playground: FunctionComponent<OwnProps> = ({
                   handleFormat={handleFormat}
                 />
               </Pane>
-              <div className={stylex(styles.line)} />
-              <Pane title={secondPane.label} xstyle={paneClasses}>
+              <div className={styles.line} />
+              <Pane title={secondPane.label} appendClasses={styles.pane}>
                 <Editor
                   code={secondPane.code}
                   language={secondPane.language}
@@ -343,10 +345,23 @@ const Playground: FunctionComponent<OwnProps> = ({
     }
   }
 
-  // remove eslint
-  toggleFullscreen();
-  handleReset();
-  return <>{contents}</>;
+  return (
+    <CodeWrapper
+      className="full-bleed"
+      stacked={!!stacked}
+      isFullscreened={isFullscreened}
+    >
+      <Toolbar
+        title={title}
+        isFullscreened={isFullscreened}
+        handleToggleFullscreen={toggleFullscreen}
+        handleReset={handleReset}
+        handleFormat={handleFormat}
+      />
+      {contents}
+    </CodeWrapper>
+  );
 };
 
 export { Playground };
+export default Playground;

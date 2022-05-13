@@ -5,6 +5,7 @@ type Props = {
 };
 const InfoIcon = ({ size }: Props) => (
   <svg
+    id="InfoIcon"
     xmlns="http://www.w3.org/2000/svg"
     width={size}
     height={size}

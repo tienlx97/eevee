@@ -1,23 +1,28 @@
 import React, { useRef } from 'react';
-import { UnstyledButton } from './common/UnstyledButton';
+import { UnstyledButton } from '@jolteon/react-base-ui';
 import { useDrag } from './utils/useDrag';
 
-// import { BREAKPOINT } from './constants';
+import { makeStyles, mergeClasses, shorthands } from '@griffel/react';
+import { ISplitPaneProps } from './SplitPane.types';
 
-import stylex from '@ladifire-opensource/stylex';
-import { joinClasses } from '@vaporeon/utils';
-import { SplitPaneProps } from './types';
+import './SplitPane.css';
 
-const styles = stylex.create({
+const useStyles = makeStyles({
   wrapper: {
     maxWidth: '100%',
-    overflow: 'hidden',
+    ...shorthands.overflow('hidden'),
 
     '@media (max-width: 768px)': {
-      borderRadius: '0',
-      borderLeft: 'none',
-      borderRight: 'none',
+      ...shorthands.borderRadius('0'),
+      ...shorthands.borderLeft('none'),
+      ...shorthands.borderRight('none'),
     },
+  },
+
+  wrapperFlex1: {
+    flexGrow: 1,
+    flexShrink: 1,
+    flexBasis: '0%',
   },
 
   container: {
@@ -44,60 +49,19 @@ const styles = stylex.create({
   },
 
   divider: {
+    // because psesudo ::before and ::after does not support
+    // import it in css file
+    // https://github.com/microsoft/griffel/blob/main/packages/core/src/runtime/getStyleBucketName.test.ts
     position: 'relative',
-    zIndex: '2',
+    zIndex: 2,
     cursor: 'default',
-    padding: '16px 0 0',
+    ...shorthands.padding('16px', '0', '0'),
     pointerEvents: 'auto',
-
-    '&:before,&:after': {
-      content: "''",
-      height: '100%',
-      position: 'absolute',
-      top: '0',
-      left: '0',
-      right: '0',
-      bottom: '0',
-      margin: 'auto',
-    },
-    '&:before': {
-      width: '100%',
-      height: '1px',
-      backgroundColor: 'var(--color-gray-100)',
-    },
 
     '@media (min-width: 960px)': {
       width: '16px',
       cursor: 'col-resize',
-      padding: '0',
-
-      '&:before,&:after': {
-        content: "''",
-        height: '100%',
-        position: 'absolute',
-        top: '0',
-        left: '0',
-        right: '0',
-        bottom: '0',
-        margin: 'auto',
-      },
-
-      '&:before': {
-        width: '1px',
-        height: 'auto',
-      },
-
-      '&:after': {
-        width: '11px',
-        backgroundColor: 'hsl(210deg 15% 20% / 0.5)',
-        opacity: '0',
-        transition: 'opacity 500ms',
-      },
-
-      '&:hover:after': {
-        opacity: '1',
-        transition: 'opacity 250ms',
-      },
+      ...shorthands.padding('0'),
     },
   },
 });
@@ -105,15 +69,17 @@ const styles = stylex.create({
 const DIVIDER_WIDTH = 16;
 
 const SplitPane = ({
-  className = '',
+  appendClasses = '',
   splitRatio,
   isFullscreened,
   leftChild,
   rightChild,
-}: SplitPaneProps) => {
+}: ISplitPaneProps) => {
+  const styles = useStyles();
+
   const rulerRef = useRef<HTMLDivElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
-  const dividerRef = useRef<HTMLDivElement>(null);
+  const dividerRef = useRef<HTMLButtonElement>(null);
 
   const { leftWidth, rightWidth } = useDrag({
     defaultRatio: splitRatio,
@@ -123,40 +89,33 @@ const SplitPane = ({
     dividerWidth: DIVIDER_WIDTH,
   });
 
-  const classes = stylex.dedupe(
-    isFullscreened
-      ? {
-          flex: 1,
-        }
-      : // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        (undefined as any)
-  );
-
   return (
     <>
       <div ref={rulerRef} />
-      {/* Wrapper */}
-      <div className={joinClasses(stylex(styles.wrapper), classes)}>
-        {/* Container */}
-        <div className={className} ref={containerRef}>
-          {/* FirstPane */}
-          <div
-            className={joinClasses(
-              stylex(styles.firstPane),
-              stylex.dedupe({ flex: leftWidth })
-            )}
+      <div // Wrapper
+        className={mergeClasses(
+          styles.wrapper,
+          isFullscreened && styles.wrapperFlex1
+        )}
+      >
+        <div // Container
+          className={mergeClasses(styles.container, appendClasses)}
+          ref={containerRef}
+        >
+          <div // FirstPane
+            className={styles.firstPane}
+            style={{ flex: leftWidth }}
           >
             {leftChild}
           </div>
           {/* Divider */}
-          <UnstyledButton ref={dividerRef} xstyle={styles.divider} />
+          <UnstyledButton
+            id="divider"
+            ref={dividerRef}
+            className={styles.divider}
+          />
           {/* SecondPane */}
-          <div
-            className={joinClasses(
-              stylex(styles.secondPane),
-              stylex.dedupe({ flex: rightWidth })
-            )}
-          >
+          <div className={styles.secondPane} style={{ flex: rightWidth }}>
             {rightChild}
           </div>
         </div>

@@ -1,4 +1,4 @@
-import { CodeMap, SnippetProps } from '../types';
+import { CodeMap, ISnippetProps } from './constructSnippet.types';
 
 const PACKAGE_VERSIONS = {};
 
@@ -166,7 +166,7 @@ function constructSnippet({
   mode,
   boxSizing,
   centered,
-}: SnippetProps) {
+}: ISnippetProps) {
   let codeMapCopy = { ...codeMap };
 
   if (mode === 'react') {
@@ -188,7 +188,7 @@ function constructSnippet({
       <style>
         @font-face {
           font-family: 'Wotfard';
-          src: url('/fonts/wotfard/wotfard-semibold-webfont.woff2')
+          src: url('https://raw.githubusercontent.com/lexuantien/eevee/2086fbd62a7affa3b863355a9eb516206f318930/packages/web/public/fonts/wotfard/wotfard-semibold-webfont.woff2')
             format('woff2');
           font-weight: 600;
           font-style: normal;
@@ -196,7 +196,7 @@ function constructSnippet({
         }
         @font-face {
           font-family: 'Wotfard';
-          src: url('/fonts/wotfard/wotfard-medium-webfont.woff2')
+          src: url('https://raw.githubusercontent.com/lexuantien/eevee/2086fbd62a7affa3b863355a9eb516206f318930/packages/web/public/fonts/wotfard/wotfard-medium-webfont.woff2')
             format('woff2');
           font-weight: 500;
           font-style: normal;
@@ -204,7 +204,7 @@ function constructSnippet({
         }
         @font-face {
           font-family: 'Wotfard';
-          src: url('/fonts/wotfard/wotfard-regular-webfont.woff2')
+          src: url('https://raw.githubusercontent.com/lexuantien/eevee/2086fbd62a7affa3b863355a9eb516206f318930/packages/web/public/fonts/wotfard/wotfard-regular-webfont.woff2')
             format('woff2');
           font-weight: 400;
           font-style: normal;

@@ -1,10 +1,10 @@
-import React, { FunctionComponent } from 'react';
-import stylex from '@ladifire-opensource/stylex';
-import { PaneProps } from './types';
+import React from 'react';
+import { makeStyles, mergeClasses, shorthands } from '@griffel/react';
+import { IPaneProps } from './Pane.types';
 
-const styles = stylex.create({
+const useStyles = makeStyles({
   wrapper: {
-    padding: '16px',
+    ...shorthands.padding('16px'),
     paddingTop: 0,
     display: 'flex',
     flexDirection: 'column',
@@ -22,20 +22,26 @@ const styles = stylex.create({
     lineHeight: '46px',
     fontWeight: 'var(--font-weight-bold)',
     cursor: 'default',
-    margin: 0,
+    ...shorthands.margin(0),
   },
 });
 
-const Pane: FunctionComponent<PaneProps> = ({
-  title,
-  children,
-  actions,
-  xstyle,
-}) => {
+const Pane = ({ title, children, actions, appendClasses = '' }: IPaneProps) => {
+  const styles = useStyles();
+  const classes = mergeClasses(styles.wrapper, appendClasses);
+
   return (
-    <div className={stylex(styles.wrapper, xstyle)}>
-      <div className={stylex(styles.header)}>
-        <p className={stylex(styles.title)}>{title}</p>
+    <div // Wrapper
+      className={classes}
+    >
+      <div // Header
+        className={styles.header}
+      >
+        <p // Title
+          className={styles.title}
+        >
+          {title}
+        </p>
         {actions}
       </div>
       {children}

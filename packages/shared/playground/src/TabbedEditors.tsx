@@ -1,13 +1,12 @@
 import React, { CSSProperties, useState } from 'react';
-import { UnstyledButton } from './common/UnstyledButton';
+import { UnstyledButton } from '@jolteon/react-base-ui';
 import { Editor } from './Editor';
-import { TabbedEditorProps } from './types';
+import { ITabbedEditorProps } from './TabbedEditors.types';
+import { makeStyles, mergeClasses, shorthands } from '@griffel/react';
 
-import stylex from '@ladifire-opensource/stylex';
-
-const styles = stylex.create({
+const useStyles = makeStyles({
   wrapper: {
-    padding: '16px',
+    ...shorthands.padding('16px'),
     paddingTop: '0',
     display: 'flex',
     flexDirection: 'column',
@@ -18,7 +17,7 @@ const styles = stylex.create({
   trigger: {
     display: 'flex',
     alignItems: 'center',
-    gap: '16px',
+    ...shorthands.gap('16px'),
     height: '46px',
   },
 
@@ -27,10 +26,10 @@ const styles = stylex.create({
     textTransform: 'uppercase',
     fontSize: '1rem',
     fontWeight: 'var(--weight)',
-    cursor: 'pointer',
-    margin: '0 -4px',
-    padding: '8px 4px',
+    ...shorthands.margin('0 -4px'),
+    ...shorthands.padding('8px 4px'),
     color: 'var(--color)',
+    cursor: 'pointer',
 
     '&:focus': {
       outlineOffset: '0px',
@@ -40,11 +39,15 @@ const styles = stylex.create({
 
 const TabbedEditors = ({
   paneData,
-  // splitRatio,
+  splitRatio,
   maxHeight,
   handleFormat,
-  xstyle,
-}: TabbedEditorProps) => {
+  className,
+  ...delegated
+}: ITabbedEditorProps) => {
+  const styles = useStyles();
+  const classes = mergeClasses(styles.wrapper, className);
+
   const [firstPane, secondPane] = paneData;
 
   const [activeLanguage, setActiveLanguage] = useState(firstPane.language);
@@ -56,8 +59,13 @@ const TabbedEditors = ({
   // Reach UI?
 
   return (
-    <div className={stylex(styles.wrapper, xstyle)}>
-      <div className={stylex(styles.trigger)}>
+    <div // Wrapper
+      {...delegated}
+      className={classes}
+    >
+      <div // Triggers
+        className={styles.trigger}
+      >
         {paneData.map((pane) => (
           <UnstyledButton
             style={
@@ -72,9 +80,9 @@ const TabbedEditors = ({
                     : 'var(--color-gray-300)',
               } as CSSProperties
             }
-            xstyle={[styles.tabTrigger]}
+            className={styles.tabTrigger}
             key={pane.language}
-            onclick={() => setActiveLanguage(pane.language)}
+            onClick={() => setActiveLanguage(pane.language)}
           >
             {pane.label}
           </UnstyledButton>

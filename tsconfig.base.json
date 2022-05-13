@@ -2,10 +2,10 @@
   "compilerOptions": {
     "baseUrl": ".",
     "outDir": "dist",
-    "sourceMap": false,
-    "target": "es2016",
+    "sourceMap": true,
+    "target": "es5",
     "useDefineForClassFields": false,
-    "module": "commonjs", //
+    "module": "esnext", //
     "moduleResolution": "node",
     "strict": true,
     "noUnusedLocals": true,
@@ -13,7 +13,13 @@
     "resolveJsonModule": true,
     "esModuleInterop": true,
     "removeComments": false,
-    "lib": ["esnext", "dom"],
+    "lib": [
+      "ES6",
+      "dom",
+      "es2016.array.include",
+      "es2017.object",
+      "es2017.intl"
+    ],
     "types": ["jest", "node"],
     "rootDir": ".",
     "jsx": "react" /* Specify what JSX code is generated. */,
@@ -25,10 +31,5 @@
     "skipLibCheck": true /* Skip type checking all .d.ts files. */,
     "typeRoots": ["./node_modules/@types"]
   },
-  "include": [
-    "packages/global.d.ts",
-    "packages/**/__tests__",
-    "packages/**/*.ts",
-    "packages/**/*.tsx"
-  ]
+  "include": ["packages/**/__tests__", "packages/**/*.ts", "packages/**/*.tsx"]
 }

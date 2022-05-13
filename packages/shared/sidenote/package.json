@@ -4,13 +4,13 @@
   "main": "index.js",
   "license": "MIT",
   "dependencies": {
-    "react": "*",
+    "@griffel/react": "^1.0.4",
+    "@jolteon/icons": "*",
+    "@jolteon/react-base-ui": "*",
     "@react-spring/web": "9.4.5",
     "@vaporeon/constants": "*",
     "@vaporeon/hooks": "*",
-    "@jolteon/base-ui": "*",
-    "@jolteon/icons": "*",
-    "@ladifire-opensource/stylex": "^0.1.0-beta.0",
-    "@vaporeon/utils": "*"
+    "@vaporeon/utils": "*",
+    "react": "*"
   }
 }

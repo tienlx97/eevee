@@ -65,3 +65,33 @@ export function moveCursorWithinInput(
   //   range.select();
   // }
 }
+
+export const normalize = (
+  number: number,
+  currentScaleMin: number,
+  currentScaleMax: number,
+  newScaleMin = 0,
+  newScaleMax = 1
+) => {
+  // FIrst, normalize the value between 0 and 1.
+  const standardNormalization =
+    (number - currentScaleMin) / (currentScaleMax - currentScaleMin);
+
+  // Next, transpose that value to our desired scale.
+  return (newScaleMax - newScaleMin) * standardNormalization + newScaleMin;
+};
+
+export const roundToNearest = (number: number, step: number) =>
+  Math.round(number / step) * step;
+
+export const range = (start: number, end?: number, step = 1) => {
+  const output = [];
+  if (typeof end === 'undefined') {
+    end = start;
+    start = 0;
+  }
+  for (let i = start; i < end; i += step) {
+    output.push(i);
+  }
+  return output;
+};

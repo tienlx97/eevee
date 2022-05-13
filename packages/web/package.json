@@ -54,13 +54,16 @@
     "webpack-obfuscator": "^3.5.1"
   },
   "dependencies": {
-    "@ladifire-opensource/stylex": "^0.1.0-beta.0",
-    "@ladifire-opensource/stylex-webpack-plugin": "^0.1.0-beta.0",
+    "@griffel/react": "^1.0.4",
+    "@jolteon/playground": "*",
     "@types/history": "^5.0.0",
     "@types/react": "^18.0.5",
     "@types/react-dom": "^18.0.1",
-    "core-js": "^3.21.1",
+    "@vaporeon/config-context": "*",
+    "@vaporeon/global-styles": "*",
+    "@vaporeon/utils": "*",
     "react": "*",
-    "react-dom": "*"
+    "react-dom": "*",
+    "tippy.js": "^6.3.7"
   }
 }

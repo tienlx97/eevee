@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback, RefObject } from 'react';
+import React, { useState, RefObject } from 'react';
 import { throttle } from '@vaporeon/utils';
 
 /**
@@ -7,12 +7,17 @@ import { throttle } from '@vaporeon/utils';
  */
 
 interface IProps {
-  rulerRef: RefObject<HTMLDivElement | null>;
-  containerRef: RefObject<HTMLDivElement | null>;
-  dividerRef: RefObject<HTMLDivElement | null>;
+  rulerRef: RefObject<HTMLDivElement | undefined>;
+  containerRef: RefObject<HTMLDivElement | undefined>;
+  dividerRef: RefObject<HTMLButtonElement | undefined>;
   dividerWidth: number;
   defaultRatio: number;
 }
+
+type UseDragReturnProp = {
+  leftWidth: number;
+  rightWidth: number;
+};
 
 function useDrag({
   rulerRef,
@@ -20,11 +25,11 @@ function useDrag({
   dividerRef,
   dividerWidth,
   defaultRatio,
-}: IProps) {
+}: IProps): UseDragReturnProp {
   const [width, setWidth] = useState(782 * defaultRatio);
   const [containerRect, setContainerRect] = useState<DOMRect | null>(null);
 
-  useEffect(() => {
+  React.useEffect(() => {
     const containerEl = rulerRef.current;
 
     const update = () => {
@@ -47,7 +52,7 @@ function useDrag({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  const keepDragging = useCallback(
+  const keepDragging = React.useCallback(
     (event: MouseEvent) => {
       const { clientX } = event;
       if (containerRect) {
@@ -57,7 +62,7 @@ function useDrag({
     [containerRect]
   );
 
-  const stopDrag = useCallback(() => {
+  const stopDrag = React.useCallback(() => {
     document.removeEventListener('mousemove', keepDragging);
     document.removeEventListener('mouseup', stopDrag);
     if (containerRef.current != null) {
@@ -66,7 +71,7 @@ function useDrag({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [keepDragging]);
 
-  const startDrag = useCallback(() => {
+  const startDrag = React.useCallback(() => {
     document.addEventListener('mousemove', keepDragging);
     document.addEventListener('mouseup', stopDrag);
     if (containerRef.current != null) {
@@ -75,7 +80,7 @@ function useDrag({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [keepDragging, stopDrag]);
 
-  useEffect(() => {
+  React.useEffect(() => {
     const dividerEl = dividerRef.current;
 
     function reset() {
@@ -119,7 +124,7 @@ function useDrag({
   return {
     leftWidth,
     rightWidth,
-  };
+  } as UseDragReturnProp;
 }
 
 export default useDrag;
