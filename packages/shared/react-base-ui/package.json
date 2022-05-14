@@ -11,6 +11,7 @@
     "@vaporeon/constants": "*",
     "@vaporeon/hooks": "*",
     "@vaporeon/utils": "*",
+    "@vaporeon/config-context": "*",
     "react": "*",
     "react-dom": "*",
     "tippy.js": "^6.3.7"
