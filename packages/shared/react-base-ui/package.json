@@ -1,0 +1,19 @@
+{
+  "name": "@jolteon/react-base-ui",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "dependencies": {
+    "@griffel/react": "^1.0.4",
+    "@jolteon/icons": "*",
+    "@react-spring/web": "9.4.5",
+    "@tippyjs/react": "^4.2.6",
+    "@vaporeon/constants": "*",
+    "@vaporeon/hooks": "*",
+    "@vaporeon/utils": "*",
+    "@vaporeon/config-context": "*",
+    "react": "*",
+    "react-dom": "*",
+    "tippy.js": "^6.3.7"
+  }
+}

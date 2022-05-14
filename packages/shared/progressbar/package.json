@@ -1,0 +1,13 @@
+{
+  "name": "@jolteon/progressbar",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "dependencies": {
+    "@griffel/react": "^1.0.4",
+    "@react-spring/web": "9.4.5",
+    "@vaporeon/constants": "*",
+    "@vaporeon/utils": "*",
+    "react": "*"
+  }
+}
