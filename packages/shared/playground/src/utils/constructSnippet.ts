@@ -1,22 +1,21 @@
+import {
+  REACT_EXTERNAL_DEPENDENCIES,
+  importGlobalStyles,
+  windowOnErrorFunction,
+  windowOnLoadFuncton,
+  REACT_INTERNAL_DENPENDENCIES,
+} from './constants';
 import { CodeMap, ISnippetProps } from './constructSnippet.types';
 
 const PACKAGE_VERSIONS = {};
-
-type Dependencies = {
-  [key: string]: string;
-};
-
-const DEPENDENCIES: Dependencies = {
-  'react-feather': 'https://cdn.skypack.dev/react-feather',
-};
 
 export function wrapForReact(snippet: CodeMap, centered: boolean) {
   // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
   let code = snippet.javascript!;
   const renderExpression = /render\((.*)\)/s;
 
-  Object.keys(DEPENDENCIES).forEach((depName) => {
-    code = code.replace(depName, DEPENDENCIES[depName]);
+  Object.keys(REACT_EXTERNAL_DEPENDENCIES).forEach((depName) => {
+    code = code.replace(depName, REACT_EXTERNAL_DEPENDENCIES[depName]);
   });
 
   try {
@@ -30,17 +29,15 @@ export function wrapForReact(snippet: CodeMap, centered: boolean) {
     // don't care enough to solve that problem right now.
 
     const wrappedCode = `
-    import React, { createElement } from 'https://cdn.skypack.dev/react';
-    import ReactDOM from 'https://cdn.skypack.dev/react-dom';
-
-    import styled, { createGlobalStyle } from 'https://cdn.skypack.dev/styled-components';
+    import React, { createElement } from ${REACT_INTERNAL_DENPENDENCIES.react} 
+    import ReactDOM from ${REACT_INTERNAL_DENPENDENCIES['react-dom']};
 
     ${renderlessCode}
 
     // Wait a frame so that 'window' reads as the correct width,
     // inside the React app
     window.setTimeout(() => {
-      ReactDOM.render(${renderedContent}, document.querySelector('#app'));
+      ReactDOM.render(${renderedContent}, document.querySelector('#root'));
     }, 0)
     `.trim();
 
@@ -56,7 +53,7 @@ export function wrapForReact(snippet: CodeMap, centered: boolean) {
     return {
       ...snippet,
       javascript: wrappedCode,
-      markup: `<div id="app" style="${wrapperStyles}"></div>`,
+      markup: `<div id="root" style="${wrapperStyles}"></div>`,
     };
   } catch (err) {
     // Since the code is user-editable, it's entirely possible
@@ -160,6 +157,9 @@ function constructJavaScript(codeMap: CodeMap, mode: string) {
   }
 }
 
+/**
+ * Constructs snippet from individual html, css and js code.
+ */
 function constructSnippet({
   id,
   codeMap,
@@ -182,95 +182,17 @@ function constructSnippet({
       <meta charset="UTF-8"/>
       <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
       <meta http-equiv="X-UA-Compatible" content="ie=edge"/>
-      <title>Josh Comeau iFrame playground</title>
-
-      <!-- global styles -->
-      <style>
-        @font-face {
-          font-family: 'Wotfard';
-          src: url('https://raw.githubusercontent.com/lexuantien/eevee/2086fbd62a7affa3b863355a9eb516206f318930/packages/web/public/fonts/wotfard/wotfard-semibold-webfont.woff2')
-            format('woff2');
-          font-weight: 600;
-          font-style: normal;
-          font-display: fallback;
-        }
-        @font-face {
-          font-family: 'Wotfard';
-          src: url('https://raw.githubusercontent.com/lexuantien/eevee/2086fbd62a7affa3b863355a9eb516206f318930/packages/web/public/fonts/wotfard/wotfard-medium-webfont.woff2')
-            format('woff2');
-          font-weight: 500;
-          font-style: normal;
-          font-display: fallback;
-        }
-        @font-face {
-          font-family: 'Wotfard';
-          src: url('https://raw.githubusercontent.com/lexuantien/eevee/2086fbd62a7affa3b863355a9eb516206f318930/packages/web/public/fonts/wotfard/wotfard-regular-webfont.woff2')
-            format('woff2');
-          font-weight: 400;
-          font-style: normal;
-          font-display: fallback;
-        }
-
-        body {
-          margin: 0;
-          padding: 8px;
-        }
-
-        p, h1, h2, h3, h4, h5, h6 {
-          margin: 0;
-          padding: 0;
-        }
-
-        *,
-        *:before,
-        *:after {
-          box-sizing: ${boxSizing};
-          line-height: 1.5;
-          line-height: calc(1em + 0.5rem);
-          -webkit-font-smoothing: antialiased;
-          font-family: Wotfard;
-        }
-      </style>
-
+      <title>Poro iFrame playground</title>
+      <!-- global styles -->      
+      <style>${importGlobalStyles(boxSizing)}</style>
       <style>${codeMapCopy.css || ''}</style>
     </head>
     <body>
       ${codeMapCopy.markup || ''}
       <span></span>
       <script>
-        window.onload = function() {
-          if(typeof window !== 'undefined') {
-            window.parent.postMessage({
-              source: "frame-${id}",
-              message: {
-                type: "loaded"
-              },
-            }, "*");
-
-            /*
-             * Disable all link-clicks, since
-             * they're meant for show.
-             */
-
-            const allLinks = [...document.querySelectorAll('a')];
-            allLinks.forEach(a => {
-              a.addEventListener('click', ev => {
-                ev.preventDefault();
-              });
-            });
-          }
-        }
-        window.onerror = function(message) {
-          if(typeof window !== 'undefined') {
-            window.parent.postMessage({
-              source: "frame-${id}",
-              message: {
-                type: "error",
-                data: message
-              },
-            }, "*");
-          }
-        }
+        ${windowOnLoadFuncton(id)}
+        ${windowOnErrorFunction(id)}
       </script>
       <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
       ${constructJavaScript(codeMapCopy, mode)}

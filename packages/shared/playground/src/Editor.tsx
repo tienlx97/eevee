@@ -6,6 +6,7 @@ import { moveCursorWithinInput } from '@vaporeon/utils';
 import { IEditorProps } from './Editor.types';
 
 import { makeStyles, shorthands } from '@griffel/react';
+import { ConfigContext } from '@vaporeon/config-context';
 
 const FONT_SIZE = 14;
 const LINE_HEIGHT = 20;
@@ -56,8 +57,8 @@ const Editor = ({
 
   const textareaRef = useRef(null);
 
-  const disableTabInCodeSnippets = false;
-  // const { disableTabInCodeSnippets } = React.useContext(ConfigContext);
+  // const disableTabInCodeSnippets = false;
+  const { disableTabInCodeSnippets } = React.useContext(ConfigContext);
 
   const handleKeyDown = (ev: KeyboardEvent): void => {
     if (ev.metaKey && ev.key === 's') {

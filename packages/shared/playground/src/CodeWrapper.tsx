@@ -2,6 +2,8 @@
 import React, { useEffect, useRef, useState, forwardRef } from 'react';
 // import { BaseWrapper as SidenoteWrapper } from '@jolteon/sidenote';
 import { InPortal } from '@jolteon/inportal';
+import { SettingCheckbox } from '@jolteon/react-base-ui';
+
 import { WrapperTheme } from './theme';
 
 import { makeStyles, mergeClasses, shorthands } from '@griffel/react';
@@ -62,6 +64,16 @@ const useStyles = makeStyles({
     ...shorthands.margin('0'),
     display: 'flex',
     flexDirection: 'column',
+  },
+
+  footer: {
+    paddingTop: '16px',
+    display: 'flex',
+    justifyContent: 'flex-start',
+
+    '@media (orientation: portrait)': {
+      display: 'none',
+    },
   },
 });
 
@@ -134,7 +146,6 @@ const CodeWrapper = ({
 
     if (isFullscreened) {
       const boundingBox = inlineRef.current.getBoundingClientRect();
-
       setBlockerSize(boundingBox.height);
     } else {
       setBlockerSize(0);
@@ -164,11 +175,9 @@ const CodeWrapper = ({
       <InlineWrapperRef className={className} ref={inlineRef}>
         {children}
       </InlineWrapperRef>
-      {/* <Footer>
-        <SettingCheckbox settingKey="enableTabInCodePlaygrounds">
-          Enable “Tab” for indentation
-        </SettingCheckbox>
-      </Footer> */}
+      <footer className={styles.footer}>
+        <SettingCheckbox />
+      </footer>
     </InlineOuterWrapper>
   );
 };
