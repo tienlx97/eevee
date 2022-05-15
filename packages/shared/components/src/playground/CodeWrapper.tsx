@@ -34,7 +34,7 @@ const useStyles = makeStyles({
     ...shorthands.margin('0', '-32px'),
     ...shorthands.borderRadius('8px'),
 
-    '& aside[data-side-note-wrapper]': {
+    '& .base-wrapper': {
       width: 'calc(100% + 16px * 2)',
       marginLeft: '-16px',
       marginRight: '-16px',
@@ -45,7 +45,7 @@ const useStyles = makeStyles({
       marginLeft: '-24px',
       marginRight: '-24px',
       ...shorthands.borderRadius('0'),
-      '& aside[data-side-note-wrapper]': {
+      '& .base-wrapper': {
         width: 'calc(100% + 16px * 2)',
       },
     },
