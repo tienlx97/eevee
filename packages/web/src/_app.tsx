@@ -4,8 +4,6 @@ import client from 'react-dom/client';
 import 'tippy.js/dist/tippy.css';
 import '@jolteon/components/src/global-styles/CssVariables.css';
 
-// import { useCssReset, useGlobalCss } from '@vaporeon/global-styles';
-
 import {
   ConfigProvider,
   loadDefaultThemeBeforeReactRender,
@@ -13,14 +11,14 @@ import {
 
 loadDefaultThemeBeforeReactRender();
 
-import App from './App';
+import UIDebug from './_debug';
 
 const Index = () => {
   // useCssReset();
   // useGlobalCss();
   return (
     <ConfigProvider>
-      <App />
+      <UIDebug />
     </ConfigProvider>
   );
 };
