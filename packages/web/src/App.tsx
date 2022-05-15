@@ -1,7 +1,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React from 'react';
 import { makeStyles } from '@griffel/react';
-import { Playground } from '@jolteon/playground';
+import { Playground } from '@jolteon/components';
 
 const useStyles = makeStyles({
   root: {
