@@ -1,594 +1,290 @@
-var d = Object.defineProperty,
+var h = Object.defineProperty,
   c = Object.defineProperties;
 var m = Object.getOwnPropertyDescriptors;
-var a = Object.getOwnPropertySymbols;
-var r = Object.prototype.hasOwnProperty,
-  s = Object.prototype.propertyIsEnumerable;
-var l = (e, o, i) =>
-    o in e
-      ? d(e, o, { enumerable: !0, configurable: !0, writable: !0, value: i })
-      : (e[o] = i),
-  t = (e, o) => {
-    for (var i in o || (o = {})) r.call(o, i) && l(e, i, o[i]);
-    if (a) for (var i of a(o)) s.call(o, i) && l(e, i, o[i]);
-    return e;
+var o = Object.getOwnPropertySymbols;
+var s = Object.prototype.hasOwnProperty,
+  r = Object.prototype.propertyIsEnumerable;
+var l = (t, n, i) =>
+    n in t
+      ? h(t, n, { enumerable: !0, configurable: !0, writable: !0, value: i })
+      : (t[n] = i),
+  e = (t, n) => {
+    for (var i in n || (n = {})) s.call(n, i) && l(t, i, n[i]);
+    if (o) for (var i of o(n)) r.call(n, i) && l(t, i, n[i]);
+    return t;
   },
-  p = (e, o) => c(e, m(o));
-var h = (e, o) => {
+  p = (t, n) => c(t, m(n));
+var d = (t, n) => {
   var i = {};
-  for (var n in e) r.call(e, n) && o.indexOf(n) < 0 && (i[n] = e[n]);
-  if (e != null && a)
-    for (var n of a(e)) o.indexOf(n) < 0 && s.call(e, n) && (i[n] = e[n]);
+  for (var a in t) s.call(t, a) && n.indexOf(a) < 0 && (i[a] = t[a]);
+  if (t != null && o)
+    for (var a of o(t)) n.indexOf(a) < 0 && r.call(t, a) && (i[a] = t[a]);
   return i;
 };
-const makeShortcode = (e) =>
+const makeShortcode = (t) =>
     function (i) {
       return (
         console.warn(
           'Component ' +
-            e +
+            t +
             ' was not imported, exported, or provided by MDXProvider as global scope'
         ),
-        mdx('div', t({}, i))
+        mdx('div', e({}, i))
       );
     },
-  Em = makeShortcode('Em'),
-  IntroFileViewerDemo = makeShortcode('IntroFileViewerDemo'),
-  DesktopOnly = makeShortcode('DesktopOnly'),
-  MobileOnly = makeShortcode('MobileOnly'),
+  Playground = makeShortcode('Playground'),
   Sidenote = makeShortcode('Sidenote'),
-  HooksFileViewerDemo = makeShortcode('HooksFileViewerDemo'),
-  NewsletterSignup = makeShortcode('NewsletterSignup'),
+  Asterisk = makeShortcode('Asterisk'),
   Spacer = makeShortcode('Spacer'),
-  MetaFileViewerDemo = makeShortcode('MetaFileViewerDemo'),
+  EnvelopeDemo = makeShortcode('EnvelopeDemo'),
+  EnvelopeLayers = makeShortcode('EnvelopeLayers'),
+  VideoGif = makeShortcode('VideoGif'),
   layoutProps = {},
   MDXLayout = 'wrapper';
 function MDXContent(i) {
-  var n = i,
-    { components: e } = n,
-    o = h(n, ['components']);
+  var a = i,
+    { components: t } = a,
+    n = d(a, ['components']);
   return mdx(
     MDXLayout,
-    p(t(t({}, layoutProps), o), { components: e, mdxType: 'MDXLayout' }),
+    p(e(e({}, layoutProps), n), { components: t, mdxType: 'MDXLayout' }),
     mdx(
       'p',
       null,
-      'React is famously unopinionated when it comes to file/directory structure. How should you structure the files and directories in your applications?'
+      "In CSS, we're given a tool to explicitly control the stacking order of HTML elements: ",
+      mdx('inlineCode', { parentName: 'p' }, 'z-index'),
+      '. Elements with a higher value will appear on top:'
     ),
-    mdx(
-      'p',
-      null,
-      "Well, there is no one \u201Cright\u201D way, but I've tried ",
-      mdx('em', { parentName: 'p' }, 'lots'),
-      " of different approaches in the 7+ years I've been using React, and I've iterated my way to a solution I'm ",
-      mdx('em', { parentName: 'p' }, 'really'),
-      ' happy with.'
-    ),
-    mdx(
-      'p',
-      null,
-      "In this blog post, I'll share the structure I use across all my current projects, including this blog and my custom course platform."
-    ),
-    mdx('h1', null, 'Interactive file explorer'),
-    mdx(
-      'p',
-      null,
-      "Alright, so I'll explain everything in depth, but I thought it'd be fun to let you take a self-guided tour first."
-    ),
-    mdx(
-      'p',
-      null,
-      "Here's an ",
-      mdx(
-        Em,
-        { color: 'var(--color-secondary)', mdxType: 'Em' },
-        'interactive'
-      ),
-      ' file explorer. Feel free to poke around and see how things are structured!'
-    ),
-    mdx(IntroFileViewerDemo, { mdxType: 'IntroFileViewerDemo' }),
-    mdx(
-      'p',
-      null,
-      'The files in this demo are JavaScript, but this structure works just as well for TypeScript projects!'
-    ),
-    mdx('h1', null, 'My priorities'),
-    mdx(
-      'p',
-      null,
-      "Let's start by talking about my priorities, the things I've optimized for."
-    ),
-    mdx(
-      'p',
-      null,
-      'First, I want to make it easy to import components. I want to be able to write this:'
-    ),
-    mdx(
-      'pre',
-      null,
-      mdx(
-        'code',
-        t({ parentName: 'pre' }, { className: 'language-js' }),
-        `import Button from '../Button';
+    mdx(Playground, {
+      id: 'z-index',
+      splitRatio: 0.55,
+      layoutMode: 'tabbed',
+      layoutMode: 'tabbed',
+      html: `
+<style>
+  .box {
+    position: relative;
+  }
+  .first.box {
+    z-index: 2;
+    background-color: peachpuff;
+  }
+  .second.box {
+    z-index: 1;
+    margin-top: -20px;
+    margin-left: 20px;
+  }
+</style>
 
-// Or, using Webpack aliases:
-// (We'll talk about this further down!)
-import Button from '@components/Button';
-`
-      )
-    ),
-    mdx(
-      'p',
-      null,
-      "Next: when I'm working in my IDE, I don't want to be flooded with ",
-      mdx('inlineCode', { parentName: 'p' }, 'index.js'),
-      " files. I've worked in projects where the top bar looked like this:"
-    ),
-    mdx('img', {
-      alt: 'A bunch of files open, all called \u201Cindex.js\u201D',
-      src: '/images/file-structure/index.png',
-      style: { maxWidth: 610 },
+<div class="first box"></div>
+<div class="second box"></div>
+  `,
+      cssCode: `
+/*
+  This tab includes cosmetic styles
+  that aren't as relevant.
+*/
+.box {
+  width: 50px;
+  height: 50px;
+  border: 3px solid;
+  background: silver;
+}
+  `,
+      mdxType: 'Playground',
     }),
     mdx(
       'p',
       null,
-      'To be fair, most editors will now include the parent directory when multiple ',
-      mdx('inlineCode', { parentName: 'p' }, 'index.js'),
-      ' files are open at once, but then each tab takes up way more space:'
-    ),
-    mdx(
-      DesktopOnly,
-      { breakpoint: 'small', mdxType: 'DesktopOnly' },
-      mdx('img', {
-        alt: 'A bunch of files open, formatted like \u201Cindex.js - /RainbowButton\u201D',
-        src: '/images/file-structure/index-slightly-better.png',
-      })
-    ),
-    mdx(
-      MobileOnly,
-      { breakpoint: 'small', mdxType: 'MobileOnly' },
-      mdx('img', {
-        alt: 'A bunch of files open, formatted like \u201Cindex.js - /RainbowButton\u201D',
-        src: '/images/file-structure/index-slightly-better-mobile.png',
-      })
+      'Because ',
+      mdx('inlineCode', { parentName: 'p' }, '.first.box'),
+      ' has a larger z-index than ',
+      mdx('inlineCode', { parentName: 'p' }, '.second.box'),
+      ', it stacks in front. If we remove that z-index declaration, it falls to the back. The code above is editable\u2014give it a shot!'
     ),
     mdx(
       'p',
       null,
-      'My goal is to have nice, clean component file names, like this:'
+      "Things aren't always so simple, however. Sometimes, the larger z-index value ",
+      mdx('em', { type: 'original' }, "doesn't"),
+      ' win.'
     ),
-    mdx(
-      DesktopOnly,
-      { breakpoint: 'small', mdxType: 'DesktopOnly' },
-      mdx('img', {
-        alt: 'A bunch of files open, with proper names like \u201CRainbowButton.js\u201D',
-        src: '/images/file-structure/index-fixed.png',
-      })
-    ),
-    mdx(
-      MobileOnly,
-      { breakpoint: 'small', mdxType: 'MobileOnly' },
-      mdx('img', {
-        alt: 'A bunch of files open, with proper names like \u201CRainbowButton.js\u201D',
-        src: '/images/file-structure/index-fixed-mobile.png',
-      })
-    ),
-    mdx(
-      'p',
-      null,
-      'Finally, in terms of organization, I want things to be organized by function, not by feature. I want a \u201Ccomponents\u201D directory, a \u201Chooks\u201D directory, a \u201Chelpers\u201D directory, and so on.'
-    ),
-    mdx(
-      'p',
-      null,
-      'Sometimes, a complex component will have a bunch of associated files. These include:'
-    ),
-    mdx(
-      'ul',
-      null,
-      mdx(
-        'li',
-        { parentName: 'ul' },
-        '"Sub-components", smaller components used exclusively by the main component'
-      ),
-      mdx('li', { parentName: 'ul' }, 'Helper functions'),
-      mdx('li', { parentName: 'ul' }, 'Custom hooks'),
-      mdx(
-        'li',
-        { parentName: 'ul' },
-        'Constants or data shared between the component and its associated files'
-      )
-    ),
-    mdx(
-      'p',
-      null,
-      "As a real example, let's talk about the ",
-      mdx('inlineCode', { parentName: 'p' }, 'FileViewer'),
-      ' component, used in this blog post for the \u201Cinteractive file explorer\u201D demo. Here are the files created specifically for this component:'
-    ),
-    mdx(
-      'ul',
-      null,
-      mdx(
-        'li',
-        { parentName: 'ul' },
-        mdx('inlineCode', { parentName: 'li' }, 'FileViewer.js'),
-        ' \u2014 the main component'
-      ),
-      mdx(
-        'li',
-        { parentName: 'ul' },
-        mdx('inlineCode', { parentName: 'li' }, 'FileContent.js'),
-        ' \u2014 the component that renders the contents of a file, with syntax highlighting'
-      ),
-      mdx(
-        'li',
-        { parentName: 'ul' },
-        mdx('inlineCode', { parentName: 'li' }, 'Sidebar.js'),
-        ' \u2014 The list of files and directories that can be explored'
-      ),
-      mdx(
-        'li',
-        { parentName: 'ul' },
-        mdx('inlineCode', { parentName: 'li' }, 'Directory.js'),
-        ' \u2014 the collapsible directory, to be used in the sidebar'
-      ),
-      mdx(
-        'li',
-        { parentName: 'ul' },
-        mdx('inlineCode', { parentName: 'li' }, 'File.js'),
-        ' \u2014 An individual file, to be used in the sidebar'
-      ),
-      mdx(
-        'li',
-        { parentName: 'ul' },
-        mdx('inlineCode', { parentName: 'li' }, 'FileViewer.helpers.js'),
-        ' \u2014 helper functions to traverse the tree and help manage the expanding/collapsing functionality'
-      )
-    ),
-    mdx(
-      'p',
-      null,
-      "Ideally, all of these files should be tucked away, out of sight. They're only needed when I'm working on the ",
-      mdx('inlineCode', { parentName: 'p' }, 'FileViewer'),
-      " component, and so I should only see them when I'm working on ",
-      mdx('inlineCode', { parentName: 'p' }, 'FileViewer'),
-      '.'
-    ),
-    mdx(
-      Sidenote,
-      { title: 'One component per file?', mdxType: 'Sidenote' },
-      mdx(
-        'p',
-        null,
-        'For a while, a popular ESLint rule warned against defining more than one component per file.'
-      ),
-      mdx(
-        'p',
-        null,
-        "I think that this is a silly rule. Files can contain as many components as you'd like!"
-      ),
-      mdx(
-        'p',
-        null,
-        'That said, I do generally find myself pulling non-trivial components into their own files, once I have the basic functionality working. It helps keep things organized, and makes it very clear which imports/styles/whatever are used by which components.'
-      )
-    ),
-    mdx('h1', null, 'The implementation'),
-    mdx(
-      'p',
-      null,
-      "Alright, so let's talk about how my implementation addresses these priorities."
-    ),
-    mdx('h2', null, 'Components'),
-    mdx(
-      'p',
-      null,
-      "Here's an example component, with all the files and directories required to accomplish my goals:"
-    ),
-    mdx(
-      'pre',
-      null,
-      mdx(
-        'code',
-        t({ parentName: 'pre' }, {}),
-        `src/
-\u2514\u2500\u2500 components/
-    \u2514\u2500\u2500 FileViewer/
-        \u251C\u2500\u2500 Directory.js
-        \u251C\u2500\u2500 File.js
-        \u251C\u2500\u2500 FileContent.js
-        \u251C\u2500\u2500 FileViewer.helpers.js
-        \u251C\u2500\u2500 FileViewer.js
-        \u251C\u2500\u2500 index.js
-        \u2514\u2500\u2500 Sidebar.js
-`
-      )
-    ),
-    mdx(
-      'p',
-      null,
-      'Most of these files are the ones mentioned earlier, the files needed for the ',
-      mdx('inlineCode', { parentName: 'p' }, 'FileViewer'),
-      ' component. The exception is ',
-      mdx('inlineCode', { parentName: 'p' }, 'index.js'),
-      ". That's new."
-    ),
-    mdx('p', null, 'If we open it up, we see something a bit curious:'),
-    mdx(
-      'pre',
-      null,
-      mdx(
-        'code',
-        t({ parentName: 'pre' }, { className: 'language-js' }),
-        `export * from './FileViewer';
-export { default } from './FileViewer';
-`
-      )
-    ),
-    mdx(
-      'p',
-      null,
-      "This is essentially a redirection. When we try to import this file, we'll be forwarded to the ",
-      mdx('inlineCode', { parentName: 'p' }, 'FileViewer.js'),
-      ' file in the same directory. ',
-      mdx('inlineCode', { parentName: 'p' }, 'FileViewer.js'),
-      ' holds the ',
-      mdx('em', { parentName: 'p' }, 'actual'),
-      ' code for this component.'
-    ),
-    mdx(
-      'p',
-      null,
-      mdx(
-        'strong',
-        { parentName: 'p' },
-        'Why not keep the code in ',
-        mdx('inlineCode', { parentName: 'strong' }, 'index.js'),
-        ' directly?'
-      ),
-      ' Well, then our editor will fill up with ',
-      mdx('inlineCode', { parentName: 'p' }, 'index.js'),
-      " files! I don't want that."
-    ),
-    mdx(
-      'p',
-      null,
-      mdx('strong', { parentName: 'p' }, 'Why have this file at all?'),
-      " It simplifies imports. Otherwise, we'd have to drill into the component directory and select the file manually, like this:"
-    ),
-    mdx(
-      'pre',
-      null,
-      mdx(
-        'code',
-        t({ parentName: 'pre' }, { className: 'language-js' }),
-        `import FileViewer from '../FileViewer/FileViewer';
-`
-      )
-    ),
-    mdx(
-      'p',
-      null,
-      'With our ',
-      mdx('inlineCode', { parentName: 'p' }, 'index.js'),
-      ' forwarding, we can shorten it to just:'
-    ),
-    mdx(
-      'pre',
-      null,
-      mdx(
-        'code',
-        t({ parentName: 'pre' }, { className: 'language-js' }),
-        `import FileViewer from '../FileViewer';
-`
-      )
-    ),
-    mdx(
-      'p',
-      null,
-      mdx('strong', { parentName: 'p' }, 'Why does this work?'),
-      ' Well, ',
-      mdx('inlineCode', { parentName: 'p' }, 'FileViewer'),
-      ' is a directory, and when we try to import a directory, the bundler will seek out an index file (',
-      mdx('inlineCode', { parentName: 'p' }, 'index.js'),
-      ', ',
-      mdx('inlineCode', { parentName: 'p' }, 'index.ts'),
-      ', etc). This is a convention carried over from web servers: ',
-      mdx('inlineCode', { parentName: 'p' }, 'my-website.com'),
-      ' will automatically try to load ',
-      mdx('inlineCode', { parentName: 'p' }, 'index.html'),
-      ", so that the user doesn't have to write ",
-      mdx('inlineCode', { parentName: 'p' }, 'my-website.com/index.html'),
-      '.'
-    ),
-    mdx(
-      'p',
-      null,
-      'In fact, I think it helps to think of this in terms of an HTTP request. When we import ',
-      mdx('inlineCode', { parentName: 'p' }, 'src/components/FileViewer'),
-      ", the bundler will see that we're importing a directory and automatically load ",
-      mdx('inlineCode', { parentName: 'p' }, 'index.js'),
-      '. The ',
-      mdx('inlineCode', { parentName: 'p' }, 'index.js'),
-      ' does a metaphorical ',
-      mdx('i', null, '301 REDIRECT'),
-      ' to ',
-      mdx(
-        'inlineCode',
-        { parentName: 'p' },
-        'src/components/FileViewer/FileViewer.js'
-      ),
-      '.'
-    ),
-    mdx(
-      'p',
-      null,
-      'It may seem over-engineered, but this structure ticks all of my boxes, and I love it.'
-    ),
-    mdx('h2', null, 'Hooks'),
-    mdx(
-      'p',
-      null,
-      "If a hook is specific to a component, I'll keep it alongside that component. But what if the hook is generic, and meant to be used by lots of components?"
-    ),
-    mdx(
-      'p',
-      null,
-      "In this blog, I have about 50 generalized, reusable hooks. They're collected in the ",
-      mdx('inlineCode', { parentName: 'p' }, 'src/hooks'),
-      ' directory. Here are some examples:'
-    ),
-    mdx(HooksFileViewerDemo, { mdxType: 'HooksFileViewerDemo' }),
-    mdx(
-      'p',
-      null,
-      "(This code is real! it's provided here as an example, but feel free to copy the hooks you're interested in.)"
-    ),
-    mdx(
-      Sidenote,
-      { title: 'Naming convention YOLO policy', mdxType: 'Sidenote' },
-      mdx(
-        'p',
-        null,
-        "Alright, so you'll notice I choose to do two things here:"
-      ),
-      mdx(
-        'ol',
-        null,
-        mdx(
-          'li',
-          { parentName: 'ol' },
-          'I use kebab-case instead of camelCase.'
-        ),
-        mdx(
-          'li',
-          { parentName: 'ol' },
-          'I add ',
-          mdx('inlineCode', { parentName: 'li' }, '.hook'),
-          ' to the end of each file name.'
-        )
-      ),
-      mdx(
-        'p',
-        null,
-        "I'll be honest: I don't have a good reason for making these decisions. I just like the way it looks. \u{1F604}"
-      ),
-      mdx(
-        'p',
-        null,
-        'You might prefer to name your hooks ',
-        mdx('inlineCode', { parentName: 'p' }, 'useThing.js'),
-        ' instead of ',
-        mdx('inlineCode', { parentName: 'p' }, 'use-thing.hook.js'),
-        ", and that's totally fine! It doesn't really matter which convention you use for your file names."
-      )
-    ),
-    mdx('h2', null, 'Helpers'),
-    mdx(
-      'p',
-      null,
-      'What if I have a function that will help me accomplish some goal for the project, not directly tied to a specific component?'
-    ),
-    mdx(
-      'p',
-      null,
-      'For example: this blog has multiple blog post categories, like React, CSS, and Animations. I have some functions that help me sort the categories by the number of posts, or get the formatted / "pretty" name for them. All that stuff lives in a ',
-      mdx('inlineCode', { parentName: 'p' }, 'category.helpers.js'),
-      ' file, inside ',
-      mdx('inlineCode', { parentName: 'p' }, 'src/helpers'),
-      '.'
-    ),
-    mdx(
-      'p',
-      null,
-      'Sometimes, a function will start in a component-specific file (eg. ',
-      mdx(
-        'inlineCode',
-        { parentName: 'p' },
-        'FileViewer/FileViewer.helpers.js'
-      ),
-      "), but I'll realize that I need it in multiple spots. It'll get moved over to ",
-      mdx('inlineCode', { parentName: 'p' }, 'src/helpers'),
-      '.'
-    ),
-    mdx('h2', null, 'Utils'),
-    mdx('p', null, 'Alright, so this one requires some explanation.'),
-    mdx(
-      'p',
-      null,
-      'A lot of devs treat "helpers" and "utils" as synonyms, but I make a distinction between them.'
-    ),
-    mdx(
-      'p',
-      null,
-      "A helper is something specific to a given project. It wouldn't generally make sense to share helpers between projects; the ",
-      mdx('inlineCode', { parentName: 'p' }, 'category.helpers.js'),
-      ' functions really only make sense for this blog.'
-    ),
-    mdx(
-      'p',
-      null,
-      'A utility is a generic function that accomplishes an abstract task. Pretty much every function in the ',
-      mdx('inlineCode', { parentName: 'p' }, 'lodash'),
-      ' library is a utility, according to my definition.'
-    ),
-    mdx(
-      'p',
-      null,
-      "For example, here's a utility I use a lot. It plucks a random item from an array:"
-    ),
-    mdx(
-      'pre',
-      null,
-      mdx(
-        'code',
-        t({ parentName: 'pre' }, { className: 'language-js' }),
-        `export const sampleOne = (arr) => {
-  return arr[Math.floor(Math.random() * arr.length)];
-};
-`
-      )
-    ),
-    mdx(
-      'p',
-      null,
-      'I have a ',
-      mdx('inlineCode', { parentName: 'p' }, 'utils.js'),
-      ' file full of these sorts of utility functions.'
-    ),
-    mdx(
-      'p',
-      null,
-      mdx(
-        'strong',
-        { parentName: 'p' },
-        'Why not use an established utility library, like lodash?'
-      ),
-      " Sometimes I do, if it's not something I can easily build myself. But no utility library will have all of the utilities I need."
-    ),
-    mdx(
-      'p',
-      null,
-      "For example, this one moves the user's cursor within a text input:"
-    ),
-    mdx(
-      'pre',
-      null,
-      mdx(
-        'code',
-        t({ parentName: 'pre' }, { className: 'language-js' }),
-        `export function moveCursorWithinInput(input, position) {
-  if (input.setSelectionRange) {
-    input.focus();
-    input.setSelectionRange(position, position);
-  } else if (input.createTextRange) {
-    var range = input.createTextRange();
-    range.collapse(true);
-    range.moveEnd('character', position);
-    range.moveStart('character', position);
-    range.select();
+    mdx('p', null, "Check out what's going on here:"),
+    mdx(Playground, {
+      id: 'parent-child',
+      splitRatio: 0.55,
+      layoutMode: 'tabbed',
+      html: `
+<style>
+  header {
+    position: relative;
+    z-index: 2;
   }
+  .tooltip {
+    position: absolute;
+    z-index: 999999;
+  }
+  main {
+    position: relative;
+    z-index: 1;
+  }
+</style>
+
+<header>
+  My Cool Site
+</header>
+<main>
+  <div class="tooltip">
+    A tooltip
+  </div>
+  <p>Some main content</p>
+</main>
+  `,
+      cssCode: `
+body {
+  background: #eee;
+}
+
+header {
+  height: 60px;
+  line-height: 60px;
+  background: pink;
+  text-align: center;
+}
+
+main {
+  padding: 32px;
+}
+
+.tooltip {
+  top: -12px;
+  left: 0px;
+  right: 0px;
+  margin: 0 auto;
+  width: 90px;
+  text-align: center;
+  padding: 8px;
+  background: white;
+  box-shadow: 1px 2px 8px hsla(0deg, 0%, 0%, 0.25);
+  border-radius: 6px;
+}
+  `,
+      mdxType: 'Playground',
+    }),
+    mdx(
+      'p',
+      null,
+      mdx('inlineCode', { parentName: 'p' }, '.tooltip'),
+      ' has a ',
+      mdx('strong', { parentName: 'p' }, 'much'),
+      ' larger z-index than ',
+      mdx('inlineCode', { parentName: 'p' }, 'header'),
+      '! So why on earth is the header on top?'
+    ),
+    mdx(
+      'p',
+      null,
+      "To unravel this mystery, we'll need to learn about ",
+      mdx('em', { parentName: 'p' }, 'stacking contexts'),
+      ", an obscure-yet-fundamental CSS mechanism. In this article, we'll explore what they are, how they work, and how we can use them to our advantage."
+    ),
+    mdx(
+      Sidenote,
+      { title: 'Intended audience', mdxType: 'Sidenote' },
+      mdx(
+        'p',
+        null,
+        'This tutorial is written for front-end developers of all experience levels. Especially folks who have struggled with z-index issues before.'
+      )
+    ),
+    mdx('h1', null, 'Layers and groups'),
+    mdx(
+      'p',
+      null,
+      "If you've ever used image-editing software like Photoshop or Figma, you're probably familiar with the concept of layers:"
+    ),
+    mdx('img', {
+      alt: '3 layers in a Photoshop document: a cat photo (bottom), a moustache (mid), and a halo (top)',
+      src: '/images/stacking-contexts/photoshop-layers.png',
+      width: 576 / 2,
+      height: 488 / 2,
+    }),
+    mdx(
+      'p',
+      null,
+      'Our image has 3 separate canvases, stacked like pancakes. The bottom layer is a cat photo, with 2 layers on top that add silly details. By flattening these layers, we wind up with a final composition:'
+    ),
+    mdx('img', {
+      alt: 'A cat photo with a poorly-drawn moustache and halo',
+      src: '/images/stacking-contexts/cat-layers.jpg',
+      width: 300,
+      height: 300,
+    }),
+    mdx(
+      'p',
+      null,
+      'In these programs, we can also ',
+      mdx('em', { type: 'original' }, 'group layers'),
+      ':'
+    ),
+    mdx('img', {
+      alt: 'The 3 layers from the previous drawing are in a group, \u201CCat\u201D. Another group, \u201CDog\u201D, includes a top hat and a dog photo',
+      src: '/images/stacking-contexts/photoshop-groups.png',
+      width: 576 / 2,
+      height: 762 / 2,
+    }),
+    mdx(
+      'p',
+      null,
+      "Like files in a folder, a group allows us to segment our layers. In terms of stacking order, layers aren't allowed to \u201Cintermingle\u201D between groups: All of ",
+      mdx('inlineCode', { parentName: 'p' }, 'dog'),
+      "'s layers will appear on top of all of ",
+      mdx('inlineCode', { parentName: 'p' }, 'cat'),
+      "'s layers."
+    ),
+    mdx(
+      'p',
+      null,
+      "When we export the composition, we don't see the cat at all, since it's behind the dog:"
+    ),
+    mdx('img', {
+      alt: 'A dog photo with a poorly-drawn top hat',
+      src: '/images/stacking-contexts/dog-layers.jpg',
+      width: 300,
+      height: 300,
+    }),
+    mdx(
+      'p',
+      null,
+      'When it comes to CSS, things work in a similar way: elements are grouped into ',
+      mdx('strong', { parentName: 'p' }, 'stacking contexts'),
+      '. When we give an element a z-index, that value is only compared ',
+      mdx(
+        'em',
+        { type: 'original' },
+        'against other elements in the same context'
+      ),
+      '. z-index values are not global.'
+    ),
+    mdx(
+      'p',
+      null,
+      'By default, a plain HTML document will have a single stacking context that encompasses all nodes. But we can create additional contexts!'
+    ),
+    mdx(
+      'p',
+      null,
+      "There are many ways to create stacking contexts, but here's the most common:"
+    ),
+    mdx(
+      'pre',
+      null,
+      mdx(
+        'code',
+        e({ parentName: 'pre' }, { className: 'language-css' }),
+        `.some-element {
+  position: relative;
+  z-index: 1;
 }
 `
       )
@@ -596,64 +292,46 @@ export { default } from './FileViewer';
     mdx(
       'p',
       null,
-      'And this utility gets the distance between two points on a cartesian plane (something that comes up surprisingly often in projects with non-trivial animations):'
+      'By combining these two declarations, a secret mechanism is triggered: a stacking context is created, forming a group around this element and all of its children.'
     ),
+    mdx('p', null, "Let's take another look at our problem from above:"),
     mdx(
       'pre',
       null,
       mdx(
         'code',
-        t({ parentName: 'pre' }, { className: 'language-js' }),
-        `export const getDistanceBetweenPoints = (p1, p2) => {
-  const deltaX = Math.abs(p2.x - p1.x);
-  const deltaY = Math.abs(p2.y - p1.y);
+        e({ parentName: 'pre' }, { className: 'language-html' }),
+        `<style>
+  header {
+    position: relative;
+    z-index: 2;
+  }
+  .tooltip {
+    position: absolute;
+    z-index: 999999;
+  }
+  main {
+    position: relative;
+    z-index: 1;
+  }
+</style>
 
-  return Math.sqrt(deltaX ** 2 + deltaY ** 2);
-};
+<header>
+  My Cool Site
+</header>
+<main>
+  <div class="tooltip">
+    A tooltip
+  </div>
+  <p>Some main content</p>
+</main>
 `
       )
     ),
     mdx(
       'p',
       null,
-      'These utilities live in ',
-      mdx('inlineCode', { parentName: 'p' }, 'src/utils.js'),
-      ', and they come with me from project to project. I copy/paste the file when I create a new project. I ',
-      mdx('em', { parentName: 'p' }, 'could'),
-      " publish it through NPM to ensure consistency between projects, but that would add a significant amount of friction, and it's not a trade-off that has been worth it to me. Maybe at some point, but not yet."
-    ),
-    mdx('h2', null, 'Constants'),
-    mdx(
-      'p',
-      null,
-      'Finally, I also have a ',
-      mdx('inlineCode', { parentName: 'p' }, 'constants.js'),
-      ' file. This file holds app-wide constants. Most of them are style-related (eg. colors, font sizes, breakpoints), but I also store public keys and other \u201Capp data\u201D here.'
-    ),
-    mdx('h2', null, 'Pages'),
-    mdx(
-      'p',
-      null,
-      'One thing not shown here is the idea of \u201Cpages\u201D.'
-    ),
-    mdx(
-      'p',
-      null,
-      "I've omitted this section because it depends what tools you use. When I use something like create-react-app, I don't have pages, and everything is components. But when I use Next.js, I do have ",
-      mdx('inlineCode', { parentName: 'p' }, '/src/pages'),
-      ', with top-level components that define the rough structure for each route.'
-    ),
-    mdx('h1', null, 'Tradeoffs'),
-    mdx(
-      'p',
-      null,
-      "Every strategy has trade-offs. let's talk about some of the downsides to the file structure approach outlined in this blog post."
-    ),
-    mdx('h2', null, 'More boilerplate'),
-    mdx(
-      'p',
-      null,
-      'Whenever I want to create a new component, I need to generate:'
+      'We can map out the stacking contexts being created in this snippet:'
     ),
     mdx(
       'ul',
@@ -661,405 +339,1214 @@ export { default } from './FileViewer';
       mdx(
         'li',
         { parentName: 'ul' },
-        'A new directory, ',
-        mdx('inlineCode', { parentName: 'li' }, 'Widget/')
-      ),
-      mdx(
-        'li',
-        { parentName: 'ul' },
-        'A new file, ',
-        mdx('inlineCode', { parentName: 'li' }, 'Widget/Widget.js')
-      ),
-      mdx(
-        'li',
-        { parentName: 'ul' },
-        'The index forwarder, ',
-        mdx('inlineCode', { parentName: 'li' }, 'Widget/index.js')
-      )
-    ),
-    mdx('p', null, "That's a lot of work to do upfront!"),
-    mdx(
-      'p',
-      null,
-      'Fortunately, ',
-      mdx(
-        'strong',
-        { parentName: 'p' },
-        "I don't have to do any of that manually."
-      ),
-      ' I created an NPM package, ',
-      mdx(
-        'a',
-        t(
-          { parentName: 'p' },
-          { href: 'https://www.npmjs.com/package/new-component' }
-        ),
-        'new-component'
-      ),
-      ', which does all of this for me automatically.'
-    ),
-    mdx('p', null, 'In my terminal, I type:'),
-    mdx(
-      'pre',
-      null,
-      mdx(
-        'code',
-        t(
-          { parentName: 'pre' },
-          {
-            className: 'language-null',
-            metastring: 'lessBottomMargin=true',
-            lessBottomMargin: 'true',
-          }
-        ),
-        `nc Widget
-`
+        'The root context',
+        mdx(
+          'ul',
+          { parentName: 'li' },
+          mdx(
+            'li',
+            { parentName: 'ul' },
+            mdx('inlineCode', { parentName: 'li' }, '<header>')
+          ),
+          mdx(
+            'li',
+            { parentName: 'ul' },
+            mdx('inlineCode', { parentName: 'li' }, '<main>'),
+            mdx(
+              'ul',
+              { parentName: 'li' },
+              mdx(
+                'li',
+                { parentName: 'ul' },
+                mdx('inlineCode', { parentName: 'li' }, '<div class="tooltip">')
+              )
+            )
+          )
+        )
       )
     ),
     mdx(
       'p',
       null,
-      "When I execute this command, all of the boilerplate is created for me, including the basic component structure I'd otherwise have to type out! It's an incredible time-saver, and in my opinion, it totally nullifies this drawback."
+      'Our ',
+      mdx('inlineCode', { parentName: 'p' }, '.tooltip'),
+      ' element has a z-index of 999999, but that value is only relevant within the ',
+      mdx('inlineCode', { parentName: 'p' }, '<main>'),
+      ' stacking context. It controls whether the tooltip shows up above or below the adjacent ',
+      mdx('inlineCode', { parentName: 'p' }, '<p>'),
+      ' tag, nothing more.'
     ),
     mdx(
       'p',
       null,
-      "You're welcome to use my package if you'd like! You might want to fork it, to match your preferred conventions."
-    ),
-    mdx('h2', null, 'Organized by function'),
-    mdx('p', null, 'In general, there are two broad ways to organize things:'),
-    mdx(
-      'ul',
-      null,
+      'Meanwhile, in the parent context, ',
+      mdx('inlineCode', { parentName: 'p' }, '<header>'),
+      ' and ',
+      mdx('inlineCode', { parentName: 'p' }, '<main>'),
+      ' are compared. Because ',
+      mdx('inlineCode', { parentName: 'p' }, '<main>'),
+      ' has a smaller z-index, it shows up underneath ',
+      mdx('inlineCode', { parentName: 'p' }, '<header>'),
+      '. ',
       mdx(
-        'li',
-        { parentName: 'ul' },
-        'By function (components, hooks, helpers\u2026)'
-      ),
-      mdx('li', { parentName: 'ul' }, 'By feature (search, users, admin\u2026)')
-    ),
-    mdx('p', null, "Here's an example of how to structure code by feature:"),
-    mdx(
-      'pre',
-      null,
-      mdx(
-        'code',
-        t({ parentName: 'pre' }, {}),
-        `src/
-\u251C\u2500\u2500 base/
-\u2502   \u2514\u2500\u2500 components/
-\u2502       \u251C\u2500\u2500 Button.js
-\u2502       \u251C\u2500\u2500 Dropdown.js
-\u2502       \u251C\u2500\u2500 Heading.js
-\u2502       \u2514\u2500\u2500 Input.js
-\u251C\u2500\u2500 search/
-\u2502   \u251C\u2500\u2500 components/
-\u2502   \u2502   \u251C\u2500\u2500 SearchInput.js
-\u2502   \u2502   \u2514\u2500\u2500 SearchResults.js
-\u2502   \u2514\u2500\u2500 search.helpers.js
-\u2514\u2500\u2500 users/
-    \u251C\u2500\u2500 components/
-    \u2502   \u251C\u2500\u2500 AuthPage.js
-    \u2502   \u251C\u2500\u2500 ForgotPasswordForm.js
-    \u2502   \u2514\u2500\u2500 LoginForm.js
-    \u2514\u2500\u2500 use-user.hook.js
-`
+        'strong',
+        { parentName: 'p' },
+        'All of its children come along for the ride.'
       )
-    ),
-    mdx(
-      'p',
-      null,
-      'There are things I really like about this. It makes it possible to separate low-level reusable \u201Ccomponent library\u201D type components from high-level template-style views and pages. And it makes it easier to quickly get a sense of how the app is structured.'
-    ),
-    mdx(
-      'p',
-      null,
-      mdx('strong', { parentName: 'p' }, "But here's the problem:"),
-      " real life isn't nicely segmented like this, and categorization is actually ",
-      mdx('em', { parentName: 'p' }, 'really hard'),
-      '.'
-    ),
-    mdx(
-      'p',
-      null,
-      "I've worked with a few projects that took this sort of structure, and every time, there have been a few ",
-      mdx('em', { parentName: 'p' }, 'significant'),
-      ' sources of friction.'
-    ),
-    mdx(
-      'p',
-      null,
-      'Every time you create a component, you have to decide where that component belongs. If we create a component to search for a specific user, is that part of the \u201Csearch\u201D concern, or the \u201Cusers\u201D concern?'
-    ),
-    mdx(
-      'p',
-      null,
-      'Often, the boundaries are blurry, and different developers will make different decisions around what should go where.'
-    ),
-    mdx(
-      'p',
-      null,
-      "When I start work on a new feature, I have to find the files, and they might not be where I expect them to be. Every developer on the project will have their own conceptual model for what should go where, and I'll need to spend time acclimating to their view."
-    ),
-    mdx(
-      'p',
-      null,
-      mdx(
-        'strong',
-        { parentName: 'p' },
-        "And then there's the really big issue:"
-      ),
-      ' ',
-      mdx('em', { parentName: 'p' }, 'refactoring'),
-      '.'
-    ),
-    mdx(
-      'p',
-      null,
-      'Products are always evolving and changing, and the boundaries we draw around features today might not make sense tomorrow. When the product changes, it will require ',
-      mdx('strong', { parentName: 'p' }, 'a ton'),
-      " of work to move and rename all the files, to recategorize everything so that it's in harmony with the next version of the product."
-    ),
-    mdx(
-      'p',
-      null,
-      mdx(
-        'strong',
-        { parentName: 'p' },
-        "Realistically, that work won't actually get done."
-      ),
-      " It's too much trouble; the team is already working on stuff, and they have a bunch of half-finished PRs, where they're all editing files that will no longer exist if we move all the files around. It's possible to manage these conflicts, but it's a big pain."
-    ),
-    mdx(
-      'p',
-      null,
-      'And so, the distance between ',
-      mdx('i', null, 'product'),
-      ' features and the ',
-      mdx('i', null, 'code'),
-      ' features will drift further and further apart. Eventually, the features in the codebase will be conceptually organized around a product that no longer exists, and so everyone will just have to memorize where everything goes. Instead of being intuitive, the boundaries become totally arbitrary at best, and misleading at worst.'
-    ),
-    mdx(
-      'p',
-      null,
-      'To be fair, it ',
-      mdx('em', { parentName: 'p' }, 'is'),
-      " possible to avoid this worst-case scenario, but it's a lot of extra work for relatively little benefit, in my opinion."
-    ),
-    mdx(
-      'p',
-      null,
-      mdx(
-        'strong',
-        { parentName: 'p' },
-        "But isn't the alternative too chaotic?"
-      ),
-      " It's not uncommon for large projects to have ",
-      mdx('i', null, 'thousands'),
-      " of React components. If you follow my function-based approach, it means you'll have an enormous set of unorganized components sitting side-by-side in ",
-      mdx('inlineCode', { parentName: 'p' }, 'src/components'),
-      '.'
-    ),
-    mdx(
-      'p',
-      null,
-      "This might sound like a big deal, but honestly, I feel like it's a small price to pay. At least you know exactly where to look! You don't have to hunt around through dozens of features to find the file you're after. And it takes 0 seconds to figure out where to place each new file you create."
-    ),
-    mdx('h1', null, 'Webpack aliases'),
-    mdx(
-      'p',
-      null,
-      'Webpack is the bundler used to package up our code before deployment. There are other bundlers, but most common tools (eg. create-react-app, Next.js, Gatsby) will use Webpack internally.'
-    ),
-    mdx(
-      'p',
-      null,
-      'A popular Webpack feature lets us create ',
-      mdx('em', { parentName: 'p' }, 'aliases'),
-      ', global names that point to a specific file or directory. For example:'
-    ),
-    mdx(
-      'pre',
-      null,
-      mdx(
-        'code',
-        t({ parentName: 'pre' }, { className: 'language-js' }),
-        `// This:
-import { sortCategories } from '../../helpers/category.helpers';
-
-// \u2026turns into this:
-import { sortCategories } from '@helpers/category.helpers';
-`
-      )
-    ),
-    mdx(
-      'p',
-      null,
-      mdx('strong', { parentName: 'p' }, "Here's how it works:"),
-      ' I create an alias called ',
-      mdx('inlineCode', { parentName: 'p' }, '@helpers'),
-      ' which will point to the ',
-      mdx('inlineCode', { parentName: 'p' }, '/src/helpers'),
-      ' directory. Whenever the bundler sees ',
-      mdx('inlineCode', { parentName: 'p' }, '@helpers'),
-      ', it replaces that string with a relative path for that directory.'
-    ),
-    mdx(
-      'p',
-      null,
-      'The main benefit is that it turns a relative path (',
-      mdx('inlineCode', { parentName: 'p' }, '../../helpers'),
-      ') into an absolute path (',
-      mdx('inlineCode', { parentName: 'p' }, '@helpers'),
-      '). I never have to think about how many levels of ',
-      mdx('inlineCode', { parentName: 'p' }, '../'),
-      " are needed. And when I move files, I don't have to fix/update any import paths."
-    ),
-    mdx(
-      'p',
-      null,
-      'Implementing Webpack aliases is beyond the scope of this blog post, and will vary depending on the meta-framework used, but you can learn more in ',
-      mdx(
-        'a',
-        t(
-          { parentName: 'p' },
-          { href: 'https://webpack.js.org/configuration/resolve/' }
-        ),
-        'the Webpack documentation'
-      ),
-      '.'
     ),
     mdx(
       Sidenote,
-      { type: 'warning', title: 'Alias tradeoffs', mdxType: 'Sidenote' },
-      mdx('p', null, 'Like all nice things, Webpack aliases have trade-offs.'),
+      { title: "It's like semantic versioning", mdxType: 'Sidenote' },
       mdx(
         'p',
         null,
-        "The biggest issue is that Webpack aliases are non-standard. You're moving away from native JavaScript imports and doing something custom. This locks you in."
-      ),
-      mdx(
-        'p',
-        null,
-        'It can also make it more difficult to use your code with third-party services. If you want to build a component library with Storybook, or create unit tests with Jest, these tools will need to be configured to understand your Webpack aliases. In most cases, this is possible, but it can be tricky to figure out. Definitely an extra source of friction.'
-      ),
-      mdx(
-        'p',
-        null,
-        'Also, some editors will struggle with auto-completion, though this too can generally be configured. For VS Code, we can add our aliases in ',
-        mdx('inlineCode', { parentName: 'p' }, 'jsconfig.json'),
-        ". Here's my file, as an example:"
+        "I recognize that not everyone has experience with software like Photoshop / Figma / Sketch. If the analogy above didn't resonate, I have another one that you're more likely to be familiar with: ",
+        mdx('em', { parentName: 'p' }, 'semantic versioning.')
       ),
       mdx(
         'expanded',
         null,
         mdx(
+          'p',
+          null,
+          `In semantic versioning, different "tiers" of versions are separated by dots. For example, version 2.0 of a package is a larger version than 1.0, but it's also a larger version than 1.999.`
+        ),
+        mdx(
+          'p',
+          null,
+          'z-indexes are like version numbers, and stacking contexts are like tiers. Every time a stacking context is created, we add a dot to our version:'
+        ),
+        mdx(
           'pre',
           null,
           mdx(
             'code',
-            t(
+            e(
               { parentName: 'pre' },
               {
-                className: 'language-json',
+                className: 'language-html',
                 metastring: 'lessBottomMargin',
                 lessBottomMargin: !0,
               }
             ),
-            `{
-  "exclude": ["./node_modules"],
-  "compilerOptions": {
-    "baseUrl": ".",
-    "paths": {
-      "@components/*": ["./src/components/*"],
-      "@constants": ["./src/constants/index.js"],
-      "@helpers/*": ["./src/helpers/*"],
-      "@hooks/*": ["./src/hooks/*"],
-      "@utils": ["./src/utils/index.js"]
-    }
-  }
-}
+            `<header> <!-- 2.0 -->
+  My Cool Site
+</header>
+<main> <!-- 1.0 -->
+  <div class="tooltip"> <!-- 1.999999 -->
+    A tooltip
+  </div>
+</main>
 `
+          )
+        ),
+        mdx(
+          'p',
+          null,
+          'Our tooltip shows up underneath our ',
+          mdx('inlineCode', { parentName: 'p' }, '<header>'),
+          " because 1.999999 is a lower version than 2.0. It doesn't matter how many 9s we add to the minor version, it'll never eclipse a larger major version."
+        )
+      )
+    ),
+    mdx('h1', null, 'Fixing our example'),
+    mdx(
+      'p',
+      null,
+      "How do we solve our tooltip problem? Well, in this case, we don't actually need to create a stacking context on our ",
+      mdx('inlineCode', { parentName: 'p' }, '<main>'),
+      ':'
+    ),
+    mdx(Playground, {
+      id: 'fixing-our-example',
+      splitRatio: 0.65,
+      layoutMode: 'tabbed',
+      html: `
+<style>
+  header {
+    position: relative;
+    z-index: 2;
+  }
+  .tooltip {
+    position: absolute;
+    z-index: 999999;
+  }
+  main {
+    position: relative;
+    /* No more z-index here! */
+  }
+</style>
+
+<header>
+  My Cool Site
+</header>
+<main>
+  <div class="tooltip">
+    A tooltip
+  </div>
+  <p>Some main content</p>
+</main>
+  `,
+      cssCode: `
+/* These styles are purely cosmetic */
+body {
+  background: #eee;
+}
+
+header {
+  height: 60px;
+  line-height: 60px;
+  background: pink;
+  text-align: center;
+}
+
+main {
+  padding: 32px;
+}
+
+.tooltip {
+  top: -12px;
+  left: 0px;
+  right: 0px;
+  margin: 0 auto;
+  width: 90px;
+  text-align: center;
+  padding: 8px;
+  background: white;
+  box-shadow: 1px 2px 8px hsla(0deg, 0%, 0%, 0.25);
+  border-radius: 6px;
+}
+  `,
+      mdxType: 'Playground',
+    }),
+    mdx(
+      'p',
+      null,
+      'Without a z-index, ',
+      mdx('inlineCode', { parentName: 'p' }, '<main>'),
+      " won't create a stacking context. Our hierarchy, then, looks like this:"
+    ),
+    mdx(
+      'ul',
+      null,
+      mdx(
+        'li',
+        { parentName: 'ul' },
+        'The root context',
+        mdx(
+          'ul',
+          { parentName: 'li' },
+          mdx(
+            'li',
+            { parentName: 'ul' },
+            mdx('inlineCode', { parentName: 'li' }, '<header>')
+          ),
+          mdx(
+            'li',
+            { parentName: 'ul' },
+            mdx('inlineCode', { parentName: 'li' }, '<div class="tooltip">')
           )
         )
       )
     ),
-    mdx('h1', null, 'Something on the horizon'),
-    mdx('p', null, "So, that's how I structure my React applications!"),
     mdx(
       'p',
       null,
-      "As I mentioned right at the top, there's no right/wrong way to manage file structure. Every approach prioritizes different things, makes different tradeoffs."
+      'Because the header and our tooltip are now in the same context, their z-index values face off, and the tooltip emerges as the victor.'
     ),
     mdx(
       'p',
       null,
-      "Personally, though, I've found that this structure stays out of my way. I'm able to spend my time doing what I like: building quality user interfaces."
+      mdx('strong', { parentName: 'p' }, 'An important distinction:'),
+      " we're not talking about parent/child relationships here. It doesn't matter that the tooltip is more deeply nested than the header. The browser only cares about stacking contexts."
     ),
     mdx(
-      'p',
-      null,
-      "React is so much fun. I've been using it since 2015, and I ",
-      mdx('i', null, 'still'),
-      ' feel excited when I get to work with React.'
-    ),
-    mdx(
-      'p',
-      null,
-      "For a few years, I taught at a local coding bootcamp. I've worked one-on-one with ",
-      mdx('em', { parentName: 'p' }, 'tons'),
-      ' of developers, answering their questions and helping them get unstuck. I wound up developing the curriculum that this school uses, for all of its instructors.'
-    ),
-    mdx(
-      'p',
-      null,
-      "I want to share the joy of React with more people, and so I'm working on something new. An online course that will teach you how to build complex, rich, whimsical, accessible applications with React."
-    ),
-    mdx(
-      'p',
-      null,
-      "It's too early to share much yet, but if you'd like to follow along, the best way is through my newsletter. You'll be the first to hear about course updates, as well as any new blog posts I publish!"
-    ),
-    mdx(NewsletterSignup, {
-      variant: 'minimal',
-      tags: ['joy-of-react-updates'],
-      mdxType: 'NewsletterSignup',
-    }),
-    mdx(Spacer, { size: 64, mdxType: 'Spacer' }),
-    mdx(
-      'p',
-      null,
-      "On average, I send about 1 issue a month. No spam, no nonsense. If you don't like it, you can unsubscribe in 1 click. ",
+      Sidenote,
+      { title: 'Breaking the rules', mdxType: 'Sidenote' },
       mdx(
-        'a',
-        t(
-          { parentName: 'p' },
-          { href: 'https://www.joshwcomeau.com/newsletter-issues/020/' }
+        'p',
+        null,
+        'In this contrived example, we can remove the z-index from ',
+        mdx('inlineCode', { parentName: 'p' }, '<main>'),
+        " because it wasn't really doing anything. But what if we actually did need ",
+        mdx('inlineCode', { parentName: 'p' }, '<main>'),
+        ' to use z-index / create a stacking context?'
+      ),
+      mdx(
+        'p',
+        null,
+        'According to the rules of CSS, there is no way for us to "break free" of the stacking context. An element inside one stacking context can never be compared against elements in another.'
+      ),
+      mdx(
+        'p',
+        null,
+        'We can still achieve the desired result, however, with a bit of out-of-the-box',
+        mdx(Asterisk, {
+          content: 'Pun intended \u{1F604}',
+          mdxType: 'Asterisk',
+        }),
+        ' thinking.'
+      ),
+      mdx(
+        'expanded',
+        null,
+        mdx(
+          'p',
+          null,
+          'We can render our tooltip outside of ',
+          mdx('inlineCode', { parentName: 'p' }, '<main>'),
+          ' by appending it to the ',
+          mdx('inlineCode', { parentName: 'p' }, '<body>'),
+          " tag. We can then use some CSS to position it accordingly, to make it seem as though it's a child of that element."
         ),
-        'Check out a recent issue!'
+        mdx(
+          'p',
+          null,
+          "This is an advanced technique, and it requires careful planning to make sure that we don't inadvertently break the experience for folks using a keyboard to navigate. Thankfully, libraries like ",
+          mdx(
+            'a',
+            e({ parentName: 'p' }, { href: 'https://reach.tech/' }),
+            'Reach UI'
+          ),
+          ' use this technique under-the-hood, and solve for all the accessibility and usability challenges.'
+        ),
+        mdx(
+          'p',
+          null,
+          "It's beyond the scope of this tutorial, but if you're interested in learning more, research ",
+          mdx(
+            'a',
+            e(
+              { parentName: 'p' },
+              { href: 'https://reactjs.org/docs/portals.html' }
+            ),
+            'how Portals work in React'
+          ),
+          ', and check out ',
+          mdx(
+            'a',
+            e(
+              { parentName: 'p' },
+              { href: 'https://github.com/reach/reach-ui' }
+            ),
+            "Reach UI's source code"
+          ),
+          '.'
+        )
       )
     ),
-    mdx('h1', null, 'Bonus: Exploring the FileViewer component'),
+    mdx('h1', null, 'Creating stacking contexts'),
     mdx(
       'p',
       null,
-      'Are you curious how I built that ',
-      mdx('inlineCode', { parentName: 'p' }, 'FileViewer'),
-      ' component up there?'
+      "We've seen how we can create a stacking context by combining relative or absolute positioning with ",
+      mdx('inlineCode', { parentName: 'p' }, 'z-index'),
+      ", but it's not the only way! Here are some others:"
+    ),
+    mdx(
+      'ul',
+      null,
+      mdx(
+        'li',
+        { parentName: 'ul' },
+        'Setting ',
+        mdx('inlineCode', { parentName: 'li' }, 'opacity'),
+        ' to a value less than ',
+        mdx('inlineCode', { parentName: 'li' }, '1')
+      ),
+      mdx(
+        'li',
+        { parentName: 'ul' },
+        'Setting ',
+        mdx('inlineCode', { parentName: 'li' }, 'position'),
+        ' to ',
+        mdx('inlineCode', { parentName: 'li' }, 'fixed'),
+        ' or ',
+        mdx('inlineCode', { parentName: 'li' }, 'sticky'),
+        ' (No z-index needed for these values!)'
+      ),
+      mdx(
+        'li',
+        { parentName: 'ul' },
+        'Applying a ',
+        mdx('inlineCode', { parentName: 'li' }, 'mix-blend-mode'),
+        ' other than ',
+        mdx('inlineCode', { parentName: 'li' }, 'normal')
+      ),
+      mdx(
+        'li',
+        { parentName: 'ul' },
+        'Adding a ',
+        mdx('inlineCode', { parentName: 'li' }, 'z-index'),
+        ' to a child inside a ',
+        mdx('inlineCode', { parentName: 'li' }, 'display: flex'),
+        ' or ',
+        mdx('inlineCode', { parentName: 'li' }, 'display: grid'),
+        ' container'
+      ),
+      mdx(
+        'li',
+        { parentName: 'ul' },
+        'Using ',
+        mdx('inlineCode', { parentName: 'li' }, 'transform'),
+        ', ',
+        mdx('inlineCode', { parentName: 'li' }, 'filter'),
+        ', ',
+        mdx('inlineCode', { parentName: 'li' }, 'clip-path'),
+        ', or ',
+        mdx('inlineCode', { parentName: 'li' }, 'perspective')
+      ),
+      mdx(
+        'li',
+        { parentName: 'ul' },
+        'Using ',
+        mdx('inlineCode', { parentName: 'li' }, 'will-change'),
+        ' with a value like ',
+        mdx('inlineCode', { parentName: 'li' }, 'opacity'),
+        ' or ',
+        mdx('inlineCode', { parentName: 'li' }, 'transform')
+      ),
+      mdx(
+        'li',
+        { parentName: 'ul' },
+        'Explicitly creating a context with ',
+        mdx('inlineCode', { parentName: 'li' }, 'isolation: isolate'),
+        ' (More on this soon!)'
+      )
     ),
     mdx(
       'p',
       null,
-      "I'll be honest, it's not my ",
-      mdx('em', { parentName: 'p' }, 'best'),
-      ' work. But I did hit some interesting challenges, trying to render a recursive structure with React!'
+      'There are a few other ways as well. You can find ',
+      mdx(
+        'a',
+        e(
+          { parentName: 'p' },
+          {
+            href: 'https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Positioning/Understanding_z_index/The_stacking_context#the_stacking_context',
+          }
+        ),
+        'the full list on MDN'
+      ),
+      '.'
     ),
     mdx(
       'p',
       null,
-      "If you're curious how it works, you can use the FileViewer component to explore the FileViewer source code. Not all of the context is provided, but it should give you a pretty good idea about how it works!"
+      mdx(
+        'strong',
+        { parentName: 'p' },
+        'This can lead to some surprising situations.'
+      ),
+      " Check out what's happening here:"
     ),
-    mdx(MetaFileViewerDemo, { mdxType: 'MetaFileViewerDemo' })
+    mdx(Playground, {
+      id: 'broken-with-will-change',
+      splitRatio: 0.65,
+      layoutMode: 'tabbed',
+      html: `
+<style>
+  header {
+    position: relative;
+    z-index: 2;
+  }
+  .tooltip {
+    position: absolute;
+    z-index: 999999;
+  }
+  main {
+    position: relative;
+    /*
+      No more z-index\u2026
+      but it's still broken??
+    */
+    will-change: transform;
+  }
+</style>
+
+<header>
+  My Cool Site
+</header>
+<main>
+  <div class="tooltip">
+    A tooltip
+  </div>
+  <p>Some main content</p>
+</main>
+  `,
+      cssCode: `
+/* These styles are purely cosmetic */
+body {
+  background: #eee;
+}
+
+header {
+  height: 60px;
+  line-height: 60px;
+  background: pink;
+  text-align: center;
+}
+
+main {
+  padding: 32px;
+}
+
+.tooltip {
+  top: -12px;
+  left: 0px;
+  right: 0px;
+  margin: 0 auto;
+  width: 90px;
+  text-align: center;
+  padding: 8px;
+  background: white;
+  box-shadow: 1px 2px 8px hsla(0deg, 0%, 0%, 0.25);
+  border-radius: 6px;
+}
+  `,
+      mdxType: 'Playground',
+    }),
+    mdx(
+      'p',
+      null,
+      mdx('inlineCode', { parentName: 'p' }, 'main'),
+      " doesn't set a z-index anymore, but it uses ",
+      mdx('inlineCode', { parentName: 'p' }, 'will-change'),
+      ', a property that can create a stacking context all on its own.'
+    ),
+    mdx('h1', null, 'A common misconception about z-index'),
+    mdx(
+      'p',
+      null,
+      'In order for z-index to work, we need to set ',
+      mdx('inlineCode', { parentName: 'p' }, 'position'),
+      ' to something like ',
+      mdx('inlineCode', { parentName: 'p' }, 'relative'),
+      ' or ',
+      mdx('inlineCode', { parentName: 'p' }, 'absolute'),
+      ', right?'
+    ),
+    mdx('p', null, "Not quite. Check out what's happening here:"),
+    mdx(Playground, {
+      splitRatio: 0.55,
+      id: 'z-index-without-position',
+      layoutMode: 'tabbed',
+      html: `
+<style>
+  .wrapper {
+    display: flex;
+  }
+  .second.box {
+    z-index: 1;
+    background: hotpink;
+    margin-top: 20px;
+    margin-left: -20px;
+    margin-right: -20px;
+  }
+</style>
+
+<div class="wrapper">
+  <div class="first box"></div>
+  <div class="second box"></div>
+  <div class="third box"></div>
+</div>
+  `,
+      cssCode: `
+.box {
+  width: 50px;
+  height: 50px;
+  border: 3px solid;
+  background: silver;
+}
+  `,
+      mdxType: 'Playground',
+    }),
+    mdx(
+      'p',
+      null,
+      'The second box is lifted above its siblings using ',
+      mdx('inlineCode', { parentName: 'p' }, 'z-index'),
+      '. There are no ',
+      mdx('inlineCode', { parentName: 'p' }, 'position'),
+      ' declarations anywhere in the snippet, though!'
+    ),
+    mdx(
+      'p',
+      null,
+      'In general, ',
+      mdx('inlineCode', { parentName: 'p' }, 'z-index'),
+      ' only works with "positioned" elements (elements that set ',
+      mdx('inlineCode', { parentName: 'p' }, 'position'),
+      ' to something other than the default \u201Cstatic\u201D). But the Flexbox specification adds an exception: flex children can use ',
+      mdx('inlineCode', { parentName: 'p' }, 'z-index'),
+      " even if they're statically-positioned."
+    ),
+    mdx(
+      'p',
+      null,
+      'An earlier version of this post said that all elements that create a stacking context can use ',
+      mdx('inlineCode', { parentName: 'p' }, 'z-index'),
+      ', but that was incorrect. \u{1F62C}'
+    ),
+    mdx('h1', null, 'Hold on a minute\u2026'),
+    mdx(
+      'p',
+      null,
+      "There's a Weird Thing here, and I think it's worth pondering about for a minute or two."
+    ),
+    mdx(
+      'p',
+      null,
+      'In our Photoshop analogy, there is a clear distinction between groups and layers. All of the visual elements are layers, and groups can be conjured as structural helpers to contain them. They are distinct ideas.'
+    ),
+    mdx(
+      'p',
+      null,
+      'On the web, however, the distinction is a bit less clear. Every element that uses z-index must ',
+      mdx('em', { type: 'original' }, 'also'),
+      ' create a stacking context.'
+    ),
+    mdx(
+      'p',
+      null,
+      'When we decide to give an element a z-index, our goal is typically to lift or lower that element above/below some other element in the parent stacking context. ',
+      mdx(
+        'em',
+        { type: 'original' },
+        "We aren't intending to produce a stacking context on that element!"
+      ),
+      " But it's important that we consider it."
+    ),
+    mdx(
+      'p',
+      null,
+      "When a stacking context is created, it \u201Cflattens\u201D all of its descendants. Those children can still be rearranged internally, but we've essentially locked those children in."
+    ),
+    mdx('p', null, "Let's take another look at the markup from earlier:"),
+    mdx(
+      'pre',
+      null,
+      mdx(
+        'code',
+        e({ parentName: 'pre' }, { className: 'language-html' }),
+        `<header>
+  My Cool Site
+</header>
+<main>
+  <div class="tooltip">
+    A tooltip
+  </div>
+  <p>Some main content</p>
+</main>
+`
+      )
+    ),
+    mdx(
+      'p',
+      null,
+      'By default, HTML elements will be stacked according to their DOM order. Without any CSS interference, ',
+      mdx('inlineCode', { parentName: 'p' }, 'main'),
+      ' will render on top of ',
+      mdx('inlineCode', { parentName: 'p' }, 'header'),
+      '.'
+    ),
+    mdx(
+      'p',
+      null,
+      'We can lift ',
+      mdx('inlineCode', { parentName: 'p' }, 'header'),
+      ' to the front by giving it a z-index, but not without flattening all of its children. This mechanism is what led to the bug we discussed earlier.'
+    ),
+    mdx(
+      'p',
+      null,
+      "We shouldn't think of ",
+      mdx('inlineCode', { parentName: 'p' }, 'z-index'),
+      " purely as a way to change an element's order. We should ",
+      mdx('em', { parentName: 'p' }, 'also'),
+      " think of it as a way to form a group around that element's children. z-index won't work unless a group is formed."
+    ),
+    mdx(
+      Sidenote,
+      { title: 'Believe it or not, this is a good thing', mdxType: 'Sidenote' },
+      mdx(
+        'p',
+        null,
+        "As we've seen in our tooltip demo, stacking contexts can cause subtle, hard-to-diagnose bugs. Wouldn't it be better if z-index values were compared globally instead?"
+      ),
+      mdx(
+        'expanded',
+        null,
+        mdx(
+          'p',
+          null,
+          "I don't think so, and I can think of a few reasons why:"
+        ),
+        mdx(
+          'ul',
+          null,
+          mdx(
+            'li',
+            { parentName: 'ul' },
+            'As it stands, z-index inflation (the ever-creeping-upwards trend of huge z-index values) is an epidemic. Imagine how much worse it would be if ',
+            mdx(
+              'em',
+              { type: 'original' },
+              'every single element with a z-index'
+            ),
+            ' had to fit in the same scale?'
+          ),
+          mdx(
+            'li',
+            { parentName: 'ul' },
+            "I'm not a browser engineer, but I'd guess that stacking contexts are good for performance. Without them, the browser would have to compare every item with a z-index against every other item with a z-index. Sounds like a lot more work."
+          ),
+          mdx(
+            'li',
+            { parentName: 'ul' },
+            'Once we understand stacking contexts, we can use them to our advantage to "seal off" elements. This is an especially powerful pattern with component-driven frameworks like React.'
+          )
+        ),
+        mdx(
+          'p',
+          null,
+          "That last point is especially interesting. Let's dig deeper into it."
+        )
+      )
+    ),
+    mdx('h1', null, 'Airtight abstractions with \u201Cisolation\u201D'),
+    mdx(
+      'p',
+      null,
+      "One of my favourite CSS properties is also one of the most obscure. I'd like to introduce you to the ",
+      mdx('inlineCode', { parentName: 'p' }, 'isolation'),
+      ' property, a hidden gem in the language.'
+    ),
+    mdx('p', null, "Here's how you'd use it:"),
+    mdx(
+      'pre',
+      null,
+      mdx(
+        'code',
+        e(
+          { parentName: 'pre' },
+          {
+            className: 'language-css',
+            metastring: 'lessBottomMargin',
+            lessBottomMargin: !0,
+          }
+        ),
+        `.wrapper {
+  isolation: isolate;
+}
+`
+      )
+    ),
+    mdx(
+      'p',
+      null,
+      'When we apply this declaration to an element, it does precisely 1 thing: it creates a new stacking context.'
+    ),
+    mdx(
+      'p',
+      null,
+      'With so many different ways to create a stacking context, why do we need another one? Well, with every other method, stacking contexts are created implicitly, as the result of some other change. ',
+      mdx('inlineCode', { parentName: 'p' }, 'isolation'),
+      ' creates a stacking context in the purest way possible:'
+    ),
+    mdx(
+      'ul',
+      null,
+      mdx('li', { parentName: 'ul' }, 'No need to prescribe a z-index value'),
+      mdx(
+        'li',
+        { parentName: 'ul' },
+        'Can be used on statically-positioned',
+        mdx(Asterisk, {
+          content:
+            "A \u201Cstatic\u201D element is one that doesn't set 'position' to relative, absolute, fixed, or sticky.",
+          mdxType: 'Asterisk',
+        }),
+        ' elements'
+      ),
+      mdx(
+        'li',
+        { parentName: 'ul' },
+        "Doesn't affect the child's rendering in any way"
+      )
+    ),
+    mdx(
+      'p',
+      null,
+      'This is ',
+      mdx('strong', { parentName: 'p' }, 'incredibly useful'),
+      `, since it lets us "seal off" an element's children.`
+    ),
+    mdx(
+      'p',
+      null,
+      "Let's look at an example. Recently, I built this neat envelope component. ",
+      mdx('strong', { parentName: 'p' }, 'Hover or focus'),
+      ' to see it open:'
+    ),
+    mdx(Spacer, { size: 32, mdxType: 'Spacer' }),
+    mdx(
+      EnvelopeDemo,
+      { mdxType: 'EnvelopeDemo' },
+      mdx('p', null, 'Hello World!')
+    ),
+    mdx(Spacer, { size: 32, mdxType: 'Spacer' }),
+    mdx('p', null, 'It consists of several layers:'),
+    mdx(EnvelopeLayers, { mdxType: 'EnvelopeLayers' }),
+    mdx(Spacer, { size: 96, mdxType: 'Spacer' }),
+    mdx(
+      'p',
+      null,
+      'I packaged this effect up in a React component, ',
+      mdx('inlineCode', { parentName: 'p' }, '<Envelope>'),
+      '. It looks something like this (inline styles used for brevity):'
+    ),
+    mdx(
+      'pre',
+      null,
+      mdx(
+        'code',
+        e(
+          { parentName: 'pre' },
+          {
+            className: 'language-jsx',
+            metastring: 'lessBottomMargin',
+            lessBottomMargin: !0,
+          }
+        ),
+        `function Envelope({ children }) {
+  return (
+    <div>
+      <BackPane style={{ zIndex: 1 }} />
+      <Letter style={{ zIndex: 3 }}>
+        {children}
+      </Letter>
+      <Shell style={{ zIndex: 4 }} />
+      <Flap style={{ zIndex: isOpen ? 2 : 5 }} />
+    </div>
+  )
+}
+`
+      )
+    ),
+    mdx(
+      'p',
+      null,
+      "(If you're wondering why ",
+      mdx('inlineCode', { parentName: 'p' }, 'Flap'),
+      " has a dynamic z-index, it's because it needs to shift behind the letter when the envelope is open.)"
+    ),
+    mdx(
+      'p',
+      null,
+      'A good React component is sealed off from its environment, like a spacesuit. ',
+      mdx('em', { type: 'original' }, 'This'),
+      ' spacesuit, however, has sprung a leak. Check out what happens when I use it near a ',
+      mdx('inlineCode', { parentName: 'p' }, '<header>'),
+      ' with ',
+      mdx('inlineCode', { parentName: 'p' }, 'z-index: 3'),
+      ':'
+    ),
+    mdx(VideoGif, {
+      src: '/images/stacking-contexts/glitch-city.mp4',
+      alt: 'An envelope opens, and intersects a header above, with the envelope flap behind, but the letter in front',
+      maxWidth: 400,
+      noBorder: !0,
+      includeShadow: !0,
+      mdxType: 'VideoGif',
+    }),
+    mdx(
+      'p',
+      null,
+      'Our ',
+      mdx('inlineCode', { parentName: 'p' }, '<Envelope>'),
+      " component wraps the 4 layers in a div, but it doesn't create a stacking context. As a result, those layers can become \u201Cintertwined\u201D with other components, like the world's most boring game of Twister",
+      mdx(Asterisk, {
+        content:
+          'A party game involving coloured circles and tangled humans, from the pre-COVID era.',
+        mdxType: 'Asterisk',
+      }),
+      '.'
+    ),
+    mdx(
+      'p',
+      null,
+      'By using ',
+      mdx('inlineCode', { parentName: 'p' }, 'isolation: isolate'),
+      ' on the top-level element within ',
+      mdx('inlineCode', { parentName: 'p' }, '<Envelope>'),
+      ', ',
+      mdx(
+        'strong',
+        { parentName: 'p' },
+        "we guarantee that it'll be positioned as a group"
+      ),
+      ':'
+    ),
+    mdx(
+      'pre',
+      null,
+      mdx(
+        'code',
+        e(
+          { parentName: 'pre' },
+          {
+            className: 'language-jsx',
+            metastring: 'highlight=[[2,2]]',
+            highlight: '[[2,2]]',
+          }
+        ),
+        `function Envelope({ children }) {
+  return (
+    <div style={{ isolation: 'isolate' }}>
+      <BackPane style={{ zIndex: 1 }} />
+      <Letter style={{ zIndex: 3 }}>
+        {children}
+      </Letter>
+      <Shell style={{ zIndex: 4 }} />
+      <Flap style={{ zIndex: isOpen ? 2 : 5 }} />
+    </div>
+  )
+}
+`
+      )
+    ),
+    mdx(
+      'p',
+      null,
+      'Why not create a stacking context the old-fashioned way, with ',
+      mdx('inlineCode', { parentName: 'p' }, 'position: relative; z-index: 1'),
+      '? Well, React components are meant to be reusable; is ',
+      mdx('inlineCode', { parentName: 'p' }, '1'),
+      ' really the right z-index value for this component in ',
+      mdx('em', { type: 'original' }, 'all'),
+      ' circumstances? The beauty of ',
+      mdx('inlineCode', { parentName: 'p' }, 'isolation'),
+      ' is that it keeps our components unopinionated and flexible.'
+    ),
+    mdx(
+      'p',
+      null,
+      'More and more, ',
+      mdx(
+        'strong',
+        { parentName: 'p' },
+        "I'm starting to believe that z-index is an escape hatch"
+      ),
+      ', similar to ',
+      mdx('inlineCode', { parentName: 'p' }, '!important'),
+      '. This is one trick that allows us to control stacking order without pulling the big red z-index lever.'
+    ),
+    mdx(
+      'p',
+      null,
+      "I'm working on a follow-up tutorial where we look at some other tricks to keep z-index inflation down. Watch this space!"
+    ),
+    mdx(
+      Sidenote,
+      { title: 'Browser support', mdxType: 'Sidenote' },
+      mdx(
+        'p',
+        null,
+        'The ',
+        mdx('inlineCode', { parentName: 'p' }, 'isolation'),
+        ' property is not new, and it has ',
+        mdx(
+          'a',
+          e(
+            { parentName: 'p' },
+            { href: 'https://caniuse.com/?search=isolation' }
+          ),
+          'very good browser support'
+        ),
+        ': it works in every browser except Internet Explorer.'
+      ),
+      mdx(
+        'p',
+        null,
+        'If I needed to support Internet Explorer, I would consider using ',
+        mdx('inlineCode', { parentName: 'p' }, 'transform: translate(0px);'),
+        " instead. I haven't tested it, but I believe it would achieve the same result: creating a stacking context without any meaningful side-effect."
+      )
+    ),
+    mdx('h1', null, 'Debugging stacking context issues'),
+    mdx(
+      'p',
+      null,
+      "Unfortunately, I haven't found much tooling to help debug stacking-context issues."
+    ),
+    mdx(
+      'p',
+      null,
+      'Microsoft Edge has an interesting \u201C',
+      mdx(
+        'a',
+        e(
+          { parentName: 'p' },
+          {
+            href: 'https://docs.microsoft.com/en-us/microsoft-edge/devtools-guide-chromium/3d-view/',
+          }
+        ),
+        '3D view'
+      ),
+      '\u201D that allows us to view stacking contexts:'
+    ),
+    mdx(VideoGif, {
+      src: '/images/stacking-contexts/3d-view.mp4',
+      alt: 'A bunch of boxes floating in space, while the camera pans around. Each box has a different background color and a label like \u201Cz-index: auto\u201D.',
+      maxWidth: 760 / 2,
+      mdxType: 'VideoGif',
+    }),
+    mdx(
+      'p',
+      null,
+      "This is an ambitious idea, but honestly I find it pretty overwhelming. It's hard to locate a specific element in this view, and I don't really feel like it helps me understand the stacking contexts in my app."
+    ),
+    mdx(
+      'p',
+      null,
+      "There's one other neat trick you can use sometimes: ",
+      mdx('inlineCode', { parentName: 'p' }, 'offsetParent'),
+      '.'
+    ),
+    mdx(
+      'pre',
+      null,
+      mdx(
+        'code',
+        e({ parentName: 'pre' }, { className: 'language-js' }),
+        `const element = document.querySelector('.tooltip');
+
+console.log(element.offsetParent); // <main>
+`
+      )
+    ),
+    mdx(
+      'p',
+      null,
+      mdx('inlineCode', { parentName: 'p' }, 'offsetParent'),
+      ' returns the closest ancestor rendered with a ',
+      mdx('inlineCode', { parentName: 'p' }, 'position'),
+      ' value other than ',
+      mdx('inlineCode', { parentName: 'p' }, 'static'),
+      '. It crawls up the tree looking for relative / absolute / fixed / sticky ancestors.'
+    ),
+    mdx(
+      'p',
+      null,
+      "This is not a perfect solution. Not all stacking contexts use positioned layout, and not all positioned elements create a stacking context! That said, in practice, there does tend to be a pretty strong correlation between these two things. At the very least, it's a starting point."
+    ),
+    mdx(
+      'p',
+      null,
+      'If you know of any tooling that can help here (or if you create one!), ',
+      mdx(
+        'a',
+        { href: 'https://twitter.com/JoshWComeau' },
+        'let me know on Twitter'
+      )
+    ),
+    mdx(
+      'p',
+      null,
+      mdx('strong', { parentName: 'p' }, 'Update:'),
+      ' Felix Becker reached out to share a ',
+      mdx(
+        'a',
+        e(
+          { parentName: 'p' },
+          {
+            href: 'https://marketplace.visualstudio.com/items?itemName=felixfbecker.css-stacking-contexts',
+          }
+        ),
+        'VSCode extension that highlights when stacking contexts are created'
+      ),
+      ':'
+    ),
+    mdx('img', {
+      src: '/images/vscode-stacking-contexts.gif',
+      alt: 'A CSS code snippet showing that z-index has no effect, and how to fix it',
+    }),
+    mdx(
+      'p',
+      null,
+      'This extension works on .css and .scss files (no CSS-in-JS support).'
+    ),
+    mdx(
+      'p',
+      null,
+      mdx('strong', { parentName: 'p' }, 'Update 2:'),
+      ' Giuseppe Gurgone reached out to let me know about this ',
+      mdx(
+        'a',
+        e(
+          { parentName: 'p' },
+          {
+            href: 'https://chrome.google.com/webstore/detail/z-context/jigamimbjojkdgnlldajknogfgncplbh',
+          }
+        ),
+        'Chrome extension'
+      ),
+      ' which adds a new \u201Cz-index\u201D pane to the devtools.'
+    ),
+    mdx(
+      'p',
+      null,
+      mdx('strong', { parentName: 'p' }, 'Update 3:'),
+      ' Andrea Dragotta created an ',
+      mdx('em', { parentName: 'p' }, 'incredible'),
+      ' browser extension that adds a bunch of super-important information about z-index and stacking contexts:'
+    ),
+    mdx('img', {
+      src: '/images/chrome-stacking-context.png',
+      alt: "Screenshot of the Chrome devtools with a new pane that shows info about the element's current stacking context",
+      style: { maxWidth: 600 },
+    }),
+    mdx(
+      'p',
+      null,
+      'This is an ',
+      mdx('strong', { parentName: 'p' }, 'awesome'),
+      " tool, and I've been using it regularly. Install CSS Stacking Context Inspector:"
+    ),
+    mdx(
+      'ul',
+      null,
+      mdx(
+        'li',
+        { parentName: 'ul' },
+        mdx(
+          'a',
+          e(
+            { parentName: 'li' },
+            {
+              href: 'https://chrome.google.com/webstore/detail/css-stacking-context-insp/apjeljpachdcjkgnamgppgfkmddadcki',
+            }
+          ),
+          'For Chrome'
+        )
+      ),
+      mdx(
+        'li',
+        { parentName: 'ul' },
+        mdx(
+          'a',
+          e(
+            { parentName: 'li' },
+            {
+              href: 'https://addons.mozilla.org/en-US/firefox/addon/css-stacking-context-inspector/',
+            }
+          ),
+          'For Firefox'
+        )
+      )
+    ),
+    mdx(
+      Sidenote,
+      { title: 'Stacking contexts vs. layers', mdxType: 'Sidenote' },
+      mdx(
+        'p',
+        null,
+        'In the Chrome devtools, there is a \u201CLayers\u201D pane that shows individual element layers. Are layers the same thing as stacking contexts?'
+      ),
+      mdx(
+        'p',
+        null,
+        "Unfortunately not. They're similar if you squint, but they're fundamentally different concepts."
+      ),
+      mdx(
+        'expanded',
+        null,
+        mdx(
+          'p',
+          null,
+          "Stacking contexts are a \u201Cthing\u201D in the CSS specification. They're a fundamental part of how the language works, and browsers are meant to implement them according to the specification."
+        ),
+        mdx(
+          'p',
+          null,
+          "Layers, on the other hand, aren't mentioned in the spec. Rather, they're an implementation detail that some browsers (like Chrome) use to optimize performance."
+        ),
+        mdx(
+          'p',
+          null,
+          "For example: by promoting an element that will be animated to its own layer, the browser can defer that work to the GPU, leading to smoother transitions. If you're keen to learn more about this, I recently wrote an ",
+          mdx(
+            'a',
+            e({ parentName: 'p' }, { href: '/animation/css-transitions' }),
+            'article about CSS transitions'
+          ),
+          ', and we take a brief look at this concept.'
+        ),
+        mdx(
+          'p',
+          null,
+          "At first blush, this concept sounds a lot like stacking contexts, but they're separate mechanisms. Whenever a layer is created, it must also define a stacking context, but the inverse is not necessarily true (multiple stacking contexts might be rendered on the same layer)."
+        ),
+        mdx(
+          'p',
+          null,
+          'You can learn more about how the browser uses layers in ',
+          mdx(
+            'a',
+            e(
+              { parentName: 'p' },
+              {
+                href: 'https://developers.google.com/web/updates/2018/09/inside-browser-part3',
+              }
+            ),
+            'this wonderful series by Mariko Kosako'
+          ),
+          ' on the Chrome Web blog.'
+        )
+      )
+    ),
+    mdx('h1', null, 'Going deeper'),
+    mdx(
+      'p',
+      null,
+      'Stacking contexts are a good example of how CSS is built on "hidden mechanisms". You can spend years building interfaces with CSS without knowing that they exist.'
+    ),
+    mdx(
+      'p',
+      null,
+      'Unless you explicitly take the time to learn about these mechanisms, your mental model will always be missing pieces. And if your mental model is even ',
+      mdx('em', { parentName: 'p' }, 'slightly'),
+      " misaligned, it's only a matter of time until that discrepancy causes problems."
+    ),
+    mdx(
+      'p',
+      null,
+      `CSS doesn't have warnings or error messages. When something surprising happens, there's no clear "next step" to figure out what went wrong. These disruptions take us out of flow state and shake our confidence. I think this is why so many front-end developers don't enjoy writing CSS.`
+    ),
+    mdx(
+      'p',
+      null,
+      'Once you build up an intuition for the language, though, CSS becomes an absolute joy. I ',
+      mdx('em', { parentName: 'p' }, 'love'),
+      ' writing CSS nowadays.'
+    ),
+    mdx(
+      'p',
+      null,
+      "I want to help other developers discover this joy. I've created a comprehensive self-paced online course that explains how CSS works at a deeper level, and teaches the practical skills I use every day to build all kinds of user interfaces."
+    ),
+    mdx(
+      'p',
+      null,
+      "It's called ",
+      mdx(
+        'a',
+        e({ parentName: 'p' }, { href: 'https://css-for-js.dev/' }),
+        '\u201CCSS for JavaScript Developers\u201D'
+      ),
+      ", and it's available now. \u{1F604}"
+    )
   );
 }
 MDXContent.isMDXComponent = !0;
