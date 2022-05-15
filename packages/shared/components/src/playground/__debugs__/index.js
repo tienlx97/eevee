@@ -1,1463 +1,444 @@
 var h = Object.defineProperty,
-  c = Object.defineProperties;
-var m = Object.getOwnPropertyDescriptors;
-var o = Object.getOwnPropertySymbols;
+  u = Object.defineProperties;
+var c = Object.getOwnPropertyDescriptors;
+var i = Object.getOwnPropertySymbols;
 var s = Object.prototype.hasOwnProperty,
   r = Object.prototype.propertyIsEnumerable;
-var l = (t, n, i) =>
-    n in t
-      ? h(t, n, { enumerable: !0, configurable: !0, writable: !0, value: i })
-      : (t[n] = i),
-  e = (t, n) => {
-    for (var i in n || (n = {})) s.call(n, i) && l(t, i, n[i]);
-    if (o) for (var i of o(n)) r.call(n, i) && l(t, i, n[i]);
-    return t;
+var l = (e, o, n) =>
+    o in e
+      ? h(e, o, { enumerable: !0, configurable: !0, writable: !0, value: n })
+      : (e[o] = n),
+  t = (e, o) => {
+    for (var n in o || (o = {})) s.call(o, n) && l(e, n, o[n]);
+    if (i) for (var n of i(o)) r.call(o, n) && l(e, n, o[n]);
+    return e;
   },
-  p = (t, n) => c(t, m(n));
-var d = (t, n) => {
-  var i = {};
-  for (var a in t) s.call(t, a) && n.indexOf(a) < 0 && (i[a] = t[a]);
-  if (t != null && o)
-    for (var a of o(t)) n.indexOf(a) < 0 && r.call(t, a) && (i[a] = t[a]);
-  return i;
+  p = (e, o) => u(e, c(o));
+var d = (e, o) => {
+  var n = {};
+  for (var a in e) s.call(e, a) && o.indexOf(a) < 0 && (n[a] = e[a]);
+  if (e != null && i)
+    for (var a of i(e)) o.indexOf(a) < 0 && r.call(e, a) && (n[a] = e[a]);
+  return n;
 };
-const makeShortcode = (t) =>
-    function (i) {
+const makeShortcode = (e) =>
+    function (n) {
       return (
         console.warn(
           'Component ' +
-            t +
+            e +
             ' was not imported, exported, or provided by MDXProvider as global scope'
         ),
-        mdx('div', e({}, i))
+        mdx('div', t({}, n))
       );
     },
-  Playground = makeShortcode('Playground'),
-  Sidenote = makeShortcode('Sidenote'),
-  Asterisk = makeShortcode('Asterisk'),
   Spacer = makeShortcode('Spacer'),
-  EnvelopeDemo = makeShortcode('EnvelopeDemo'),
-  EnvelopeLayers = makeShortcode('EnvelopeLayers'),
+  IntroDemo = makeShortcode('IntroDemo'),
+  Sidenote = makeShortcode('Sidenote'),
+  ButtonLayers = makeShortcode('ButtonLayers'),
+  Playground = makeShortcode('Playground'),
   VideoGif = makeShortcode('VideoGif'),
+  Asterisk = makeShortcode('Asterisk'),
+  Sparkles = makeShortcode('Sparkles'),
+  BoxAnimation = makeShortcode('BoxAnimation'),
+  ButtonLayersWithShadow = makeShortcode('ButtonLayersWithShadow'),
+  SoftShadow = makeShortcode('SoftShadow'),
+  ButtonGradient = makeShortcode('ButtonGradient'),
   layoutProps = {},
   MDXLayout = 'wrapper';
-function MDXContent(i) {
-  var a = i,
-    { components: t } = a,
-    n = d(a, ['components']);
+function MDXContent(n) {
+  var a = n,
+    { components: e } = a,
+    o = d(a, ['components']);
   return mdx(
     MDXLayout,
-    p(e(e({}, layoutProps), n), { components: t, mdxType: 'MDXLayout' }),
+    p(t(t({}, layoutProps), o), { components: e, mdxType: 'MDXLayout' }),
     mdx(
       'p',
       null,
-      "In CSS, we're given a tool to explicitly control the stacking order of HTML elements: ",
-      mdx('inlineCode', { parentName: 'p' }, 'z-index'),
-      '. Elements with a higher value will appear on top:'
-    ),
-    mdx(Playground, {
-      id: 'z-index',
-      splitRatio: 0.55,
-      layoutMode: 'tabbed',
-      layoutMode: 'tabbed',
-      html: `
-<style>
-  .box {
-    position: relative;
-  }
-  .first.box {
-    z-index: 2;
-    background-color: peachpuff;
-  }
-  .second.box {
-    z-index: 1;
-    margin-top: -20px;
-    margin-left: 20px;
-  }
-</style>
-
-<div class="first box"></div>
-<div class="second box"></div>
-  `,
-      cssCode: `
-/*
-  This tab includes cosmetic styles
-  that aren't as relevant.
-*/
-.box {
-  width: 50px;
-  height: 50px;
-  border: 3px solid;
-  background: silver;
-}
-  `,
-      mdxType: 'Playground',
-    }),
-    mdx(
-      'p',
-      null,
-      'Because ',
-      mdx('inlineCode', { parentName: 'p' }, '.first.box'),
-      ' has a larger z-index than ',
-      mdx('inlineCode', { parentName: 'p' }, '.second.box'),
-      ', it stacks in front. If we remove that z-index declaration, it falls to the back. The code above is editable\u2014give it a shot!'
+      'I had a neat realization recently: Buttons are the \u201Ckiller feature\u201D of the web.'
     ),
     mdx(
       'p',
       null,
-      "Things aren't always so simple, however. Sometimes, the larger z-index value ",
-      mdx('em', { type: 'original' }, "doesn't"),
-      ' win.'
-    ),
-    mdx('p', null, "Check out what's going on here:"),
-    mdx(Playground, {
-      id: 'parent-child',
-      splitRatio: 0.55,
-      layoutMode: 'tabbed',
-      html: `
-<style>
-  header {
-    position: relative;
-    z-index: 2;
-  }
-  .tooltip {
-    position: absolute;
-    z-index: 999999;
-  }
-  main {
-    position: relative;
-    z-index: 1;
-  }
-</style>
-
-<header>
-  My Cool Site
-</header>
-<main>
-  <div class="tooltip">
-    A tooltip
-  </div>
-  <p>Some main content</p>
-</main>
-  `,
-      cssCode: `
-body {
-  background: #eee;
-}
-
-header {
-  height: 60px;
-  line-height: 60px;
-  background: pink;
-  text-align: center;
-}
-
-main {
-  padding: 32px;
-}
-
-.tooltip {
-  top: -12px;
-  left: 0px;
-  right: 0px;
-  margin: 0 auto;
-  width: 90px;
-  text-align: center;
-  padding: 8px;
-  background: white;
-  box-shadow: 1px 2px 8px hsla(0deg, 0%, 0%, 0.25);
-  border-radius: 6px;
-}
-  `,
-      mdxType: 'Playground',
-    }),
-    mdx(
-      'p',
-      null,
-      mdx('inlineCode', { parentName: 'p' }, '.tooltip'),
-      ' has a ',
-      mdx('strong', { parentName: 'p' }, 'much'),
-      ' larger z-index than ',
-      mdx('inlineCode', { parentName: 'p' }, 'header'),
-      '! So why on earth is the header on top?'
+      'Every significant thing we do online, from ordering food to scheduling an appointment to playing a video, involves pressing a button. Buttons (and the forms they submit) make the web dynamic and interactive and powerful.'
     ),
     mdx(
       'p',
       null,
-      "To unravel this mystery, we'll need to learn about ",
-      mdx('em', { parentName: 'p' }, 'stacking contexts'),
-      ", an obscure-yet-fundamental CSS mechanism. In this article, we'll explore what they are, how they work, and how we can use them to our advantage."
+      "But so many of those buttons are lackluster. They can trigger enormous changes in the real world, but they don't feel tangible at all. The feel like dull everyday pixels."
     ),
+    mdx('p', null, "In this tutorial, we'll build a whimsical 3D button:"),
+    mdx(Spacer, { size: 32, mdxType: 'Spacer' }),
+    mdx(IntroDemo, { mdxType: 'IntroDemo' }),
     mdx(
       Sidenote,
       { title: 'Intended audience', mdxType: 'Sidenote' },
       mdx(
         'p',
         null,
-        'This tutorial is written for front-end developers of all experience levels. Especially folks who have struggled with z-index issues before.'
-      )
-    ),
-    mdx('h1', null, 'Layers and groups'),
-    mdx(
-      'p',
-      null,
-      "If you've ever used image-editing software like Photoshop or Figma, you're probably familiar with the concept of layers:"
-    ),
-    mdx('img', {
-      alt: '3 layers in a Photoshop document: a cat photo (bottom), a moustache (mid), and a halo (top)',
-      src: '/images/stacking-contexts/photoshop-layers.png',
-      width: 576 / 2,
-      height: 488 / 2,
-    }),
-    mdx(
-      'p',
-      null,
-      'Our image has 3 separate canvases, stacked like pancakes. The bottom layer is a cat photo, with 2 layers on top that add silly details. By flattening these layers, we wind up with a final composition:'
-    ),
-    mdx('img', {
-      alt: 'A cat photo with a poorly-drawn moustache and halo',
-      src: '/images/stacking-contexts/cat-layers.jpg',
-      width: 300,
-      height: 300,
-    }),
-    mdx(
-      'p',
-      null,
-      'In these programs, we can also ',
-      mdx('em', { type: 'original' }, 'group layers'),
-      ':'
-    ),
-    mdx('img', {
-      alt: 'The 3 layers from the previous drawing are in a group, \u201CCat\u201D. Another group, \u201CDog\u201D, includes a top hat and a dog photo',
-      src: '/images/stacking-contexts/photoshop-groups.png',
-      width: 576 / 2,
-      height: 762 / 2,
-    }),
-    mdx(
-      'p',
-      null,
-      "Like files in a folder, a group allows us to segment our layers. In terms of stacking order, layers aren't allowed to \u201Cintermingle\u201D between groups: All of ",
-      mdx('inlineCode', { parentName: 'p' }, 'dog'),
-      "'s layers will appear on top of all of ",
-      mdx('inlineCode', { parentName: 'p' }, 'cat'),
-      "'s layers."
-    ),
-    mdx(
-      'p',
-      null,
-      "When we export the composition, we don't see the cat at all, since it's behind the dog:"
-    ),
-    mdx('img', {
-      alt: 'A dog photo with a poorly-drawn top hat',
-      src: '/images/stacking-contexts/dog-layers.jpg',
-      width: 300,
-      height: 300,
-    }),
-    mdx(
-      'p',
-      null,
-      'When it comes to CSS, things work in a similar way: elements are grouped into ',
-      mdx('strong', { parentName: 'p' }, 'stacking contexts'),
-      '. When we give an element a z-index, that value is only compared ',
-      mdx(
-        'em',
-        { type: 'original' },
-        'against other elements in the same context'
+        "This is an intermediate-level tutorial for front-end developers. It's focused on HTML/CSS, no JavaScript knowledge required."
       ),
-      '. z-index values are not global.'
-    ),
-    mdx(
-      'p',
-      null,
-      'By default, a plain HTML document will have a single stacking context that encompasses all nodes. But we can create additional contexts!'
-    ),
-    mdx(
-      'p',
-      null,
-      "There are many ways to create stacking contexts, but here's the most common:"
-    ),
-    mdx(
-      'pre',
-      null,
       mdx(
-        'code',
-        e({ parentName: 'pre' }, { className: 'language-css' }),
-        `.some-element {
-  position: relative;
-  z-index: 1;
-}
-`
+        'p',
+        null,
+        "If you're relatively new to CSS transitions, I'd recommend reading ",
+        mdx(
+          'a',
+          t({ parentName: 'p' }, { href: '/animation/css-transitions/' }),
+          '\u201CAn Interactive Guide to CSS Transitions\u201D'
+        ),
+        ' first.'
       )
     ),
+    mdx('h1', null, 'Our strategy'),
     mdx(
       'p',
       null,
-      'By combining these two declarations, a secret mechanism is triggered: a stacking context is created, forming a group around this element and all of its children.'
+      "There's one main trick we'll use a couple times in this tutorial to create the ",
+      mdx('em', { parentName: 'p' }, 'illusion'),
+      ' of a 3D button.'
     ),
-    mdx('p', null, "Let's take another look at our problem from above:"),
     mdx(
-      'pre',
+      'p',
+      null,
+      "Here's how it works: when the user interacts with our button, we'll slide a foreground layer up and down, in front of a stationary background:"
+    ),
+    mdx(ButtonLayers, { mdxType: 'ButtonLayers' }),
+    mdx(
+      'p',
+      null,
+      '(Try sliding the "Reveal" slider, and then interacting with the button!)'
+    ),
+    mdx(
+      'p',
       null,
       mdx(
-        'code',
-        e({ parentName: 'pre' }, { className: 'language-html' }),
-        `<style>
-  header {
-    position: relative;
-    z-index: 2;
+        'strong',
+        { parentName: 'p' },
+        'Why not use ',
+        mdx('inlineCode', { parentName: 'strong' }, 'box-shadow'),
+        ' or ',
+        mdx('inlineCode', { parentName: 'strong' }, 'border'),
+        '?'
+      ),
+      ' Those properties are ',
+      mdx('i', null, 'super'),
+      " expensive to animate. If we want a buttery-smooth transition on the button, we'll have way more success with this strategy."
+    ),
+    mdx('p', null, "Here's our MVP button in code:"),
+    mdx(Playground, {
+      id: 'button-mvp',
+      centered: !0,
+      splitRatio: 0.62,
+      html: `
+<style>
+  .pushable {
+    background: hsl(340deg 100% 32%);
+    border-radius: 12px;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    outline-offset: 4px;
   }
-  .tooltip {
-    position: absolute;
-    z-index: 999999;
+  .front {
+    display: block;
+    padding: 12px 42px;
+    border-radius: 12px;
+    font-size: 1.25rem;
+    background: hsl(345deg 100% 47%);
+    color: white;
+    transform: translateY(-6px);
   }
-  main {
-    position: relative;
-    z-index: 1;
+
+  .pushable:active .front {
+    transform: translateY(-2px);
   }
 </style>
 
-<header>
-  My Cool Site
-</header>
-<main>
-  <div class="tooltip">
-    A tooltip
-  </div>
-  <p>Some main content</p>
-</main>
-`
-      )
-    ),
-    mdx(
-      'p',
-      null,
-      'We can map out the stacking contexts being created in this snippet:'
-    ),
-    mdx(
-      'ul',
-      null,
-      mdx(
-        'li',
-        { parentName: 'ul' },
-        'The root context',
-        mdx(
-          'ul',
-          { parentName: 'li' },
-          mdx(
-            'li',
-            { parentName: 'ul' },
-            mdx('inlineCode', { parentName: 'li' }, '<header>')
-          ),
-          mdx(
-            'li',
-            { parentName: 'ul' },
-            mdx('inlineCode', { parentName: 'li' }, '<main>'),
-            mdx(
-              'ul',
-              { parentName: 'li' },
-              mdx(
-                'li',
-                { parentName: 'ul' },
-                mdx('inlineCode', { parentName: 'li' }, '<div class="tooltip">')
-              )
-            )
-          )
-        )
-      )
-    ),
+<button class="pushable">
+  <span class="front">
+    Push me
+  </span>
+</button>
+  `,
+      mdxType: 'Playground',
+    }),
     mdx(
       'p',
       null,
       'Our ',
-      mdx('inlineCode', { parentName: 'p' }, '.tooltip'),
-      ' element has a z-index of 999999, but that value is only relevant within the ',
-      mdx('inlineCode', { parentName: 'p' }, '<main>'),
-      ' stacking context. It controls whether the tooltip shows up above or below the adjacent ',
-      mdx('inlineCode', { parentName: 'p' }, '<p>'),
-      ' tag, nothing more.'
+      mdx('inlineCode', { parentName: 'p' }, 'button'),
+      ' element provides the burgundy background color that simulates the bottom edge of our button. We also strip away the default border/padding that comes with ',
+      mdx('inlineCode', { parentName: 'p' }, 'button'),
+      ' elements.'
     ),
     mdx(
       'p',
       null,
-      'Meanwhile, in the parent context, ',
-      mdx('inlineCode', { parentName: 'p' }, '<header>'),
-      ' and ',
-      mdx('inlineCode', { parentName: 'p' }, '<main>'),
-      ' are compared. Because ',
-      mdx('inlineCode', { parentName: 'p' }, '<main>'),
-      ' has a smaller z-index, it shows up underneath ',
-      mdx('inlineCode', { parentName: 'p' }, '<header>'),
-      '. ',
-      mdx(
-        'strong',
-        { parentName: 'p' },
-        'All of its children come along for the ride.'
-      )
-    ),
-    mdx(
-      Sidenote,
-      { title: "It's like semantic versioning", mdxType: 'Sidenote' },
-      mdx(
-        'p',
-        null,
-        "I recognize that not everyone has experience with software like Photoshop / Figma / Sketch. If the analogy above didn't resonate, I have another one that you're more likely to be familiar with: ",
-        mdx('em', { parentName: 'p' }, 'semantic versioning.')
-      ),
-      mdx(
-        'expanded',
-        null,
-        mdx(
-          'p',
-          null,
-          `In semantic versioning, different "tiers" of versions are separated by dots. For example, version 2.0 of a package is a larger version than 1.0, but it's also a larger version than 1.999.`
-        ),
-        mdx(
-          'p',
-          null,
-          'z-indexes are like version numbers, and stacking contexts are like tiers. Every time a stacking context is created, we add a dot to our version:'
-        ),
-        mdx(
-          'pre',
-          null,
-          mdx(
-            'code',
-            e(
-              { parentName: 'pre' },
-              {
-                className: 'language-html',
-                metastring: 'lessBottomMargin',
-                lessBottomMargin: !0,
-              }
-            ),
-            `<header> <!-- 2.0 -->
-  My Cool Site
-</header>
-<main> <!-- 1.0 -->
-  <div class="tooltip"> <!-- 1.999999 -->
-    A tooltip
-  </div>
-</main>
-`
-          )
-        ),
-        mdx(
-          'p',
-          null,
-          'Our tooltip shows up underneath our ',
-          mdx('inlineCode', { parentName: 'p' }, '<header>'),
-          " because 1.999999 is a lower version than 2.0. It doesn't matter how many 9s we add to the minor version, it'll never eclipse a larger major version."
-        )
-      )
-    ),
-    mdx('h1', null, 'Fixing our example'),
-    mdx(
-      'p',
-      null,
-      "How do we solve our tooltip problem? Well, in this case, we don't actually need to create a stacking context on our ",
-      mdx('inlineCode', { parentName: 'p' }, '<main>'),
-      ':'
-    ),
-    mdx(Playground, {
-      id: 'fixing-our-example',
-      splitRatio: 0.65,
-      layoutMode: 'tabbed',
-      html: `
-<style>
-  header {
-    position: relative;
-    z-index: 2;
-  }
-  .tooltip {
-    position: absolute;
-    z-index: 999999;
-  }
-  main {
-    position: relative;
-    /* No more z-index here! */
-  }
-</style>
-
-<header>
-  My Cool Site
-</header>
-<main>
-  <div class="tooltip">
-    A tooltip
-  </div>
-  <p>Some main content</p>
-</main>
-  `,
-      cssCode: `
-/* These styles are purely cosmetic */
-body {
-  background: #eee;
-}
-
-header {
-  height: 60px;
-  line-height: 60px;
-  background: pink;
-  text-align: center;
-}
-
-main {
-  padding: 32px;
-}
-
-.tooltip {
-  top: -12px;
-  left: 0px;
-  right: 0px;
-  margin: 0 auto;
-  width: 90px;
-  text-align: center;
-  padding: 8px;
-  background: white;
-  box-shadow: 1px 2px 8px hsla(0deg, 0%, 0%, 0.25);
-  border-radius: 6px;
-}
-  `,
-      mdxType: 'Playground',
-    }),
-    mdx(
-      'p',
-      null,
-      'Without a z-index, ',
-      mdx('inlineCode', { parentName: 'p' }, '<main>'),
-      " won't create a stacking context. Our hierarchy, then, looks like this:"
-    ),
-    mdx(
-      'ul',
-      null,
-      mdx(
-        'li',
-        { parentName: 'ul' },
-        'The root context',
-        mdx(
-          'ul',
-          { parentName: 'li' },
-          mdx(
-            'li',
-            { parentName: 'ul' },
-            mdx('inlineCode', { parentName: 'li' }, '<header>')
-          ),
-          mdx(
-            'li',
-            { parentName: 'ul' },
-            mdx('inlineCode', { parentName: 'li' }, '<div class="tooltip">')
-          )
-        )
-      )
+      mdx('inlineCode', { parentName: 'p' }, '.front'),
+      ' is our foreground layer. it gets a bright pink-crimson background color, as well as some text styles.'
     ),
     mdx(
       'p',
       null,
-      'Because the header and our tooltip are now in the same context, their z-index values face off, and the tooltip emerges as the victor.'
+      "We'll slide the foreground layer around with ",
+      mdx('inlineCode', { parentName: 'p' }, 'transform: translate'),
+      '. This is the best way to accomplish this effect, since transforms can be hardware-accelerated.'
     ),
     mdx(
       'p',
       null,
-      mdx('strong', { parentName: 'p' }, 'An important distinction:'),
-      " we're not talking about parent/child relationships here. It doesn't matter that the tooltip is more deeply nested than the header. The browser only cares about stacking contexts."
+      'While the mouse is held down on the button, the ',
+      mdx('inlineCode', { parentName: 'p' }, ':active'),
+      " styles will apply. We'll shift the front layer down so that it sits 2px above the bottom. We could drop it to 0px, but I want to keep the 3D illusion going at all times."
     ),
-    mdx(
-      Sidenote,
-      { title: 'Breaking the rules', mdxType: 'Sidenote' },
-      mdx(
-        'p',
-        null,
-        'In this contrived example, we can remove the z-index from ',
-        mdx('inlineCode', { parentName: 'p' }, '<main>'),
-        " because it wasn't really doing anything. But what if we actually did need ",
-        mdx('inlineCode', { parentName: 'p' }, '<main>'),
-        ' to use z-index / create a stacking context?'
-      ),
-      mdx(
-        'p',
-        null,
-        'According to the rules of CSS, there is no way for us to "break free" of the stacking context. An element inside one stacking context can never be compared against elements in another.'
-      ),
-      mdx(
-        'p',
-        null,
-        'We can still achieve the desired result, however, with a bit of out-of-the-box',
-        mdx(Asterisk, {
-          content: 'Pun intended \u{1F604}',
-          mdxType: 'Asterisk',
-        }),
-        ' thinking.'
-      ),
-      mdx(
-        'expanded',
-        null,
-        mdx(
-          'p',
-          null,
-          'We can render our tooltip outside of ',
-          mdx('inlineCode', { parentName: 'p' }, '<main>'),
-          ' by appending it to the ',
-          mdx('inlineCode', { parentName: 'p' }, '<body>'),
-          " tag. We can then use some CSS to position it accordingly, to make it seem as though it's a child of that element."
-        ),
-        mdx(
-          'p',
-          null,
-          "This is an advanced technique, and it requires careful planning to make sure that we don't inadvertently break the experience for folks using a keyboard to navigate. Thankfully, libraries like ",
-          mdx(
-            'a',
-            e({ parentName: 'p' }, { href: 'https://reach.tech/' }),
-            'Reach UI'
-          ),
-          ' use this technique under-the-hood, and solve for all the accessibility and usability challenges.'
-        ),
-        mdx(
-          'p',
-          null,
-          "It's beyond the scope of this tutorial, but if you're interested in learning more, research ",
-          mdx(
-            'a',
-            e(
-              { parentName: 'p' },
-              { href: 'https://reactjs.org/docs/portals.html' }
-            ),
-            'how Portals work in React'
-          ),
-          ', and check out ',
-          mdx(
-            'a',
-            e(
-              { parentName: 'p' },
-              { href: 'https://github.com/reach/reach-ui' }
-            ),
-            "Reach UI's source code"
-          ),
-          '.'
-        )
-      )
-    ),
-    mdx('h1', null, 'Creating stacking contexts'),
+    mdx('h1', null, 'The details'),
     mdx(
       'p',
       null,
-      "We've seen how we can create a stacking context by combining relative or absolute positioning with ",
-      mdx('inlineCode', { parentName: 'p' }, 'z-index'),
-      ", but it's not the only way! Here are some others:"
+      "We've created a solid foundation, and now it's time to build some cool stuff on top of it!"
     ),
+    mdx('h2', null, 'Focus outlines'),
     mdx(
-      'ul',
+      'p',
       null,
-      mdx(
-        'li',
-        { parentName: 'ul' },
-        'Setting ',
-        mdx('inlineCode', { parentName: 'li' }, 'opacity'),
-        ' to a value less than ',
-        mdx('inlineCode', { parentName: 'li' }, '1')
-      ),
-      mdx(
-        'li',
-        { parentName: 'ul' },
-        'Setting ',
-        mdx('inlineCode', { parentName: 'li' }, 'position'),
-        ' to ',
-        mdx('inlineCode', { parentName: 'li' }, 'fixed'),
-        ' or ',
-        mdx('inlineCode', { parentName: 'li' }, 'sticky'),
-        ' (No z-index needed for these values!)'
-      ),
-      mdx(
-        'li',
-        { parentName: 'ul' },
-        'Applying a ',
-        mdx('inlineCode', { parentName: 'li' }, 'mix-blend-mode'),
-        ' other than ',
-        mdx('inlineCode', { parentName: 'li' }, 'normal')
-      ),
-      mdx(
-        'li',
-        { parentName: 'ul' },
-        'Adding a ',
-        mdx('inlineCode', { parentName: 'li' }, 'z-index'),
-        ' to a child inside a ',
-        mdx('inlineCode', { parentName: 'li' }, 'display: flex'),
-        ' or ',
-        mdx('inlineCode', { parentName: 'li' }, 'display: grid'),
-        ' container'
-      ),
-      mdx(
-        'li',
-        { parentName: 'ul' },
-        'Using ',
-        mdx('inlineCode', { parentName: 'li' }, 'transform'),
-        ', ',
-        mdx('inlineCode', { parentName: 'li' }, 'filter'),
-        ', ',
-        mdx('inlineCode', { parentName: 'li' }, 'clip-path'),
-        ', or ',
-        mdx('inlineCode', { parentName: 'li' }, 'perspective')
-      ),
-      mdx(
-        'li',
-        { parentName: 'ul' },
-        'Using ',
-        mdx('inlineCode', { parentName: 'li' }, 'will-change'),
-        ' with a value like ',
-        mdx('inlineCode', { parentName: 'li' }, 'opacity'),
-        ' or ',
-        mdx('inlineCode', { parentName: 'li' }, 'transform')
-      ),
-      mdx(
-        'li',
-        { parentName: 'ul' },
-        'Explicitly creating a context with ',
-        mdx('inlineCode', { parentName: 'li' }, 'isolation: isolate'),
-        ' (More on this soon!)'
-      )
+      "Most browsers will add an outline to a button when it's clicked, to indicate that the element has captured focus."
     ),
     mdx(
       'p',
       null,
-      'There are a few other ways as well. You can find ',
-      mdx(
-        'a',
-        e(
-          { parentName: 'p' },
-          {
-            href: 'https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Positioning/Understanding_z_index/The_stacking_context#the_stacking_context',
-          }
-        ),
-        'the full list on MDN'
-      ),
-      '.'
-    ),
-    mdx(
-      'p',
-      null,
-      mdx(
-        'strong',
-        { parentName: 'p' },
-        'This can lead to some surprising situations.'
-      ),
-      " Check out what's happening here:"
-    ),
-    mdx(Playground, {
-      id: 'broken-with-will-change',
-      splitRatio: 0.65,
-      layoutMode: 'tabbed',
-      html: `
-<style>
-  header {
-    position: relative;
-    z-index: 2;
-  }
-  .tooltip {
-    position: absolute;
-    z-index: 999999;
-  }
-  main {
-    position: relative;
-    /*
-      No more z-index\u2026
-      but it's still broken??
-    */
-    will-change: transform;
-  }
-</style>
-
-<header>
-  My Cool Site
-</header>
-<main>
-  <div class="tooltip">
-    A tooltip
-  </div>
-  <p>Some main content</p>
-</main>
-  `,
-      cssCode: `
-/* These styles are purely cosmetic */
-body {
-  background: #eee;
-}
-
-header {
-  height: 60px;
-  line-height: 60px;
-  background: pink;
-  text-align: center;
-}
-
-main {
-  padding: 32px;
-}
-
-.tooltip {
-  top: -12px;
-  left: 0px;
-  right: 0px;
-  margin: 0 auto;
-  width: 90px;
-  text-align: center;
-  padding: 8px;
-  background: white;
-  box-shadow: 1px 2px 8px hsla(0deg, 0%, 0%, 0.25);
-  border-radius: 6px;
-}
-  `,
-      mdxType: 'Playground',
-    }),
-    mdx(
-      'p',
-      null,
-      mdx('inlineCode', { parentName: 'p' }, 'main'),
-      " doesn't set a z-index anymore, but it uses ",
-      mdx('inlineCode', { parentName: 'p' }, 'will-change'),
-      ', a property that can create a stacking context all on its own.'
-    ),
-    mdx('h1', null, 'A common misconception about z-index'),
-    mdx(
-      'p',
-      null,
-      'In order for z-index to work, we need to set ',
-      mdx('inlineCode', { parentName: 'p' }, 'position'),
-      ' to something like ',
-      mdx('inlineCode', { parentName: 'p' }, 'relative'),
-      ' or ',
-      mdx('inlineCode', { parentName: 'p' }, 'absolute'),
-      ', right?'
-    ),
-    mdx('p', null, "Not quite. Check out what's happening here:"),
-    mdx(Playground, {
-      splitRatio: 0.55,
-      id: 'z-index-without-position',
-      layoutMode: 'tabbed',
-      html: `
-<style>
-  .wrapper {
-    display: flex;
-  }
-  .second.box {
-    z-index: 1;
-    background: hotpink;
-    margin-top: 20px;
-    margin-left: -20px;
-    margin-right: -20px;
-  }
-</style>
-
-<div class="wrapper">
-  <div class="first box"></div>
-  <div class="second box"></div>
-  <div class="third box"></div>
-</div>
-  `,
-      cssCode: `
-.box {
-  width: 50px;
-  height: 50px;
-  border: 3px solid;
-  background: silver;
-}
-  `,
-      mdxType: 'Playground',
-    }),
-    mdx(
-      'p',
-      null,
-      'The second box is lifted above its siblings using ',
-      mdx('inlineCode', { parentName: 'p' }, 'z-index'),
-      '. There are no ',
-      mdx('inlineCode', { parentName: 'p' }, 'position'),
-      ' declarations anywhere in the snippet, though!'
-    ),
-    mdx(
-      'p',
-      null,
-      'In general, ',
-      mdx('inlineCode', { parentName: 'p' }, 'z-index'),
-      ' only works with "positioned" elements (elements that set ',
-      mdx('inlineCode', { parentName: 'p' }, 'position'),
-      ' to something other than the default \u201Cstatic\u201D). But the Flexbox specification adds an exception: flex children can use ',
-      mdx('inlineCode', { parentName: 'p' }, 'z-index'),
-      " even if they're statically-positioned."
-    ),
-    mdx(
-      'p',
-      null,
-      'An earlier version of this post said that all elements that create a stacking context can use ',
-      mdx('inlineCode', { parentName: 'p' }, 'z-index'),
-      ', but that was incorrect. \u{1F62C}'
-    ),
-    mdx('h1', null, 'Hold on a minute\u2026'),
-    mdx(
-      'p',
-      null,
-      "There's a Weird Thing here, and I think it's worth pondering about for a minute or two."
-    ),
-    mdx(
-      'p',
-      null,
-      'In our Photoshop analogy, there is a clear distinction between groups and layers. All of the visual elements are layers, and groups can be conjured as structural helpers to contain them. They are distinct ideas.'
-    ),
-    mdx(
-      'p',
-      null,
-      'On the web, however, the distinction is a bit less clear. Every element that uses z-index must ',
-      mdx('em', { type: 'original' }, 'also'),
-      ' create a stacking context.'
-    ),
-    mdx(
-      'p',
-      null,
-      'When we decide to give an element a z-index, our goal is typically to lift or lower that element above/below some other element in the parent stacking context. ',
-      mdx(
-        'em',
-        { type: 'original' },
-        "We aren't intending to produce a stacking context on that element!"
-      ),
-      " But it's important that we consider it."
-    ),
-    mdx(
-      'p',
-      null,
-      "When a stacking context is created, it \u201Cflattens\u201D all of its descendants. Those children can still be rearranged internally, but we've essentially locked those children in."
-    ),
-    mdx('p', null, "Let's take another look at the markup from earlier:"),
-    mdx(
-      'pre',
-      null,
-      mdx(
-        'code',
-        e({ parentName: 'pre' }, { className: 'language-html' }),
-        `<header>
-  My Cool Site
-</header>
-<main>
-  <div class="tooltip">
-    A tooltip
-  </div>
-  <p>Some main content</p>
-</main>
-`
-      )
-    ),
-    mdx(
-      'p',
-      null,
-      'By default, HTML elements will be stacked according to their DOM order. Without any CSS interference, ',
-      mdx('inlineCode', { parentName: 'p' }, 'main'),
-      ' will render on top of ',
-      mdx('inlineCode', { parentName: 'p' }, 'header'),
-      '.'
-    ),
-    mdx(
-      'p',
-      null,
-      'We can lift ',
-      mdx('inlineCode', { parentName: 'p' }, 'header'),
-      ' to the front by giving it a z-index, but not without flattening all of its children. This mechanism is what led to the bug we discussed earlier.'
-    ),
-    mdx(
-      'p',
-      null,
-      "We shouldn't think of ",
-      mdx('inlineCode', { parentName: 'p' }, 'z-index'),
-      " purely as a way to change an element's order. We should ",
-      mdx('em', { parentName: 'p' }, 'also'),
-      " think of it as a way to form a group around that element's children. z-index won't work unless a group is formed."
-    ),
-    mdx(
-      Sidenote,
-      { title: 'Believe it or not, this is a good thing', mdxType: 'Sidenote' },
-      mdx(
-        'p',
-        null,
-        "As we've seen in our tooltip demo, stacking contexts can cause subtle, hard-to-diagnose bugs. Wouldn't it be better if z-index values were compared globally instead?"
-      ),
-      mdx(
-        'expanded',
-        null,
-        mdx(
-          'p',
-          null,
-          "I don't think so, and I can think of a few reasons why:"
-        ),
-        mdx(
-          'ul',
-          null,
-          mdx(
-            'li',
-            { parentName: 'ul' },
-            'As it stands, z-index inflation (the ever-creeping-upwards trend of huge z-index values) is an epidemic. Imagine how much worse it would be if ',
-            mdx(
-              'em',
-              { type: 'original' },
-              'every single element with a z-index'
-            ),
-            ' had to fit in the same scale?'
-          ),
-          mdx(
-            'li',
-            { parentName: 'ul' },
-            "I'm not a browser engineer, but I'd guess that stacking contexts are good for performance. Without them, the browser would have to compare every item with a z-index against every other item with a z-index. Sounds like a lot more work."
-          ),
-          mdx(
-            'li',
-            { parentName: 'ul' },
-            'Once we understand stacking contexts, we can use them to our advantage to "seal off" elements. This is an especially powerful pattern with component-driven frameworks like React.'
-          )
-        ),
-        mdx(
-          'p',
-          null,
-          "That last point is especially interesting. Let's dig deeper into it."
-        )
-      )
-    ),
-    mdx('h1', null, 'Airtight abstractions with \u201Cisolation\u201D'),
-    mdx(
-      'p',
-      null,
-      "One of my favourite CSS properties is also one of the most obscure. I'd like to introduce you to the ",
-      mdx('inlineCode', { parentName: 'p' }, 'isolation'),
-      ' property, a hidden gem in the language.'
-    ),
-    mdx('p', null, "Here's how you'd use it:"),
-    mdx(
-      'pre',
-      null,
-      mdx(
-        'code',
-        e(
-          { parentName: 'pre' },
-          {
-            className: 'language-css',
-            metastring: 'lessBottomMargin',
-            lessBottomMargin: !0,
-          }
-        ),
-        `.wrapper {
-  isolation: isolate;
-}
-`
-      )
-    ),
-    mdx(
-      'p',
-      null,
-      'When we apply this declaration to an element, it does precisely 1 thing: it creates a new stacking context.'
-    ),
-    mdx(
-      'p',
-      null,
-      'With so many different ways to create a stacking context, why do we need another one? Well, with every other method, stacking contexts are created implicitly, as the result of some other change. ',
-      mdx('inlineCode', { parentName: 'p' }, 'isolation'),
-      ' creates a stacking context in the purest way possible:'
-    ),
-    mdx(
-      'ul',
-      null,
-      mdx('li', { parentName: 'ul' }, 'No need to prescribe a z-index value'),
-      mdx(
-        'li',
-        { parentName: 'ul' },
-        'Can be used on statically-positioned',
-        mdx(Asterisk, {
-          content:
-            "A \u201Cstatic\u201D element is one that doesn't set 'position' to relative, absolute, fixed, or sticky.",
-          mdxType: 'Asterisk',
-        }),
-        ' elements'
-      ),
-      mdx(
-        'li',
-        { parentName: 'ul' },
-        "Doesn't affect the child's rendering in any way"
-      )
-    ),
-    mdx(
-      'p',
-      null,
-      'This is ',
-      mdx('strong', { parentName: 'p' }, 'incredibly useful'),
-      `, since it lets us "seal off" an element's children.`
-    ),
-    mdx(
-      'p',
-      null,
-      "Let's look at an example. Recently, I built this neat envelope component. ",
-      mdx('strong', { parentName: 'p' }, 'Hover or focus'),
-      ' to see it open:'
-    ),
-    mdx(Spacer, { size: 32, mdxType: 'Spacer' }),
-    mdx(
-      EnvelopeDemo,
-      { mdxType: 'EnvelopeDemo' },
-      mdx('p', null, 'Hello World!')
-    ),
-    mdx(Spacer, { size: 32, mdxType: 'Spacer' }),
-    mdx('p', null, 'It consists of several layers:'),
-    mdx(EnvelopeLayers, { mdxType: 'EnvelopeLayers' }),
-    mdx(Spacer, { size: 96, mdxType: 'Spacer' }),
-    mdx(
-      'p',
-      null,
-      'I packaged this effect up in a React component, ',
-      mdx('inlineCode', { parentName: 'p' }, '<Envelope>'),
-      '. It looks something like this (inline styles used for brevity):'
-    ),
-    mdx(
-      'pre',
-      null,
-      mdx(
-        'code',
-        e(
-          { parentName: 'pre' },
-          {
-            className: 'language-jsx',
-            metastring: 'lessBottomMargin',
-            lessBottomMargin: !0,
-          }
-        ),
-        `function Envelope({ children }) {
-  return (
-    <div>
-      <BackPane style={{ zIndex: 1 }} />
-      <Letter style={{ zIndex: 3 }}>
-        {children}
-      </Letter>
-      <Shell style={{ zIndex: 4 }} />
-      <Flap style={{ zIndex: isOpen ? 2 : 5 }} />
-    </div>
-  )
-}
-`
-      )
-    ),
-    mdx(
-      'p',
-      null,
-      "(If you're wondering why ",
-      mdx('inlineCode', { parentName: 'p' }, 'Flap'),
-      " has a dynamic z-index, it's because it needs to shift behind the letter when the envelope is open.)"
-    ),
-    mdx(
-      'p',
-      null,
-      'A good React component is sealed off from its environment, like a spacesuit. ',
-      mdx('em', { type: 'original' }, 'This'),
-      ' spacesuit, however, has sprung a leak. Check out what happens when I use it near a ',
-      mdx('inlineCode', { parentName: 'p' }, '<header>'),
-      ' with ',
-      mdx('inlineCode', { parentName: 'p' }, 'z-index: 3'),
-      ':'
+      "Here's what this looks like by default, on Chrome / MacOS:"
     ),
     mdx(VideoGif, {
-      src: '/images/stacking-contexts/glitch-city.mp4',
-      alt: 'An envelope opens, and intersects a header above, with the envelope flap behind, but the letter in front',
-      maxWidth: 400,
+      fillEdges: !0,
       noBorder: !0,
-      includeShadow: !0,
+      src: '/images/3d-button/3d-button-outline.mp4',
+      maxWidth: 530 / 2,
+      alt: 'A 3D button is clicked, causing a blue outline to wrap around it, somewhat spoiling the effect',
       mdxType: 'VideoGif',
     }),
     mdx(
       'p',
       null,
-      'Our ',
-      mdx('inlineCode', { parentName: 'p' }, '<Envelope>'),
-      " component wraps the 4 layers in a div, but it doesn't create a stacking context. As a result, those layers can become \u201Cintertwined\u201D with other components, like the world's most boring game of Twister",
-      mdx(Asterisk, {
-        content:
-          'A party game involving coloured circles and tangled humans, from the pre-COVID era.',
-        mdxType: 'Asterisk',
-      }),
-      '.'
-    ),
-    mdx(
-      'p',
-      null,
-      'By using ',
-      mdx('inlineCode', { parentName: 'p' }, 'isolation: isolate'),
-      ' on the top-level element within ',
-      mdx('inlineCode', { parentName: 'p' }, '<Envelope>'),
-      ', ',
-      mdx(
-        'strong',
-        { parentName: 'p' },
-        "we guarantee that it'll be positioned as a group"
-      ),
-      ':'
+      'In the MVP above, I took the liberty of adding an ',
+      mdx('inlineCode', { parentName: 'p' }, 'outline-offset'),
+      ' declaration. This property gives our button a bit of a buffer:'
     ),
     mdx(
       'pre',
       null,
       mdx(
         'code',
-        e(
-          { parentName: 'pre' },
-          {
-            className: 'language-jsx',
-            metastring: 'highlight=[[2,2]]',
-            highlight: '[[2,2]]',
-          }
-        ),
-        `function Envelope({ children }) {
-  return (
-    <div style={{ isolation: 'isolate' }}>
-      <BackPane style={{ zIndex: 1 }} />
-      <Letter style={{ zIndex: 3 }}>
-        {children}
-      </Letter>
-      <Shell style={{ zIndex: 4 }} />
-      <Flap style={{ zIndex: isOpen ? 2 : 5 }} />
-    </div>
-  )
+        t({ parentName: 'pre' }, { className: 'language-css' }),
+        `.pushable {
+  outline-offset: 4px;
 }
 `
       )
     ),
-    mdx(
-      'p',
-      null,
-      'Why not create a stacking context the old-fashioned way, with ',
-      mdx('inlineCode', { parentName: 'p' }, 'position: relative; z-index: 1'),
-      '? Well, React components are meant to be reusable; is ',
-      mdx('inlineCode', { parentName: 'p' }, '1'),
-      ' really the right z-index value for this component in ',
-      mdx('em', { type: 'original' }, 'all'),
-      ' circumstances? The beauty of ',
-      mdx('inlineCode', { parentName: 'p' }, 'isolation'),
-      ' is that it keeps our components unopinionated and flexible.'
-    ),
-    mdx(
-      'p',
-      null,
-      'More and more, ',
-      mdx(
-        'strong',
-        { parentName: 'p' },
-        "I'm starting to believe that z-index is an escape hatch"
-      ),
-      ', similar to ',
-      mdx('inlineCode', { parentName: 'p' }, '!important'),
-      '. This is one trick that allows us to control stacking order without pulling the big red z-index lever.'
-    ),
-    mdx(
-      'p',
-      null,
-      "I'm working on a follow-up tutorial where we look at some other tricks to keep z-index inflation down. Watch this space!"
-    ),
-    mdx(
-      Sidenote,
-      { title: 'Browser support', mdxType: 'Sidenote' },
-      mdx(
-        'p',
-        null,
-        'The ',
-        mdx('inlineCode', { parentName: 'p' }, 'isolation'),
-        ' property is not new, and it has ',
-        mdx(
-          'a',
-          e(
-            { parentName: 'p' },
-            { href: 'https://caniuse.com/?search=isolation' }
-          ),
-          'very good browser support'
-        ),
-        ': it works in every browser except Internet Explorer.'
-      ),
-      mdx(
-        'p',
-        null,
-        'If I needed to support Internet Explorer, I would consider using ',
-        mdx('inlineCode', { parentName: 'p' }, 'transform: translate(0px);'),
-        " instead. I haven't tested it, but I believe it would achieve the same result: creating a stacking context without any meaningful side-effect."
-      )
-    ),
-    mdx('h1', null, 'Debugging stacking context issues'),
-    mdx(
-      'p',
-      null,
-      "Unfortunately, I haven't found much tooling to help debug stacking-context issues."
-    ),
-    mdx(
-      'p',
-      null,
-      'Microsoft Edge has an interesting \u201C',
-      mdx(
-        'a',
-        e(
-          { parentName: 'p' },
-          {
-            href: 'https://docs.microsoft.com/en-us/microsoft-edge/devtools-guide-chromium/3d-view/',
-          }
-        ),
-        '3D view'
-      ),
-      '\u201D that allows us to view stacking contexts:'
-    ),
     mdx(VideoGif, {
-      src: '/images/stacking-contexts/3d-view.mp4',
-      alt: 'A bunch of boxes floating in space, while the camera pans around. Each box has a different background color and a label like \u201Cz-index: auto\u201D.',
-      maxWidth: 760 / 2,
+      fillEdges: !0,
+      noBorder: !0,
+      src: '/images/3d-button/3d-button-outline-offset.mp4',
+      maxWidth: 530 / 2,
+      alt: "A 3D button is clicked, causing a blue outline to appear, but this time it's further out, adding a buffer around the button",
       mdxType: 'VideoGif',
     }),
     mdx(
       'p',
       null,
-      "This is an ambitious idea, but honestly I find it pretty overwhelming. It's hard to locate a specific element in this view, and I don't really feel like it helps me understand the stacking contexts in my app."
+      "This is a dramatic improvement, but it's still a bit of an eyesore. Plus, it doesn't work consistently: on Firefox, ",
+      mdx('inlineCode', { parentName: 'p' }, 'outline-offset'),
+      ` doesn't work for the default "focus" outlines.`
     ),
     mdx(
       'p',
       null,
-      "There's one other neat trick you can use sometimes: ",
-      mdx('inlineCode', { parentName: 'p' }, 'offsetParent'),
-      '.'
+      "We can't simply remove it, though\u2014that outline is ",
+      mdx('em', { parentName: 'p' }, 'super'),
+      ' important for folks who navigate using their keyboard. They rely on it to let them know which element is focused.'
     ),
     mdx(
-      'pre',
+      'p',
       null,
-      mdx(
-        'code',
-        e({ parentName: 'pre' }, { className: 'language-js' }),
-        `const element = document.querySelector('.tooltip');
+      'Fortunately, we can use a swanky CSS pseudo-class to help us out: ',
+      mdx('inlineCode', { parentName: 'p' }, ':focus-visible')
+    ),
+    mdx(Playground, {
+      id: 'button-focus',
+      centered: !0,
+      splitRatio: 0.65,
+      layoutMode: 'tabbed',
+      cssCode: `
+.pushable {
+  background: hsl(340deg 100% 32%);
+  border: none;
+  border-radius: 12px;
+  padding: 0;
+  cursor: pointer;
+  outline-offset: 4px;
+}
+.front {
+  display: block;
+  padding: 12px 42px;
+  border-radius: 12px;
+  font-size: 1.25rem;
+  background: hsl(345deg 100% 47%);
+  color: white;
+  transform: translateY(-6px);
+}
 
-console.log(element.offsetParent); // <main>
-`
-      )
-    ),
-    mdx(
-      'p',
-      null,
-      mdx('inlineCode', { parentName: 'p' }, 'offsetParent'),
-      ' returns the closest ancestor rendered with a ',
-      mdx('inlineCode', { parentName: 'p' }, 'position'),
-      ' value other than ',
-      mdx('inlineCode', { parentName: 'p' }, 'static'),
-      '. It crawls up the tree looking for relative / absolute / fixed / sticky ancestors.'
-    ),
-    mdx(
-      'p',
-      null,
-      "This is not a perfect solution. Not all stacking contexts use positioned layout, and not all positioned elements create a stacking context! That said, in practice, there does tend to be a pretty strong correlation between these two things. At the very least, it's a starting point."
-    ),
-    mdx(
-      'p',
-      null,
-      'If you know of any tooling that can help here (or if you create one!), ',
-      mdx(
-        'a',
-        { href: 'https://twitter.com/JoshWComeau' },
-        'let me know on Twitter'
-      )
-    ),
-    mdx(
-      'p',
-      null,
-      mdx('strong', { parentName: 'p' }, 'Update:'),
-      ' Felix Becker reached out to share a ',
-      mdx(
-        'a',
-        e(
-          { parentName: 'p' },
-          {
-            href: 'https://marketplace.visualstudio.com/items?itemName=felixfbecker.css-stacking-contexts',
-          }
-        ),
-        'VSCode extension that highlights when stacking contexts are created'
-      ),
-      ':'
-    ),
-    mdx('img', {
-      src: '/images/vscode-stacking-contexts.gif',
-      alt: 'A CSS code snippet showing that z-index has no effect, and how to fix it',
+.pushable:active .front {
+  transform: translateY(-2px);
+}
+  `,
+      html: `
+<style>
+  /* The CSS we saw earlier is still
+   * being applied. It's tucked into
+   * the "CSS" tab above.
+   */
+
+  .pushable:focus:not(:focus-visible) {
+    outline: none;
+  }
+</style>
+
+<button class="pushable">
+  <span class="front">
+    Push me
+  </span>
+</button>
+  `,
+      mdxType: 'Playground',
     }),
+    mdx('p', null, "That's one heck of a selector, so let's break it down."),
     mdx(
       'p',
       null,
-      'This extension works on .css and .scss files (no CSS-in-JS support).'
+      'The ',
+      mdx('inlineCode', { parentName: 'p' }, ':focus'),
+      ' pseudo-class will apply its declarations when an element is focused. This works regardless of whether the element is focused by tabbing to it on the keyboard, or by clicking it with a mouse.'
     ),
     mdx(
       'p',
       null,
-      mdx('strong', { parentName: 'p' }, 'Update 2:'),
-      ' Giuseppe Gurgone reached out to let me know about this ',
-      mdx(
-        'a',
-        e(
-          { parentName: 'p' },
-          {
-            href: 'https://chrome.google.com/webstore/detail/z-context/jigamimbjojkdgnlldajknogfgncplbh',
-          }
-        ),
-        'Chrome extension'
-      ),
-      ' which adds a new \u201Cz-index\u201D pane to the devtools.'
+      mdx('inlineCode', { parentName: 'p' }, ':focus-visible'),
+      ' is similar, but it only applies when the element is focused ',
+      mdx('em', { parentName: 'p' }, 'and'),
+      " the user would benefit from seeing a visual focus indicator (because they're using a keyboard to navigate, for example)."
     ),
     mdx(
       'p',
       null,
-      mdx('strong', { parentName: 'p' }, 'Update 3:'),
-      ' Andrea Dragotta created an ',
-      mdx('em', { parentName: 'p' }, 'incredible'),
-      ' browser extension that adds a bunch of super-important information about z-index and stacking contexts:'
-    ),
-    mdx('img', {
-      src: '/images/chrome-stacking-context.png',
-      alt: "Screenshot of the Chrome devtools with a new pane that shows info about the element's current stacking context",
-      style: { maxWidth: 600 },
-    }),
-    mdx(
-      'p',
-      null,
-      'This is an ',
-      mdx('strong', { parentName: 'p' }, 'awesome'),
-      " tool, and I've been using it regularly. Install CSS Stacking Context Inspector:"
-    ),
-    mdx(
-      'ul',
-      null,
-      mdx(
-        'li',
-        { parentName: 'ul' },
-        mdx(
-          'a',
-          e(
-            { parentName: 'li' },
-            {
-              href: 'https://chrome.google.com/webstore/detail/css-stacking-context-insp/apjeljpachdcjkgnamgppgfkmddadcki',
-            }
-          ),
-          'For Chrome'
-        )
-      ),
-      mdx(
-        'li',
-        { parentName: 'ul' },
-        mdx(
-          'a',
-          e(
-            { parentName: 'li' },
-            {
-              href: 'https://addons.mozilla.org/en-US/firefox/addon/css-stacking-context-inspector/',
-            }
-          ),
-          'For Firefox'
-        )
-      )
+      'Finally, ',
+      mdx('inlineCode', { parentName: 'p' }, ':not'),
+      ' allows us to mix in some logic. The styles will apply when the element matches the ',
+      mdx('inlineCode', { parentName: 'p' }, ':focus'),
+      ' selector, but ',
+      mdx('i', null, 'not'),
+      ' the ',
+      mdx('inlineCode', { parentName: 'p' }, ':focus-visible'),
+      " selector. In practical terms, this means that we'll hide the outline when the button is focused and the user is using a pointer device (eg. a mouse, a trackpad, a finger on a touchscreen)."
     ),
     mdx(
       Sidenote,
-      { title: 'Stacking contexts vs. layers', mdxType: 'Sidenote' },
+      { title: 'Browser support and accessibility', mdxType: 'Sidenote' },
       mdx(
         'p',
         null,
-        'In the Chrome devtools, there is a \u201CLayers\u201D pane that shows individual element layers. Are layers the same thing as stacking contexts?'
+        "I'll be honest about it: the rule above is pretty confusing!"
       ),
       mdx(
         'p',
         null,
-        "Unfortunately not. They're similar if you squint, but they're fundamentally different concepts."
+        'Is there a clearer way we could accomplish the same effect? What if we wrote it like this instead?'
+      ),
+      mdx(
+        'pre',
+        null,
+        mdx(
+          'code',
+          t(
+            { parentName: 'pre' },
+            {
+              className: 'language-css',
+              metastring: 'lessBottomMargin',
+              lessBottomMargin: !0,
+            }
+          ),
+          `button {
+  outline: none;
+}
+
+button:focus-visible {
+  outline: revert;
+}
+`
+        )
+      ),
+      mdx(
+        'p',
+        null,
+        mdx('inlineCode', { parentName: 'p' }, 'revert'),
+        " is a special keyword that will revert back to whatever the value ought to be, based on the browser's defaults",
+        mdx(Asterisk, {
+          content: mdx(
+            React.Fragment,
+            null,
+            "I'm oversimplifying a little bit here\u2014for properties that can be inherited from the parent, like ",
+            mdx(
+              'span',
+              {
+                style: {
+                  fontSize: '0.85em',
+                  fontFamily: 'var(--font-family-mono)',
+                },
+              },
+              'font-size'
+            ),
+            ' or ',
+            mdx(
+              'span',
+              {
+                style: {
+                  fontSize: '0.85em',
+                  fontFamily: 'var(--font-family-mono)',
+                },
+              },
+              'color'
+            ),
+            ', it will revert to ',
+            mdx('i', null, 'that'),
+            ' value instead. But ',
+            mdx(
+              'span',
+              {
+                style: {
+                  fontSize: '0.85em',
+                  fontFamily: 'var(--font-family-mono)',
+                },
+              },
+              'outline'
+            ),
+            " isn't inheritable, so we can ignore that here."
+          ),
+          mdxType: 'Asterisk',
+        }),
+        '. In Chrome on MacOS, this equates to a solid blue line.'
+      ),
+      mdx(
+        'p',
+        null,
+        "It's simpler, right? We're saying \u201CHide the outline, except when visibly focused\u201D."
+      ),
+      mdx(
+        'p',
+        null,
+        'Unfortunately, however, this alternative method has a problem: ',
+        mdx('strong', { parentName: 'p' }, "it doesn't work in older browsers"),
+        '.'
       ),
       mdx(
         'expanded',
@@ -1465,87 +446,821 @@ console.log(element.offsetParent); // <main>
         mdx(
           'p',
           null,
-          "Stacking contexts are a \u201Cthing\u201D in the CSS specification. They're a fundamental part of how the language works, and browsers are meant to implement them according to the specification."
-        ),
-        mdx(
-          'p',
-          null,
-          "Layers, on the other hand, aren't mentioned in the spec. Rather, they're an implementation detail that some browsers (like Chrome) use to optimize performance."
-        ),
-        mdx(
-          'p',
-          null,
-          "For example: by promoting an element that will be animated to its own layer, the browser can defer that work to the GPU, leading to smoother transitions. If you're keen to learn more about this, I recently wrote an ",
+          mdx('inlineCode', { parentName: 'p' }, ':focus-visible'),
+          ' is a relatively new pseudo-class; at the time of writing, ',
           mdx(
             'a',
-            e({ parentName: 'p' }, { href: '/animation/css-transitions' }),
-            'article about CSS transitions'
-          ),
-          ', and we take a brief look at this concept.'
-        ),
-        mdx(
-          'p',
-          null,
-          "At first blush, this concept sounds a lot like stacking contexts, but they're separate mechanisms. Whenever a layer is created, it must also define a stacking context, but the inverse is not necessarily true (multiple stacking contexts might be rendered on the same layer)."
-        ),
-        mdx(
-          'p',
-          null,
-          'You can learn more about how the browser uses layers in ',
-          mdx(
-            'a',
-            e(
+            t(
               { parentName: 'p' },
-              {
-                href: 'https://developers.google.com/web/updates/2018/09/inside-browser-part3',
-              }
+              { href: 'https://caniuse.com/?search=focus-visible' }
             ),
-            'this wonderful series by Mariko Kosako'
+            'about 30% of folks worldwide'
           ),
-          ' on the Chrome Web blog.'
+          " use browsers that don't support it."
+        ),
+        mdx(
+          'p',
+          null,
+          "Let's take a moment to consider what happens if ",
+          mdx('inlineCode', { parentName: 'p' }, ':focus-visible'),
+          " isn't supported, with this new snippet."
+        ),
+        mdx(
+          'p',
+          null,
+          'The ',
+          mdx('inlineCode', { parentName: 'p' }, 'button:focus-visible'),
+          ' selector will be declared invalid, and that entire rule will be ignored:'
+        ),
+        mdx('img', {
+          src: '/images/3d-button/bad-invalid.png',
+          alt: 'A screenshot of the code snippet above, showing a red X through the second rule',
+          style: { maxWidth: 666 / 2 },
+        }),
+        mdx(
+          'p',
+          null,
+          'This is a problem, because it means that we will ',
+          mdx('strong', { parentName: 'p' }, 'always'),
+          ' be hiding the outline for these folks, ',
+          mdx('i', null, 'even the one who really need it to navigate!')
+        ),
+        mdx(
+          'p',
+          null,
+          'What about with the longer, more-complicated alternative?'
+        ),
+        mdx('img', {
+          src: '/images/3d-button/good-invalid.png',
+          alt: 'A screenshot of the code snippet above, showing a red X through the second rule',
+          style: { maxWidth: 922 / 2 },
+        }),
+        mdx(
+          'p',
+          null,
+          'In this version, our outline-hiding mechanism is removed instead. There will always be a focus outline when the button is focused.'
+        ),
+        mdx(
+          'p',
+          null,
+          'This is better. We should always prioritize usability over aesthetics or developer ergonomics.'
         )
       )
     ),
-    mdx('h1', null, 'Going deeper'),
     mdx(
-      'p',
-      null,
-      'Stacking contexts are a good example of how CSS is built on "hidden mechanisms". You can spend years building interfaces with CSS without knowing that they exist.'
+      Sidenote,
+      { type: 'warning', title: 'Clicking and focus', mdxType: 'Sidenote' },
+      mdx(
+        'p',
+        null,
+        'In most browsers, clicking a button will focus it. Depending on your browser and operating system, however, this might not be true for you!'
+      ),
+      mdx(
+        'p',
+        null,
+        'MDN has a ',
+        mdx(
+          'a',
+          t(
+            { parentName: 'p' },
+            {
+              href: 'https://developer.mozilla.org/en-US/docs/Web/HTML/Element/button#clicking_and_focus',
+            }
+          ),
+          'great writeup'
+        ),
+        ' that covers how different browsers behave when clicking buttons.'
+      ),
+      mdx(
+        'p',
+        null,
+        'Additionally, in Safari, buttons can be focused via \u201COption + Tab\u201D. In other browsers, the \u201CTab\u201D key alone is sufficient.'
+      )
     ),
+    mdx('h2', null, 'A hover state'),
     mdx(
       'p',
       null,
-      'Unless you explicitly take the time to learn about these mechanisms, your mental model will always be missing pieces. And if your mental model is even ',
-      mdx('em', { parentName: 'p' }, 'slightly'),
-      " misaligned, it's only a matter of time until that discrepancy causes problems."
+      "So, in real life, buttons don't rise up to meet your finger before you press on it."
     ),
+    mdx('p', null, "But wouldn't it be cool if they did?"),
     mdx(
       'p',
       null,
-      `CSS doesn't have warnings or error messages. When something surprising happens, there's no clear "next step" to figure out what went wrong. These disruptions take us out of flow state and shake our confidence. I think this is why so many front-end developers don't enjoy writing CSS.`
+      "Let's shift the button up by a few pixels when they hover. Also, let's slap a ",
+      mdx('inlineCode', { parentName: 'p' }, 'transition'),
+      ' on the front layer. This will animate the state changes, producing a more fluid interaction.'
     ),
+    mdx(Playground, {
+      id: 'button-transition',
+      centered: !0,
+      splitRatio: 0.62,
+      layoutMode: 'tabbed',
+      cssCode: `
+.pushable {
+  background: hsl(340deg 100% 32%);
+  border: none;
+  border-radius: 12px;
+  padding: 0;
+  cursor: pointer;
+}
+.front {
+  display: block;
+  padding: 12px 42px;
+  border-radius: 12px;
+  font-size: 1.25rem;
+  background: hsl(345deg 100% 47%);
+  color: white;
+  transform: translateY(-4px);
+}
+
+.pushable:focus:not(:focus-visible) {
+  outline: none;
+}
+  `,
+      html: `
+<style>
+  .front {
+    will-change: transform;
+    transition: transform 250ms;
+  }
+
+  .pushable:hover .front {
+    transform: translateY(-6px);
+  }
+  
+  .pushable:active .front {
+    transform: translateY(-2px);
+  }
+</style>
+
+<button class="pushable">
+  <span class="front">
+    Push me
+  </span>
+</button>
+  `,
+      mdxType: 'Playground',
+    }),
     mdx(
       'p',
       null,
-      'Once you build up an intuition for the language, though, CSS becomes an absolute joy. I ',
-      mdx('em', { parentName: 'p' }, 'love'),
-      ' writing CSS nowadays.'
-    ),
-    mdx(
-      'p',
-      null,
-      "I want to help other developers discover this joy. I've created a comprehensive self-paced online course that explains how CSS works at a deeper level, and teaches the practical skills I use every day to build all kinds of user interfaces."
-    ),
-    mdx(
-      'p',
-      null,
-      "It's called ",
+      'I add the ',
+      mdx('inlineCode', { parentName: 'p' }, 'will-change: transform'),
+      ' declaration so that this animation can be hardware-accelerated. This topic is covered in my ',
       mdx(
         'a',
-        e({ parentName: 'p' }, { href: 'https://css-for-js.dev/' }),
-        '\u201CCSS for JavaScript Developers\u201D'
+        t({ parentName: 'p' }, { href: '/animation/css-transitions/' }),
+        'Introduction to CSS Transitions'
       ),
-      ", and it's available now. \u{1F604}"
+      '.'
+    ),
+    mdx('h2', null, 'Injecting personality'),
+    mdx(
+      'p',
+      null,
+      'With a blanket ',
+      mdx('inlineCode', { parentName: 'p' }, 'transition: transform 250ms'),
+      ", we've given our button an animation, but it still doesn't have much in the way of ",
+      mdx(Sparkles, { mdxType: 'Sparkles' }, 'personality'),
+      '.'
+    ),
+    mdx(
+      'p',
+      null,
+      "Let's consider the different actions that can be performed on this button:"
+    ),
+    mdx(
+      'ul',
+      null,
+      mdx('li', { parentName: 'ul' }, 'It can be pressed'),
+      mdx('li', { parentName: 'ul' }, 'It can be released'),
+      mdx('li', { parentName: 'ul' }, 'It can be hovered'),
+      mdx(
+        'li',
+        { parentName: 'ul' },
+        'It can be departed from (when the user mouses away)'
+      )
+    ),
+    mdx(
+      'p',
+      null,
+      "Should each of these actions share the same characteristics? I don't think so. I want the button to snap down quickly when clicked, and I want it to bounce back when released. When the cursor wanders away, I want it to sink back to its natural position at a glacial pace."
+    ),
+    mdx(
+      'p',
+      null,
+      "Here's what that looks like. Try interacting with the button to see the difference:"
+    ),
+    mdx(Playground, {
+      id: 'button-transition-optimized',
+      centered: !0,
+      splitRatio: 0.62,
+      layoutMode: 'tabbed',
+      cssCode: `
+.pushable {
+  background: hsl(340deg 100% 32%);
+  border: none;
+  border-radius: 12px;
+  padding: 0;
+  cursor: pointer;
+}
+.front {
+  display: block;
+  padding: 12px 42px;
+  border-radius: 12px;
+  font-size: 1.25rem;
+  background: hsl(345deg 100% 47%);
+  color: white;
+  transform: translateY(-4px);
+}
+
+.pushable:active .front {
+  transform: translateY(-2px);
+}
+
+.pushable:focus:not(:focus-visible) {
+  outline: none;
+}
+  `,
+      html: `
+<style>
+  .front {
+    transition:
+      transform
+      600ms
+      cubic-bezier(.3, .7, .4, 1);
+  }
+
+  .pushable:hover .front {
+    transform: translateY(-6px);
+    transition:
+      transform
+      250ms
+      cubic-bezier(.3, .7, .4, 1.5);
+  }
+
+  .pushable:active .front {
+    transform: translateY(-2px);
+    transition: transform 34ms;
+  }
+</style>
+
+<button class="pushable">
+  <span class="front">
+    Push me
+  </span>
+</button>
+  `,
+      mdxType: 'Playground',
+    }),
+    mdx(
+      'p',
+      null,
+      'We can set overrides for each state, to change how the animation behaves. In addition to picking different speeds, we can ',
+      mdx('i', null, 'also'),
+      ' change the timing functions!'
+    ),
+    mdx(
+      'p',
+      null,
+      'Our default transition, inside ',
+      mdx('inlineCode', { parentName: 'p' }, '.front'),
+      `, is applied when the mouse leaves the button. It's our "return to equilibrium" transition. I've given it a leisurely duration of 600ms\u2014an eternity when it comes to micro-interactions. I've also given it a custom easing curve, via `,
+      mdx('inlineCode', { parentName: 'p' }, 'cubic-bezier'),
+      '.'
+    ),
+    mdx(
+      'p',
+      null,
+      "I'll be writing more about cubic B\xE9zier curves soon. In essence, they let us create our own timing curve. This is a lower-level tool that gives us ",
+      mdx('i', null, 'a ton'),
+      ' of control.'
+    ),
+    mdx(
+      'p',
+      null,
+      "In the case of our \u201Cequilibrium\u201D curve, it's essentially a more-aggressive ",
+      mdx('inlineCode', { parentName: 'p' }, 'ease-out'),
+      ':'
+    ),
+    mdx(BoxAnimation, {
+      initialTimingFunction: '3d-button-equilibrium',
+      mdxType: 'BoxAnimation',
+    }),
+    mdx(
+      'p',
+      null,
+      'When we press down on the button, we switch to our ',
+      mdx('inlineCode', { parentName: 'p' }, ':active'),
+      " transition. I've chosen a lightning-quick transition time of 34ms\u2014roughly 2 frames at 60fps. I want this one to be speedy, since this is how people tend to press buttons in real life!"
+    ),
+    mdx(
+      'p',
+      null,
+      'Finally, our ',
+      mdx('inlineCode', { parentName: 'p' }, ':hover'),
+      ' transition. This state tackles two separate actions:'
+    ),
+    mdx(
+      'ul',
+      null,
+      mdx(
+        'li',
+        { parentName: 'ul' },
+        'The rise-up when mousing over the button'
+      ),
+      mdx(
+        'li',
+        { parentName: 'ul' },
+        'The snap-back after releasing the button'
+      )
+    ),
+    mdx(
+      'p',
+      null,
+      "Ideally, I would pick different transitions for each of these actions, but it isn't possible in pure CSS. If I ",
+      mdx('i', null, 'really'),
+      " wanted to go the extra mile, I'd need to write some JS to disambiguate between these states."
+    ),
+    mdx(
+      'p',
+      null,
+      `I've crafted a "springy" B\xE9zier curve that overshoots a little bit. This gives the button a ton more personality. Here's what this curve looks like:`
+    ),
+    mdx(BoxAnimation, {
+      initialTimingFunction: '3d-button-springy',
+      mdxType: 'BoxAnimation',
+    }),
+    mdx(
+      'p',
+      null,
+      'Ultimately, B\xE9zier curves will never look ',
+      mdx('em', { parentName: 'p' }, 'quite'),
+      ' as lush as ',
+      mdx(
+        'a',
+        t(
+          { parentName: 'p' },
+          { href: '/animation/a-friendly-introduction-to-spring-physics/' }
+        ),
+        'spring physics'
+      ),
+      ', but they can get pretty close with enough tinkering!'
+    ),
+    mdx('h2', null, 'Adding a shadow'),
+    mdx(
+      'p',
+      null,
+      'To ',
+      mdx('i', null, 'really'),
+      ' sell the whole \u201C3D\u201D thing, we can add a shadow:'
+    ),
+    mdx(IntroDemo, { stage: 'shadow', mdxType: 'IntroDemo' }),
+    mdx(
+      'p',
+      null,
+      'You may be tempted to reach for ',
+      mdx('inlineCode', { parentName: 'p' }, 'box-shadow'),
+      " to accomplish this, but we'll have much more success by repeating a trick we saw earlier. Our shadow will be a separate layer, and it'll move in the ",
+      mdx('i', null, 'opposite direction'),
+      ' of our front layer.'
+    ),
+    mdx(ButtonLayersWithShadow, { mdxType: 'ButtonLayersWithShadow' }),
+    mdx(
+      'p',
+      null,
+      "In order for this to work, we'll need to restructure things a bit. Here's the markup for our new setup:"
+    ),
+    mdx(
+      'pre',
+      null,
+      mdx(
+        'code',
+        t({ parentName: 'pre' }, { className: 'language-html' }),
+        `<button>
+  <span class="shadow"></span>
+  <span class="edge"></span>
+  <span class="front">Push Me</span>
+</button>
+`
+      )
+    ),
+    mdx(
+      'p',
+      null,
+      'Before, we were using the ',
+      mdx('inlineCode', { parentName: 'p' }, '<button>'),
+      ' itself as our edge layer. Now, though, we need a shadow to sit below it. Our ',
+      mdx('inlineCode', { parentName: 'p' }, '<button>'),
+      ' will become a wrapper, holding 3 layers stacked one on top of the other.'
+    ),
+    mdx('p', null, "Here's the CSS, with some stuff removed for brevity:"),
+    mdx(Playground, {
+      id: 'button-mvp-with-shadow',
+      centered: !0,
+      clampMaxHeight: !0,
+      splitRatio: 0.62,
+      layoutMode: 'tabbed',
+      html: `
+<button class="pushable">
+  <span class="shadow"></span>
+  <span class="edge"></span>
+  <span class="front">
+    Push me
+  </span>
+</button>
+  `,
+      cssCode: `
+.pushable {
+  position: relative;
+  background: transparent;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+}
+.shadow {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 12px;
+  background: hsl(0deg 0% 0% / 0.25);
+  transform: translateY(2px);
+}
+.edge {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 12px;
+  background: hsl(340deg 100% 32%);
+}
+.front {
+  display: block;
+  position: relative;
+  padding: 12px 42px;
+  border-radius: 12px;
+  font-size: 1.25rem;
+  color: white;
+  background: hsl(345deg 100% 47%);
+  transform: translateY(-4px);
+}
+
+.pushable:hover .front {
+  transform: translateY(-6px);
+}
+.pushable:hover .shadow {
+  transform: translateY(4px);
+}
+.pushable:active .front {
+  transform: translateY(-2px);
+}
+.pushable:active .shadow {
+  transform: translateY(1px);
+}
+
+.pushable:focus:not(:focus-visible) {
+  outline: none;
+}
+  `,
+      mdxType: 'Playground',
+    }),
+    mdx(
+      'p',
+      null,
+      'In order to stack HTML elements, we use absolute positioning. The final layer, ',
+      mdx('inlineCode', { parentName: 'p' }, '.front'),
+      ', uses relative positioning, since we need 1 in-flow child to give the ',
+      mdx('inlineCode', { parentName: 'p' }, '<button>'),
+      ' its width and height.'
+    ),
+    mdx(
+      'p',
+      null,
+      'We can rely purely on DOM order; no ',
+      mdx('inlineCode', { parentName: 'p' }, 'z-index'),
+      ' required to control the stacking order!'
+    ),
+    mdx(
+      'p',
+      null,
+      'In terms of how to set the ',
+      mdx('inlineCode', { parentName: 'p' }, 'translate'),
+      ": our shadow moves in the opposite direction from our front layer. The shadow doesn't quite move as far from the baseline position: While ",
+      mdx('inlineCode', { parentName: 'p' }, '.front'),
+      ' moves up by 6px, ',
+      mdx('inlineCode', { parentName: 'p' }, '.shadow'),
+      ' only moves down by 4px. This is a subjective choice;you might prefer different values. Experimentation is encouraged!'
+    ),
+    mdx(
+      'p',
+      null,
+      'We can also add a bit of blurring, for a softer, more natural shadow:'
+    ),
+    mdx(SoftShadow, { mdxType: 'SoftShadow' }),
+    mdx('p', null, 'This can be accomplished with the blur filter:'),
+    mdx(
+      'pre',
+      null,
+      mdx(
+        'code',
+        t({ parentName: 'pre' }, { className: 'language-css' }),
+        `.shadow {
+  filter: blur(4px);
+}
+`
+      )
+    ),
+    mdx('h2', null, 'Color and aesthetics'),
+    mdx(
+      'p',
+      null,
+      "We're just about there, but we can do two more small things to complete the effect."
+    ),
+    mdx(
+      'p',
+      null,
+      'This first one is super subtle, but really satisfying. I apply a linear gradient to the "edge" element, to make it seem like the rounded corners are reflecting less light:'
+    ),
+    mdx(ButtonGradient, { mdxType: 'ButtonGradient' }),
+    mdx('p', null, "Here's the CSS for this bit:"),
+    mdx(
+      'pre',
+      null,
+      mdx(
+        'code',
+        t({ parentName: 'pre' }, { className: 'language-css' }),
+        `.edge {
+  background: linear-gradient(
+    to left,
+    hsl(340deg 100% 16%) 0%,
+    hsl(340deg 100% 32%) 8%,
+    hsl(340deg 100% 32%) 92%,
+    hsl(340deg 100% 16%) 100%
+  );
+}
+`
+      )
+    ),
+    mdx(
+      'p',
+      null,
+      "We're almost there \u2014 let's toss a cherry onto this sundae and call it a day."
+    ),
+    mdx('p', null, 'The last little detail is an additional hover effect:'),
+    mdx(IntroDemo, { mdxType: 'IntroDemo' }),
+    mdx('p', null, 'On hover, the button brightens. Both layers get lighter.'),
+    mdx(
+      'p',
+      null,
+      'How should we tackle this? We could switch out the colors, but that gets a bit complicated because of the gradient we just added. Fortunately, we can leverage another CSS filter: ',
+      mdx('inlineCode', { parentName: 'p' }, 'brightness'),
+      '.'
+    ),
+    mdx(
+      'pre',
+      null,
+      mdx(
+        'code',
+        t({ parentName: 'pre' }, { className: 'language-css' }),
+        `.pushable {
+  transition: filter 600ms;
+}
+
+.pushable:hover {
+  transition: filter 250ms;
+  filter: brightness(110%);
+}
+`
+      )
+    ),
+    mdx(
+      'p',
+      null,
+      'On hover, the button gets 10% brighter. This affects all 3 layers. ',
+      mdx('inlineCode', { parentName: 'p' }, 'filter'),
+      " is a surprisingly performant property to animate, so we won't be stressing out the hardware too much."
+    ),
+    mdx('h2', null, 'Mobile enhancements'),
+    mdx(
+      'p',
+      null,
+      'When tapping an interactive element on mobile devices, the browser will flash a "tap rectangle" on top:'
+    ),
+    mdx(VideoGif, {
+      src: '/images/3d-button/ios-tap.mp4',
+      alt: 'The button is tapped, showing a brief grey flash',
+      maxWidth: 443,
+      mdxType: 'VideoGif',
+    }),
+    mdx(
+      'p',
+      null,
+      'Notice the grey rectangle that flashes quickly? The color varies between iOS and Android, but the effect is constant.'
+    ),
+    mdx(
+      'p',
+      null,
+      "Why does it do this? Well, the box can serve as helpful feedback, to confirm that you've successfully tapped the target. But our button offers plenty of feedback as-is, so we don't need it in this case."
+    ),
+    mdx('p', null, 'We can remove it with this declaration:'),
+    mdx(
+      'pre',
+      null,
+      mdx(
+        'code',
+        t({ parentName: 'pre' }, { className: 'language-css' }),
+        `.pushable {
+  -webkit-tap-highlight-color: transparent;
+}
+`
+      )
+    ),
+    mdx(
+      'p',
+      null,
+      'One more thing: on iOS, if the button is held down for a second, the phone will try and select the text within the button:'
+    ),
+    mdx(VideoGif, {
+      src: '/images/3d-button/ios-select.mp4',
+      alt: 'The button is tapped, showing a brief grey flash',
+      maxWidth: 443,
+      mdxType: 'VideoGif',
+    }),
+    mdx(
+      'p',
+      null,
+      "Let's make the our button unselectable, to improve this situation:"
+    ),
+    mdx(
+      'pre',
+      null,
+      mdx(
+        'code',
+        t({ parentName: 'pre' }, { className: 'language-css' }),
+        `.pushable {
+  user-select: none;
+}
+`
+      )
+    ),
+    mdx(
+      'p',
+      null,
+      mdx(
+        'strong',
+        { parentName: 'p' },
+        'With great power comes great responsibility.'
+      ),
+      ' We should exercise great caution when disabling browser features meant to improve usability! In this case, I feel pretty confident that we are ',
+      mdx('em', { parentName: 'p' }, 'improving'),
+      ' the experience, not degrading it, but these properties should be used extremely rarely.'
+    ),
+    mdx('h1', null, 'Started from the button now we here'),
+    mdx(
+      'p',
+      null,
+      "It's been quite a journey, but I hope you'll agree that we've built a ",
+      mdx('em', { parentName: 'p' }, 'very'),
+      ' satisfying button.'
+    ),
+    mdx(
+      'p',
+      null,
+      "It's also very ostentatious; you probably want to be pretty selective about where you use this sort of button. I wouldn't use this button for a GDPR cookie-consent banner! But for grand and exciting actions, you now have a button that matches \u{1F389}"
+    ),
+    mdx(
+      'p',
+      null,
+      "If you're interested in leveling-up your CSS skills, I recently launched a course! It's specifically tailored for JS devs. If you work with a framework like React or Vue and you don't feel super comfortable with CSS, my mission this year is to change that. It's called ",
+      mdx('strong', { parentName: 'p' }, 'CSS for JavaScript Developers'),
+      ', and you can learn more at ',
+      mdx(
+        'a',
+        t({ parentName: 'p' }, { href: 'https://css-for-js.dev/' }),
+        'css-for-js.dev'
+      ),
+      '.'
+    ),
+    mdx(
+      'p',
+      null,
+      "\u2728 Here's the final source code for our big pushable button:"
+    ),
+    mdx(
+      'pre',
+      null,
+      mdx(
+        'code',
+        t(
+          { parentName: 'pre' },
+          {
+            className: 'language-html',
+            metastring: 'clampMaxHeight',
+            clampMaxHeight: !0,
+          }
+        ),
+        `<style>
+  .pushable {
+    position: relative;
+    border: none;
+    background: transparent;
+    padding: 0;
+    cursor: pointer;
+    outline-offset: 4px;
+    transition: filter 250ms;
+  }
+  .shadow {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 12px;
+    background: hsl(0deg 0% 0% / 0.25);
+    will-change: transform;
+    transform: translateY(2px);
+    transition:
+      transform
+      600ms
+      cubic-bezier(.3, .7, .4, 1);
+  }
+  .edge {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 12px;
+    background: linear-gradient(
+      to left,
+      hsl(340deg 100% 16%) 0%,
+      hsl(340deg 100% 32%) 8%,
+      hsl(340deg 100% 32%) 92%,
+      hsl(340deg 100% 16%) 100%
+    );
+  }
+  .front {
+    display: block;
+    position: relative;
+    padding: 12px 42px;
+    border-radius: 12px;
+    font-size: 1.25rem;
+    color: white;
+    background: hsl(345deg 100% 47%);
+    will-change: transform;
+    transform: translateY(-4px);
+    transition:
+      transform
+      600ms
+      cubic-bezier(.3, .7, .4, 1);
+  }
+
+  .pushable:hover {
+    filter: brightness(110%);
+  }
+
+  .pushable:hover .front {
+    transform: translateY(-6px);
+    transition:
+      transform
+      250ms
+      cubic-bezier(.3, .7, .4, 1.5);
+  }
+  .pushable:active .front {
+    transform: translateY(-2px);
+    transition: transform 34ms;
+  }
+
+  .pushable:hover .shadow {
+    transform: translateY(4px);
+    transition:
+      transform
+      250ms
+      cubic-bezier(.3, .7, .4, 1.5);
+  }
+  .pushable:active .shadow {
+    transform: translateY(1px);
+    transition: transform 34ms;
+  }
+
+  .pushable:focus:not(:focus-visible) {
+    outline: none;
+  }
+</style>
+
+<button class="pushable">
+  <span class="shadow"></span>
+  <span class="edge"></span>
+  <span class="front">
+    Push me
+  </span>
+</button>
+`
+      )
     )
   );
 }

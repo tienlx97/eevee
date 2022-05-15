@@ -16,3 +16,4 @@ export { useCssReset, useGlobalCss } from './src/global-styles';
 export * from './src/icons';
 export { Paragraph } from './src/paragraph';
 export { InlineCode } from './src/inlinecode';
+export { Em } from './src/em';

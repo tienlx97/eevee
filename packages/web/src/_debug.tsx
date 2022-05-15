@@ -1,7 +1,12 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React from 'react';
 import { makeStyles } from '@griffel/react';
-import { ParagraphDebug, PlaygroundDebug } from '@jolteon/components/debugs';
+import {
+  ParagraphDebug,
+  PlaygroundDebug,
+  InlineCodeDebug,
+  EmDebug,
+} from '@jolteon/components/debugs';
 
 const useStyles = makeStyles({
   root: {
@@ -52,6 +57,8 @@ const UIDebug = () => {
         <div className={classes.maxWidthWrapper}>
           <article className={classes.article}>
             <ParagraphDebug />
+            <InlineCodeDebug />
+            <EmDebug />
             <PlaygroundDebug />
           </article>
         </div>
