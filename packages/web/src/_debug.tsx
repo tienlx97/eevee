@@ -1,7 +1,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React from 'react';
 import { makeStyles } from '@griffel/react';
-import { Playground } from '@jolteon/components';
+import { ParagraphDebug } from '@jolteon/components/debugs';
 
 const useStyles = makeStyles({
   root: {
@@ -43,57 +43,15 @@ const useStyles = makeStyles({
   },
 });
 
-const App = () => {
+const UIDebug = () => {
   const classes = useStyles();
-
-  const id = 'z-index';
-
-  const html = `<style>
-.box {
-  position: relative;
-}
-.first.box {
-  z-index: 2;
-  background-color: peachpuff;
-}
-.second.box {
-  z-index: 1;
-  margin-top: -20px;
-  margin-left: 20px;
-}
-</style>
-
-<div class="first box"></div>
-<div class="second box"></div>
-`;
-
-  const layoutMode = 'tabbed';
-
-  const cssCode = `
-  /*
-    This tab includes cosmetic styles
-    that aren't as relevant.
-    */
-    .box {
-    width: 50px;
-    height: 50px;
-    border: 3px solid;
-    background: silver;
-  
-  }
-`;
 
   return (
     <div className={classes.root}>
       <main className={classes.main}>
         <div className={classes.maxWidthWrapper}>
           <article className={classes.article}>
-            <Playground
-              id={id}
-              layoutMode={layoutMode}
-              html={html}
-              cssCode={cssCode}
-            />
+            <ParagraphDebug />
           </article>
         </div>
       </main>
@@ -101,4 +59,4 @@ const App = () => {
   );
 };
 
-export default App;
+export default UIDebug;

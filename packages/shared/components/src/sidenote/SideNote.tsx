@@ -36,7 +36,7 @@ const BaseWrapper = ({
 }: IBaseWrapperProps) => {
   const styles = useStyles();
 
-  const classes = mergeClasses(styles.baseWrapper, className);
+  const classes = mergeClasses(styles.baseWrapper, className, 'base-wrapper');
 
   const innerStyle: CSSProperties = {
     transition: `background ${COLOR_SWAP_TRANSITION_DURATION}ms`,
