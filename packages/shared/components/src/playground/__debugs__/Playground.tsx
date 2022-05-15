@@ -3,32 +3,18 @@ import { Playground } from '../Playground';
 
 export default function PlaygroundDebug() {
   const html = `
-<style>
-  .box {
-    position: relative;
-  }
-  .first.box {
-    z-index: 2;
-    background-color: peachpuff;
-  }
-  .second.box {
-    z-index: 1;
-    margin-top: -20px;
-    margin-left: 20px;
-  }
-</style>
-
-<div class="first box"></div>
-<div class="second box"></div>
+<div class="first box">This is playground</div>
   `;
 
   const cssCode = `
-/*
-  This tab includes cosmetic styles
-  that aren't as relevant.
-*/
+
+.first.box {
+    z-index: 2;
+    background-color: peachpuff;
+  }
+
 .box {
-  width: 50px;
+  width: 80%;
   height: 50px;
   border: 3px solid;
   background: silver;
