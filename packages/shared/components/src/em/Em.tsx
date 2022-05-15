@@ -7,7 +7,7 @@ const useStyles = makeStyles({
   wrapper: {
     fontFamily: 'var(--font-family-spicy)',
     letterSpacing: '-0.25px',
-    fontStyle: 'normal',
+    fontStyle: 'oblique',
     fontWeight: '400',
 
     '.tippy-popper': {
@@ -25,8 +25,8 @@ const Em = (props: IEmProps, ref?: any) => {
   return (
     <em
       ref={ref}
-      style={{ color: color || 'var(--color-text)' }}
       className={classes}
+      style={{ color: color || 'var(--color-text)', display: 'block' }}
     >
       {children}
     </em>

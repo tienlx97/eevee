@@ -3,7 +3,7 @@ import React from 'react';
 import Em from '../Em';
 
 const EmDebug = () => {
-  return <Em>This is `em`</Em>;
+  return <Em>this is em tag</Em>;
 };
 
 export default EmDebug;

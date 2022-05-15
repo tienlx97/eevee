@@ -23,20 +23,42 @@ const useStyles = makeStyles({
       marginBottom: '0 !important',
     },
   },
+
+  infoSidenote: {
+    backgroundcolor: 'var(--color-muted)',
+    ...shorthands.borderColor('var(--color-info)'),
+  },
+
+  successSidenote: {
+    backgroundcolor: 'var(--color-success-background)',
+    ...shorthands.borderColor('var(--color-alert)'),
+  },
+
+  warningSidenote: {
+    backgroundcolor: 'var(--color-alert-background)',
+    ...shorthands.borderColor('var(--color-alert)'),
+  },
 });
 
 // eslint-disable-next-line @typescript-eslint/no-empty-interface
-export interface IBaseWrapperProps extends HTMLAttributes<HTMLElement> {}
+export interface IBaseWrapperProps extends HTMLAttributes<HTMLElement> {
+  appendClassName?: string;
+}
 
 const BaseWrapper = ({
   children,
   className,
   style,
+  appendClassName,
   ...delegated
 }: IBaseWrapperProps) => {
   const styles = useStyles();
 
-  const classes = mergeClasses(styles.baseWrapper, className, 'base-wrapper');
+  const classes = mergeClasses(
+    styles.baseWrapper,
+    className,
+    appendClassName || 'base-wrapper'
+  );
 
   const innerStyle: CSSProperties = {
     transition: `background ${COLOR_SWAP_TRANSITION_DURATION}ms`,
@@ -45,7 +67,6 @@ const BaseWrapper = ({
   return (
     <aside
       {...delegated}
-      data-side-note-wrapper
       style={{ ...innerStyle, ...style }}
       className={classes}
     >
@@ -54,4 +75,46 @@ const BaseWrapper = ({
   );
 };
 
-export { BaseWrapper };
+const InfoSidenote = (props: IBaseWrapperProps) => {
+  const { className, ...rest } = props;
+  const styles = useStyles();
+  const classes = mergeClasses(styles.infoSidenote, className);
+
+  return (
+    <BaseWrapper
+      {...rest}
+      className={classes}
+      appendClassName="info-sidenote"
+    ></BaseWrapper>
+  );
+};
+
+const SuccessSidenote = (props: IBaseWrapperProps) => {
+  const { className, ...rest } = props;
+  const styles = useStyles();
+  const classes = mergeClasses(styles.successSidenote, className);
+
+  return (
+    <BaseWrapper
+      {...rest}
+      className={classes}
+      appendClassName="success-sidenote"
+    ></BaseWrapper>
+  );
+};
+
+const WarningSidenote = (props: IBaseWrapperProps) => {
+  const { className, ...rest } = props;
+  const styles = useStyles();
+  const classes = mergeClasses(styles.warningSidenote, className);
+
+  return (
+    <BaseWrapper
+      {...rest}
+      className={classes}
+      appendClassName="warning-sidenote"
+    ></BaseWrapper>
+  );
+};
+
+export { BaseWrapper, InfoSidenote, SuccessSidenote, WarningSidenote };
