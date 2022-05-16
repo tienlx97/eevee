@@ -24,6 +24,11 @@ export const SPRINGS = {
   },
 };
 
+export const TIGHT_SPRING = {
+  tension: 450,
+  friction: 25,
+};
+
 export const COLOR_SWAP_TRANSITION_DURATION = 350;
 
 // This key is used in localStorage to remember theme preferences

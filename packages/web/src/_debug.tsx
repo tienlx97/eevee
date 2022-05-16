@@ -8,6 +8,7 @@ import {
   EmDebug,
   PostLinkDebug,
   BlockquoteDebug,
+  ListDebug,
 } from '@jolteon/components/debugs';
 
 const useStyles = makeStyles({
@@ -64,6 +65,7 @@ const UIDebug = () => {
             <PlaygroundDebug />
             <PostLinkDebug />
             <BlockquoteDebug />
+            <ListDebug />
           </article>
         </div>
       </main>

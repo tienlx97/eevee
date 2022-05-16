@@ -1,0 +1,7 @@
+.order-list-elem li::before {
+  content: counters(var(--counter-name), '.') '. ';
+  font-feature-settings: 'tnum';
+  color: var(--color-primary);
+  font-weight: var(--font-weight-medium);
+  padding-right: 12px;
+}

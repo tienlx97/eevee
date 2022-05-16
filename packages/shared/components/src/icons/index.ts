@@ -8,3 +8,5 @@ export { default as Zap } from './Zap';
 export { default as SkipBack } from './SkipBack';
 export { default as Loader } from './Loader';
 export { default as RefreshCw } from './RefreshCw';
+export { default as ArrowRight } from './ArrowRight';
+export { default as Star } from './Star';

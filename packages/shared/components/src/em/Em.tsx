@@ -10,7 +10,7 @@ const useStyles = makeStyles({
     fontStyle: 'oblique',
     fontWeight: '400',
 
-    '.tippy-popper': {
+    '& .tippy-popper': {
       color: 'var(--color-background) !important',
     },
   },
