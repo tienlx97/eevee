@@ -7,7 +7,7 @@ const useStyles = makeStyles({
   wrapper: {
     fontFamily: 'var(--font-family-spicy)',
     letterSpacing: '-0.25px',
-    fontStyle: 'oblique',
+    fontStyle: 'normal',
     fontWeight: '400',
 
     '& .tippy-popper': {
@@ -17,16 +17,25 @@ const useStyles = makeStyles({
 });
 
 const Em = (props: IEmProps, ref?: any) => {
-  const { color, children, className } = props;
+  const { color, children, className, type, ...delegated } = props;
 
   const styles = useStyles();
   const classes = mergeClasses(styles.wrapper, className);
+
+  if (type === 'original') {
+    return (
+      <em className={className} {...delegated}>
+        {children}
+      </em>
+    );
+  }
 
   return (
     <em
       ref={ref}
       className={classes}
       style={{ color: color || 'var(--color-text)', display: 'block' }}
+      {...delegated}
     >
       {children}
     </em>
