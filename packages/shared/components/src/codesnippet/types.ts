@@ -1,27 +1,29 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import type { Language } from 'prism-react-renderer';
 
+type HighlightItem = [start: number, end: number];
+
 export interface IStaticCodeSnippet {
   code: string;
-  lang: Language | 'null';
-  highlightedLines: any[];
+  lang: Language;
+  highlightedLines: HighlightItem[];
   secretLive?: boolean;
   clampMaxHeight: boolean;
   CodeWrapper?: any;
 }
 
 export interface ICodeSnippet {
-  children: string;
+  code: string;
   // inline;
   live?: boolean;
   secretLive?: boolean;
-  highlight?: any;
+  highlight?: string | HighlightItem[];
   // clickToReveal,
   // scope,
   // split,
   lessBottomMargin?: boolean;
   clampMaxHeight?: boolean;
-  className?: string;
+  language?: Language;
 }
 
 export interface IStaticCodeWrapper extends IStaticCodeSnippet {

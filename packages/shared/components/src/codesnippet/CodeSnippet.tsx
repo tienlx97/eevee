@@ -6,7 +6,6 @@ import LazyStaticCodeSnippet from './LazyStaticCodeSnippet';
 
 import { LINE_HEIGHT } from './constants';
 import { ICodeSnippet } from './types';
-import type { Language } from 'prism-react-renderer';
 
 const useStyles = makeStyles({
   OuterWrapper: {
@@ -53,25 +52,25 @@ const useStyles = makeStyles({
 });
 
 const CodeSnippet = ({
-  children,
+  code,
   live,
   secretLive,
   highlight = [],
   lessBottomMargin,
   clampMaxHeight = true,
-  className = 'language-null',
+  language = 'jsx',
 }: ICodeSnippet) => {
   const styles = useStyles();
 
   // The MDX parser turns "```jsx" into "className: 'language-jsx'".
   // We'll use a regex to pull out just the language itself (css, jsx)
   // so that we can get the correct syntax highlighting
-  const match = className.match(/language-(.+)/);
+  // const match = className.match(/language-(.+)/);
 
   const highlightedLines =
     typeof highlight === 'string' ? JSON.parse(highlight) : highlight;
 
-  const code = children.trim();
+  const cleanCode = code.trim();
 
   return (
     <div
@@ -82,8 +81,8 @@ const CodeSnippet = ({
         <></>
       ) : (
         <LazyStaticCodeSnippet
-          lang={match?.at(1) as Language | 'null'}
-          code={code}
+          lang={language}
+          code={cleanCode}
           secretLive={secretLive}
           // Static-specific props
           highlightedLines={highlightedLines}

@@ -118,7 +118,7 @@ const StaticCodeWrapper = ({
 
   return (
     <>
-      {lang !== 'null' && <div className={styles.language}>{lang}</div>}
+      {lang && <div className={styles.language}>{lang}</div>}
       <div
         className={styles.wrapper}
         data-code-snippet="true"

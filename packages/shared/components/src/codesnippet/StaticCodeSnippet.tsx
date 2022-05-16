@@ -11,7 +11,7 @@ import { syntaxTheme } from '@vaporeon/helpers';
 import StaticCodeWrapper from './StaticCodeWrapper';
 import { LINE_HEIGHT } from './constants';
 
-import './CodeSnippet.css';
+import './StaticCodeSnippet.css';
 import { IStaticCodeSnippet } from './types';
 
 const useStyles = makeStyles({
@@ -85,7 +85,7 @@ export default function StaticCodeSnippet({
           );
         })}
         <LiveEditor
-          language={lang as any}
+          language={lang}
           className={
             secretLive
               ? styles.secretLiveEditor
