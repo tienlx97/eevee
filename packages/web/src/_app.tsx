@@ -1,8 +1,10 @@
 import React from 'react';
 import client from 'react-dom/client';
+import UIDebug from './_debug';
 
+import './asset/css/CssVariables.css';
+import './asset/css/fonts.css';
 import 'tippy.js/dist/tippy.css';
-import '@jolteon/components/src/global-styles/CssVariables.css';
 
 import {
   ConfigProvider,
@@ -10,8 +12,6 @@ import {
 } from '@jolteon/components';
 
 loadDefaultThemeBeforeReactRender();
-
-import UIDebug from './_debug';
 
 const Index = () => {
   // useCssReset();

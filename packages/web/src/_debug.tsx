@@ -7,6 +7,11 @@ import {
   InlineCodeDebug,
   EmDebug,
   PostLinkDebug,
+  BlockquoteDebug,
+  ListDebug,
+  StrikethroughDebug,
+  PostImageDebug,
+  CodeSnippetDebug,
 } from '@jolteon/components/debugs';
 
 const useStyles = makeStyles({
@@ -62,6 +67,11 @@ const UIDebug = () => {
             <EmDebug />
             <PlaygroundDebug />
             <PostLinkDebug />
+            <BlockquoteDebug />
+            <ListDebug />
+            <StrikethroughDebug />
+            <PostImageDebug />
+            <CodeSnippetDebug />
           </article>
         </div>
       </main>

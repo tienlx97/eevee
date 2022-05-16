@@ -1,7 +1,9 @@
 import React, { CSSProperties } from 'react';
 import { ISpinnerProps } from './Spinner.types';
 import { Loader } from '../icons';
-import { makeStyles } from '@griffel/react';
+import { makeStyles, mergeClasses } from '@griffel/react';
+
+// import './Spinner.css';
 
 const useStyles = makeStyles({
   wrapper: {
@@ -19,7 +21,11 @@ const useStyles = makeStyles({
 
     animationDuration: '1400ms',
     animationTimingFunction: 'linear',
+    animationDelay: '0s',
     animationIterationCount: 'infinite',
+    animationDirection: 'normal',
+    animationFillMode: 'none',
+    animationPlayState: 'running',
 
     transformOrigin: 'center center',
     lineHeight: '0px',
@@ -42,7 +48,10 @@ const Spinner = ({ size = 24, color }: ISpinnerProps) => {
   } as CSSProperties;
 
   return (
-    <span style={spanInlineStyles} className={classes.wrapper}>
+    <span
+      style={spanInlineStyles}
+      className={mergeClasses(classes.wrapper, 'spinner')}
+    >
       <Loader size={size} />
     </span>
   );

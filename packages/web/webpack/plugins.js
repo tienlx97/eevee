@@ -1,57 +1,58 @@
-const { ROOT_DIR } = require("./envs");
+const { ROOT_DIR } = require('./envs');
 
-const path = require("path");
-const glob = require("glob");
+const path = require('path');
+const glob = require('glob');
 
-const HtmlWebpackPlugin = require("html-webpack-plugin");
-const CaseSensitivePathsPlugin = require("case-sensitive-paths-webpack-plugin"); // use inside the npm package
-const PurgeCSSPlugin = require("purgecss-webpack-plugin");
-const MiniCssExtractPlugin = require("mini-css-extract-plugin");
-const { DefinePlugin, BannerPlugin } = require("webpack");
-const { CleanWebpackPlugin } = require("clean-webpack-plugin");
-const ESLintWebpackPlugin = require("eslint-webpack-plugin");
-const ForkTsCheckerWebpackPlugin = require("fork-ts-checker-webpack-plugin");
-const ReactRefreshWebpackPlugin = require("@pmmmwh/react-refresh-webpack-plugin");
-const WebpackObfuscator = require("webpack-obfuscator");
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const CaseSensitivePathsPlugin = require('case-sensitive-paths-webpack-plugin'); // use inside the npm package
+const PurgeCSSPlugin = require('purgecss-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const { DefinePlugin, BannerPlugin } = require('webpack');
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+const ESLintWebpackPlugin = require('eslint-webpack-plugin');
+const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
+const ReactRefreshWebpackPlugin = require('@pmmmwh/react-refresh-webpack-plugin');
+const WebpackObfuscator = require('webpack-obfuscator');
 
-const TerserPlugin = require("terser-webpack-plugin");
-const CssMinimizerPlugin = require("css-minimizer-webpack-plugin");
+const TerserPlugin = require('terser-webpack-plugin');
+const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
 
-const PATH = path.join(ROOT_DIR, "/src");
+const PATH = path.join(ROOT_DIR, '/src');
 
 const caseSensitivePathsPlugin = new CaseSensitivePathsPlugin();
 
 const htmlWebpackPlugin = new HtmlWebpackPlugin({
-  template: path.join(ROOT_DIR, "./public/index.html"),
-  filename: "index.html",
+  template: path.join(ROOT_DIR, './public/index.html'),
+  filename: 'index.html',
   inject: true,
 });
 
 const miniCssExtactPlugin = new MiniCssExtractPlugin({
   // filename: "[name].css",
-  filename: "[name].[contenthash].css",
+  filename: '[name].[contenthash].css',
 });
 
 const purgeCssPlugin = new PurgeCSSPlugin({
-  paths: glob.sync(`${PATH}/**/*`, { nodir: true }), // Consider extracting as a parameter
-  extractors: [
-    {
-      extractor: (content) => content.match(/[^<>"'`\s]*[^<>"'`\s:]/g) || [],
-      extensions: ["html"],
-    },
-  ],
+  // paths: glob.sync(`${PATH}/**/*`, { nodir: true }), // Consider extracting as a parameter
+  // extractors: [
+  //   {
+  //     extractor: (content) => content.match(/[^<>"'`\s]*[^<>"'`\s:]/g) || [],
+  //     extensions: ["html"],
+  //   },
+  // ],
+  paths: glob.sync(`${PATH}/**/*`, { nodir: true }),
 });
 
 // const mode = process.env.NODE_ENV ?? "production";
 const definePlugin = new DefinePlugin({
-  "process.env.NODE_ENV": JSON.stringify(process.env.NODE_ENV),
+  'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV),
 });
 
 const cleanWebpacklugin = new CleanWebpackPlugin();
 
 const esLintPlugin = new ESLintWebpackPlugin({
-  context: path.join(ROOT_DIR, "/src"),
-  extensions: ["js", "jsx", "ts", "tsx"],
+  context: path.join(ROOT_DIR, '/src'),
+  extensions: ['js', 'jsx', 'ts', 'tsx'],
 });
 
 const reactRefreshPlugin = new ReactRefreshWebpackPlugin({
@@ -69,7 +70,7 @@ const obfuscatorPlugin = new WebpackObfuscator(
   {
     rotateStringArray: true,
   },
-  ["excluded_bundle_name.js"]
+  ['excluded_bundle_name.js']
 );
 
 const minifyJTS = new TerserPlugin();

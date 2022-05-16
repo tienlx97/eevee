@@ -57,7 +57,7 @@ const BaseWrapper = ({
   const classes = mergeClasses(
     styles.baseWrapper,
     className,
-    appendClassName || 'base-wrapper'
+    appendClassName || 'sidenote-wrapper'
   );
 
   const innerStyle: CSSProperties = {

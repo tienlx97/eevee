@@ -1,0 +1,13 @@
+@keyframes z4 {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.spinner {
+  animation: z4 1400ms linear infinite;
+}

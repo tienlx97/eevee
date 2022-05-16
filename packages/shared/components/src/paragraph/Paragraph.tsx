@@ -6,7 +6,7 @@ const useStyles = makeStyles({
     fontSize: 'calc(19 / 16 * 1rem)',
     marginBottom: '24px',
 
-    '& .base-wrapper': {
+    '& .sidenote-wrapper': {
       fontSize: 'calc(17 / 16 * 1rem)',
       marginBottom: '16px',
       '&:last-child': {

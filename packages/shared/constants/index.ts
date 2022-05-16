@@ -24,6 +24,19 @@ export const SPRINGS = {
   },
 };
 
+export const TIGHT_SPRING = {
+  tension: 450,
+  friction: 25,
+};
+
+export const BREAKPOINT_SIZES = {
+  xs: 320,
+  sm: 563,
+  md: 768,
+  lg: 1024,
+  xl: 1440,
+};
+
 export const COLOR_SWAP_TRANSITION_DURATION = 350;
 
 // This key is used in localStorage to remember theme preferences

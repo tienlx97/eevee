@@ -1,1 +1,6 @@
-export { BaseWrapper } from './SideNote';
+export {
+  BaseWrapper,
+  InfoSidenote,
+  SuccessSidenote,
+  WarningSidenote,
+} from './SideNote';

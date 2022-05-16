@@ -4,3 +4,5 @@ export { default as usePersistedState } from './src/use-persisted-state.hook';
 export { default as usePrefersReducedMotion } from './src/use-prefers-reduced-motion.hook';
 export { default as useBoop } from './src/use-boop.hook';
 export { default as useInterval } from './src/use-interval.hook';
+export { default as useWindowDimensions } from './src/use-window-dimensions.hook';
+export { default as useHasMounted } from './src/use-has-mounted.hook';

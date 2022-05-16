@@ -1,0 +1,57 @@
+/* sriracha-400normal - latin */
+@font-face {
+  font-family: 'Sriracha';
+  font-style: normal;
+  font-display: swap;
+  font-weight: 400;
+  src:
+    url('../fonts/sriracha/sriracha.woff2') format('woff2'), url(https://fonts.gstatic.com/s/sriracha/v10/0nkrC9D4IuYBgWcI9NbQTwHSoQ.woff2) format('woff2'), url(https://fonts.gstatic.com/s/sriracha/v10/0nkrC9D4IuYBgWcI9NbfTwE.woff2) format('woff2');
+}
+
+@font-face {
+  font-family: 'Wotfard';
+  src: url("../fonts/wotfard/wotfard-semibold-webfont.woff2") format("woff2"), url(https://raw.githubusercontent.com/lexuantien/eevee/2086fbd62a7affa3b863355a9eb516206f318930/packages/web/public/fonts/wotfard/wotfard-semibold-webfont.woff2) format('woff2');
+  font-weight: 600;
+  font-style: normal;
+  font-display: fallback;
+}
+
+@font-face {
+  font-family: 'Wotfard';
+  src: url("../fonts/wotfard/wotfard-medium-webfont.woff2") format("woff2"), url(https://raw.githubusercontent.com/lexuantien/eevee/2086fbd62a7affa3b863355a9eb516206f318930/packages/web/public/fonts/wotfard/wotfard-medium-webfont.woff2) format('woff2');
+  font-weight: 500;
+  font-style: normal;
+  font-display: fallback;
+}
+
+@font-face {
+  font-family: 'Wotfard';
+  src: url("../fonts/wotfard/wotfard-regular-webfont.woff2") format("woff2"), url(https://raw.githubusercontent.com/lexuantien/eevee/2086fbd62a7affa3b863355a9eb516206f318930/packages/web/public/fonts/wotfard/wotfard-regular-webfont.woff2) format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: fallback;
+}
+
+@font-face {
+  font-family: 'League Mono';
+  src: url("../fonts/league-mono/LeagueMono-Regular.woff2") format("woff2"), url(https://raw.githubusercontent.com/lexuantien/eevee/2086fbd62a7affa3b863355a9eb516206f318930/packages/web/public/fonts/league-mono/LeagueMono-Regular.woff2) format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: fallback;
+}
+
+@font-face {
+  font-family: 'League Mono';
+  src: url("../fonts/league-mono/LeagueMono-SemiBold.woff2") format("woff2"), url(https://raw.githubusercontent.com/lexuantien/eevee/2086fbd62a7affa3b863355a9eb516206f318930/packages/web/public/fonts/league-mono/LeagueMono-SemiBold.woff2) format('woff2');
+  font-weight: 500;
+  font-style: normal;
+  font-display: fallback;
+}
+
+@font-face {
+  font-family: 'League Mono';
+  src: url("../fonts/league-mono/LeagueMono-Bold.woff2") format("woff2"), url(https://raw.githubusercontent.com/lexuantien/eevee/2086fbd62a7affa3b863355a9eb516206f318930/packages/web/public/fonts/league-mono/LeagueMono-Bold.woff2) format('woff2');
+  font-weight: 600;
+  font-style: normal;
+  font-display: fallback;
+}

@@ -31,6 +31,10 @@ const commonConfig = {
     // libraryTarget: "umd",
     // globalObject: "this",
     // umdNamedDefine: true,
+
+    chunkFilename: '[name].[contenthash].js',
+    filename: '[name].[contenthash].js',
+    assetModuleFilename: '[name].[contenthash][ext][query]',
   },
 
   resolve: {
