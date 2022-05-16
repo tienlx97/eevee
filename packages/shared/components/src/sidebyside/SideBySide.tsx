@@ -22,7 +22,7 @@ const useStyles = makeStyles({
       gridTemplateColumns: '1fr',
     },
 
-    '& .base-wrapper': {
+    '& .sidenote-wrapper': {
       ...shorthands.padding('0px'),
       marginLeft: '0px',
       marginRight: '0px',

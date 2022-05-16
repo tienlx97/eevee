@@ -17,7 +17,7 @@ const useStyles = makeStyles({
     WebkitBoxDecorationBreak: 'clone',
     boxDecorationBreak: 'clone',
 
-    '& .base-wrapper': {
+    '& .sidenote-wrapper': {
       ...shorthands.padding('1px', '6px'),
     },
   },

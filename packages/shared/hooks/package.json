@@ -5,6 +5,7 @@
   "license": "MIT",
   "dependencies": {
     "react": "*",
+    "@vaporeon/utils": "*",
     "@react-spring/web": "^9.4.5"
   }
 }
