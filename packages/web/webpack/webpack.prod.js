@@ -9,13 +9,13 @@ const {
 const productionConfig = {
   devtool: 'source-map',
 
-  plugins: [purgeCssPlugin, obfuscatorPlugin /*cleanWebpacklugin*/],
+  plugins: [obfuscatorPlugin /*purgeCssPlugin , cleanWebpacklugin*/],
 
-  output: {
-    chunkFilename: '[name].[contenthash].js',
-    filename: '[name].[contenthash].js',
-    assetModuleFilename: '[name].[contenthash][ext][query]',
-  },
+  // output: {
+  //   chunkFilename: '[name].[contenthash].js',
+  //   filename: '[name].[contenthash].js',
+  //   assetModuleFilename: '[name].[contenthash][ext][query]',
+  // },
 
   optimization: {
     splitChunks: {
