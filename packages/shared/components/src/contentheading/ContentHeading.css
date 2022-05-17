@@ -1,0 +1,9 @@
+@media (min-width: 769px) {
+  .contentheading_wrapper:hover .contentheading_anchor {
+    opacity: 0.75;
+  }
+}
+
+.contentheading_anchor:focus .contentheading_linkicon {
+  outline: 2px auto var(--color-primary);
+}
