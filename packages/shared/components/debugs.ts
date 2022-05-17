@@ -10,3 +10,4 @@ export { PostImageDebug } from './src/postimage/__debugs__';
 export { CodeSnippetDebug } from './src/codesnippet/__debugs__';
 export { DividerDebug } from './src/divider/__debugs__';
 export { HeadingDebug } from './src/heading/__debugs__';
+export { ContentHeadingDebug } from './src/contentheading/__debugs__';
