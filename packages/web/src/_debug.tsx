@@ -12,6 +12,8 @@ import {
   StrikethroughDebug,
   PostImageDebug,
   CodeSnippetDebug,
+  DividerDebug,
+  HeadingDebug,
 } from '@jolteon/components/debugs';
 
 const useStyles = makeStyles({
@@ -101,6 +103,8 @@ const UIDebug = () => {
             <StrikethroughDebug />
             <PostImageDebug />
             <CodeSnippetDebug />
+            <DividerDebug />
+            <HeadingDebug />
           </article>
         </div>
       </main>

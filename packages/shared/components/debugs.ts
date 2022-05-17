@@ -8,3 +8,5 @@ export { ListDebug } from './src/list/__debugs__';
 export { StrikethroughDebug } from './src/strikethrough/__debugs__';
 export { PostImageDebug } from './src/postimage/__debugs__';
 export { CodeSnippetDebug } from './src/codesnippet/__debugs__';
+export { DividerDebug } from './src/divider/__debugs__';
+export { HeadingDebug } from './src/heading/__debugs__';
