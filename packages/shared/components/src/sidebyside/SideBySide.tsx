@@ -1,6 +1,8 @@
 import React, { forwardRef } from 'react';
 import { makeStyles, mergeClasses, shorthands } from '@griffel/react';
 
+import './SideBySide.css';
+
 const useStyles = makeStyles({
   wrapper: {
     display: 'grid',
@@ -22,12 +24,12 @@ const useStyles = makeStyles({
       gridTemplateColumns: '1fr',
     },
 
-    '& .sidenote-wrapper': {
-      ...shorthands.padding('0px'),
-      marginLeft: '0px',
-      marginRight: '0px',
-      ...shorthands.border('none'),
-    },
+    // '.sidenote_basewrapper &': {
+    //   ...shorthands.padding('0px'),
+    //   marginLeft: '0px',
+    //   marginRight: '0px',
+    //   ...shorthands.border('none'),
+    // },
   },
 });
 
@@ -36,7 +38,7 @@ function SideBySide(
   ref?: React.LegacyRef<HTMLDivElement>
 ) {
   const styles = useStyles();
-  const classes = mergeClasses(styles.wrapper, 'side-by-side', className);
+  const classes = mergeClasses(styles.wrapper, 'sidebyside_wrapper', className);
 
   return (
     <div className={classes} {...delegated} ref={ref}>

@@ -1,0 +1,21 @@
+.livecodesnippet_col {
+  position: relative;
+  flex: 1;
+  outline-offset: 2px;
+}
+
+.livecodesnippet_wrapper .livecodesnippet_col {
+  width: 50%
+}
+
+@media (max-width: 1024px) {
+  .livecodesnippet_wrapper .livecodesnippet_col {
+    width: 70%
+  }
+}
+
+@media (max-width:768px) {
+  .livecodesnippet_wrapper .livecodesnippet_col {
+    width: 100%
+  }
+}

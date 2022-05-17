@@ -172,7 +172,7 @@ const Result = ({
   //   display: 'none',
   // };
 
-  // In most layout modes, the results pane sits side-by-side with
+  // In most layout modes, the results pane sits sidebyside_wrapper with
   // one or more code editors; to resize the results pane, we can
   // drag the divider between columns.
   // In Codepen, though, there is nothing beside the results pane.

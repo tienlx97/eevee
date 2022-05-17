@@ -6,7 +6,7 @@ const EmDebug = () => {
   return (
     <>
       <Em>em tag</Em>
-      <Em type="original">em tag with type original</Em>;
+      <Em type="original">em tag with type original</Em>
     </>
   );
 };

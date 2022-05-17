@@ -1,6 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React from 'react';
-import { makeStyles } from '@griffel/react';
+import { makeStyles, shorthands } from '@griffel/react';
 import {
   ParagraphDebug,
   PlaygroundDebug,
@@ -26,6 +26,11 @@ const useStyles = makeStyles({
   main: {
     position: 'relative',
     zIndex: '1',
+
+    '@media (max-width: 1024px)': {
+      maxWidth: '100vw',
+      ...shorthands.overflow('hidden'),
+    },
   },
 
   maxWidthWrapper: {
@@ -44,6 +49,29 @@ const useStyles = makeStyles({
     marginRight: 'auto',
     paddingLeft: '32px',
     paddingRight: '32px',
+
+    '@media (max-width: 563px)': {
+      paddingLeft: '16px',
+      paddingRight: '16px',
+    },
+  },
+
+  sidebar: {
+    flexGrow: 0,
+    flexShrink: 100000,
+    flexBasis: '250px',
+    display: 'none',
+    position: 'sticky',
+    top: '148px',
+    maxHeight: 'calc(100vh - 148px)',
+    ...shorthands.overflow('auto'),
+    paddingBottom: '16px',
+    marginLeft: 'auto',
+    marginTop: '4px',
+
+    '@media (min-width: 1084px)': {
+      display: 'block',
+    },
   },
 
   article: {
@@ -61,6 +89,7 @@ const UIDebug = () => {
     <div className={classes.root}>
       <main className={classes.main}>
         <div className={classes.maxWidthWrapper}>
+          <aside className={classes.sidebar}></aside>
           <article className={classes.article}>
             <ParagraphDebug />
             <InlineCodeDebug />

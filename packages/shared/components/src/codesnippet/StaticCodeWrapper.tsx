@@ -1,8 +1,11 @@
 import React from 'react';
-import { makeStyles, shorthands } from '@griffel/react';
+import { makeStyles, mergeClasses, shorthands } from '@griffel/react';
 import { LINE_HEIGHT } from './constants';
 import { Skeleton } from '../skeleton';
 import { IStaticCodeWrapper } from './types';
+
+import './StaticCodeWrapper.css';
+
 // import { BaseWrapper } from '../sidenote';
 // import { SideBySideCodeWrapper } from '../sidebysidecode';
 
@@ -19,17 +22,17 @@ const useStyles = makeStyles({
     ...shorthands.padding('32px'),
     backgroundColor: 'var(--syntax-bg)',
 
-    '& .sidenote-wrapper': {
-      marginLeft: 'unset',
-      marginRight: 'unset',
-      backgroundColor: 'rgba(0, 0, 0, 0.1)',
-    },
+    // '.sidenote_basewrapper &': {
+    //   marginLeft: 'unset',
+    //   marginRight: 'unset',
+    //   backgroundColor: 'rgba(0, 0, 0, 0.1)',
+    // },
 
-    '& .sidebyside-code-wrapper': {
-      marginLeft: '0',
-      marginRight: '0',
-      boxShadow: '0px 0px 35px 35px var(--color-background)',
-    },
+    // ' .sidebyside_codewrapper &': {
+    //   marginLeft: '0',
+    //   marginRight: '0',
+    //   boxShadow: '0px 0px 35px 35px var(--color-background)',
+    // },
 
     '& > div': {
       ...shorthands.overflow('visible !important'),
@@ -42,9 +45,9 @@ const useStyles = makeStyles({
     */
       width: 'calc(100vw)',
 
-      '& .sidenote-wrapper': {
-        width: '100%',
-      },
+      // '.sidenote_basewrapper & ': {
+      //   width: '100%',
+      // },
     },
 
     '@media (max-width: 563px)': {
@@ -54,12 +57,12 @@ const useStyles = makeStyles({
       marginRight: '-16px',
       ...shorthands.padding('16px'),
 
-      '& .sidenote-wrapper': {
-        width: 'calc(100% + 32px)',
-        marginLeft: '-16px',
-        marginRight: '-16px',
-        backgroundColor: 'rgba(0, 0, 0, 0.1)',
-      },
+      // '.sidenote_basewrapper &': {
+      //   width: 'calc(100% + 32px)',
+      //   marginLeft: '-16px',
+      //   marginRight: '-16px',
+      //   backgroundColor: 'rgba(0, 0, 0, 0.1)',
+      // },
     },
 
     '@media (min-width: 564px)': {
@@ -84,9 +87,9 @@ const useStyles = makeStyles({
     fontFamily: 'var(--font-family)',
     pointerEvents: 'none',
 
-    '& .sidenote-wrapper': {
-      backgroundColor: 'rgba(0, 0, 0, 0.1)',
-    },
+    // '.sidenote_basewrapper & ': {
+    //   backgroundColor: 'rgba(0, 0, 0, 0.1)',
+    // },
   },
 });
 
@@ -118,9 +121,11 @@ const StaticCodeWrapper = ({
 
   return (
     <>
-      {lang && <div className={styles.language}>{lang}</div>}
+      {lang && (
+        <div className={mergeClasses(styles.language, 'language')}>{lang}</div>
+      )}
       <div
-        className={styles.wrapper}
+        className={mergeClasses(styles.wrapper, 'static-codewrapper')}
         data-code-snippet="true"
         style={{
           minHeight,

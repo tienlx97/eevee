@@ -1,0 +1,29 @@
+@media (hover: hover) {
+  .sidenote_info .textlink_wrapper {
+    color: var(--color-text);
+    box-shadow: 0px 1px 0px var(--color-primary);
+    font-weight: var(--font-weight-medium);
+  }
+
+  .sidenote_info .textlink_wrapper:hover {
+    box-shadow: 0px 2px 0px var(--color-primary);
+  }
+
+  .sidenote_warning .textlink_wrapper {
+    color: var(--color-text);
+    box-shadow: 0px 1px 0px var(--color-alert);
+  }
+
+  .sidenote_warning .textlink_wrapper:hover {
+    box-shadow: 0px 2px 0px var(--color-alert);
+  }
+
+  .sidenote_success .textlink_wrapper {
+    color: var(--color-text);
+    box-shadow: 0px 1px 0px var(--color-success);
+  }
+
+  .sidenote_success .textlink_wrapper:hover {
+    box-shadow: 0px 2px 0px var(--color-success);
+  }
+}

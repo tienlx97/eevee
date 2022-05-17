@@ -1,23 +1,25 @@
 import { makeStyles, mergeClasses } from '@griffel/react';
 import React, { forwardRef } from 'react';
 
+import './Paragraph.css';
+
 const useStyles = makeStyles({
   wrapper: {
     fontSize: 'calc(19 / 16 * 1rem)',
     marginBottom: '24px',
 
-    '& .sidenote-wrapper': {
-      fontSize: 'calc(17 / 16 * 1rem)',
-      marginBottom: '16px',
-      '&:last-child': {
-        marginBottom: '0',
-      },
-    },
+    // '.sidenote_basewrapper &': {
+    //   fontSize: 'calc(17 / 16 * 1rem)',
+    //   marginBottom: '16px',
+    //   '&:last-child': {
+    //     marginBottom: '0',
+    //   },
+    // },
 
-    '& .speech-bubble-wrapper': {
-      fontSize: 'calc(17 / 16 * 1rem)',
-      marginBottom: '16px',
-    },
+    // '.speechbubble_wrapper &': {
+    //   fontSize: 'calc(17 / 16 * 1rem)',
+    //   marginBottom: '16px',
+    // },
 
     '@media (max-width: 563px)': {
       fontSize: 'calc(18 / 16 * 1rem)',
@@ -32,7 +34,7 @@ const Paragraph = (
 ) => {
   const { className, children, ...rest } = props;
   const styles = useStyles();
-  const classes = mergeClasses(styles.wrapper, className);
+  const classes = mergeClasses(styles.wrapper, 'paragraph_wrapper', className);
   return (
     <p {...rest} className={classes} ref={ref}>
       {children}

@@ -7,6 +7,8 @@ import { InPortal } from '../inportal';
 import { SettingCheckbox } from '../setting-checkbox';
 import { WrapperTheme } from './theme';
 
+import './CodeWrapper.css';
+
 const useStyles = makeStyles({
   wrapper: {
     backgroundColor: ' var(--syntax-bg)',
@@ -34,20 +36,20 @@ const useStyles = makeStyles({
     ...shorthands.margin('0', '-32px'),
     ...shorthands.borderRadius('8px'),
 
-    '& .sidenote-wrapper': {
-      width: 'calc(100% + 16px * 2)',
-      marginLeft: '-16px',
-      marginRight: '-16px',
-    },
+    // '.sidenote_basewrapper &': {
+    //   width: 'calc(100% + 16px * 2)',
+    //   marginLeft: '-16px',
+    //   marginRight: '-16px',
+    // },
 
     '@media (max-width: 768px)': {
       width: 'calc(100% + 24px * 2)',
       marginLeft: '-24px',
       marginRight: '-24px',
       ...shorthands.borderRadius('0'),
-      '& .sidenote-wrapper': {
-        width: 'calc(100% + 16px * 2)',
-      },
+      // '.sidenote_basewrapper & ': {
+      //   width: 'calc(100% + 16px * 2)',
+      // },
     },
   },
 
@@ -86,7 +88,11 @@ const InlineWrapper = (
   ref: any
 ) => {
   const styles = useStyles();
-  const classes = mergeClasses(styles.inlineWrapper, className);
+  const classes = mergeClasses(
+    styles.inlineWrapper,
+    'codewrapper_inlinewrapper',
+    className
+  );
 
   return (
     <div

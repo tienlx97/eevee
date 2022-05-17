@@ -47,9 +47,9 @@ const useStyles = makeStyles({
     width: '100%',
     opacity: '0.7',
 
-    '& .sidenote-wrapper': {
-      backgroundColor: 'rgba(0, 0, 0, 0.15)',
-    },
+    // '& .sidenote_basewrapper': {
+    //   backgroundColor: 'rgba(0, 0, 0, 0.15)',
+    // },
   },
 });
 

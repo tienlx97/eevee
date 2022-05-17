@@ -1,0 +1,9 @@
+.sidebyside_wrapper .postimage_wrapper {
+  padding: 0;
+  margin: 0;
+  border: none;
+}
+
+.sidebyside_wrapper .postimage_wrapper:not(:last-of-type) {
+  padding-right: 0;
+}

@@ -7,6 +7,8 @@ import React, { CSSProperties } from 'react';
 import { makeStyles, mergeClasses, shorthands } from '@griffel/react';
 import { IBaseImageProps, IImageElem, IPostImage } from './PostImage.types';
 
+import './PostImage.css';
+
 const useStyles = makeStyles({
   wrapper: {
     ...shorthands.margin('32px', 'auto', 'var(--margin-bottom, 48px)'),
@@ -26,15 +28,15 @@ const useStyles = makeStyles({
       ...shorthands.border('none'),
     },
 
-    '& .side-by-side': {
-      ...shorthands.padding('0'),
-      ...shorthands.margin('0'),
-      ...shorthands.border('none'),
+    // '.sidebyside_wrapper & ': {
+    //   ...shorthands.padding('0'),
+    //   ...shorthands.margin('0'),
+    //   ...shorthands.border('none'),
 
-      '&:not(:last-of-type)': {
-        paddingRight: 0,
-      },
-    },
+    //   '&:not(:last-of-type)': {
+    //     paddingRight: 0,
+    //   },
+    // },
   },
 
   caption: {
@@ -219,7 +221,10 @@ const BaseImage = ({
 
   if (source) {
     return (
-      <span /*type={type}*/ className={styles.wrapper} style={wrapperStyle}>
+      <span /*type={type}*/
+        className={mergeClasses(styles.wrapper, 'postimage_wrapper')}
+        style={wrapperStyle}
+      >
         <a href={source} target="_blank" rel="noopener noreferrer">
           <ImageElem
             asImage={as}
@@ -236,7 +241,10 @@ const BaseImage = ({
   }
 
   return (
-    <span /*type={type}*/ className={styles.wrapper} style={wrapperStyle}>
+    <span /*type={type}*/
+      className={mergeClasses(styles.wrapper, 'postimage_wrapper')}
+      style={wrapperStyle}
+    >
       <ImageElem
         className={mergeClasses(styles.imageElem, className)}
         asImage={as}

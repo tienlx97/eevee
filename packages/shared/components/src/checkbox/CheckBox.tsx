@@ -4,7 +4,7 @@ import { useSpring, animated } from '@react-spring/web';
 
 import { ICheckBoxProps } from './CheckBox.types';
 
-// import './CheckBox.css';
+import './CheckBox.css';
 
 const BORDER_WIDTH = 2;
 
@@ -12,7 +12,7 @@ const useStyles = makeStyles({
   wrapper: {
     position: 'relative',
 
-    '&:hover .visibleBox': {
+    '&:hover .chkb-visible-box': {
       ...shorthands.borderColor('var(--color-gray-1000)'),
     },
   },
@@ -108,7 +108,7 @@ const Checkbox = ({ size = 18, checked, label, onChange }: ICheckBoxProps) => {
       <input
         data-hover
         onChange={onChange}
-        className={classes.realCheckbox}
+        className={mergeClasses(classes.realCheckbox, 'chkb_real-checkbox')}
         type="checkbox"
         onMouseDown={() => {
           setActive(true);
@@ -117,9 +117,14 @@ const Checkbox = ({ size = 18, checked, label, onChange }: ICheckBoxProps) => {
           setActive(false);
         }}
       />
-      <div className={classes.visibleContents}>
+      <div
+        className={mergeClasses(
+          classes.visibleContents,
+          'chkb_visible-contents'
+        )}
+      >
         <animated.div
-          className={mergeClasses(classes.visibleBox, 'visibleBox')}
+          className={mergeClasses(classes.visibleBox, 'chkb-visible-box')}
           style={{ width: size, height: size, ...outlineSpring }}
         >
           <animated.div

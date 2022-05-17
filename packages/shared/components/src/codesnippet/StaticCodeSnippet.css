@@ -1,3 +1,7 @@
+.sidenote_basewrapper .highlight {
+  background: rgba(0, 0, 0, 0.15);
+}
+
 .highlight::after {
   content: '';
   position: absolute;
@@ -8,6 +12,7 @@
   background: var(--syntax-bool);
   border-radius: 0 4px 4px 0;
 }
+
 
 .inert-editor pre {
   white-space: unset !important;

@@ -1,6 +1,7 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import React from 'react';
 import { BREAKPOINT_SIZES } from '@vaporeon/constants';
-import { useWindowDimensions, useHasMounted } from '@vaporeon/hooks';
+import { useHasMounted, useWindowDimensions } from '@vaporeon/hooks';
 
 import { FullBleed as FullBleedOriginal } from '../fullbleed';
 
@@ -16,7 +17,7 @@ const useStyles = makeStyles({
 
   largeWrapper: {
     width: '1200px',
-    transform: 'translateX(-82px)',
+    transform: 'translateX(-82px)' /* -(32 + 50) */,
   },
 });
 
@@ -25,18 +26,18 @@ const FullBleedTutorial = ({
   className,
   style = {},
   ...delegated
-}: React.HTMLAttributes<HTMLDivElement>): JSX.Element => {
+}: React.HTMLAttributes<HTMLDivElement>): any => {
   const styles = useStyles();
 
   const { width: windowWidth } = useWindowDimensions();
   const hasMounted = useHasMounted();
 
   if (!hasMounted) {
-    return <></>;
+    return null;
   }
 
   if (windowWidth && windowWidth <= BREAKPOINT_SIZES.md) {
-    return <>{children}</>;
+    return children;
   } else if (windowWidth && windowWidth <= BREAKPOINT_SIZES.lg) {
     return <FullBleedOriginal>{children}</FullBleedOriginal>;
   } else if (windowWidth && windowWidth <= 1200) {

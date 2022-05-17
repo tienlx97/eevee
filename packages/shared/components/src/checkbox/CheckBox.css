@@ -1,5 +1,10 @@
-input[data-hover]:hover>div {
+/* input[data-hover]:hover>div {
   border-color: rebeccapurple
+} */
+
+.chkb_real-checkbox:focus.focus-visible+.visible-contents .chkb-visible-box {
+  outline: 2px auto var(--color-primary);
+  outline-offset: 2px;
 }
 
 /* .real-checkbox:hover+div {

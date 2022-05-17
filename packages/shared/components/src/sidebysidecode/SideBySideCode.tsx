@@ -32,7 +32,7 @@ const SideBySideCodeWrapper = ({
     <div
       className={mergeClasses(
         styles.wrapper,
-        'sidebyside-code-wrapper',
+        'sidebyside_codewrapper',
         className
       )}
       {...delegated}

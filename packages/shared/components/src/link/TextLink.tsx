@@ -3,6 +3,8 @@ import { makeStyles, mergeClasses, shorthands } from '@griffel/react';
 import Link from './Link';
 import { ILinkProps } from './Link.types';
 
+import './TextLink.css';
+
 const useStyles = makeStyles({
   wrapper: {
     color: 'var(--color-primary)',
@@ -32,33 +34,33 @@ const useStyles = makeStyles({
         boxShadow: '0px 2px 0px var(--color-primary)',
       },
 
-      '& .info-sidenote': {
-        color: 'var(--color-text)',
-        boxShadow: '0px 1px 0px var(--color-primary)',
-        fontWeight: 'var(--font-weight-medium)',
+      // '.sidenote_info &': {
+      //   color: 'var(--color-text)',
+      //   boxShadow: '0px 1px 0px var(--color-primary)',
+      //   fontWeight: 'var(--font-weight-medium)',
 
-        '&:hover': {
-          boxShadow: '0px 2px 0px var(--color-primary)',
-        },
-      },
+      //   '&:hover': {
+      //     boxShadow: '0px 2px 0px var(--color-primary)',
+      //   },
+      // },
 
-      '& .warning-sidenote': {
-        color: 'var(--color-text)',
-        boxShadow: '0px 1px 0px var(--color-alert)',
+      // ' .sidenote_warning &': {
+      //   color: 'var(--color-text)',
+      //   boxShadow: '0px 1px 0px var(--color-alert)',
 
-        '&:hover': {
-          boxShadow: '0px 2px 0px var(--color-alert)',
-        },
-      },
+      //   '&:hover': {
+      //     boxShadow: '0px 2px 0px var(--color-alert)',
+      //   },
+      // },
 
-      '& .success-sidenote': {
-        color: 'var(--color-text)',
-        boxShadow: '0px 1px 0px var(--color-success)',
+      // '.sidenote_success &': {
+      //   color: 'var(--color-text)',
+      //   boxShadow: '0px 1px 0px var(--color-success)',
 
-        '&:hover': {
-          boxShadow: '0px 2px 0px var(--color-success)',
-        },
-      },
+      //   '&:hover': {
+      //     boxShadow: '0px 2px 0px var(--color-success)',
+      //   },
+      // },
     },
   },
 });
@@ -67,7 +69,7 @@ const useStyles = makeStyles({
 const TextLink = (props: ILinkProps, ref?: any) => {
   const { children, className, ...delegated } = props;
   const styles = useStyles();
-  const classes = mergeClasses(styles.wrapper, className);
+  const classes = mergeClasses(styles.wrapper, 'textlink_wrapper', className);
   return (
     <Link {...delegated} ref={ref} className={classes}>
       {children}

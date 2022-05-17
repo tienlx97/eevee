@@ -1,0 +1,13 @@
+.sidenote_basewrapper .paragraph_wrapper {
+  font-size: calc(17 / 16 * 1rem);
+  margin-bottom: 1rem;
+}
+
+.sidenote_basewrapper .paragraph_wrapper:last-child {
+  margin-bottom: 0;
+}
+
+.speechbubble_wrapper .paragraph_wrapper {
+  font-size: calc(17 / 16 * 1rem);
+  margin-bottom: 1rem;
+}

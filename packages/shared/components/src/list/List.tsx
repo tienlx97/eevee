@@ -37,9 +37,9 @@ const useListStyles = makeStyles({
     listStyleType: 'none',
 
     /* For nested list items, add top margin as well */
-    '& ul': {
-      marginTop: '16px',
-    },
+    // 'ul & ': {
+    //   marginTop: '16px',
+    // },
 
     '@media (max-width: 563px)': {
       fontSize: '18px',
@@ -52,11 +52,11 @@ const useListStyles = makeStyles({
 
     fontSize: '19px',
     marginBottom: '32px',
-    counterReset: 'var(--counter-name)',
+    counterReset: 'counts',
     listStyleType: 'none',
 
     '& li': {
-      counterIncrement: 'var(--counter-name)',
+      counterIncrement: 'counts',
       alignItems: 'baseline',
     },
 
@@ -85,10 +85,10 @@ const useListItemStyles = makeStyles({
       marginBottom: '0',
     },
 
-    '& .info-sidenote, & .warning-sidenote, & .success-sidenote': {
-      fontSize: '17px',
-      marginBottom: '8px',
-    },
+    // '.sidenote_info & ,  .sidenote_warning &, .sidenote_success & ': {
+    //   fontSize: '17px',
+    //   marginBottom: '8px',
+    // },
   },
 
   listItemContents: {
@@ -119,7 +119,7 @@ const ListItem = ({
   ...delegated
 }: IListItemsProps) => {
   const styles = useListItemStyles();
-  const classes = mergeClasses(styles.wrapper, className);
+  const classes = mergeClasses(styles.wrapper, 'list_wrapper', className);
 
   const { type } = React.useContext(ListContext);
 
@@ -185,7 +185,7 @@ const List = ({
           {...delegated}
           className={mergeClasses(
             styles.orderedListElem,
-            '.order-list-elem',
+            'list_orderedlistelem',
             className
           )}
         />
@@ -193,7 +193,11 @@ const List = ({
       {type === 'unordered' && (
         <ul
           {...delegated}
-          className={mergeClasses(styles.unorderedListElem, className)}
+          className={mergeClasses(
+            styles.unorderedListElem,
+            'list_unorderedlistelem',
+            className
+          )}
         />
       )}
       {type === 'original' && (

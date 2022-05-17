@@ -3,6 +3,8 @@ import React, { forwardRef } from 'react';
 import { makeStyles, mergeClasses } from '@griffel/react';
 import { IEmProps } from './Em.types';
 
+import './Em.css';
+
 const useStyles = makeStyles({
   wrapper: {
     fontFamily: 'var(--font-family-spicy)',
@@ -10,9 +12,9 @@ const useStyles = makeStyles({
     fontStyle: 'normal',
     fontWeight: '400',
 
-    '& .tippy-popper': {
-      color: 'var(--color-background) !important',
-    },
+    // '.tippy-popper &': {
+    //   color: 'var(--color-background) !important',
+    // },
   },
 });
 
@@ -20,7 +22,6 @@ const Em = (props: IEmProps, ref?: any) => {
   const { color, children, className, type, ...delegated } = props;
 
   const styles = useStyles();
-  const classes = mergeClasses(styles.wrapper, className);
 
   if (type === 'original') {
     return (
@@ -33,7 +34,7 @@ const Em = (props: IEmProps, ref?: any) => {
   return (
     <em
       ref={ref}
-      className={classes}
+      className={mergeClasses(styles.wrapper, 'em_wrapper', className)}
       style={{ color: color || 'var(--color-text)', display: 'block' }}
       {...delegated}
     >

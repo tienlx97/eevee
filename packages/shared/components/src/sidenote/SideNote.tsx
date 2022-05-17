@@ -57,7 +57,7 @@ const BaseWrapper = ({
   const classes = mergeClasses(
     styles.baseWrapper,
     className,
-    appendClassName || 'sidenote-wrapper'
+    appendClassName || 'sidenote_basewrapper'
   );
 
   const innerStyle: CSSProperties = {
@@ -84,7 +84,7 @@ const InfoSidenote = (props: IBaseWrapperProps) => {
     <BaseWrapper
       {...rest}
       className={classes}
-      appendClassName="info-sidenote"
+      appendClassName="sidenote_info"
     ></BaseWrapper>
   );
 };
@@ -98,7 +98,7 @@ const SuccessSidenote = (props: IBaseWrapperProps) => {
     <BaseWrapper
       {...rest}
       className={classes}
-      appendClassName="success-sidenote"
+      appendClassName="sidenote_success"
     ></BaseWrapper>
   );
 };
@@ -112,7 +112,7 @@ const WarningSidenote = (props: IBaseWrapperProps) => {
     <BaseWrapper
       {...rest}
       className={classes}
-      appendClassName="warning-sidenote"
+      appendClassName="sidenote_warning"
     ></BaseWrapper>
   );
 };

@@ -12,14 +12,15 @@ const useStyles = makeStyles({
 /**
  *
  * @param param0
- * @css-style: `.speech-bubble-wrapper`
+ * @css-style: `.speechbubble_wrapper`
  */
 const SpeechBubbleWrapper = ({ children }: { children: React.ReactNode }) => {
   const styles = useStyles();
 
-  const classes = mergeClasses(styles.wrapper, 'speech-bubble-wrapper');
+  const classes = mergeClasses(styles.wrapper, 'speechbubble_wrapper');
 
   return <animated.div className={classes}>{children}</animated.div>;
 };
 
 export { SpeechBubbleWrapper };
+export default SpeechBubbleWrapper;

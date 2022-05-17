@@ -1,0 +1,42 @@
+.codesnippet_outerwrapper .token-line,
+.codesnippet_outerwrapper [data-code-snippet=true] textarea,
+.codesnippet_outerwrapper [data-code-snippet=true] pre {
+  padding: 0 !important;
+}
+
+@media (max-width: 563px) {
+
+  .codesnippet_outerwrapper .token-line,
+  .codesnippet_outerwrapper [data-code-snippet=true] textarea,
+  .codesnippet_outerwrapper [data-code-snippet=true] pre {
+    font-size: 14px !important;
+    line-height: 28px !important;
+  }
+}
+
+@media (min-width: 564px) {
+
+  .codesnippet_outerwrapper .token-line,
+  .codesnippet_outerwrapper [data-code-snippet=true] textarea,
+  .codesnippet_outerwrapper [data-code-snippet=true] pre {
+    font-size: 17px !important;
+    line-height: 28px !important;
+  }
+}
+
+/* .codesnippet_outerwrapper [data-code-snippet=true] textarea {
+  outline-offset: 32px;
+} */
+
+.sidebyside_codewrapper .codesnippet_outerwrapper {
+  margin-top: 0;
+  margin-bottom: 48px;
+}
+
+.sidenote_basewrapper .codesnippet_outerwrapper {
+  margin-bottom: 24px;
+}
+
+/* .codesnippet_outerwrapper textarea::selection {
+  background-color: rgba(128, 128, 128, 0.2);
+} */

@@ -16,7 +16,11 @@ function Strikethrough(
   ref?: React.LegacyRef<HTMLSpanElement>
 ) {
   const styles = useStyles();
-  const classes = mergeClasses(styles.wrapper, 'strike-through', className);
+  const classes = mergeClasses(
+    styles.wrapper,
+    'strikethrough_wrapper',
+    className
+  );
   return (
     <span ref={ref} className={classes} {...delegated}>
       {children}

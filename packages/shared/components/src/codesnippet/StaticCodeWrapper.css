@@ -1,0 +1,30 @@
+.sidenote_basewrapper .static-codewrapper {
+  margin-left: unset;
+  margin-right: unset;
+  background: rgba(0, 0, 0, 0.1);
+}
+
+.sidebyside_codewrapper .static-codewrapper {
+  margin-left: 0;
+  margin-right: 0;
+  box-shadow: 0px 0px 35px 35px var(--color-background);
+}
+
+@media (max-width:768px) {
+  .sidenote_basewrapper .static-codewrapper {
+    width: 100%
+  }
+}
+
+@media (max-width: 563px) {
+  .sidenote_basewrapper .static-codewrapper {
+    width: calc(100% + 32px);
+    margin-left: -16px;
+    margin-right: -16px;
+    background: rgba(0, 0, 0, 0.1);
+  }
+}
+
+.sidenote_basewrapper .language {
+  background: rgba(0, 0, 0, 0.1);
+}

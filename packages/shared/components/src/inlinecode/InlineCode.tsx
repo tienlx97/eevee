@@ -3,6 +3,8 @@ import React, { forwardRef } from 'react';
 import { makeStyles, mergeClasses, shorthands } from '@griffel/react';
 import { IInlinecode } from './InlineCode.types';
 
+import './InlineCode.css';
+
 const useStyles = makeStyles({
   wrapper: {
     position: 'relative',
@@ -17,9 +19,9 @@ const useStyles = makeStyles({
     WebkitBoxDecorationBreak: 'clone',
     boxDecorationBreak: 'clone',
 
-    '& .sidenote-wrapper': {
-      ...shorthands.padding('1px', '6px'),
-    },
+    // ' .sidenote_basewrapper &': {
+    //   ...shorthands.padding('1px', '6px'),
+    // },
   },
 });
 
@@ -27,7 +29,7 @@ const InlineCode = (props: IInlinecode, ref?: React.LegacyRef<HTMLElement>) => {
   const { className, children, ...rest } = props;
 
   const styles = useStyles();
-  const classes = mergeClasses(styles.wrapper, className);
+  const classes = mergeClasses(styles.wrapper, 'inlinecode_wrapper', className);
 
   return (
     <code {...rest} ref={ref} className={classes}>
