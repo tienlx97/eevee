@@ -43,3 +43,8 @@ const Paragraph = (
 };
 
 export default forwardRef(Paragraph);
+const r = {
+  p: forwardRef(Paragraph),
+};
+
+export { r };
