@@ -1,0 +1,13 @@
+.sidenote_info .sidenote_iconwrapper {
+  color: var(--color-info);
+}
+
+.sidenote_success .sidenote_iconwrapper {
+  color: var(--color-success);
+}
+
+.sidenote_warning .sidenote_iconwrapper {
+  color: var(--color-alert);
+  border-radius: 25% 25%;
+  left: -1.5px;
+}

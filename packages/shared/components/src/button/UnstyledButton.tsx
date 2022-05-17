@@ -2,7 +2,7 @@
 import React, { forwardRef } from 'react';
 import { makeStyles, mergeClasses, shorthands } from '@griffel/react';
 
-import { IButtonProps } from './UnstyledButton.types';
+import { IButtonProps, IButtonProps2 } from './UnstyledButton.types';
 
 const useStyles = makeStyles({
   root: {
@@ -78,4 +78,20 @@ const UnstyledButton = (props: IButtonProps, ref: any) => {
   );
 };
 
+const UnstyledButton2 = (props: IButtonProps2) => {
+  const { display = 'block', children, className, ...delegated } = props;
+
+  const styles = useStyles();
+  const displayStyles = useDisplayStyles();
+
+  const classes = mergeClasses(styles.root, displayStyles[display], className);
+
+  return (
+    <button {...delegated} className={classes}>
+      {children}
+    </button>
+  );
+};
+
+export { UnstyledButton2 };
 export default forwardRef(UnstyledButton);

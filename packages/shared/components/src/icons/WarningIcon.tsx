@@ -10,6 +10,7 @@ const WarningIcon = ({ size }: Props) => (
     width={size}
     height={size}
     fill="none"
+    viewBox="0 0 24 24"
     stroke="currentColor"
     strokeWidth={2}
     strokeLinecap="round"

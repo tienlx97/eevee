@@ -11,3 +11,7 @@ export interface IButtonProps extends HTMLAttributes<HTMLOrSVGElement> {
 
   type?: string;
 }
+
+export interface IButtonProps2 extends React.HTMLAttributes<HTMLButtonElement> {
+  display?: 'none' | 'inline' | 'block' | 'inline-block';
+}

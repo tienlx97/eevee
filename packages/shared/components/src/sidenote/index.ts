@@ -1,4 +1,5 @@
 export {
+  default as SideNote,
   BaseWrapper,
   InfoSidenote,
   SuccessSidenote,
