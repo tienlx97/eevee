@@ -16,3 +16,4 @@ export { SideNoteDebug } from './src/sidenote/__debugs__';
 export { ContentFooterArticleDebug } from './src/content-footer-article/__debugs__';
 export { ContentFooterTutorialDebug } from './src/content-footer-tutorial/__debugs__';
 export { VideoGifDebug } from './src/videogif/__debugs__';
+export { YoutubeEmbedDebug } from './src/youtube-embed/__debugs__';

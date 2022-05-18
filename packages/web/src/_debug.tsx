@@ -20,6 +20,7 @@ import {
   ContentFooterArticleDebug,
   ContentFooterTutorialDebug,
   VideoGifDebug,
+  YoutubeEmbedDebug,
 } from '@jolteon/components/debugs';
 
 const useStyles = makeStyles({
@@ -117,6 +118,7 @@ const UIDebug = () => {
             <ContentFooterArticleDebug />
             <ContentFooterTutorialDebug />
             <VideoGifDebug />
+            <YoutubeEmbedDebug />
           </article>
         </div>
       </main>
