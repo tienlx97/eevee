@@ -23,10 +23,15 @@ const typescriptRule = {
     {
       loader: 'ts-loader',
       options: {
-        getCustomTransformers: () => ({
-          before: [isDevelopment && ReactRefreshTypeScript()].filter(Boolean),
-        }),
+        // getCustomTransformers: () => ({
+        //   before: [isDevelopment && ReactRefreshTypeScript()].filter(Boolean),
+        // }),
         transpileOnly: isDevelopment,
+        ...(isDevelopment && {
+          getCustomTransformers: () => ({
+            before: [ReactRefreshTypeScript()],
+          }),
+        }),
       },
     },
   ],
