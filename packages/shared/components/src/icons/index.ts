@@ -11,3 +11,5 @@ export { default as RefreshCw } from './RefreshCw';
 export { default as ArrowRight } from './ArrowRight';
 export { default as Star } from './Star';
 export { default as LinkIcon } from './LinkIcon';
+export { default as Pause } from './Pause';
+export { default as Play } from './Play';

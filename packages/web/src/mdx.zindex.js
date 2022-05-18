@@ -1,633 +1,889 @@
-const l = (t, n, i) =>
-  n in t
-    ? Object.defineProperty(t, n, {
-        enumerable: !0,
-        configurable: !0,
-        writable: !0,
-        value: i,
-      })
-    : (t[n] = i);
-const e = (t, n) => {
-  for (var i in n || (n = {}))
-    Object.prototype.hasOwnProperty.call(n, i) && l(t, i, n[i]);
-  if (Object.getOwnPropertySymbols)
-    for (var i of Object.getOwnPropertySymbols(n))
-      Object.prototype.propertyIsEnumerable.call(n, i) && l(t, i, n[i]);
-  return t;
+var m = Object.defineProperty,
+  d = Object.defineProperties;
+var u = Object.getOwnPropertyDescriptors;
+var o = Object.getOwnPropertySymbols;
+var s = Object.prototype.hasOwnProperty,
+  r = Object.prototype.propertyIsEnumerable;
+var l = (t, i, a) =>
+    i in t
+      ? m(t, i, { enumerable: !0, configurable: !0, writable: !0, value: a })
+      : (t[i] = a),
+  e = (t, i) => {
+    for (var a in i || (i = {})) s.call(i, a) && l(t, a, i[a]);
+    if (o) for (var a of o(i)) r.call(i, a) && l(t, a, i[a]);
+    return t;
+  },
+  p = (t, i) => d(t, u(i));
+var h = (t, i) => {
+  var a = {};
+  for (var n in t) s.call(t, n) && i.indexOf(n) < 0 && (a[n] = t[n]);
+  if (t != null && o)
+    for (var n of o(t)) i.indexOf(n) < 0 && r.call(t, n) && (a[n] = t[n]);
+  return a;
 };
-const p = (t, n) =>
-  Object.defineProperties(t, Object.getOwnPropertyDescriptors(n));
-const d = (t, n) => {
-  var i = {};
-  for (var a in t)
-    Object.prototype.hasOwnProperty.call(t, a) &&
-      n.indexOf(a) < 0 &&
-      (i[a] = t[a]);
-  if (t != null && Object.getOwnPropertySymbols)
-    for (var a of Object.getOwnPropertySymbols(t))
-      n.indexOf(a) < 0 &&
-        Object.prototype.propertyIsEnumerable.call(t, a) &&
-        (i[a] = t[a]);
-  return i;
-};
-
 const makeShortcode = (t) =>
-    function (n) {
+    function (a) {
       return (
         console.warn(
           'Component ' +
             t +
             ' was not imported, exported, or provided by MDXProvider as global scope'
         ),
-        mdx('div', e({}, n))
+        mdx('div', e({}, a))
       );
     },
-  DoubleIconDemo = makeShortcode('DoubleIconDemo'),
-  DesktopOnly = makeShortcode('DesktopOnly'),
   Sidenote = makeShortcode('Sidenote'),
-  MobileOnly = makeShortcode('MobileOnly'),
-  FancyDemos = makeShortcode('FancyDemos'),
-  VideoGif = makeShortcode('VideoGif'),
+  SideBySide = makeShortcode('SideBySide'),
+  Spacer = makeShortcode('Spacer'),
+  EmDemo = makeShortcode('EmDemo'),
+  Playground = makeShortcode('Playground'),
   Asterisk = makeShortcode('Asterisk'),
-  SpringComparison = makeShortcode('SpringComparison'),
-  Environment = makeShortcode('Environment'),
-  SpringMechanism = makeShortcode('SpringMechanism'),
-  ShowMoreDemo = makeShortcode('ShowMoreDemo'),
-  Chunk = makeShortcode('Chunk'),
-  CircleDemo = makeShortcode('CircleDemo'),
-  NewsletterSignup = makeShortcode('NewsletterSignup'),
-  TwitterCTA = makeShortcode('TwitterCTA'),
-  Em = makeShortcode('Em'),
+  RemDemo = makeShortcode('RemDemo'),
+  VideoGif = makeShortcode('VideoGif'),
+  PxRemComparisonDemo = makeShortcode('PxRemComparisonDemo'),
+  RemPaddingDemo = makeShortcode('RemPaddingDemo'),
+  ImageCompare = makeShortcode('ImageCompare'),
+  VerticalMarginsDemo = makeShortcode('VerticalMarginsDemo'),
+  ButtonWidthDemo = makeShortcode('ButtonWidthDemo'),
   layoutProps = {},
   MDXLayout = 'wrapper';
-function MDXContent(n) {
-  var i = n,
-    { components: t } = i,
-    o = c(i, ['components']);
+function MDXContent(a) {
+  var n = a,
+    { components: t } = n,
+    i = h(n, ['components']);
   return mdx(
     MDXLayout,
-    l(e(e({}, layoutProps), o), { components: t, mdxType: 'MDXLayout' }),
+    p(e(e({}, layoutProps), i), { components: t, mdxType: 'MDXLayout' }),
     mdx(
-      'p',
-      null,
-      "Hover animations are a great way to make an application feel dynamic and responsive. It's a small thing, but it's exactly the kind of little detail that, in aggregate, can make a product feel ",
-      mdx('em', { parentName: 'p' }, 'great'),
-      '.'
+      'blockquote',
+      {
+        style: {
+          color: 'var(--color-gray-700)',
+          fontSize: '1.25rem',
+          fontWeight: 'var(--font-weight-medium)',
+          marginTop: '3rem',
+          marginBottom: '1.5rem',
+          padding: 0,
+        },
+      },
+      '\u201CShould I use pixels or ems/rems?!\u201D'
     ),
     mdx(
       'p',
       null,
-      "Sometimes, though, a simple state change on mouse-enter doesn't quite work. Hover over these icons to see what I mean:"
+      'This is a question I hear a lot. Often with a dollop of anxiety or frustration behind the words. \u{1F605}'
     ),
-    mdx(DoubleIconDemo, { boop: 'PreBoop', mdxType: 'DoubleIconDemo' }),
     mdx(
-      DesktopOnly,
-      { breakpoint: 'small', mdxType: 'DesktopOnly' },
+      'p',
+      null,
+      "It's an emotionally-charged question because there are a ",
+      mdx('em', { parentName: 'p' }, 'lot'),
+      " of conflicting opinions out there, and it can be overwhelming. Maybe you've heard that rems are better for accessibility. Or maybe you've heard that the problem is fixed and pixels are fine?"
+    ),
+    mdx(
+      'p',
+      null,
+      'The truth is, if you want to build the most-accessible product possible, ',
       mdx(
-        Sidenote,
-        { title: 'Keyboard users', mdxType: 'Sidenote' },
-        mdx(
-          'p',
-          null,
-          'For folks navigating without a mouse, you can trigger the hover effect by focusing the element and pressing "Enter". This is specific to the interactive demos, and is not included in code snippets.'
-        )
-      )
-    ),
-    mdx(
-      MobileOnly,
-      { breakpoint: 'small', mdxType: 'MobileOnly' },
-      mdx(
-        Sidenote,
-        { title: 'Hi, mobile user!', mdxType: 'Sidenote' },
-        mdx(
-          'p',
-          null,
-          "Since phones don't have a hover equivalent, the demos on this page can be activated on tap. This is specific to the interactive demos, and is not included in code snippets."
-        )
-      )
-    ),
-    mdx(
-      'p',
-      null,
-      "Maybe it's the asymmetry, but these hover states just don't feel good to me \u{1F62C}"
-    ),
-    mdx(
-      'p',
-      null,
-      'Instead, what if the icons only popped over to their hover state for a brief moment?'
-    ),
-    mdx(DoubleIconDemo, { mdxType: 'DoubleIconDemo' }),
-    mdx(
-      'p',
-      null,
-      'I ',
-      mdx('em', { parentName: 'p' }, 'love'),
-      " this effect. It's playful and dynamic and surprising. It's not commonly done, since it's significantly more complex than using ",
-      mdx('inlineCode', { parentName: 'p' }, 'transition'),
-      '.'
-    ),
-    mdx('p', null, 'It can be used in all kinds of nifty ways. Some examples:'),
-    mdx(FancyDemos, { mdxType: 'FancyDemos' }),
-    mdx(
-      'p',
-      null,
-      'After an informal ',
-      mdx(
-        'a',
-        e(
-          { parentName: 'p' },
-          { href: 'https://twitter.com/JoshWComeau/status/1324079542852558848' }
-        ),
-        'Twitter poll'
+        'strong',
+        { parentName: 'p' },
+        'you need to use both pixels ',
+        mdx('i', null, 'and'),
+        ' ems/rems.'
       ),
-      ', it was decided that this effect would be called a "boop".'
+      " It's not an either/or situation. There are circumstances where rems are more accessible, and other circumstances where ",
+      mdx('i', null, 'pixels'),
+      ' are more accessible.'
+    ),
+    mdx('p', null, "So, here's what we're going to do in this tutorial:"),
+    mdx(
+      'ol',
+      null,
+      mdx(
+        'li',
+        { parentName: 'ol' },
+        "We'll briefly cover how each unit works, to make sure we're all building on the same solid foundation."
+      ),
+      mdx(
+        'li',
+        { parentName: 'ol' },
+        "We'll look at what the accessibility considerations are, and how each unit can affect these considerations."
+      ),
+      mdx(
+        'li',
+        { parentName: 'ol' },
+        "We'll build a mental model we can use to help us decide which unit to use in ",
+        mdx('i', null, 'any'),
+        ' scenario.'
+      ),
+      mdx(
+        'li',
+        { parentName: 'ol' },
+        "I'll share my favourite tips and tricks for converting between units."
+      )
     ),
     mdx(
       'p',
       null,
-      'In this tutorial\u2014which is intended for ',
-      mdx('strong', { parentName: 'p' }, 'intermediate React users'),
-      "\u2014we'll learn how to build it \u2728"
+      "By the end, you'll be able to ",
+      mdx('em', { parentName: 'p' }, 'use your intuition'),
+      ' to be able to figure out which unit to use in any scenario. \u{1F604}'
+    ),
+    mdx('h1', null, 'Unit summaries'),
+    mdx('h2', null, 'Pixels'),
+    mdx(
+      'p',
+      null,
+      'The most popular unit for anything size-related is the ',
+      mdx('inlineCode', { parentName: 'p' }, 'px'),
+      ' unit, short for \u201Cpixel\u201D:'
+    ),
+    mdx(
+      'pre',
+      null,
+      mdx(
+        'code',
+        e({ parentName: 'pre' }, { className: 'language-css' }),
+        `.box {
+  width: 1000px;
+  margin-top: 32px;
+  padding: 8px;
+}
+`
+      )
+    ),
+    mdx(
+      'p',
+      null,
+      'In theory, ',
+      mdx('inlineCode', { parentName: 'p' }, '1px'),
+      ` is equal to a single dot in a computer monitor or phone screen. They're the least-abstract unit we have in CSS, the closest "to the metal". As a result, they tend to feel pretty intuitive.`
     ),
     mdx(
       Sidenote,
-      { type: 'success', title: 'Cut to the chase', mdxType: 'Sidenote' },
+      { title: 'Hardware vs. software pixels', mdxType: 'Sidenote' },
       mdx(
         'p',
         null,
-        "This tutorial follows a winding path. We learn about different React architecture patterns, and how to combine hooks and components for maximum reuse. I think it's a journey worth going on!"
+        'So, the ',
+        mdx('inlineCode', { parentName: 'p' }, 'px'),
+        " unit is a bit of a lie. It doesn't ",
+        mdx('i', null, 'actually'),
+        ' map neatly onto hardware pixels.'
       ),
       mdx(
         'p',
         null,
-        "But, if you're eager to jump to the code snippet, you can ",
+        "If you look at a modern display under a microscope, you'll realize that they aren't made up of crisp little R/G/B rectangles anymore. Here are close-up shots of the screens on the Apple Watch and Apple iPhone:"
+      ),
+      mdx(
+        SideBySide,
+        { style: { marginBottom: '1rem' }, mdxType: 'SideBySide' },
+        mdx('img', {
+          src: '/images/pixels-and-accessibility/pixel-closeup-apple-watch.jpg',
+        }),
+        mdx('img', {
+          src: '/images/pixels-and-accessibility/pixel-closeup-iphone.jpg',
+        })
+      ),
+      mdx(
+        'p',
+        { style: { textAlign: 'center' } },
+        '(Sources: ',
         mdx(
           'a',
-          e({ parentName: 'p' }, { href: '/snippets/react-hooks/use-boop/' }),
-          'check it out here'
-        ),
-        '.'
-      )
-    ),
-    mdx('h1', null, 'A first stab'),
-    mdx(
-      'p',
-      null,
-      'The neat thing about component-driven frameworks like React is that we can package up ',
-      mdx('em', { parentName: 'p' }, 'behaviours'),
-      ' in much the same way that we package UI elements. In addition to ',
-      mdx('inlineCode', { parentName: 'p' }, '<Button>'),
-      's and ',
-      mdx('inlineCode', { parentName: 'p' }, '<Table>'),
-      's, we can create ',
-      mdx('inlineCode', { parentName: 'p' }, '<FadeIn>'),
-      's and ',
-      mdx('inlineCode', { parentName: 'p' }, '<SoundEffect>'),
-      's.'
-    ),
-    mdx(
-      'p',
-      null,
-      'In our case, the effect\u2014quickly applying and then removing a transformation\u2014can be divorced from any specific UI elements, so we can apply it to anything!'
-    ),
-    mdx('p', null, "Here's a first shot at a React component:"),
-    mdx(
-      'pre',
-      null,
-      mdx(
-        'code',
-        e(
-          { parentName: 'pre' },
           {
-            className: 'language-jsx',
-            metastring: 'clampMaxHeight=false',
-            clampMaxHeight: 'false',
-          }
+            href: 'https://9to5mac.com/2015/07/07/apple-watch-display-pixels/',
+          },
+          'Apple Watch'
         ),
-        `const Boop = ({ rotation = 0, timing = 150, children }) => {
-  const [isBooped, setIsBooped] = React.useState(false);
-
-  const style = {
-    display: 'inline-block',
-    backfaceVisibility: 'hidden',
-    transform: isBooped
-      ? \`rotate(\${rotation}deg)\`
-      : \`rotate(0deg)\`,
-    transition: \`transform \${timing}ms\`,
-  };
-
-  React.useEffect(() => {
-    if (!isBooped) {
-      return;
-    }
-
-    const timeoutId = window.setTimeout(() => {
-      setIsBooped(false);
-    }, timing);
-
-    return () => {
-      window.clearTimeout(timeoutId);
-    };
-  }, [isBooped, timing]);
-
-  const trigger = () => {
-    setIsBooped(true);
-  };
-
-  return (
-    <span onMouseEnter={trigger} style={style}>
-      {children}
-    </span>
-  );
-};
-`
+        ' and ',
+        mdx(
+          'a',
+          { href: 'https://www.displaymate.com/Diamond_45s.html' },
+          'iPhone'
+        ),
+        '.)'
+      ),
+      mdx(Spacer, { size: 32, mdxType: 'Spacer' }),
+      mdx(
+        'p',
+        null,
+        "Even before manufacturers started getting creative with pixel grids, there was still a distinction between the physical pixels in a screen and the software pixels we write in CSS. Every time a user changes their screen's resolution or zooms in, they're changing how software pixels map onto hardware pixels."
+      ),
+      mdx(
+        'p',
+        null,
+        'That said, none of this should really affect how we feel about the ',
+        mdx('inlineCode', { parentName: 'p' }, 'px'),
+        " unit. It's still the most concrete unit we have!"
       )
     ),
-    mdx('p', null, "This is a lot of code, so let's walk through it!"),
+    mdx('h2', null, 'Ems'),
     mdx(
       'p',
       null,
-      `The fundamental idea is that when mousing over this element, it flips to an alternative state, just like a typical hover transition. In addition, though, it also starts a timer. When that timer elapses, the state flips back to the "natural" state, regardless of whether we've still hovering or not.`
+      'The ',
+      mdx('inlineCode', { parentName: 'p' }, 'em'),
+      " unit is an interesting fellow. It's a ",
+      mdx('em', { parentName: 'p' }, 'relative'),
+      " unit, based on the element's calculated font size."
+    ),
+    mdx('p', null, 'Fiddle with these sliders to see what I mean:'),
+    mdx(EmDemo, { mdxType: 'EmDemo' }),
+    mdx(
+      'p',
+      null,
+      'Essentially, ',
+      mdx('inlineCode', { parentName: 'p' }, 'em'),
+      " is a ratio. If our paragraph has a bottom margin of 1.5em, we're saying that it should be 1.5x the font size. This allows us to \u201Canchor\u201D one value to another, so that they scale proportionally."
     ),
     mdx(
       'p',
       null,
-      `It's a bit like one of those "useless machines" that turns itself off after a short interval:`
+      "Here's a silly example. Each word in the following sentence uses a smaller ",
+      mdx('inlineCode', { parentName: 'p' }, 'em'),
+      " value, giving the impression of a sentence fading into the distance. Try tweaking the paragraph's font-size, and notice how everything \u201Czooms in\u201D:"
     ),
-    mdx(VideoGif, {
-      alt: 'An animal-like box with a switch. A human finger switches it on, and the machine pops open to reveal a motorized arm that pops it back off',
-      src: '/videos/boop/useless-machine.mp4',
-      noBorder: !0,
-      caption: mdx(
-        'a',
-        {
-          href: 'https://www.youtube.com/watch?v=D5hXI5kkf-4',
-          target: '_blank',
-        },
-        'Source'
-      ),
-      mdxType: 'VideoGif',
+    mdx(Playground, {
+      id: 'ems-pt2',
+      html: `
+<style>
+  p {
+    /* Change me! */
+    font-size: 24px;
+  }
+</style>
+
+<p>
+  <span style="font-size: 1em">
+    This
+  </span>
+  <span style="font-size: 0.8em">
+    sentence
+  </span>
+  <span style="font-size: 0.64em">
+    gets
+  </span>
+  <span style="font-size: 0.5em">
+    quieter
+  </span>
+  <span style="font-size: 0.4em">
+    and
+  </span>
+  <span style="font-size: 0.32em">
+    quieter
+  </span>
+</p>`,
+      mdxType: 'Playground',
     }),
     mdx(
-      'p',
-      null,
-      'We keep track of the "boop" state with a state hook, ',
-      mdx('inlineCode', { parentName: 'p' }, 'isBooped'),
-      '.'
-    ),
-    mdx(
-      'pre',
-      null,
-      mdx(
-        'code',
-        e({ parentName: 'pre' }, { className: 'language-jsx' }),
-        `const [isBooped, setIsBooped] = React.useState(false);
-`
-      )
-    ),
-    mdx(
-      'p',
-      null,
-      'We wrap the thing we want to boop \u2014 ',
-      mdx('inlineCode', { parentName: 'p' }, 'children'),
-      ' \u2014 in a span. This is so we can apply the rotation style, as well as handle mouse events to trigger the effect in the first place.'
-    ),
-    mdx(
-      'pre',
-      null,
-      mdx(
-        'code',
-        e({ parentName: 'pre' }, { className: 'language-jsx' }),
-        `const trigger = () => {
-  setIsBooped(true);
-};
-
-return (
-  <span onMouseEnter={trigger} style={style}>
-`
-      )
-    ),
-    mdx(
       Sidenote,
-      { title: 'Event-handler on a span!?', mdxType: 'Sidenote' },
+      { type: 'warning', mdxType: 'Sidenote' },
       mdx(
         'p',
         null,
-        "In general, it's considered a best-practice to place event handlers on interactive elements like ",
-        mdx('inlineCode', { parentName: 'p' }, 'button'),
-        ' and ',
-        mdx('inlineCode', { parentName: 'p' }, 'input'),
-        ". Keyboard users won't be able to focus a ",
-        mdx('inlineCode', { parentName: 'p' }, 'div'),
-        ' or ',
-        mdx('inlineCode', { parentName: 'p' }, 'span'),
-        ', so this functionality will be off-limits to them.'
-      ),
-      mdx(
-        'p',
-        null,
-        "This is a special case, though. I don't actually ",
-        mdx('em', { type: 'original' }, 'want'),
-        " this effect to trigger on focus. It's a purely decorative effect, and I suspect it would be irritating for keyboard users, who already have a distinct visual indicator for focus states (outlines)."
+        mdx('strong', { parentName: 'p' }, 'Note:'),
+        ' To make it easier to understand how the ',
+        mdx('inlineCode', { parentName: 'p' }, 'em'),
+        " unit works, we're using pixel-based font sizes here. As we'll learn shortly, however, this is a bad idea. Please don't do this in real applications!"
       )
+    ),
+    mdx('h2', null, 'Rems'),
+    mdx(
+      'p',
+      null,
+      "It's old news now, but there was a time when the ",
+      mdx('inlineCode', { parentName: 'p' }, 'rem'),
+      ' unit was a shiny new addition to the CSS language.'
     ),
     mdx(
       'p',
       null,
-      'We use an effect hook which is set to fire whenever ',
-      mdx('inlineCode', { parentName: 'p' }, 'isBooped'),
-      ' changes. Our hover event causes this value to flip, which causes the effect hook to trigger. The effect hook schedules a timeout to flip ',
-      mdx('inlineCode', { parentName: 'p' }, 'isBooped'),
-      ' back to false.'
+      "It was introduced because there's a common frustrating issue with the ",
+      mdx('inlineCode', { parentName: 'p' }, 'em'),
+      ' unit: ',
+      mdx('strong', { parentName: 'p' }, 'it compounds.')
     ),
+    mdx('p', null, 'For example, consider the following snippet:'),
     mdx(
       'pre',
       null,
       mdx(
         'code',
-        e({ parentName: 'pre' }, { className: 'language-jsx' }),
-        `React.useEffect(() => {
-  // We only want to act when we're going from
-  // not-booped to booped.
-  if (!isBooped) {
-    return;
+        e({ parentName: 'pre' }, { className: 'language-html' }),
+        `<style>
+  main {
+    font-size: 1.125em;
   }
+  article {
+    font-size: 0.9em;
+  }
+  p.intro {
+    font-size: 1.25em;
+  }
+</style>
 
-  const timeoutId = window.setTimeout(() => {
-    setIsBooped(false);
-  }, timing);
-
-  // Just in case our component happens to
-  // unmount while we're booped, cancel
-  // the timeout to avoid a memory leak.
-  return () => {
-    window.clearTimeout(timeoutId);
-  };
-
-  // Trigger this effect whenever \`isBooped\`
-  // changes. We also listen for \`timing\` changes,
-  // in case the length of the boop delay is
-  // variable.
-}, [isBooped, timing]);
+<main>
+  <article>
+    <p class="intro">
+      What size is this text?
+    </p>
+  </article>
+</main>
 `
       )
     ),
     mdx(
       'p',
       null,
-      "What about the effect itself? For now, we're limiting it to rotation. When ",
-      mdx('inlineCode', { parentName: 'p' }, 'isBooped'),
-      ' is true, we apply a ',
-      mdx('inlineCode', { parentName: 'p' }, 'transform: rotate'),
-      ' to the wrapping element.'
+      'How large, in pixels, is that ',
+      mdx('inlineCode', { parentName: 'p' }, '.intro'),
+      ' paragraph font?'
     ),
     mdx(
       'p',
       null,
-      'We control both the rotation amount, in degrees, and the transition length through props, since different situations might call for different effects. We also need to set ',
-      mdx('inlineCode', { parentName: 'p' }, 'display'),
-      ' to ',
-      mdx('inlineCode', { parentName: 'p' }, 'inline-block'),
-      ', because ',
-      mdx('inlineCode', { parentName: 'p' }, 'inline'),
-      " elements aren't transformable, and we add ",
-      mdx('inlineCode', { parentName: 'p' }, 'backface-visibility: hidden'),
-      ' to take advantage of hardware acceleration',
-      mdx(Asterisk, {
-        content:
-          "Technically, this property affects how our element looks when it's rotated to face away from the user. We don't care about that, but this property has a side-effect\u2014it lets our GPU take care of the rendering, which makes the animation look smoother.",
-        mdxType: 'Asterisk',
-      }),
-      '.'
-    ),
-    mdx(
-      'pre',
-      null,
+      'To figure it out, we have to multiply each ratio. The root font size is 16px by default, and so the equation is ',
       mdx(
-        'code',
-        e({ parentName: 'pre' }, { className: 'language-jsx' }),
-        "const style = {\n  display: 'inline-block',\n  backfaceVisibility: 'hidden',\n  transform: isBooped\n    ? `rotate(${rotation}deg)`\n    : `rotate(0deg)`,\n  transition: `transform ${timing}ms`,\n};\n"
-      )
-    ),
-    mdx(
-      'p',
-      null,
-      "Here's how we'd use our new ",
-      mdx('inlineCode', { parentName: 'p' }, 'Boop'),
-      ' component:'
-    ),
-    mdx(
-      'pre',
-      null,
-      mdx(
-        'code',
-        e({ parentName: 'pre' }, { className: 'language-jsx' }),
-        `<Boop rotation={20} timing={200}>
-  <UnstyledButton>
-    <Icon icon="gear" />
-  </UnstyledButton>
-</Boop>
-`
-      )
-    ),
-    mdx('p', null, "And here's what it looks like:"),
-    mdx(DoubleIconDemo, { boop: 'BoopV1', mdxType: 'DoubleIconDemo' }),
-    mdx(
-      'p',
-      null,
-      'This looks ',
-      mdx('em', { parentName: 'p' }, 'alright'),
-      ', but I know we can do better.'
-    ),
-    mdx('h1', null, 'Springs to the rescue!'),
-    mdx(
-      'p',
-      null,
-      "The motion in this initial version feels robotic and artificial to me. It doesn't have the fluid, organic movement that I crave from modern web animations."
-    ),
-    mdx(
-      'p',
-      null,
-      'In ',
-      mdx(
-        'a',
-        e(
-          { parentName: 'p' },
-          { href: '/animation/a-friendly-introduction-to-spring-physics/' }
-        ),
-        'A Friendly Introduction to Spring Physics'
+        'inlineCode',
+        { parentName: 'p' },
+        '16 \xD7 1.125 \xD7 0.9 \xD7 1.25'
       ),
-      ", I shared how I add depth and realism to my animations. If you haven't already, I'd suggest checking it out! It features these fun little springy demos:"
-    ),
-    mdx(
-      SpringComparison,
-      { scoochCloser: !0, mdxType: 'SpringComparison' },
-      mdx(
-        Environment,
-        { type: 'clear', mdxType: 'Environment' },
-        mdx(SpringMechanism, { mass: 0.5, mdxType: 'SpringMechanism' })
-      ),
-      mdx(
-        Environment,
-        { flipped: !0, type: 'clear', mdxType: 'Environment' },
-        mdx(SpringMechanism, { mass: 3, mdxType: 'SpringMechanism' })
-      )
+      '. The answer is 20.25 pixels.'
     ),
     mdx(
       'p',
       null,
-      '(\u2728 Drag and release the weights to see the animation \u2728)'
+      mdx('strong', { parentName: 'p' }, 'What? Why??'),
+      ' This happens because font size is ',
+      mdx('em', { parentName: 'p' }, 'inheritable'),
+      '. The paragraph has a font size of ',
+      mdx('inlineCode', { parentName: 'p' }, '1.25em'),
+      ', which means \u201C1.25x the current font size\u201D. But what ',
+      mdx('i', null, 'is'),
+      ' the current font size? Well, it gets inherited from the parent: ',
+      mdx('inlineCode', { parentName: 'p' }, '0.9em'),
+      ". And so it's 1.25x the parent, which is 0.9x ",
+      mdx('em', { parentName: 'p' }, 'its'),
+      ' parent, which is 1.125x ',
+      mdx('em', { parentName: 'p' }, 'its'),
+      ' parent.'
     ),
     mdx(
       'p',
       null,
-      'My favourite spring-physics animation library is ',
-      mdx(
-        'a',
-        e({ parentName: 'p' }, { href: 'https://www.react-spring.io/' }),
-        'React Spring'
-      ),
-      ". It offers a modern hook-based API, and unbeatable performance. Let's update our snippet to use it instead of CSS transitions:"
-    ),
-    mdx(
-      'pre',
-      null,
-      mdx(
-        'code',
-        e(
-          { parentName: 'pre' },
-          {
-            className: 'language-jsx',
-            metastring: 'clampMaxHeight=false highlight=[[0,0],[5,11],[22,24]]',
-            clampMaxHeight: 'false',
-            highlight: '[[0,0],[5,11],[22,24]]',
-          }
-        ),
-        `import { animated, useSpring } from 'react-spring';
-
-const Boop = ({ rotation = 0, timing = 150, children }) => {
-  const [isBooped, setIsBooped] = React.useState(false);
-
-  const style = useSpring({
-    display: 'inline-block',
-    backfaceVisibility: 'hidden',
-    transform: isBooped
-      ? \`rotate(\${rotation}deg)\`
-      : \`rotate(0deg)\`,
-  });
-
-  React.useEffect(() => {
-    // Unchanged
-  }, [isBooped, timing]);
-
-  const trigger = () => {
-    // Unchanged
-  };
-
-  return (
-    <animated.span onMouseEnter={trigger} style={style}>
-      {children}
-    </animated.span>
-  );
-};
-`
-      )
+      'Essentially, we need to multiply every ',
+      mdx('inlineCode', { parentName: 'p' }, 'em'),
+      ' value in the tree until we either hit a "fixed" value (using pixels), or we make it all the way to the top of the tree. This is exactly as gnarly as it sounds. \u{1F62C}'
     ),
     mdx(
       'p',
       null,
-      'Before, we were creating a ',
-      mdx('inlineCode', { parentName: 'p' }, 'style'),
-      " object and passing it directly onto our span. Now, we're passing that style object (without ",
-      mdx('inlineCode', { parentName: 'p' }, 'transition'),
-      ') into ',
-      mdx('inlineCode', { parentName: 'p' }, 'useSpring'),
-      '.'
+      'To solve this problem, the CSS language designers created the ',
+      mdx('inlineCode', { parentName: 'p' }, 'rem'),
+      ' unit. It stands for \u201CRoot EM\u201D.'
     ),
     mdx(
       'p',
       null,
       'The ',
-      mdx('inlineCode', { parentName: 'p' }, 'useSpring'),
-      ' hook can be thought of as one of those industrial machines that squirts the strawberry filling into pop-tarts:'
+      mdx('inlineCode', { parentName: 'p' }, 'rem'),
+      ' unit is like the ',
+      mdx('inlineCode', { parentName: 'p' }, 'em'),
+      " unit, except it's always a multiple of the font size on the ",
+      mdx('em', { parentName: 'p' }, 'root node'),
+      ', the ',
+      mdx('inlineCode', { parentName: 'p' }, '<html>'),
+      ' element. It ignores any inherited font sizes, and always calculates based on the top-level node.'
+    ),
+    mdx(
+      'p',
+      null,
+      'Documents have a default font size of 16px, which means that ',
+      mdx('inlineCode', { parentName: 'p' }, '1rem'),
+      ' has a \u201Cnative\u201D value of 16px.',
+      mdx(Asterisk, {
+        content:
+          'This value, however, is user-configurable! More on this shortly',
+        mdxType: 'Asterisk',
+      })
+    ),
+    mdx(
+      'p',
+      null,
+      'We can re-define the value of ',
+      mdx('inlineCode', { parentName: 'p' }, '1rem'),
+      ' by changing the ',
+      mdx('inlineCode', { parentName: 'p' }, 'font-size'),
+      ' on the root node:'
+    ),
+    mdx(RemDemo, { mdxType: 'RemDemo' }),
+    mdx(
+      'p',
+      null,
+      'We ',
+      mdx('em', { parentName: 'p' }, 'can'),
+      " do this, but we shouldn't."
+    ),
+    mdx(
+      'p',
+      null,
+      'In order to understand why, we need to talk about accessibility.'
+    ),
+    mdx('h1', null, 'Accessibility considerations'),
+    mdx(
+      'p',
+      null,
+      'The main accessibility consideration when it comes to pixel-vs-em/rem is ',
+      mdx('em', { parentName: 'p' }, 'vision'),
+      '. We want people with limited vision to be able to comfortably read the sentences and paragraphs on our websites and web applications.'
+    ),
+    mdx(
+      'p',
+      null,
+      'There are a few ways that folks with limited vision can increase the size of text.'
+    ),
+    mdx(
+      'p',
+      null,
+      "One method is to use the browser's zoom functionality. The standard keyboard shortcut for this is ",
+      mdx('inlineCode', { parentName: 'p' }, '\u2318'),
+      ' + ',
+      mdx('inlineCode', { parentName: 'p' }, '+'),
+      ' on MacOS, ',
+      mdx('inlineCode', { parentName: 'p' }, 'ctrl'),
+      ' + ',
+      mdx('inlineCode', { parentName: 'p' }, '+'),
+      ' on Windows/Linux.'
     ),
     mdx(VideoGif, {
-      alt: 'An industrial machine squirting red jam onto a pastry, and then folding it up',
-      src: '/videos/boop/poptart.mp4',
       noBorder: !0,
-      style: { width: '100%', maxWidth: 994 / 2 },
+      src: 'https://storage.googleapis.com/joshwcomeau/chrome-zoom.mp4',
+      maxWidth: 1920 / 2,
       mdxType: 'VideoGif',
     }),
     mdx(
       'p',
       null,
-      "In other words, it takes some plain CSS and injects \u2728 spring magic \u2728 into it. Instead of using the B\xE9zier curves that CSS provides, it'll use spring math instead. That's why we omit the ",
-      mdx('inlineCode', { parentName: 'p' }, 'transition'),
-      " property; we're delegating that task to React Spring."
+      "I'll call this method ",
+      mdx('em', { parentName: 'p' }, 'zooming'),
+      ' in this tutorial.'
     ),
     mdx(
       'p',
       null,
-      "Because spring physics aren't a native part of the web (yet!), we can't pass this magic-injected style object onto a ",
-      mdx('inlineCode', { parentName: 'p' }, '<span>'),
-      '. Instead, we render an ',
-      mdx('inlineCode', { parentName: 'p' }, '<animated.span>'),
-      ', which is identical to the ',
-      mdx('inlineCode', { parentName: 'p' }, '<span>'),
-      " we had before, except it knows how to handle the springy style object we've produced."
+      'The Web Content Accessibility Guidelines (WCAG) state that in order to be accessible, a site should be ',
+      mdx(
+        'a',
+        e(
+          { parentName: 'p' },
+          { href: 'https://www.w3.org/TR/WCAG21/#resize-text' }
+        ),
+        'usable at 200% zoom'
+      ),
+      ". I've heard from accessibility advocates that this number is really a minimum, and that many folks with vision disorders often crank much higher than that."
     ),
-    mdx('p', null, "Here's the result:"),
-    mdx(DoubleIconDemo, { boop: 'BoopV2', mdxType: 'DoubleIconDemo' }),
     mdx(
       'p',
       null,
-      "This feels a bit sluggish, so let's tweak the configuration:"
+      "Finally, there's another method, one that fewer developers know about. We can also increase the default font size in our browser settings:"
     ),
+    mdx(VideoGif, {
+      noBorder: !0,
+      src: 'https://storage.googleapis.com/joshwcomeau/chrome-font-scaling.mp4',
+      maxWidth: 1920 / 2,
+      mdxType: 'VideoGif',
+    }),
+    mdx(
+      'p',
+      null,
+      "I'll call this method ",
+      mdx('em', { parentName: 'p' }, 'font scaling'),
+      ' in this tutorial.'
+    ),
+    mdx(
+      'p',
+      null,
+      'Font scaling works by re-defining the \u201Cbaseline\u201D font size, the default font size that all relative units will be based on (rem, em, %).'
+    ),
+    mdx(
+      'p',
+      null,
+      'Remember earlier, when we said that ',
+      mdx('inlineCode', { parentName: 'p' }, '1rem'),
+      " was equal to 16px? That's only true if the user hasn't touched their default font size! If they boost their default font size to 32px, each rem will now be ",
+      mdx('i', null, '32px'),
+      ' instead of 16.'
+    ),
+    mdx(
+      'p',
+      null,
+      'Essentially, you can think of font scaling as ',
+      mdx('em', { parentName: 'p' }, 'changing the definition of 1 rem.')
+    ),
+    mdx(
+      'p',
+      null,
+      mdx(
+        'strong',
+        { parentName: 'p' },
+        "Here's where we hit our first accessibility snag."
+      ),
+      " When we use a pixel value for a font-size on the page, it will no longer be affected by the user's chosen default font size."
+    ),
+    mdx(PxRemComparisonDemo, { mdxType: 'PxRemComparisonDemo' }),
+    mdx(
+      'p',
+      null,
+      'This is why we should use relative units like ',
+      mdx('inlineCode', { parentName: 'p' }, 'rem'),
+      ' and ',
+      mdx('inlineCode', { parentName: 'p' }, 'em'),
+      ' for text size. It gives the user the ability to redefine their value, to suit their needs.'
+    ),
+    mdx(
+      'p',
+      null,
+      "Now, the picture isn't as bleak as it used to be, thanks to ",
+      mdx('em', { parentName: 'p' }, 'browser zooming'),
+      '.'
+    ),
+    mdx(
+      'p',
+      null,
+      'When the user zooms in or out, ',
+      mdx('em', { parentName: 'p' }, 'everything'),
+      ' gets bigger. It essentially applies a multiple to every unit, including pixels. It affects everything except viewport units (like ',
+      mdx('inlineCode', { parentName: 'p' }, 'vw'),
+      ' and ',
+      mdx('inlineCode', { parentName: 'p' }, 'vh'),
+      '). This has been the case for many years now, across all major browsers.'
+    ),
+    mdx(
+      'p',
+      null,
+      "So, if users can always zoom to increase their font size, do we really need to worry about supporting font scaling as well? Isn't one option good enough?"
+    ),
+    mdx(
+      'p',
+      null,
+      "The problem is that zoom is really intended to be used on a site-by-site basis. Someone might have to manually tinker and fuss with the zoom every time they visit a new site. Wouldn't it be better if they could set a baseline font size, one that is large enough for them to read comfortably, and have that size be universally respected?"
+    ),
+    mdx(
+      'p',
+      null,
+      "(Let's also keep in mind that not everyone can trigger a keyboard shortcut easily. A few years ago, I suffered a nerve injury that left me unable to use a keyboard. I interacted with the computer ",
+      mdx(
+        'a',
+        e({ parentName: 'p' }, { href: '/blog/hands-free-coding/' }),
+        'using dictation and eye-tracking'
+      ),
+      '. Suddenly, each \u201Ckeystroke\u201D became a lot more taxing!)'
+    ),
+    mdx(
+      'p',
+      null,
+      'As a general rule, we should give the user as much control as possible, and we should ',
+      mdx('em', { parentName: 'p' }, 'never'),
+      " disable or block their settings from working. For this reason, it's very important to use a relative unit like ",
+      mdx('inlineCode', { parentName: 'p' }, 'rem'),
+      ' for typography.'
+    ),
+    mdx('h1', null, 'Strategic unit deployment'),
+    mdx(
+      'p',
+      null,
+      'Alright, so you might be thinking: if the ',
+      mdx('inlineCode', { parentName: 'p' }, 'rem'),
+      ' unit is respected by both zooming ',
+      mdx('em', { parentName: 'p' }, 'and'),
+      " font-scaling, shouldn't I always use ",
+      mdx('inlineCode', { parentName: 'p' }, 'rem'),
+      ' values? Why would I ever use pixels?'
+    ),
+    mdx(
+      'p',
+      null,
+      "Well, let's see what happens when we use ",
+      mdx('inlineCode', { parentName: 'p' }, 'rem'),
+      ' values for padding:'
+    ),
+    mdx(RemPaddingDemo, { mdxType: 'RemPaddingDemo' }),
+    mdx(
+      'p',
+      null,
+      'Remember that ',
+      mdx(
+        'strong',
+        { parentName: 'p' },
+        mdx('inlineCode', { parentName: 'strong' }, 'rem'),
+        " values scale with the user's default font size."
+      ),
+      ' This is a good thing when it comes to typography. Is it a good thing when it comes to other stuff, though? Do I actually want ',
+      mdx('em', { parentName: 'p' }, 'everything'),
+      ' to scale with font size?'
+    ),
+    mdx(
+      'p',
+      null,
+      "There's an implicit trade-off when it comes to text size. The larger the text is, the fewer characters can fit on each line. When the user cranks up the text by 250%, we can only fit a few words per line."
+    ),
+    mdx(
+      'p',
+      null,
+      'When we use ',
+      mdx('inlineCode', { parentName: 'p' }, 'rem'),
+      ' values for horizontal padding, though ',
+      mdx(
+        'strong',
+        { parentName: 'p' },
+        'we amplify this negative side-effect!'
+      ),
+      " We're reducing the amount of usable space, further restricting how many words can fit on each line."
+    ),
+    mdx(
+      'p',
+      null,
+      'This is bad',
+      mdx('br', null),
+      `
+because`,
+      mdx('br', null),
+      `
+paragraphs`,
+      mdx('br', null),
+      `
+like this one`,
+      mdx('br', null),
+      `
+with only a`,
+      mdx('br', null),
+      `
+few words per`,
+      mdx('br', null),
+      `
+line are`,
+      mdx('br', null),
+      `
+unpleasant to`,
+      mdx('br', null),
+      `
+read.`
+    ),
+    mdx(
+      'p',
+      null,
+      "Similarly, how about border widths? It doesn't really make sense for a border to become thicker as the user scales up their preferred text size, does it?"
+    ),
+    mdx(
+      'p',
+      null,
+      'This is why we want to use these units ',
+      mdx('em', { parentName: 'p' }, 'strategically'),
+      ". When picking between pixels and rems, here's the question you should be asking yourself:"
+    ),
+    mdx(
+      'blockquote',
+      {
+        style: {
+          color: 'var(--color-gray-700)',
+          fontSize: '1.4rem',
+          marginTop: '3rem',
+          marginBottom: '3rem',
+        },
+      },
+      "\u201CShould this value scale up as the user increases their browser's default font size?\u201D"
+    ),
+    mdx(
+      'p',
+      null,
+      'This question is the root of the mental model I use. If the value should increase with the default font size, I use ',
+      mdx('inlineCode', { parentName: 'p' }, 'rem'),
+      '. Otherwise, I use ',
+      mdx('inlineCode', { parentName: 'p' }, 'px'),
+      '.'
+    ),
+    mdx(
+      'p',
+      null,
+      'That said, the ',
+      mdx('i', null, 'answer'),
+      " to this question isn't always obvious. Let's look at some examples."
+    ),
+    mdx('h2', null, 'Media queries'),
+    mdx('p', null, 'Should we use pixels or rems for our media query values?'),
     mdx(
       'pre',
       null,
       mdx(
         'code',
-        e(
-          { parentName: 'pre' },
-          {
-            className: 'language-jsx',
-            metastring: 'highlight=[[6,9]]',
-            highlight: '[[6,9]]',
-          }
-        ),
-        `const style = useSpring({
-  display: 'inline-block',
-  backfaceVisibility: 'hidden',
-  transform: isBooped
-    ? \`rotate(\${rotation}deg)\`
-    : \`rotate(0deg)\`,
-  config: {
-    tension: 300,
-    friction: 10,
-  },
-});
+        e({ parentName: 'pre' }, { className: 'language-css' }),
+        `/* Should we do this: */
+@media (min-width: 800px) {
+  }
+
+/* \u2026Or this: */
+@media (min-width: 50rem) {
+}
 `
       )
     ),
     mdx(
       'p',
       null,
-      'By cranking up the tension and lowering the friction, our icons react much more swiftly to being hovered over:'
+      "It's probably not obvious what the distinction is here, so let's break it down."
     ),
-    mdx(DoubleIconDemo, { mdxType: 'DoubleIconDemo' }),
-    mdx('p', null, "Now we're getting somewhere!"),
+    mdx(
+      'p',
+      null,
+      'Suppose a user sets their default text size to 32px, double the standard text size. This means that 50rem will now be equal to ',
+      mdx('i', null, '1600px'),
+      ' instead of 800px.'
+    ),
+    mdx(
+      'p',
+      null,
+      'By sliding the breakpoint up like this, it means that the user will see the ',
+      mdx('i', null, 'mobile'),
+      " layout until their window is at least 1600px wide. If they're on a laptop, it's very likely they'll see the mobile layout instead of the desktop layout."
+    ),
+    mdx(
+      'p',
+      null,
+      "At first, I thought this seemed like a bad thing. They're not actually a mobile user, so why would we show them the mobile layout??"
+    ),
+    mdx(
+      'p',
+      null,
+      "I've come to realize, however, that ",
+      mdx(
+        'strong',
+        { parentName: 'p' },
+        'we usually ',
+        mdx('i', null, 'do'),
+        ' want to use rems for media queries.'
+      )
+    ),
+    mdx('p', null, "Let's look at a real-world example."),
+    mdx(
+      'p',
+      null,
+      'On my course platform, I have a left-hand navigation list, with the content shown on the right:'
+    ),
+    mdx('img', {
+      alt: 'Screenshot of a lesson in a course platform, with left-hand navigation',
+      src: '/images/pixels-and-accessibility/cp-desktop.png',
+      width: 2542 / 2,
+      height: 1448 / 2,
+    }),
+    mdx(
+      'p',
+      null,
+      'On smaller screens, I want to maximize the amount of space for the content, and so the navigation becomes toggleable:'
+    ),
+    mdx(VideoGif, {
+      noBorder: !0,
+      src: '/images/pixels-and-accessibility/cp-tablet.mp4',
+      maxWidth: 1638 / 2,
+      mdxType: 'VideoGif',
+    }),
+    mdx(
+      'p',
+      null,
+      "Let's see what happens when the user visits with a 32px default font size, using both pixels and rem media queries:"
+    ),
+    mdx(ImageCompare, {
+      maxImageWidth: 600,
+      firstTitle: 'Pixel Media Query',
+      secondTitle: 'Rem Media Query',
+      firstChild: mdx('img', {
+        type: 'native',
+        alt: 'The desktop layout is used, with HUGE text, and not much space for it',
+        src: '/images/pixels-and-accessibility/media-query-in-px.png',
+        style: { width: '100%', display: 'block' },
+      }),
+      secondChild: mdx('img', {
+        type: 'native',
+        alt: 'The mobile layout is used, with HUGE text, and plenty of space for it',
+        src: '/images/pixels-and-accessibility/media-query-in-rem.png',
+        style: { width: '100%', display: 'block' },
+      }),
+      mdxType: 'ImageCompare',
+    }),
+    mdx(
+      'p',
+      null,
+      'As we increase the size of the text, the left-hand navigation gets wider and wider (because it uses a rem-based width). As a result, the main content area gets squeezed smaller and smaller.'
+    ),
+    mdx(
+      'p',
+      null,
+      'When we use a rem-based media query, however, we drop back down to the \u201Cmobile\u201D layout. As a result, the content becomes much more readable, and the experience is much improved.'
+    ),
+    mdx(
+      'p',
+      null,
+      "We're so used to thinking of media queries in terms of mobile/tablet/desktop, but I think it's more helpful to think in terms of ",
+      mdx('strong', { parentName: 'p' }, 'available space.')
+    ),
+    mdx(
+      'p',
+      null,
+      'A mobile user has less available space than a desktop user, and so we design layouts that are optimized for that amount of space. Similarly, when someone cranks up their default font size, they ',
+      mdx('i', null, 'reduce the amount of available space,'),
+      ' and so they should probably receive the same optimizations.'
+    ),
+    mdx('h2', null, 'Vertical margins'),
+    mdx('p', null, "Let's look at another scenario. Vertical margins:"),
+    mdx(VerticalMarginsDemo, { mdxType: 'VerticalMarginsDemo' }),
+    mdx(
+      'p',
+      null,
+      "Vertical margins on text (assuming we're working in a horizontally-written language like English) are typically used to improve its readability. We add extra space between paragraphs so that we can quickly tell where one paragraph ends and the next one begins.",
+      mdx(Asterisk, {
+        content:
+          'Interestingly, the web is somewhat unique in terms of paragraph spacing. Print media, like books, indent the first line of each new paragraph, without adding any additional vertical space between paragraphs.',
+        mdxType: 'Asterisk',
+      })
+    ),
+    mdx(
+      'p',
+      null,
+      "This space has a \u201Cfunctional\u201D purpose when it comes to text. We aren't using it aesthetically."
+    ),
+    mdx(
+      'p',
+      null,
+      "For these reasons, I think it does make sense to scale these margins with the user's chosen root font size."
+    ),
     mdx(
       Sidenote,
-      { title: 'Why a timeout?', mdxType: 'Sidenote' },
+      {
+        title: 'A rare opportunity for the \u201Cem\u201D unit',
+        mdxType: 'Sidenote',
+      },
       mdx(
         'p',
         null,
-        'A few folks have reached out to suggest that instead of using ',
-        mdx('inlineCode', { parentName: 'p' }, 'setTimeout'),
-        ', I could instead use the ',
-        mdx('inlineCode', { parentName: 'p' }, 'onRest'),
-        ' callback from the React Spring API. It seems cleaner to schedule the "unboop" based on the animation itself, not based on an arbitrary amount of time, right?'
+        'When I need a relative unit, I almost always reach for ',
+        mdx('inlineCode', { parentName: 'p' }, 'rem'),
+        ". It's much simpler and more predictable than ",
+        mdx('inlineCode', { parentName: 'p' }, 'em'),
+        ', for the \u201Ccompounding\u201D issues ',
+        mdx(
+          'a',
+          e({ parentName: 'p' }, { href: '#rems' }),
+          'discussed earlier'
+        ),
+        '.'
+      ),
+      mdx(
+        'p',
+        null,
+        'That said, the ',
+        mdx('inlineCode', { parentName: 'p' }, 'em'),
+        ' unit works particularly well when it comes to margins on headings and paragraphs.'
       ),
       mdx(
         'expanded',
@@ -635,200 +891,238 @@ const Boop = ({ rotation = 0, timing = 150, children }) => {
         mdx(
           'p',
           null,
-          'In fact, I actually do want to use a timeout in this situation, for two reasons:'
+          "As an example, here's how I might style the headings using rems:"
         ),
         mdx(
-          'ol',
+          'pre',
           null,
           mdx(
-            'li',
-            { parentName: 'ol' },
-            'One of the great things about spring physics is how gracefully they handle interrupts. I ',
-            mdx('em', { parentName: 'li' }, 'want'),
-            " to cut it off, to yank it back to its default position before it's fully come to rest"
-          ),
-          mdx(
-            'li',
-            { parentName: 'ol' },
-            'The trouble in general with ',
-            mdx('inlineCode', { parentName: 'li' }, 'onRest'),
-            ' is that it waits until the animation has ',
-            mdx('em', { parentName: 'li' }, 'completely stopped'),
-            '.  This is usually much later than the ',
-            mdx('em', { type: 'original' }, 'perceived stop'),
-            ", since there's often a lot of sub-pixel oscillations at the tail end of the animation. You can tweak this by changing the ",
-            mdx('inlineCode', { parentName: 'li' }, 'precision'),
-            ' config prop, but sometimes those sub-pixel oscillations add a nice, subtle effect.'
+            'code',
+            e(
+              { parentName: 'pre' },
+              {
+                className: 'language-css',
+                metastring: 'lessBottomMargin',
+                lessBottomMargin: !0,
+              }
+            ),
+            `h1 {
+  font-size: 3rem
+  margin-top: 6rem;
+  margin-bottom: 1.5rem;
+}
+h2 {
+  font-size: 2rem
+  margin-top: 4rem;
+  margin-bottom: 1rem;
+}
+h3 {
+  font-size: 1.5rem;
+  margin-top: 3rem;
+  margin-bottom: 0.75rem;
+}
+`
           )
         ),
         mdx(
           'p',
           null,
-          'I wish that React Spring had an API that would let me specify a ',
-          mdx('em', { parentName: 'p' }, 'ratio of completion'),
-          `, so I could say "fire this callback when the animation is 50% complete". But really, the timeout solution I've come up with works just fine \u{1F604}`
+          'Because each heading level has its own font size, we need to calculate unique margin values for each one.'
+        ),
+        mdx(
+          'p',
+          null,
+          "Here's the exact same UI, described using ",
+          mdx('inlineCode', { parentName: 'p' }, 'em'),
+          ' instead:'
+        ),
+        mdx(
+          'pre',
+          null,
+          mdx(
+            'code',
+            e(
+              { parentName: 'pre' },
+              {
+                className: 'language-css',
+                metastring: 'lessBottomMargin',
+                lessBottomMargin: !0,
+              }
+            ),
+            `h1 {
+  font-size: 3rem;
+}
+h2 {
+  font-size: 2rem;
+}
+h3 {
+  font-size: 1.5rem;
+}
+
+h1, h2, h3 {
+  margin-top: 2em;
+  margin-bottom: 0.5em;
+}
+`
+          )
+        ),
+        mdx(
+          'p',
+          null,
+          'Each heading level has a unique font size, but with ',
+          mdx('inlineCode', { parentName: 'p' }, 'em'),
+          ', they can share their margin declarations. This is because ',
+          mdx('inlineCode', { parentName: 'p' }, 'em'),
+          " is calculated based on the current element's font size."
+        ),
+        mdx(
+          'p',
+          null,
+          "In other words, we're saying that each heading level should have \u201C2x\u201D top margin, and \u201C0.5x\u201D bottom margin. Those ratios are applied to the heading's font size."
+        ),
+        mdx(
+          'p',
+          null,
+          'Ultimately, both approaches are 100% valid, and equally accessible. I just wanted to share this neat little ',
+          mdx('inlineCode', { parentName: 'p' }, 'em'),
+          ' trick. \u{1F604}'
         )
       )
     ),
+    mdx('h2', null, 'Widths and heights'),
     mdx(
       'p',
       null,
-      "So far, we've limited our boop to affect rotation, but we can do a lot more than that! Let's update it to support size changes (via ",
-      mdx('inlineCode', { parentName: 'p' }, 'scale'),
-      ') and position shifts (via ',
-      mdx('inlineCode', { parentName: 'p' }, 'translate'),
-      '):'
+      "Alright, let's consider one more scenario. Here we have a button with a fixed width:"
     ),
-    mdx(DoubleIconDemo, {
-      boop: 'BoopV4',
-      transforms: [{ scale: 1.125 }, { y: -6 }],
-      mdxType: 'DoubleIconDemo',
-    }),
+    mdx(ButtonWidthDemo, { mdxType: 'ButtonWidthDemo' }),
     mdx(
       'p',
       null,
-      'The ',
-      mdx('inlineCode', { parentName: 'p' }, 'transform'),
-      ' CSS property accepts multiple space-separated values, so our code becomes:'
+      "So, we know that the button's ",
+      mdx('inlineCode', { parentName: 'p' }, 'font-size'),
+      ' should be set in rems\u2026 but what about its ',
+      mdx('inlineCode', { parentName: 'p' }, 'width'),
+      '?'
     ),
+    mdx('p', null, "There's a really interesting trade-off here:"),
     mdx(
-      'pre',
+      'ul',
       null,
       mdx(
-        'code',
-        e(
-          { parentName: 'pre' },
-          {
-            className: 'language-jsx',
-            metastring: 'clampMaxHeight=false highlight=[[1,4],[13,19]]',
-            clampMaxHeight: 'false',
-            highlight: '[[1,4],[13,19]]',
-          }
-        ),
-        `const Boop = ({
-  x = 0,
-  y = 0,
-  rotation = 0,
-  scale = 1,
-  timing = 150,
-  children,
-}) => {
-  const [isBooped, setIsBooped] = React.useState(false);
-
-  const style = useSpring({
-    display: 'inline-block',
-    backfaceVisibility: 'hidden',
-    transform: isBooped
-      ? \`translate(\${x}px, \${y}px)
-         rotate(\${rotation}deg)
-         scale(\${scale})\`
-      : \`translate(0px, 0px)
-         rotate(0deg)
-         scale(1)\`,
-    config: {
-      tension: 300,
-      friction: 10,
-    },
-  });
-
-  // The rest is unchanged\u2026
-};
-`
+        'li',
+        { parentName: 'ul' },
+        'If we set the width to be ',
+        mdx('inlineCode', { parentName: 'li' }, '240px'),
+        ", the button won't grow with font size, leading to line-wrapping and a taller button."
+      ),
+      mdx(
+        'li',
+        { parentName: 'ul' },
+        'If we set the width to be ',
+        mdx('inlineCode', { parentName: 'li' }, '15rem'),
+        ', the button will grow wider along with the font size.'
       )
     ),
     mdx(
       'p',
       null,
-      "We default all values to their natural state (eg. 0px translate, 1x scale). This allows us to only specify the values we want to change: if we don't pass a value for rotation, it won't rotate."
+      mdx('strong', { parentName: 'p' }, 'Which approach is best?'),
+      ' Well, it depends on the circumstances!'
     ),
     mdx(
       'p',
       null,
-      "I feel pretty happy with this result, but there's a problem with this solution\u2026 And it's a significant one. In fact, ",
+      "In most cases, I think it makes more sense to use rems. This preserves the button's proportions, its aesthetics. And it reduces the risk of an overflow, if the button has a particularly long word."
+    ),
+    mdx(
+      'p',
+      null,
+      'In some cases, though, pixels might be the better option. Maybe if you have a very specific layout in mind, and vertical space is more plentiful than horizontal space.'
+    ),
+    mdx(
+      Sidenote,
+      { title: 'Constraints', type: 'warning', mdxType: 'Sidenote' },
       mdx(
-        'strong',
-        { parentName: 'p' },
-        'we need to rethink our whole approach!'
-      )
-    ),
-    mdx('h1', null, 'Disconnected boops'),
-    mdx(
-      'p',
-      null,
-      "On the project I'm working on, I have widgets that can be expanded to show the full content. I thought it'd be fun to cause the caret to skip down a bit on hover:"
-    ),
-    mdx(ShowMoreDemo, { mdxType: 'ShowMoreDemo' }),
-    mdx(
-      'p',
-      null,
-      "This presents an interesting challenge, because there's a disconnect\u2014I want the boop to affect ",
-      mdx('em', { parentName: 'p' }, 'only'),
-      ' the caret, but it should be triggered whenever I mouse-over any part of it. If I wave my cursor over the word "Show", the caret should boop.'
-    ),
-    mdx('img', {
-      src: '/images/boop/hover-vs-animated-areas.png',
-      alt: 'A hand-drawn illustration of the above button, showing how the entire button is a hover target, but only a small portion will be animated.',
-      type: 'no-border',
-      style: { maxWidth: 250, transform: 'translateX(3px)' },
-    }),
-    mdx(
-      'p',
-      null,
-      "Our current approach doesn't allow for this at all. ",
+        'p',
+        null,
+        'In general, we need to be ',
+        mdx('em', { parentName: 'p' }, 'really careful'),
+        ' when setting fixed widths and heights.'
+      ),
       mdx(
-        'strong',
-        { parentName: 'p' },
-        'The animation is bound to the same element as the event-handler.'
-      )
-    ),
-    mdx(
-      'p',
-      null,
-      'After some experimentation, I realized that a ',
-      mdx('em', { parentName: 'p' }, 'hook'),
-      ', not a component, was the right API for this effect.'
-    ),
-    mdx('h2', null, 'Starting from the consumer'),
-    mdx(
-      'p',
-      null,
-      "Let's start from the perspective of someone using the API. I'll figure out how to implement it later; first, I want to figure out the simplest, easiest interface."
-    ),
-    mdx('p', null, "Here's what I came up with:"),
-    mdx(
-      'pre',
-      null,
+        'p',
+        null,
+        'In the example above, setting ',
+        mdx('inlineCode', { parentName: 'p' }, 'width: 15rem'),
+        ' will, in many cases, break mobile layouts, since it may produce a value too large for its container when the user cranks up their default font size!'
+      ),
       mdx(
-        'code',
-        e(
-          { parentName: 'pre' },
-          {
-            className: 'language-jsx',
-            metastring: 'lessBottomMargin',
-            lessBottomMargin: !0,
-          }
-        ),
-        `import { animated } from 'react-spring';
-
-function SomeComponent() {
-  const [style, trigger] = useBoop({ y: 10 });
-
-  return (
-    <button onMouseEnter={trigger}>
-      Show more
-      <animated.span style={style}>
-        <Icon icon="caret-down" />
-      </animated.span>
-    </button>
-  );
+        'p',
+        null,
+        'We can often mitigate this by clamping it to a maximum of 100%:'
+      ),
+      mdx(
+        'pre',
+        null,
+        mdx(
+          'code',
+          e(
+            { parentName: 'pre' },
+            {
+              className: 'language-css',
+              metastring: 'lessBottomMargin',
+              lessBottomMargin: !0,
+            }
+          ),
+          `.button {
+  max-width: 100%;
 }
 `
+        )
+      ),
+      mdx(
+        'p',
+        null,
+        'Similarly, when it comes to heights, we often want to use ',
+        mdx('inlineCode', { parentName: 'p' }, 'min-height'),
+        ' instead of ',
+        mdx('inlineCode', { parentName: 'p' }, 'height'),
+        '. This allows the container to grow as tall as it needs, in order to contain its children. This becomes important when a user scales up their font size, since the text will wind up wrapping onto more lines.'
       )
+    ),
+    mdx('h1', null, 'Test your intuition'),
+    mdx(
+      'p',
+      null,
+      "Alright, so we've learned that ",
+      mdx('inlineCode', { parentName: 'p' }, 'rem'),
+      " values should be used when we want to scale a value with the user's default font size."
     ),
     mdx(
       'p',
       null,
-      'We should be able to pass our hook an object representing the config, and it should give us two things:'
+      "What if it isn't obvious which option is best, though? Like with the button width?"
+    ),
+    mdx(
+      'p',
+      null,
+      "The best thing to do in these cases is to test it. Change your browser's default font size to 32px or 48px, and see how your app feels. Try using pixels, and then try using rems. Which option produces the best user experience, the most readable content?"
+    ),
+    mdx(
+      'p',
+      null,
+      "Over time, you'll develop a stronger and stronger intuition, as you see for yourself what to do in specific circumstances."
+    ),
+    mdx(
+      'p',
+      null,
+      mdx(
+        'strong',
+        { parentName: 'p' },
+        "Not sure how to change your browser's default font size?"
+      ),
+      " Here's the documentation for the most commonly-used browsers:"
     ),
     mdx(
       'ul',
@@ -836,670 +1130,406 @@ function SomeComponent() {
       mdx(
         'li',
         { parentName: 'ul' },
-        'The style object, to be applied to an ',
-        mdx('inlineCode', { parentName: 'li' }, 'animated'),
-        ' element, like ',
-        mdx('inlineCode', { parentName: 'li' }, 'animated.span'),
-        ' or ',
-        mdx('inlineCode', { parentName: 'li' }, 'animated.button')
+        mdx(
+          'a',
+          e(
+            { parentName: 'li' },
+            {
+              href: 'https://support.google.com/chrome/answer/96810?hl=en&co=GENIE.Platform%3DDesktop',
+            }
+          ),
+          'Chrome'
+        )
       ),
       mdx(
         'li',
         { parentName: 'ul' },
-        'A trigger function, to call whenever we want the boop to occur.'
+        mdx(
+          'a',
+          e(
+            { parentName: 'li' },
+            {
+              href: 'https://support.mozilla.org/en-US/kb/change-fonts-and-colors-websites-use',
+            }
+          ),
+          'Firefox'
+        )
+      ),
+      mdx(
+        'li',
+        { parentName: 'ul' },
+        mdx(
+          'a',
+          e(
+            { parentName: 'li' },
+            { href: 'https://support.apple.com/en-gb/HT207209' }
+          ),
+          'Safari'
+        )
+      ),
+      mdx(
+        'li',
+        { parentName: 'ul' },
+        mdx(
+          'a',
+          e(
+            { parentName: 'li' },
+            {
+              href: 'https://support.microsoft.com/en-us/microsoft-edge/increase-default-text-size-in-microsoft-edge-c62f80af-381d-0716-25a3-c4856dd3806c',
+            }
+          ),
+          'Edge'
+        )
       )
     ),
     mdx(
       'p',
       null,
-      "If we want, we can apply both of these things to the same element, but we don't have to! In fact, this hook gives us a ton of flexibility: we can trigger it whenever we want, not just on hover. For example, we can include mobile users by setting the effect on tap, or schedule it in an interval to add prominence to an important part of the UI!",
+      "If your browser isn't listed here, a quick Google search should turn it up!"
+    ),
+    mdx('h1', null, 'Quick tricks vs. mental models'),
+    mdx(
+      'p',
+      null,
+      'I have a philosophy when it comes to learning: ',
+      mdx(
+        'strong',
+        { parentName: 'p' },
+        "It's better to build an intuition than it is to rely on rote practice and memorization."
+      )
+    ),
+    mdx(
+      'p',
+      null,
+      'This blog post ',
+      mdx('i', null, 'could'),
+      ' have been a quick list of rules: \u201CUse pixels for X, use rems for Y\u201D. But how useful would it actually have been?'
+    ),
+    mdx(
+      'p',
+      null,
+      'The truth is, the real world is messy and complicated. No set of rules can possibly be comprehensive enough to cover every possible scenario. Even after writing CSS for 15 years, I still find myself facing novel layout challenges all the time!'
+    ),
+    mdx(
+      'p',
+      null,
+      mdx(
+        'em',
+        { parentName: 'p' },
+        "When we focus on building an intuition, we don't need to memorize rules."
+      ),
+      " We can rely on our mental model to come up with the right answer. It's wayyy more practical."
+    ),
+    mdx(
+      'p',
+      null,
+      'And yet, most of us learn from \u201Cquick tricks\u201D. We pick up an interesting nugget on Twitter. We memorize a lil\u2019 snippet to center a div or apply a flexible grid. And, ',
+      mdx('em', { parentName: 'p' }, 'inevitably,'),
+      " we hit snags where the snippet doesn't work as we expect, and we have no idea why."
+    ),
+    mdx(
+      'p',
+      null,
+      'I think this is why so many developers dislike writing CSS. We have a patchy mental model, and those holes make the language feel brittle and unpredictable, like a house of cards that is always on the verge of collapse.'
+    ),
+    mdx(
+      'p',
+      null,
+      'When we focus on building an intuition, on learning how CSS ',
+      mdx('em', { parentName: 'p' }, 'really'),
+      " works, the language becomes a joy to use. I used to find CSS frustrating, but now, it's one of my favourite parts of web development. I ",
+      mdx('em', { parentName: 'p' }, 'love'),
+      ' writing CSS.'
+    ),
+    mdx(
+      'p',
+      null,
+      "I wanted to share this joy, and so I quit my job and spent a year building a comprehensive self-paced online course. It's called ",
+      mdx(
+        'a',
+        e({ parentName: 'p' }, { href: 'https://css-for-js.dev/' }),
+        'CSS for JavaScript Developers'
+      ),
+      '.'
+    ),
+    mdx(
+      'p',
+      null,
+      "This course takes the approach we've used in this tutorial and applies it to ",
+      mdx('strong', { parentName: 'p' }, 'the entire CSS language.'),
+      ' Using interactive demos and live-editable code snippets, we explore how the language works, and how you can build an intuition you can use to implement ',
+      mdx('em', { parentName: 'p' }, 'any'),
+      ' layout. Not just the ones we cover explicitly.'
+    ),
+    mdx(
+      'p',
+      null,
+      "I built a custom course platform from scratch, using the same technology stack as my blog. But it's so much more. It includes tons of bite-sized videos, exercises, real-world-inspired projects, and even a handful of mini-games. \u2728"
+    ),
+    mdx(
+      'p',
+      null,
+      "It's specifically built for JavaScript developers, folks who use a component-based framework like React or Vue. In addition to core language concepts, we also explore things like how to build a component library from scratch."
+    ),
+    mdx(
+      'p',
+      null,
+      "If you're sick of not understanding how CSS works, this course is for you. \u{1F496}"
+    ),
+    mdx(
+      'p',
+      null,
+      'Learn more here: ',
+      mdx(
+        'a',
+        e({ parentName: 'p' }, { href: 'https://css-for-js.dev' }),
+        'https://css-for-js.dev/'
+      )
+    ),
+    mdx(
+      'a',
+      { href: 'https://css-for-js.dev/' },
+      mdx('img', {
+        src: '/images/css-for-js-banner.png',
+        alt: 'Banner with the headline \u201CStop wrestling with CSS\u201D. Sub-heading: \u201CThe all-new interactive learning experiecne designed to help JavaScript developers become confident with CSS\u201D',
+        width: 2076,
+        height: 1066,
+      })
+    ),
+    mdx('h1', null, 'Bonus: Rem quality of life'),
+    mdx(
+      'p',
+      null,
+      "Alright, so as we've seen, there are plenty of cases where we need to use ",
+      mdx('inlineCode', { parentName: 'p' }, 'rem'),
+      ' values for best results.'
+    ),
+    mdx(
+      'p',
+      null,
+      "Unfortunately, this unit can often be pretty frustrating to work with. It's not easy to do the conversion math in our heads. And we wind up with ",
+      mdx('em', { parentName: 'p' }, 'a lot'),
+      ' of decimals:'
+    ),
+    mdx(
+      'ul',
+      null,
+      mdx('li', { parentName: 'ul' }, '14px \u2192 0.875rem'),
+      mdx('li', { parentName: 'ul' }, '15px \u2192 0.9375rem'),
+      mdx(
+        'li',
+        { parentName: 'ul' },
+        mdx('strong', { parentName: 'li' }, '16px \u2192 1rem')
+      ),
+      mdx('li', { parentName: 'ul' }, '17px \u2192 1.0625rem'),
+      mdx('li', { parentName: 'ul' }, '18px \u2192 1.125rem'),
+      mdx('li', { parentName: 'ul' }, '19px \u2192 1.1875rem'),
+      mdx('li', { parentName: 'ul' }, '20px \u2192 1.25rem'),
+      mdx('li', { parentName: 'ul' }, '21px \u2192 1.3125rem')
+    ),
+    mdx(
+      'p',
+      null,
+      "Before you go memorize this list, let's look at some of the things we can do to improve the experience of working with rems."
+    ),
+    mdx('h2', null, 'The 62.5% trick'),
+    mdx(
+      'p',
+      null,
+      "Let's start with one of the most common options I've seen shared online."
+    ),
+    mdx('p', null, "Here's what it looks like:"),
+    mdx(
+      'pre',
+      null,
+      mdx(
+        'code',
+        e({ parentName: 'pre' }, { className: 'language-css' }),
+        `html {
+  font-size: 62.5%;
+}
+
+p {
+  /* Equivalent to 18px */
+  font-size: 1.8rem;
+}
+h3 {
+  /* Equivalent to 21px */
+  font-size: 2.1rem;
+}
+`
+      )
+    ),
+    mdx(
+      'p',
+      null,
+      "The idea is that we're scaling down the root font size so that each ",
+      mdx('inlineCode', { parentName: 'p' }, 'rem'),
+      ' unit is equal to 10px instead of 16px.'
+    ),
+    mdx(
+      'p',
+      null,
+      'People like this solution because the math becomes way easier. To get the ',
+      mdx('inlineCode', { parentName: 'p' }, 'rem'),
+      ' equivalent of 18px, you move the decimal (1.8rem) instead of having to divide 18 by 16 (1.125rem).'
+    ),
+    mdx(
+      'p',
+      null,
+      mdx(
+        'strong',
+        { parentName: 'p' },
+        "But, honestly, I don't recommend this approach."
+      ),
+      ' There are a few reasons.'
+    ),
+    mdx(
+      'p',
+      null,
+      'The first is that it can be risky. The default text size on the page is now equivalent to 10px. If you forget to apply a ',
+      mdx('inlineCode', { parentName: 'p' }, 'font-size'),
+      ' somewhere, the text is going to be ',
+      mdx('em', { parentName: 'p' }, 'very'),
+      ' tiny.',
       mdx(Asterisk, {
         content:
-          "With great power comes great responsibility. Please don't use this to create annoying experiences!",
+          'Admittedly, this one is easily avoided by setting font-size to 1.6rem on the <body> tag.',
         mdxType: 'Asterisk',
       })
     ),
-    mdx('p', null, "Here's how it's implemented:"),
     mdx(
-      'pre',
+      'p',
       null,
-      mdx(
-        'code',
-        e({ parentName: 'pre' }, { className: 'language-jsx' }),
-        `// hooks/use-boop.js
-import React from 'react';
-import { useSpring } from 'react-spring';
-
-function useBoop({
-  x = 0,
-  y = 0,
-  rotation = 0,
-  scale = 1,
-  timing = 150,
-  springConfig = {
-    tension: 300,
-    friction: 10,
-  },
-}) {
-  const [isBooped, setIsBooped] = React.useState(false);
-
-  const style = useSpring({
-    display: 'inline-block',
-    backfaceVisibility: 'hidden',
-    transform: isBooped
-      ? \`translate(\${x}px, \${y}px)
-         rotate(\${rotation}deg)
-         scale(\${scale})\`
-      : \`translate(0px, 0px)
-         rotate(0deg)
-         scale(1)\`,
-
-    config: springConfig,
-  });
-
-  React.useEffect(() => {
-    // All the same stuff...
-  }, [isBooped]);
-
-  const trigger = React.useCallback(() => {
-    setIsBooped(true);
-  }, []);
-
-  return [style, trigger];
-}
-`
-      )
+      'Also, it can break compatibility with third-party packages. If you use a tooltip library that uses rem-based font sizes, text in those tooltips is going to be 37.5% smaller than it should be! Similarly, it can mess with any browser extensions the end user has.'
     ),
     mdx(
       'p',
       null,
-      "Much of this logic is copied over; we're doing the same work to produce that ",
-      mdx('inlineCode', { parentName: 'p' }, 'style'),
-      ' object. Instead of applying it onto an element, though, we pass it off to the caller.'
+      "Finally, there are significant migration challenges to this approach. There's no reasonable way to \u201Cincrementally adopt\u201D it. You'll need to update every declaration that uses ",
+      mdx('inlineCode', { parentName: 'p' }, 'rem'),
+      " units across the app. Plus, you'll need to convince all your teammates that it's worth the trouble. Logistically, I'm not sure how realistic it is for most teams."
     ),
-    mdx('p', null, 'Two other small tweaks:'),
-    mdx(
-      'ol',
-      null,
-      mdx(
-        'li',
-        { parentName: 'ol' },
-        'The spring configuration is now provided as a parameter, since different situations might call for different physics.'
-      ),
-      mdx(
-        'li',
-        { parentName: 'ol' },
-        'The trigger function is wrapped in ',
-        mdx('inlineCode', { parentName: 'li' }, 'React.useCallback'),
-        ". This is done so that the function reference doesn't change between renders, to avoid breaking ",
-        mdx('inlineCode', { parentName: 'li' }, 'useMemo'),
-        " components. Because we don't know how the trigger function will be used, this seems like a prudent bit of forethought",
-        mdx(Asterisk, {
-          content:
-            "Some folks would categorize this as a premature optimization, but I've lost count of how many times I've had to perform this optimization to fix a measured, noticeable problem. Especially when the hook is made to be generalized and reusable, this feels like a no-brainer to me.",
-          mdxType: 'Asterisk',
-        }),
-        '.'
-      )
-    ),
-    mdx('h2', null, 'Back to the component'),
-    mdx(
-      'p',
-      null,
-      'This hook is neat, but I actually really liked the component API we came up with earlier. In cases where there ',
-      mdx('em', { parentName: 'p' }, "isn't"),
-      ' a disconnect between event-handler and animation, can we use a component instead?'
-    ),
-    mdx(
-      'p',
-      null,
-      'The really cool thing about this pattern is ',
-      mdx(
-        'em',
-        { type: 'original' },
-        'we can easily wrap the hook in a component'
-      ),
-      ', to have our cake and eat it too:'
-    ),
-    mdx(
-      'pre',
-      null,
-      mdx(
-        'code',
-        e({ parentName: 'pre' }, { className: 'language-jsx' }),
-        `// components/Boop.jsx
-import React from 'react';
-import { animated } from 'react-spring';
-
-import useBoop from '@hooks/use-boop';
-
-const Boop = ({ children, ...boopConfig }) => {
-  const [style, trigger] = useBoop(boopConfig);
-
-  return (
-    <animated.span onMouseEnter={trigger} style={style}>
-      {children}
-    </animated.span>
-  );
-};
-`
-      )
-    ),
-    mdx(
-      'p',
-      null,
-      "Our Boop component gets a whole lot smaller, since we're delegating all the hard stuff to our ",
-      mdx('inlineCode', { parentName: 'p' }, 'useBoop'),
-      ' hook. Now we have access to two glorious APIs, both powered by the same logic. ',
-      mdx('em', { parentName: 'p' }, 'DRY AF.')
-    ),
-    mdx(
-      Sidenote,
-      { title: 'Snapping into place?', mdxType: 'Sidenote' },
-      mdx(
-        'p',
-        null,
-        'Depending on your animation, you may notice that when the animation ends, it seems to "snap into place".'
-      ),
-      mdx(
-        'p',
-        null,
-        "This is a subtle shift by a pixel or two. It's especially common when you're animating an element that contains text:"
-      ),
-      mdx('img', {
-        alt: "A mouse hovers over our 'hello world' button, and it shifts slightly",
-        src: '/images/css-transitions/texture-issue.gif',
-        width: 230,
-        height: 134,
-      }),
-      mdx(
-        'p',
-        null,
-        'You can learn more about why this is happening, and how to fix it, in my blog post, ',
-        mdx(
-          'a',
-          e({ parentName: 'p' }, { href: '/animation/css-transitions' }),
-          '\u201CAn Interactive Guide to CSS Transitions\u201D'
-        ),
-        '.'
-      )
-    ),
-    mdx('h1', null, 'Keeping it accessible'),
-    mdx(
-      'p',
-      null,
-      "The component/hook combo we've created is delightful, but delight is subjective. Not everybody wants our UI to dance and jiggle about, ",
-      mdx('em', { parentName: 'p' }, 'especially'),
-      ' folks who have a vestibular disorder.'
-    ),
-    mdx(
-      'p',
-      null,
-      "I've written about how to ",
-      mdx(
-        'a',
-        e({ parentName: 'p' }, { href: '/react/prefers-reduced-motion/' }),
-        'build accessible animations'
-      ),
-      " in React. Let's apply some of those lessons here:"
-    ),
-    mdx(
-      'pre',
-      null,
-      mdx(
-        'code',
-        e(
-          { parentName: 'pre' },
-          {
-            className: 'language-jsx',
-            metastring: 'highlight=[[12,12],[28,30]]',
-            highlight: '[[12,12],[28,30]]',
-          }
-        ),
-        `// hooks/use-boop.js
-import React from 'react';
-import { useSpring } from 'react-spring';
-
-function useBoop({
-  rotation = 0,
-  timing = 150,
-  springConfig = {
-    tension: 300,
-    friction: 10,
-  },
-}) {
-  const prefersReducedMotion = usePrefersReducedMotion();
-
-  const [isBooped, setIsBooped] = React.useState(false);
-
-  const style = useSpring({
-    // All the same stuff
-  });
-
-  React.useEffect(() => {
-    // All the same stuff here as well...
-  }, [isBooped]);
-
-  const trigger = React.useCallback(() => {
-    // Yep yep
-  }, []);
-
-  let applicableStyle = prefersReducedMotion ? {} : style;
-
-  return [applicableStyle, trigger];
-}
-`
-      )
-    ),
+    mdx('p', null, "Let's look at some alternative options."),
+    mdx('h2', null, 'Calculated values'),
     mdx(
       'p',
       null,
       'The ',
-      mdx(
-        'a',
-        e(
-          { parentName: 'p' },
-          { href: '/snippets/react-hooks/use-prefers-reduced-motion' }
-        ),
-        'prefers-reduced-motion hook'
-      ),
-      ' will let us know if the user has expressed a preference to remove motion. If that value is ',
-      mdx('inlineCode', { parentName: 'p' }, 'true'),
-      `, we'll return a "dummy" style object. This ensures that the element will never move, since the style object is always empty.`
-    ),
-    mdx('h1', null, 'Yours to discover'),
-    mdx(
-      'p',
-      null,
-      'First: thank you so much for reading this far!! This has been quite a journey, and I appreciate you for taking it with me \u{1F604}'
-    ),
-    mdx(
-      'p',
-      null,
-      "You might be wondering, though: why on earth did we need to cover this in such depth? Why didn't I just publish an NPM module and write a post explaining how to use it, like I did with ",
-      mdx(
-        'a',
-        e(
-          { parentName: 'p' },
-          { href: '/react/announcing-use-sound-react-hook/' }
-        ),
-        'useSound'
-      ),
-      '? Surely that would be more convenient, both for the reader and the author.'
-    ),
-    mdx(
-      'p',
-      null,
-      "Here's the thing: this effect is effective ",
-      mdx('em', { parentName: 'p' }, 'because'),
-      " it's rare. I'm not interested in commoditizing it, because it would lose its charm!"
-    ),
-    mdx(
-      'p',
-      null,
-      "Instead, I'd much rather teach folks how to create effects like this, and let them run with it. This code will live in your Git repo, not buried in a ",
-      mdx('inlineCode', { parentName: 'p' }, 'node_modules'),
-      ' folder. Tinker with it, and see what else it can do! Create things I never could have anticipated, and show me ',
-      mdx(
-        'a',
-        e({ parentName: 'p' }, { href: 'https://twitter.com/JoshWComeau' }),
-        'on Twitter'
-      ),
-      ' \u{1F604}'
-    ),
-    mdx(
-      'p',
-      null,
-      "This code is mutable, and I hope you'll do some experimentation \u2728 if you're ",
-      mdx('em', { parentName: 'p' }, 'really'),
-      ' feeling adventurous, you could try and incorporate more physics: maybe the element should translate in the same direction as the cursor is moving, as if it was blowing in the breeze?'
-    ),
-    mdx(
-      'p',
-      null,
-      "Here's the final version, ready to copy-and-paste into your repo:"
+      mdx('inlineCode', { parentName: 'p' }, 'calc'),
+      ' CSS function can be used to translate pixel values to rems:'
     ),
     mdx(
       'pre',
       null,
       mdx(
         'code',
-        e({ parentName: 'pre' }, { className: 'language-jsx' }),
-        `import React from 'react';
-import { useSpring } from 'react-spring';
-
-// UPDATE this path to your copy of the hook!
-// Source here: https://joshwcomeau.com/snippets/react-hooks/use-prefers-reduced-motion
-import usePrefersReducedMotion from '@hooks/use-prefers-reduced-motion.hook';
-
-function useBoop({
-  x = 0,
-  y = 0,
-  rotation = 0,
-  scale = 1,
-  timing = 150,
-  springConfig = {
-    tension: 300,
-    friction: 10,
-  },
-}) {
-  const prefersReducedMotion = usePrefersReducedMotion();
-
-  const [isBooped, setIsBooped] = React.useState(false);
-
-  const style = useSpring({
-    transform: isBooped
-      ? \`translate(\${x}px, \${y}px)
-         rotate(\${rotation}deg)
-         scale(\${scale})\`
-      : \`translate(0px, 0px)
-         rotate(0deg)
-         scale(1)\`,
-    config: springConfig,
-  });
-
-  React.useEffect(() => {
-    if (!isBooped) {
-      return;
-    }
-
-    const timeoutId = window.setTimeout(() => {
-      setIsBooped(false);
-    }, timing);
-
-    return () => {
-      window.clearTimeout(timeoutId);
-    };
-  }, [isBooped]);
-
-  const trigger = React.useCallback(() => {
-    setIsBooped(true);
-  }, []);
-
-  let appliedStyle = prefersReducedMotion ? {} : style;
-
-  return [appliedStyle, trigger];
+        e({ parentName: 'pre' }, { className: 'language-css' }),
+        `p {
+  /* Produces 1.125rem. Equivalent to 18px */
+  font-size: calc(18 / 16 * 1rem);
 }
-
-export default useBoop;
+h3 {
+  /* Produces 1.3125rem. Equivalent to 21px */
+  font-size: calc(21 / 16 * 1rem);
+}
+h2 {
+  /* Produces 1.5rem. Equivalent to 24px */
+  font-size: calc(24 / 16 * 1rem);
+}
+h1 {
+  /* Produces 2rem. Equivalent to 32px */
+  font-size: calc(32 / 16 * 1rem);
+}
 `
       )
     ),
-    mdx('h1', null, 'Bonus: That star animation'),
     mdx(
       'p',
       null,
-      'In the initial demos of this tutorial, I showcased a hoverable star animation:'
-    ),
-    mdx(
-      Chunk,
-      { mdxType: 'Chunk' },
-      mdx(CircleDemo, { mdxType: 'CircleDemo' })
+      'Pretty cool, right? We can do the math right there inside the CSS declaration, and ',
+      mdx('inlineCode', { parentName: 'p' }, 'calc'),
+      ' will spit out the correct answer.'
     ),
     mdx(
       'p',
       null,
-      'This effect does indeed use the ',
-      mdx('inlineCode', { parentName: 'p' }, 'useBoop'),
-      " hook we've created, but it also involves some trigonometry, which is beyond the scope of this tutorial. I'm in the process of writing a post about how to use trigonometry to create effects like this one\u2014if you'd like to receive early access to that tutorial, and others like it, you can sign up for my newsletter:"
+      "This is a viable approach, but it's a bit of a mouthful. It's a lot of typing every time you want to use a ",
+      mdx('inlineCode', { parentName: 'p' }, 'rem'),
+      ' value.'
     ),
+    mdx('p', null, "Let's look at one more approach."),
+    mdx('h2', null, 'Leveraging CSS variables'),
+    mdx('p', null, "This is my favourite option. Here's what it looks like:"),
     mdx(
-      'div',
-      { style: { marginBottom: 48 } },
-      mdx(NewsletterSignup, { variant: 'minimal', mdxType: 'NewsletterSignup' })
+      'pre',
+      null,
+      mdx(
+        'code',
+        e({ parentName: 'pre' }, { className: 'language-css' }),
+        `html {
+  --14px: 0.875rem;
+  --15px: 0.9375rem;
+  --16px: 1rem;
+  --17px: 1.0625rem;
+  --18px: 1.125rem;
+  --19px: 1.1875rem;
+  --20px: 1.25rem;
+  --21px: 1.3125rem;
+}
+
+h1 {
+  font-size: var(--21px);
+}
+`
+      )
     ),
     mdx(
       'p',
       null,
-      "My newsletter is sent about once a month, and it includes little extras that don't quite fit on this blog. You can, of course, unsubscribe at any time, no hurt feelings. \u{1F49C}"
+      "We can do all the calculations once, and use CSS variables to store those options. When we need to use them, it's almost as easy as typing pixel values, but fully accessible! \u2728"
     ),
     mdx(
       'p',
       null,
-      "In the meantime, though, I'll share the snippet, with as much context as I can in the comments! Hope it helps. \u{1F31F}"
+      "It's a bit unconventional to start CSS variables with a number like this, but it's compliant with the spec, and appears to work across all major browsers."
+    ),
+    mdx(
+      'p',
+      null,
+      'If you use a design system with a spacing scale, we can use this same trick:'
     ),
     mdx(
       'pre',
       null,
       mdx(
         'code',
-        e({ parentName: 'pre' }, { className: 'language-jsx' }),
-        `import React from 'react';
-import styled from 'styled-components';
-import { animated, useSpring } from 'react-spring';
-import { Star } from 'react-feather';
-
-import useBoop from '@hooks/use-boop.hook';
-
-import UnstyledButton from '@components/UnstyledButton';
-import Spacer from '@components/Spacer';
-
-const useAngledBoop = (index) => {
-  // Our star has 5 points across a 360-degree area.
-  // Our first point should shoot out at 0 degrees,
-  // our second at 72 degrees (1/5th of 360),
-  // our third at 144 degrees, and so on.
-  let angle = index * (360 / 5);
-  // By default in JS, 0-degrees is the 3-o'clock
-  // position, but I want my animation to start at
-  // the 12-o'clock position, so I'll subtract
-  // 90 degrees
-  angle -= 90;
-
-  // Trigonometry methods in JS use radians, not
-  // degrees, so we need to convert.
-  const angleInRads = (angle * Math.PI) / 180;
-
-  // If this was meant to be reusable, this would
-  // be configurable, but it's not, so it's
-  // hardcoded. The # of pixels from the center
-  // that our circle will bounce.
-  const distance = 42;
-
-  // Convert polar coordinages (angle, distance)
-  // to cartesian ones (x, y), since JS uses
-  // a cartesian coordinate system:
-  const x = distance * Math.cos(angleInRads);
-  const y = distance * Math.sin(angleInRads);
-
-  // \`normalize\` is commonly called "lerp",
-  // as well as Linear Interpolation. It
-  // maps a value from one scale to another.
-  // In this case, I want the time to vary
-  // between 450ms and 600ms, with the first
-  // point being the slowest, and the last
-  // one being the fastest.
-  //
-  // It's defined below
-  let timing = normalize(index, 0, 4, 450, 600);
-
-  // \`normalize\` produces linear interpolation,
-  // but I want there to be a *bit* of an ease;
-  // I want it to appear to be slowing down,
-  // as we get further into the circles.
-  timing *= 1 + index * 0.22;
-
-  const friction = normalize(index, 0, 4, 15, 40);
-
-  const boop = useBoop({
-    x,
-    y,
-    timing,
-    scale: 1.4,
-    springConfig: { tension: 180, friction },
-  });
-
-  return boop;
-};
-
-const CircleDemo = () => {
-  const [c1s, c1t] = useAngledBoop(0);
-  const [c2s, c2t] = useAngledBoop(1);
-  const [c3s, c3t] = useAngledBoop(2);
-  const [c4s, c4t] = useAngledBoop(3);
-  const [c5s, c5t] = useAngledBoop(4);
-  const [starStyles, starTrigger] = useBoop({
-    scale: 1.1,
-    rotation: 10,
-    timing: 150,
-    springConfig: {
-      tension: 300,
-      friction: 6,
-    },
-  });
-
-  return (
-    <Wrapper>
-      <Button
-        onMouseEnter={() => {
-          // If I had more than 5 points, I might
-          // write a \`callAll()\` helper function.
-          // But I don't, so this is fine.
-          c1t();
-          c2t();
-          c3t();
-          c4t();
-          c5t();
-          starTrigger();
-        }}
-      >
-        <IconWrapper style={starStyles}>
-          <Star size={48} />
-        </IconWrapper>
-      </Button>
-      <Circle style={c1s} />
-      <Circle style={c2s} />
-      <Circle style={c3s} />
-      <Circle style={c4s} />
-      <Circle style={c5s} />
-    </Wrapper>
-  );
-};
-
-// This helper function is used in the component
-const normalize = (
-  number,
-  currentScaleMin,
-  currentScaleMax,
-  newScaleMin = 0,
-  newScaleMax = 1
-) => {
-  // FIrst, normalize the value between 0 and 1.
-  const standardNormalization =
-    (number - currentScaleMin) / (currentScaleMax - currentScaleMin);
-
-  // Next, transpose that value to our desired scale.
-  return (
-    (newScaleMax - newScaleMin) * standardNormalization + newScaleMin
-  );
-};
-
-// My project uses styled-components.
-// Nothing here is styled-components-specific,
-// however. It's just the tool I was already
-// using.
-const Wrapper = styled.div\`
-  position: relative;
-  width: min-content;
-\`;
-
-const Button = styled(UnstyledButton)\`
-  position: relative;
-  z-index: 3;
-  padding: 8px;
-  border-radius: 50%;
-\`;
-
-const IconWrapper = styled(animated.span)\`
-  display: block;
-
-  svg {
-    display: block;
-    stroke: var(--color-text) !important;
-    fill: var(--color-background) !important;
-  }
-\`;
-
-const Circle = styled(animated.div)\`
-  position: absolute;
-  z-index: 1;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  width: 8px;
-  height: 8px;
-  margin: auto;
-  border-radius: 50%;
-  background: hsl(50deg, 100%, 48%);
-\`;
-
-export default CircleDemo;
+        e({ parentName: 'pre' }, { className: 'language-css' }),
+        `html {
+  --font-size-xs: 0.75rem;
+  --font-size-sm: 0.875rem;
+  --font-size-md: 1rem;
+  --font-size-lg: 1.125rem;
+  --font-size-xl: 1.3125rem;
+  --font-size-2xl: 1.5rem;
+  --font-size-3xl: 2.652rem;
+  --font-size-4xl: 4rem;
+}
 `
       )
     ),
-    mdx('h1', null, 'Troubleshooting'),
     mdx(
       'p',
       null,
-      "If you try to use this effect in your project, and it doesn't work, this section might help you diagnose the issue! If your issue isn't listed, feel free to reach out ",
+      'One more bit of shameless self-promotion before I wrap up: In ',
       mdx(
         'a',
-        e({ parentName: 'p' }, { href: 'https://twitter.com/JoshWComeau' }),
-        'on Twitter'
+        e({ parentName: 'p' }, { href: 'https://css-for-js.dev/' }),
+        'CSS for JavaScript Developers'
       ),
-      '.'
-    ),
-    mdx('h2', null, 'Nothing happens'),
-    mdx(
-      'p',
-      null,
-      "If you don't see any motion, and no errors are reported, it's likely that you forgot to use ",
-      mdx('inlineCode', { parentName: 'p' }, 'animated'),
-      '! I still make this mistake frequently.'
-    ),
-    mdx(
-      'pre',
-      null,
-      mdx(
-        'code',
-        e({ parentName: 'pre' }, { className: 'language-jsx' }),
-        `// Broken example:
-function Thing() {
-  const [style, trigger] = useBoop({ x: 2 });
-
-  return (
-    <button style={style} onMouseEnter={trigger}>
-      Hello World
-    </button>
-  );
-}
-
-// Fixed!
-import { animated } from 'react-spring';
-
-function Thing() {
-  const [style, trigger] = useBoop({ x: 2 });
-
-  return (
-    <animated.button style={style} onMouseEnter={trigger}>
-      Hello World
-    </animated.button>
-  );
-}
-`
-      )
-    ),
-    mdx(
-      TwitterCTA,
-      { mdxType: 'TwitterCTA' },
-      mdx(
-        'p',
-        null,
-        'This tutorial took about ',
-        mdx(Em, { mdxType: 'Em' }, '20 hours'),
-        " to create. If you found it helpful, I'd really appreciate if you shared it with your network on Twitter! \u{1F64F}"
-      )
+      ', we explore many of the ideas discussed here, including CSS variables, ',
+      mdx('inlineCode', { parentName: 'p' }, 'calc'),
+      ', design systems, and oh so much more. \u2728'
     )
   );
 }
