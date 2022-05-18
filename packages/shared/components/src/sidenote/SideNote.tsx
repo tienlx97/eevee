@@ -1,5 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import React, { CSSProperties, HTMLAttributes } from 'react';
+
 import { COLOR_SWAP_TRANSITION_DURATION } from '@vaporeon/constants';
 import { makeStyles, mergeClasses, shorthands } from '@griffel/react';
 
@@ -9,6 +10,7 @@ import { UnstyledButton2 } from '../button';
 
 import { animated } from '@react-spring/web';
 import { ChevronDown, InfoIcon, SuccessIcon, WarningIcon } from '../icons';
+import { Expanded } from './Expanded';
 
 const useStyles = makeStyles({
   baseWrapper: {
@@ -210,8 +212,6 @@ const useSidenoteStyles = makeStyles({
 });
 
 const Sidenote = ({ type = 'info', title, children }: ISideNote) => {
-  React.Children.toArray(children).forEach((e) => console.log(e));
-
   const styles = useSidenoteStyles();
 
   let Component;
@@ -234,12 +234,12 @@ const Sidenote = ({ type = 'info', title, children }: ISideNote) => {
   const [showMoreStyle, showMoreTrigger] = useBoop({ y: 4 });
 
   const expandedElem = React.Children.toArray(children).find((child: any) => {
-    return child?.props?.originalType === 'expanded';
+    return child.type === Expanded;
   });
 
   const previewChildren = React.Children.toArray(children).filter(
     (child: any) => {
-      return child?.props?.originalType !== 'expanded';
+      return child.type !== Expanded;
     }
   );
 

@@ -5,3 +5,5 @@ export {
   SuccessSidenote,
   WarningSidenote,
 } from './SideNote';
+
+export { Expanded } from './Expanded';
