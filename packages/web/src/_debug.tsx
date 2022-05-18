@@ -17,6 +17,8 @@ import {
   ContentHeadingDebug,
   HorizontalRuleDebug,
   SideNoteDebug,
+  ContentFooterArticleDebug,
+  ContentFooterTutorialDebug,
 } from '@jolteon/components/debugs';
 
 const useStyles = makeStyles({
@@ -111,6 +113,8 @@ const UIDebug = () => {
             <ContentHeadingDebug />
             <HorizontalRuleDebug />
             <SideNoteDebug />
+            <ContentFooterArticleDebug />
+            <ContentFooterTutorialDebug />
           </article>
         </div>
       </main>

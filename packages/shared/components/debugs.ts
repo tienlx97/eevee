@@ -13,3 +13,5 @@ export { HeadingDebug } from './src/heading/__debugs__';
 export { ContentHeadingDebug } from './src/contentheading/__debugs__';
 export { HorizontalRuleDebug } from './src/horizontalrule/__debugs__';
 export { SideNoteDebug } from './src/sidenote/__debugs__';
+export { ContentFooterArticleDebug } from './src/content-footer-article/__debugs__';
+export { ContentFooterTutorialDebug } from './src/content-footer-tutorial/__debugs__';
