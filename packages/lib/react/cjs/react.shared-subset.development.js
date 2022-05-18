@@ -1,6 +1,6 @@
 /**
  * @license React
- * react.development.js
+ * react.shared-subset.development.js
  *
  * Copyright (c) Facebook, Inc. and its affiliates.
  *
@@ -12,18 +12,9 @@
 
 if (process.env.NODE_ENV !== "production") {
   (function() {
+'use strict';
 
-          'use strict';
-
-/* global __REACT_DEVTOOLS_GLOBAL_HOOK__ */
-if (
-  typeof __REACT_DEVTOOLS_GLOBAL_HOOK__ !== 'undefined' &&
-  typeof __REACT_DEVTOOLS_GLOBAL_HOOK__.registerInternalModuleStart ===
-    'function'
-) {
-  __REACT_DEVTOOLS_GLOBAL_HOOK__.registerInternalModuleStart(new Error());
-}
-          // TODO: this is special because it gets imported during build.
+// TODO: this is special because it gets imported during build.
 //
 // TODO: 18.0.0 has not been released to NPM;
 // It exists as a placeholder so that DevTools can support work tag changes between releases.
@@ -31,37 +22,31 @@ if (
 // TODO: This module is used both by the release scripts and to expose a version
 // at runtime. We should instead inject the version number as part of the build
 // process, and use the ReactVersions.js module as the single source of truth.
-var ReactVersion = '18.0.0';
-
-// -----------------------------------------------------------------------------
-var enableTransitionTracing = false; // No known bugs, but needs performance testing
-// stuff. Intended to enable React core members to more easily debug scheduling
-// issues in DEV builds.
-
-var enableDebugTracing = false; // Track which Fiber(s) schedule render work.
+var ReactVersion = '18.1.0';
 
 // ATTENTION
-
-var REACT_ELEMENT_TYPE =  Symbol.for('react.element');
-var REACT_PORTAL_TYPE =  Symbol.for('react.portal');
-var REACT_FRAGMENT_TYPE =  Symbol.for('react.fragment');
-var REACT_STRICT_MODE_TYPE =  Symbol.for('react.strict_mode');
-var REACT_PROFILER_TYPE =  Symbol.for('react.profiler');
-var REACT_PROVIDER_TYPE =  Symbol.for('react.provider');
-var REACT_CONTEXT_TYPE =  Symbol.for('react.context');
-var REACT_SERVER_CONTEXT_TYPE =  Symbol.for('react.server_context');
-var REACT_FORWARD_REF_TYPE =  Symbol.for('react.forward_ref');
-var REACT_SUSPENSE_TYPE =  Symbol.for('react.suspense');
-var REACT_SUSPENSE_LIST_TYPE =  Symbol.for('react.suspense_list');
-var REACT_MEMO_TYPE =  Symbol.for('react.memo');
-var REACT_LAZY_TYPE =  Symbol.for('react.lazy');
-var REACT_SCOPE_TYPE =  Symbol.for('react.scope');
-var REACT_DEBUG_TRACING_MODE_TYPE =  Symbol.for('react.debug_trace_mode');
-var REACT_OFFSCREEN_TYPE =  Symbol.for('react.offscreen');
-var REACT_LEGACY_HIDDEN_TYPE =  Symbol.for('react.legacy_hidden');
-var REACT_CACHE_TYPE =  Symbol.for('react.cache');
-var REACT_SERVER_CONTEXT_DEFAULT_VALUE_NOT_LOADED =  Symbol.for('react.default_value');
-var MAYBE_ITERATOR_SYMBOL =  Symbol.iterator;
+// When adding new symbols to this file,
+// Please consider also adding to 'react-devtools-shared/src/backend/ReactSymbols'
+// The Symbol used to tag the ReactElement-like types.
+var REACT_ELEMENT_TYPE = Symbol.for('react.element');
+var REACT_PORTAL_TYPE = Symbol.for('react.portal');
+var REACT_FRAGMENT_TYPE = Symbol.for('react.fragment');
+var REACT_STRICT_MODE_TYPE = Symbol.for('react.strict_mode');
+var REACT_PROFILER_TYPE = Symbol.for('react.profiler');
+var REACT_PROVIDER_TYPE = Symbol.for('react.provider');
+var REACT_CONTEXT_TYPE = Symbol.for('react.context');
+var REACT_SERVER_CONTEXT_TYPE = Symbol.for('react.server_context');
+var REACT_FORWARD_REF_TYPE = Symbol.for('react.forward_ref');
+var REACT_SUSPENSE_TYPE = Symbol.for('react.suspense');
+var REACT_SUSPENSE_LIST_TYPE = Symbol.for('react.suspense_list');
+var REACT_MEMO_TYPE = Symbol.for('react.memo');
+var REACT_LAZY_TYPE = Symbol.for('react.lazy');
+var REACT_SCOPE_TYPE = Symbol.for('react.scope');
+var REACT_DEBUG_TRACING_MODE_TYPE = Symbol.for('react.debug_trace_mode');
+var REACT_OFFSCREEN_TYPE = Symbol.for('react.offscreen');
+var REACT_LEGACY_HIDDEN_TYPE = Symbol.for('react.legacy_hidden');
+var REACT_CACHE_TYPE = Symbol.for('react.cache');
+var MAYBE_ITERATOR_SYMBOL = Symbol.iterator;
 var FAUX_ITERATOR_SYMBOL = '@@iterator';
 function getIteratorFn(maybeIterable) {
   if (maybeIterable === null || typeof maybeIterable !== 'object') {
@@ -152,6 +137,13 @@ function setExtraStackFrame(stack) {
     return stack;
   };
 }
+
+// -----------------------------------------------------------------------------
+var enableTransitionTracing = false; // No known bugs, but needs performance testing
+// stuff. Intended to enable React core members to more easily debug scheduling
+// issues in DEV builds.
+
+var enableDebugTracing = false; // Track which Fiber(s) schedule render work.
 
 var ContextRegistry = {};
 
@@ -1256,120 +1248,6 @@ function onlyChild(children) {
   return children;
 }
 
-function createContext(defaultValue) {
-  // TODO: Second argument used to be an optional `calculateChangedBits`
-  // function. Warn to reserve for future use?
-  var context = {
-    $$typeof: REACT_CONTEXT_TYPE,
-    // As a workaround to support multiple concurrent renderers, we categorize
-    // some renderers as primary and others as secondary. We only expect
-    // there to be two concurrent renderers at most: React Native (primary) and
-    // Fabric (secondary); React DOM (primary) and React ART (secondary).
-    // Secondary renderers store their context values on separate fields.
-    _currentValue: defaultValue,
-    _currentValue2: defaultValue,
-    // Used to track how many concurrent renderers this context currently
-    // supports within in a single renderer. Such as parallel server rendering.
-    _threadCount: 0,
-    // These are circular
-    Provider: null,
-    Consumer: null,
-    // Add these to use same hidden class in VM as ServerContext
-    _defaultValue: null,
-    _globalName: null
-  };
-  context.Provider = {
-    $$typeof: REACT_PROVIDER_TYPE,
-    _context: context
-  };
-  var hasWarnedAboutUsingNestedContextConsumers = false;
-  var hasWarnedAboutUsingConsumerProvider = false;
-  var hasWarnedAboutDisplayNameOnConsumer = false;
-
-  {
-    // A separate object, but proxies back to the original context object for
-    // backwards compatibility. It has a different $$typeof, so we can properly
-    // warn for the incorrect usage of Context as a Consumer.
-    var Consumer = {
-      $$typeof: REACT_CONTEXT_TYPE,
-      _context: context
-    }; // $FlowFixMe: Flow complains about not setting a value, which is intentional here
-
-    Object.defineProperties(Consumer, {
-      Provider: {
-        get: function () {
-          if (!hasWarnedAboutUsingConsumerProvider) {
-            hasWarnedAboutUsingConsumerProvider = true;
-
-            error('Rendering <Context.Consumer.Provider> is not supported and will be removed in ' + 'a future major release. Did you mean to render <Context.Provider> instead?');
-          }
-
-          return context.Provider;
-        },
-        set: function (_Provider) {
-          context.Provider = _Provider;
-        }
-      },
-      _currentValue: {
-        get: function () {
-          return context._currentValue;
-        },
-        set: function (_currentValue) {
-          context._currentValue = _currentValue;
-        }
-      },
-      _currentValue2: {
-        get: function () {
-          return context._currentValue2;
-        },
-        set: function (_currentValue2) {
-          context._currentValue2 = _currentValue2;
-        }
-      },
-      _threadCount: {
-        get: function () {
-          return context._threadCount;
-        },
-        set: function (_threadCount) {
-          context._threadCount = _threadCount;
-        }
-      },
-      Consumer: {
-        get: function () {
-          if (!hasWarnedAboutUsingNestedContextConsumers) {
-            hasWarnedAboutUsingNestedContextConsumers = true;
-
-            error('Rendering <Context.Consumer.Consumer> is not supported and will be removed in ' + 'a future major release. Did you mean to render <Context.Consumer> instead?');
-          }
-
-          return context.Consumer;
-        }
-      },
-      displayName: {
-        get: function () {
-          return context.displayName;
-        },
-        set: function (displayName) {
-          if (!hasWarnedAboutDisplayNameOnConsumer) {
-            warn('Setting `displayName` on Context.Consumer has no effect. ' + "You should set it directly on the context with Context.displayName = '%s'.", displayName);
-
-            hasWarnedAboutDisplayNameOnConsumer = true;
-          }
-        }
-      }
-    }); // $FlowFixMe: Flow complains about missing properties because it doesn't understand defineProperty
-
-    context.Consumer = Consumer;
-  }
-
-  {
-    context._currentRenderer = null;
-    context._currentRenderer2 = null;
-  }
-
-  return context;
-}
-
 var Uninitialized = -1;
 var Pending = 0;
 var Resolved = 1;
@@ -1652,30 +1530,6 @@ function useContext(Context) {
 
   return dispatcher.useContext(Context);
 }
-function useState(initialState) {
-  var dispatcher = resolveDispatcher();
-  return dispatcher.useState(initialState);
-}
-function useReducer(reducer, initialArg, init) {
-  var dispatcher = resolveDispatcher();
-  return dispatcher.useReducer(reducer, initialArg, init);
-}
-function useRef(initialValue) {
-  var dispatcher = resolveDispatcher();
-  return dispatcher.useRef(initialValue);
-}
-function useEffect(create, deps) {
-  var dispatcher = resolveDispatcher();
-  return dispatcher.useEffect(create, deps);
-}
-function useInsertionEffect(create, deps) {
-  var dispatcher = resolveDispatcher();
-  return dispatcher.useInsertionEffect(create, deps);
-}
-function useLayoutEffect(create, deps) {
-  var dispatcher = resolveDispatcher();
-  return dispatcher.useLayoutEffect(create, deps);
-}
 function useCallback(callback, deps) {
   var dispatcher = resolveDispatcher();
   return dispatcher.useCallback(callback, deps);
@@ -1683,10 +1537,6 @@ function useCallback(callback, deps) {
 function useMemo(create, deps) {
   var dispatcher = resolveDispatcher();
   return dispatcher.useMemo(create, deps);
-}
-function useImperativeHandle(ref, create, deps) {
-  var dispatcher = resolveDispatcher();
-  return dispatcher.useImperativeHandle(ref, create, deps);
 }
 function useDebugValue(value, formatterFn) {
   {
@@ -1709,15 +1559,6 @@ function useId() {
 function useMutableSource(source, getSnapshot, subscribe) {
   var dispatcher = resolveDispatcher();
   return dispatcher.useMutableSource(source, getSnapshot, subscribe);
-}
-function useSyncExternalStore(subscribe, getSnapshot, getServerSnapshot) {
-  var dispatcher = resolveDispatcher();
-  return dispatcher.useSyncExternalStore(subscribe, getSnapshot, getServerSnapshot);
-}
-function useCacheRefresh() {
-  var dispatcher = resolveDispatcher(); // $FlowFixMe This is unstable, thus optional
-
-  return dispatcher.useCacheRefresh();
 }
 
 // Helpers to patch console.logs to avoid logging during side-effect free
@@ -2425,34 +2266,6 @@ function createElementWithValidation(type, props, children) {
 
   return element;
 }
-var didWarnAboutDeprecatedCreateFactory = false;
-function createFactoryWithValidation(type) {
-  var validatedFactory = createElementWithValidation.bind(null, type);
-  validatedFactory.type = type;
-
-  {
-    if (!didWarnAboutDeprecatedCreateFactory) {
-      didWarnAboutDeprecatedCreateFactory = true;
-
-      warn('React.createFactory() is deprecated and will be removed in ' + 'a future major release. Consider using JSX ' + 'or use React.createElement() directly instead.');
-    } // Legacy hook: remove it
-
-
-    Object.defineProperty(validatedFactory, 'type', {
-      enumerable: false,
-      get: function () {
-        warn('Factory.type is deprecated. Access the class directly ' + 'before passing it to createFactory.');
-
-        Object.defineProperty(this, 'type', {
-          value: type
-        });
-        return type;
-      }
-    });
-  }
-
-  return validatedFactory;
-}
 function cloneElementWithValidation(element, props, children) {
   var newElement = cloneElement.apply(this, arguments);
 
@@ -2462,77 +2275,6 @@ function cloneElementWithValidation(element, props, children) {
 
   validatePropTypes(newElement);
   return newElement;
-}
-
-var ContextRegistry$1 = ReactSharedInternals.ContextRegistry;
-function createServerContext(globalName, defaultValue) {
-
-  var wasDefined = true;
-
-  if (!ContextRegistry$1[globalName]) {
-    wasDefined = false;
-    var _context = {
-      $$typeof: REACT_SERVER_CONTEXT_TYPE,
-      // As a workaround to support multiple concurrent renderers, we categorize
-      // some renderers as primary and others as secondary. We only expect
-      // there to be two concurrent renderers at most: React Native (primary) and
-      // Fabric (secondary); React DOM (primary) and React ART (secondary).
-      // Secondary renderers store their context values on separate fields.
-      _currentValue: defaultValue,
-      _currentValue2: defaultValue,
-      _defaultValue: defaultValue,
-      // Used to track how many concurrent renderers this context currently
-      // supports within in a single renderer. Such as parallel server rendering.
-      _threadCount: 0,
-      // These are circular
-      Provider: null,
-      Consumer: null,
-      _globalName: globalName
-    };
-    _context.Provider = {
-      $$typeof: REACT_PROVIDER_TYPE,
-      _context: _context
-    };
-
-    {
-      var hasWarnedAboutUsingConsumer;
-      _context._currentRenderer = null;
-      _context._currentRenderer2 = null;
-      Object.defineProperties(_context, {
-        Consumer: {
-          get: function () {
-            if (!hasWarnedAboutUsingConsumer) {
-              error('Consumer pattern is not supported by ReactServerContext');
-
-              hasWarnedAboutUsingConsumer = true;
-            }
-
-            return null;
-          }
-        }
-      });
-    }
-
-    ContextRegistry$1[globalName] = _context;
-  }
-
-  var context = ContextRegistry$1[globalName];
-
-  if (context._defaultValue === REACT_SERVER_CONTEXT_DEFAULT_VALUE_NOT_LOADED) {
-    context._defaultValue = defaultValue;
-
-    if (context._currentValue === REACT_SERVER_CONTEXT_DEFAULT_VALUE_NOT_LOADED) {
-      context._currentValue = defaultValue;
-    }
-
-    if (context._currentValue2 === REACT_SERVER_CONTEXT_DEFAULT_VALUE_NOT_LOADED) {
-      context._currentValue2 = defaultValue;
-    }
-  } else if (wasDefined) {
-    throw new Error("ServerContext: " + globalName + " already defined");
-  }
-
-  return context;
 }
 
 function createMutableSource(source, getVersion) {
@@ -2583,241 +2325,8 @@ function startTransition(scope, options) {
   }
 }
 
-var didWarnAboutMessageChannel = false;
-var enqueueTaskImpl = null;
-function enqueueTask(task) {
-  if (enqueueTaskImpl === null) {
-    try {
-      // read require off the module object to get around the bundlers.
-      // we don't want them to detect a require and bundle a Node polyfill.
-      var requireString = ('require' + Math.random()).slice(0, 7);
-      var nodeRequire = module && module[requireString]; // assuming we're in node, let's try to get node's
-      // version of setImmediate, bypassing fake timers if any.
-
-      enqueueTaskImpl = nodeRequire.call(module, 'timers').setImmediate;
-    } catch (_err) {
-      // we're in a browser
-      // we can't use regular timers because they may still be faked
-      // so we try MessageChannel+postMessage instead
-      enqueueTaskImpl = function (callback) {
-        {
-          if (didWarnAboutMessageChannel === false) {
-            didWarnAboutMessageChannel = true;
-
-            if (typeof MessageChannel === 'undefined') {
-              error('This browser does not have a MessageChannel implementation, ' + 'so enqueuing tasks via await act(async () => ...) will fail. ' + 'Please file an issue at https://github.com/facebook/react/issues ' + 'if you encounter this warning.');
-            }
-          }
-        }
-
-        var channel = new MessageChannel();
-        channel.port1.onmessage = callback;
-        channel.port2.postMessage(undefined);
-      };
-    }
-  }
-
-  return enqueueTaskImpl(task);
-}
-
-var actScopeDepth = 0;
-var didWarnNoAwaitAct = false;
-function act(callback) {
-  {
-    // `act` calls can be nested, so we track the depth. This represents the
-    // number of `act` scopes on the stack.
-    var prevActScopeDepth = actScopeDepth;
-    actScopeDepth++;
-
-    if (ReactCurrentActQueue.current === null) {
-      // This is the outermost `act` scope. Initialize the queue. The reconciler
-      // will detect the queue and use it instead of Scheduler.
-      ReactCurrentActQueue.current = [];
-    }
-
-    var prevIsBatchingLegacy = ReactCurrentActQueue.isBatchingLegacy;
-    var result;
-
-    try {
-      // Used to reproduce behavior of `batchedUpdates` in legacy mode. Only
-      // set to `true` while the given callback is executed, not for updates
-      // triggered during an async event, because this is how the legacy
-      // implementation of `act` behaved.
-      ReactCurrentActQueue.isBatchingLegacy = true;
-      result = callback(); // Replicate behavior of original `act` implementation in legacy mode,
-      // which flushed updates immediately after the scope function exits, even
-      // if it's an async function.
-
-      if (!prevIsBatchingLegacy && ReactCurrentActQueue.didScheduleLegacyUpdate) {
-        var queue = ReactCurrentActQueue.current;
-
-        if (queue !== null) {
-          ReactCurrentActQueue.didScheduleLegacyUpdate = false;
-          flushActQueue(queue);
-        }
-      }
-    } catch (error) {
-      popActScope(prevActScopeDepth);
-      throw error;
-    } finally {
-      ReactCurrentActQueue.isBatchingLegacy = prevIsBatchingLegacy;
-    }
-
-    if (result !== null && typeof result === 'object' && typeof result.then === 'function') {
-      var thenableResult = result; // The callback is an async function (i.e. returned a promise). Wait
-      // for it to resolve before exiting the current scope.
-
-      var wasAwaited = false;
-      var thenable = {
-        then: function (resolve, reject) {
-          wasAwaited = true;
-          thenableResult.then(function (returnValue) {
-            popActScope(prevActScopeDepth);
-
-            if (actScopeDepth === 0) {
-              // We've exited the outermost act scope. Recursively flush the
-              // queue until there's no remaining work.
-              recursivelyFlushAsyncActWork(returnValue, resolve, reject);
-            } else {
-              resolve(returnValue);
-            }
-          }, function (error) {
-            // The callback threw an error.
-            popActScope(prevActScopeDepth);
-            reject(error);
-          });
-        }
-      };
-
-      {
-        if (!didWarnNoAwaitAct && typeof Promise !== 'undefined') {
-          // eslint-disable-next-line no-undef
-          Promise.resolve().then(function () {}).then(function () {
-            if (!wasAwaited) {
-              didWarnNoAwaitAct = true;
-
-              error('You called act(async () => ...) without await. ' + 'This could lead to unexpected testing behaviour, ' + 'interleaving multiple act calls and mixing their ' + 'scopes. ' + 'You should - await act(async () => ...);');
-            }
-          });
-        }
-      }
-
-      return thenable;
-    } else {
-      var returnValue = result; // The callback is not an async function. Exit the current scope
-      // immediately, without awaiting.
-
-      popActScope(prevActScopeDepth);
-
-      if (actScopeDepth === 0) {
-        // Exiting the outermost act scope. Flush the queue.
-        var _queue = ReactCurrentActQueue.current;
-
-        if (_queue !== null) {
-          flushActQueue(_queue);
-          ReactCurrentActQueue.current = null;
-        } // Return a thenable. If the user awaits it, we'll flush again in
-        // case additional work was scheduled by a microtask.
-
-
-        var _thenable = {
-          then: function (resolve, reject) {
-            // Confirm we haven't re-entered another `act` scope, in case
-            // the user does something weird like await the thenable
-            // multiple times.
-            if (ReactCurrentActQueue.current === null) {
-              // Recursively flush the queue until there's no remaining work.
-              ReactCurrentActQueue.current = [];
-              recursivelyFlushAsyncActWork(returnValue, resolve, reject);
-            } else {
-              resolve(returnValue);
-            }
-          }
-        };
-        return _thenable;
-      } else {
-        // Since we're inside a nested `act` scope, the returned thenable
-        // immediately resolves. The outer scope will flush the queue.
-        var _thenable2 = {
-          then: function (resolve, reject) {
-            resolve(returnValue);
-          }
-        };
-        return _thenable2;
-      }
-    }
-  }
-}
-
-function popActScope(prevActScopeDepth) {
-  {
-    if (prevActScopeDepth !== actScopeDepth - 1) {
-      error('You seem to have overlapping act() calls, this is not supported. ' + 'Be sure to await previous act() calls before making a new one. ');
-    }
-
-    actScopeDepth = prevActScopeDepth;
-  }
-}
-
-function recursivelyFlushAsyncActWork(returnValue, resolve, reject) {
-  {
-    var queue = ReactCurrentActQueue.current;
-
-    if (queue !== null) {
-      try {
-        flushActQueue(queue);
-        enqueueTask(function () {
-          if (queue.length === 0) {
-            // No additional work was scheduled. Finish.
-            ReactCurrentActQueue.current = null;
-            resolve(returnValue);
-          } else {
-            // Keep flushing work until there's none left.
-            recursivelyFlushAsyncActWork(returnValue, resolve, reject);
-          }
-        });
-      } catch (error) {
-        reject(error);
-      }
-    } else {
-      resolve(returnValue);
-    }
-  }
-}
-
-var isFlushing = false;
-
-function flushActQueue(queue) {
-  {
-    if (!isFlushing) {
-      // Prevent re-entrance.
-      isFlushing = true;
-      var i = 0;
-
-      try {
-        for (; i < queue.length; i++) {
-          var callback = queue[i];
-
-          do {
-            callback = callback(true);
-          } while (callback !== null);
-        }
-
-        queue.length = 0;
-      } catch (error) {
-        // If something throws, leave the remaining callbacks on the queue.
-        queue = queue.slice(i + 1);
-        throw error;
-      } finally {
-        isFlushing = false;
-      }
-    }
-  }
-}
-
 var createElement$1 =  createElementWithValidation ;
 var cloneElement$1 =  cloneElementWithValidation ;
-var createFactory =  createFactoryWithValidation ;
 var Children = {
   map: mapChildren,
   forEach: forEachChildren,
@@ -2826,668 +2335,34 @@ var Children = {
   only: onlyChild
 };
 
-var ReactCurrentOwner$1 = ReactSharedInternals.ReactCurrentOwner;
-var RESERVED_PROPS$1 = {
-  key: true,
-  ref: true,
-  __self: true,
-  __source: true
-};
-var specialPropKeyWarningShown$1;
-var specialPropRefWarningShown$1;
-var didWarnAboutStringRefs$1;
-
-{
-  didWarnAboutStringRefs$1 = {};
-}
-
-function hasValidRef$1(config) {
-  {
-    if (hasOwnProperty.call(config, 'ref')) {
-      var getter = Object.getOwnPropertyDescriptor(config, 'ref').get;
-
-      if (getter && getter.isReactWarning) {
-        return false;
-      }
-    }
-  }
-
-  return config.ref !== undefined;
-}
-
-function hasValidKey$1(config) {
-  {
-    if (hasOwnProperty.call(config, 'key')) {
-      var getter = Object.getOwnPropertyDescriptor(config, 'key').get;
-
-      if (getter && getter.isReactWarning) {
-        return false;
-      }
-    }
-  }
-
-  return config.key !== undefined;
-}
-
-function warnIfStringRefCannotBeAutoConverted$1(config, self) {
-  {
-    if (typeof config.ref === 'string' && ReactCurrentOwner$1.current && self && ReactCurrentOwner$1.current.stateNode !== self) {
-      var componentName = getComponentNameFromType(ReactCurrentOwner$1.current.type);
-
-      if (!didWarnAboutStringRefs$1[componentName]) {
-        error('Component "%s" contains the string ref "%s". ' + 'Support for string refs will be removed in a future major release. ' + 'This case cannot be automatically converted to an arrow function. ' + 'We ask you to manually fix this case by using useRef() or createRef() instead. ' + 'Learn more about using refs safely here: ' + 'https://reactjs.org/link/strict-mode-string-ref', getComponentNameFromType(ReactCurrentOwner$1.current.type), config.ref);
-
-        didWarnAboutStringRefs$1[componentName] = true;
-      }
-    }
-  }
-}
-
-function defineKeyPropWarningGetter$1(props, displayName) {
-  {
-    var warnAboutAccessingKey = function () {
-      if (!specialPropKeyWarningShown$1) {
-        specialPropKeyWarningShown$1 = true;
-
-        error('%s: `key` is not a prop. Trying to access it will result ' + 'in `undefined` being returned. If you need to access the same ' + 'value within the child component, you should pass it as a different ' + 'prop. (https://reactjs.org/link/special-props)', displayName);
-      }
-    };
-
-    warnAboutAccessingKey.isReactWarning = true;
-    Object.defineProperty(props, 'key', {
-      get: warnAboutAccessingKey,
-      configurable: true
-    });
-  }
-}
-
-function defineRefPropWarningGetter$1(props, displayName) {
-  {
-    var warnAboutAccessingRef = function () {
-      if (!specialPropRefWarningShown$1) {
-        specialPropRefWarningShown$1 = true;
-
-        error('%s: `ref` is not a prop. Trying to access it will result ' + 'in `undefined` being returned. If you need to access the same ' + 'value within the child component, you should pass it as a different ' + 'prop. (https://reactjs.org/link/special-props)', displayName);
-      }
-    };
-
-    warnAboutAccessingRef.isReactWarning = true;
-    Object.defineProperty(props, 'ref', {
-      get: warnAboutAccessingRef,
-      configurable: true
-    });
-  }
-}
-/**
- * Factory method to create a new React element. This no longer adheres to
- * the class pattern, so do not use new to call it. Also, instanceof check
- * will not work. Instead test $$typeof field against Symbol.for('react.element') to check
- * if something is a React Element.
- *
- * @param {*} type
- * @param {*} props
- * @param {*} key
- * @param {string|object} ref
- * @param {*} owner
- * @param {*} self A *temporary* helper to detect places where `this` is
- * different from the `owner` when React.createElement is called, so that we
- * can warn. We want to get rid of owner and replace string `ref`s with arrow
- * functions, and as long as `this` and owner are the same, there will be no
- * change in behavior.
- * @param {*} source An annotation object (added by a transpiler or otherwise)
- * indicating filename, line number, and/or other information.
- * @internal
- */
-
-
-var ReactElement$1 = function (type, key, ref, self, source, owner, props) {
-  var element = {
-    // This tag allows us to uniquely identify this as a React Element
-    $$typeof: REACT_ELEMENT_TYPE,
-    // Built-in properties that belong on the element
-    type: type,
-    key: key,
-    ref: ref,
-    props: props,
-    // Record the component responsible for creating this element.
-    _owner: owner
-  };
-
-  {
-    // The validation flag is currently mutative. We put it on
-    // an external backing store so that we can freeze the whole object.
-    // This can be replaced with a WeakMap once they are implemented in
-    // commonly used development environments.
-    element._store = {}; // To make comparing ReactElements easier for testing purposes, we make
-    // the validation flag non-enumerable (where possible, which should
-    // include every environment we run tests in), so the test framework
-    // ignores it.
-
-    Object.defineProperty(element._store, 'validated', {
-      configurable: false,
-      enumerable: false,
-      writable: true,
-      value: false
-    }); // self and source are DEV only properties.
-
-    Object.defineProperty(element, '_self', {
-      configurable: false,
-      enumerable: false,
-      writable: false,
-      value: self
-    }); // Two elements created in two different places should be considered
-    // equal for testing purposes and therefore we hide it from enumeration.
-
-    Object.defineProperty(element, '_source', {
-      configurable: false,
-      enumerable: false,
-      writable: false,
-      value: source
-    });
-
-    if (Object.freeze) {
-      Object.freeze(element.props);
-      Object.freeze(element);
-    }
-  }
-
-  return element;
-};
-/**
- * https://github.com/reactjs/rfcs/pull/107
- * @param {*} type
- * @param {object} props
- * @param {string} key
- */
-
-function jsxDEV(type, config, maybeKey, source, self) {
-  {
-    var propName; // Reserved names are extracted
-
-    var props = {};
-    var key = null;
-    var ref = null; // Currently, key can be spread in as a prop. This causes a potential
-    // issue if key is also explicitly declared (ie. <div {...props} key="Hi" />
-    // or <div key="Hi" {...props} /> ). We want to deprecate key spread,
-    // but as an intermediary step, we will use jsxDEV for everything except
-    // <div {...props} key="Hi" />, because we aren't currently able to tell if
-    // key is explicitly declared to be undefined or not.
-
-    if (maybeKey !== undefined) {
-      {
-        checkKeyStringCoercion(maybeKey);
-      }
-
-      key = '' + maybeKey;
-    }
-
-    if (hasValidKey$1(config)) {
-      {
-        checkKeyStringCoercion(config.key);
-      }
-
-      key = '' + config.key;
-    }
-
-    if (hasValidRef$1(config)) {
-      ref = config.ref;
-      warnIfStringRefCannotBeAutoConverted$1(config, self);
-    } // Remaining properties are added to a new props object
-
-
-    for (propName in config) {
-      if (hasOwnProperty.call(config, propName) && !RESERVED_PROPS$1.hasOwnProperty(propName)) {
-        props[propName] = config[propName];
-      }
-    } // Resolve default props
-
-
-    if (type && type.defaultProps) {
-      var defaultProps = type.defaultProps;
-
-      for (propName in defaultProps) {
-        if (props[propName] === undefined) {
-          props[propName] = defaultProps[propName];
-        }
-      }
-    }
-
-    if (key || ref) {
-      var displayName = typeof type === 'function' ? type.displayName || type.name || 'Unknown' : type;
-
-      if (key) {
-        defineKeyPropWarningGetter$1(props, displayName);
-      }
-
-      if (ref) {
-        defineRefPropWarningGetter$1(props, displayName);
-      }
-    }
-
-    return ReactElement$1(type, key, ref, self, source, ReactCurrentOwner$1.current, props);
-  }
-}
-
-var ReactCurrentOwner$2 = ReactSharedInternals.ReactCurrentOwner;
-var ReactDebugCurrentFrame$2 = ReactSharedInternals.ReactDebugCurrentFrame;
-
-function setCurrentlyValidatingElement$2(element) {
-  {
-    if (element) {
-      var owner = element._owner;
-      var stack = describeUnknownElementTypeFrameInDEV(element.type, element._source, owner ? owner.type : null);
-      ReactDebugCurrentFrame$2.setExtraStackFrame(stack);
-    } else {
-      ReactDebugCurrentFrame$2.setExtraStackFrame(null);
-    }
-  }
-}
-
-var propTypesMisspellWarningShown$1;
-
-{
-  propTypesMisspellWarningShown$1 = false;
-}
-/**
- * Verifies the object is a ReactElement.
- * See https://reactjs.org/docs/react-api.html#isvalidelement
- * @param {?object} object
- * @return {boolean} True if `object` is a ReactElement.
- * @final
- */
-
-
-function isValidElement$1(object) {
-  {
-    return typeof object === 'object' && object !== null && object.$$typeof === REACT_ELEMENT_TYPE;
-  }
-}
-
-function getDeclarationErrorAddendum$1() {
-  {
-    if (ReactCurrentOwner$2.current) {
-      var name = getComponentNameFromType(ReactCurrentOwner$2.current.type);
-
-      if (name) {
-        return '\n\nCheck the render method of `' + name + '`.';
-      }
-    }
-
-    return '';
-  }
-}
-
-function getSourceInfoErrorAddendum$1(source) {
-  {
-    if (source !== undefined) {
-      var fileName = source.fileName.replace(/^.*[\\\/]/, '');
-      var lineNumber = source.lineNumber;
-      return '\n\nCheck your code at ' + fileName + ':' + lineNumber + '.';
-    }
-
-    return '';
-  }
-}
-/**
- * Warn if there's no key explicitly set on dynamic arrays of children or
- * object keys are not valid. This allows us to keep track of children between
- * updates.
- */
-
-
-var ownerHasKeyUseWarning$1 = {};
-
-function getCurrentComponentErrorInfo$1(parentType) {
-  {
-    var info = getDeclarationErrorAddendum$1();
-
-    if (!info) {
-      var parentName = typeof parentType === 'string' ? parentType : parentType.displayName || parentType.name;
-
-      if (parentName) {
-        info = "\n\nCheck the top-level render call using <" + parentName + ">.";
-      }
-    }
-
-    return info;
-  }
-}
-/**
- * Warn if the element doesn't have an explicit key assigned to it.
- * This element is in an array. The array could grow and shrink or be
- * reordered. All children that haven't already been validated are required to
- * have a "key" property assigned to it. Error statuses are cached so a warning
- * will only be shown once.
- *
- * @internal
- * @param {ReactElement} element Element that requires a key.
- * @param {*} parentType element's parent's type.
- */
-
-
-function validateExplicitKey$1(element, parentType) {
-  {
-    if (!element._store || element._store.validated || element.key != null) {
-      return;
-    }
-
-    element._store.validated = true;
-    var currentComponentErrorInfo = getCurrentComponentErrorInfo$1(parentType);
-
-    if (ownerHasKeyUseWarning$1[currentComponentErrorInfo]) {
-      return;
-    }
-
-    ownerHasKeyUseWarning$1[currentComponentErrorInfo] = true; // Usually the current owner is the offender, but if it accepts children as a
-    // property, it may be the creator of the child that's responsible for
-    // assigning it a key.
-
-    var childOwner = '';
-
-    if (element && element._owner && element._owner !== ReactCurrentOwner$2.current) {
-      // Give the component that originally created this child.
-      childOwner = " It was passed a child from " + getComponentNameFromType(element._owner.type) + ".";
-    }
-
-    setCurrentlyValidatingElement$2(element);
-
-    error('Each child in a list should have a unique "key" prop.' + '%s%s See https://reactjs.org/link/warning-keys for more information.', currentComponentErrorInfo, childOwner);
-
-    setCurrentlyValidatingElement$2(null);
-  }
-}
-/**
- * Ensure that every element either is passed in a static location, in an
- * array with an explicit keys property defined, or in an object literal
- * with valid key property.
- *
- * @internal
- * @param {ReactNode} node Statically passed child of any type.
- * @param {*} parentType node's parent's type.
- */
-
-
-function validateChildKeys$1(node, parentType) {
-  {
-    if (typeof node !== 'object') {
-      return;
-    }
-
-    if (isArray(node)) {
-      for (var i = 0; i < node.length; i++) {
-        var child = node[i];
-
-        if (isValidElement$1(child)) {
-          validateExplicitKey$1(child, parentType);
-        }
-      }
-    } else if (isValidElement$1(node)) {
-      // This element was passed in a valid location.
-      if (node._store) {
-        node._store.validated = true;
-      }
-    } else if (node) {
-      var iteratorFn = getIteratorFn(node);
-
-      if (typeof iteratorFn === 'function') {
-        // Entry iterators used to provide implicit keys,
-        // but now we print a separate warning for them later.
-        if (iteratorFn !== node.entries) {
-          var iterator = iteratorFn.call(node);
-          var step;
-
-          while (!(step = iterator.next()).done) {
-            if (isValidElement$1(step.value)) {
-              validateExplicitKey$1(step.value, parentType);
-            }
-          }
-        }
-      }
-    }
-  }
-}
-/**
- * Given an element, validate that its props follow the propTypes definition,
- * provided by the type.
- *
- * @param {ReactElement} element
- */
-
-
-function validatePropTypes$1(element) {
-  {
-    var type = element.type;
-
-    if (type === null || type === undefined || typeof type === 'string') {
-      return;
-    }
-
-    var propTypes;
-
-    if (typeof type === 'function') {
-      propTypes = type.propTypes;
-    } else if (typeof type === 'object' && (type.$$typeof === REACT_FORWARD_REF_TYPE || // Note: Memo only checks outer props here.
-    // Inner props are checked in the reconciler.
-    type.$$typeof === REACT_MEMO_TYPE)) {
-      propTypes = type.propTypes;
-    } else {
-      return;
-    }
-
-    if (propTypes) {
-      // Intentionally inside to avoid triggering lazy initializers:
-      var name = getComponentNameFromType(type);
-      checkPropTypes(propTypes, element.props, 'prop', name, element);
-    } else if (type.PropTypes !== undefined && !propTypesMisspellWarningShown$1) {
-      propTypesMisspellWarningShown$1 = true; // Intentionally inside to avoid triggering lazy initializers:
-
-      var _name = getComponentNameFromType(type);
-
-      error('Component %s declared `PropTypes` instead of `propTypes`. Did you misspell the property assignment?', _name || 'Unknown');
-    }
-
-    if (typeof type.getDefaultProps === 'function' && !type.getDefaultProps.isReactClassApproved) {
-      error('getDefaultProps is only used on classic React.createClass ' + 'definitions. Use a static property named `defaultProps` instead.');
-    }
-  }
-}
-/**
- * Given a fragment, validate that it can only be provided with fragment props
- * @param {ReactElement} fragment
- */
-
-
-function validateFragmentProps$1(fragment) {
-  {
-    var keys = Object.keys(fragment.props);
-
-    for (var i = 0; i < keys.length; i++) {
-      var key = keys[i];
-
-      if (key !== 'children' && key !== 'key') {
-        setCurrentlyValidatingElement$2(fragment);
-
-        error('Invalid prop `%s` supplied to `React.Fragment`. ' + 'React.Fragment can only have `key` and `children` props.', key);
-
-        setCurrentlyValidatingElement$2(null);
-        break;
-      }
-    }
-
-    if (fragment.ref !== null) {
-      setCurrentlyValidatingElement$2(fragment);
-
-      error('Invalid attribute `ref` supplied to `React.Fragment`.');
-
-      setCurrentlyValidatingElement$2(null);
-    }
-  }
-}
-
-function jsxWithValidation(type, props, key, isStaticChildren, source, self) {
-  {
-    var validType = isValidElementType(type); // We warn in this case but don't throw. We expect the element creation to
-    // succeed and there will likely be errors in render.
-
-    if (!validType) {
-      var info = '';
-
-      if (type === undefined || typeof type === 'object' && type !== null && Object.keys(type).length === 0) {
-        info += ' You likely forgot to export your component from the file ' + "it's defined in, or you might have mixed up default and named imports.";
-      }
-
-      var sourceInfo = getSourceInfoErrorAddendum$1(source);
-
-      if (sourceInfo) {
-        info += sourceInfo;
-      } else {
-        info += getDeclarationErrorAddendum$1();
-      }
-
-      var typeString;
-
-      if (type === null) {
-        typeString = 'null';
-      } else if (isArray(type)) {
-        typeString = 'array';
-      } else if (type !== undefined && type.$$typeof === REACT_ELEMENT_TYPE) {
-        typeString = "<" + (getComponentNameFromType(type.type) || 'Unknown') + " />";
-        info = ' Did you accidentally export a JSX literal instead of a component?';
-      } else {
-        typeString = typeof type;
-      }
-
-      error('React.jsx: type is invalid -- expected a string (for ' + 'built-in components) or a class/function (for composite ' + 'components) but got: %s.%s', typeString, info);
-    }
-
-    var element = jsxDEV(type, props, key, source, self); // The result can be nullish if a mock or a custom function is used.
-    // TODO: Drop this when these are no longer allowed as the type argument.
-
-    if (element == null) {
-      return element;
-    } // Skip key warning if the type isn't valid since our key validation logic
-    // doesn't expect a non-string/function type and can throw confusing errors.
-    // We don't want exception behavior to differ between dev and prod.
-    // (Rendering will throw with a helpful message and as soon as the type is
-    // fixed, the key warnings will appear.)
-
-
-    if (validType) {
-      var children = props.children;
-
-      if (children !== undefined) {
-        if (isStaticChildren) {
-          if (isArray(children)) {
-            for (var i = 0; i < children.length; i++) {
-              validateChildKeys$1(children[i], type);
-            }
-
-            if (Object.freeze) {
-              Object.freeze(children);
-            }
-          } else {
-            error('React.jsx: Static children should always be an array. ' + 'You are likely explicitly calling React.jsxs or React.jsxDEV. ' + 'Use the Babel transform instead.');
-          }
-        } else {
-          validateChildKeys$1(children, type);
-        }
-      }
-    }
-
-    if (type === REACT_FRAGMENT_TYPE) {
-      validateFragmentProps$1(element);
-    } else {
-      validatePropTypes$1(element);
-    }
-
-    return element;
-  }
-} // These two functions exist to still get child warnings in dev
-// even with the prod transform. This means that jsxDEV is purely
-// opt-in behavior for better messages but that we won't stop
-// giving you warnings if you use production apis.
-
-function jsxWithValidationStatic(type, props, key) {
-  {
-    return jsxWithValidation(type, props, key, true);
-  }
-}
-function jsxWithValidationDynamic(type, props, key) {
-  {
-    return jsxWithValidation(type, props, key, false);
-  }
-}
-
-var jsx =  jsxWithValidationDynamic ; // we may want to special case jsxs internally to take advantage of static children.
-// for now we can ship identical prod functions
-
-var jsxs =  jsxWithValidationStatic ;
-var jsxDEV$1 =  jsxWithValidation ;
-
 exports.Children = Children;
-exports.Component = Component;
 exports.Fragment = REACT_FRAGMENT_TYPE;
 exports.Profiler = REACT_PROFILER_TYPE;
-exports.PureComponent = PureComponent;
 exports.StrictMode = REACT_STRICT_MODE_TYPE;
 exports.Suspense = REACT_SUSPENSE_TYPE;
 exports.SuspenseList = REACT_SUSPENSE_LIST_TYPE;
 exports.__SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED = ReactSharedInternals;
 exports.cloneElement = cloneElement$1;
-exports.createContext = createContext;
 exports.createElement = createElement$1;
-exports.createFactory = createFactory;
-exports.createMutableSource = createMutableSource;
 exports.createRef = createRef;
-exports.createServerContext = createServerContext;
 exports.forwardRef = forwardRef;
 exports.isValidElement = isValidElement;
-exports.jsx = jsx;
-exports.jsxDEV = jsxDEV$1;
-exports.jsxs = jsxs;
 exports.lazy = lazy;
 exports.memo = memo;
 exports.startTransition = startTransition;
-exports.unstable_Cache = REACT_CACHE_TYPE;
 exports.unstable_DebugTracingMode = REACT_DEBUG_TRACING_MODE_TYPE;
-exports.unstable_LegacyHidden = REACT_LEGACY_HIDDEN_TYPE;
-exports.unstable_Offscreen = REACT_OFFSCREEN_TYPE;
-exports.unstable_Scope = REACT_SCOPE_TYPE;
-exports.unstable_SuspenseList = REACT_SUSPENSE_LIST_TYPE;
-exports.unstable_act = act;
 exports.unstable_createMutableSource = createMutableSource;
 exports.unstable_getCacheForType = getCacheForType;
 exports.unstable_getCacheSignal = getCacheSignal;
-exports.unstable_startTransition = startTransition;
-exports.unstable_useCacheRefresh = useCacheRefresh;
 exports.unstable_useDeferredValue = useDeferredValue;
 exports.unstable_useMutableSource = useMutableSource;
-exports.unstable_useTransition = useTransition;
 exports.useCallback = useCallback;
 exports.useContext = useContext;
 exports.useDebugValue = useDebugValue;
 exports.useDeferredValue = useDeferredValue;
-exports.useEffect = useEffect;
 exports.useId = useId;
-exports.useImperativeHandle = useImperativeHandle;
-exports.useInsertionEffect = useInsertionEffect;
-exports.useLayoutEffect = useLayoutEffect;
 exports.useMemo = useMemo;
-exports.useMutableSource = useMutableSource;
-exports.useReducer = useReducer;
-exports.useRef = useRef;
-exports.useState = useState;
-exports.useSyncExternalStore = useSyncExternalStore;
 exports.useTransition = useTransition;
 exports.version = ReactVersion;
-          /* global __REACT_DEVTOOLS_GLOBAL_HOOK__ */
-if (
-  typeof __REACT_DEVTOOLS_GLOBAL_HOOK__ !== 'undefined' &&
-  typeof __REACT_DEVTOOLS_GLOBAL_HOOK__.registerInternalModuleStop ===
-    'function'
-) {
-  __REACT_DEVTOOLS_GLOBAL_HOOK__.registerInternalModuleStop(new Error());
-}
-        
   })();
 }

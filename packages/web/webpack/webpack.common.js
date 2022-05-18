@@ -15,6 +15,7 @@ const {
   svgRule,
   cssRule,
   typescriptRule,
+  mdxRule,
 } = require('./rules');
 
 const commonConfig = {
@@ -38,7 +39,7 @@ const commonConfig = {
   },
 
   resolve: {
-    extensions: ['.tsx', '.ts', '.js'],
+    extensions: ['.tsx', '.ts', '.js', '.mdx'],
     alias: {},
   },
 
@@ -70,6 +71,7 @@ const commonConfig = {
       svgReactComponentRule,
       svgRule,
       cssRule,
+      mdxRule,
     ],
   },
 };

@@ -20,7 +20,7 @@
       "es2017.object",
       "es2017.intl"
     ],
-    "types": ["jest", "node"],
+    "types": ["jest", "node", "mdx"],
     "rootDir": ".",
     "jsx": "react" /* Specify what JSX code is generated. */,
     "forceConsistentCasingInFileNames": true /* Ensure that casing is correct in imports. */,
@@ -31,5 +31,10 @@
     "skipLibCheck": true /* Skip type checking all .d.ts files. */,
     "typeRoots": ["./node_modules/@types"]
   },
-  "include": ["packages/**/__tests__", "packages/**/*.ts", "packages/**/*.tsx"]
+  "include": [
+    "packages/**/__tests__",
+    "packages/**/*.ts",
+    "packages/**/*.tsx",
+    "**/*.mdx"
+  ]
 }

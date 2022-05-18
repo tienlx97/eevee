@@ -56,12 +56,14 @@
   "dependencies": {
     "@griffel/react": "^1.0.4",
     "@jolteon/components": "*",
+    "@mdx-js/loader": "^2.1.1",
     "@types/history": "^5.0.0",
     "@types/react": "^18.0.5",
     "@types/react-dom": "^18.0.1",
     "@vaporeon/utils": "*",
     "react": "*",
     "react-dom": "*",
-    "tippy.js": "^6.3.7"
+    "tippy.js": "^6.3.7",
+    "@mdx-js/react": "2.1.1"
   }
 }
