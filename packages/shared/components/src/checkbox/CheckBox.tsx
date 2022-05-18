@@ -12,7 +12,7 @@ const useStyles = makeStyles({
   wrapper: {
     position: 'relative',
 
-    '&:hover .chkb-visible-box': {
+    '&:hover .chkb--visiblebox': {
       ...shorthands.borderColor('var(--color-gray-1000)'),
     },
   },
@@ -108,7 +108,7 @@ const Checkbox = ({ size = 18, checked, label, onChange }: ICheckBoxProps) => {
       <input
         data-hover
         onChange={onChange}
-        className={mergeClasses(classes.realCheckbox, 'chkb_real-checkbox')}
+        className={mergeClasses(classes.realCheckbox, 'chkb--realcheckbox')}
         type="checkbox"
         onMouseDown={() => {
           setActive(true);
@@ -124,7 +124,7 @@ const Checkbox = ({ size = 18, checked, label, onChange }: ICheckBoxProps) => {
         )}
       >
         <animated.div
-          className={mergeClasses(classes.visibleBox, 'chkb-visible-box')}
+          className={mergeClasses(classes.visibleBox, 'chkb--visiblebox')}
           style={{ width: size, height: size, ...outlineSpring }}
         >
           <animated.div

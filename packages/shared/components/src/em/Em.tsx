@@ -34,7 +34,7 @@ const Em = (props: IEmProps, ref?: any) => {
   return (
     <em
       ref={ref}
-      className={mergeClasses(styles.wrapper, 'em_wrapper', className)}
+      className={mergeClasses(styles.wrapper, 'em__wrapper', className)}
       style={{ color: color || 'var(--color-text)', display: 'block' }}
       {...delegated}
     >

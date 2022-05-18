@@ -1,11 +1,11 @@
-.sidenote_basewrapper .codewrapper_inlinewrapper {
+.sn__wrapper .cw__inlinewrapper {
   width: calc(100% + 16px * 2);
   margin-left: -16px;
   margin-right: -16px;
 }
 
 @media (max-width: 768px) {
-  .sidenote_basewrapper .codewrapper_inlinewrapper {
+  .sn__wrapper .cw__inlinewrapper {
     width: calc(100% + 16px * 2);
   }
 }

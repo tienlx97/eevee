@@ -41,12 +41,12 @@ const useStyles = makeStyles({
       outlineOffset: '32px',
     },
 
-    //   // '.sidebyside_codewrapper & ': {
+    //   // '.sbsc__wrapper & ': {
     //   //   marginTop: 0,
     //   //   marginBottom: '48px',
     //   // },
 
-    //   // '.sidenote_basewrapper & ': {
+    //   // '.sn__wrapper & ': {
     //   //   marginbottom: '24px',
     //   // },
 
@@ -84,7 +84,7 @@ const CodeSnippet = ({
 
   return (
     <div
-      className={mergeClasses(styles.outerWrapper, 'codesnippet_outerwrapper')}
+      className={mergeClasses(styles.outerWrapper, 'csnp__outerwrapper')}
       style={{ marginBottom: lessBottomMargin ? 40 : 80 }}
     >
       {live ? (

@@ -1,8 +1,8 @@
-.sidenote_basewrapper .highlight {
+.sn__wrapper .scnp--highlight {
   background: rgba(0, 0, 0, 0.15);
 }
 
-.highlight::after {
+.scnp--highlight::after {
   content: '';
   position: absolute;
   top: -2px;
@@ -14,7 +14,7 @@
 }
 
 
-.inert-editor pre {
+.scnp--inerteeditor pre {
   white-space: unset !important;
   word-break: unset !important;
   overflow-wrap: unset !important;

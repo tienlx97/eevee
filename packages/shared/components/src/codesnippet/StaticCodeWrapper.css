@@ -1,23 +1,23 @@
-.sidenote_basewrapper .static-codewrapper {
+.sn__wrapper .scw__wrapper {
   margin-left: unset;
   margin-right: unset;
   background: rgba(0, 0, 0, 0.1);
 }
 
-.sidebyside_codewrapper .static-codewrapper {
+.sbsc__wrapper .scw__wrapper {
   margin-left: 0;
   margin-right: 0;
   box-shadow: 0px 0px 35px 35px var(--color-background);
 }
 
 @media (max-width:768px) {
-  .sidenote_basewrapper .static-codewrapper {
+  .sn__wrapper .scw__wrapper {
     width: 100%
   }
 }
 
 @media (max-width: 563px) {
-  .sidenote_basewrapper .static-codewrapper {
+  .sn__wrapper .scw__wrapper {
     width: calc(100% + 32px);
     margin-left: -16px;
     margin-right: -16px;
@@ -25,6 +25,6 @@
   }
 }
 
-.sidenote_basewrapper .language {
+.sn__wrapper .scw__language {
   background: rgba(0, 0, 0, 0.1);
 }

@@ -19,7 +19,7 @@ const useStyles = makeStyles({
     WebkitBoxDecorationBreak: 'clone',
     boxDecorationBreak: 'clone',
 
-    // ' .sidenote_basewrapper &': {
+    // ' .sn__wrapper &': {
     //   ...shorthands.padding('1px', '6px'),
     // },
   },
@@ -29,7 +29,7 @@ const InlineCode = (props: IInlinecode, ref?: React.LegacyRef<HTMLElement>) => {
   const { className, children, ...rest } = props;
 
   const styles = useStyles();
-  const classes = mergeClasses(styles.wrapper, 'inlinecode_wrapper', className);
+  const classes = mergeClasses(styles.wrapper, 'ic__wrapper', className);
 
   return (
     <code {...rest} ref={ref} className={classes}>

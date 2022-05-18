@@ -2,7 +2,7 @@
   border-color: rebeccapurple
 } */
 
-.chkb_real-checkbox:focus.focus-visible+.visible-contents .chkb-visible-box {
+.chkb--realcheckbox:focus.focus-visible+.visible-contents .chkb--visiblebox {
   outline: 2px auto var(--color-primary);
   outline-offset: 2px;
 }

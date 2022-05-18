@@ -24,7 +24,7 @@ const useStyles = makeStyles({
       gridTemplateColumns: '1fr',
     },
 
-    // '.sidenote_basewrapper &': {
+    // '.sn__wrapper &': {
     //   ...shorthands.padding('0px'),
     //   marginLeft: '0px',
     //   marginRight: '0px',
@@ -38,7 +38,7 @@ function SideBySide(
   ref?: React.LegacyRef<HTMLDivElement>
 ) {
   const styles = useStyles();
-  const classes = mergeClasses(styles.wrapper, 'sidebyside_wrapper', className);
+  const classes = mergeClasses(styles.wrapper, 'sbs__wrapper', className);
 
   return (
     <div className={classes} {...delegated} ref={ref}>

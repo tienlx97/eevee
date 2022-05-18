@@ -22,13 +22,13 @@ const useStyles = makeStyles({
     ...shorthands.padding('32px'),
     backgroundColor: 'var(--syntax-bg)',
 
-    // '.sidenote_basewrapper &': {
+    // '.sn__wrapper &': {
     //   marginLeft: 'unset',
     //   marginRight: 'unset',
     //   backgroundColor: 'rgba(0, 0, 0, 0.1)',
     // },
 
-    // ' .sidebyside_codewrapper &': {
+    // ' .sbsc__wrapper &': {
     //   marginLeft: '0',
     //   marginRight: '0',
     //   boxShadow: '0px 0px 35px 35px var(--color-background)',
@@ -45,7 +45,7 @@ const useStyles = makeStyles({
     */
       width: 'calc(100vw)',
 
-      // '.sidenote_basewrapper & ': {
+      // '.sn__wrapper & ': {
       //   width: '100%',
       // },
     },
@@ -57,7 +57,7 @@ const useStyles = makeStyles({
       marginRight: '-16px',
       ...shorthands.padding('16px'),
 
-      // '.sidenote_basewrapper &': {
+      // '.sn__wrapper &': {
       //   width: 'calc(100% + 32px)',
       //   marginLeft: '-16px',
       //   marginRight: '-16px',
@@ -87,7 +87,7 @@ const useStyles = makeStyles({
     fontFamily: 'var(--font-family)',
     pointerEvents: 'none',
 
-    // '.sidenote_basewrapper & ': {
+    // '.sn__wrapper & ': {
     //   backgroundColor: 'rgba(0, 0, 0, 0.1)',
     // },
   },
@@ -122,10 +122,12 @@ const StaticCodeWrapper = ({
   return (
     <>
       {lang && (
-        <div className={mergeClasses(styles.language, 'language')}>{lang}</div>
+        <div className={mergeClasses(styles.language, 'scw__language')}>
+          {lang}
+        </div>
       )}
       <div
-        className={mergeClasses(styles.wrapper, 'static-codewrapper')}
+        className={mergeClasses(styles.wrapper, 'static__codewrapper')}
         data-code-snippet="true"
         style={{
           minHeight,

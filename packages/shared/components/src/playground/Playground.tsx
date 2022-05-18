@@ -74,7 +74,7 @@ const Playground = ({
   css,
   js,
   mode = 'default', // 'default' | 'react'
-  layoutMode, // codepen, sidebyside_wrapper, vertical-stack
+  layoutMode, // codepen, sbs__wrapper, vertical-stack
   centered,
   boxSizing = 'border-box',
   splitRatio = '0.5',
@@ -154,13 +154,13 @@ const Playground = ({
   );
 
   // There are three supported layout modes:
-  // sidebyside_wrapper (1 snippet, 1 result, side by side)
-  // codepen (2 snippets sidebyside_wrapper, 1 result underneath)
+  // sbs__wrapper (1 snippet, 1 result, side by side)
+  // codepen (2 snippets sbs__wrapper, 1 result underneath)
   // vertical-stack (2 snippets stacked vertically beside the result)
   // prettier-ignore
   layoutMode = layoutMode || (
     paneData.length === 1
-      ? 'sidebyside_wrapper'
+      ? 'sbs__wrapper'
       : 'codepen'
   );
 
@@ -248,7 +248,7 @@ const Playground = ({
       );
       break;
     }
-    case 'sidebyside_wrapper': {
+    case 'sbs__wrapper': {
       const [data] = paneData;
       const { label, ...editorData } = data;
 

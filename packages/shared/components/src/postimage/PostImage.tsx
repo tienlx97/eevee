@@ -28,7 +28,7 @@ const useStyles = makeStyles({
       ...shorthands.border('none'),
     },
 
-    // '.sidebyside_wrapper & ': {
+    // '.sbs__wrapper & ': {
     //   ...shorthands.padding('0'),
     //   ...shorthands.margin('0'),
     //   ...shorthands.border('none'),
@@ -222,7 +222,7 @@ const BaseImage = ({
   if (source) {
     return (
       <span /*type={type}*/
-        className={mergeClasses(styles.wrapper, 'postimage_wrapper')}
+        className={mergeClasses(styles.wrapper, 'pi__wrapper')}
         style={wrapperStyle}
       >
         <a href={source} target="_blank" rel="noopener noreferrer">
@@ -242,7 +242,7 @@ const BaseImage = ({
 
   return (
     <span /*type={type}*/
-      className={mergeClasses(styles.wrapper, 'postimage_wrapper')}
+      className={mergeClasses(styles.wrapper, 'pi__wrapper')}
       style={wrapperStyle}
     >
       <ImageElem

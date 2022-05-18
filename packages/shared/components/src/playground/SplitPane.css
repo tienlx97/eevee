@@ -1,4 +1,4 @@
-#divider:before, #divider:after {
+.sp__divider:before, .sp__divider:after {
   content: '';
   height: 100%;
   position: absolute;
@@ -9,7 +9,7 @@
   margin: auto;
 }
 
-#divider:before {
+.sp__divider:before {
   width: 100%;
   height: 1px;
   background-color: var(--color-gray-100);
@@ -17,14 +17,14 @@
 
 @media (min-width: 960px) {
 
-  #divider {
+  .sp__divider {
     width: 16px;
     cursor: col-resize;
     padding: 0;
   }
 
-  #divider:before,
-  #divider:after {
+  .sp__divider:before,
+  .sp__divider:after {
     content: '';
     height: 100%;
     position: absolute;
@@ -35,19 +35,19 @@
     margin: auto;
   }
 
-  #divider:before {
+  .sp__divider:before {
     width: 1px;
     height: auto;
   }
 
-  #divider:after {
+  .sp__divider:after {
     width: 11px;
     background-color: hsl(210deg 15% 20% / 0.5);
     opacity: 0;
     transition: opacity 500ms;
   }
 
-  #divider:hover:after {
+  .sp__divider:hover:after {
     opacity: 1;
     transition: opacity 250ms;
   }

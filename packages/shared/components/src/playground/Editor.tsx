@@ -26,7 +26,7 @@ const useStyles = makeStyles({
   },
 
   codeEditor: {
-    '-colorPrimary': 'hsl(210deg 13% 50% / 0.25)',
+    '--color-primary': 'hsl(210deg 13% 50% / 0.25)',
     backgroundColor: 'var(--syntax-bg)',
     color: 'var(--color-text)',
     fontFamily: 'var(--font-family-mono)',
@@ -40,7 +40,7 @@ const useStyles = makeStyles({
       outlineColor: 'initial !important',
       outlineStyle: 'none !important',
       outlineWidth: 'initial !important',
-      // ...shorthands.outline('none !important'),
+      ...shorthands.outline('none !important'),
       fontSize: `${FONT_SIZE}px !important`,
       lineHeight: `${LINE_HEIGHT + 2}px !important`,
     },

@@ -1,4 +1,4 @@
-.list_orderedlistelem li::before {
+.list__orderedlist--elem li::before {
   content: counters(counts, '.') '. ';
   font-feature-settings: 'tnum';
   color: var(--color-primary);
@@ -7,11 +7,11 @@
 }
 
 /* For nested list items, add top margin as well */
-ul .list_unorderedlistelem {
+ul .list__unorderedlist--elem {
   margin-top: 16px;
 }
 
-.sidenote_info .list_wrapper, .sidenote_warning .list_wrapper, .sidenote_success .list_wrapper {
+.sn__wrapper--info .list_wrapper, .sn__wrapper--warning .list_wrapper, .sn__wrapper--success .list_wrapper {
   font-size: calc(17 / 16 * 1rem);
   margin-bottom: 8px;
 }

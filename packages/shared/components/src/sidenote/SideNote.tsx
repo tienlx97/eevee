@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import React, { CSSProperties, HTMLAttributes } from 'react';
+import React, { CSSProperties } from 'react';
 
 import { COLOR_SWAP_TRANSITION_DURATION } from '@vaporeon/constants';
 import { makeStyles, mergeClasses, shorthands } from '@griffel/react';
@@ -11,6 +11,7 @@ import { UnstyledButton2 } from '../button';
 import { animated } from '@react-spring/web';
 import { ChevronDown, InfoIcon, SuccessIcon, WarningIcon } from '../icons';
 import { Expanded } from './Expanded';
+import { IBaseWrapperProps, ISideNote } from './SideNote.types';
 
 const useStyles = makeStyles({
   baseWrapper: {
@@ -50,11 +51,6 @@ const useStyles = makeStyles({
   },
 });
 
-// eslint-disable-next-line @typescript-eslint/no-empty-interface
-export interface IBaseWrapperProps extends HTMLAttributes<HTMLElement> {
-  appendClassName?: string;
-}
-
 const BaseWrapper = ({
   children,
   className,
@@ -64,11 +60,7 @@ const BaseWrapper = ({
 }: IBaseWrapperProps) => {
   const styles = useStyles();
 
-  const classes = mergeClasses(
-    styles.baseWrapper,
-    'sidenote_basewrapper',
-    className
-  );
+  const classes = mergeClasses(styles.baseWrapper, 'sn__wrapper', className);
 
   const innerStyle: CSSProperties = {
     transition: `background ${COLOR_SWAP_TRANSITION_DURATION}ms`,
@@ -88,13 +80,17 @@ const BaseWrapper = ({
 const InfoSidenote = (props: IBaseWrapperProps) => {
   const { className, ...rest } = props;
   const styles = useStyles();
-  const classes = mergeClasses(styles.infoSidenote, 'sidenote_info', className);
+  const classes = mergeClasses(
+    styles.infoSidenote,
+    'sn__wrapper--info',
+    className
+  );
 
   return (
     <BaseWrapper
       {...rest}
       className={classes}
-      // appendClassName="sidenote_info"
+      // appendClassName="sn__wrapper--info"
     ></BaseWrapper>
   );
 };
@@ -104,7 +100,7 @@ const SuccessSidenote = (props: IBaseWrapperProps) => {
   const styles = useStyles();
   const classes = mergeClasses(
     styles.successSidenote,
-    'sidenote_success',
+    'sn__wrapper--success',
     className
   );
 
@@ -112,7 +108,7 @@ const SuccessSidenote = (props: IBaseWrapperProps) => {
     <BaseWrapper
       {...rest}
       className={classes}
-      // appendClassName="sidenote_success"
+      // appendClassName="sn__wrapper--success"
     ></BaseWrapper>
   );
 };
@@ -122,7 +118,7 @@ const WarningSidenote = (props: IBaseWrapperProps) => {
   const styles = useStyles();
   const classes = mergeClasses(
     styles.warningSidenote,
-    'sidenote_warning',
+    'sn__wrapper--warning',
     className
   );
 
@@ -130,16 +126,10 @@ const WarningSidenote = (props: IBaseWrapperProps) => {
     <BaseWrapper
       {...rest}
       className={classes}
-      // appendClassName="sidenote_warning"
+      // appendClassName="sn__wrapper--warning"
     ></BaseWrapper>
   );
 };
-
-export interface ISideNote {
-  type?: 'info' | 'success' | 'warning';
-  title?: string;
-  children: React.ReactElement | React.ReactElement[];
-}
 
 const useSidenoteStyles = makeStyles({
   iconWrapper: {
@@ -249,7 +239,7 @@ const Sidenote = ({ type = 'info', title, children }: ISideNote) => {
 
   return (
     <Component>
-      <div className={mergeClasses(styles.iconWrapper, 'sidenote_iconwrapper')}>
+      <div className={mergeClasses(styles.iconWrapper, 'sn__iconwrapper')}>
         <Icon size={32} />
       </div>
       {title && <strong className={styles.title}>{title}</strong>}

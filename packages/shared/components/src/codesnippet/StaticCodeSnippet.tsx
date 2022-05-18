@@ -47,7 +47,7 @@ const useStyles = makeStyles({
     width: '100%',
     opacity: '0.7',
 
-    // '& .sidenote_basewrapper': {
+    // '& .sn__wrapper': {
     //   backgroundColor: 'rgba(0, 0, 0, 0.15)',
     // },
   },
@@ -78,7 +78,7 @@ export default function StaticCodeSnippet({
 
           return (
             <span
-              className={mergeClasses(styles.highlight, 'highlight')}
+              className={mergeClasses(styles.highlight, 'scnp--highlight')}
               key={`${start}-${end}`}
               style={{ top, height }}
             />
@@ -89,7 +89,7 @@ export default function StaticCodeSnippet({
           className={
             secretLive
               ? styles.secretLiveEditor
-              : mergeClasses(styles.inertEditor, 'inert-editor')
+              : mergeClasses(styles.inertEditor, 'scnp--inerteeditor')
           }
         ></LiveEditor>
       </CodeWrapper>

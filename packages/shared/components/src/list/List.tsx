@@ -85,7 +85,7 @@ const useListItemStyles = makeStyles({
       marginBottom: '0',
     },
 
-    // '.sidenote_info & ,  .sidenote_warning &, .sidenote_success & ': {
+    // '.sn__wrapper--info & ,  .sn__wrapper--warning &, .sn__wrapper--success & ': {
     //   fontSize: '17px',
     //   marginBottom: '8px',
     // },
@@ -185,7 +185,7 @@ const List = ({
           {...delegated}
           className={mergeClasses(
             styles.orderedListElem,
-            'list_orderedlistelem',
+            'list__orderedlist--elem',
             className
           )}
         />
@@ -195,7 +195,7 @@ const List = ({
           {...delegated}
           className={mergeClasses(
             styles.unorderedListElem,
-            'list_unorderedlistelem',
+            'list__unorderedlist--elem',
             className
           )}
         />

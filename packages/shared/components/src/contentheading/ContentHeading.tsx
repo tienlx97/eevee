@@ -79,10 +79,10 @@ const ContentHeading = ({
   }, [anchorId]);
 
   return (
-    <div className={mergeClasses(styles.wrapper, 'contentheading_wrapper')}>
+    <div className={mergeClasses(styles.wrapper, 'ch__wrapper')}>
       <Heading {...delegated}>
         <a
-          className={mergeClasses(styles.anchor, 'contentheading_anchor')}
+          className={mergeClasses(styles.anchor, 'ch__wrapper--anchor')}
           // name={anchorId}
           id={anchorId}
           href={`#${anchorId}`}
@@ -90,7 +90,7 @@ const ContentHeading = ({
           <LinkIcon
             className={mergeClasses(
               styles.iconElement,
-              'contentheading_linkicon'
+              'ch__wrapper--anchor--linkicon'
             )}
             style={{ opacity: showIcon ? 1 : 0 }}
             size={24}

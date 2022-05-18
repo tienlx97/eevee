@@ -1,9 +1,9 @@
 @media (min-width: 769px) {
-  .contentheading_wrapper:hover .contentheading_anchor {
+  .ch__wrapper:hover .ch__wrapper--anchor {
     opacity: 0.75;
   }
 }
 
-.contentheading_anchor:focus .contentheading_linkicon {
+.ch__wrapper--anchor:focus .ch__wrapper--anchor--linkicon {
   outline: 2px auto var(--color-primary);
 }

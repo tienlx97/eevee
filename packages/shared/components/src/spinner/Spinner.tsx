@@ -50,7 +50,7 @@ const Spinner = ({ size = 24, color }: ISpinnerProps) => {
   return (
     <span
       style={spanInlineStyles}
-      className={mergeClasses(classes.wrapper, 'spinner')}
+      className={mergeClasses(classes.wrapper, 'sp__wrapper')}
     >
       <Loader size={size} />
     </span>

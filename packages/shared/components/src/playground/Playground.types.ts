@@ -1,8 +1,4 @@
-type LayoutMode =
-  | 'codepen'
-  | 'sidebyside_wrapper'
-  | 'tabbed'
-  | 'vertical-stack';
+type LayoutMode = 'codepen' | 'sbs__wrapper' | 'tabbed' | 'vertical-stack';
 
 export interface IPlaygroundProps {
   id: string;

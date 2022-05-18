@@ -1,9 +1,9 @@
-.sidebyside_wrapper .postimage_wrapper {
+.sbs__wrapper .pi__wrapper {
   padding: 0;
   margin: 0;
   border: none;
 }
 
-.sidebyside_wrapper .postimage_wrapper:not(:last-of-type) {
+.sbs__wrapper .pi__wrapper:not(:last-of-type) {
   padding-right: 0;
 }

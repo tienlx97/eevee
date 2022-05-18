@@ -34,7 +34,7 @@ const useStyles = makeStyles({
         boxShadow: '0px 2px 0px var(--color-primary)',
       },
 
-      // '.sidenote_info &': {
+      // '.sn__wrapper--info &': {
       //   color: 'var(--color-text)',
       //   boxShadow: '0px 1px 0px var(--color-primary)',
       //   fontWeight: 'var(--font-weight-medium)',
@@ -44,7 +44,7 @@ const useStyles = makeStyles({
       //   },
       // },
 
-      // ' .sidenote_warning &': {
+      // ' .sn__wrapper--warning &': {
       //   color: 'var(--color-text)',
       //   boxShadow: '0px 1px 0px var(--color-alert)',
 
@@ -53,7 +53,7 @@ const useStyles = makeStyles({
       //   },
       // },
 
-      // '.sidenote_success &': {
+      // '.sn__wrapper--success &': {
       //   color: 'var(--color-text)',
       //   boxShadow: '0px 1px 0px var(--color-success)',
 
@@ -69,7 +69,7 @@ const useStyles = makeStyles({
 const TextLink = (props: ILinkProps, ref?: any) => {
   const { children, className, ...delegated } = props;
   const styles = useStyles();
-  const classes = mergeClasses(styles.wrapper, 'textlink_wrapper', className);
+  const classes = mergeClasses(styles.wrapper, 'tl__wrapper', className);
   return (
     <Link {...delegated} ref={ref} className={classes}>
       {children}

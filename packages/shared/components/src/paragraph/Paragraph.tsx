@@ -8,7 +8,7 @@ const useStyles = makeStyles({
     fontSize: 'calc(19 / 16 * 1rem)',
     marginBottom: '24px',
 
-    // '.sidenote_basewrapper &': {
+    // '.sn__wrapper &': {
     //   fontSize: 'calc(17 / 16 * 1rem)',
     //   marginBottom: '16px',
     //   '&:last-child': {
@@ -16,7 +16,7 @@ const useStyles = makeStyles({
     //   },
     // },
 
-    // '.speechbubble_wrapper &': {
+    // '.sb__wrapper &': {
     //   fontSize: 'calc(17 / 16 * 1rem)',
     //   marginBottom: '16px',
     // },

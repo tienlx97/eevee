@@ -54,18 +54,18 @@ const useStyles = makeStyles({
 
   //   outlineOffset: '2px',
 
-  //   // .livecodesnippet_wrapper .col {
+  //   // .lcsp__wrapper .col {
   //   //   width: '50%';
   //   // }
 
   //   // @media (max-width: 1024px) {
-  //   //   .livecodesnippet_wrapper .col {
+  //   //   .lcsp__wrapper .col {
   //   //     width: 70%;
   //   //   }
   //   // }
 
   //   // @media (max-width:768px) {
-  //   //   .livecodesnippet_wrapper .col {
+  //   //   .lcsp__wrapper .col {
   //   //     width: 100%;
   //   //   }
   //   // }
@@ -197,13 +197,13 @@ ILiveCodeSnippet) => {
         scope={scope}
       >
         <div
-          className={mergeClasses(styles.wrapper, 'livecodesnippet_wrapper')}
+          className={mergeClasses(styles.wrapper, 'lcsp__wrapper')}
           data-code-snippet="true"
         >
           <div
             className={mergeClasses(
               // styles.col,
-              'livecodesnippet_col',
+              'lcsp__wrapper--col',
               styles.codeCol
             )}
             style={{
@@ -238,7 +238,7 @@ ILiveCodeSnippet) => {
           <div
             className={mergeClasses(
               // styles.col,
-              'livecodesnippet_col',
+              'lcsp__wrapper--col',
               styles.previewCol
             )}
             style={{ flex: splitArray[1] }}

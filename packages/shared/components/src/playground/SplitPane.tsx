@@ -114,7 +114,7 @@ const SplitPane = ({
             id="divider"
             title="Divider"
             ref={dividerRef}
-            className={styles.divider}
+            className={mergeClasses(styles.divider, 'sp__divider')}
           />
           {/* SecondPane */}
           <div className={styles.secondPane} style={{ flex: rightWidth }}>

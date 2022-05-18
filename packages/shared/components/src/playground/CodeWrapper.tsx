@@ -36,7 +36,7 @@ const useStyles = makeStyles({
     ...shorthands.margin('0', '-32px'),
     ...shorthands.borderRadius('8px'),
 
-    // '.sidenote_basewrapper &': {
+    // '.sn__wrapper &': {
     //   width: 'calc(100% + 16px * 2)',
     //   marginLeft: '-16px',
     //   marginRight: '-16px',
@@ -47,7 +47,7 @@ const useStyles = makeStyles({
       marginLeft: '-24px',
       marginRight: '-24px',
       ...shorthands.borderRadius('0'),
-      // '.sidenote_basewrapper & ': {
+      // '.sn__wrapper & ': {
       //   width: 'calc(100% + 16px * 2)',
       // },
     },
@@ -90,7 +90,7 @@ const InlineWrapper = (
   const styles = useStyles();
   const classes = mergeClasses(
     styles.inlineWrapper,
-    'codewrapper_inlinewrapper',
+    'cw__inlinewrapper',
     className
   );
 
