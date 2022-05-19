@@ -23,6 +23,8 @@ import {
   YoutubeEmbedDebug,
 } from '@jolteon/components/debugs';
 
+import { ContentProvider } from '@jolteon/components';
+
 const useStyles = makeStyles({
   root: {
     backgroundColor: 'var(--color-background)',
@@ -95,34 +97,46 @@ const UIDebug = () => {
   const classes = useStyles();
 
   return (
-    <div className={classes.root}>
-      <main className={classes.main}>
-        <div className={classes.maxWidthWrapper}>
-          <aside className={classes.sidebar}></aside>
-          <article className={classes.article}>
-            <ParagraphDebug />
-            <InlineCodeDebug />
-            <EmDebug />
-            <PlaygroundDebug />
-            <PostLinkDebug />
-            <BlockquoteDebug />
-            <ListDebug />
-            <StrikethroughDebug />
-            <PostImageDebug />
-            <CodeSnippetDebug />
-            <DividerDebug />
-            <HeadingDebug />
-            <ContentHeadingDebug />
-            <HorizontalRuleDebug />
-            <SideNoteDebug />
-            <ContentFooterArticleDebug />
-            <ContentFooterTutorialDebug />
-            <VideoGifDebug />
-            <YoutubeEmbedDebug />
-          </article>
-        </div>
-      </main>
-    </div>
+    <ContentProvider
+      contentType="tutorial"
+      slug={'dynamic-bezier-curves'}
+      title={'Dynamic Bézier Curves'}
+      subtitle={undefined}
+      category={'animation'}
+      formattedCategory={'Animation'}
+      isPublished={true}
+      location={typeof window !== 'undefined' && window.location}
+      hits={null}
+    >
+      <div className={classes.root}>
+        <main className={classes.main}>
+          <div className={classes.maxWidthWrapper}>
+            <aside className={classes.sidebar}></aside>
+            <article className={classes.article}>
+              <ParagraphDebug />
+              <InlineCodeDebug />
+              <EmDebug />
+              <PlaygroundDebug />
+              <PostLinkDebug />
+              <BlockquoteDebug />
+              <ListDebug />
+              <StrikethroughDebug />
+              <PostImageDebug />
+              <CodeSnippetDebug />
+              <DividerDebug />
+              <HeadingDebug />
+              <ContentHeadingDebug />
+              <HorizontalRuleDebug />
+              <SideNoteDebug />
+              <ContentFooterArticleDebug />
+              <ContentFooterTutorialDebug />
+              <VideoGifDebug />
+              <YoutubeEmbedDebug />
+            </article>
+          </div>
+        </main>
+      </div>
+    </ContentProvider>
   );
 };
 
