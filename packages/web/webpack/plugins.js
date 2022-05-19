@@ -77,6 +77,12 @@ const minifyJTS = new TerserPlugin();
 const minifyCss = ({ options }) =>
   new CssMinimizerPlugin({ minimizerOptions: options });
 
+const { ESBuildMinifyPlugin } = require('esbuild-loader');
+const minifyEsbuildJTS = new ESBuildMinifyPlugin({
+  target: 'es2015',
+  css: true, // Apply minification to CSS assets
+});
+
 module.exports = {
   htmlWebpackPlugin,
   caseSensitivePathsPlugin,
@@ -90,4 +96,5 @@ module.exports = {
   forkTsPlugin,
   minifyCss,
   minifyJTS,
+  minifyEsbuildJTS,
 };

@@ -4,6 +4,7 @@ const {
   obfuscatorPlugin,
   minifyCss,
   minifyJTS,
+  minifyEsbuildJTS,
 } = require('./plugins');
 
 const productionConfig = {
@@ -29,7 +30,11 @@ const productionConfig = {
       },
     },
     runtimeChunk: { name: 'runtime' },
-    minimizer: [minifyJTS, minifyCss({ options: { preset: ['default'] } })],
+    minimizer: [
+      // minifyJTS,
+      // minifyCss({ options: { preset: ['default'] } })
+      minifyEsbuildJTS,
+    ],
   },
 
   performance: {

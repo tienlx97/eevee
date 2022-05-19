@@ -15,7 +15,7 @@ const {
   svgRule,
   cssRule,
   typescriptRule,
-  mdxRule,
+  typescriptEsbuildRule,
 } = require('./rules');
 
 const commonConfig = {
@@ -64,14 +64,14 @@ const commonConfig = {
 
   module: {
     rules: [
-      typescriptRule,
-      javascriptRule,
+      // typescriptRule,
+      // javascriptRule,
+      typescriptEsbuildRule,
       fontsRule,
       imagesRule,
       svgReactComponentRule,
       svgRule,
       cssRule,
-      mdxRule,
     ],
   },
 };
