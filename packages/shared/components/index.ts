@@ -29,6 +29,7 @@ import { Divider } from './src/divider';
 import { Heading } from './src/heading';
 import { HorizontalRule } from './src/horizontalrule';
 import { Strikethrough } from './src/strikethrough';
+import { Asterisk } from './src/asterisk';
 
 //
 const R = {
@@ -42,6 +43,7 @@ const R = {
   ConfigProvider,
   loadDefaultThemeBeforeReactRender,
 
+  Asterisk,
   Blockquote,
   CodeSnippet,
   ContentFooterArticle,

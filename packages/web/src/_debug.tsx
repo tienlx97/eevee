@@ -21,6 +21,7 @@ import {
   ContentFooterTutorialDebug,
   VideoGifDebug,
   YoutubeEmbedDebug,
+  AsteriskDebug,
 } from '@jolteon/components/debugs';
 
 import { ContentProvider } from '@jolteon/components';
@@ -132,6 +133,7 @@ const UIDebug = () => {
               <ContentFooterTutorialDebug />
               <VideoGifDebug />
               <YoutubeEmbedDebug />
+              <AsteriskDebug />
             </article>
           </div>
         </main>

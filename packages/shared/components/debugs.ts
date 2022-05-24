@@ -17,3 +17,4 @@ export { ContentFooterArticleDebug } from './src/content-footer-article/__debugs
 export { ContentFooterTutorialDebug } from './src/content-footer-tutorial/__debugs__';
 export { VideoGifDebug } from './src/videogif/__debugs__';
 export { YoutubeEmbedDebug } from './src/youtube-embed/__debugs__';
+export { AsteriskDebug } from './src/asterisk/__debugs__';
