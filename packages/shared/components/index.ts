@@ -30,7 +30,8 @@ import { Heading } from './src/heading';
 import { HorizontalRule } from './src/horizontalrule';
 import { Strikethrough } from './src/strikethrough';
 import { Asterisk } from './src/asterisk';
-
+import { Header } from './src/header';
+import { Spacer } from './src/spacer';
 //
 const R = {
   // UnstyledButton,
@@ -71,6 +72,8 @@ const R = {
   useGlobalCss,
 
   InPortal,
+  Header,
+  Spacer,
 };
 
 export default R;
@@ -109,4 +112,6 @@ export {
   useCssReset,
   useGlobalCss,
   InPortal,
+  Header,
+  Spacer,
 };

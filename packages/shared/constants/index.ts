@@ -23,6 +23,7 @@ export const SPRINGS = {
     friction: 75,
   },
 };
+export const HEADER_HEIGHT = 60;
 
 export const TIGHT_SPRING = {
   tension: 450,

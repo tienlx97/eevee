@@ -4,14 +4,14 @@ import React from 'react';
 interface ContentContextProps {
   children?: React.ReactNode;
   contentType: string;
-  slug: string;
-  title: string;
+  slug?: string;
+  title?: string;
   subtitle?: string;
-  category: string;
-  formattedCategory: string;
-  isPublished: boolean;
-  location: any;
-  hits: any;
+  category?: string;
+  formattedCategory?: string;
+  isPublished?: boolean;
+  location?: Location;
+  hits?: any;
 }
 
 export const ContentContext = React.createContext<ContentContextProps>(

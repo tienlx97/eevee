@@ -1,29 +1,32 @@
 import React from 'react';
 import client from 'react-dom/client';
-// import UIDebug from './_debug';
-import MDXTest from './_mdx';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
 import './asset/css/CssVariables.css';
 import './asset/css/fonts.css';
 import './asset/css/components.css';
 
 import 'tippy.js/dist/tippy.css';
-
 import {
   ConfigProvider,
   loadDefaultThemeBeforeReactRender,
 } from '@jolteon/components';
 
+import Tutorial from './pages/layout/Tutorial';
+
 loadDefaultThemeBeforeReactRender();
 
 const Index = () => {
-  // useCssReset();
-  // useGlobalCss();
   return (
-    <ConfigProvider>
-      {/* <UIDebug /> */}
-      <MDXTest />
-    </ConfigProvider>
+    <BrowserRouter>
+      <ConfigProvider>
+        <Routes>
+          <Route path="/" element={<Tutorial />}>
+            {/* <Route path="tutorial" element={<Tutorial />} /> */}
+          </Route>
+        </Routes>
+      </ConfigProvider>
+    </BrowserRouter>
   );
 };
 
