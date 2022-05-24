@@ -13,9 +13,11 @@ import {
   PREFERS_DARK_KEY,
 } from '@vaporeon/constants';
 
+export type ColorMode = 'light' | 'dark';
+
 interface IConfigProps {
-  colorMode: string;
-  setColorMode: (colorValue: string) => void;
+  colorMode: ColorMode;
+  setColorMode: (colorValue: ColorMode) => void;
   allowColorTransitions: boolean;
   disableTabInCodeSnippets: any;
   setDisableTabInCodeSnippets: any;
@@ -24,7 +26,7 @@ interface IConfigProps {
 export const ConfigContext = createContext<IConfigProps>({} as IConfigProps);
 
 export const ConfigProvider = ({ children }: { children: React.ReactNode }) => {
-  let initialColorValue = 'light';
+  let initialColorValue: ColorMode = 'light';
   const initialAllowColorTransitions = false;
 
   if (typeof window !== 'undefined') {
@@ -50,7 +52,7 @@ export const ConfigProvider = ({ children }: { children: React.ReactNode }) => {
 
   // eslint-disable-next-line react-hooks/exhaustive-deps
   const value = useMemo(() => {
-    const setColorMode = (colorValue: string) => {
+    const setColorMode = (colorValue: ColorMode) => {
       if (!allowColorTransitions) {
         setAllowColorTransitions(true);
       }

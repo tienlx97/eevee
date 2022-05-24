@@ -61,11 +61,13 @@
     "@types/history": "^5.0.0",
     "@types/react": "^18.0.5",
     "@types/react-dom": "^18.0.1",
+    "@vaporeon/constants": "*",
     "@vaporeon/utils": "*",
     "esbuild": "^0.14.39",
     "mdx-bundler": "^9.0.1",
     "react": "*",
     "react-dom": "*",
+    "react-router-dom": "6",
     "tippy.js": "^6.3.7"
   }
 }

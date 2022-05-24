@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import React, { forwardRef } from 'react';
 import { makeStyles, mergeClasses, shorthands } from '@griffel/react';
-
+import { Link as Linkk } from 'react-router-dom';
 import { ILinkProps, LinkType } from './Link.types';
 
 const useStyles = makeStyles({
@@ -49,7 +49,17 @@ const Link = (props: ILinkProps, ref?: any) => {
   const safeRel = target === '_blank' ? 'noopener noreferrer' : rel;
 
   if (linkType === 'internal') {
-    return <></>;
+    return (
+      <>
+        <Linkk
+          className={classes}
+          to={href}
+          target={target}
+          rel={safeRel}
+          {...rest}
+        />
+      </>
+    );
   }
 
   return (

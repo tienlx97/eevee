@@ -7,6 +7,7 @@
     "@griffel/react": "^1.0.4",
     "@react-spring/web": "9.4.5",
     "@tippyjs/react": "^4.2.6",
+    "@types/react-router-dom": "^5.3.3",
     "@vaporeon/constants": "*",
     "@vaporeon/helpers": "*",
     "@vaporeon/hooks": "*",
@@ -15,6 +16,7 @@
     "react": "*",
     "react-dom": "*",
     "react-live": "^2.4.1",
+    "react-router-dom": "6",
     "react-simple-code-editor": "^0.11.0",
     "tippy.js": "^6.3.7"
   }
