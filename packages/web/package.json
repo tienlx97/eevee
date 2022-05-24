@@ -61,6 +61,8 @@
     "@types/react": "^18.0.5",
     "@types/react-dom": "^18.0.1",
     "@vaporeon/utils": "*",
+    "esbuild": "^0.14.39",
+    "mdx-bundler": "^9.0.1",
     "react": "*",
     "react-dom": "*",
     "tippy.js": "^6.3.7"
