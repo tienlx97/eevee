@@ -1,7 +1,7 @@
 import React, { forwardRef } from 'react';
 import { makeStyles, mergeClasses } from '@griffel/react';
 
-import './Strikethrough.css';
+// import './Strikethrough.css';
 
 const useStyles = makeStyles({
   wrapper: {

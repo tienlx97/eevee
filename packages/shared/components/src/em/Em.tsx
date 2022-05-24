@@ -3,7 +3,7 @@ import React, { forwardRef } from 'react';
 import { makeStyles, mergeClasses } from '@griffel/react';
 import { IEmProps } from './Em.types';
 
-import './Em.css';
+// import './Em.css';
 
 const useStyles = makeStyles({
   wrapper: {

@@ -11,7 +11,7 @@ import { syntaxTheme } from '@vaporeon/helpers';
 import StaticCodeWrapper from './StaticCodeWrapper';
 import { LINE_HEIGHT } from './constants';
 
-import './StaticCodeSnippet.css';
+// import './StaticCodeSnippet.css';
 import { IStaticCodeSnippet } from './types';
 
 const useStyles = makeStyles({

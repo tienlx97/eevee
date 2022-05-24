@@ -6,7 +6,7 @@ import { useDrag } from './utils/useDrag';
 
 import { ISplitPaneProps } from './SplitPane.types';
 
-import './SplitPane.css';
+// import './SplitPane.css';
 
 const useStyles = makeStyles({
   wrapper: {

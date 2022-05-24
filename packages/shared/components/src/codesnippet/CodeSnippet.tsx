@@ -10,7 +10,7 @@ import LazyLiveCodeSnippet from './LazyLiveCodeSnippet';
 
 // import LiveCodeSnippet from './LiveCodeSnippet';
 
-import './CodeSnippet.css';
+// import './CodeSnippet.css';
 
 const useStyles = makeStyles({
   outerWrapper: {

@@ -7,7 +7,7 @@ import React, { CSSProperties } from 'react';
 import { makeStyles, mergeClasses, shorthands } from '@griffel/react';
 import { IBaseImageProps, IImageElem, IPostImage } from './PostImage.types';
 
-import './PostImage.css';
+// import './PostImage.css';
 
 const useStyles = makeStyles({
   wrapper: {

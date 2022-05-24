@@ -4,7 +4,7 @@ import { LINE_HEIGHT } from './constants';
 import { Skeleton } from '../skeleton';
 import { IStaticCodeWrapper } from './types';
 
-import './StaticCodeWrapper.css';
+// import './StaticCodeWrapper.css';
 
 // import { BaseWrapper } from '../sidenote';
 // import { SideBySideCodeWrapper } from '../sidebysidecode';

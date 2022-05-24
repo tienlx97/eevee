@@ -10,7 +10,7 @@ import { ArrowRight, Star } from '../icons';
 import { makeStyles, mergeClasses } from '@griffel/react';
 import { IconProps, IListItemsProps, IListProps } from './List.types';
 
-import './List.css';
+// import './List.css';
 
 interface IListContext {
   type: string;

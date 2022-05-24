@@ -3,7 +3,7 @@ import React, { forwardRef } from 'react';
 import { makeStyles, mergeClasses, shorthands } from '@griffel/react';
 import { IInlinecode } from './InlineCode.types';
 
-import './InlineCode.css';
+// import './InlineCode.css';
 
 const useStyles = makeStyles({
   wrapper: {

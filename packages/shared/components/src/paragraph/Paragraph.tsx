@@ -1,7 +1,7 @@
 import { makeStyles, mergeClasses } from '@griffel/react';
 import React, { forwardRef } from 'react';
 
-import './Paragraph.css';
+// import './Paragraph.css';
 
 const useStyles = makeStyles({
   wrapper: {
