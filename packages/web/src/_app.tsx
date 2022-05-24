@@ -1,7 +1,7 @@
 import React from 'react';
 import client from 'react-dom/client';
-import UIDebug from './_debug';
-// import MDXTest from './_mdx';
+// import UIDebug from './_debug';
+import MDXTest from './_mdx';
 
 import './asset/css/CssVariables.css';
 import './asset/css/fonts.css';
@@ -21,8 +21,8 @@ const Index = () => {
   // useGlobalCss();
   return (
     <ConfigProvider>
-      <UIDebug />
-      {/* <MDXTest /> */}
+      {/* <UIDebug /> */}
+      <MDXTest />
     </ConfigProvider>
   );
 };
