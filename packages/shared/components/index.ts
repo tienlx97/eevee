@@ -32,6 +32,9 @@ import { Strikethrough } from './src/strikethrough';
 import { Asterisk } from './src/asterisk';
 import { Header } from './src/header';
 import { Spacer } from './src/spacer';
+
+import { TableOfContents } from './src/tableofcontents';
+
 //
 const R = {
   // UnstyledButton,
@@ -74,6 +77,8 @@ const R = {
   InPortal,
   Header,
   Spacer,
+
+  TableOfContents,
 };
 
 export default R;
@@ -114,4 +119,5 @@ export {
   InPortal,
   Header,
   Spacer,
+  TableOfContents,
 };
