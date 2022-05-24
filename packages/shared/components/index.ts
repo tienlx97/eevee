@@ -63,9 +63,9 @@ const R = {
   Strikethrough,
   VideoGif,
   YoutubeEmbed,
-  Spinner,
   Tooltip,
 
+  Spinner,
   BaseWrapper,
   useCssReset,
   useGlobalCss,

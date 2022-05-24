@@ -7,8 +7,8 @@ import { LinkIcon } from '../icons';
 import { slugify } from '@vaporeon/utils';
 
 import { Heading } from '../heading';
-import type { IHeading } from '../heading';
 import { VisuallyHidden } from '../button';
+import { IContentHeading } from './ContentHeading.types';
 
 // import './ContentHeading.css';
 
@@ -49,10 +49,6 @@ const useStyles = makeStyles({
     pointerEvents: 'auto',
   },
 });
-
-interface IContentHeading extends IHeading {
-  showIcon?: boolean;
-}
 
 const ContentHeading = ({
   children,
