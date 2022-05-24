@@ -7,8 +7,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CaseSensitivePathsPlugin = require('case-sensitive-paths-webpack-plugin'); // use inside the npm package
 const PurgeCSSPlugin = require('purgecss-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const { DefinePlugin, BannerPlugin } = require('webpack');
-const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+const { DefinePlugin } = require('webpack');
 const ESLintWebpackPlugin = require('eslint-webpack-plugin');
 const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
 const ReactRefreshWebpackPlugin = require('@pmmmwh/react-refresh-webpack-plugin');
@@ -47,8 +46,6 @@ const purgeCssPlugin = new PurgeCSSPlugin({
 const definePlugin = new DefinePlugin({
   'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV),
 });
-
-const cleanWebpacklugin = new CleanWebpackPlugin();
 
 const esLintPlugin = new ESLintWebpackPlugin({
   context: path.join(ROOT_DIR, '/src'),
@@ -89,7 +86,6 @@ module.exports = {
   purgeCssPlugin,
   miniCssExtactPlugin,
   definePlugin,
-  cleanWebpacklugin,
   esLintPlugin,
   reactRefreshPlugin,
   obfuscatorPlugin,
