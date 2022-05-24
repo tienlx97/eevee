@@ -1,7 +1,7 @@
 import React, { forwardRef } from 'react';
 import { makeStyles, mergeClasses, shorthands } from '@griffel/react';
 
-import './SideBySide.css';
+// import './SideBySide.css';
 
 const useStyles = makeStyles({
   wrapper: {

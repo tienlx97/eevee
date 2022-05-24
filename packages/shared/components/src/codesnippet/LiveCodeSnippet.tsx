@@ -12,7 +12,7 @@ import { ContentContext } from '../content-context';
 import { makeStyles, mergeClasses, shorthands } from '@griffel/react';
 import { ILiveCodeSnippet } from './types';
 
-import './LiveCodeSnippet.css';
+// import './LiveCodeSnippet.css';
 
 const GUTTER = 30;
 

@@ -10,7 +10,7 @@ import { Heading } from '../heading';
 import type { IHeading } from '../heading';
 import { VisuallyHidden } from '../button';
 
-import './ContentHeading.css';
+// import './ContentHeading.css';
 
 const useStyles = makeStyles({
   wrapper: {

@@ -5,6 +5,8 @@ import UIDebug from './_debug';
 
 import './asset/css/CssVariables.css';
 import './asset/css/fonts.css';
+import './asset/css/components.css';
+
 import 'tippy.js/dist/tippy.css';
 
 import {

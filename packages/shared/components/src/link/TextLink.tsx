@@ -3,7 +3,7 @@ import { makeStyles, mergeClasses, shorthands } from '@griffel/react';
 import Link from './Link';
 import { ILinkProps } from './Link.types';
 
-import './TextLink.css';
+// import './TextLink.css';
 
 const useStyles = makeStyles({
   wrapper: {

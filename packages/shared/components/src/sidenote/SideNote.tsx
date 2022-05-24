@@ -4,7 +4,7 @@ import React, { CSSProperties } from 'react';
 import { COLOR_SWAP_TRANSITION_DURATION } from '@vaporeon/constants';
 import { makeStyles, mergeClasses, shorthands } from '@griffel/react';
 
-import './SideNote.css';
+// import './SideNote.css';
 import { useBoop } from '@vaporeon/hooks';
 import { UnstyledButton2 } from '../button';
 

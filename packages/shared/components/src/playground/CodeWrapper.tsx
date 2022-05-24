@@ -7,7 +7,7 @@ import { InPortal } from '../inportal';
 import { SettingCheckbox } from '../setting-checkbox';
 import { WrapperTheme } from './theme';
 
-import './CodeWrapper.css';
+// import './CodeWrapper.css';
 
 const useStyles = makeStyles({
   wrapper: {

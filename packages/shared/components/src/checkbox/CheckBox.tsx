@@ -4,7 +4,7 @@ import { useSpring, animated } from '@react-spring/web';
 
 import { ICheckBoxProps } from './CheckBox.types';
 
-import './CheckBox.css';
+// import './CheckBox.css';
 
 const BORDER_WIDTH = 2;
 
