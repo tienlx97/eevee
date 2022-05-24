@@ -8,3 +8,4 @@ export { default as useWindowDimensions } from './src/use-window-dimensions.hook
 export { default as useHasMounted } from './src/use-has-mounted.hook';
 export { default as useOnScroll } from './src/use-on-scrool.hook';
 export { default as useOnClickOutside } from './src/use-on-click-outside.hook';
+export { default as useOverscrollBackground } from './src/use-overscroll-background.hook';

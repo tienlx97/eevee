@@ -57,6 +57,8 @@
   "dependencies": {
     "@griffel/react": "^1.0.4",
     "@jolteon/components": "*",
+    "@vaporeon/helpers": "*",
+    "@vaporeon/hooks": "*",
     "@jolteon/mdx-comps": "*",
     "@types/history": "^5.0.0",
     "@types/react": "^18.0.5",

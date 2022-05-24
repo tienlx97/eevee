@@ -48,9 +48,39 @@ const useStyles = makeStyles({
     transitionProperty: 'background',
     transitionDuration: `${COLOR_SWAP_TRANSITION_DURATION}ms`,
   },
+
+  heroWrapper: {
+    position: 'relative',
+    zIndex: 4,
+  },
+
+  lightHeaderBackground: {
+    position: 'sticky',
+    zIndex: '4',
+    top: '0',
+    width: '100%',
+    height: '68px',
+    backgroundColor: 'var(--color-muted)',
+    transitionProperty: 'background',
+    transitionDuration: `${COLOR_SWAP_TRANSITION_DURATION}ms`,
+  },
+
+  sneakyLightHeaderBackground: {
+    position: 'absolute',
+    zIndex: '3',
+    top: '-68px',
+    width: '100%',
+    height: '68px',
+    backgroundColor: 'var(--color-muted)',
+  },
 });
 
-const TutorialLayout = ({ children }: { children: React.ReactNode }) => {
+interface ITutorialLayout {
+  children: React.ReactNode;
+  hero: React.ReactNode;
+}
+
+const TutorialLayout = ({ children, hero }: ITutorialLayout) => {
   const [scrolledBelowHeader, setScrolledBelowHeader] = React.useState(false);
   const styles = useStyles();
   React.useEffect(() => {
@@ -77,6 +107,12 @@ const TutorialLayout = ({ children }: { children: React.ReactNode }) => {
         <MaxWidthWrapper>
           <Header />
         </MaxWidthWrapper>
+      </div>
+
+      <div className={styles.heroWrapper}>
+        <div className={styles.lightHeaderBackground} />
+        <div className={styles.sneakyLightHeaderBackground} />
+        {hero}
       </div>
 
       <div className={styles.darkHeaderBackground} />
