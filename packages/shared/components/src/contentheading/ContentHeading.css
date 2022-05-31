@@ -1,9 +1,0 @@
-@media (min-width: 769px) {
-  .ch__wrapper:hover .ch__wrapper--anchor {
-    opacity: 0.75;
-  }
-}
-
-.ch__wrapper--anchor:focus .ch__wrapper--anchor--linkicon {
-  outline: 2px auto var(--color-primary);
-}

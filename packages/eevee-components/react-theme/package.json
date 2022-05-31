@@ -1,0 +1,41 @@
+{
+  "name": "@eevee/react-theme",
+  "version": "1.0.0",
+  "description": "Fluent UI themes",
+  "main": "lib-commonjs/index.js",
+  "module": "lib/index.js",
+  "typings": "lib/index.d.ts",
+  "sideEffects": false,
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/lexuantien/eevee"
+  },
+  "license": "MIT",
+  "scripts": {
+    "start": "yarn storybook",
+    "storybook": "node ../../../scripts/storybook/runner",
+    "test": "jest --passWithNoTests",
+    "build:local": "tsc -p ./tsconfig.lib.json --module esnext --emitDeclarationOnly && node ../../../scripts/typescript/normalize-import --output ./dist",
+    "type-check": "tsc -b tsconfig.json"
+  },
+  "devDependencies": {
+    "@eevee/eslint-plugin": "*",
+    "@eevee/scripts": "^1.0.0"
+  },
+  "dependencies": {
+    "tslib": "2.4.0"
+  },
+  "peerDependencies": {
+    "@types/react": ">=16.8.0",
+    "@types/react-dom": ">=16.8.0",
+    "react": ">=16.8.0",
+    "react-dom": ">=16.8.0"
+  },
+  "exports": {
+    ".": {
+      "types": "./lib/index.d.ts",
+      "import": "./lib/index.js",
+      "require": "./lib-commonjs/index.js"
+    }
+  }
+}

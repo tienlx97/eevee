@@ -1,0 +1,12 @@
+{
+  "name": "@eevee/scripts",
+  "version": "1.0.0",
+  "private": true,
+  "main": "./index.js",
+  "devDependencies": {
+    "@eevee/eslint-plugin": "*",
+    "babel-plugin-annotate-pure-imports": "^1.0.0-1",
+    "babel-plugin-iife-wrap-react-components": "^1.0.0-5",
+    "react-hot-loader": "^4.13.0"
+  }
+}

@@ -1,12 +1,6 @@
 const path = require('path');
 const { ROOT_DIR } = require('./envs');
-const {
-  htmlWebpackPlugin,
-  miniCssExtactPlugin,
-  definePlugin,
-  esLintPlugin,
-  forkTsPlugin,
-} = require('./plugins');
+const { htmlWebpackPlugin, miniCssExtactPlugin, definePlugin, esLintPlugin, forkTsPlugin } = require('./plugins');
 const {
   javascriptRule,
   fontsRule,
@@ -39,16 +33,12 @@ const commonConfig = {
 
   resolve: {
     extensions: ['.tsx', '.ts', '.js', '.mdx'],
-    alias: {},
+    alias: {
+      '~/*': path.resolve(__dirname, '../../../*'),
+    },
   },
 
-  plugins: [
-    htmlWebpackPlugin,
-    miniCssExtactPlugin,
-    definePlugin,
-    esLintPlugin,
-    forkTsPlugin,
-  ],
+  plugins: [htmlWebpackPlugin, miniCssExtactPlugin, definePlugin, esLintPlugin, forkTsPlugin],
 
   externals: {
     // react: "React",

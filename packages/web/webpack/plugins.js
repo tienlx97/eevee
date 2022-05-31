@@ -67,12 +67,11 @@ const obfuscatorPlugin = new WebpackObfuscator(
   {
     rotateStringArray: true,
   },
-  ['excluded_bundle_name.js']
+  ['excluded_bundle_name.js'],
 );
 
 const minifyJTS = new TerserPlugin();
-const minifyCss = ({ options }) =>
-  new CssMinimizerPlugin({ minimizerOptions: options });
+const minifyCss = ({ options }) => new CssMinimizerPlugin({ minimizerOptions: options });
 
 const { ESBuildMinifyPlugin } = require('esbuild-loader');
 const minifyEsbuildJTS = new ESBuildMinifyPlugin({

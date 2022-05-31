@@ -26,4 +26,4 @@ module.exports = {
     // Applies the react-refresh Babel plugin on non-production modes only
     process.env.NODE_ENV !== 'production' && 'react-refresh/babel',
   ].filter(Boolean),
-};
+}

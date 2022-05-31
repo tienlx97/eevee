@@ -1,0 +1,41 @@
+{
+  "name": "@eevee/react-portal",
+  "version": "1.0.0",
+  "description": "A utility component that creates portals compatible with Fluent UI",
+  "main": "lib-commonjs/index.js",
+  "module": "lib/index.js",
+  "typings": "dist/index.d.ts",
+  "sideEffects": false,
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/lexuantien/eevee"
+  },
+  "license": "MIT",
+  "scripts": {
+    "test": "jest --passWithNoTests",
+    "type-check": "tsc -b tsconfig.json",
+    "storybook": "node ../../../scripts/storybook/runner"
+  },
+  "devDependencies": {
+    "@eevee/eslint-plugin": "*",
+    "@eevee/scripts": "*"
+  },
+  "dependencies": {
+    "tslib": "2.4.0",
+    "@eevee/react-shared-contexts": "*",
+    "@eevee/react-utilities": "*"
+  },
+  "peerDependencies": {
+    "@types/react": ">=16.8.0",
+    "@types/react-dom": ">=16.8.0",
+    "react": ">=16.8.0",
+    "react-dom": ">=16.8.0"
+  },
+  "exports": {
+    ".": {
+      "types": "./lib/index.d.ts",
+      "import": "./lib/index.js",
+      "require": "./lib-commonjs/index.js"
+    }
+  }
+}

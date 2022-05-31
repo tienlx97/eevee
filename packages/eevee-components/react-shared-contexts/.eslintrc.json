@@ -1,0 +1,7 @@
+{
+  "extends": ["plugin:@eevee/eslint-plugin/react"],
+  "root": true,
+  "rules": {
+    "prefer-const": "off"
+  }
+}
