@@ -1,16 +1,16 @@
-# @fluentui/eslint-plugin
+# @eevee/eslint-plugin
 
 **ESLint configuration and custom rules for Fluent UI**
 
 ## Configs
 
-Usage: in your [ESLint config file](https://eslint.org/docs/user-guide/configuring), add `{ "extends": ["plugin:@fluentui/<name>"] }` or `{ "extends": ["plugin:@fluentui/eslint-plugin/<name>"] }` (the two are equivalent).
+Usage: in your [ESLint config file](https://eslint.org/docs/user-guide/configuring), add `{ "extends": ["plugin:@eevee/<name>"] }` or `{ "extends": ["plugin:@eevee/eslint-plugin/<name>"] }` (the two are equivalent).
 
-- `react`: For `@fluentui/react` and related packages
+- `react`: For `@eevee/react` and related packages
   - `react--legacy`: Like `react` but requiring an `I` prefix for interfaces
   - `node`: Like `react` but for packages which run in a Node environment (not the browser)
   - `node--legacy`: Like `node` but requiring an `I` prefix for interfaces
-- `react-northstar`: For `@fluentui/react-northstar` and related packages
+- `react-northstar`: For `@eevee/react-northstar` and related packages
 
 Helpers for customizing configuration are exported under a `configHelpers` object.
 
@@ -30,7 +30,7 @@ Requires one or more options objects. Either `path` or `pathRegex` is required.
 Example:
 
 ```
-"@fluentui/ban-imports": [
+"@eevee/ban-imports": [
   "error",
   { "path": "lodash" },
   { "path": "foo", "names": ["bar", { "regex": "^baz" }] },
@@ -41,7 +41,7 @@ Example:
 
 ### `deprecated-keyboard-event-props`
 
-Prevent using deprecated `KeyboardEvent` props `which` and `keyCode`, and recommend using `@fluentui/keyboard-key` instead.
+Prevent using deprecated `KeyboardEvent` props `which` and `keyCode`, and recommend using `@eevee/keyboard-key` instead.
 
 ### `max-len`
 
@@ -74,4 +74,4 @@ Ban `tslint:disable` and `tslint:enable` comments.
 
 Prevent visibility modifiers (`public`, `protected`, `private`) from being specified on class members/methods.
 
-Used in Fluent UI only by [`@fluentui/react-northstar`](https://aka.ms/fluent-ui), not `@fluentui/react`.
+Used in Fluent UI only by [`@eevee/react-northstar`](https://aka.ms/fluent-ui), not `@eevee/react`.
