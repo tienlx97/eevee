@@ -1,19 +1,28 @@
-import { generateColorTokens } from '../alias/darkColor';
-import { durations, borderRadius, curves, fontFamilies, fontWeights, strokeWidths } from '../global';
-import { Theme } from '../types';
+import { generateColorTokens } from '../alias/dark';
+import { borderRadius, fontSizes, lineHeights, fontFamilies, strokeWidths, fontWeights } from '../global/index';
+import { horizontalSpacings, verticalSpacings } from '../global/spacings';
+import type { Theme } from '../types';
+import { durations } from '../global/durations';
+import { curves } from '../global/curves';
 import { createShadowTokens } from './shadows';
 
 export const createDarkTheme = (): Theme => {
   const colorTokens = generateColorTokens();
 
   return {
-    ...colorTokens,
-    ...durations,
     ...borderRadius,
-    ...curves,
+    ...fontSizes,
+    ...lineHeights,
     ...fontFamilies,
     ...fontWeights,
     ...strokeWidths,
+    ...horizontalSpacings,
+    ...verticalSpacings,
+    ...durations,
+    ...curves,
+
+    ...colorTokens,
+
     ...createShadowTokens(colorTokens.colorShadowAmbient, colorTokens.colorShadowKey),
     ...createShadowTokens(colorTokens.colorBrandShadowAmbient, colorTokens.colorBrandShadowKey, 'Brand'),
   };

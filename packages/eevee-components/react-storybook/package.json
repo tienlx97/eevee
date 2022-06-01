@@ -1,0 +1,43 @@
+{
+  "name": "@eevee/react-storybook",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Storybook addons and utils for @eevee/react-components",
+  "main": "lib-commonjs/index.js",
+  "module": "lib/index.js",
+  "typings": "dist/index.d.ts",
+  "sideEffects": false,
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/lexuantien/eevee"
+  },
+  "license": "MIT",
+  "scripts": {
+    "start": "yarn storybook",
+    "test": "jest --passWithNoTests",
+    "storybook": "node ../../../scripts/storybook/runner",
+    "type-check": "tsc -b tsconfig.json"
+  },
+  "devDependencies": {
+    "@eevee/eslint-plugin": "*",
+    "@eevee/scripts": "*"
+  },
+  "dependencies": {
+    "@eevee/react-provider": "*",
+    "@eevee/react-theme": "*",
+    "tslib": "^2.1.0"
+  },
+  "peerDependencies": {
+    "@types/react": ">=16.8.0 ",
+    "react": ">=16.8.0 ",
+    "@storybook/addon-knobs": "^6.0.28",
+    "@storybook/addons": "^6.0.28"
+  },
+  "exports": {
+    ".": {
+      "types": "./lib/index.d.ts",
+      "import": "./lib/index.js",
+      "require": "./lib-commonjs/index.js"
+    }
+  }
+}

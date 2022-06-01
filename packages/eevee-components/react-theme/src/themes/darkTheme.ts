@@ -1,4 +1,4 @@
 import { createDarkTheme } from '../utils/createDarkTheme';
 import type { Theme } from '../types';
 
-export const teamsDarkTheme: Theme = createDarkTheme();
+export const darkTheme: Theme = createDarkTheme();

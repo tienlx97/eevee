@@ -7,7 +7,7 @@ import { useButton_unstable } from './useButton';
 /**
  * Buttons give people a way to trigger an action.
  */
-const Button = React.forwardRef((props: ButtonProps, ref: React.Ref<HTMLButtonElement>) => {
+export const Button = React.forwardRef((props: ButtonProps, ref: React.Ref<HTMLButtonElement>) => {
   const state = useButton_unstable(props, ref);
 
   // useButtonStyles_unstable(state);
@@ -18,4 +18,3 @@ const Button = React.forwardRef((props: ButtonProps, ref: React.Ref<HTMLButtonEl
 });
 
 // Button.displayName = 'Button';
-export default Button;

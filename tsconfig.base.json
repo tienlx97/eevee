@@ -18,6 +18,8 @@
       "@eevee/react-portal": ["packages/eevee-components/react-portal/src/index.ts"],
       "@eevee/react-provider": ["packages/eevee-components/react-provider/src/index.ts"],
       "@eevee/react-shared-contexts": ["packages/eevee-components/react-shared-contexts/src/index.ts"],
+      "@eevee/react-storybook": ["packages/eevee-components/react-storybook/src/index.ts"],
+      "@eevee/react-storybook-addon": ["packages/eevee-components/react-storybook-addon/src/index.ts"],
       "@eevee/react-theme": ["packages/eevee-components/react-theme/src/index.ts"],
       "@eevee/react-utilities": ["packages/eevee-components/react-utilities/src/index.ts"]
     }

@@ -3,66 +3,42 @@
  */
 
 export type ColorTokens = {
-  // must have:
-  colorShadowAmbient: string;
-  colorShadowKey: string;
-  colorShadowAmbientLighter: string;
-  colorShadowKeyLighter: string;
-  colorShadowAmbientDarker: string;
-  colorShadowKeyDarker: string;
-  colorBrandShadowAmbient: string;
-  colorBrandShadowKey: string;
-
-  colorForeground2BrandHover: string;
-  colorForeground2BrandPressed: string;
-
   colorBackground1: string;
   colorBackground1Hover: string;
   colorBackground1Pressed: string;
+
+  colorBackgroundDisabled: string;
 
   colorTransparentBackground: string;
   colorTransparentBackgroundHover: string;
   colorTransparentBackgroundPressed: string;
 
-  colorBackgroundDisabled: string;
-
-  colorForeground1: string;
+  // foreground
   colorForeground1Hover: string;
   colorForeground1Pressed: string;
-  colorForeground1Selected: string;
-
   colorForeground2: string;
-  colorForeground2Hover: string;
-  colorForeground2Pressed: string;
-  colorForeground2Selected: string;
-
-  colorForeground3: string;
-  colorForeground3Hover: string;
-  colorForeground3Pressed: string;
-  colorForeground3Selected: string;
-
-  colorForeground4: string;
-  colorForeground4Hover: string;
-  colorForeground4Pressed: string;
-  colorForeground4Selected: string;
+  colorForeground2BrandHover: string;
+  colorForeground2BrandPressed: string;
 
   colorForegroundDisabled: string;
-  colorForegroundInvertedDisabled: string;
 
-  //
-  colorStrokeDisabled: string;
+  // stroke
   colorStroke1: string;
   colorStroke1Hover: string;
   colorStroke1Pressed: string;
-  colorStroke1Selected: string;
   colorStrokeFocus2: string;
+  colorStrokeDisabled: string;
+
+  //shadow
+  colorShadowAmbient: string;
+  colorShadowKey: string;
+  colorBrandShadowAmbient: string;
+  colorBrandShadowKey: string;
 };
 
 export type FontWeightTokens = {
-  fontWeightBold: number;
-  fontWeightMedium: number;
-  fontWeightLight: number;
   fontWeightRegular: number;
+  fontWeightMedium: number;
   fontWeightSemibold: number;
 };
 
@@ -173,6 +149,20 @@ export type BorderRadiusTokens = {
   borderRadiusLarge: string;
   borderRadiusXLarge: string;
   borderRadiusCircular: string;
+};
+
+export type SpacingTokens = {
+  none: string;
+  xxs: string;
+  xs: string;
+  sNudge: string;
+  s: string;
+  mNudge: string;
+  m: string;
+  l: string;
+  xl: string;
+  xxl: string;
+  xxxl: string;
 };
 
 export type VerticalSpacingTokens = {

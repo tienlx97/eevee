@@ -50,14 +50,14 @@ function main() {
   const shouldExecPreBuild = !shouldInvokeHelp && dependenciesToBuild.length > 0;
 
   const storybookCommand = `start-storybook ${args.join(' ')}`;
-  const dependencyBuildCommand = `lage build --to ${dependenciesToBuild.map(dep => dep.name).join(' ')}`;
+  // const dependencyBuildCommand = `lage build --to ${dependenciesToBuild.map(dep => dep.name).join(' ')}`;
 
   printTitle();
 
   if (shouldExecPreBuild) {
     printDependencies();
 
-    execSync(dependencyBuildCommand, { stdio: 'inherit' });
+    // execSync(dependencyBuildCommand, { stdio: 'inherit' });
   }
 
   execSync(storybookCommand, { stdio: 'inherit' });

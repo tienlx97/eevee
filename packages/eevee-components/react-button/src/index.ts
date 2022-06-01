@@ -4,4 +4,4 @@
 // // useButton_unstable,
 // './components/Buttons';
 
-export { default as Button } from './components/Buttons/Button';
+export { Button } from './components/Buttons/Button';
