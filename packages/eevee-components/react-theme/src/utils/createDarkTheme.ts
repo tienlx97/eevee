@@ -14,7 +14,7 @@ export const createDarkTheme = (): Theme => {
     ...fontFamilies,
     ...fontWeights,
     ...strokeWidths,
-    ...createShadowTokens(colorTokens.colorNeutralShadowAmbient, colorTokens.colorNeutralShadowKey),
+    ...createShadowTokens(colorTokens.colorShadowAmbient, colorTokens.colorShadowKey),
     ...createShadowTokens(colorTokens.colorBrandShadowAmbient, colorTokens.colorBrandShadowKey, 'Brand'),
   };
 };

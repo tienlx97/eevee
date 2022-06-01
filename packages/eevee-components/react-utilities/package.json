@@ -17,7 +17,7 @@
   },
   "devDependencies": {
     "@eevee/eslint-plugin": "*",
-    "@eevee/scripts": "^1.0.0"
+    "@eevee/scripts": "*"
   },
   "dependencies": {
     "tslib": "2.4.0"

@@ -1319,7 +1319,7 @@
     stylis "^4.0.13"
     tslib "^2.1.0"
 
-"@griffel/react@^1.0.4", "@griffel/react@^1.1.0":
+"@griffel/react@1.1.0", "@griffel/react@^1.0.4", "@griffel/react@^1.1.0":
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/@griffel/react/-/react-1.1.0.tgz#ce72fe255628cd2cd27d6af1722adafc6592ef50"
   integrity sha512-DxbDufQZrOPtGf/RiEeG6CKGHIdQb8Z6pJveeLioDQJe/lZar+u1NhOjILTih+saX/ZRGuhYX74uNWWUxmFb6w==

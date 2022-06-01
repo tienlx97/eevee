@@ -1,7 +1,7 @@
 {
-  "name": "@eevee/react-shared-contexts",
+  "name": "@eevee/react-provider",
   "version": "1.0.0",
-  "description": "Fluent UI React Contexts shared by multiple components.",
+  "description": "Eevee UI React provider component.",
   "main": "lib-commonjs/index.js",
   "module": "lib/index.js",
   "typings": "lib/index.d.ts",
@@ -21,10 +21,20 @@
   },
   "dependencies": {
     "tslib": "2.4.0",
-    "@eevee/react-theme": "*"
+    "@griffel/react": "1.1.0",
+    "@eevee/react-shared-contexts": "*",
+    "@eevee/react-theme": "*",
+    "@eevee/react-utilities": "*"
   },
   "peerDependencies": {
     "@types/react": ">=16.8.0",
     "react": ">=16.8.0"
+  },
+  "exports": {
+    ".": {
+      "types": "./lib/index.d.ts",
+      "import": "./lib/index.js",
+      "require": "./lib-commonjs/index.js"
+    }
   }
 }

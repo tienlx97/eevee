@@ -4,73 +4,42 @@
 
 export type ColorTokens = {
   // must have:
-  colorNeutralShadowAmbient: string;
-  colorNeutralShadowKey: string;
-  colorNeutralShadowAmbientLighter: string;
-  colorNeutralShadowKeyLighter: string;
-  colorNeutralShadowAmbientDarker: string;
-  colorNeutralShadowKeyDarker: string;
+  colorShadowAmbient: string;
+  colorShadowKey: string;
+  colorShadowAmbientLighter: string;
+  colorShadowKeyLighter: string;
+  colorShadowAmbientDarker: string;
+  colorShadowKeyDarker: string;
   colorBrandShadowAmbient: string;
   colorBrandShadowKey: string;
-
-  colorBackground: string;
-  colorForeground: string;
-
+  colorBackground1: string;
+  colorForeground1: string;
   colorForeground1Hover: string;
+  colorForeground1Pressed: string;
+  colorForeground1Selected: string;
 
-  colorBackground1Hover: string;
+  colorForeground2: string;
+  colorForeground2Hover: string;
+  colorForeground2Pressed: string;
+  colorForeground2Selected: string;
+
+  colorForeground3: string;
+  colorForeground3Hover: string;
+  colorForeground3Pressed: string;
+  colorForeground3Selected: string;
+
+  colorForeground4: string;
+  colorForeground4Hover: string;
+  colorForeground4Pressed: string;
+  colorForeground4Selected: string;
+
+  colorForegroundDisabled: string;
+  colorForegroundInvertedDisabled: string;
 
   colorStroke1: string;
   colorStroke1Hover: string;
   colorStroke1Pressed: string;
   colorStroke1Selected: string;
-
-  // maybe change
-  colorText: string;
-  colorBlurredBackground: string;
-  colorPrimary: string;
-  colorSecondary: string;
-  colorTertiary: string;
-  colorDecorative: string;
-  colorMuted: string;
-  colorMutedBackground: string;
-  colorInfo: string;
-  colorSuccess: string;
-  colorSuccessBackground: string;
-  colorError: string;
-  colorErrorBackground: string;
-  colorAlert: string;
-  colorAlertBackground: string;
-  colorVenn0: string;
-  colorVenn1: string;
-  colorGray100: string;
-  colorGray200: string;
-  colorGray300: string;
-  colorGray400: string;
-  colorGray500: string;
-  colorGray600: string;
-  colorGray700: string;
-  colorGray800: string;
-  colorGray900: string;
-  colorGray1000: string;
-  colorSubtleBackground: string;
-  colorSubtleFloating: string;
-  colorHomepageLight: string;
-  colorHomepageDark: string;
-  colorHomepageBg: string;
-  syntaxBg: string;
-  syntaxHighLight: string;
-  syntaxTxt: string;
-  syntaxComment: string;
-  syntaxProps: string;
-  syntaxBool: string;
-  syntaxVal: string;
-  syntaxStr: string;
-  syntaxName: string;
-  syntaxDel: string;
-  syntaxRegex: string;
-  syntaxFn: string;
-  // syntaxDark: string;
 };
 
 export type FontWeightTokens = {
@@ -273,3 +242,5 @@ export type Theme = ColorTokens &
   StrokeWidthTokens;
 // BreakPoints &
 // BreakPointSizes;
+
+export type PartialTheme = Partial<Theme>;

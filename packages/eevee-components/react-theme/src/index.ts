@@ -2,6 +2,7 @@ export { createDarkTheme } from './utils/index';
 
 export { themeToTokensObject } from './themeToTokensObject';
 export { tokens } from './tokens';
+export { teamsDarkTheme } from './themes';
 
 export type {
   Brands,
@@ -20,4 +21,5 @@ export type {
   BreakPoints,
   ColorVariants,
   GlobalSharedColors,
+  PartialTheme,
 } from './types';

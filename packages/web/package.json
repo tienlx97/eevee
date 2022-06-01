@@ -56,7 +56,9 @@
     "webpack-obfuscator": "^3.5.1"
   },
   "dependencies": {
-    "@eevee/react-button": "1.0.0",
+    "@eevee/react-button": "*",
+    "@eevee/react-provider": "*",
+    "@eevee/react-theme": "*",
     "@griffel/react": "^1.0.4",
     "react": "*",
     "react-dom": "*"
