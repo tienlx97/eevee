@@ -11,6 +11,8 @@ export const generateColorTokens = (): ColorTokens => ({
   colorBrandShadowKey: 'red',
 
   colorBackground1: 'black',
+  colorBackground1Hover: '',
+
   colorForeground1: 'red',
   colorForeground1Hover: 'red',
   colorForeground1Pressed: 'red',

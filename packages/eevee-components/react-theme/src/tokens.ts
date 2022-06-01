@@ -9,6 +9,8 @@ export const tokens: Record<keyof Theme, string> = {
   colorShadowKeyDarker: 'var(--colorShadowKeyDarker)',
   colorBrandShadowAmbient: 'var(--colorBrandShadowAmbient)',
   colorBrandShadowKey: 'var(--colorBrandShadowKey)',
+  colorBackground1: 'var(--colorBackground1)',
+  colorBackground1Hover: 'var(--colorBackground1Hover)',
   colorForeground1: 'var(--colorForeground1)',
   colorForeground1Hover: 'var(--colorForeground1Hover)',
   colorForeground1Pressed: 'var(--colorForeground1Pressed)',
@@ -75,5 +77,4 @@ export const tokens: Record<keyof Theme, string> = {
   shadow16Brand: 'var(--shadow16Brand)',
   shadow28Brand: 'var(--shadow28Brand)',
   shadow64Brand: 'var(--shadow64Brand)',
-  colorBackground1: 'var(--colorBackground1)',
 };

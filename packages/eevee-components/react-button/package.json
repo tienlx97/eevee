@@ -24,7 +24,8 @@
   },
   "dependencies": {
     "tslib": "2.4.0",
-    "@eevee/react-utilities": "*"
+    "@eevee/react-utilities": "*",
+    "@eevee/react-icons": "*"
   },
   "peerDependencies": {
     "@types/react": ">=16.8.0",

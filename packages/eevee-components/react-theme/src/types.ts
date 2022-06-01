@@ -12,7 +12,20 @@ export type ColorTokens = {
   colorShadowKeyDarker: string;
   colorBrandShadowAmbient: string;
   colorBrandShadowKey: string;
+
+  colorForeground2BrandHover: string;
+  colorForeground2BrandPressed: string;
+
   colorBackground1: string;
+  colorBackground1Hover: string;
+  colorBackground1Pressed: string;
+
+  colorTransparentBackground: string;
+  colorTransparentBackgroundHover: string;
+  colorTransparentBackgroundPressed: string;
+
+  colorBackgroundDisabled: string;
+
   colorForeground1: string;
   colorForeground1Hover: string;
   colorForeground1Pressed: string;
@@ -36,16 +49,35 @@ export type ColorTokens = {
   colorForegroundDisabled: string;
   colorForegroundInvertedDisabled: string;
 
+  //
+  colorStrokeDisabled: string;
   colorStroke1: string;
   colorStroke1Hover: string;
   colorStroke1Pressed: string;
   colorStroke1Selected: string;
+  colorStrokeFocus2: string;
 };
 
 export type FontWeightTokens = {
   fontWeightBold: number;
   fontWeightMedium: number;
   fontWeightLight: number;
+  fontWeightRegular: number;
+  fontWeightSemibold: number;
+};
+
+export type LineHeightTokens = {
+  lineHeightBase100: string;
+  lineHeightBase200: string;
+  lineHeightBase300: string;
+  lineHeightBase400: string;
+  lineHeightBase500: string;
+  lineHeightBase600: string;
+
+  lineHeightHero700: string;
+  lineHeightHero800: string;
+  lineHeightHero900: string;
+  lineHeightHero1000: string;
 };
 
 export type FontFamilyTokens = {
@@ -143,6 +175,48 @@ export type BorderRadiusTokens = {
   borderRadiusCircular: string;
 };
 
+export type VerticalSpacingTokens = {
+  spacingVerticalNone: string;
+  spacingVerticalXXS: string;
+  spacingVerticalXS: string;
+  spacingVerticalSNudge: string;
+  spacingVerticalS: string;
+  spacingVerticalMNudge: string;
+  spacingVerticalM: string;
+  spacingVerticalL: string;
+  spacingVerticalXL: string;
+  spacingVerticalXXL: string;
+  spacingVerticalXXXL: string;
+};
+
+export type HorizontalSpacingTokens = {
+  spacingHorizontalNone: string;
+  spacingHorizontalXXS: string;
+  spacingHorizontalXS: string;
+  spacingHorizontalSNudge: string;
+  spacingHorizontalS: string;
+  spacingHorizontalMNudge: string;
+  spacingHorizontalM: string;
+  spacingHorizontalL: string;
+  spacingHorizontalXL: string;
+  spacingHorizontalXXL: string;
+  spacingHorizontalXXXL: string;
+};
+
+export type FontSizeTokens = {
+  fontSizeBase100: string;
+  fontSizeBase200: string;
+  fontSizeBase300: string;
+  fontSizeBase400: string;
+  fontSizeBase500: string;
+  fontSizeBase600: string;
+
+  fontSizeHero700: string;
+  fontSizeHero800: string;
+  fontSizeHero900: string;
+  fontSizeHero1000: string;
+};
+
 export type CurveTokens = {
   curveAccelerateMax: string;
   curveAccelerateMid: string;
@@ -232,14 +306,22 @@ export type ShadowBrandTokens = {
 };
 
 export type Theme = ColorTokens &
-  FontFamilyTokens &
-  FontWeightTokens &
-  BorderRadiusTokens &
+  ShadowTokens &
+  //
   CurveTokens &
   DurationTokens &
-  ShadowTokens &
+  //
+  BorderRadiusTokens &
   ShadowBrandTokens &
-  StrokeWidthTokens;
+  StrokeWidthTokens &
+  //
+  VerticalSpacingTokens &
+  HorizontalSpacingTokens &
+  //
+  FontFamilyTokens &
+  FontWeightTokens &
+  FontSizeTokens &
+  LineHeightTokens;
 // BreakPoints &
 // BreakPointSizes;
 
