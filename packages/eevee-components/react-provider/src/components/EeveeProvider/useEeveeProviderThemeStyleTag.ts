@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { useId, usePrevious } from '@eevee/react-utilities';
 import type { EeveeProviderState } from './EeveeProvider.types';
-
+import { eeveeProviderClassNames } from './renderEeveeProvider';
 /**
  * Writes a theme as css variables in a style tag on the provided targetDocument as a rule applied to a CSS class
  *
@@ -10,7 +10,7 @@ import type { EeveeProviderState } from './EeveeProvider.types';
 export const useFluentProviderThemeStyleTag = (options: Pick<EeveeProviderState, 'theme' | 'targetDocument'>) => {
   const { targetDocument, theme } = options;
 
-  const styleTagId = useId('eve-EeveeProvider');
+  const styleTagId = useId(eeveeProviderClassNames.root);
   const styleTag = React.useMemo(() => {
     if (!targetDocument) {
       return null;

@@ -4,7 +4,7 @@
  * @type {import('@jest/types').Config.InitialOptions}
  */
 module.exports = {
-  displayName: 'react-provider',
+  displayName: 'react-icons',
   preset: '../../../jest.preset.js',
   globals: {
     'ts-jest': {

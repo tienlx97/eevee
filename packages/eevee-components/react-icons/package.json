@@ -1,0 +1,37 @@
+{
+  "name": "@eevee/react-icons",
+  "version": "1.0.0",
+  "description": "Eevee UI React icons component.",
+  "main": "lib-commonjs/index.js",
+  "module": "lib/index.js",
+  "typings": "lib/index.d.ts",
+  "sideEffects": false,
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/lexuantien/eevee"
+  },
+  "license": "MIT",
+  "scripts": {
+    "test": "jest --passWithNoTests",
+    "type-check": "tsc -b tsconfig.json"
+  },
+  "devDependencies": {
+    "@eevee/eslint-plugin": "*",
+    "@eevee/scripts": "*"
+  },
+  "dependencies": {
+    "tslib": "2.4.0",
+    "@griffel/react": "1.1.0"
+  },
+  "peerDependencies": {
+    "@types/react": ">=16.8.0",
+    "react": ">=16.8.0"
+  },
+  "exports": {
+    ".": {
+      "types": "./lib/index.d.ts",
+      "import": "./lib/index.js",
+      "require": "./lib-commonjs/index.js"
+    }
+  }
+}

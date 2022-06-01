@@ -1,4 +1,3 @@
-// import {} from '@eevee/react-button';
 import * as React from 'react';
 // Because we use @types/react v16
 // And react-client v17 support
