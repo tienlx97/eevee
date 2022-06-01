@@ -79,6 +79,11 @@ const minifyEsbuildJTS = new ESBuildMinifyPlugin({
   css: true, // Apply minification to CSS assets
 });
 
+const { TsconfigPathsPlugin } = require('tsconfig-paths-webpack-plugin');
+const tsPathsPlugin = new TsconfigPathsPlugin({
+  configFile: path.resolve(__dirname, '../../../tsconfig.base.json'),
+});
+
 module.exports = {
   htmlWebpackPlugin,
   caseSensitivePathsPlugin,
@@ -92,4 +97,5 @@ module.exports = {
   minifyCss,
   minifyJTS,
   minifyEsbuildJTS,
+  tsPathsPlugin,
 };

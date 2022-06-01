@@ -23,7 +23,8 @@
     "@eevee/scripts": "^1.0.0"
   },
   "dependencies": {
-    "tslib": "2.4.0"
+    "tslib": "2.4.0",
+    "@eevee/react-utilities": "*"
   },
   "peerDependencies": {
     "@types/react": ">=16.8.0",

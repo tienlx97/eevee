@@ -41,13 +41,13 @@ module.exports = api => {
     useESModules && 'babel-plugin-iife-wrap-react-components',
     useESModules && [
       'babel-plugin-annotate-pure-imports',
-      // {
-      //   imports: {
-      //     '@fluentui/react-bindings': 'compose',
-      //     '@fluentui/react-context-selector': 'createContext',
-      //     '../utils/createSvgIcon': ['createSvgIcon'],
-      //   },
-      // },
+      {
+        // imports: {
+        //   '@eevee/react-bindings': 'compose',
+        //   '@eevee/react-context-selector': 'createContext',
+        //   '../utils/createSvgIcon': ['createSvgIcon'],
+        // },
+      },
     ],
     isDistBundle && 'lodash',
   ].filter(Boolean);

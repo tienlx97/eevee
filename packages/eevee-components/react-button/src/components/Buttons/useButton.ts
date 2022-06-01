@@ -1,5 +1,6 @@
+import { resolveShorthand, useEventCallback } from '@eevee/react-utilities';
 import * as React from 'react';
-import { ButtonProps, ButtonState, ButtonSlots } from './Button.types';
+import { ButtonProps, ButtonState } from './Button.types';
 
 /**
  * Given user props, defines default props for the Button, calls useButtonState, and returns processed state.
@@ -9,41 +10,108 @@ import { ButtonProps, ButtonState, ButtonSlots } from './Button.types';
 export const useButton_unstable = (props: ButtonProps, ref: React.Ref<HTMLButtonElement>): ButtonState => {
   const {
     appearance = 'secondary',
-    // eslint-disable-next-line deprecation/deprecation
-    block = false,
+    as,
     disabled = false,
     disabledFocusable = false,
     icon,
     iconPosition = 'before',
     shape = 'rounded',
     size = 'medium',
+
+    // event
+    onClick,
+    onKeyDown,
+    onKeyUp,
+
     ...rest
   } = props;
+
+  const iconShorthand = resolveShorthand(icon);
+
+  // const onClickHandler: ButtonProps['onClick'] = useEventCallback(ev => {
+  //   if (disabled || disabledFocusable) {
+  //     ev.preventDefault();
+  //     ev.stopPropagation();
+  //   } else {
+  //     onClick?.(ev);
+  //   }
+  // });
+
+  // const onKeydownHandler: ButtonProps['onKeyDown'] = useEventCallback(ev => {
+  //   onKeyDown?.(ev);
+
+  //   if (ev.isDefaultPrevented()) {
+  //     return;
+  //   }
+
+  //   const key = ev.key;
+
+  //   if ((disabled || disabledFocusable) && (key === 'Enter' || key === 'Space')) {
+  //     ev.preventDefault();
+  //     ev.stopPropagation();
+  //     return;
+  //   }
+
+  //   if (key === 'Space') {
+  //     ev.preventDefault();
+  //     return;
+  //   }
+
+  //   // If enter is pressed, activate the button
+  //   else if (key === 'Enter') {
+  //     ev.preventDefault();
+  //     ev.currentTarget.click();
+  //   }
+  // });
+
+  // const onKeyupHandler: ButtonProps['onKeyUp'] = useEventCallback(ev => {
+  //   onKeyUp?.(ev);
+
+  //   if (ev.isDefaultPrevented()) {
+  //     return;
+  //   }
+
+  //   const key = ev.key;
+
+  //   if ((disabled || disabledFocusable) && (key === 'Enter' || key === 'Space')) {
+  //     ev.preventDefault();
+  //     ev.stopPropagation();
+  //     return;
+  //   }
+
+  //   if (key === 'Space') {
+  //     ev.preventDefault();
+  //     ev.currentTarget.click();
+  //   }
+  // });
 
   return {
     // Props passed at the top-level
     appearance,
-    block,
     disabled,
     disabledFocusable,
     iconPosition,
     shape,
     size,
 
-    // State calculated from a set of props
-    iconOnly: Boolean(icon && !props.children),
-
-    // Slots definition
+    // Slot define
     components: {
       root: 'button',
       icon: 'span',
     },
+    //
+    iconOnly: Boolean(iconShorthand?.children && !props.children),
 
     root: {
       ref,
+      'aria-disabled': disabledFocusable ? true : undefined,
+      disabled: disabled && !disabledFocusable,
+      onClick: disabledFocusable ? undefined : onClick,
+      onKeyDown: disabledFocusable ? undefined : onKeyDown,
+      onKeyUp: disabledFocusable ? undefined : onKeyUp,
       ...rest,
     },
 
-    icon,
+    icon: iconShorthand,
   };
 };

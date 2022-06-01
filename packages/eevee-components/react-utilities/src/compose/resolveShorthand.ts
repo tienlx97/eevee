@@ -33,8 +33,7 @@ export const resolveShorthand: ResolveShorthandFunction = (value, options) => {
   if (typeof value === 'string' || typeof value === 'number' || Array.isArray(value) || isValidElement(value)) {
     resolvedShorthand.children = value;
   } else if (typeof value === 'object') {
-    // Type 'UnknownSlotProps | ReactNodeArray' is not assignable to type 'UnknownSlotProps'.
-    resolvedShorthand = value as any;
+    resolvedShorthand = value;
   }
 
   return defaultProps ? { ...defaultProps, ...resolvedShorthand } : resolvedShorthand;

@@ -1,11 +1,14 @@
+// import {} from '@eevee/react-button';
 import * as React from 'react';
-import * as client from 'react-dom/client';
+const client = require('react-dom/client');
+import { Button } from '@eevee/react-button';
 
 const Index = () => {
   return (
-    <>
-      <div>sadasd</div>
-    </>
+    <div>
+      <div>This is test 3</div>
+      <Button onClick={() => alert('click')}>2</Button>
+    </div>
   );
 };
 

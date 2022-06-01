@@ -23,7 +23,7 @@ module.exports = {
     'import/no-default-export': 'error',
     'import/no-extraneous-dependencies': [
       'error',
-      { devDependencies: ['**/*-test.ts*', '**/*.test.ts*', '*.config.js', 'gulpfile.ts'] },
+      { devDependencies: ['**/*-test.ts*', '**/*.test.ts*', '*.config.js', 'gulpfile.ts', 'just.config.ts'] },
     ],
 
     // False positive on arg types:

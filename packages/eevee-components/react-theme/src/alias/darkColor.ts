@@ -1,6 +1,13 @@
 import { ColorTokens } from '../types';
 
 export const generateColorTokens = (): ColorTokens => ({
+  colorBackground1Hover: '',
+  colorForeground: '',
+  colorForeground1Hover: '',
+  colorStroke1: '',
+  colorStroke1Hover: '',
+  colorStroke1Pressed: '',
+  colorStroke1Selected: '',
   colorNeutralShadowAmbient: 'rgba(0,0,0,0.24)', // rgba(0,0,0,0.24) undefined
   colorNeutralShadowKey: 'rgba(0,0,0,0.28)', // rgba(0,0,0,0.28) undefined
   colorNeutralShadowAmbientLighter: 'rgba(0,0,0,0.12)', // rgba(0,0,0,0.12) undefined

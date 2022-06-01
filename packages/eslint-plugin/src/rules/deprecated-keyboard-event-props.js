@@ -13,7 +13,7 @@ module.exports = createRule({
       requiresTypeChecking: true,
     },
     messages: {
-      deprecatedProp: 'KeyboardEvent prop "{{name}}" is deprecated (consider using @eevee/keyboard-key instead)',
+      deprecatedProp: 'KeyboardEvent prop "{{name}}" is deprecated (consider using @fluentui/keyboard-key instead)',
     },
     schema: [],
   },

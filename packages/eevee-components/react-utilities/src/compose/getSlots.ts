@@ -14,9 +14,9 @@ export type Slots<S extends SlotPropsRecord> = {
   [K in keyof S]: ExtractSlotProps<S[K]> extends AsIntrinsicElement<infer As>
     ? // for slots with an `as` prop, the slot will be any one of the possible values of `as`
       As
-    : ExtractSlotProps<S[K]> extends React.ComponentType<infer P>
-    ? React.ElementType<NonNullable<P>>
-    : React.ElementType<ExtractSlotProps<S[K]>>;
+    : ExtractSlotProps<S[K]> extends React.ComponentType<infer P> // is a class-function component
+    ? React.ElementType<NonNullable<P>> // return class-function that not null
+    : React.ElementType<ExtractSlotProps<S[K]>>; // maybe null
 };
 
 type ObjectSlotProps<S extends SlotPropsRecord> = {
@@ -82,7 +82,7 @@ function getSlot<R extends SlotPropsRecord, K extends keyof R>(
   if (typeof children === 'function') {
     const render = children as SlotRenderFunction<R[K]>;
     return [
-      React.Fragment as any,
+      React.Fragment,
       {
         children: render(slot, rest as Omit<R[K], 'children' | 'as'>),
       } as unknown as R[K],

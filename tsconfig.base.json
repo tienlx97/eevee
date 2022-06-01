@@ -13,10 +13,11 @@
     "typeRoots": ["node_modules/@types", "./typings"],
     "baseUrl": ".",
     "paths": {
+      "@eevee/react-button": ["packages/eevee-components/react-button/src/index.ts"],
       "@eevee/react-portal": ["packages/eevee-components/react-portal/src/index.ts"],
-      "@eevee/react-utilities": ["packages/eevee-components/react-utilities/src/index.ts"],
       "@eevee/react-shared-contexts": ["packages/eevee-components/react-shared-contexts/src/index.ts"],
-      "@eevee/react-theme": ["packages/eevee-components/react-theme/src/index.ts"]
+      "@eevee/react-theme": ["packages/eevee-components/react-theme/src/index.ts"],
+      "@eevee/react-utilities": ["packages/eevee-components/react-utilities/src/index.ts"]
     }
   },
   "exclude": ["node_modules"]

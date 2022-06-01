@@ -1,6 +1,6 @@
 {
   "name": "react",
-  "version": "18.1.0",
+  "version": "17.0.0",
   "main": "index.js",
   "license": "MIT",
   "exports": {
