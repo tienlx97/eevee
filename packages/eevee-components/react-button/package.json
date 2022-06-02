@@ -12,8 +12,6 @@
   },
   "license": "MIT",
   "scripts": {
-    "start": "yarn storybook",
-    "storybook": "node ../../../scripts/storybook/runner",
     "test": "jest --passWithNoTests",
     "build:local": "tsc -p ./tsconfig.lib.json --module esnext --emitDeclarationOnly && node ../../../scripts/typescript/normalize-import --output ./dist",
     "type-check": "tsc -b tsconfig.json"

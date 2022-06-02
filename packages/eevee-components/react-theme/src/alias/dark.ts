@@ -1,7 +1,7 @@
 import type { ColorTokens } from '../types';
 
 export const generateColorTokens = (): ColorTokens => ({
-  colorBackground1: '#fff',
+  colorBackground1: 'hsl(210, 30%, 8%)',
   colorBackground1Hover: '#3d3d3d',
   colorBackground1Pressed: '#fff',
 
@@ -11,6 +11,7 @@ export const generateColorTokens = (): ColorTokens => ({
   colorTransparentBackgroundHover: 'transparent',
   colorTransparentBackgroundPressed: 'transparent',
 
+  colorForeground1: '#fff',
   colorForeground1Hover: '#fff',
   colorForeground1Pressed: '#fff',
   colorForeground2: '#d6d6d6',

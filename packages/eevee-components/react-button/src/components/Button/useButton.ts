@@ -1,13 +1,13 @@
-import { resolveShorthand, useEventCallback } from '@eevee/react-utilities';
 import * as React from 'react';
-import { ButtonProps, ButtonState } from './Button.types';
+import type { ButtonProps, ButtonState } from './Button.types';
+import { resolveShorthand } from '@eevee/react-utilities';
 
 /**
  * Given user props, defines default props for the Button, calls useButtonState, and returns processed state.
  * @param props - User provided props to the Button component.
  * @param ref - User provided ref to be passed to the Button component.
  */
-export const useButton_unstable = (props: ButtonProps, ref: React.Ref<HTMLButtonElement>): ButtonState => {
+export const useButton = (props: ButtonProps, ref: React.Ref<HTMLButtonElement>): ButtonState => {
   const {
     appearance = 'secondary',
     as,

@@ -14,6 +14,7 @@ export type ColorTokens = {
   colorTransparentBackgroundPressed: string;
 
   // foreground
+  colorForeground1: string;
   colorForeground1Hover: string;
   colorForeground1Pressed: string;
   colorForeground2: string;

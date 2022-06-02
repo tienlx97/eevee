@@ -2,17 +2,20 @@ import * as React from 'react';
 // Because we use @types/react v16
 // And react-client v17 support
 // We will add global.d.ts in future
-const client = require('react-dom/client');
+// const client = require('react-dom');
+// @ts-ignore
+import * as client from 'react-dom/client';
 
 import { EeveeProvider } from '@eevee/react-provider';
 import { Button } from '@eevee/react-button';
-import { teamsDarkTheme, tokens } from '@eevee/react-theme';
+import { darkTheme } from '@eevee/react-theme';
+
+import './asset/css/index.css';
 
 const Index = () => {
   return (
-    <EeveeProvider theme={teamsDarkTheme}>
-      <div>This is test 3</div>
-      <Button style={{ backgroundColor: tokens.colorForeground1 }} onClick={() => alert('click')}>
+    <EeveeProvider theme={darkTheme}>
+      <Button type="button" appearance="transparent" onClick={() => alert('click')}>
         2
       </Button>
     </EeveeProvider>

@@ -1,12 +1,11 @@
-import { getSlots } from '@eevee/react-utilities';
 import * as React from 'react';
-import { ButtonSlots, ButtonState } from './Button.types';
-// import type { ButtonState, CompState, SlotPropsRecord, SlotRenderFunction } from './Button.types';
+import { getSlots } from '@eevee/react-utilities';
+import type { ButtonSlots, ButtonState } from './Button.types';
 
 /**
  * Renders a Button component by passing the state defined props to the appropriate slots.
  */
-export const renderButton_unstable = (state: ButtonState) => {
+export const renderButton = (state: ButtonState) => {
   const { slots, slotProps } = getSlots<ButtonSlots>(state);
   const { iconOnly, iconPosition } = state;
 

@@ -26,9 +26,9 @@ const useRootStyles = makeStyles({
     textOverflow: 'ellipsis',
     whiteSpace: 'nowrap',
 
-    backgroundColor: tokens.colorBackground1,
-    color: tokens.colorBackground1,
-    ...shorthands.border(tokens.strokeWidthThin, 'solid', tokens.colorStroke1),
+    backgroundColor: tokens.colorBackground1, // #111 #fff
+    color: tokens.colorForeground1, // #fff #111
+    ...shorthands.border(tokens.strokeWidthThin, 'solid', tokens.colorStroke1), // 1px solid #666
 
     fontFamily: tokens.fontFamily,
 
@@ -351,7 +351,7 @@ const useIconStyles = makeStyles({
   },
 });
 
-export const useButtonStyles_unstable = (state: ButtonState): ButtonState => {
+export const useButtonStyles = (state: ButtonState): ButtonState => {
   // global styles
   const rootStyles = useRootStyles();
   const rootDisabledStyles = useRootDisabledStyles();
@@ -367,22 +367,22 @@ export const useButtonStyles_unstable = (state: ButtonState): ButtonState => {
 
     // Root styles
     rootStyles.base,
-    rootStyles.highContrast,
-    appearance === 'transparent' && rootStyles[appearance], // another `appearance`?.future
-    rootStyles[size],
-    rootStyles[shape],
+    // rootStyles.highContrast,
+    // appearance === 'transparent' && rootStyles[appearance], // another `appearance`?.future
+    // rootStyles[size],
+    // rootStyles[shape],
 
-    // Disabled styles
-    (disabled || disabledFocusable) && rootDisabledStyles.base,
-    (disabled || disabledFocusable) && rootDisabledStyles.highContrast,
-    appearance === 'transparent' && (disabled || disabledFocusable) && rootDisabledStyles[appearance], // another `appearance`?.future
+    // // Disabled styles
+    // (disabled || disabledFocusable) && rootDisabledStyles.base,
+    // (disabled || disabledFocusable) && rootDisabledStyles.highContrast,
+    // appearance === 'transparent' && (disabled || disabledFocusable) && rootDisabledStyles[appearance], // another `appearance`?.future
 
-    // Focus styles
-    // Focus styles
-    rootFocusStyles.base,
-    // appearance === 'primary' && rootFocusStyles.primary, // later
-    rootFocusStyles[size],
-    rootFocusStyles[shape],
+    // // Focus styles
+    // // Focus styles
+    // rootFocusStyles.base,
+    // // appearance === 'primary' && rootFocusStyles.primary, // later
+    // rootFocusStyles[size],
+    // rootFocusStyles[shape],
 
     // Icon-only styles
     iconOnly && rootIconOnlyStyles[size],

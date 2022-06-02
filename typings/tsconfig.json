@@ -21,6 +21,9 @@
     },
     {
       "path": "./storybook__addons/tsconfig.json"
+    },
+    {
+      "path": "./react-dom-18/tsconfig.json"
     }
   ]
 }
