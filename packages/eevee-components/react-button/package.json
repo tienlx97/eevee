@@ -14,7 +14,9 @@
   "scripts": {
     "test": "jest --passWithNoTests",
     "build:local": "tsc -p ./tsconfig.lib.json --module esnext --emitDeclarationOnly && node ../../../scripts/typescript/normalize-import --output ./dist",
-    "type-check": "tsc -b tsconfig.json"
+    "type-check": "tsc -b tsconfig.json",
+    "storybook": "start-storybook -p 6006",
+    "build-storybook": "build-storybook"
   },
   "devDependencies": {
     "@eevee/eslint-plugin": "*",

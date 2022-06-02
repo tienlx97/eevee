@@ -9,15 +9,11 @@ export type ButtonSlots = {
 export type ButtonProps = EeveeProps<ButtonSlots> & {
   /**
    * A button can have its content and borders styled for greater emphasis or to be subtle.
-   * - 'secondary' (default): Gives emphasis to the button in such a way that it indicates a secondary action.
-   * - 'primary': Emphasizes the button as a primary action.
-   * - 'outline': Removes background styling.
-   * - 'subtle': Minimizes emphasis to blend into the background until hovered or focused.
    * - 'transparent': Removes background and border styling.
-   *
-   * @default 'secondary'
+   * - 'unstyled'
+   * @default 'transparent'
    */
-  appearance?: 'secondary' | 'primary' | 'outline' | 'subtle' | 'transparent';
+  appearance?: 'unstyled' | 'transparent';
 
   /**
    * When set, allows the button to be focusable even when it has been disabled. This is used in scenarios where it

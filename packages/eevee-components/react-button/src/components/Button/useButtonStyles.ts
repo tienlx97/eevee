@@ -88,7 +88,7 @@ const useRootStyles = makeStyles({
   transparent: {
     backgroundColor: tokens.colorTransparentBackground,
     ...shorthands.borderColor('transparent'),
-    color: tokens.colorForeground2,
+    color: tokens.colorForeground1,
 
     ':hover': {
       backgroundColor: tokens.colorTransparentBackgroundHover,
@@ -252,9 +252,9 @@ const useRootFocusStyles = makeStyles({
 
   // Shape variations
   circular: {
-    // ':focus': {
-    //   outlineStyle: 'none',
-    // },
+    ':focus': {
+      outlineStyle: 'none',
+    },
     [`:global([data-keyboard-nav]):focus`]: {
       ...shorthands.borderRadius(tokens.borderRadiusCircular),
     },
@@ -263,9 +263,9 @@ const useRootFocusStyles = makeStyles({
     /* The rounded styles are exactly the same as the base styles. */
   },
   square: {
-    // ':focus': {
-    //   outlineStyle: 'none',
-    // },
+    ':focus': {
+      outlineStyle: 'none',
+    },
     [`:global([data-keyboard-nav]):focus`]: {
       ...shorthands.borderRadius(tokens.borderRadiusNone),
     },
@@ -367,22 +367,21 @@ export const useButtonStyles = (state: ButtonState): ButtonState => {
 
     // Root styles
     rootStyles.base,
-    // rootStyles.highContrast,
-    // appearance === 'transparent' && rootStyles[appearance], // another `appearance`?.future
-    // rootStyles[size],
-    // rootStyles[shape],
+    rootStyles.highContrast,
+    appearance === 'transparent' && rootStyles[appearance], // another `appearance`?.future
+    rootStyles[size],
+    rootStyles[shape],
 
-    // // Disabled styles
-    // (disabled || disabledFocusable) && rootDisabledStyles.base,
-    // (disabled || disabledFocusable) && rootDisabledStyles.highContrast,
-    // appearance === 'transparent' && (disabled || disabledFocusable) && rootDisabledStyles[appearance], // another `appearance`?.future
+    // Disabled styles
+    (disabled || disabledFocusable) && rootDisabledStyles.base,
+    (disabled || disabledFocusable) && rootDisabledStyles.highContrast,
+    appearance === 'transparent' && (disabled || disabledFocusable) && rootDisabledStyles[appearance], // another `appearance`?.future
 
-    // // Focus styles
-    // // Focus styles
-    // rootFocusStyles.base,
-    // // appearance === 'primary' && rootFocusStyles.primary, // later
-    // rootFocusStyles[size],
-    // rootFocusStyles[shape],
+    // Focus styles
+    rootFocusStyles.base,
+    // appearance === 'primary' && rootFocusStyles.primary, // later
+    rootFocusStyles[size],
+    rootFocusStyles[shape],
 
     // Icon-only styles
     iconOnly && rootIconOnlyStyles[size],
