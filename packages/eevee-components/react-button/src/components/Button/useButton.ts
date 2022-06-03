@@ -9,7 +9,7 @@ import { resolveShorthand } from '@eevee/react-utilities';
  */
 export const useButton = (props: ButtonProps, ref: React.Ref<HTMLButtonElement>): ButtonState => {
   const {
-    appearance = 'secondary',
+    appearance = 'transparent',
     as,
     disabled = false,
     disabledFocusable = false,
