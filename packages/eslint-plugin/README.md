@@ -1,20 +1,51 @@
-# @eevee/eslint-plugin
+# @fluentui/eslint-plugin
 
 **ESLint configuration and custom rules for Fluent UI**
 
 ## Configs
 
-Usage: in your [ESLint config file](https://eslint.org/docs/user-guide/configuring), add `{ "extends": ["plugin:@eevee/<name>"] }` or `{ "extends": ["plugin:@eevee/eslint-plugin/<name>"] }` (the two are equivalent).
+Usage: in your [ESLint config file](https://eslint.org/docs/user-guide/configuring), add `{ "extends": ["plugin:@fluentui/<name>"] }` or `{ "extends": ["plugin:@fluentui/eslint-plugin/<name>"] }` (the two are equivalent).
 
-- `react`: For `@eevee/react` and related packages
-  - `react--legacy`: Like `react` but requiring an `I` prefix for interfaces
-  - `node`: Like `react` but for packages which run in a Node environment (not the browser)
-  - `node--legacy`: Like `node` but requiring an `I` prefix for interfaces
-- `react-northstar`: For `@eevee/react-northstar` and related packages
+- `react`: react specific configuration for fluentui vNext
+- `node`: node specific configuration for fluentui vNext
+- `react--legacy`: react specific configuration for fluentui v7,8
+- `node--legacy`: node specific configuration for fluentui v7,8
+- `react-northstar`: For `@fluentui/react-northstar` and related packages
+- `imports`: auto import statements sorting configuration
 
 Helpers for customizing configuration are exported under a `configHelpers` object.
 
 ## Rules
+
+### `ban-context-export`
+
+Exporting context objects as a part of the public API can lead to unexpected usages of context by customers and might
+impede future refactoring. To allow customers use context while encapsulating our internals correctly, the developer
+should export a provider and hook.
+
+**❌ Don't**
+
+```ts
+// src/context.ts
+import * as React from 'react';
+export const MyContext = React.createContext();
+
+// src/index.ts
+export { MyContext } from './context';
+```
+
+**✅ Do**
+
+```ts
+// src/context.ts
+import * as React from 'react';
+const MyContext = React.createContext();
+export const MyContextProvider = MyContext.Provider;
+export const useMyContext = () => React.useContext(MyContext);
+
+// src/index.ts
+export { MyContextProvider, useMyContext } from './context';
+```
 
 ### `ban-imports`
 
@@ -30,7 +61,7 @@ Requires one or more options objects. Either `path` or `pathRegex` is required.
 Example:
 
 ```
-"@eevee/ban-imports": [
+"@fluentui/ban-imports": [
   "error",
   { "path": "lodash" },
   { "path": "foo", "names": ["bar", { "regex": "^baz" }] },
@@ -41,7 +72,7 @@ Example:
 
 ### `deprecated-keyboard-event-props`
 
-Prevent using deprecated `KeyboardEvent` props `which` and `keyCode`, and recommend using `@eevee/keyboard-key` instead.
+Prevent using deprecated `KeyboardEvent` props `which` and `keyCode`, and recommend using `@fluentui/keyboard-key` instead.
 
 ### `max-len`
 
@@ -74,4 +105,4 @@ Ban `tslint:disable` and `tslint:enable` comments.
 
 Prevent visibility modifiers (`public`, `protected`, `private`) from being specified on class members/methods.
 
-Used in Fluent UI only by [`@eevee/react-northstar`](https://aka.ms/fluent-ui), not `@eevee/react`.
+Used in Fluent UI only by [`@fluentui/react-northstar`](https://aka.ms/fluent-ui), not `@fluentui/react`.

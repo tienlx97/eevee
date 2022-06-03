@@ -1,4 +1,4 @@
-/* eslint-disable @fluentui/max-len */
+/* eslint-disable @eevee/max-len */
 const { ESLintUtils } = require('@typescript-eslint/experimental-utils');
 
 /**

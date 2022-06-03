@@ -3,10 +3,18 @@
   "version": "1.0.0",
   "private": true,
   "main": "./index.js",
+  "bin": {
+    "just-scripts": "./just-scripts.js"
+  },
+  "scripts": {
+    "build": "echo no-op",
+    "clean": "",
+    "code-style": "node ./just-scripts.js code-style",
+    "test": "jest"
+  },
   "devDependencies": {
     "@eevee/eslint-plugin": "*",
     "babel-plugin-annotate-pure-imports": "^1.0.0-1",
-    "babel-plugin-iife-wrap-react-components": "^1.0.0-5",
-    "react-hot-loader": "^4.13.0"
+    "babel-plugin-iife-wrap-react-components": "^1.0.0-5"
   }
 }

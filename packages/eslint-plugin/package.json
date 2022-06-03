@@ -1,7 +1,7 @@
 {
   "name": "@eevee/eslint-plugin",
-  "version": "1.0.0",
-  "description": "ESLint configuration and custom rules for Fluent UI",
+  "version": "1.9.1",
+  "description": "ESLint configuration and custom rules for eevee",
   "main": "src/index.js",
   "repository": {
     "type": "git",

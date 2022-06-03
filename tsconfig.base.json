@@ -20,7 +20,8 @@
       "@eevee/react-provider": ["packages/eevee-components/react-provider/src/index.ts"],
       "@eevee/react-shared-contexts": ["packages/eevee-components/react-shared-contexts/src/index.ts"],
       "@eevee/react-theme": ["packages/eevee-components/react-theme/src/index.ts"],
-      "@eevee/react-utilities": ["packages/eevee-components/react-utilities/src/index.ts"]
+      "@eevee/react-utilities": ["packages/eevee-components/react-utilities/src/index.ts"],
+      "@eevee/scripts": ["scripts/index.ts"]
     }
   },
   "exclude": ["node_modules"]

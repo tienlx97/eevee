@@ -1,13 +1,14 @@
 {
-  // "extends": "./scripts/tsconfig.json"
-  "extends": "./tsconfig.base.json",
-  "compilerOptions": {
-    "target": "ES2019",
-    "noEmit": true,
-    "isolatedModules": true,
-    "importHelpers": true,
-    "jsx": "react",
-    "noUnusedLocals": true,
-    "preserveConstEnums": true
-  }
+  "extends": "./scripts/tsconfig.json",
+  "include": ["./{apps,packages}/*/just.config.ts"]
+  // "extends": "./tsconfig.base.json",
+  // "compilerOptions": {
+  //   "target": "ES2019",
+  //   "noEmit": true,
+  //   "isolatedModules": true,
+  //   "importHelpers": true,
+  //   "jsx": "react",
+  //   "noUnusedLocals": true,
+  //   "preserveConstEnums": true
+  // }
 }

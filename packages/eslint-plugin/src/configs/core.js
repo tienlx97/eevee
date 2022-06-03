@@ -334,7 +334,7 @@ const getOverrides = () => [
   {
     files: [...configHelpers.devDependenciesFiles],
     rules: {
-      // TODO: https://github.com/microsoft/fluentui/issues/21999
+      // TODO: https://github.com/microsoft/eevee/issues/21999
       'import/no-extraneous-dependencies': 'off',
     },
   },

@@ -12,10 +12,13 @@
   },
   "license": "MIT",
   "scripts": {
+    "clean": "just-scripts clean",
+    "code-style": "just-scripts code-style",
+    "just": "just-scripts",
+    "lint": "just-scripts lint",
     "start": "yarn storybook",
-    "storybook": "node ../../../scripts/storybook/runner",
+    "storybook": "start-storybook -p 6006",
     "test": "jest --passWithNoTests",
-    "build:local": "tsc -p ./tsconfig.lib.json --module esnext --emitDeclarationOnly && node ../../../scripts/typescript/normalize-import --output ./dist",
     "type-check": "tsc -b tsconfig.json"
   },
   "devDependencies": {

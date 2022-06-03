@@ -1,4 +1,4 @@
-odule.exports = {
+module.exports = {
   configs: {
     node: require('./configs/node'),
     'node--legacy': require('./configs/node-legacy'),

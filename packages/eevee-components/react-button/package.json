@@ -12,11 +12,14 @@
   },
   "license": "MIT",
   "scripts": {
-    "test": "jest --passWithNoTests",
-    "build:local": "tsc -p ./tsconfig.lib.json --module esnext --emitDeclarationOnly && node ../../../scripts/typescript/normalize-import --output ./dist",
-    "type-check": "tsc -b tsconfig.json",
+    "clean": "just-scripts clean",
+    "code-style": "just-scripts code-style",
+    "just": "just-scripts",
+    "lint": "just-scripts lint",
+    "start": "yarn storybook",
     "storybook": "start-storybook -p 6006",
-    "build-storybook": "build-storybook"
+    "test": "jest --passWithNoTests",
+    "type-check": "tsc -b tsconfig.json"
   },
   "devDependencies": {
     "@eevee/eslint-plugin": "*",

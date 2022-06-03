@@ -38,7 +38,7 @@ describe('setVirtualParent', () => {
     setVirtualParent(child, parent);
 
     // Assert
-    expect(((child as unknown) as VirtualElement)._virtual.parent).toBe(parent);
+    expect((child as unknown as VirtualElement)._virtual.parent).toBe(parent);
   });
 
   it('should remove virtual parent when parent is undefined', () => {
@@ -49,7 +49,7 @@ describe('setVirtualParent', () => {
     setVirtualParent(child);
 
     // Assert
-    expect(((child as unknown) as VirtualElement)._virtual.parent).toBeUndefined();
+    expect((child as unknown as VirtualElement)._virtual.parent).toBeUndefined();
   });
 });
 
@@ -74,7 +74,7 @@ describe('getVirtualParent', () => {
   it.each([null, undefined])('should return undefined if virtual parent is %s', parent => {
     // Arrange
     const [child] = createTestElements();
-    setVirtualParent(child, (parent as unknown) as HTMLElement);
+    setVirtualParent(child, parent as unknown as HTMLElement);
 
     // Assert
     expect(getVirtualParent(child)).toBeUndefined();
