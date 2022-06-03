@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { useId, usePrevious } from '@eevee/react-utilities';
 import type { EeveeProviderState } from './EeveeProvider.types';
-import { eeveeProviderClassNames } from './renderEeveeProvider';
+import { eeveeProviderClassNames } from './useEeveeProviderStyles';
 /**
  * Writes a theme as css variables in a style tag on the provided targetDocument as a rule applied to a CSS class
  *
