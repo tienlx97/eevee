@@ -20,6 +20,7 @@ export type ColorTokens = {
   colorForeground2: string;
   colorForeground2BrandHover: string;
   colorForeground2BrandPressed: string;
+  colorForeground3: string;
 
   colorForegroundDisabled: string;
 

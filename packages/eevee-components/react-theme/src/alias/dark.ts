@@ -17,6 +17,7 @@ export const generateColorTokens = (): ColorTokens => ({
   colorForeground2: '#d6d6d6',
   colorForeground2BrandHover: '#2899f5',
   colorForeground2BrandPressed: '#1890f1',
+  colorForeground3: 'hsl(230, 100%, 67%)',
 
   colorForegroundDisabled: '#5c5c5c',
 

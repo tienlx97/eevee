@@ -1,0 +1,44 @@
+{
+  "name": "@eevee/react-link",
+  "version": "1.0.0",
+  "description": "Fluent UI themes",
+  "main": "lib-commonjs/index.js",
+  "module": "lib/index.js",
+  "typings": "lib/index.d.ts",
+  "sideEffects": false,
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/lexuantien/eevee"
+  },
+  "license": "MIT",
+  "scripts": {
+    "test": "jest --passWithNoTests",
+    "build:local": "tsc -p ./tsconfig.lib.json --module esnext --emitDeclarationOnly && node ../../../scripts/typescript/normalize-import --output ./dist",
+    "type-check": "tsc -b tsconfig.json",
+    "storybook": "start-storybook -p 6006",
+    "build-storybook": "build-storybook"
+  },
+  "devDependencies": {
+    "@eevee/eslint-plugin": "*",
+    "@eevee/scripts": "*"
+  },
+  "dependencies": {
+    "tslib": "2.4.0",
+    "@eevee/react-utilities": "*",
+    "@eevee/react-icons": "*",
+    "react-router-dom": "6"
+  },
+  "peerDependencies": {
+    "@types/react": ">=16.8.0",
+    "@types/react-dom": ">=16.8.0",
+    "react": ">=16.8.0",
+    "react-dom": ">=16.8.0"
+  },
+  "exports": {
+    ".": {
+      "types": "./lib/index.d.ts",
+      "import": "./lib/index.js",
+      "require": "./lib-commonjs/index.js"
+    }
+  }
+}

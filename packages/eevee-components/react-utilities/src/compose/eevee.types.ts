@@ -3,7 +3,6 @@ import {
   AsIntrinsicElement,
   ExtractSlotProps,
   IntrisicElementProps,
-  IsSingleton,
   PropsWithoutRef,
   ReplaceNullWithUndefined,
   SlotPropsRecord,

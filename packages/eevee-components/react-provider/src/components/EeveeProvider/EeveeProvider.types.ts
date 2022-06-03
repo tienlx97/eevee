@@ -10,15 +10,17 @@ export type EeveeProviderProps = {
   targetDocument?: Document;
 
   theme?: PartialTheme;
+
+  className?: string;
 };
 
-export type EeveeProviderState = Pick<EeveeProviderProps, 'targetDocument'> &
+export type EeveeProviderState = Pick<EeveeProviderProps, 'targetDocument' | 'className'> &
   Required<Pick<EeveeProviderProps, 'dir'>> & {
     theme: ThemeContextValue;
     themeClassName: string;
   };
 
-export type EeveeProviderContextValues = Pick<EeveeProviderState, 'theme'> & {
+export type EeveeProviderContextValues = Pick<EeveeProviderState, 'theme' | 'className'> & {
   textDirection: 'ltr' | 'rtl';
   provider: ProviderContextValue;
   themeClassName: ThemeClassNameContextValue;

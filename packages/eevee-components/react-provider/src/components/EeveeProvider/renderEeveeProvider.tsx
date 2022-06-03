@@ -23,9 +23,10 @@ export function renderEeveeProvider({
   themeClassName,
   theme,
   textDirection,
+  className = '',
 }: EeveeProviderContextValues) {
   const style = useStyles();
-  const classes = mergeClasses(eeveeProviderClassNames.root, style.root, themeClassName);
+  const classes = mergeClasses(eeveeProviderClassNames.root, style.root, themeClassName, className);
   return (
     <Provider value={provider}>
       <ThemeProvider value={theme}>

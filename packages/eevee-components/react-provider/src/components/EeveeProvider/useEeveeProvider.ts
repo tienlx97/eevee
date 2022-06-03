@@ -14,7 +14,7 @@ export const useEeveeProvider = (props: EeveeProviderProps): EeveeProviderState 
    * nesting providers with the same "dir" should not add additional attributes to DOM
    * see https://github.com/microsoft/fluentui/blob/0dc74a19f3aa5a058224c20505016fbdb84db172/packages/fluentui/react-northstar/src/utils/mergeProviderContexts.ts#L89-L93
    */
-  const { dir = parentContext.dir, targetDocument = parentContext.targetDocument, theme } = props;
+  const { dir = parentContext.dir, targetDocument = parentContext.targetDocument, theme, className } = props;
   const mergedTheme = mergeThemes(parentTheme, theme);
 
   React.useEffect(() => {
@@ -34,5 +34,6 @@ export const useEeveeProvider = (props: EeveeProviderProps): EeveeProviderState 
     targetDocument,
     theme: mergedTheme,
     themeClassName: useFluentProviderThemeStyleTag({ theme: mergedTheme, targetDocument }),
+    className,
   };
 };

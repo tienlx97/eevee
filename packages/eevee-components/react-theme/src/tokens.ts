@@ -1,6 +1,9 @@
 import type { Theme } from './types';
 
 export const tokens: Record<keyof Theme, string> = {
+  //
+  colorForeground3: 'var(--colorForeground3)',
+  //
   borderRadiusNone: 'var(--borderRadiusNone)',
   borderRadiusSmall: 'var(--borderRadiusSmall)',
   borderRadiusMedium: 'var(--borderRadiusMedium)',

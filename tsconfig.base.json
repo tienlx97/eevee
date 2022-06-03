@@ -15,6 +15,7 @@
     "paths": {
       "@eevee/react-button": ["packages/eevee-components/react-button/src/index.ts"],
       "@eevee/react-icons": ["packages/eevee-components/react-icons/src/index.ts"],
+      "@eevee/react-link": ["packages/eevee-components/react-link/src/index.ts"],
       "@eevee/react-portal": ["packages/eevee-components/react-portal/src/index.ts"],
       "@eevee/react-provider": ["packages/eevee-components/react-provider/src/index.ts"],
       "@eevee/react-shared-contexts": ["packages/eevee-components/react-shared-contexts/src/index.ts"],
