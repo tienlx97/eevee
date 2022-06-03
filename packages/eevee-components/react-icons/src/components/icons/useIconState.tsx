@@ -1,3 +1,4 @@
+import * as React from 'react';
 import { EeveeIconsProps } from './EeveeIcons.types';
 import { makeStyles, mergeClasses } from '@griffel/react';
 
@@ -37,7 +38,7 @@ export const useIconState = <
   if (!state['aria-label'] && !state['aria-labelledby']) {
     state['aria-hidden'] = true;
   } else {
-    state['role'] = 'img';
+    state.role = 'img';
   }
 
   return state as unknown as EeveeIconsProps<TBaseAttributes>;

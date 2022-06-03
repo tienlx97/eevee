@@ -2,8 +2,6 @@ import * as React from 'react';
 // Because we use @types/react v16
 // And react-client v17 support
 // We will add global.d.ts in future
-// const client = require('react-dom');
-// @ts-ignore
 import * as client from 'react-dom/client';
 
 import { EeveeProvider } from '@eevee/react-provider';
@@ -15,7 +13,7 @@ import './asset/css/index.css';
 const Index = () => {
   return (
     <EeveeProvider theme={darkTheme}>
-      <Button type="button" appearance="transparent" onClick={() => alert('click')}>
+      <Button type="button" appearance="transparent">
         2
       </Button>
     </EeveeProvider>

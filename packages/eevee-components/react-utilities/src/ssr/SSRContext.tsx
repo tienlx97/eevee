@@ -35,6 +35,7 @@ export function useSSRContext(): SSRContextValue {
  *
  * @public
  */
+/* eslint-disable @typescript-eslint/no-explicit-any */
 export const SSRProvider: React.FC = (props: any) => {
   const [value] = React.useState<SSRContextValue>(() => ({ current: 0 }));
 

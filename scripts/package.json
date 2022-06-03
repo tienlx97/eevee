@@ -2,7 +2,6 @@
   "name": "@eevee/scripts",
   "version": "1.0.0",
   "private": true,
-  "main": "./index.js",
   "bin": {
     "just-scripts": "./just-scripts.js"
   },

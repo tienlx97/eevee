@@ -1,21 +1,7 @@
 import * as React from 'react';
 import { Provider, ThemeProvider, ThemeClassNameProvider } from '@eevee/react-shared-contexts';
 import type { EeveeProviderContextValues } from './EeveeProvider.types';
-
-import { makeStyles, mergeClasses, TextDirectionProvider } from '@griffel/react';
-import { tokens } from '@eevee/react-theme';
-
-export const eeveeProviderClassNames = {
-  root: 'eve-EeveeProvider',
-};
-
-const useStyles = makeStyles({
-  root: {
-    color: tokens.colorForeground1Hover,
-    backgroundColor: tokens.colorBackground1,
-    fontFamily: tokens.fontFamily,
-  },
-});
+import { TextDirectionProvider } from '@griffel/react';
 
 export function renderEeveeProvider({
   children,
@@ -23,16 +9,14 @@ export function renderEeveeProvider({
   themeClassName,
   theme,
   textDirection,
-  className = '',
+  className,
 }: EeveeProviderContextValues) {
-  const style = useStyles();
-  const classes = mergeClasses(eeveeProviderClassNames.root, style.root, themeClassName, className);
   return (
     <Provider value={provider}>
       <ThemeProvider value={theme}>
         <ThemeClassNameProvider value={themeClassName}>
           <TextDirectionProvider dir={textDirection}>
-            <div dir={textDirection} className={classes}>
+            <div dir={textDirection} className={className}>
               {children}
             </div>
           </TextDirectionProvider>

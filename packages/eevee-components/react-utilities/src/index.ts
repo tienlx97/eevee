@@ -1,6 +1,6 @@
 export { useIsomorphicLayoutEffect, useEventCallback, useId, usePrevious } from './hooks/index';
 
-export { canUseDOM, defaultSSRContextValue, useIsSSR, useSSRContext, SSRContext, SSRProvider } from './ssr/index';
+export { canUseDOM, defaultSSRContextValue, useIsSSR, useSSRContext, SSRProvider } from './ssr/index';
 export type { SSRContextValue } from './ssr/index';
 
 export { resolveShorthand, getSlots } from './compose/index';

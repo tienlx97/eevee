@@ -1,13 +1,6 @@
 const path = require('path');
 const { ROOT_DIR } = require('./envs');
-const {
-  tsPathsPlugin,
-  htmlWebpackPlugin,
-  miniCssExtactPlugin,
-  definePlugin,
-  esLintPlugin,
-  forkTsPlugin,
-} = require('./plugins');
+const { tsPathsPlugin, htmlWebpackPlugin, miniCssExtactPlugin, definePlugin, forkTsPlugin } = require('./plugins');
 const {
   javascriptRule,
   fontsRule,

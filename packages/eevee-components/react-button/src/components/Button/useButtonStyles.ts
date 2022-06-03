@@ -1,7 +1,7 @@
+import { ButtonState } from './Button.types';
 import { tokens } from '@eevee/react-theme';
 import { iconFilledClassName, iconRegularClassName } from '@eevee/react-icons';
 import { shorthands, makeStyles, mergeClasses } from '@griffel/react';
-import { ButtonState } from './Button.types';
 
 export const buttonClassNames = {
   root: 'eve-Button',
@@ -375,7 +375,8 @@ export const useButtonStyles = (state: ButtonState): ButtonState => {
     // Disabled styles
     (disabled || disabledFocusable) && rootDisabledStyles.base,
     (disabled || disabledFocusable) && rootDisabledStyles.highContrast,
-    appearance === 'transparent' && (disabled || disabledFocusable) && rootDisabledStyles[appearance], // another `appearance`?.future
+    // another `appearance`?.future
+    appearance === 'transparent' && (disabled || disabledFocusable) && rootDisabledStyles[appearance],
 
     // Focus styles
     rootFocusStyles.base,

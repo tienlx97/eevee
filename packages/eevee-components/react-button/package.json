@@ -26,6 +26,8 @@
     "@eevee/scripts": "*"
   },
   "dependencies": {
+    "@eevee/react-theme": "*",
+    "@griffel/react": "*",
     "tslib": "2.4.0",
     "@eevee/react-utilities": "*",
     "@eevee/react-icons": "*"

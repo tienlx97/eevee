@@ -8,7 +8,6 @@ const CaseSensitivePathsPlugin = require('case-sensitive-paths-webpack-plugin');
 const PurgeCSSPlugin = require('purgecss-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const { DefinePlugin } = require('webpack');
-const ESLintWebpackPlugin = require('eslint-webpack-plugin');
 const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
 const ReactRefreshWebpackPlugin = require('@pmmmwh/react-refresh-webpack-plugin');
 const WebpackObfuscator = require('webpack-obfuscator');
@@ -45,11 +44,6 @@ const purgeCssPlugin = new PurgeCSSPlugin({
 // const mode = process.env.NODE_ENV ?? "production";
 const definePlugin = new DefinePlugin({
   'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV),
-});
-
-const esLintPlugin = new ESLintWebpackPlugin({
-  context: path.join(ROOT_DIR, '/src'),
-  extensions: ['js', 'jsx', 'ts', 'tsx'],
 });
 
 const reactRefreshPlugin = new ReactRefreshWebpackPlugin({
@@ -90,7 +84,6 @@ module.exports = {
   purgeCssPlugin,
   miniCssExtactPlugin,
   definePlugin,
-  esLintPlugin,
   reactRefreshPlugin,
   obfuscatorPlugin,
   forkTsPlugin,

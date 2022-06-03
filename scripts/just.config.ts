@@ -2,6 +2,7 @@ import { task, parallel, series } from 'just-scripts';
 
 import { clean } from './tasks/clean';
 import { eslint } from './tasks/eslint';
+import { lintImports } from './tasks/lint-imports';
 import { prettier } from './tasks/prettier';
 import { jest as jestTask, jestWatch } from './tasks/jest';
 
@@ -12,12 +13,20 @@ export function preset() {
   basicPreset();
 
   task('clean', clean);
-  task('eslint', eslint);
-  task('lint', parallel('eslint'));
-  task('prettier', prettier);
-  task('code-style', series('prettier', 'lint'));
+
   task('jest', jestTask);
+
   task('jest-watch', jestWatch);
+
+  task('eslint', eslint);
+
+  task('lint-imports', lintImports);
+
+  task('lint', parallel('lint-imports', 'eslint'));
+
+  task('prettier', prettier);
+
+  task('code-style', series('prettier', 'lint'));
 }
 
 preset.basic = basicPreset;

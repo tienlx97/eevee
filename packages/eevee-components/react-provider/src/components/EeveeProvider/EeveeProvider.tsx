@@ -3,6 +3,7 @@ import type { EeveeProviderProps } from './EeveeProvider.types';
 import { useEeveeProvider } from './useEeveeProvider';
 import { renderEeveeProvider } from './renderEeveeProvider';
 import { useEeveeProviderContextValues } from './useEeveeProviderContextValues';
+import { useEeveeStyles } from './useEeveeProviderStyles';
 
 export const EeveeProvider: React.FC<EeveeProviderProps> = ({ children, ...props }) => {
   const state = useEeveeProvider(props);
@@ -11,6 +12,8 @@ export const EeveeProvider: React.FC<EeveeProviderProps> = ({ children, ...props
 
   let contextValues = useEeveeProviderContextValues(state);
   contextValues.children = children;
+
+  useEeveeStyles(contextValues);
 
   return renderEeveeProvider(contextValues);
 };
