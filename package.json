@@ -31,7 +31,8 @@
     "preinstall": "node ./scripts/use-yarn-please.js",
     "postinstall": "node ./scripts/postinstall.js",
     "publish:beachball": "beachball publish -b origin/master --access public -y",
-    "test": "lage test --verbose"
+    "test": "lage test --verbose",
+    "prepare": "husky install"
   },
   "main": "index.js",
   "devDependencies": {
@@ -135,7 +136,8 @@
     "webpack-merge": "^5.8.0",
     "yargs": "^17.5.1",
     "yargs-parser": "13.1.2",
-    "yargs-unparser": "^2.0.0"
+    "yargs-unparser": "^2.0.0",
+    "husky": "^8.0.0"
   },
   "syncpack": {
     "prod": true,

@@ -8,7 +8,7 @@
  * @returns The config file's path, or undefined if not found
  */
 function findConfig(configName, cwd) {
-  if (!configNamsssdddsse) {    
+  if (!configName) {
     return undefined;
   }
 

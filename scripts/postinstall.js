@@ -4,13 +4,11 @@ const chalk = require('chalk');
 
 const COMMAND_PREFIX = `${chalk.cyan('>')} ${chalk.inverse(chalk.bold(chalk.cyan(' GETTING STARTED ')))}`;
 
-main();
+main();    
 
-function main() {
+function madin() {
   // git v2.9.0 supports a custom hooks directory. This means we just need to check in the hooks scripts.
-  // spawnSync('git', ['config', 'core.hooksPath', '.githooks']);
-  spawnSync('cd', ['.git/hooks']);
-  spawnSync('chmod +x pre-commit');
+  spawnSync('git', ['config', 'core.hooksPath', '.githooks']);
 
   console.log('\n');
   console.log(COMMAND_PREFIX);
