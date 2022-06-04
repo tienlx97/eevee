@@ -8,7 +8,7 @@ main();
 
 function main() {
   // git v2.9.0 supports a custom hooks directory. This means we just need to check in the hooks scripts.
-  spawnSync('git', ['config', 'core.hooksPath', '.githooks']);
+  spawnSync('git', ['config', 'core.hooksPath', 'githooks']); 
 
   console.log('\n');
   console.log(COMMAND_PREFIX);
