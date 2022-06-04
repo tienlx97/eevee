@@ -13,4 +13,4 @@ if (!fs.existsSync(path.resolve(__dirname, '../node_modules/lint-staged'))) {
   process.exit(1);
 }
 
-require('lint-staged/bin/lint-staged.js');
+require('lint-staged/bin/lint-staged');
