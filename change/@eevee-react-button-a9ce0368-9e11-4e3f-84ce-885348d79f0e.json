@@ -1,0 +1,7 @@
+{
+  "type": "patch",
+  "comment": "chore: add beachball config file",
+  "packageName": "@eevee/react-button",
+  "email": "tienlx97@gmail.com",
+  "dependentChangeType": "patch"
+}

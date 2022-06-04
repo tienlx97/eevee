@@ -10,7 +10,7 @@ const isPackageAffected = packagesToCheck => {
       return true;
     }
   }
-  return false;     
+  return false;
 };
 
 /**

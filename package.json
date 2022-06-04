@@ -22,7 +22,7 @@
   "scripts": {
     "change": "beachball change --no-commit",
     "check:change": "beachball check",
-    "check:modified-files": "yarn workspace @fluentui/scripts just check-for-modified-files",
+    "check:modified-files": "yarn workspace @eevee/scripts just check-for-modified-files",
     "clean": "lage clean --verbose",
     "code-style": "lage code-style --verbose",
     "format": "node scripts/format.js",
