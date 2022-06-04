@@ -31,8 +31,7 @@
     "preinstall": "node ./scripts/use-yarn-please.js",
     "postinstall": "node ./scripts/postinstall.js",
     "publish:beachball": "beachball publish -b origin/master --access public -y",
-    "test": "lage test --verbose",
-    "prepare": "husky install"
+    "test": "lage test --verbose"
   },
   "main": "index.js",
   "devDependencies": {
@@ -47,6 +46,8 @@
     "@babel/preset-react": "^7.17.12",
     "@babel/preset-typescript": "^7.17.12",
     "@babel/register": "^7.17.7",
+    "@commitlint/cli": "^17.0.2",
+    "@commitlint/config-conventional": "^17.0.2",
     "@eevee/eslint-plugin": "*",
     "@griffel/eslint-plugin": "^1.0.0",
     "@griffel/react": "1.1.0",
@@ -114,7 +115,7 @@
     "just-scripts": "^2.0.0",
     "lage": "^0.41.0",
     "lerna-alias": "^3.0.2",
-    "lint-staged": "^13.0.0",
+    "lint-staged": "10.2.10",
     "lodash": "^4.17.21",
     "postcss-color-rebeccapurple": "^7.0.2",
     "react-router-dom": "6",
@@ -136,8 +137,7 @@
     "webpack-merge": "^5.8.0",
     "yargs": "^17.5.1",
     "yargs-parser": "13.1.2",
-    "yargs-unparser": "^2.0.0",
-    "husky": "^8.0.0"
+    "yargs-unparser": "^2.0.0"
   },
   "syncpack": {
     "prod": true,
