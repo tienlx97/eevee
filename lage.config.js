@@ -5,10 +5,11 @@ module.exports = {
     lint: ['build'],
     clean: [],
     test: ['build'],
+    'code-style': [],
   },
 
   // Ignores these minimatch patterns when considers what packages have changed for the --since flag
-  ignore: ['README.md'],
+  ignore: ['change/**', 'README.md'],
 
   // All of these options are sent to `backfill`: https://github.com/microsoft/backfill/blob/master/README.md
   cacheOptions: {
@@ -26,6 +27,6 @@ module.exports = {
 
     // These are relative to the git root, and affects the hash of the cache
     // Any of these file changes will invalidate cache
-    environmentGlob: ['*.js', '*.json'],
+    environmentGlob: ['*.js', '*.json', '*.yml'],
   },
 };

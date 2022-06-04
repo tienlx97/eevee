@@ -27,7 +27,7 @@
     "@pmmmwh/react-refresh-webpack-plugin": "^0.5.4",
     "@svgr/webpack": "^6.2.1",
     "@testing-library/react": "^13.2.0",
-    "autoprefixer": "^10.4.2",
+    "autoprefixer": "10.2.1",
     "babel-loader": "^8.2.2",
     "case-sensitive-paths-webpack-plugin": "^2.4.0",
     "clean-webpack-plugin": "^4.0.0",
@@ -65,7 +65,7 @@
     "@eevee/react-button": "*",
     "@eevee/react-provider": "*",
     "@eevee/react-theme": "*",
-    "@griffel/react": "^1.0.4",
+    "@griffel/react": "1.1.0",
     "react": "*",
     "react-dom": "*"
   }

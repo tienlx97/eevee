@@ -4,5 +4,6 @@ module.exports = {
   // findRepoDeps: require('./findRepoDeps'),
   getAllPackageInfo: require('./getAllPackageInfo'),
   // isConvergedPackage: require('./isConvergedPackage'),
-  // getAffectedPackages: require('./getAffectedPackages'),
+  getAffectedPackages: require('./getAffectedPackages'),
+  // getNthCommit: require('./getNthCommit'),
 };

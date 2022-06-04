@@ -1,5 +1,6 @@
 import { task, parallel, series } from 'just-scripts';
 
+import { checkForModifiedFiles } from './tasks/check-for-modified-files';
 import { clean } from './tasks/clean';
 import { eslint } from './tasks/eslint';
 import { lintImports } from './tasks/lint-imports';
@@ -27,6 +28,8 @@ export function preset() {
   task('prettier', prettier);
 
   task('code-style', series('prettier', 'lint'));
+
+  task('check-for-modified-files', checkForModifiedFiles);
 }
 
 preset.basic = basicPreset;

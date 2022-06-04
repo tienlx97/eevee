@@ -20,12 +20,17 @@
     "nohoist": []
   },
   "scripts": {
+    "change": "beachball change --no-commit",
+    "check:change": "beachball check",
+    "check:modified-files": "yarn workspace @fluentui/scripts just check-for-modified-files",
     "clean": "lage clean --verbose",
     "code-style": "lage code-style --verbose",
     "format": "node scripts/format.js",
     "lint": "lage lint --verbose",
     "lint:log": "FORCE_COLOR=0 yarn lint > lint.log 2>&1",
+    "preinstall": "node ./scripts/use-yarn-please.js",
     "postinstall": "node ./scripts/postinstall.js",
+    "publish:beachball": "beachball publish -b origin/master --access public -y",
     "test": "lage test --verbose"
   },
   "main": "index.js",
@@ -43,7 +48,7 @@
     "@babel/register": "^7.17.7",
     "@eevee/eslint-plugin": "*",
     "@griffel/eslint-plugin": "^1.0.0",
-    "@griffel/react": "^1.1.0",
+    "@griffel/react": "1.1.0",
     "@nrwl/jest": "^14.1.9",
     "@storybook/addon-actions": "^6.5.6",
     "@storybook/addon-essentials": "^6.5.6",
@@ -83,6 +88,7 @@
     "@typescript-eslint/parser": "^4.22.0",
     "babel-loader": "^8.2.2",
     "babel-plugin-annotate-pure-calls": "^0.4.0",
+    "beachball": "^2.22.4",
     "copy-webpack-plugin": "^11.0.0",
     "cross-env": "^7.0.3",
     "esbuild-loader": "^2.19.0",
@@ -102,7 +108,7 @@
     "html-webpack-plugin": "^5.5.0",
     "ignore-not-found-export-webpack-plugin": "^1.0.2",
     "imports-loader": "^4.0.0",
-    "jest": "^28.1.0",
+    "jest": "^26.6.3",
     "jju": "^1.4.0",
     "just-scripts": "^2.0.0",
     "lage": "^0.41.0",
@@ -113,6 +119,7 @@
     "react-router-dom": "6",
     "react-test-renderer": "^18.1.0",
     "semver": "^6.2.0",
+    "syncpack": "5.6.10",
     "terser-webpack-plugin": "^5.3.1",
     "tmp": "^0.2.1",
     "ts-jest": "26.5.6",
@@ -129,5 +136,47 @@
     "yargs": "^17.5.1",
     "yargs-parser": "13.1.2",
     "yargs-unparser": "^2.0.0"
+  },
+  "syncpack": {
+    "prod": true,
+    "dev": true,
+    "peer": false,
+    "source": [
+      "package.json",
+      "packages/eevee/*/package.json",
+      "packages/eevee-components/*/package.json",
+      "scripts/package.json"
+    ],
+    "versionGroups": [
+      {
+        "packages": [
+          "@eevee/eevee-repo"
+        ],
+        "dependencies": [
+          "@babel/core",
+          "@babel/preset-typescript",
+          "@rnx-kit/eslint-plugin",
+          "@types/react-test-renderer",
+          "@typescript-eslint/parser",
+          "@typescript-eslint/experimental-utils",
+          "@typescript-eslint/eslint-plugin",
+          "chalk",
+          "eslint-config-airbnb",
+          "eslint-config-prettier",
+          "eslint-import-resolver-typescript",
+          "eslint-plugin-deprecation",
+          "eslint-plugin-import",
+          "eslint-plugin-jest",
+          "eslint-plugin-jsx-a11y",
+          "eslint-plugin-react",
+          "eslint-plugin-react-hooks",
+          "fs-extra",
+          "glob",
+          "jju",
+          "webpack",
+          "yargs"
+        ]
+      }
+    ]
   }
 }
