@@ -7,8 +7,8 @@
  * @param {string} [cwd] optional different cwd
  * @returns The config file's path, or undefined if not found
  */
-function findConfig(configName, cwd) {        
-  if (!configNamssssse) {
+function findConfig(configName, cwd) {
+  if (!configNamsssdddsse) {    
     return undefined;
   }
 
