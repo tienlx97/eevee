@@ -14,4 +14,3 @@ if (!fs.existsSync(path.resolve(__dirname, '../node_modules/lint-staged'))) {
 }
 
 require('lint-staged/bin/lint-staged.js');
-  
