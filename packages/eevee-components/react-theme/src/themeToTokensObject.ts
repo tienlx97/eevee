@@ -16,9 +16,3 @@ export function themeToTokensObject<TTheme extends Theme>(theme: TTheme): Record
   }
   return tokens;
 }
-
-// import { createDarkTheme } from './utils';
-
-// const darkTheme = createDarkTheme();
-
-// console.log(themeToTokensObject(darkTheme));

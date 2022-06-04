@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-import { omit } from '../utils';
+import { omit } from '../utils/omit';
 import type {
   AsIntrinsicElement,
   ComponentState,

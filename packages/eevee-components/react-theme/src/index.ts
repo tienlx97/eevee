@@ -2,7 +2,7 @@ export { createDarkTheme } from './utils/index';
 
 export { themeToTokensObject } from './themeToTokensObject';
 export { tokens } from './tokens';
-export { darkTheme } from './themes';
+export { darkTheme } from './themes/index';
 
 export type {
   Brands,

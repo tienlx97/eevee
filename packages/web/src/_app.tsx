@@ -22,4 +22,4 @@ const Index = () => {
 
 const rootElement = document.getElementById('root');
 const root = client.createRoot(rootElement as Element);
-root.render(<Index />);    
+root.render(<Index />);

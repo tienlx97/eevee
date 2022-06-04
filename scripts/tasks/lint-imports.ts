@@ -12,8 +12,10 @@ interface ImportErrorGroup {
 
 interface ImportErrors {
   pathAbsolute: ImportErrorGroup;
+  pathDeep: ImportErrorGroup;
   pathNotFile: ImportErrorGroup;
   pathRelative: ImportErrorGroup;
+  pathReExported: ImportErrorGroup;
   importStar: ImportErrorGroup;
   exportMulti: ImportErrorGroup;
   exportDefault: ImportErrorGroup;
@@ -42,6 +44,8 @@ export function lintImports() {
       pathAbsolute: { count: 0, matches: {} },
       pathNotFile: { count: 0, matches: {} },
       pathRelative: { count: 0, matches: {} },
+      pathDeep: { count: 0, matches: {} },
+      pathReExported: { count: 0, matches: {} },
       importStar: { count: 0, matches: {} },
       exportMulti: { count: 0, matches: {} },
       exportDefault: { count: 0, matches: {} },
@@ -208,6 +212,12 @@ export function lintImports() {
         'Please ensure the following imports reference physical files:',
       pathRelative:
         'example files are using relative imports. For example portability, please ensure that the following imports are absolute:',
+      pathDeep:
+        'example files are using deep imports. To promote best practices, ' +
+        `please only import from root-level files ('<package-name>' or '<package-name>/lib/<file>').`,
+      pathReExported:
+        'example files are directly importing from packages that @fluentui/react re-exports. ' +
+        'Please change the following imports to reference @fluentui/react instead:',
       importStar:
         'example files are using "import *" which causes problems with the website example editor. Please import things by name instead.',
       exportMulti:

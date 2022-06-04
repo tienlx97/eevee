@@ -29,4 +29,4 @@ export type {
   EeveeState,
 } from './compose/index';
 
-export { omit } from './utils';
+export { omit } from './utils/index';
