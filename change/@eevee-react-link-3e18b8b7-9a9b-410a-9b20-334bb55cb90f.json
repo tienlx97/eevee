@@ -1,0 +1,7 @@
+{
+  "type": "patch",
+  "comment": "chore: add concurent tasks",
+  "packageName": "@eevee/react-link",
+  "email": "tienlx97@gmail.com",
+  "dependentChangeType": "patch"
+}

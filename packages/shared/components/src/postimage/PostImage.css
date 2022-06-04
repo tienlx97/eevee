@@ -1,9 +1,0 @@
-.sbs__wrapper .pi__wrapper {
-  padding: 0;
-  margin: 0;
-  border: none;
-}
-
-.sbs__wrapper .pi__wrapper:not(:last-of-type) {
-  padding-right: 0;
-}

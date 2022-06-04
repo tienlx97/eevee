@@ -1,0 +1,7 @@
+{
+  "type": "patch",
+  "comment": "chore: button style",
+  "packageName": "@eevee/react-shared-contexts",
+  "email": "tienlx97@gmail.com",
+  "dependentChangeType": "patch"
+}

@@ -1,0 +1,7 @@
+{
+  "type": "patch",
+  "comment": "chore: fix import wrong",
+  "packageName": "@eevee/react-icons",
+  "email": "tienlx97@gmail.com",
+  "dependentChangeType": "patch"
+}

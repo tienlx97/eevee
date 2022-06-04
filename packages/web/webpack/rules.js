@@ -1,12 +1,6 @@
 const path = require('path');
 const { ROOT_DIR, isDevelopment } = require('./envs');
-const {
-  babelLoader,
-  miniCssExtractLoader,
-  cssLoader,
-  styleLoader,
-  postCssLoader,
-} = require('./loaders');
+const { babelLoader, miniCssExtractLoader, cssLoader, styleLoader, postCssLoader } = require('./loaders');
 
 const ReactRefreshTypeScript = require('react-refresh-typescript');
 

@@ -1,0 +1,7 @@
+{
+  "type": "patch",
+  "comment": "chore: build storybook",
+  "packageName": "@eevee/react-theme",
+  "email": "tienlx97@gmail.com",
+  "dependentChangeType": "patch"
+}

@@ -8,7 +8,6 @@ const CaseSensitivePathsPlugin = require('case-sensitive-paths-webpack-plugin');
 const PurgeCSSPlugin = require('purgecss-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const { DefinePlugin } = require('webpack');
-const ESLintWebpackPlugin = require('eslint-webpack-plugin');
 const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
 const ReactRefreshWebpackPlugin = require('@pmmmwh/react-refresh-webpack-plugin');
 const WebpackObfuscator = require('webpack-obfuscator');
@@ -47,11 +46,6 @@ const definePlugin = new DefinePlugin({
   'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV),
 });
 
-const esLintPlugin = new ESLintWebpackPlugin({
-  context: path.join(ROOT_DIR, '/src'),
-  extensions: ['js', 'jsx', 'ts', 'tsx'],
-});
-
 const reactRefreshPlugin = new ReactRefreshWebpackPlugin({
   overlay: false,
 });
@@ -67,17 +61,21 @@ const obfuscatorPlugin = new WebpackObfuscator(
   {
     rotateStringArray: true,
   },
-  ['excluded_bundle_name.js']
+  ['excluded_bundle_name.js'],
 );
 
 const minifyJTS = new TerserPlugin();
-const minifyCss = ({ options }) =>
-  new CssMinimizerPlugin({ minimizerOptions: options });
+const minifyCss = ({ options }) => new CssMinimizerPlugin({ minimizerOptions: options });
 
 const { ESBuildMinifyPlugin } = require('esbuild-loader');
 const minifyEsbuildJTS = new ESBuildMinifyPlugin({
   target: 'es2015',
   css: true, // Apply minification to CSS assets
+});
+
+const { TsconfigPathsPlugin } = require('tsconfig-paths-webpack-plugin');
+const tsPathsPlugin = new TsconfigPathsPlugin({
+  configFile: path.resolve(__dirname, '../../../tsconfig.base.json'),
 });
 
 module.exports = {
@@ -86,11 +84,11 @@ module.exports = {
   purgeCssPlugin,
   miniCssExtactPlugin,
   definePlugin,
-  esLintPlugin,
   reactRefreshPlugin,
   obfuscatorPlugin,
   forkTsPlugin,
   minifyCss,
   minifyJTS,
   minifyEsbuildJTS,
+  tsPathsPlugin,
 };

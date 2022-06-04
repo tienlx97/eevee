@@ -1,0 +1,7 @@
+{
+  "type": "patch",
+  "comment": "feat: react link",
+  "packageName": "@eevee/react-provider",
+  "email": "tienlx97@gmail.com",
+  "dependentChangeType": "patch"
+}

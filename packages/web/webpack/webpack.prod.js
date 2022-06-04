@@ -1,7 +1,7 @@
 const { obfuscatorPlugin, minifyEsbuildJTS } = require('./plugins');
 
 const productionConfig = {
-  // devtool: 'source-map',
+  devtool: 'source-map',
 
   plugins: [obfuscatorPlugin /*purgeCssPlugin , cleanWebpacklugin*/],
 
