@@ -3,6 +3,8 @@
 const { prettierSupportedFileExtensionsByContext } = require('@eevee/scripts/prettier');
 
 const commands = {
+  codeStyle: 'yarn code-style',
+
   format: 'prettier --write',
   /**
    * Run eslint in fix mode for applicable files followed by prettier.
@@ -19,6 +21,7 @@ module.exports = {
     prettierSupportedFileExtensionsByContext.stylesheets,
     prettierSupportedFileExtensionsByContext.markdown,
     prettierSupportedFileExtensionsByContext.others,
-  )}}`]: [commands.format],
-  [`**/*.{${prettierSupportedFileExtensionsByContext.js}}`]: [commands.format, commands.lint],
+    prettierSupportedFileExtensionsByContext.js,
+  )}}`]: [commands.codeStyle],
+  // [`**/*.{${prettierSupportedFileExtensionsByContext.js}}`]: [commands.format, commands.lint],
 };
