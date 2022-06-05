@@ -4,7 +4,7 @@
     "outDir": "",
     "allowJs": true,
     "checkJs": true,
-    "types": ["static-assets", "environment", "storybook__addons"]
+    "types": ["react-dom-18", "static-assets", "environment", "storybook__addons"]
   },
   "include": ["../src/**/*.stories.ts", "../src/**/*.stories.tsx", "*.js"]
 }

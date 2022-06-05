@@ -16,8 +16,8 @@ export type SlotPropsRecord = Record<string, UnknownSlotProps | SlotShorthandVal
 /**
  * The shorthand value of a slot allows specifying its child
  */
-export type SlotShorthandValue = React.ReactChild | React.ReactNodeArray | React.ReactPortal;
-
+export type SlotShorthandValue = React.ReactChild | React.ReactPortal;
+// | React.ReactNodeArray
 /**
  * Matches any slot props type.
  *
