@@ -1,1 +1,0 @@
-export { BaseWrapper } from './SideNote';

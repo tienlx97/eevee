@@ -1,12 +1,6 @@
 const path = require('path');
 const { ROOT_DIR } = require('./envs');
-const {
-  htmlWebpackPlugin,
-  miniCssExtactPlugin,
-  definePlugin,
-  esLintPlugin,
-  forkTsPlugin,
-} = require('./plugins');
+const { tsPathsPlugin, htmlWebpackPlugin, miniCssExtactPlugin, definePlugin, forkTsPlugin } = require('./plugins');
 const {
   javascriptRule,
   fontsRule,
@@ -31,20 +25,18 @@ const commonConfig = {
     // libraryTarget: "umd",
     // globalObject: "this",
     // umdNamedDefine: true,
+
+    chunkFilename: '[name].[contenthash].js',
+    filename: '[name].[contenthash].js',
+    assetModuleFilename: '[name].[contenthash][ext][query]',
   },
 
   resolve: {
-    extensions: ['.tsx', '.ts', '.js'],
-    alias: {},
+    extensions: ['.tsx', '.ts', '.js', '.mdx'],
+    plugins: [tsPathsPlugin],
   },
 
-  plugins: [
-    htmlWebpackPlugin,
-    miniCssExtactPlugin,
-    definePlugin,
-    esLintPlugin,
-    forkTsPlugin,
-  ],
+  plugins: [htmlWebpackPlugin, miniCssExtactPlugin, definePlugin, forkTsPlugin],
 
   externals: {
     // react: "React",
@@ -61,6 +53,7 @@ const commonConfig = {
     rules: [
       typescriptRule,
       javascriptRule,
+      // typescriptEsbuildRule,
       fontsRule,
       imagesRule,
       svgReactComponentRule,

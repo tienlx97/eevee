@@ -1,12 +1,6 @@
 const path = require('path');
 const { ROOT_DIR, isDevelopment } = require('./envs');
-const {
-  babelLoader,
-  miniCssExtractLoader,
-  cssLoader,
-  styleLoader,
-  postCssLoader,
-} = require('./loaders');
+const { babelLoader, miniCssExtractLoader, cssLoader, styleLoader, postCssLoader } = require('./loaders');
 
 const ReactRefreshTypeScript = require('react-refresh-typescript');
 
@@ -23,10 +17,15 @@ const typescriptRule = {
     {
       loader: 'ts-loader',
       options: {
-        getCustomTransformers: () => ({
-          before: [isDevelopment && ReactRefreshTypeScript()].filter(Boolean),
-        }),
+        // getCustomTransformers: () => ({
+        //   before: [isDevelopment && ReactRefreshTypeScript()].filter(Boolean),
+        // }),
         transpileOnly: isDevelopment,
+        ...(isDevelopment && {
+          getCustomTransformers: () => ({
+            before: [ReactRefreshTypeScript()],
+          }),
+        }),
       },
     },
   ],
@@ -63,7 +62,7 @@ const svgRule = {
 };
 
 const cssRule = {
-  test: /\.(s?)css$/,
+  test: /\.css$/,
   use: [
     // Do not use together style-loader and mini-css-extract-plugin.
     // devMode ? "style-loader" : MiniCssExtractPlugin.loader,
@@ -71,11 +70,46 @@ const cssRule = {
     miniCssExtractLoader,
     // styleLoader,
     cssLoader,
+    {
+      loader: 'esbuild-loader',
+      options: {
+        loader: 'css',
+        minify: true,
+      },
+    },
     postCssLoader(),
     // according to the docs, sass-loader should be at the bottom, which
     // loads it first to avoid prefixes in your sourcemaps and other issues.
   ],
   sideEffects: true,
+};
+const esbuild = require('esbuild');
+
+const typescriptEsbuildRule = {
+  test: /\.tsx?$/,
+  exclude: /node_modules/,
+  use: [
+    {
+      loader: 'esbuild-loader',
+      options: {
+        loader: 'tsx', // Or 'ts' if you don't need tsx
+        target: 'es2015',
+        implementation: esbuild,
+      },
+    },
+  ],
+};
+
+const javascriptEsbuildRule = {
+  test: /\.jsx?$/,
+  exclude: /node_modules/,
+  include: path.join(ROOT_DIR, '/src'),
+  loader: 'esbuild-loader',
+  options: {
+    loader: 'jsx', // Remove this if you're not using JSX
+    target: 'es2015', // Syntax to compile to (see options below for possible values)
+    implementation: esbuild,
+  },
 };
 
 module.exports = {
@@ -86,4 +120,6 @@ module.exports = {
   svgReactComponentRule,
   svgRule,
   cssRule,
+  typescriptEsbuildRule,
+  javascriptEsbuildRule,
 };

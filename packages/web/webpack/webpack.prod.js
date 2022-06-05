@@ -1,21 +1,15 @@
-const {
-  purgeCssPlugin,
-  cleanWebpacklugin,
-  obfuscatorPlugin,
-  minifyCss,
-  minifyJTS,
-} = require('./plugins');
+const { obfuscatorPlugin, minifyEsbuildJTS } = require('./plugins');
 
 const productionConfig = {
   devtool: 'source-map',
 
-  plugins: [purgeCssPlugin, obfuscatorPlugin /*cleanWebpacklugin*/],
+  plugins: [obfuscatorPlugin /*purgeCssPlugin , cleanWebpacklugin*/],
 
-  output: {
-    chunkFilename: '[name].[contenthash].js',
-    filename: '[name].[contenthash].js',
-    assetModuleFilename: '[name].[contenthash][ext][query]',
-  },
+  // output: {
+  //   chunkFilename: '[name].[contenthash].js',
+  //   filename: '[name].[contenthash].js',
+  //   assetModuleFilename: '[name].[contenthash][ext][query]',
+  // },
 
   optimization: {
     splitChunks: {
@@ -29,7 +23,11 @@ const productionConfig = {
       },
     },
     runtimeChunk: { name: 'runtime' },
-    minimizer: [minifyJTS, minifyCss({ options: { preset: ['default'] } })],
+    minimizer: [
+      // minifyJTS,
+      // minifyCss({ options: { preset: ['default'] } })
+      minifyEsbuildJTS,
+    ],
   },
 
   performance: {

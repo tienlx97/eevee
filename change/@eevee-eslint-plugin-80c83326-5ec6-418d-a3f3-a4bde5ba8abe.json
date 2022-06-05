@@ -1,0 +1,7 @@
+{
+  "type": "patch",
+  "comment": "chore: storybook for each eevee-component",
+  "packageName": "@eevee/eslint-plugin",
+  "email": "tienlx97@gmail.com",
+  "dependentChangeType": "patch"
+}

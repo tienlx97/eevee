@@ -15,10 +15,10 @@ const devConfig = {
     client: {
       overlay: false,
     },
-    port: 8080,
+    port: 3000,
     static: path.join(ROOT_DIR, '/dist'),
     host: 'localhost',
-    hot: true,
+    // hot: true,
     historyApiFallback: true,
   },
 

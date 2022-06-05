@@ -1,25 +1,22 @@
-import React from 'react';
-import client from 'react-dom/client';
+import * as React from 'react';
+// Because we use @types/react v16
+// And react-client v17 support
+// We will add global.d.ts in future
+import * as client from 'react-dom/client';
 
-import 'tippy.js/dist/tippy.css';
-import '@jolteon/components/src/global-styles/CssVariables.css';
+import { EeveeProvider } from '@eevee/react-provider';
+import { Button } from '@eevee/react-button';
+import { darkTheme } from '@eevee/react-theme';
 
-import {
-  ConfigProvider,
-  loadDefaultThemeBeforeReactRender,
-} from '@jolteon/components';
-
-loadDefaultThemeBeforeReactRender();
-
-import UIDebug from './_debug';
+import './asset/css/index.css';
 
 const Index = () => {
-  // useCssReset();
-  // useGlobalCss();
   return (
-    <ConfigProvider>
-      <UIDebug />
-    </ConfigProvider>
+    <EeveeProvider theme={darkTheme}>
+      <Button type="button" appearance="transparent">
+        2
+      </Button>
+    </EeveeProvider>
   );
 };
 
