@@ -1,0 +1,86 @@
+import { SlotClassNames } from '@eevee/react-utilities';
+import { mergeClasses, makeStyles, shorthands } from '@griffel/react';
+import { BotNavSlots, BotNavState } from './BotNav.types';
+
+import { breakPoints, tokens } from '@eevee/react-theme';
+import { topNavHeight } from '../../../constants/css';
+
+export const botNavClassNames: SlotClassNames<BotNavSlots> = {
+  root: 'eve-BotNav',
+  postition: 'eve-BotNav__position',
+  content: 'eve-BotNav__content',
+};
+
+const useMediaQueryStyles = makeStyles({
+  query: {
+    [`@media ${breakPoints.lgAndLarger}`]: {
+      display: 'none',
+    },
+
+    [`@media ${breakPoints.lg}`]: {
+      display: 'block',
+    },
+
+    [`@media ${breakPoints.md}`]: {
+      display: 'block',
+    },
+
+    [`@media ${breakPoints.sm}`]: {
+      display: 'block',
+    },
+
+    [`@media ${breakPoints.xs}`]: {
+      display: 'block',
+    },
+  },
+});
+
+const usePositionStyles = makeStyles({
+  position: {
+    backgroundColor: tokens.colorBackground1,
+    display: 'block',
+    position: 'fixed',
+    left: 0,
+    right: 0,
+    bottom: 0,
+    zIndex: 500,
+  },
+});
+
+const useContentStyles = makeStyles({
+  wrapper: {
+    height: `${topNavHeight}px`,
+    position: 'relative',
+    zIndex: 600,
+    display: 'flex',
+    justifyContent: 'space-between',
+  },
+});
+
+/** Applies style classnames to slots */
+export const useBotNavStyles = (state: BotNavState) => {
+  const mediaQueryStyles = useMediaQueryStyles();
+  const positionStyles = usePositionStyles();
+  const contentStyles = useContentStyles();
+
+  state.root.className = mergeClasses(
+    //
+    botNavClassNames.root,
+    mediaQueryStyles.query,
+    state.root.className,
+  );
+
+  state.postition.className = mergeClasses(
+    //
+    botNavClassNames.postition,
+    positionStyles.position,
+    state.postition.className,
+  );
+
+  state.content.className = mergeClasses(
+    //
+    botNavClassNames.content,
+    contentStyles.wrapper,
+    state.content.className,
+  );
+};

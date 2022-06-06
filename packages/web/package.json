@@ -37,7 +37,7 @@
     "env-cmd": "^10.1.0",
     "esbuild-loader": "^2.19.0",
     "eslint": "^7.0.0",
-    "fork-ts-checker-webpack-plugin": "^7.2.1",
+    "fork-ts-checker-webpack-plugin": "^7.2.11",
     "glob": "^7.2.0",
     "html-webpack-plugin": "^5.5.0",
     "javascript-obfuscator": "^4.0.0",
@@ -65,8 +65,11 @@
     "@eevee/react-button": "*",
     "@eevee/react-provider": "*",
     "@eevee/react-theme": "*",
+    "@eevee/react-utilities": "*",
     "@griffel/react": "1.1.0",
     "react": "*",
-    "react-dom": "*"
+    "react-dom": "*",
+    "react-router-dom": "6",
+    "react-ga4": "1.4.1"
   }
 }

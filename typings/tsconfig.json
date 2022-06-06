@@ -14,16 +14,19 @@
       "path": "./environment/tsconfig.json"
     },
     {
-      "path": "./static-assets/tsconfig.json"
-    },
-    {
       "path": "./custom-global/tsconfig.json"
     },
     {
-      "path": "./storybook__addons/tsconfig.json"
+      "path": "./gtag-global/tsconfig.json"
     },
     {
       "path": "./react-dom-18/tsconfig.json"
+    },
+    {
+      "path": "./static-assets/tsconfig.json"
+    },
+    {
+      "path": "./storybook__addons/tsconfig.json"
     }
   ]
 }

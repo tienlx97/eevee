@@ -1,0 +1,85 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+* {
+  margin: 0;
+  line-height: 1.5;
+  line-height: calc(1em + 0.725rem);
+  -webkit-font-smoothing: antialiased;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+img,
+picture,
+video,
+canvas,
+svg {
+  display: block;
+  max-width: 100%;
+}
+
+input,
+button,
+textarea,
+select {
+  font: inherit;
+}
+
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  overflow-wrap: break-word;
+}
+
+ul {
+  padding: 0;
+}
+
+#root,
+#__next {
+  isolation: isolate;
+}
+
+body {
+  color: var(--color-text);
+  background: var(--color-background);
+  transition: var(--color-text) 350ms, var(--color-background) 350ms;
+}
+
+a:focus {
+  outline: 5px auto var(--color-primary);
+}
+
+body,
+input,
+button,
+select,
+option {
+  font-family: var(--font-family);
+  font-weight: var(--font-weight-light);
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+strong {
+  font-weight: var(--font-weight-bold);
+}
+
+code {
+  font-size: 0.95em;
+}
