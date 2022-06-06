@@ -1,10 +1,14 @@
 name: Check packages
 
 on:
-  # Trigger the workflow on pushes to only the 'main' branch (this avoids duplicate checks being run e.g. for dependabot pull requests)
   push:
-  # Trigger the workflow on any pull request
+    branches:
+      - 'feat/**'
+      - 'dev'
+      - 'main'
   pull_request:
+    type: [opened, reopened, synchronize]
+  workflow_dispatch:
 
 jobs:
   dependency-mismatches:
@@ -12,9 +16,10 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
-      - uses: actions/setup-node@v1
+      - name: Setup Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v2
         with:
-          node-version: '14'
+          node-version: ${{ matrix.node-version }}
 
       - uses: actions/github-script@v6
         with:
@@ -38,9 +43,10 @@ jobs:
         with:
           fetch-depth: 0
 
-      - uses: actions/setup-node@v1
+      - name: Setup Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v2
         with:
-          node-version: '14'
+          node-version: ${{ matrix.node-version }}
 
       - uses: actions/github-script@v6
         with:
