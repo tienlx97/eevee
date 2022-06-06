@@ -10,32 +10,34 @@ export const sideNavClassNames: SlotClassNames<SideNavSlots> = {
   top: 'eve-sideNav__top',
 };
 
-const useRootStyles = makeStyles({
-  base: {
-    height: '100%',
-
-    [`${breakPoints.lgAndLarger}`]: {
+const useMediaQueryStyles = makeStyles({
+  query: {
+    [`@media ${breakPoints.lgAndLarger}`]: {
       display: 'block',
     },
 
-    [`${breakPoints.lg}`]: {
+    [`@media ${breakPoints.lg}`]: {
       display: 'none',
     },
 
-    [`${breakPoints.md}`]: {
+    [`@media ${breakPoints.md}`]: {
       display: 'none',
     },
 
-    [`${breakPoints.sm}`]: {
+    [`@media ${breakPoints.sm}`]: {
       display: 'none',
     },
 
-    [`${breakPoints.xs}`]: {
+    [`@media ${breakPoints.xs}`]: {
       display: 'none',
     },
   },
+});
 
-  nav: {},
+const useRootStyles = makeStyles({
+  height: {
+    height: '100%',
+  },
 });
 
 const useContentStyles = makeStyles({
@@ -53,12 +55,14 @@ const useContentStyles = makeStyles({
 /** Applies style classnames to slots */
 export const useSideNavStyles = (state: SideNavState) => {
   const rootStyles = useRootStyles();
+  const mediaQueryStyles = useMediaQueryStyles();
   const contentStyles = useContentStyles();
 
   state.root.className = mergeClasses(
     //
     sideNavClassNames.root,
-    rootStyles.base,
+    rootStyles.height,
+    mediaQueryStyles.query,
     state.root.className,
   );
 

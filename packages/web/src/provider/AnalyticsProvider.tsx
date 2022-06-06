@@ -1,6 +1,6 @@
 import * as React from 'react';
-import { usePersistedState } from '../hooks';
-import { generateId } from '../utilities';
+import { usePersistedState } from '../hooks/index';
+import { generateId } from '../utilities/index';
 
 export type AnalyticsContextValue = {
   userId: string | number | object;

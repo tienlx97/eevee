@@ -2,29 +2,30 @@ import * as React from 'react';
 import { makeStyles } from '@griffel/react';
 import { NavBar } from '../navbar/NavBar';
 import { breakPoints } from '@eevee/react-theme';
+import { Main } from '../main/index';
 
 const useRootStyles = makeStyles({
   root: {
     display: 'flex',
     justifyContent: 'space-between',
 
-    [`${breakPoints.lgAndLarger}`]: {
+    [`@media ${breakPoints.lgAndLarger}`]: {
       flexDirection: 'row',
     },
 
-    [`${breakPoints.lg}`]: {
+    [`@media ${breakPoints.lg}`]: {
       flexDirection: 'column',
     },
 
-    [`${breakPoints.md}`]: {
+    [`@media ${breakPoints.md}`]: {
       flexDirection: 'column',
     },
 
-    [`${breakPoints.sm}`]: {
+    [`@media ${breakPoints.sm}`]: {
       flexDirection: 'column',
     },
 
-    [`${breakPoints.xs}`]: {
+    [`@media ${breakPoints.xs}`]: {
       flexDirection: 'column',
     },
   },
@@ -35,6 +36,7 @@ export const Page = () => {
   return (
     <div className={rootStyles.root}>
       <NavBar />
+      <Main />
     </div>
   );
 };

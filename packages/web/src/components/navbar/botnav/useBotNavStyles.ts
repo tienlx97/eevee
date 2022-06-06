@@ -13,24 +13,23 @@ export const botNavClassNames: SlotClassNames<BotNavSlots> = {
 
 const useMediaQueryStyles = makeStyles({
   query: {
-    backgroundColor: tokens.colorBackground1,
-    [`${breakPoints.lgAndLarger}`]: {
+    [`@media ${breakPoints.lgAndLarger}`]: {
       display: 'none',
     },
 
-    [`${breakPoints.lg}`]: {
+    [`@media ${breakPoints.lg}`]: {
       display: 'block',
     },
 
-    [`${breakPoints.md}`]: {
+    [`@media ${breakPoints.md}`]: {
       display: 'block',
     },
 
-    [`${breakPoints.sm}`]: {
+    [`@media ${breakPoints.sm}`]: {
       display: 'block',
     },
 
-    [`${breakPoints.xs}`]: {
+    [`@media ${breakPoints.xs}`]: {
       display: 'block',
     },
   },
@@ -38,18 +37,18 @@ const useMediaQueryStyles = makeStyles({
 
 const usePositionStyles = makeStyles({
   position: {
+    backgroundColor: tokens.colorBackground1,
     display: 'block',
     position: 'fixed',
-    right: 0,
     left: 0,
-    zIndex: 500,
+    right: 0,
     bottom: 0,
-    backgroundColor: tokens.colorBackground1,
+    zIndex: 500,
   },
 });
 
 const useContentStyles = makeStyles({
-  base: {
+  wrapper: {
     height: `${topNavHeight}px`,
     position: 'relative',
     zIndex: 600,
@@ -81,7 +80,7 @@ export const useBotNavStyles = (state: BotNavState) => {
   state.content.className = mergeClasses(
     //
     botNavClassNames.content,
-    contentStyles.base,
+    contentStyles.wrapper,
     state.content.className,
   );
 };

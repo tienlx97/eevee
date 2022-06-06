@@ -2,23 +2,23 @@ import type { BreakPoints } from '../types';
 import { breakPointSizes as BREAKPOINT_SIZES } from './breakPointSizes';
 
 export const breakPoints: BreakPoints = {
-  xs: `@media all and (max-width: ${BREAKPOINT_SIZES.xs - 1}px)`,
-  sm: `@media all and (min-width: ${BREAKPOINT_SIZES.xs}px) and (max-width: ${BREAKPOINT_SIZES.sm - 1}px)`,
-  md: `@media all and (min-width: ${BREAKPOINT_SIZES.sm}px) and (max-width: ${BREAKPOINT_SIZES.md - 1}px)`,
-  lg: `@media all and (min-width: ${BREAKPOINT_SIZES.md}px) and (max-width: ${BREAKPOINT_SIZES.lg - 1}px)`,
-  xl: `@media all and (min-width: ${BREAKPOINT_SIZES.lg}px) and (max-width: ${BREAKPOINT_SIZES.xl - 1}px)`,
+  xs: `all and (max-width: ${BREAKPOINT_SIZES.xs - 1}px)`,
+  sm: `all and (min-width: ${BREAKPOINT_SIZES.xs}px) and (max-width: ${BREAKPOINT_SIZES.sm - 1}px)`,
+  md: `all and (min-width: ${BREAKPOINT_SIZES.sm}px) and (max-width: ${BREAKPOINT_SIZES.md - 1}px)`,
+  lg: `all and (min-width: ${BREAKPOINT_SIZES.md}px) and (max-width: ${BREAKPOINT_SIZES.lg - 1}px)`,
+  xl: `all and (min-width: ${BREAKPOINT_SIZES.lg}px) and (max-width: ${BREAKPOINT_SIZES.xl - 1}px)`,
 
   // rare?
-  xxl: `@media all and (min-width: ${BREAKPOINT_SIZES.xl}px) and (max-width: ${BREAKPOINT_SIZES.xxl}px)`,
+  xxl: `all and (min-width: ${BREAKPOINT_SIZES.xl}px) and (max-width: ${BREAKPOINT_SIZES.xxl}px)`,
 
-  xsAndSmaller: `@media all and (max-width: ${BREAKPOINT_SIZES.xs - 1}px)`,
-  smAndSmaller: `@media all and (max-width: ${BREAKPOINT_SIZES.sm - 1}px)`,
-  mdAndSmaller: `@media all and (max-width: ${BREAKPOINT_SIZES.md - 1}px)`,
-  lgAndSmaller: `@media all and (max-width: ${BREAKPOINT_SIZES.lg - 1}px)`,
-  xlAndSmaller: `@media all and (max-width: ${BREAKPOINT_SIZES.xl - 1}px)`,
+  xsAndSmaller: `all and (max-width: ${BREAKPOINT_SIZES.xs - 1}px)`,
+  smAndSmaller: `all and (max-width: ${BREAKPOINT_SIZES.sm - 1}px)`,
+  mdAndSmaller: `all and (max-width: ${BREAKPOINT_SIZES.md - 1}px)`,
+  lgAndSmaller: `all and (max-width: ${BREAKPOINT_SIZES.lg - 1}px)`,
+  xlAndSmaller: `all and (max-width: ${BREAKPOINT_SIZES.xl - 1}px)`,
 
-  lgAndLarger: `@media (min-width: ${BREAKPOINT_SIZES.lg}px )`,
-  xlAndExtraExtraLarger: `@media all and (min-width: ${BREAKPOINT_SIZES.xxl}px)`,
+  lgAndLarger: `(min-width: ${BREAKPOINT_SIZES.lg}px )`,
+  xlAndExtraExtraLarger: `all and (min-width: ${BREAKPOINT_SIZES.xxl}px)`,
 };
 /**
  * all and (max-width: 551.98px)
