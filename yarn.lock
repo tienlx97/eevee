@@ -8654,7 +8654,7 @@ fork-ts-checker-webpack-plugin@^6.0.4:
     semver "^7.3.2"
     tapable "^1.0.0"
 
-fork-ts-checker-webpack-plugin@^7.2.1, fork-ts-checker-webpack-plugin@^7.2.11:
+fork-ts-checker-webpack-plugin@^7.2.11:
   version "7.2.11"
   resolved "https://registry.yarnpkg.com/fork-ts-checker-webpack-plugin/-/fork-ts-checker-webpack-plugin-7.2.11.tgz#aff3febbc11544ba3ad0ae4d5aa4055bd15cd26d"
   integrity sha512-2e5+NyTUTE1Xq4fWo7KFEQblCaIvvINQwUX3jRmEGlgCTc1Ecqw/975EfQrQ0GEraxJTnp8KB9d/c8hlCHUMJA==
@@ -8840,6 +8840,11 @@ functions-have-names@^1.2.2:
   version "1.2.3"
   resolved "https://registry.yarnpkg.com/functions-have-names/-/functions-have-names-1.2.3.tgz#0404fe4ee2ba2f607f0e0ec3c80bae994133b834"
   integrity sha512-xckBUXyTIqT97tq2x2AMb+g163b5JFysYk0x4qxNFwbfQkmNZoiRHb6sPzI9/QV33WeuvVYBUIiD4NzNIyqaRQ==
+
+ga-lite@2.1.6:
+  version "2.1.6"
+  resolved "https://registry.yarnpkg.com/ga-lite/-/ga-lite-2.1.6.tgz#829fcc6bf0637675fec1c52313ccdee49cc06642"
+  integrity sha512-zhRorLrhoXl2wIAq13rIdPEQN6uu1SpQG/sGgsRPMDKWXmj7ZpMzP/6k/OtCtGJiJlsZZl/sqoalybkZ9r7cYQ==
 
 gauge@^3.0.0:
   version "3.0.2"
@@ -13806,6 +13811,11 @@ react-error-boundary@^3.1.0:
   integrity sha512-uM9uPzZJTF6wRQORmSrvOIgt4lJ9MC1sNgEOj2XGsDTRE4kmpWxg7ENK9EWNKJRMAOY9z0MuF4yIfl6gp4sotA==
   dependencies:
     "@babel/runtime" "^7.12.5"
+
+react-ga4@1.4.1:
+  version "1.4.1"
+  resolved "https://registry.yarnpkg.com/react-ga4/-/react-ga4-1.4.1.tgz#6ee2a2db115ed235b2f2092bc746b4eeeca9e206"
+  integrity sha512-ioBMEIxd4ePw4YtaloTUgqhQGqz5ebDdC4slEpLgy2sLx1LuZBC9iYCwDymTXzcntw6K1dHX183ulP32nNdG7w==
 
 react-inspector@^5.1.0:
   version "5.1.1"

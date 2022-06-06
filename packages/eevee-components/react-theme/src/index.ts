@@ -1,5 +1,7 @@
 export { createDarkTheme } from './utils/index';
 
+export { breakPoints } from './global';
+
 export { themeToTokensObject } from './themeToTokensObject';
 export { tokens } from './tokens';
 export { darkTheme } from './themes/index';
