@@ -254,6 +254,7 @@ export type BreakPoints = {
   lgAndSmaller: string;
   xlAndSmaller: string;
   //
+  lgAndLarger: string;
   xlAndExtraExtraLarger: string;
 };
 
