@@ -41,6 +41,7 @@ const useRootStyles = makeStyles({
     flexBasis: 'auto',
     //
     backgroundColor: 'aqua',
+    height: '100vh',
   },
 });
 

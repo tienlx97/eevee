@@ -1,18 +1,21 @@
 import { SlotClassNames } from '@eevee/react-utilities';
 import { mergeClasses, makeStyles, shorthands } from '@griffel/react';
-import { SideNavState, SideNavSlots } from './SideNav.types';
 
 import { breakPoints, tokens } from '@eevee/react-theme';
+import { RightState, RightSlots } from './Right.types';
 
-export const sideNavClassNames: SlotClassNames<SideNavSlots> = {
-  root: 'eve-SideNav',
-  content: 'eve-SideNav__content',
+export const rightClassNames: SlotClassNames<RightSlots> = {
+  root: 'eve-Right',
 };
 
 const useMediaQueryStyles = makeStyles({
   query: {
     [`@media ${breakPoints.lgAndLarger}`]: {
       display: 'block',
+    },
+
+    [`@media ${breakPoints.xlAndSmaller}`]: {
+      width: '280px',
     },
 
     [`@media ${breakPoints.lg}`]: {
@@ -34,42 +37,26 @@ const useMediaQueryStyles = makeStyles({
 });
 
 const useRootStyles = makeStyles({
-  height: {
-    height: '100%',
-  },
-});
-
-const useContentStyles = makeStyles({
-  content: {
+  root: {
     backgroundColor: tokens.colorBackground1,
-    position: 'sticky',
-    top: 0,
-    height: '100vh',
-    display: 'flex',
-    justifyContent: 'space-between',
-    flexDirection: 'column',
-    zIndex: 1,
+    boxSizing: 'border-box',
+    ...shorthands.padding(0, '32px'),
+    ...shorthands.borderLeft('1', 'solid', tokens.colorStroke1),
+    minHeight: '100vh',
+    width: '394px',
   },
 });
 
 /** Applies style classnames to slots */
-export const useSideNavStyles = (state: SideNavState) => {
-  const rootStyles = useRootStyles();
+export const useRightStyles = (state: RightState) => {
   const mediaQueryStyles = useMediaQueryStyles();
-  const contentStyles = useContentStyles();
+  const rootStyles = useRootStyles();
 
   state.root.className = mergeClasses(
     //
-    sideNavClassNames.root,
-    rootStyles.height,
+    rightClassNames.root,
+    rootStyles.root,
     mediaQueryStyles.query,
     state.root.className,
-  );
-
-  state.content.className = mergeClasses(
-    //
-    sideNavClassNames.content,
-    contentStyles.content,
-    state.content.className,
   );
 };

@@ -1,14 +1,13 @@
 import * as React from 'react';
-import { makeStyles } from '@griffel/react';
+import { makeStyles, mergeClasses, shorthands } from '@griffel/react';
 import { NavBar } from '../navbar/NavBar';
 import { breakPoints } from '@eevee/react-theme';
 import { Main } from '../main/index';
+import { Right } from '../right/Right';
+import { useMediaQuery } from '../../hooks/index';
 
-const useRootStyles = makeStyles({
-  root: {
-    display: 'flex',
-    justifyContent: 'space-between',
-
+const useMediaQueryStyles = makeStyles({
+  query: {
     [`@media ${breakPoints.lgAndLarger}`]: {
       flexDirection: 'row',
     },
@@ -31,12 +30,27 @@ const useRootStyles = makeStyles({
   },
 });
 
+const useRootStyles = makeStyles({
+  root: {
+    display: 'flex',
+    justifyContent: 'space-between',
+    maxWidth: '1504px',
+    ...shorthands.margin('auto'),
+  },
+});
+
 export const Page = () => {
   const rootStyles = useRootStyles();
+  const mediaQueryStyles = useMediaQueryStyles();
+
+  const hide = useMediaQuery(breakPoints.lgAndSmaller);
+  const classes = mergeClasses(rootStyles.root, mediaQueryStyles.query);
+
   return (
-    <div className={rootStyles.root}>
+    <div className={classes}>
       <NavBar />
       <Main />
+      {!hide && <Right />}
     </div>
   );
 };

@@ -10,9 +10,7 @@ export const renderSideNav = (state: SideNavState) => {
 
   return (
     <slots.root {...slotProps.root}>
-      <slots.content {...slotProps.content}>
-        <slots.top {...slotProps.top} />
-      </slots.content>
+      <slots.content {...slotProps.content} />
     </slots.root>
   );
 };

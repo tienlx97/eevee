@@ -23,10 +23,8 @@ if (typeof window !== 'undefined') {
 
 const useStyles = makeStyles({
   wrapper: {
-    display: 'block',
-    maxWidth: '1504px',
-    backgroundColor: tokens.colorBackground1,
-    ...shorthands.margin('auto'),
+    // backgroundColor: tokens.colorBackground1,
+    backgroundColor: 'yellow',
   },
 });
 
