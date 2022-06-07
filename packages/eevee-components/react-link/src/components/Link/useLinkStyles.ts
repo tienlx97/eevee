@@ -6,19 +6,18 @@ import { iconFilledClassName, iconRegularClassName } from '@eevee/react-icons';
 
 export const linkClassNames: SlotClassNames<LinkSlots> = {
   root: 'eve-Link',
-  icon: 'eve-Link__icon',
+  icon: 'eve-Linkr_icon',
 };
 
 const useStyles = makeStyles({
   focusIndicator: {
     ':focus': {
-      outlineStyle: 'none',
+      ...shorthands.outline('2px', 'auto', tokens.colorBrandForegroundLinkHover),
+      outlineOffset: '2px',
     },
-    [`:global([data-keyboard-nav]):focus`]: {
-      borderBottomColor: 'transparent',
-      textDecorationColor: tokens.colorStrokeFocus2,
-      textDecorationLine: 'underline',
-      textDecorationStyle: 'double',
+
+    '&:focus:not(.focus-visible)': {
+      ...shorthands.outline('none'),
     },
   },
   // Common styles.
@@ -29,9 +28,14 @@ const useStyles = makeStyles({
     borderRightStyle: 'none',
     borderBottomColor: 'transparent',
     borderBottomStyle: 'solid',
+    borderBottomWidth: tokens.strokeWidthThin,
+    boxSizing: 'border-box',
+    color: tokens.colorForeground1,
     cursor: 'pointer',
     display: 'inline',
     fontFamily: tokens.fontFamily,
+    fontSize: tokens.fontSizeBase300,
+    fontWeight: tokens.fontWeightRegular,
     ...shorthands.margin(0),
     ...shorthands.padding(0),
     ...shorthands.overflow('inherit'),
@@ -39,30 +43,6 @@ const useStyles = makeStyles({
     textDecorationLine: 'none',
     textOverflow: 'inherit',
     userSelect: 'text',
-
-    color: tokens.colorForeground3, // hsl(230, 100%, 67%)
-    fontWeight: tokens.fontWeightMedium, // 500
-    '&:focus': {
-      ...shorthands.outline('2px', 'auto', tokens.colorForeground3),
-      outlineOffset: '2px',
-    },
-    '&:focus:not(.focus-visible)': {
-      ...shorthands.outline('none'),
-    },
-
-    '@media (hover: hover)': {
-      textDecorationLine: 'none',
-      boxShadow: `0px 0px 0px ${tokens.colorForeground3}`,
-
-      ':hover': {
-        [`& .${iconFilledClassName}`]: {
-          display: 'inline',
-        },
-        [`& .${iconRegularClassName}`]: {
-          display: 'none',
-        },
-      },
-    },
   },
 
   // Overrides when an href is present so the Link renders as an anchor.
@@ -70,19 +50,26 @@ const useStyles = makeStyles({
     fontSize: 'inherit',
   },
 
-  // For link contain text
-  underLineHover: {
-    '@media (hover: hover)': {
-      '&:hover': {
-        transitionProperty: 'box-shadow',
-        transitionDuration: '200ms',
-        transitionTimingFunction: 'ease',
-        transitionDelay: '0s',
-        boxShadow: `0px 2px 0px ${tokens.colorForeground3}`,
-      },
-    },
+  // Overrides when the Link appears subtle.
+  subtle: {
+    color: tokens.colorForeground2,
   },
 
+  // Overrides when the Link is rendered inline within text.
+  inline: {
+    boxShadow: `0px 2px 0px ${tokens.colorBrandForegroundLink}`,
+  },
+
+  // Overrides when the Link is rendered inline within text and appears subtle.
+  inlineSubtle: {
+    boxShadow: `0px 2px 0px ${tokens.colorForeground2}`,
+  },
+
+  iconOnly: {
+    display: 'flex',
+  },
+
+  // Overrides when the Link is disabled.
   disabled: {
     borderBottomColor: 'transparent',
     color: tokens.colorForegroundDisabled,
@@ -100,6 +87,53 @@ const useStyles = makeStyles({
   },
 });
 
+const useHoverStyles = makeStyles({
+  root: {
+    '@media (hover: hover)': {
+      boxShadow: `0px 0px 0px ${tokens.colorBrandForegroundLinkHover}`,
+      ':hover': {
+        // borderBottomColor: tokens.colorForeground3,
+        color: tokens.colorBrandForegroundLinkHover,
+
+        transitionProperty: 'box-shadow',
+        transitionDuration: '200ms',
+        boxShadow: `0px 2px 0px ${tokens.colorBrandForegroundLinkHover}`,
+      },
+    },
+  },
+
+  stubtle: {
+    '@media (hover: hover)': {
+      boxShadow: `0px 0px 0px ${tokens.colorForeground2Hover}`,
+      ':hover': {
+        // borderBottomColor: tokens.colorForeground3,
+        color: tokens.colorForeground2Hover,
+
+        transitionProperty: 'box-shadow',
+        transitionDuration: '200ms',
+        boxShadow: `0px 2px 0px ${tokens.colorForeground2Hover}`,
+      },
+    },
+  },
+
+  iconOnly: {
+    '@media (hover: hover)': {
+      ':hover': {
+        // borderBottomColor: tokens.colorForeground3,
+        color: '#3aa0f3',
+
+        //for icon with 2 class name
+        [`& .${iconFilledClassName}`]: {
+          display: 'inline',
+        },
+        [`& .${iconRegularClassName}`]: {
+          display: 'none',
+        },
+      },
+    },
+  },
+});
+
 const useIconStyles = makeStyles({
   root: {
     alignItems: 'center',
@@ -111,20 +145,30 @@ const useIconStyles = makeStyles({
 export const useLinkStyles = (state: LinkState): LinkState => {
   const styles = useStyles();
   const iconStyles = useIconStyles();
+  const hoverStyles = useHoverStyles();
 
-  const { disabled, root, iconOnly } = state;
+  const { appearance, disabled, inline, root, iconOnly } = state;
 
   state.root.className = mergeClasses(
     linkClassNames.root,
+
     styles.root,
+    !iconOnly && hoverStyles.root,
     styles.focusIndicator,
-    root.as === 'a' && styles.href,
 
-    // For appearance = josh-comeau
-    !iconOnly && styles.underLineHover,
+    root.as === 'a' && root.href && styles.href,
 
-    // For disable link
+    appearance === 'subtle' && styles.subtle,
+    appearance === 'subtle' && hoverStyles.stubtle,
+
+    inline && styles.inline,
+    appearance === 'subtle' && inline && styles.inlineSubtle,
+
     disabled && styles.disabled,
+
+    iconOnly && styles.iconOnly,
+    iconOnly && hoverStyles.iconOnly,
+
     state.root.className,
   );
 

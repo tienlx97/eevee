@@ -19,11 +19,14 @@ export type ColorTokens = {
   colorForeground1Hover: string;
   colorForeground1Pressed: string;
   colorForeground2: string;
+  colorForeground2Hover: string;
   colorForeground2BrandHover: string;
   colorForeground2BrandPressed: string;
   colorForeground3: string;
-
   colorForegroundDisabled: string;
+
+  colorBrandForegroundLink: string;
+  colorBrandForegroundLinkHover: string;
 
   // stroke
   colorStroke1: string;

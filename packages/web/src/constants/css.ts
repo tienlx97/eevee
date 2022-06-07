@@ -1,3 +1,3 @@
-export const sideNavWidth = 80;
+export const navWidth = 56;
 
-export const topNavHeight = 56;
+export const navHeight = 56;

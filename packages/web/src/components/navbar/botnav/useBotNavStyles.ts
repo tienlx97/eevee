@@ -3,7 +3,7 @@ import { mergeClasses, makeStyles, shorthands } from '@griffel/react';
 import { BotNavSlots, BotNavState } from './BotNav.types';
 
 import { breakPoints, tokens } from '@eevee/react-theme';
-import { topNavHeight } from '../../../constants/css';
+import { navHeight } from '../../../constants/css';
 
 export const botNavClassNames: SlotClassNames<BotNavSlots> = {
   root: 'eve-BotNav',
@@ -49,7 +49,7 @@ const usePositionStyles = makeStyles({
 
 const useContentStyles = makeStyles({
   wrapper: {
-    height: `${topNavHeight}px`,
+    height: `${navHeight}px`,
     position: 'relative',
     zIndex: 600,
     display: 'flex',

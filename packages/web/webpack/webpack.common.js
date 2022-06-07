@@ -33,6 +33,11 @@ const commonConfig = {
 
   resolve: {
     extensions: ['.tsx', '.ts', '.js', '.mdx'],
+    // alias: {
+    //   '@components': path.join(ROOT_DIR, '/src/components'),
+    //   '@hooks': path.join(ROOT_DIR, '/src/hooks'),
+    //   '@utilities': path.join(ROOT_DIR, '/src/utilities'),
+    // },
     plugins: [tsPathsPlugin],
   },
 
