@@ -17,9 +17,7 @@ export const Middle = () => {
   return (
     <div className={styles.base}>
       <div style={{ paddingBottom: '35px', display: 'block' }}>
-        <Linka icon={<Home filled={false} />} href="https://react.fluentui.dev/?path=/docs/components-link--default">
-          123
-        </Linka>
+        <Linka href="https://react.fluentui.dev/?path=/docs/components-link--default">123</Linka>
       </div>
       <div style={{ paddingBottom: '35px', display: 'block' }}>
         <a
