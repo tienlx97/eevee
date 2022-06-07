@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { resolveShorthand } from '@eevee/react-utilities';
 import type { LinkProps, LinkState } from './Link.types';
 import { useLinkState } from './useLinkState';
 
@@ -8,12 +9,12 @@ import { useLinkState } from './useLinkState';
  * @param ref - User provided ref to be passed to the Link component.
  */
 export const useLink = (props: LinkProps, ref: React.Ref<HTMLAnchorElement>): LinkState => {
-  const { appearance = 'josh-comeau', disabled = false, disabledFocusable = false } = props;
+  const { disabled = false, disabledFocusable = false, icon } = props;
   const as = props.as || 'a';
+  const iconShorthand = resolveShorthand(icon);
 
   const state: LinkState = {
     // Props passed at the top-level
-    appearance,
     disabled,
     disabledFocusable,
     linkType: 'internal',
@@ -21,6 +22,7 @@ export const useLink = (props: LinkProps, ref: React.Ref<HTMLAnchorElement>): Li
     // Slots definition
     components: {
       root: 'a',
+      icon: 'span',
     },
 
     root: {
@@ -28,6 +30,9 @@ export const useLink = (props: LinkProps, ref: React.Ref<HTMLAnchorElement>): Li
       ...props,
       as,
     },
+    icon: iconShorthand,
+
+    iconOnly: Boolean(iconShorthand?.children && !props.children),
   };
 
   useLinkState(state);

@@ -48,13 +48,13 @@ export type ButtonProps = EeveeProps<ButtonSlots> & {
   /**
    * A button supports different sizes.
    *
-   * @default 'medium'
    */
   size?: 'small' | 'medium' | 'large';
 };
 
 export type ButtonState = EeveeState<ButtonSlots> &
-  Required<Pick<ButtonProps, 'appearance' | 'disabledFocusable' | 'disabled' | 'iconPosition' | 'shape' | 'size'>> & {
+  Required<Pick<ButtonProps, 'appearance' | 'disabledFocusable' | 'disabled' | 'iconPosition' | 'shape'>> &
+  Pick<ButtonProps, 'size'> & {
     /**
      * A button can contain only an icon.
      *

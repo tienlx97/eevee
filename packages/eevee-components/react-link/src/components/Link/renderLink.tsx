@@ -9,7 +9,7 @@ import type { LinkSlots, LinkState } from './Link.types';
 export const renderLink = (state: LinkState) => {
   const { linkType } = state;
   const { slots, slotProps } = getSlots<LinkSlots>(state);
-  const { target, rel, href, ref, ...rest } = slotProps.root;
+  const { target, rel, href, ref, children, ...rest } = slotProps.root;
 
   if (linkType === 'internal') {
     return (
@@ -19,9 +19,17 @@ export const renderLink = (state: LinkState) => {
         rel={rel}
         to={href as string}
         {...rest}
-      />
+      >
+        {slots.icon && <slots.icon {...slotProps.icon} />}
+        {children && children}
+      </Link6>
     );
   }
 
-  return <slots.root {...slotProps.root} />;
+  return (
+    <slots.root {...slotProps.root}>
+      {slots.icon && <slots.icon {...slotProps.icon} />}
+      {children && children}
+    </slots.root>
+  );
 };

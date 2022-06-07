@@ -40,7 +40,6 @@ const useRootStyles = makeStyles({
     flexShrink: 1,
     flexBasis: 'auto',
     //
-    backgroundColor: 'aqua',
     height: '100vh',
   },
 });
