@@ -59,5 +59,6 @@ export const FirstStory = Template.bind({});
 FirstStory.args = {
   /*👇 The args you need here will depend on your component */
   appearance: 'transparent',
-  icon: <CalendarMonth />,
+  // icon: <CalendarMonth />,
+  children: 'hahah',
 };

@@ -12,14 +12,21 @@ import {
   WithSlotShorthandValue,
 } from './types';
 
-export type EeveeSlot<T extends keyof JSX.IntrinsicElements | React.ComponentType | UnknownSlotProps> =
-  null | WithSlotShorthandValue<
-    T extends keyof JSX.IntrinsicElements // if Type is html element -> Slot = as?: Type |
-      ? { as?: T } & WithSlotRenderFunction<IntrisicElementProps<T>> //  Fix value
-      : T extends React.ComponentType<infer Props> // if Type is class - function element
-      ? WithSlotRenderFunction<Props>
-      : T // if Type is element contains children, className, style, as
-  >;
+export type EeveeSlot<
+  T extends keyof JSX.IntrinsicElements | React.ComponentType | UnknownSlotProps,
+  AlternateAs extends keyof JSX.IntrinsicElements = never,
+> =
+  | null
+  | WithSlotShorthandValue<
+      T extends keyof JSX.IntrinsicElements // if Type is html element -> Slot = as?: Type |
+        ? { as?: T } & WithSlotRenderFunction<IntrisicElementProps<T>> //  Fix value
+        : T extends React.ComponentType<infer Props> // if Type is class - function element
+        ? WithSlotRenderFunction<Props>
+        : T // if Type is element contains children, className, style, as
+    >
+  | {
+      [As in AlternateAs]: { as: As } & WithSlotRenderFunction<IntrisicElementProps<As>>;
+    }[AlternateAs];
 
 export type EeveeProps<Slots extends SlotPropsRecord, Primary extends keyof Slots = 'root'> = Omit<
   Slots,

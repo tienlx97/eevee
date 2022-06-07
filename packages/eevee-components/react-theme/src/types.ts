@@ -30,6 +30,7 @@ export type ColorTokens = {
   colorStroke1Pressed: string;
   colorStrokeFocus2: string;
   colorStrokeDisabled: string;
+  colorTransparentStroke: string;
 
   //shadow
   colorShadowAmbient: string;

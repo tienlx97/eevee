@@ -5,18 +5,13 @@ export type LinkSlots = {
    * Root of the component that renders as either an <a> or a <button> tag.
    */
   root: EeveeSlot<'a'>;
+
+  icon?: EeveeSlot<'span'>;
 };
 
 export type LinkType = 'hash' | 'external' | 'internal';
 
 export type LinkProps = EeveeProps<LinkSlots> & {
-  /**
-   * A link can appear either with its default style or subtle.
-   * If not specified, the link appears with its default styling.
-   * @default 'beta-react'
-   */
-  appearance?: 'beta-react' | 'josh-comeau';
-
   /**
    * Whether the link is disabled.
    * @default false
@@ -32,7 +27,7 @@ export type LinkProps = EeveeProps<LinkSlots> & {
 };
 
 export type LinkState = EeveeState<LinkSlots> &
-  Required<Pick<LinkProps, 'appearance' | 'disabled' | 'disabledFocusable'>> & {
+  Required<Pick<LinkProps, 'disabled' | 'disabledFocusable'>> & {
     /**
      * There are three types of links
      * - Internal links to other pages within the same app
@@ -42,4 +37,6 @@ export type LinkState = EeveeState<LinkSlots> &
      * @default 'internal'
      */
     linkType: LinkType;
+
+    iconOnly: boolean;
   };

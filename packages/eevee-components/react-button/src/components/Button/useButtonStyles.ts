@@ -369,7 +369,7 @@ export const useButtonStyles = (state: ButtonState): ButtonState => {
     rootStyles.base,
     rootStyles.highContrast,
     appearance === 'transparent' && rootStyles[appearance], // another `appearance`?.future
-    rootStyles[size],
+    size && rootStyles[size],
     rootStyles[shape],
 
     // Disabled styles
@@ -381,11 +381,11 @@ export const useButtonStyles = (state: ButtonState): ButtonState => {
     // Focus styles
     rootFocusStyles.base,
     // appearance === 'primary' && rootFocusStyles.primary, // later
-    rootFocusStyles[size],
+    size && rootFocusStyles[size],
     rootFocusStyles[shape],
 
     // Icon-only styles
-    iconOnly && rootIconOnlyStyles[size],
+    iconOnly && size && rootIconOnlyStyles[size],
 
     // User provided class name
     state.root.className,
@@ -396,7 +396,7 @@ export const useButtonStyles = (state: ButtonState): ButtonState => {
       buttonClassNames.icon,
       iconStyles.base,
       state.root.children !== undefined && state.root.children !== null && iconStyles[iconPosition],
-      iconStyles[size],
+      size && iconStyles[size],
       state.icon.className,
     );
   }
