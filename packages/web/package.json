@@ -66,6 +66,7 @@
     "@eevee/react-provider": "*",
     "@eevee/react-theme": "*",
     "@eevee/react-utilities": "*",
+    "@eevee/react-link": "*",
     "@griffel/react": "1.1.0",
     "react": "*",
     "react-dom": "*",

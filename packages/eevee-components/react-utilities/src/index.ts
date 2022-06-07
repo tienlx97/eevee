@@ -29,4 +29,4 @@ export type {
   EeveeState,
 } from './compose/index';
 
-export { omit } from './utils/index';
+export { omit, getNativeElementProps } from './utils/index';

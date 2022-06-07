@@ -9,7 +9,7 @@ import { siteConfig } from './siteConfig';
 import { App } from './app';
 
 import './asset/css/index.css';
-import { makeStyles, shorthands } from '@griffel/react';
+import { makeStyles } from '@griffel/react';
 
 if (typeof window !== 'undefined') {
   if (process.env.NODE_ENV === 'production') {
@@ -24,7 +24,7 @@ if (typeof window !== 'undefined') {
 const useStyles = makeStyles({
   wrapper: {
     // backgroundColor: tokens.colorBackground1,
-    backgroundColor: '#7192a3',
+    backgroundColor: '#23272f',
   },
 });
 
