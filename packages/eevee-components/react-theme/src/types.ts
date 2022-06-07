@@ -6,6 +6,7 @@ export type ColorTokens = {
   colorBackground1: string;
   colorBackground1Hover: string;
   colorBackground1Pressed: string;
+  colorBackground2: string;
 
   colorBackgroundDisabled: string;
 

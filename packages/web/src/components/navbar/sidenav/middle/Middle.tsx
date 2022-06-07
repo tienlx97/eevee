@@ -16,7 +16,7 @@ export const Middle = () => {
   const styles = useRootStyles();
   return (
     <div className={styles.base}>
-      <div style={{ paddingBottom: '35px', display: 'block' }}>
+      <div style={{ paddingBottom: '35px', display: 'flex', justifyContent: 'center' }}>
         <Linka href="https://react.fluentui.dev/?path=/docs/components-link--default">123</Linka>
       </div>
       <div style={{ paddingBottom: '35px', display: 'block' }}>
