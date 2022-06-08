@@ -45,19 +45,16 @@ const commonConfig = {
   },
 
   plugins: [
+    new CopyPlugin([{ from: 'src/pwa', to: '' }]),
+    new WorkboxPlugin.InjectManifest({
+      swSrc: './src/src-sw.js',
+      swDest: 'sw.js',
+      maximumFileSizeToCacheInBytes: 100 * 1024 * 1024,
+    }),
     htmlWebpackPlugin,
     miniCssExtactPlugin,
     definePlugin,
     forkTsPlugin,
-
-    new CopyPlugin([
-      // { from: '../src/manifest.json', to: '' },
-      { from: 'src/pwa', to: '' },
-    ]),
-    new WorkboxPlugin.InjectManifest({
-      swSrc: './src/src-sw.js',
-      swDest: 'sw.js',
-    }),
   ],
 
   externals: {
