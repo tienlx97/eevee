@@ -1,7 +1,7 @@
 import type { ColorTokens } from '../types';
 
 export const generateColorTokens = (): ColorTokens => ({
-  colorBackground1: '#23272f',
+  colorBackground1: '#16181d',
   colorBackground1Hover: '#3d3d3d',
   colorBackground1Pressed: '#fff',
   colorBackground2: '#072b47',

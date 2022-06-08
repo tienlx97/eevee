@@ -23,8 +23,7 @@ if (typeof window !== 'undefined') {
 
 const useStyles = makeStyles({
   wrapper: {
-    // backgroundColor: tokens.colorBackground1,
-    backgroundColor: '#23272f',
+    backgroundColor: tokens.colorBackground1,
   },
 });
 

@@ -37,7 +37,8 @@ const useMediaQueryStyles = makeStyles({
 
 const usePositionStyles = makeStyles({
   position: {
-    backgroundColor: tokens.colorBackground1,
+    backgroundColor: tokens.colorBackground2,
+    boxShadow: `0px 2px 10px ${tokens.colorStroke2}`,
     display: 'block',
     position: 'fixed',
     left: 0,
@@ -57,11 +58,23 @@ const useContentStyles = makeStyles({
   },
 });
 
+const useLinkIconWrapperStyles = makeStyles({
+  root: {
+    flexGrow: 1,
+    flexShrink: 1,
+    flexBasis: '0%',
+    alignItems: 'center',
+    justifyContent: 'center',
+    display: 'flex',
+  },
+});
+
 /** Applies style classnames to slots */
 export const useBotNavStyles = (state: BotNavState) => {
   const mediaQueryStyles = useMediaQueryStyles();
   const positionStyles = usePositionStyles();
   const contentStyles = useContentStyles();
+  const linkIconWrapper = useLinkIconWrapperStyles();
 
   state.root.className = mergeClasses(
     //
@@ -83,4 +96,6 @@ export const useBotNavStyles = (state: BotNavState) => {
     contentStyles.wrapper,
     state.content.className,
   );
+
+  state.linkIconWrapperClassName = linkIconWrapper.root;
 };

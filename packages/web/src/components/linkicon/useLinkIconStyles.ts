@@ -12,9 +12,9 @@ const linkIconClassname: SlotClassNames<LinkIconSlots> = {
 
 const useRootStyles = makeStyles({
   root: {
-    paddingBottom: '30px',
-    display: 'flex',
-    justifyContent: 'center',
+    // paddingBottom: '30px',
+    // display: 'flex',
+    // justifyContent: 'center',
   },
 });
 

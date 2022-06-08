@@ -11,4 +11,6 @@ export type BotNavSlots = {
 
 export type BotNavProps = EeveeProps<Partial<BotNavSlots>> & {};
 
-export type BotNavState = EeveeState<BotNavSlots> & {};
+export type BotNavState = EeveeState<BotNavSlots> & {
+  linkIconWrapperClassName?: string;
+};

@@ -11,6 +11,9 @@ const {
   typescriptRule,
 } = require('./rules');
 
+const WorkboxPlugin = require('workbox-webpack-plugin');
+const CopyPlugin = require('copy-webpack-plugin');
+
 const commonConfig = {
   context: ROOT_DIR,
 
@@ -41,7 +44,21 @@ const commonConfig = {
     plugins: [tsPathsPlugin],
   },
 
-  plugins: [htmlWebpackPlugin, miniCssExtactPlugin, definePlugin, forkTsPlugin],
+  plugins: [
+    htmlWebpackPlugin,
+    miniCssExtactPlugin,
+    definePlugin,
+    forkTsPlugin,
+
+    new CopyPlugin([
+      // { from: '../src/manifest.json', to: '' },
+      { from: 'src/pwa', to: '' },
+    ]),
+    new WorkboxPlugin.InjectManifest({
+      swSrc: './src/src-sw.js',
+      swDest: 'sw.js',
+    }),
+  ],
 
   externals: {
     // react: "React",
