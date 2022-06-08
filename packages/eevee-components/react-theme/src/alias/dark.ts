@@ -5,7 +5,8 @@ export const generateColorTokens = (): ColorTokens => ({
   colorBackground1Hover: '#3d3d3d',
   colorBackground1Pressed: '#fff',
   colorBackground2: '#072b47',
-  colorBackground2Pressed: '#083457',
+  colorBackground2Hover: '#083457',
+  colorBackground2Pressed: '#0c4c7d',
 
   colorBackgroundDisabled: '#141414',
 

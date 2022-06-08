@@ -6,11 +6,11 @@ import { tokens } from '@eevee/react-theme';
 import { useLocation } from 'react-router-dom';
 
 const linkIconClassname: SlotClassNames<LinkIconSlots> = {
-  root: 'eve-LinkIcon_link',
-  wrapper: 'eve-LinkIcon',
+  root: 'eve-LinkIcon',
+  link: 'eve-LinkIcon_link',
 };
 
-const useWrapperStyles = makeStyles({
+const useRootStyles = makeStyles({
   root: {
     paddingBottom: '30px',
     display: 'flex',
@@ -18,19 +18,19 @@ const useWrapperStyles = makeStyles({
   },
 });
 
-const useRootStyles = makeStyles({
+const useLinkStyles = makeStyles({
   root: {
     ...shorthands.padding('5px'),
     ...shorthands.borderRadius('4px'),
     ':hover': {
-      backgroundColor: '#083457',
+      backgroundColor: tokens.colorBackground2Hover,
     },
   },
 });
 
 export const useLinkIconStyles = (state: LinkIconState) => {
-  const { href } = state.root;
   const location = useLocation();
+  const { href } = state.link;
   // Strip trailing slashes, for consistency.
   const [isCurrent, setCurrent] = React.useState<Boolean>(false);
 
@@ -39,8 +39,8 @@ export const useLinkIconStyles = (state: LinkIconState) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [location]);
 
+  const linkStyles = useLinkStyles();
   const rootStyles = useRootStyles();
-  const wrapperStyles = useWrapperStyles();
 
   state.root.className = mergeClasses(
     //
@@ -49,17 +49,17 @@ export const useLinkIconStyles = (state: LinkIconState) => {
     state.root.className,
   );
 
-  state.wrapper.className = mergeClasses(
+  state.link.className = mergeClasses(
     //
-    linkIconClassname.wrapper,
-    wrapperStyles.root,
-    state.wrapper.className,
+    linkIconClassname.link,
+    linkStyles.root,
+    state.link.className,
   );
 
   if (isCurrent) {
-    state.root.style = {
-      backgroundColor: '#0c4c7d',
-      ...state.root.style,
+    state.link.style = {
+      backgroundColor: tokens.colorBackground2Pressed,
+      ...state.link.style,
     };
   }
 };

@@ -6,8 +6,8 @@ export const renderLinkIcon = (state: LinkIconState) => {
   const { slots, slotProps } = getSlots<LinkIconSlots>(state);
 
   return (
-    <slots.wrapper {...slotProps.wrapper}>
-      <slots.root {...slotProps.root} />
-    </slots.wrapper>
+    <slots.root {...slotProps.root}>
+      <slots.link {...slotProps.link} />
+    </slots.root>
   );
 };
