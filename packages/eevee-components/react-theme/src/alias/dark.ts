@@ -4,7 +4,8 @@ export const generateColorTokens = (): ColorTokens => ({
   colorBackground1: '#23272f',
   colorBackground1Hover: '#3d3d3d',
   colorBackground1Pressed: '#fff',
-  colorBackground2: '#16181d',
+  colorBackground2: '#072b47',
+  colorBackground2Pressed: '#083457',
 
   colorBackgroundDisabled: '#141414',
 
@@ -29,6 +30,7 @@ export const generateColorTokens = (): ColorTokens => ({
   colorStroke1: '#666666',
   colorStroke1Hover: '#757575',
   colorStroke1Pressed: '#6b6b6b',
+  colorStroke2: '#43759b',
   colorStrokeFocus2: '#fff',
   colorStrokeDisabled: '#424242',
 

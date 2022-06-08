@@ -8,6 +8,8 @@ export const tokens: Record<keyof Theme, string> = {
   colorForeground2Hover: 'var(--colorForeground2Hover)',
   colorBrandForegroundLinkHover: 'var(--colorBrandForegroundLinkHover)',
   colorBrandForegroundLink: 'var(--colorBrandForegroundLink)',
+  colorStroke2: 'var(--colorStroke2)',
+  colorBackground2Pressed: 'var(--colorBackground2Pressed)',
   //
   borderRadiusNone: 'var(--borderRadiusNone)',
   borderRadiusSmall: 'var(--borderRadiusSmall)',

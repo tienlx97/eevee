@@ -83,3 +83,18 @@ strong {
 code {
   font-size: 0.95em;
 }
+
+*:focus {
+  outline: 0 !important;
+  box-shadow: 0 0 0 0.2rem #fff, /* use site bg color to create whitespace for faux focus ring */ 0 0 0 0.35rem #069 !important;
+  /* faux focus ring color */
+}
+
+/**
+ * Undo the above focused button styles when the element received focus
+ * via mouse click or touch, but not keyboard navigation.
+ */
+*:focus:not(:focus-visible) {
+  outline: 0 !important;
+  box-shadow: none !important;
+}

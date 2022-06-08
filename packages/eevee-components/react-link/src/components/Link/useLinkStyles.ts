@@ -5,7 +5,7 @@ import type { SlotClassNames } from '@eevee/react-utilities';
 import { iconFilledClassName, iconRegularClassName } from '@eevee/react-icons';
 
 export const linkClassNames: SlotClassNames<LinkSlots> = {
-  root: 'eve-Link',
+  root: 'eve-Linkr',
   icon: 'eve-Linkr_icon',
 };
 
@@ -32,7 +32,7 @@ const useStyles = makeStyles({
     boxSizing: 'border-box',
     color: tokens.colorForeground1,
     cursor: 'pointer',
-    display: 'inline',
+    display: 'inline-flex',
     fontFamily: tokens.fontFamily,
     fontSize: tokens.fontSizeBase300,
     fontWeight: tokens.fontWeightRegular,
@@ -65,19 +65,16 @@ const useStyles = makeStyles({
     boxShadow: `0px 2px 0px ${tokens.colorForeground2}`,
   },
 
-  iconOnly: {
-    display: 'flex',
-  },
-
   // Overrides when the Link is disabled.
   disabled: {
     borderBottomColor: 'transparent',
     color: tokens.colorForegroundDisabled,
     cursor: 'not-allowed',
-
-    ':hover': {
-      borderBottomColor: 'transparent',
-      color: tokens.colorForegroundDisabled,
+    '@media (hover: hover)': {
+      ':hover': {
+        borderBottomColor: 'transparent',
+        color: tokens.colorForegroundDisabled,
+      },
     },
 
     ':active': {
@@ -120,7 +117,7 @@ const useHoverStyles = makeStyles({
     '@media (hover: hover)': {
       ':hover': {
         // borderBottomColor: tokens.colorForeground3,
-        color: '#3aa0f3',
+        color: '#fff',
 
         //for icon with 2 class name
         [`& .${iconFilledClassName}`]: {
@@ -166,14 +163,19 @@ export const useLinkStyles = (state: LinkState): LinkState => {
 
     disabled && styles.disabled,
 
-    iconOnly && styles.iconOnly,
+    // iconOnly && styles.iconOnly,
     iconOnly && hoverStyles.iconOnly,
 
     state.root.className,
   );
 
   if (state.icon) {
-    state.icon.className = mergeClasses(linkClassNames.icon, iconStyles.root, state.icon.className);
+    state.icon.className = mergeClasses(
+      //
+      linkClassNames.icon,
+      iconStyles.root,
+      state.icon.className,
+    );
   }
 
   return state;

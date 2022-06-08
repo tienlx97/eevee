@@ -19,7 +19,7 @@ const useMediaQueryStyles = makeStyles({
       flexShrink: 1,
       width: `${navWidth}px`,
       minHeight: '100vh',
-      ...shorthands.borderRight('1px', 'solid', tokens.colorStroke1),
+      ...shorthands.borderRight('1px', 'solid', tokens.colorStroke2),
     },
 
     [`@media ${breakPoints.lgAndSmaller}`]: {
