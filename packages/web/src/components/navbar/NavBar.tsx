@@ -8,7 +8,7 @@ import { TopNav } from './topnav/index';
 import { BotNav } from './botnav/index';
 
 import { useMediaQuery } from '../../hooks/index';
-import { sideNavWidth } from '../../constants/index';
+import { navWidth } from '../../constants/index';
 const useMediaQueryStyles = makeStyles({
   // wrapper all navbar
   query: {
@@ -17,13 +17,13 @@ const useMediaQueryStyles = makeStyles({
     //  min-width: 1080
     [`@media ${breakPoints.lgAndLarger}`]: {
       flexShrink: 1,
-      width: `${sideNavWidth}px`,
+      width: `${navWidth}px`,
       minHeight: '100vh',
-      ...shorthands.borderRight('1px', 'solid', tokens.colorStroke1),
+      ...shorthands.borderRight('1px', 'solid', tokens.colorStroke2),
     },
 
     [`@media ${breakPoints.lgAndSmaller}`]: {
-      // height: `${topNavHeight}px`,
+      // height: `${navHeight}px`,
       width: 'auto',
     },
   },

@@ -4,6 +4,13 @@ export const tokens: Record<keyof Theme, string> = {
   //
   colorForeground3: 'var(--colorForeground3)',
   colorTransparentStroke: 'var(--colorTransparentStroke)',
+  colorBackground2: 'var(--colorBackground2)',
+  colorForeground2Hover: 'var(--colorForeground2Hover)',
+  colorBrandForegroundLinkHover: 'var(--colorBrandForegroundLinkHover)',
+  colorBrandForegroundLink: 'var(--colorBrandForegroundLink)',
+  colorStroke2: 'var(--colorStroke2)',
+  colorBackground2Pressed: 'var(--colorBackground2Pressed)',
+  colorBackground2Hover: 'var(--colorBackground2Hover)',
   //
   borderRadiusNone: 'var(--borderRadiusNone)',
   borderRadiusSmall: 'var(--borderRadiusSmall)',

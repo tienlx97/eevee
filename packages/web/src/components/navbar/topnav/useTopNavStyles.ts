@@ -3,7 +3,7 @@ import { mergeClasses, makeStyles, shorthands } from '@griffel/react';
 import { TopNavSlots, TopNavState } from './TopNav.types';
 
 import { breakPoints, tokens } from '@eevee/react-theme';
-import { topNavHeight } from '../../../constants/css';
+import { navHeight } from '../../../constants/css';
 
 export const topNavClassNames: SlotClassNames<TopNavSlots> = {
   root: 'eve-TopNav',
@@ -40,11 +40,11 @@ const useContentStyles = makeStyles({
     display: 'flex',
     justifyContent: 'space-between',
     ...shorthands.padding('0', '24px'),
-    backgroundColor: tokens.colorBackground1,
-    height: `${topNavHeight}px`,
+    backgroundColor: tokens.colorBackground2,
+    height: `${navHeight}px`,
     alignItems: 'center',
     position: 'fixed',
-    boxShadow: '0 0 #0000,0 0 #0000,0 1px 3px 0 rgba(0,0,0,.1),0 1px 2px 0 rgba(0,0,0,.06)',
+    boxShadow: `0 0 #0000,0 0 #0000,0 1px 3px 0 ${tokens.colorStroke2},0 1px 2px 0 ${tokens.colorStroke2}`,
     top: 0,
     right: 0,
     left: 0,
@@ -54,7 +54,7 @@ const useContentStyles = makeStyles({
 
 const useGapStyles = makeStyles({
   gapHeight: {
-    height: `${topNavHeight}px`,
+    height: `${navHeight}px`,
     display: 'block',
   },
 });

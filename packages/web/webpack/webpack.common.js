@@ -11,6 +11,9 @@ const {
   typescriptRule,
 } = require('./rules');
 
+const WorkboxPlugin = require('workbox-webpack-plugin');
+const CopyPlugin = require('copy-webpack-plugin');
+
 const commonConfig = {
   context: ROOT_DIR,
 
@@ -33,10 +36,29 @@ const commonConfig = {
 
   resolve: {
     extensions: ['.tsx', '.ts', '.js', '.mdx'],
+    // alias: {
+    //   '@components': path.join(ROOT_DIR, '/src/components'),
+    //   '@hooks': path.join(ROOT_DIR, '/src/hooks'),
+    //   '@utilities': path.join(ROOT_DIR, '/src/utilities'),
+    // },
     plugins: [tsPathsPlugin],
   },
 
-  plugins: [htmlWebpackPlugin, miniCssExtactPlugin, definePlugin, forkTsPlugin],
+  plugins: [
+    htmlWebpackPlugin,
+    miniCssExtactPlugin,
+    definePlugin,
+    forkTsPlugin,
+
+    new CopyPlugin([
+      // { from: '../src/manifest.json', to: '' },
+      { from: 'src/pwa', to: '' },
+    ]),
+    new WorkboxPlugin.InjectManifest({
+      swSrc: './src/src-sw.js',
+      swDest: 'sw.js',
+    }),
+  ],
 
   externals: {
     // react: "React",

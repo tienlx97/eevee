@@ -3,7 +3,7 @@ import { mergeClasses, makeStyles, shorthands } from '@griffel/react';
 import { BotNavSlots, BotNavState } from './BotNav.types';
 
 import { breakPoints, tokens } from '@eevee/react-theme';
-import { topNavHeight } from '../../../constants/css';
+import { navHeight } from '../../../constants/css';
 
 export const botNavClassNames: SlotClassNames<BotNavSlots> = {
   root: 'eve-BotNav',
@@ -37,7 +37,8 @@ const useMediaQueryStyles = makeStyles({
 
 const usePositionStyles = makeStyles({
   position: {
-    backgroundColor: tokens.colorBackground1,
+    backgroundColor: tokens.colorBackground2,
+    boxShadow: `0px 2px 10px ${tokens.colorStroke2}`,
     display: 'block',
     position: 'fixed',
     left: 0,
@@ -49,11 +50,22 @@ const usePositionStyles = makeStyles({
 
 const useContentStyles = makeStyles({
   wrapper: {
-    height: `${topNavHeight}px`,
+    height: `${navHeight}px`,
     position: 'relative',
     zIndex: 600,
     display: 'flex',
     justifyContent: 'space-between',
+  },
+});
+
+const useLinkIconWrapperStyles = makeStyles({
+  root: {
+    flexGrow: 1,
+    flexShrink: 1,
+    flexBasis: '0%',
+    alignItems: 'center',
+    justifyContent: 'center',
+    display: 'flex',
   },
 });
 
@@ -62,6 +74,7 @@ export const useBotNavStyles = (state: BotNavState) => {
   const mediaQueryStyles = useMediaQueryStyles();
   const positionStyles = usePositionStyles();
   const contentStyles = useContentStyles();
+  const linkIconWrapper = useLinkIconWrapperStyles();
 
   state.root.className = mergeClasses(
     //
@@ -83,4 +96,6 @@ export const useBotNavStyles = (state: BotNavState) => {
     contentStyles.wrapper,
     state.content.className,
   );
+
+  state.linkIconWrapperClassName = linkIconWrapper.root;
 };

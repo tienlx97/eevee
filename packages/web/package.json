@@ -67,10 +67,20 @@
     "@eevee/react-theme": "*",
     "@eevee/react-utilities": "*",
     "@eevee/react-link": "*",
+    "@eevee/react-icons": "*",
     "@griffel/react": "1.1.0",
     "react": "*",
     "react-dom": "*",
     "react-router-dom": "6",
-    "react-ga4": "1.4.1"
+    "react-ga4": "1.4.1",
+    "workbox-webpack-plugin": "6.5.3",
+    "copy-webpack-plugin": "5.1.2",
+    "workbox-window": "6.5.3",
+    "workbox-core": "6.5.3",
+    "workbox-expiration": "6.5.3",
+    "workbox-precaching": "6.5.3",
+    "workbox-routing": "6.5.3",
+    "workbox-strategies": "6.5.3",
+    "workbox-cacheable-response": "6.5.3"
   }
 }
