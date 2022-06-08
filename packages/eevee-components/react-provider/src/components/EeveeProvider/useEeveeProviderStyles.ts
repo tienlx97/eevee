@@ -17,13 +17,7 @@ const useStyles = makeStyles({
 export function useEeveeStyles(props: EeveeProviderContextValues) {
   const style = useStyles();
 
-  props.className = mergeClasses(
-    eeveeProviderClassNames.root,
-    style.root,
-    props.themeClassName,
-    //
-    props.className,
-  );
+  props.className = mergeClasses(eeveeProviderClassNames.root, style.root, props.className);
 
   return props;
 }

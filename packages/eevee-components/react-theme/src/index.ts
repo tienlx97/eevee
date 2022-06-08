@@ -4,7 +4,7 @@ export { breakPoints } from './global';
 
 export { themeToTokensObject } from './themeToTokensObject';
 export { tokens } from './tokens';
-export { darkTheme } from './themes/index';
+export { darkTheme, lightTheme } from './themes/index';
 
 export type {
   Brands,

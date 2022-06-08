@@ -93,13 +93,13 @@ const useRootStyles = makeStyles({
     ':hover': {
       backgroundColor: tokens.colorTransparentBackgroundHover,
       ...shorthands.borderColor('transparent'),
-      color: tokens.colorForeground2BrandHover,
+      // color: tokens.colorForeground2BrandHover,
     },
 
     ':hover:active': {
       backgroundColor: tokens.colorTransparentBackgroundPressed,
       ...shorthands.borderColor('transparent'),
-      color: tokens.colorForeground2BrandPressed,
+      // color: tokens.colorForeground2BrandPressed,
     },
   },
 
