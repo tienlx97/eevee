@@ -38,10 +38,10 @@ const useMediaQueryStyles = makeStyles({
 
 const useRootStyles = makeStyles({
   root: {
-    backgroundColor: tokens.colorBackground1,
+    backgroundColor: tokens.background1,
     boxSizing: 'border-box',
     ...shorthands.padding(0, '32px'),
-    ...shorthands.borderLeft('1px', 'solid', tokens.colorStroke1),
+    ...shorthands.borderLeft('1px', 'solid', tokens.border1),
     minHeight: '100vh',
     width: '394px',
   },

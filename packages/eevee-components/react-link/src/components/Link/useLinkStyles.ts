@@ -1,8 +1,8 @@
 import { shorthands, makeStyles, mergeClasses } from '@griffel/react';
 import { tokens } from '@eevee/react-theme';
+import { iconFilledClassName, iconRegularClassName } from '@eevee/react-icons';
 import type { LinkSlots, LinkState } from './Link.types';
 import type { SlotClassNames } from '@eevee/react-utilities';
-import { iconFilledClassName, iconRegularClassName } from '@eevee/react-icons';
 
 export const linkClassNames: SlotClassNames<LinkSlots> = {
   root: 'eve-Linkr',
@@ -12,7 +12,7 @@ export const linkClassNames: SlotClassNames<LinkSlots> = {
 const useStyles = makeStyles({
   focusIndicator: {
     ':focus': {
-      ...shorthands.outline('2px', 'auto', tokens.colorBrandForegroundLinkHover),
+      ...shorthands.outline('2px', 'auto', tokens.foreground3),
       outlineOffset: '2px',
     },
 
@@ -30,7 +30,7 @@ const useStyles = makeStyles({
     borderBottomStyle: 'solid',
     borderBottomWidth: tokens.strokeWidthThin,
     boxSizing: 'border-box',
-    color: tokens.colorForeground1,
+    color: tokens.foreground1, // #fff hsl(222, 22%, 5%)
     cursor: 'pointer',
     display: 'inline-flex',
     fontFamily: tokens.fontFamily,
@@ -52,34 +52,34 @@ const useStyles = makeStyles({
 
   // Overrides when the Link appears subtle.
   subtle: {
-    color: tokens.colorForeground2,
+    color: tokens.foreground2, // #d6d6d6 hsl(225, 15%, 15%)
   },
 
   // Overrides when the Link is rendered inline within text.
   inline: {
-    boxShadow: `0px 2px 0px ${tokens.colorBrandForegroundLink}`,
+    boxShadow: `0px 2px 0px ${tokens.foreground3}`, // #106ebe
   },
 
   // Overrides when the Link is rendered inline within text and appears subtle.
   inlineSubtle: {
-    boxShadow: `0px 2px 0px ${tokens.colorForeground2}`,
+    boxShadow: `0px 2px 0px ${tokens.foreground1}`, // #d6d6d6 hsl(225, 15%, 15%)
   },
 
   // Overrides when the Link is disabled.
   disabled: {
     borderBottomColor: 'transparent',
-    color: tokens.colorForegroundDisabled,
+    color: tokens.foregroundDisabled,
     cursor: 'not-allowed',
     '@media (hover: hover)': {
       ':hover': {
         borderBottomColor: 'transparent',
-        color: tokens.colorForegroundDisabled,
+        color: tokens.foregroundDisabled,
       },
     },
 
     ':active': {
       borderBottomColor: 'transparent',
-      color: tokens.colorForegroundDisabled,
+      color: tokens.foregroundDisabled,
     },
   },
 });
@@ -87,28 +87,28 @@ const useStyles = makeStyles({
 const useHoverStyles = makeStyles({
   root: {
     '@media (hover: hover)': {
-      boxShadow: `0px 0px 0px ${tokens.colorBrandForegroundLinkHover}`,
+      boxShadow: `0px 0px 0px ${tokens.foreground3}`, // rgb(29, 155, 240)
       ':hover': {
         // borderBottomColor: tokens.colorForeground3,
-        color: tokens.colorBrandForegroundLinkHover,
+        color: tokens.foreground3, // rgb(29, 155, 240)
 
         transitionProperty: 'box-shadow',
         transitionDuration: '200ms',
-        boxShadow: `0px 2px 0px ${tokens.colorBrandForegroundLinkHover}`,
+        boxShadow: `0px 2px 0px ${tokens.foreground3}`, // rgb(29, 155, 240)
       },
     },
   },
 
   stubtle: {
     '@media (hover: hover)': {
-      boxShadow: `0px 0px 0px ${tokens.colorForeground2Hover}`,
+      boxShadow: `0px 0px 0px ${tokens.foreground1}`, // #fff #000
       ':hover': {
         // borderBottomColor: tokens.colorForeground3,
-        color: tokens.colorForeground2Hover,
+        color: tokens.foreground1, // #fff #000
 
         transitionProperty: 'box-shadow',
         transitionDuration: '200ms',
-        boxShadow: `0px 2px 0px ${tokens.colorForeground2Hover}`,
+        boxShadow: `0px 2px 0px ${tokens.foreground1}`, // #fff #000
       },
     },
   },
@@ -117,7 +117,7 @@ const useHoverStyles = makeStyles({
     '@media (hover: hover)': {
       ':hover': {
         // borderBottomColor: tokens.colorForeground3,
-        color: '#fff',
+        color: tokens.foreground1, // #fff hsl(222, 22%, 5%)
 
         //for icon with 2 class name
         [`& .${iconFilledClassName}`]: {

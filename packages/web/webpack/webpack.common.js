@@ -1,3 +1,4 @@
+/* eslint-disable import/no-extraneous-dependencies */
 const path = require('path');
 const { ROOT_DIR } = require('./envs');
 const { tsPathsPlugin, htmlWebpackPlugin, miniCssExtactPlugin, definePlugin, forkTsPlugin } = require('./plugins');

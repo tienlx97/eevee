@@ -41,8 +41,7 @@ const useRootStyles = makeStyles({
 
 const useContentStyles = makeStyles({
   content: {
-    backgroundColor: tokens.colorBackground2,
-    // backgroundColor: '#072b47',
+    backgroundColor: tokens.background1,
     position: 'sticky',
     top: 0,
     height: '100vh',

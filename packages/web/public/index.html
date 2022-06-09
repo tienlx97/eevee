@@ -146,48 +146,272 @@
       media="screen and (device-width: 320px) and (device-height: 568px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)"
       href="https://raw.githubusercontent.com/lexuantien/eevee/dev/resource/splash_screens/4__iPhone_SE__iPod_touch_5th_generation_and_later_portrait.png"
     />
+    <script>
+      const dark = {
+        borderRadiusNone: ' 0',
+        borderRadiusSmall: ' 2px',
+        borderRadiusMedium: ' 4px',
+        borderRadiusLarge: ' 6px',
+        borderRadiusXLarge: ' 8px',
+        borderRadiusCircular: ' 10000px',
+        fontSizeBase100: ' 10px',
+        fontSizeBase200: ' 12px',
+        fontSizeBase300: ' 14px',
+        fontSizeBase400: ' 16px',
+        fontSizeBase500: ' 20px',
+        fontSizeBase600: ' 24px',
+        fontSizeHero700: ' 28px',
+        fontSizeHero800: ' 32px',
+        fontSizeHero900: ' 40px',
+        fontSizeHero1000: ' 68px',
+        lineHeightBase100: ' 14px',
+        lineHeightBase200: ' 16px',
+        lineHeightBase300: ' 20px',
+        lineHeightBase400: ' 22px',
+        lineHeightBase500: ' 28px',
+        lineHeightBase600: ' 32px',
+        lineHeightHero700: ' 36px',
+        lineHeightHero800: ' 40px',
+        lineHeightHero900: ' 52px',
+        lineHeightHero1000: ' 92px',
+        fontFamily: ' "Wotfard",Futura,-apple-system,sans-serif',
+        fontFamilyMono: ' "League Mono","Fira Mono",monospace',
+        fontFamilySpicy: ' "Sriracha","Wotfard",Futura,-apple-system,sans-serif',
+        fontWeightRegular: ' 400',
+        fontWeightMedium: ' 500',
+        fontWeightSemibold: ' 600',
+        strokeWidthThin: ' 1px',
+        strokeWidthThick: ' 2px',
+        strokeWidthThicker: ' 3px',
+        strokeWidthThickest: ' 4px',
+        spacingHorizontalNone: ' 0',
+        spacingHorizontalXXS: ' 2px',
+        spacingHorizontalXS: ' 4px',
+        spacingHorizontalSNudge: ' 6px',
+        spacingHorizontalS: ' 8px',
+        spacingHorizontalMNudge: ' 10px',
+        spacingHorizontalM: ' 12px',
+        spacingHorizontalL: ' 16px',
+        spacingHorizontalXL: ' 20px',
+        spacingHorizontalXXL: ' 24px',
+        spacingHorizontalXXXL: ' 32px',
+        spacingVerticalNone: ' 0',
+        spacingVerticalXXS: ' 2px',
+        spacingVerticalXS: ' 4px',
+        spacingVerticalSNudge: ' 6px',
+        spacingVerticalS: ' 8px',
+        spacingVerticalMNudge: ' 10px',
+        spacingVerticalM: ' 12px',
+        spacingVerticalL: ' 16px',
+        spacingVerticalXL: ' 20px',
+        spacingVerticalXXL: ' 24px',
+        spacingVerticalXXXL: ' 32px',
+        durationUltraFast: ' 50ms',
+        durationFaster: ' 100ms',
+        durationFast: ' 150ms',
+        durationNormal: ' 200ms',
+        durationSlow: ' 300ms',
+        durationSlower: ' 400ms',
+        durationUltraSlow: ' 500ms',
+        curveAccelerateMax: ' cubic-bezier(1,0,1,1)',
+        curveAccelerateMid: ' cubic-bezier(0.7,0,1,0.5)',
+        curveAccelerateMin: ' cubic-bezier(0.8,0,1,1)',
+        curveDecelerateMax: ' cubic-bezier(0,0,0,1)',
+        curveDecelerateMid: ' cubic-bezier(0.1,0.9,0.2,1)',
+        curveDecelerateMin: ' cubic-bezier(0.33,0,0.1,1)',
+        curveEasyEaseMax: ' cubic-bezier(0.8,0,0.1,1)',
+        curveEasyEase: ' cubic-bezier(0.33,0,0.67,1)',
+        curveLinear: ' cubic-bezier(0,0,1,1)',
+        background1: ' #000000',
+        background2: ' rgb(22, 24, 28)',
+        background3: ' rgb(239, 243, 244)',
+        background4: ' rgba(0,0,0,0)',
+        backgroundTransparent: ' transparent',
+        backgroundDisabled: ' #141414',
+        hover1: ' rgba(231, 233, 234, 0.1)',
+        hover2: ' rgba(255,255,255,0.03)',
+        hover3: ' rgba(29,155,240,0.1)',
+        hover4: ' rgb(26,140,216)',
+        hover5: 'rgba(239, 243, 244,0.1)',
+        border1: ' rgb(47, 51, 54)',
+        borderTransparent: ' transparent',
+        borderDisable: ' #424242',
+        foreground1: ' rgb(231, 233, 234)',
+        foreground2: ' rgb(113, 118, 123)',
+        foreground3: ' rgb(29, 155, 240)',
+        foreground4: ' rgb(0,186,124)',
+        foreground5: ' rgb(249,24,128)',
+        foreground6: ' rgb(15, 20, 25)',
+        foregroundDisabled: ' #5c5c5c',
+        colorShadowAmbient: ' rgba(0,0,0,0.24)',
+        colorShadowKey: ' rgba(0,0,0,0.28)',
+        colorBrandShadowAmbient: ' rgba(0,0,0,0.3)',
+        colorBrandShadowKey: ' rgba(0,0,0,0.25)',
+        shadow2: ' 0 0 2px rgba(0,0,0,0.24), 0 1px 2px rgba(0,0,0,0.28)',
+        shadow4: ' 0 0 2px rgba(0,0,0,0.24), 0 2px 4px rgba(0,0,0,0.28)',
+        shadow8: ' 0 0 2px rgba(0,0,0,0.24), 0 4px 8px rgba(0,0,0,0.28)',
+        shadow16: ' 0 0 2px rgba(0,0,0,0.24), 0 8px 16px rgba(0,0,0,0.28)',
+        shadow28: ' 0 0 8px rgba(0,0,0,0.24), 0 14px 28px rgba(0,0,0,0.28)',
+        shadow64: ' 0 0 8px rgba(0,0,0,0.24), 0 32px 64px rgba(0,0,0,0.28)',
+        shadow2Brand: ' 0 0 2px rgba(0,0,0,0.3), 0 1px 2px rgba(0,0,0,0.25)',
+        shadow4Brand: ' 0 0 2px rgba(0,0,0,0.3), 0 2px 4px rgba(0,0,0,0.25)',
+        shadow8Brand: ' 0 0 2px rgba(0,0,0,0.3), 0 4px 8px rgba(0,0,0,0.25)',
+        shadow16Brand: ' 0 0 2px rgba(0,0,0,0.3), 0 8px 16px rgba(0,0,0,0.25)',
+        shadow28Brand: ' 0 0 8px rgba(0,0,0,0.3), 0 14px 28px rgba(0,0,0,0.25)',
+        shadow64Brand: ' 0 0 8px rgba(0,0,0,0.3), 0 32px 64px rgba(0,0,0,0.25)',
+      };
+
+      const light = {
+        borderRadiusNone: '0',
+        borderRadiusSmall: '2px',
+        borderRadiusMedium: '4px',
+        borderRadiusLarge: '6px',
+        borderRadiusXLarge: '8px',
+        borderRadiusCircular: '10000px',
+        fontSizeBase100: '10px',
+        fontSizeBase200: '12px',
+        fontSizeBase300: '14px',
+        fontSizeBase400: '16px',
+        fontSizeBase500: '20px',
+        fontSizeBase600: '24px',
+        fontSizeHero700: '28px',
+        fontSizeHero800: '32px',
+        fontSizeHero900: '40px',
+        fontSizeHero1000: '68px',
+        lineHeightBase100: '14px',
+        lineHeightBase200: '16px',
+        lineHeightBase300: '20px',
+        lineHeightBase400: '22px',
+        lineHeightBase500: '28px',
+        lineHeightBase600: '32px',
+        lineHeightHero700: '36px',
+        lineHeightHero800: '40px',
+        lineHeightHero900: '52px',
+        lineHeightHero1000: '92px',
+        fontFamily: '"Wotfard",Futura,-apple-system,sans-serif',
+        fontFamilyMono: '"League Mono","Fira Mono",monospace',
+        fontFamilySpicy: '"Sriracha","Wotfard",Futura,-apple-system,sans-serif',
+        fontWeightRegular: '400',
+        fontWeightMedium: '500',
+        fontWeightSemibold: '600',
+        strokeWidthThin: '1px',
+        strokeWidthThick: '2px',
+        strokeWidthThicker: '3px',
+        strokeWidthThickest: '4px',
+        spacingHorizontalNone: '0',
+        spacingHorizontalXXS: '2px',
+        spacingHorizontalXS: '4px',
+        spacingHorizontalSNudge: '6px',
+        spacingHorizontalS: '8px',
+        spacingHorizontalMNudge: '10px',
+        spacingHorizontalM: '12px',
+        spacingHorizontalL: '16px',
+        spacingHorizontalXL: '20px',
+        spacingHorizontalXXL: '24px',
+        spacingHorizontalXXXL: '32px',
+        spacingVerticalNone: '0',
+        spacingVerticalXXS: '2px',
+        spacingVerticalXS: '4px',
+        spacingVerticalSNudge: '6px',
+        spacingVerticalS: '8px',
+        spacingVerticalMNudge: '10px',
+        spacingVerticalM: '12px',
+        spacingVerticalL: '16px',
+        spacingVerticalXL: '20px',
+        spacingVerticalXXL: '24px',
+        spacingVerticalXXXL: '32px',
+        durationUltraFast: '50ms',
+        durationFaster: '100ms',
+        durationFast: '150ms',
+        durationNormal: '200ms',
+        durationSlow: '300ms',
+        durationSlower: '400ms',
+        durationUltraSlow: '500ms',
+        curveAccelerateMax: 'cubic-bezier(1,0,1,1)',
+        curveAccelerateMid: 'cubic-bezier(0.7,0,1,0.5)',
+        curveAccelerateMin: 'cubic-bezier(0.8,0,1,1)',
+        curveDecelerateMax: 'cubic-bezier(0,0,0,1)',
+        curveDecelerateMid: 'cubic-bezier(0.1,0.9,0.2,1)',
+        curveDecelerateMin: 'cubic-bezier(0.33,0,0.1,1)',
+        curveEasyEaseMax: 'cubic-bezier(0.8,0,0.1,1)',
+        curveEasyEase: 'cubic-bezier(0.33,0,0.67,1)',
+        curveLinear: 'cubic-bezier(0,0,1,1)',
+        background1: 'rgba(255, 255, 255,1)',
+        background2: 'rgba(247, 249, 249,1)',
+        background3: 'rgb(15, 20, 25)',
+        background4: 'rgba(0,0,0,0)',
+        hover5: 'rgba(15,20,25,0.1)',
+        backgroundTransparent: 'transparent',
+        backgroundDisabled: '#f0f0f0',
+        hover1: 'rgba(231, 233, 234, 0.1)',
+        hover2: 'rgba(255,255,255,0.03)',
+        hover3: 'rgba(29,155,240,0.1)',
+        hover4: 'rgb(26,140,216)',
+        border1: 'rgb(239, 243, 244)',
+        borderTransparent: 'transparent',
+        borderDisable: '#e0e0e0',
+        foreground1: 'rgb(15, 20, 25)',
+        foreground2: 'rgb(83, 100, 113)',
+        foreground3: 'rgb(29, 155, 240)',
+        foreground4: 'rgb(0,186,124)',
+        foreground5: 'rgb(249,24,128)',
+        foreground6: 'rgb(255, 255, 255)',
+        foregroundDisabled: '#bdbdbd',
+        colorShadowAmbient: 'rgba(0,0,0,0.12)',
+        colorShadowKey: 'rgba(0,0,0,0.14)',
+        colorBrandShadowAmbient: 'rgba(0,0,0,0.3)',
+        colorBrandShadowKey: 'rgba(0,0,0,0.25)',
+        shadow2: '0 0 2px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.14)',
+        shadow4: '0 0 2px rgba(0,0,0,0.12), 0 2px 4px rgba(0,0,0,0.14)',
+        shadow8: '0 0 2px rgba(0,0,0,0.12), 0 4px 8px rgba(0,0,0,0.14)',
+        shadow16: '0 0 2px rgba(0,0,0,0.12), 0 8px 16px rgba(0,0,0,0.14)',
+        shadow28: '0 0 8px rgba(0,0,0,0.12), 0 14px 28px rgba(0,0,0,0.14)',
+        shadow64: '0 0 8px rgba(0,0,0,0.12), 0 32px 64px rgba(0,0,0,0.14)',
+        shadow2Brand: '0 0 2px rgba(0,0,0,0.3), 0 1px 2px rgba(0,0,0,0.25)',
+        shadow4Brand: '0 0 2px rgba(0,0,0,0.3), 0 2px 4px rgba(0,0,0,0.25)',
+        shadow8Brand: '0 0 2px rgba(0,0,0,0.3), 0 4px 8px rgba(0,0,0,0.25)',
+        shadow16Brand: '0 0 2px rgba(0,0,0,0.3), 0 8px 16px rgba(0,0,0,0.25)',
+        shadow28Brand: '0 0 8px rgba(0,0,0,0.3), 0 14px 28px rgba(0,0,0,0.25)',
+        shadow64Brand: '0 0 8px rgba(0,0,0,0.3), 0 32px 64px rgba(0,0,0,0.25)',
+      };
+
+      function getInitialColorMode() {
+        const persistedColorPreference = localStorage.getItem('color-mode');
+        const hasPersistedPreference = typeof persistedColorPreference === 'string';
+        // If the user has explicitly chosen light or dark,
+        // let's use it. Otherwise, this value will be null.
+        if (hasPersistedPreference) {
+          return persistedColorPreference === 'dark' ? 'dark' : 'light';
+        }
+        // If they haven't been explicit, let's check the media
+        // query
+        const mql = window.matchMedia('(prefers-color-scheme: dark)');
+        const hasMediaQueryPreference = typeof mql.matches === 'boolean';
+        if (hasMediaQueryPreference) {
+          return mql.matches ? 'dark' : 'light';
+        }
+        // If they are using a browser/OS that doesn't support
+        // color themes, let's default to 'light'.
+        return 'light';
+      }
+
+      const color = getInitialColorMode();
+
+      const theme = color === 'light' ? light : dark;
+
+      const doc = window.document.documentElement;
+
+      Object.keys(theme).reduce((cssVarRule, cssVar) => {
+        doc.style.setProperty(`--${cssVar}`, String(theme[cssVar]));
+        return cssVarRule;
+      }, '');
+
+      // Persist it on update
+      localStorage.setItem('color-mode', color);
+    </script>
   </head>
   <body>
     <noscript>You need to enable JavaScript to run this.</noscript>
-    <script>
-      (function () {
-        function setTheme(newTheme) {
-          window.__theme = newTheme;
-          if (newTheme === 'dark') {
-            document.documentElement.classList.add('dark');
-          } else if (newTheme === 'light') {
-            document.documentElement.classList.remove('dark');
-          }
-        }
-
-        var preferredTheme;
-        try {
-          preferredTheme = localStorage.getItem('theme');
-        } catch (err) {}
-
-        window.__setPreferredTheme = function (newTheme) {
-          preferredTheme = newTheme;
-          setTheme(newTheme);
-          try {
-            localStorage.setItem('theme', newTheme);
-          } catch (err) {}
-        };
-
-        var initialTheme = preferredTheme;
-        var darkQuery = window.matchMedia('(prefers-color-scheme: dark)');
-
-        if (!initialTheme) {
-          initialTheme = darkQuery.matches ? 'dark' : 'light';
-        }
-        setTheme(initialTheme);
-
-        darkQuery.addEventListener('change', function (e) {
-          if (!preferredTheme) {
-            setTheme(e.matches ? 'dark' : 'light');
-          }
-        });
-      })();
-    </script>
     <div id="root"></div>
   </body>
 </html>

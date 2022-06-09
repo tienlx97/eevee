@@ -8,18 +8,32 @@ type EThemeProviderProps = {
   darkTheme: PartialTheme;
 };
 
+function getInitialColorMode(): EMode {
+  const persistedColorPreference = localStorage.getItem('color-mode');
+  const hasPersistedPreference = typeof persistedColorPreference === 'string';
+  // If the user has explicitly chosen light or dark,
+  // let's use it. Otherwise, this value will be null.
+  if (hasPersistedPreference) {
+    return persistedColorPreference === 'dark' ? 'dark' : 'light';
+  }
+  // If they haven't been explicit, let's check the media
+  // query
+  const mql = window.matchMedia('(prefers-color-scheme: dark)');
+  const hasMediaQueryPreference = typeof mql.matches === 'boolean';
+  if (hasMediaQueryPreference) {
+    return mql.matches ? 'dark' : 'light';
+  }
+  // If they are using a browser/OS that doesn't support
+  // color themes, let's default to 'light'.
+  return 'light';
+}
+
 export const EThemeProvider: React.FC<EThemeProviderProps> = ({ children, darkTheme, lightTheme }) => {
   const parentContext = useEevee();
-  let initialColorValue: EMode = 'light';
-  const targetDocument = parentContext.targetDocument;
 
-  if (targetDocument) {
-    // Because colors matter so much for the initial page view, we're
-    // doing a lot of the work in gatsby-ssr. That way it can happen before
-    // the React component tree mounts.
+  const { targetDocument } = parentContext;
 
-    initialColorValue = localStorage.getItem('prefer-dark') === 'true' ? 'dark' : 'light';
-  }
+  const initialColorValue = getInitialColorMode();
 
   const [colorMode, rawSetColorMode] = React.useState<EMode>(initialColorValue);
 
@@ -31,9 +45,7 @@ export const EThemeProvider: React.FC<EThemeProviderProps> = ({ children, darkTh
 
       const root = targetDocument.documentElement;
 
-      const prefersDark = colorValue === 'dark';
-
-      const theme = prefersDark ? darkTheme : lightTheme;
+      const theme = colorValue === 'dark' ? darkTheme : lightTheme;
 
       (Object.keys(theme) as (keyof typeof theme)[]).reduce((cssVarRule, cssVar) => {
         root.style.setProperty(`--${cssVar}`, String(theme[cssVar]));
@@ -48,7 +60,8 @@ export const EThemeProvider: React.FC<EThemeProviderProps> = ({ children, darkTh
 
       rawSetColorMode(colorValue);
 
-      localStorage.setItem('prefer-dark', String(prefersDark));
+      // Persist it on update
+      localStorage.setItem('color-mode', String(colorValue));
     };
 
     return {
@@ -57,11 +70,6 @@ export const EThemeProvider: React.FC<EThemeProviderProps> = ({ children, darkTh
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [colorMode, rawSetColorMode]);
-
-  React.useEffect(() => {
-    value.setColorMode(colorMode);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
 
   return <EThemeContext.Provider value={value}>{children}</EThemeContext.Provider>;
 };

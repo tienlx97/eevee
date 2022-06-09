@@ -3,43 +3,28 @@
  */
 
 export type ColorTokens = {
-  colorBackground1: string;
-  colorBackground1Hover: string;
-  colorBackground1Pressed: string;
-  colorBackground2: string;
-  colorBackground2Hover: string;
-  colorBackground2Pressed: string;
+  background1: string;
+  background2: string;
+  background3: string;
+  background4: string;
+  backgroundTransparent: string;
+  backgroundDisabled: string;
+  hover1: string;
+  hover2: string;
+  hover3: string;
+  hover4: string;
+  hover5: string;
+  border1: string;
+  borderTransparent: string;
+  borderDisable: string;
+  foreground1: string;
+  foreground2: string;
+  foreground3: string;
+  foreground4: string;
+  foreground5: string;
+  foreground6: string;
+  foregroundDisabled: string;
 
-  colorBackgroundDisabled: string;
-
-  colorTransparentBackground: string;
-  colorTransparentBackgroundHover: string;
-  colorTransparentBackgroundPressed: string;
-
-  // foreground
-  colorForeground1: string;
-  colorForeground1Hover: string;
-  colorForeground1Pressed: string;
-  colorForeground2: string;
-  colorForeground2Hover: string;
-  colorForeground2BrandHover: string;
-  colorForeground2BrandPressed: string;
-  colorForeground3: string;
-  colorForegroundDisabled: string;
-
-  colorBrandForegroundLink: string;
-  colorBrandForegroundLinkHover: string;
-
-  // stroke
-  colorStroke1: string;
-  colorStroke1Hover: string;
-  colorStroke1Pressed: string;
-  colorStroke2: string;
-  colorStrokeFocus2: string;
-  colorStrokeDisabled: string;
-  colorTransparentStroke: string;
-
-  //shadow
   colorShadowAmbient: string;
   colorShadowKey: string;
   colorBrandShadowAmbient: string;

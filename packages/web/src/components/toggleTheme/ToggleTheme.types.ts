@@ -1,10 +1,6 @@
-import type { EeveeSlot, EeveeProps, EeveeState } from '@eevee/react-utilities';
-import { Button } from '@eevee/react-button';
+import type { EMode } from '@eevee/react-shared-contexts';
 
-export type ToggleThemeSlot = {
-  root: NonNullable<EeveeSlot<typeof Button>>;
+export type ToggleThemeState = {
+  colorMode?: EMode;
+  setColorMode?: (value: EMode) => void;
 };
-
-export type ToggleThemeProps = EeveeProps<ToggleThemeSlot> & {};
-
-export type ToggleThemeState = EeveeState<ToggleThemeSlot> & {};

@@ -59,7 +59,8 @@
     "webpack-dev-server": "^4.7.4",
     "webpack-merge": "^5.8.0",
     "webpack-obfuscator": "^3.5.1",
-    "@eevee/scripts": "*"
+    "@eevee/scripts": "*",
+    "copy-webpack-plugin": "5.1.2"
   },
   "dependencies": {
     "@eevee/react-button": "*",
@@ -68,13 +69,13 @@
     "@eevee/react-utilities": "*",
     "@eevee/react-link": "*",
     "@eevee/react-icons": "*",
+    "@eevee/react-shared-contexts": "*",
     "@griffel/react": "1.1.0",
     "react": "*",
     "react-dom": "*",
     "react-router-dom": "6",
     "react-ga4": "1.4.1",
     "workbox-webpack-plugin": "6.5.3",
-    "copy-webpack-plugin": "5.1.2",
     "workbox-window": "6.5.3",
     "workbox-core": "6.5.3",
     "workbox-expiration": "6.5.3",

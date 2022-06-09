@@ -8,8 +8,8 @@ export const eeveeProviderClassNames = {
 
 const useStyles = makeStyles({
   root: {
-    color: tokens.colorForeground1Hover,
-    backgroundColor: tokens.colorBackground1,
+    color: tokens.foreground1,
+    backgroundColor: tokens.background1,
     fontFamily: tokens.fontFamily,
   },
 });

@@ -15,6 +15,7 @@ export const generateColorTokens = (): ColorTokens => ({
   colorTransparentBackgroundPressed: 'transparent',
   colorTransparentStroke: 'transparent',
 
+  // icon
   colorForeground1: '#fff',
   colorForeground1Hover: '#fff',
   colorForeground1Pressed: '#fff',
