@@ -23,7 +23,7 @@ const useLinkStyles = makeStyles({
     ...shorthands.padding('5px'),
     ...shorthands.borderRadius('4px'),
     ':hover': {
-      backgroundColor: tokens.colorBackground2Hover,
+      backgroundColor: tokens.foreground2,
     },
   },
 });
@@ -58,7 +58,7 @@ export const useLinkIconStyles = (state: LinkIconState) => {
 
   if (isCurrent) {
     state.link.style = {
-      backgroundColor: tokens.colorBackground2Pressed,
+      backgroundColor: tokens.foreground5,
       ...state.link.style,
     };
   }

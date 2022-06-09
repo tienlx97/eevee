@@ -8,3 +8,4 @@
 - [Focus style](https://css-tricks.com/keyboard-only-focus-styles/)
 - [Storybook arg](https://storybook.js.org/docs/react/writing-stories/args)
 - [Git Hooks](https://www.atlassian.com/git/tutorials/git-hooks)
+- [Dark mode](https://www.joshwcomeau.com/react/dark-mode/)

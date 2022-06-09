@@ -1,5 +1,5 @@
 import { EeveeProvider } from '@eevee/react-provider';
-import { darkTheme } from '@eevee/react-theme';
+import { darkTheme, lightTheme } from '@eevee/react-theme';
 import { makeStyles } from '@griffel/react';
 
 const useStyles = makeStyles({
@@ -37,7 +37,7 @@ export const decorators = [
     // const theme = context.globals.theme === 'dark' ? darkTheme : {} as any;
     const styles = useStyles();
     return (
-      <EeveeProvider className={styles.root} theme={darkTheme}>
+      <EeveeProvider className={styles.root} darkTheme={darkTheme} lightTheme={lightTheme}>
         <Story />
       </EeveeProvider>
     );

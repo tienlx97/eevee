@@ -98,3 +98,7 @@ code {
   outline: 0 !important;
   box-shadow: none !important;
 }
+
+* {
+  -webkit-tap-highlight-color: transparent;
+}
