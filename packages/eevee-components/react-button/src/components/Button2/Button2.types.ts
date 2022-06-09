@@ -3,11 +3,11 @@ import type { EeveeProps, EeveeSlot, EeveeState } from '@eevee/react-utilities';
 
 export type ButtonSlots2 = {
   root: NonNullable<EeveeSlot<'button'>>;
-  iconAndText?: EeveeSlot<'div'>;
-  text?: EeveeSlot<'span'>;
+  iconAndText: NonNullable<EeveeSlot<'div'>>;
+  text: NonNullable<EeveeSlot<'span'>>;
 };
 
-export type ButtonProps2 = EeveeProps<ButtonSlots2> & {
+export type ButtonProps2 = EeveeProps<Partial<ButtonSlots2>> & {
   icon?: React.ReactNode;
 };
 
