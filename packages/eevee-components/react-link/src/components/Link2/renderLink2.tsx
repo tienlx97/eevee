@@ -20,24 +20,20 @@ export const renderLink2 = (state: LinkState2) => {
         to={href as string}
         {...rest}
       >
-        {slots.iconAndText && (
-          <slots.iconAndText {...slotProps.iconAndText}>
-            {icon ? icon : <></>}
-            {slots.text && <slots.text {...slotProps.text}>{children && children}</slots.text>}
-          </slots.iconAndText>
-        )}
+        <slots.iconAndText {...slotProps.iconAndText}>
+          {icon && icon}
+          <slots.text {...slotProps.text}>{children && children}</slots.text>
+        </slots.iconAndText>
       </Link6>
     );
   }
 
   return (
     <slots.root {...slotProps.root}>
-      {slots.iconAndText && (
-        <slots.iconAndText {...slotProps.iconAndText}>
-          {icon ? icon : <></>}
-          {slots.text && <slots.text {...slotProps.text}>{children && children}</slots.text>}
-        </slots.iconAndText>
-      )}
+      <slots.iconAndText {...slotProps.iconAndText}>
+        {icon && icon}
+        <slots.text {...slotProps.text}>{children && children}</slots.text>
+      </slots.iconAndText>
     </slots.root>
   );
 };

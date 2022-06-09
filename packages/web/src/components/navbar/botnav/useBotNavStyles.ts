@@ -11,6 +11,12 @@ export const botNavClassNames: SlotClassNames<BotNavSlots> = {
   content: 'eve-BotNav__content',
 };
 
+const useSafePaddingStyles = makeStyles({
+  root: {
+    paddingBottom: 'env(safe-area-inset-bottom)',
+  },
+});
+
 const useMediaQueryStyles = makeStyles({
   query: {
     [`@media ${breakPoints.lgAndLarger}`]: {
@@ -71,6 +77,7 @@ const useLinkIconWrapperStyles = makeStyles({
 
 /** Applies style classnames to slots */
 export const useBotNavStyles = (state: BotNavState) => {
+  const iphoneSafePadding = useSafePaddingStyles();
   const mediaQueryStyles = useMediaQueryStyles();
   const positionStyles = usePositionStyles();
   const contentStyles = useContentStyles();
@@ -79,12 +86,14 @@ export const useBotNavStyles = (state: BotNavState) => {
   state.root.className = mergeClasses(
     //
     botNavClassNames.root,
+    // rootStyles.root,
     mediaQueryStyles.query,
     state.root.className,
   );
 
   state.postition.className = mergeClasses(
     //
+    iphoneSafePadding.root,
     botNavClassNames.postition,
     positionStyles.position,
     state.postition.className,

@@ -1,4 +1,4 @@
-import { ButtonSlots2, ButtonState2 } from './Button2.types';
+import type { ButtonSlots2, ButtonState2 } from './Button2.types';
 import { tokens } from '@eevee/react-theme';
 // import { iconFilledClassName, iconRegularClassName } from '@eevee/react-icons';
 import { shorthands, makeStyles, mergeClasses } from '@griffel/react';
@@ -77,22 +77,20 @@ export const useButtonStyles2 = (state: ButtonState2): ButtonState2 => {
   const textStyles = useTextStyles();
 
   state.root.className = mergeClasses(
-    //
     buttonClassNames.root,
     buttonStyles.base,
     buttonStyles.root,
     state.root.className,
   );
 
-  state.iconAndText!.className = mergeClasses(
+  state.iconAndText.className = mergeClasses(
     buttonClassNames.iconAndText,
     iconAndTextStyles.base,
     iconAndTextStyles.root,
     state.iconAndText?.className,
   );
 
-  state.text!.className = mergeClasses(
-    //
+  state.text.className = mergeClasses(
     buttonClassNames.text,
     textStyles.base,
     textStyles.base2,
