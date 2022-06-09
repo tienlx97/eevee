@@ -72,6 +72,6 @@
   ],
   "start_url": "/index.html",
   "scope": "/",
-  "theme_color": "#16181d",
-  "background_color": "#16181d"
+  "theme_color": "#000000",
+  "background_color": "#000000"
 }

@@ -7,13 +7,13 @@ export type LinkSlots2 = {
    */
   root: EeveeSlot<'a'>;
 
-  iconAndText?: EeveeSlot<'div'>;
-  text?: EeveeSlot<'span'>;
+  iconAndText: NonNullable<EeveeSlot<'div'>>;
+  text: NonNullable<EeveeSlot<'span'>>;
 };
 
 export type LinkType = 'hash' | 'external' | 'internal';
 
-export type LinkProps2 = EeveeProps<LinkSlots2> & {
+export type LinkProps2 = EeveeProps<Partial<LinkSlots2>> & {
   icon?: React.ReactNode;
 };
 

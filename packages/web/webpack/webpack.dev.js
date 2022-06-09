@@ -17,7 +17,7 @@ const devConfig = {
     },
     port: 3000,
     static: path.join(ROOT_DIR, '/dist'),
-    host: 'localhost',
+    host: '0.0.0.0',
     // hot: true,
     historyApiFallback: true,
   },

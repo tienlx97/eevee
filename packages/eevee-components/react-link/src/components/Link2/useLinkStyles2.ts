@@ -93,6 +93,10 @@ const useHoverStyles = makeStyles({
     },
   },
   iconOnly: {
+    // '@media (pointer: coarse)': {
+    //   backgroundColor: 'red',
+    // },
+
     '@media (hover: hover)': {
       ':hover': {
         // borderBottomColor: tokens.colorForeground3,
@@ -115,13 +119,11 @@ export const useLinkStyles2 = (state: LinkState2): LinkState2 => {
   const linkStyles = useLinkStyles();
   const iconAndTextStyles = useIconAndTextStyles();
   const textStyles = useTextStyles();
-
   const hoverStyles = useHoverStyles();
 
   const { iconOnly } = state;
 
   state.root.className = mergeClasses(
-    //
     linkClassNames.root,
     linkStyles.base,
     linkStyles.focusIndicator,
@@ -131,16 +133,14 @@ export const useLinkStyles2 = (state: LinkState2): LinkState2 => {
     state.root.className,
   );
 
-  state.iconAndText!.className = mergeClasses(
-    //
+  state.iconAndText.className = mergeClasses(
     linkClassNames.iconAndText,
     iconAndTextStyles.base,
     iconAndTextStyles.root,
     state.iconAndText?.className,
   );
 
-  state.text!.className = mergeClasses(
-    //
+  state.text.className = mergeClasses(
     linkClassNames.text,
     textStyles.base,
     textStyles.base2,
