@@ -7,7 +7,10 @@ import { eeveeProviderClassNames } from './useEeveeProviderStyles';
  *
  * @returns CSS class to apply the rule
  */
-export const useFluentProviderThemeStyleTag = (options: Pick<EeveeProviderState, 'theme' | 'targetDocument'>) => {
+export const useFluentProviderThemeStyleTag = (
+  prefersDark: boolean,
+  options: Pick<EeveeProviderState, 'theme' | 'targetDocument'>,
+) => {
   const { targetDocument, theme } = options;
 
   const styleTagId = useId(eeveeProviderClassNames.root);
@@ -45,6 +48,7 @@ export const useFluentProviderThemeStyleTag = (options: Pick<EeveeProviderState,
         sheet.deleteRule(0);
       }
       sheet.insertRule(cssRule, 0);
+      localStorage.setItem('prefer-moon', prefersDark ? 'true' : 'false');
     } else if (process.env.NODE_ENV !== 'production') {
       // eslint-disable-next-line no-console
       console.error('EeveeProvider: No sheet available on styleTag, styles will not be inserted into DOM.');

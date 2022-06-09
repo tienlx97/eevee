@@ -1,4 +1,4 @@
-import { generateColorTokens } from '../alias/dark';
+import { generateColorTokens } from '../alias/twDark';
 import { borderRadius, fontSizes, lineHeights, fontFamilies, strokeWidths, fontWeights } from '../global/index';
 import { horizontalSpacings, verticalSpacings } from '../global/spacings';
 import type { Theme } from '../types';

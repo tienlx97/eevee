@@ -1,3 +1,4 @@
+/* eslint-disable import/no-extraneous-dependencies */
 const path = require('path');
 const { ROOT_DIR } = require('./envs');
 const { tsPathsPlugin, htmlWebpackPlugin, miniCssExtactPlugin, definePlugin, forkTsPlugin } = require('./plugins');
@@ -10,6 +11,9 @@ const {
   cssRule,
   typescriptRule,
 } = require('./rules');
+
+const WorkboxPlugin = require('workbox-webpack-plugin');
+const CopyPlugin = require('copy-webpack-plugin');
 
 const commonConfig = {
   context: ROOT_DIR,
@@ -33,10 +37,26 @@ const commonConfig = {
 
   resolve: {
     extensions: ['.tsx', '.ts', '.js', '.mdx'],
+    // alias: {
+    //   '@components': path.join(ROOT_DIR, '/src/components'),
+    //   '@hooks': path.join(ROOT_DIR, '/src/hooks'),
+    //   '@utilities': path.join(ROOT_DIR, '/src/utilities'),
+    // },
     plugins: [tsPathsPlugin],
   },
 
-  plugins: [htmlWebpackPlugin, miniCssExtactPlugin, definePlugin, forkTsPlugin],
+  plugins: [
+    new CopyPlugin([{ from: 'src/pwa', to: '' }]),
+    new WorkboxPlugin.InjectManifest({
+      swSrc: './src/src-sw.js',
+      swDest: 'sw.js',
+      maximumFileSizeToCacheInBytes: 100 * 1024 * 1024,
+    }),
+    htmlWebpackPlugin,
+    miniCssExtactPlugin,
+    definePlugin,
+    forkTsPlugin,
+  ],
 
   externals: {
     // react: "React",

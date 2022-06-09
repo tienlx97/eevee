@@ -16,6 +16,11 @@
     "lib": ["es6", "dom"],
     "types": ["react-dom-18", "webpack-env"],
     "skipLibCheck": true
+    // "paths": {
+    //   "@components/*": ["src/components/*"],
+    //   "@hooks": ["src/hooks/*"],
+    //   "@utilities": ["src/utilities/*"]
+    // }
   },
   "include": ["src"]
 }

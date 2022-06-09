@@ -3,7 +3,14 @@ export { useIsomorphicLayoutEffect, useEventCallback, useId, usePrevious } from 
 export { canUseDOM, defaultSSRContextValue, useIsSSR, useSSRContext, SSRProvider } from './ssr/index';
 export type { SSRContextValue } from './ssr/index';
 
-export { resolveShorthand, getSlots } from './compose/index';
+export {
+  resolveShorthand,
+  getSlots,
+  commonRootStyles,
+  commonWrapperStyles,
+  commonTextStyles,
+  commonTextStyles2,
+} from './compose/index';
 export type {
   AsIntrinsicElement,
   ComponentProps,

@@ -3,7 +3,7 @@ import * as client from 'react-dom/client';
 import ReactGA from 'react-ga4';
 import { BrowserRouter } from 'react-router-dom';
 import { EeveeProvider } from '@eevee/react-provider';
-import { darkTheme, tokens } from '@eevee/react-theme';
+import { darkTheme, lightTheme, tokens } from '@eevee/react-theme';
 
 import { siteConfig } from './siteConfig';
 import { App } from './app';
@@ -23,8 +23,7 @@ if (typeof window !== 'undefined') {
 
 const useStyles = makeStyles({
   wrapper: {
-    // backgroundColor: tokens.colorBackground1,
-    backgroundColor: '#23272f',
+    backgroundColor: tokens.background1,
   },
 });
 
@@ -33,7 +32,7 @@ const Root = () => {
 
   return (
     <BrowserRouter>
-      <EeveeProvider dir="ltr" className={classes.wrapper} theme={darkTheme}>
+      <EeveeProvider dir="ltr" className={classes.wrapper} lightTheme={lightTheme} darkTheme={darkTheme}>
         <App />
       </EeveeProvider>
     </BrowserRouter>

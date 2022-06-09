@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { ComponentMeta, ComponentStory, DecoratorFn } from '@storybook/react';
 import { BrowserRouter } from 'react-router-dom';
-import { Linka } from '../index';
+import { LinkR } from '../index';
 
 const withReactRouterDom6: DecoratorFn = Story => (
   <BrowserRouter>
@@ -12,18 +12,16 @@ const withReactRouterDom6: DecoratorFn = Story => (
 //👇 This default export determines where your story goes in the story list
 export default {
   title: 'eevee/react-link',
-  component: Linka,
+  component: LinkR,
   decorators: [withReactRouterDom6],
-} as ComponentMeta<typeof Linka>;
+} as ComponentMeta<typeof LinkR>;
 
 //👇 We create a “template” of how args map to rendering
-const Template: ComponentStory<typeof Linka> = args => {
-  return <Linka {...args} />;
+const Template: ComponentStory<typeof LinkR> = args => {
+  return <LinkR {...args} />;
 };
 
-Template.args = {
-  appearance: 'josh-comeau',
-};
+Template.args = {};
 
 export const Appearance = Template.bind({});
 

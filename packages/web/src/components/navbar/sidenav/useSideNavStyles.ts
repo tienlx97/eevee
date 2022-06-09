@@ -1,5 +1,5 @@
 import { SlotClassNames } from '@eevee/react-utilities';
-import { mergeClasses, makeStyles, shorthands } from '@griffel/react';
+import { mergeClasses, makeStyles } from '@griffel/react';
 import { SideNavState, SideNavSlots } from './SideNav.types';
 
 import { breakPoints, tokens } from '@eevee/react-theme';
@@ -41,8 +41,7 @@ const useRootStyles = makeStyles({
 
 const useContentStyles = makeStyles({
   content: {
-    // backgroundColor: tokens.colorBackground1,
-    backgroundColor: '#16181d',
+    backgroundColor: tokens.background1,
     position: 'sticky',
     top: 0,
     height: '100vh',

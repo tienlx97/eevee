@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/naming-convention */
+/* eslint-disable import/no-extraneous-dependencies */
 const { ROOT_DIR } = require('./envs');
 
 const path = require('path');

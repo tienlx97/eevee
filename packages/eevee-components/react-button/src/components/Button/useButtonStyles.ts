@@ -26,18 +26,18 @@ const useRootStyles = makeStyles({
     textOverflow: 'ellipsis',
     whiteSpace: 'nowrap',
 
-    backgroundColor: tokens.colorBackground1, // #111 #fff
-    color: tokens.colorForeground1, // #fff #111
-    ...shorthands.border(tokens.strokeWidthThin, 'solid', tokens.colorStroke1), // 1px solid #666
+    backgroundColor: tokens.background1, // #16181d #fff
+    color: tokens.foreground1, // #fff #hsl(222, 22%, 5%)
+    ...shorthands.border(tokens.strokeWidthThin, 'solid', tokens.border1), // #666666 #d1d1d1
 
     fontFamily: tokens.fontFamily,
 
     outlineStyle: 'none',
 
     ':hover': {
-      backgroundColor: tokens.colorBackground1Hover,
-      ...shorthands.borderColor(tokens.colorStroke1Hover),
-      color: tokens.colorForeground1Hover,
+      // backgroundColor: tokens.colorBackground1Hover,
+      // ...shorthands.borderColor(tokens.colorStroke1Hover), // #757575 #c7c7c7
+      color: tokens.foreground1,
 
       cursor: 'pointer',
 
@@ -50,9 +50,9 @@ const useRootStyles = makeStyles({
     },
 
     ':hover:active': {
-      backgroundColor: tokens.colorBackground1Pressed,
-      ...shorthands.borderColor(tokens.colorStroke1Pressed),
-      color: tokens.colorForeground1Pressed,
+      // backgroundColor: tokens.colorBackground1Pressed, // #fff #e0e0e0
+      // ...shorthands.borderColor(tokens.colorStroke1Pressed), // #6b6b6b #b3b3b3
+      // color: tokens.colorForeground1Pressed, // ##fff hsl(222, 22%, 5%)
 
       outlineStyle: 'none',
 
@@ -86,20 +86,20 @@ const useRootStyles = makeStyles({
   // Appearance variations
   // for apearance = transparent
   transparent: {
-    backgroundColor: tokens.colorTransparentBackground,
+    backgroundColor: tokens.backgroundTransparent,
     ...shorthands.borderColor('transparent'),
-    color: tokens.colorForeground1,
+    color: tokens.foreground1,
 
     ':hover': {
-      backgroundColor: tokens.colorTransparentBackgroundHover,
+      backgroundColor: tokens.backgroundTransparent,
       ...shorthands.borderColor('transparent'),
-      color: tokens.colorForeground2BrandHover,
+      // color: tokens.colorForeground2BrandHover,
     },
 
     ':hover:active': {
-      backgroundColor: tokens.colorTransparentBackgroundPressed,
+      backgroundColor: tokens.backgroundTransparent,
       ...shorthands.borderColor('transparent'),
-      color: tokens.colorForeground2BrandPressed,
+      // color: tokens.colorForeground2BrandPressed,
     },
   },
 
@@ -156,16 +156,16 @@ const useRootStyles = makeStyles({
 const useRootDisabledStyles = makeStyles({
   // Base styles
   base: {
-    backgroundColor: tokens.colorBackgroundDisabled,
-    ...shorthands.borderColor(tokens.colorStrokeDisabled),
-    color: tokens.colorForegroundDisabled,
+    backgroundColor: tokens.backgroundDisabled, // #141414 ##f0f0f0
+    ...shorthands.borderColor(tokens.borderDisable), // #424242 #e0e0e0
+    color: tokens.foregroundDisabled, // #5c5c5c # #bdbdbd
 
     cursor: 'not-allowed',
 
     ':hover': {
-      backgroundColor: tokens.colorBackgroundDisabled,
-      ...shorthands.borderColor(tokens.colorStrokeDisabled),
-      color: tokens.colorForegroundDisabled,
+      backgroundColor: tokens.backgroundDisabled, // #141414 ##f0f0f0
+      ...shorthands.borderColor(tokens.borderDisable), // #424242 #e0e0e0
+      color: tokens.foregroundDisabled, // #5c5c5c # #bdbdbd
 
       cursor: 'not-allowed',
 
@@ -178,9 +178,9 @@ const useRootDisabledStyles = makeStyles({
     },
 
     ':hover:active': {
-      backgroundColor: tokens.colorBackgroundDisabled,
-      ...shorthands.borderColor(tokens.colorStrokeDisabled),
-      color: tokens.colorForegroundDisabled,
+      backgroundColor: tokens.backgroundDisabled, // #141414 ##f0f0f0
+      ...shorthands.borderColor(tokens.borderDisable), // #424242 #e0e0e0
+      color: tokens.foregroundDisabled, // #5c5c5c # #bdbdbd
 
       cursor: 'not-allowed',
 
@@ -244,8 +244,7 @@ const useRootFocusStyles = makeStyles({
       outlineStyle: 'solid',
       boxShadow: `
         ${tokens.shadow4},
-        0 0 0 2px ${tokens.colorStrokeFocus2}
-      `,
+        0 0 0 2px ${tokens.foreground1} `, // '#fff #000
       zIndex: 1,
     },
   },

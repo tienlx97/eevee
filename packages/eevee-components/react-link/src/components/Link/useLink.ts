@@ -9,14 +9,16 @@ import { useLinkState } from './useLinkState';
  * @param ref - User provided ref to be passed to the Link component.
  */
 export const useLink = (props: LinkProps, ref: React.Ref<HTMLAnchorElement>): LinkState => {
-  const { disabled = false, disabledFocusable = false, icon } = props;
+  const { appearance = 'default', disabled = false, disabledFocusable = false, icon, inline = false } = props;
   const as = props.as || 'a';
   const iconShorthand = resolveShorthand(icon);
 
   const state: LinkState = {
     // Props passed at the top-level
+    appearance,
     disabled,
     disabledFocusable,
+    inline,
     linkType: 'internal',
 
     // Slots definition
