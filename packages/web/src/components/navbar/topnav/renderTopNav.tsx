@@ -1,8 +1,7 @@
 import * as React from 'react';
 import { getSlots } from '@eevee/react-utilities';
 import { TopNavSlots, TopNavState } from './TopNav.types';
-import { Button } from '@eevee/react-button';
-import { Sun, Moon } from '../../icons/index';
+import { ToggleTheme } from '../../toggleTheme/index';
 /**
  * Render the final JSX of TopNav
  */
@@ -22,8 +21,7 @@ export const renderTopNav = (state: TopNavState) => {
           </svg>
         </a>
         <div style={{ display: 'flex', alignItems: 'center' }}>
-          <Button appearance="transparent" icon={<Sun />} />
-          <Button appearance="transparent" icon={<Moon />} />
+          <ToggleTheme />
         </div>
       </slots.content>
       <slots.gap {...slotProps.gap} />
