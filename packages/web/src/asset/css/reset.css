@@ -52,13 +52,13 @@ ul {
 }
 
 body {
-  color: var(--color-text);
-  background: var(--color-background);
-  transition: var(--color-text) 350ms, var(--color-background) 350ms;
+  color: var(--foreground1);
+  background: var(--background1);
+  transition: var(--foreground1) 350ms, var(--background1) 350ms;
 }
 
 a:focus {
-  outline: 5px auto var(--color-primary);
+  outline: 5px auto var(--foreground3);
 }
 
 body,
@@ -66,8 +66,8 @@ input,
 button,
 select,
 option {
-  font-family: var(--font-family);
-  font-weight: var(--font-weight-light);
+  font-family: var(--family);
+  font-weight: var(--fontWeightRegular);
 }
 
 h1,
@@ -77,7 +77,7 @@ h4,
 h5,
 h6,
 strong {
-  font-weight: var(--font-weight-bold);
+  font-weight: var(--fontWeightSemibold);
 }
 
 code {
@@ -86,7 +86,8 @@ code {
 
 *:focus {
   outline: 0 !important;
-  box-shadow: 0 0 0 0.2rem #fff, /* use site bg color to create whitespace for faux focus ring */ 0 0 0 0.35rem #069 !important;
+  box-shadow: 0 0 0 0.2rem var(--foreground1),
+    /* use site bg color to create whitespace for faux focus ring */ 0 0 0 0.35rem var(--foreground3) !important;
   /* faux focus ring color */
 }
 

@@ -11,6 +11,19 @@ export const renderLink2 = (state: LinkState2) => {
   const { slots, slotProps } = getSlots<LinkSlots2>(state);
   const { target, rel, href, ref, children, ...rest } = slotProps.root;
 
+  const LinkComp = (
+    <>
+      {(CompoundIcon || icon) && (
+        <slots.iconAndText {...slotProps.iconAndText}>
+          {CompoundIcon && <CompoundIcon filled={isCurrent ? 'true' : 'false'} />}
+          {icon && icon}
+          <slots.text {...slotProps.text}>{slotProps.root.children}</slots.text>
+        </slots.iconAndText>
+      )}
+      {!CompoundIcon && !icon && <slots.text {...slotProps.text}>{slotProps.root.children}</slots.text>}
+    </>
+  );
+
   if (linkType === 'internal') {
     return (
       <Link6
@@ -20,22 +33,10 @@ export const renderLink2 = (state: LinkState2) => {
         to={href as string}
         {...rest}
       >
-        <slots.iconAndText {...slotProps.iconAndText}>
-          {CompoundIcon && <CompoundIcon filled={isCurrent ? 'true' : 'false'} />}
-          {icon && icon}
-          <slots.text {...slotProps.text}>{children && children}</slots.text>
-        </slots.iconAndText>
+        {LinkComp}
       </Link6>
     );
   }
 
-  return (
-    <slots.root {...slotProps.root}>
-      <slots.iconAndText {...slotProps.iconAndText}>
-        {CompoundIcon && <CompoundIcon filled={isCurrent ? 'true' : 'false'} />}
-        {icon && icon}
-        <slots.text {...slotProps.text}>{children && children}</slots.text>
-      </slots.iconAndText>
-    </slots.root>
-  );
+  return <slots.root {...slotProps.root}>{LinkComp}</slots.root>;
 };
