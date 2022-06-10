@@ -7,6 +7,6 @@ export type EeveeIconsProps<
 > = TBaseAttributes & {
   primaryFill?: string;
   className?: string;
-  filled?: boolean;
+  filled?: 'true' | 'false';
   title?: string;
 };
