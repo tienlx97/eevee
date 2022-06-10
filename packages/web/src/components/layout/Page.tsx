@@ -1,56 +1,18 @@
 import * as React from 'react';
-import { makeStyles, mergeClasses, shorthands } from '@griffel/react';
-import { NavBar } from '../navbar/NavBar';
-import { breakPoints } from '@eevee/react-theme';
-import { Main } from '../main/index';
-import { Right } from '../right/Right';
-import { useMediaQuery } from '../../hooks/index';
+import { usePage } from './usePage';
+import { usePageStyles } from './usePageStyles';
+import { renderPage } from './renderPage';
+import { PageProps } from './Page.types';
+import { ForwardRefComponent } from '@eevee/react-utilities';
 
-const useMediaQueryStyles = makeStyles({
-  query: {
-    [`@media ${breakPoints.lgAndLarger}`]: {
-      flexDirection: 'row',
-    },
+export const Page: ForwardRefComponent<PageProps> = React.forwardRef(
+  (props: PageProps, ref: React.Ref<HTMLDivElement>) => {
+    const state = usePage(props, ref);
 
-    [`@media ${breakPoints.lg}`]: {
-      flexDirection: 'column',
-    },
+    usePageStyles(state);
 
-    [`@media ${breakPoints.md}`]: {
-      flexDirection: 'column',
-    },
-
-    [`@media ${breakPoints.sm}`]: {
-      flexDirection: 'column',
-    },
-
-    [`@media ${breakPoints.xs}`]: {
-      flexDirection: 'column',
-    },
+    return renderPage(state);
   },
-});
+) as ForwardRefComponent<PageProps>;
 
-const useRootStyles = makeStyles({
-  root: {
-    display: 'flex',
-    justifyContent: 'space-between',
-    maxWidth: '1504px',
-    ...shorthands.margin('auto'),
-  },
-});
-
-export const Page = () => {
-  const rootStyles = useRootStyles();
-  const mediaQueryStyles = useMediaQueryStyles();
-
-  const hide = useMediaQuery(breakPoints.lgAndSmaller);
-  const classes = mergeClasses(rootStyles.root, mediaQueryStyles.query);
-
-  return (
-    <div className={classes}>
-      <NavBar />
-      <Main />
-      {!hide && <Right />}
-    </div>
-  );
-};
+Page.displayName = 'Page';
