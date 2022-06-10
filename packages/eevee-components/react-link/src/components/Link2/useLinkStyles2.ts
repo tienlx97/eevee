@@ -17,7 +17,8 @@ export const linkClassNames: SlotClassNames<LinkSlots2> = {
 };
 
 const useLinkStyles = makeStyles({
-  base: commonRootStyles(),
+  base: commonTextStyles(),
+  base1: commonRootStyles(),
   focusIndicator: {
     ':focus': {
       ...shorthands.outline('2px', 'auto', tokens.foreground3),
@@ -29,10 +30,12 @@ const useLinkStyles = makeStyles({
     },
   },
   root: {
-    ...shorthands.borderRadius('9999px'),
-    ...shorthands.borderStyle('solid'),
-    ...shorthands.borderWidth(tokens.strokeWidthThin), // 1px
-    ...shorthands.borderColor(tokens.background4),
+    textDecorationLine: 'none',
+    display: 'inline-flex',
+    // ...shorthands.borderRadius('9999px'),
+    // ...shorthands.borderStyle('solid'),
+    // ...shorthands.borderWidth(tokens.strokeWidthThin), // 1px
+    // ...shorthands.borderColor(tokens.background4),
     // marginBottom: 'calc(-12px)',
     // marginTop: 'calc(-12px)',
     userSelect: 'none',
@@ -41,6 +44,10 @@ const useLinkStyles = makeStyles({
     transitionProperty: 'background-color, box-shadow',
     outlineStyle: 'none',
     backgroundColor: tokens.background4,
+  },
+
+  forIcon: {
+    ...shorthands.borderRadius('9999px'),
     minHeight: '36px',
     minWidth: '36px',
   },
@@ -69,12 +76,13 @@ const useTextStyles = makeStyles({
   base2: commonTextStyles(),
   base3: commonTextStyles2(),
   root: {
+    color: tokens.foreground3,
     minWidth: '0px',
     overflowWrap: 'break-word',
     lineHeight: tokens.lineHeightBase300,
     fontSize: tokens.fontSizeBase400,
     fontFamily: 'inherit',
-    ...shorthands.borderBottom('2px', 'solid', tokens.background3), // inject
+    // ...shorthands.borderBottom('2px', 'solid', tokens.background3), // inject
   },
 });
 
@@ -93,23 +101,9 @@ const useHoverStyles = makeStyles({
     },
   },
   iconOnly: {
-    // '@media (pointer: coarse)': {
-    //   backgroundColor: 'red',
-    // },
-
     '@media (hover: hover)': {
       ':hover': {
-        // borderBottomColor: tokens.colorForeground3,
-        // color: tokens.foreground1, // #fff hsl(222, 22%, 5%)
         backgroundColor: tokens.hover5,
-
-        //for icon with 2 class name
-        // [`& .${iconFilledClassName}`]: {
-        //   display: 'inline',
-        // },
-        // [`& .${iconRegularClassName}`]: {
-        //   display: 'none',
-        // },
       },
     },
   },
@@ -126,10 +120,12 @@ export const useLinkStyles2 = (state: LinkState2): LinkState2 => {
   state.root.className = mergeClasses(
     linkClassNames.root,
     linkStyles.base,
+    linkStyles.base1,
     linkStyles.focusIndicator,
     linkStyles.root,
-    !iconOnly && hoverStyles.root,
+    iconOnly && linkStyles.forIcon,
     iconOnly && hoverStyles.iconOnly,
+    !iconOnly && hoverStyles.root,
     state.root.className,
   );
 

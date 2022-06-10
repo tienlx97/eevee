@@ -35,17 +35,17 @@ const useMediaQueryStyles = makeStyles({
 
   contentQuery: {
     [`@media ${breakPoints.lgAndLarger}`]: {
-      maxWidth: '770px', //'692px',
+      maxWidth: '800px', //'692px',
       ...shorthands.margin(0, '32px'),
     },
 
     [`@media ${breakPoints.lg}`]: {
-      maxWidth: '900px', //'692px',
+      maxWidth: '950px', //'692px',
       ...shorthands.margin(0, '32px'),
     },
 
     [`@media ${breakPoints.md}`]: {
-      maxWidth: '900px', //'692px',
+      maxWidth: '850px', //'692px',
       ...shorthands.margin(0, '32px'),
     },
 

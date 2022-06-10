@@ -70,6 +70,7 @@
     "@eevee/react-link": "*",
     "@eevee/react-icons": "*",
     "@eevee/react-shared-contexts": "*",
+    "@eevee/react-mdx-comp": "*",
     "@griffel/react": "1.1.0",
     "react": "*",
     "react-dom": "*",
