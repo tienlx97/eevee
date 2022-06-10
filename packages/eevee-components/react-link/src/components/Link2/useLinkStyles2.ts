@@ -1,6 +1,6 @@
 import { shorthands, makeStyles, mergeClasses } from '@griffel/react';
 import { tokens } from '@eevee/react-theme';
-import { iconFilledClassName, iconRegularClassName } from '@eevee/react-icons';
+// import { iconFilledClassName, iconRegularClassName } from '@eevee/react-icons';
 import type { LinkSlots2, LinkState2 } from './Link2.types';
 import {
   commonRootStyles,
@@ -104,12 +104,12 @@ const useHoverStyles = makeStyles({
         backgroundColor: tokens.hover5,
 
         //for icon with 2 class name
-        [`& .${iconFilledClassName}`]: {
-          display: 'inline',
-        },
-        [`& .${iconRegularClassName}`]: {
-          display: 'none',
-        },
+        // [`& .${iconFilledClassName}`]: {
+        //   display: 'inline',
+        // },
+        // [`& .${iconRegularClassName}`]: {
+        //   display: 'none',
+        // },
       },
     },
   },

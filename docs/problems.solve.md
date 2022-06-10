@@ -9,3 +9,4 @@
 - [Storybook arg](https://storybook.js.org/docs/react/writing-stories/args)
 - [Git Hooks](https://www.atlassian.com/git/tutorials/git-hooks)
 - [Dark mode](https://www.joshwcomeau.com/react/dark-mode/)
+- ["parserOptions.project" has been set for @typescript-eslint/parser](https://stackoverflow.com/questions/58510287/parseroptions-project-has-been-set-for-typescript-eslint-parser)

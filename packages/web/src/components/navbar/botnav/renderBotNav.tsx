@@ -1,9 +1,18 @@
 import * as React from 'react';
 import { getSlots } from '@eevee/react-utilities';
 import { BotNavSlots, BotNavState } from './BotNav.types';
-import { HomeRegular, NotificationRegular, SearchRegular, WriteFill } from '../../icons/index';
+import {
+  HomeFill,
+  HomeRegular,
+  NotificationFill,
+  NotificationRegular,
+  SearchFill,
+  SearchRegular,
+  WriteFill,
+} from '../../icons/index';
 
 import { LinkR } from '@eevee/react-link';
+import { WriteRegular } from '../../icons/write/Write';
 
 /**
  * Render the final JSX of BotNav
@@ -17,16 +26,28 @@ export const renderBotNav = (state: BotNavState) => {
       <slots.postition {...slotProps.postition}>
         <slots.content {...slotProps.content}>
           <div className={linkIconWrapperClassName}>
-            <LinkR icon={<HomeRegular />} href="/home" />
+            <LinkR aria-label="Home" title="Home" iconFill={HomeFill} iconRegular={HomeRegular} href="/home" />
           </div>
           <div className={linkIconWrapperClassName}>
-            <LinkR icon={<SearchRegular />} href="/search" />
+            <LinkR
+              aria-label="Search"
+              title="Search"
+              iconFill={SearchFill}
+              iconRegular={SearchRegular}
+              href="/search"
+            />
           </div>
           <div className={linkIconWrapperClassName}>
-            <LinkR icon={<NotificationRegular />} href="/notification" />
+            <LinkR
+              aria-label="Notification"
+              title="Notification"
+              iconFill={NotificationFill}
+              iconRegular={NotificationRegular}
+              href="/notification"
+            />
           </div>
           <div className={linkIconWrapperClassName}>
-            <LinkR icon={<WriteFill />} href="/write" />
+            <LinkR aria-label="Write" title="Write" iconRegular={WriteRegular} iconFill={WriteFill} href="/write" />
           </div>
         </slots.content>
       </slots.postition>

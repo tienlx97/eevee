@@ -7,7 +7,7 @@ import type { LinkSlots2, LinkState2 } from './Link2.types';
  * Renders a Link component by passing the state defined props to the appropriate slots.
  */
 export const renderLink2 = (state: LinkState2) => {
-  const { linkType, icon } = state;
+  const { linkType, icon, compoundIcon: CompoundIcon, isCurrent } = state;
   const { slots, slotProps } = getSlots<LinkSlots2>(state);
   const { target, rel, href, ref, children, ...rest } = slotProps.root;
 
@@ -21,6 +21,7 @@ export const renderLink2 = (state: LinkState2) => {
         {...rest}
       >
         <slots.iconAndText {...slotProps.iconAndText}>
+          {CompoundIcon && <CompoundIcon filled={isCurrent ? 'true' : 'false'} />}
           {icon && icon}
           <slots.text {...slotProps.text}>{children && children}</slots.text>
         </slots.iconAndText>
@@ -31,6 +32,7 @@ export const renderLink2 = (state: LinkState2) => {
   return (
     <slots.root {...slotProps.root}>
       <slots.iconAndText {...slotProps.iconAndText}>
+        {CompoundIcon && <CompoundIcon filled={isCurrent ? 'true' : 'false'} />}
         {icon && icon}
         <slots.text {...slotProps.text}>{children && children}</slots.text>
       </slots.iconAndText>

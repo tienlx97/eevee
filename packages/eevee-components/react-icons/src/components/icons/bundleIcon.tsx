@@ -16,12 +16,12 @@ export const bundleIcon = (FilledIcon: React.FC<EeveeIconsProps>, RegularIcon: R
       <React.Fragment>
         <FilledIcon
           {...props}
-          className={mergeClasses(styles.root, filled && styles.visible, iconFilledClassName, className)}
+          className={mergeClasses(styles.root, filled === 'true' && styles.visible, iconFilledClassName, className)}
           primaryFill={primaryFill}
         />
         <RegularIcon
           {...props}
-          className={mergeClasses(styles.root, !filled && styles.visible, iconRegularClassName, className)}
+          className={mergeClasses(styles.root, filled === 'false' && styles.visible, iconRegularClassName, className)}
           primaryFill={primaryFill}
         />
       </React.Fragment>
