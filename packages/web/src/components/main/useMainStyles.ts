@@ -1,11 +1,13 @@
 import { SlotClassNames } from '@eevee/react-utilities';
-import { mergeClasses, makeStyles } from '@griffel/react';
+import { mergeClasses, makeStyles, shorthands } from '@griffel/react';
 
 import { breakPoints } from '@eevee/react-theme';
 import { MainState, MainSlots } from './Main.types';
+import { navHeight } from '../../constants/index';
 
 export const mainClassNames: SlotClassNames<MainSlots> = {
   root: 'eve-Main',
+  content: 'eve-Main__content',
 };
 
 const useMediaQueryStyles = makeStyles({
@@ -15,19 +17,44 @@ const useMediaQueryStyles = makeStyles({
     },
 
     [`@media ${breakPoints.lg}`]: {
-      marginBottom: '56px',
+      marginBottom: `${navHeight}px`,
     },
 
     [`@media ${breakPoints.md}`]: {
-      flexDirection: '56px',
+      marginBottom: `${navHeight}px`,
     },
 
     [`@media ${breakPoints.sm}`]: {
-      flexDirection: '56px',
+      marginBottom: `${navHeight}px`,
     },
 
     [`@media ${breakPoints.xs}`]: {
-      flexDirection: '56px',
+      marginBottom: `${navHeight}px`,
+    },
+  },
+
+  contentQuery: {
+    [`@media ${breakPoints.lgAndLarger}`]: {
+      maxWidth: '770px', //'692px',
+      ...shorthands.margin(0, '32px'),
+    },
+
+    [`@media ${breakPoints.lg}`]: {
+      maxWidth: '900px', //'692px',
+      ...shorthands.margin(0, '32px'),
+    },
+
+    [`@media ${breakPoints.md}`]: {
+      maxWidth: '900px', //'692px',
+      ...shorthands.margin(0, '32px'),
+    },
+
+    [`@media ${breakPoints.sm}`]: {
+      ...shorthands.margin(0, '24px'),
+    },
+
+    [`@media ${breakPoints.xs}`]: {
+      ...shorthands.margin(0, '24px'),
     },
   },
 });
@@ -39,21 +66,42 @@ const useRootStyles = makeStyles({
     flexGrow: 1,
     flexShrink: 1,
     flexBasis: 'auto',
-    //
-    height: '100vh',
+  },
+});
+
+const useContentStyles = makeStyles({
+  root: {
+    width: '100%',
+    minWidth: 0,
+  },
+
+  flexCenter: {
+    display: 'flex',
+    justifyContent: 'center',
   },
 });
 
 /** Applies style classnames to slots */
-export const useMainStyles = (state: MainState) => {
+export const useMainStyles = (state: MainState): MainState => {
   const mediaQueryStyles = useMediaQueryStyles();
   const rootStyles = useRootStyles();
+  const contentStyles = useContentStyles();
 
   state.root.className = mergeClasses(
-    //
     mainClassNames.root,
     rootStyles.root,
     mediaQueryStyles.query,
     state.root.className,
   );
+
+  state.content.className = mergeClasses(
+    mainClassNames.content,
+    contentStyles.root,
+    mediaQueryStyles.contentQuery,
+    state.content.className,
+  );
+
+  state.flexCenterStyle = contentStyles.flexCenter;
+
+  return state;
 };
