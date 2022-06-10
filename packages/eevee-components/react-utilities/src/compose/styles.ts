@@ -3,17 +3,6 @@ import { shorthands } from '@griffel/react';
 import { tokens } from '@eevee/react-theme';
 
 export const commonRootStyles = (appendStyle?: GriffelStyle): GriffelStyle => ({
-  MsFlexAlign: 'stretch',
-  MsFlexDirection: 'column',
-  MsFlexNegative: '0',
-  MsFlexPreferredSize: 'auto',
-  WebkitAlignItems: 'stretch',
-  WebkitBoxAlign: 'stretch',
-  WebkitBoxDirection: 'normal',
-  WebkitBoxOrient: 'vertical',
-  WebkitFlexBasis: 'auto',
-  WebkitFlexDirection: 'column',
-  WebkitFlexShrink: '0',
   alignItems: 'stretch',
   ...shorthands.border('0', 'solid', 'black'),
   boxSizing: 'border-box',
