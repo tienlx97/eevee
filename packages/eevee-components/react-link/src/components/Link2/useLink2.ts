@@ -2,6 +2,8 @@ import * as React from 'react';
 import { resolveShorthand } from '@eevee/react-utilities';
 import type { LinkProps2, LinkState2 } from './Link2.types';
 import { useLinkState2 } from './useLinkState2';
+import { getNativeElementProps } from '@eevee/react-utilities';
+import { bundleIcon } from '@eevee/react-icons';
 
 /**
  * Given user props, defines default props for the Link, calls useLinkState_unstable, and returns processed state.
@@ -9,9 +11,12 @@ import { useLinkState2 } from './useLinkState2';
  * @param ref - User provided ref to be passed to the Link component.
  */
 export const useLink2 = (props: LinkProps2, ref: React.Ref<HTMLAnchorElement>): LinkState2 => {
-  const { iconAndText, text, icon } = props;
+  const { iconAndText, text, icon, iconFill, iconRegular } = props;
 
-  const as = props.as || 'a';
+  let compoundIcon;
+  if (iconFill && iconRegular) {
+    compoundIcon = bundleIcon(iconFill, iconRegular);
+  }
 
   const iconAndTextShorthand = resolveShorthand(iconAndText, {
     defaultProps: {
@@ -30,6 +35,7 @@ export const useLink2 = (props: LinkProps2, ref: React.Ref<HTMLAnchorElement>): 
   const state: LinkState2 = {
     // Props passed at the top-level
     linkType: 'internal',
+    isCurrent: false,
 
     // Slots definition
     components: {
@@ -38,16 +44,16 @@ export const useLink2 = (props: LinkProps2, ref: React.Ref<HTMLAnchorElement>): 
       text: 'span',
     },
 
-    root: {
+    root: getNativeElementProps('a', {
       ref,
       ...props,
-      as,
-    },
+    }),
     iconAndText: iconAndTextShorthand,
     text: textShorthand,
 
-    iconOnly: Boolean(icon && !props.children),
+    iconOnly: Boolean(!props.children && (icon || (iconFill && iconRegular))),
     icon,
+    compoundIcon,
   };
 
   useLinkState2(state);

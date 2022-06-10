@@ -1,11 +1,19 @@
+import * as React from 'react';
 import type { LinkState2 } from './Link2.types';
-
+import { useLocation } from 'react-router-dom';
 /**
  * The useLinkState_unstable hook processes the Link state.
  * @param state - Link state to mutate.
  */
 export const useLinkState2 = (state: LinkState2): LinkState2 => {
+  const loc = useLocation();
+  const [isCurrent, setCurrent] = React.useState<boolean>(false);
   const { href = '/', rel, target } = state.root;
+
+  React.useEffect(() => {
+    setCurrent(location.pathname.replace(/\/$/, '') === state.root.href?.replace(/\/$/, ''));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [loc]);
 
   // Add href and tabIndex=0 for anchor elements.
   // We will add dynamic tag future so check it is `a` tag
@@ -27,6 +35,12 @@ export const useLinkState2 = (state: LinkState2): LinkState2 => {
 
     state.root.rel = state.root.target === '_blank' ? 'noopener noreferrer' : rel;
   }
+
+  state.root.onClick = () => {
+    setCurrent(true);
+  };
+
+  state.isCurrent = isCurrent;
 
   return state;
 };

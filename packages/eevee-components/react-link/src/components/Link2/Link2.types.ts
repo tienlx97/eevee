@@ -1,5 +1,6 @@
 import type { EeveeProps, EeveeState, EeveeSlot } from '@eevee/react-utilities';
 import * as React from 'react';
+import { EeveeIconsProps } from '@eevee/react-icons';
 
 export type LinkSlots2 = {
   /**
@@ -15,6 +16,9 @@ export type LinkType = 'hash' | 'external' | 'internal';
 
 export type LinkProps2 = EeveeProps<Partial<LinkSlots2>> & {
   icon?: React.ReactNode;
+  iconFill?: React.FC<EeveeIconsProps<React.SVGAttributes<SVGElement>>>;
+  iconRegular?: React.FC<EeveeIconsProps<React.SVGAttributes<SVGElement>>>;
+  // compoundIcon?: React.FC<EeveeIconsProps<React.SVGAttributes<SVGElement>>>;
 };
 
 export type LinkState2 = EeveeState<LinkSlots2> &
@@ -30,4 +34,8 @@ export type LinkState2 = EeveeState<LinkSlots2> &
     linkType: LinkType;
 
     iconOnly?: boolean;
+
+    compoundIcon?: React.FC<EeveeIconsProps<React.SVGAttributes<SVGElement>>>;
+
+    isCurrent: boolean;
   };

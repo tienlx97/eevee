@@ -1,6 +1,15 @@
 import * as React from 'react';
 import { makeStyles } from '@griffel/react';
-import { HomeRegular, NotificationRegular, SearchRegular, WriteFill } from '../../../icons/index';
+import {
+  HomeFill,
+  HomeRegular,
+  NotificationRegular,
+  SearchRegular,
+  WriteFill,
+  SearchFill,
+  NotificationFill,
+  WriteRegular,
+} from '../../../icons/index';
 import { LinkR } from '@eevee/react-link';
 
 const useRootStyles = makeStyles({
@@ -20,16 +29,22 @@ export const Middle = () => {
   return (
     <div className={styles.base}>
       <div className={styles.linkIconWrapper}>
-        <LinkR icon={<HomeRegular />} href="/home" />
+        <LinkR aria-label="Home" title="Home" iconFill={HomeFill} iconRegular={HomeRegular} href="/home" />
       </div>
       <div className={styles.linkIconWrapper}>
-        <LinkR icon={<SearchRegular />} href="/search" />
+        <LinkR aria-label="Search" title="Search" iconFill={SearchFill} iconRegular={SearchRegular} href="/search" />
       </div>
       <div className={styles.linkIconWrapper}>
-        <LinkR icon={<NotificationRegular />} href="/notification" />
+        <LinkR
+          aria-label="Notification"
+          title="Notification"
+          iconFill={NotificationFill}
+          iconRegular={NotificationRegular}
+          href="/notification"
+        />
       </div>
-      <div className={styles.linkIconWrapper}>
-        <LinkR icon={<WriteFill />} href="/write" />
+      <div aria-label="Write" title="Write" className={styles.linkIconWrapper}>
+        <LinkR iconRegular={WriteRegular} iconFill={WriteFill} href="/write" />
       </div>
     </div>
   );
