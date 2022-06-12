@@ -8,7 +8,7 @@ import { renderLink } from './renderLink';
 /**
  * A Link is a reference to data that a user can follow by clicking or tapping it.
  */
-export const Linkr: ForwardRefComponent<LinkProps> = React.forwardRef(
+export const Link: ForwardRefComponent<LinkProps> = React.forwardRef(
   (props: LinkProps, ref: React.Ref<HTMLAnchorElement>) => {
     const state = useLink(props, ref);
 
@@ -19,4 +19,4 @@ export const Linkr: ForwardRefComponent<LinkProps> = React.forwardRef(
   },
 ) as ForwardRefComponent<LinkProps>;
 
-Linkr.displayName = 'Link';
+Link.displayName = 'Link';

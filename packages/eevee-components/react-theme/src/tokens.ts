@@ -95,6 +95,7 @@ export const tokens: Record<keyof Theme, string> = {
   foreground4: 'var(--foreground4)',
   foreground5: 'var(--foreground5)',
   foreground6: 'var(--foreground6)',
+  foreground7: 'var(--foreground7)',
   foregroundDisabled: 'var(--foregroundDisabled)',
   colorShadowAmbient: 'var(--colorShadowAmbient)',
   colorShadowKey: 'var(--colorShadowKey)',

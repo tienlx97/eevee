@@ -5,5 +5,5 @@ import { ParagraphSlots, ParagraphState } from './Paragraph.types';
 export const renderParagraph = (state: ParagraphState) => {
   const { slots, slotProps } = getSlots<ParagraphSlots>(state);
 
-  return <slots.root {...slotProps}>{slotProps.root.children}</slots.root>;
+  return <slots.root {...slotProps.root}>{slotProps.root.children}</slots.root>;
 };

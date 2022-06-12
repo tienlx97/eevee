@@ -23,6 +23,7 @@ export type ColorTokens = {
   foreground4: string;
   foreground5: string;
   foreground6: string;
+  foreground7: string;
   foregroundDisabled: string;
 
   colorShadowAmbient: string;

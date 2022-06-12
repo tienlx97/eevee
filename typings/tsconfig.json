@@ -27,6 +27,9 @@
     },
     {
       "path": "./storybook__addons/tsconfig.json"
+    },
+    {
+      "path": "./css-type/tsconfig.json"
     }
   ]
 }

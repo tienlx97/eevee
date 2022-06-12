@@ -2,7 +2,7 @@ import { ParagraphState } from './Paragraph.types';
 import { makeStyles, mergeClasses } from '@griffel/react';
 import { breakPoints } from '@eevee/react-theme';
 
-const paragraphClassname = {
+export const paragraphClassname = {
   root: 'eve-Paragraph',
 };
 
