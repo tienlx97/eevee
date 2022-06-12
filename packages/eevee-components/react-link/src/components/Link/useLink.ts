@@ -1,7 +1,7 @@
 import * as React from 'react';
-import { resolveShorthand } from '@eevee/react-utilities';
 import type { LinkProps, LinkState } from './Link.types';
 import { useLinkState } from './useLinkState';
+import { getNativeElementProps } from '@eevee/react-utilities';
 
 /**
  * Given user props, defines default props for the Link, calls useLinkState_unstable, and returns processed state.
@@ -9,32 +9,20 @@ import { useLinkState } from './useLinkState';
  * @param ref - User provided ref to be passed to the Link component.
  */
 export const useLink = (props: LinkProps, ref: React.Ref<HTMLAnchorElement>): LinkState => {
-  const { appearance = 'default', disabled = false, disabledFocusable = false, icon, inline = false } = props;
-  const as = props.as || 'a';
-  const iconShorthand = resolveShorthand(icon);
-
   const state: LinkState = {
     // Props passed at the top-level
-    appearance,
-    disabled,
-    disabledFocusable,
-    inline,
     linkType: 'internal',
+    isCurrentLoc: false,
 
     // Slots definition
     components: {
       root: 'a',
-      icon: 'span',
     },
 
-    root: {
+    root: getNativeElementProps('a', {
       ref,
       ...props,
-      as,
-    },
-    icon: iconShorthand,
-
-    iconOnly: Boolean(iconShorthand?.children && !props.children),
+    }),
   };
 
   useLinkState(state);

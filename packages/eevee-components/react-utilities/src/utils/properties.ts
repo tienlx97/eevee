@@ -167,6 +167,15 @@ export const buttonProperties = toObjectMap(htmlElementProperties, [
 ]);
 
 /**
+ * An array of OL tag properties and events.
+ *
+ * @public
+ */
+export const olProperties = toObjectMap(htmlElementProperties, [
+  'start', // ol
+]);
+
+/**
  * Gets native supported props for an html element provided the allowance set. Use one of the property
  * sets defined (divProperties, buttonPropertes, etc) to filter out supported properties from a given
  * props set. Note that all data- and aria- prefixed attributes will be allowed.

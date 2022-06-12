@@ -52,6 +52,7 @@
     "@griffel/eslint-plugin": "^1.0.0",
     "@griffel/react": "1.1.0",
     "@nrwl/jest": "^14.1.9",
+    "@react-spring/web": "^9.4.5",
     "@storybook/addon-actions": "^6.5.6",
     "@storybook/addon-essentials": "^6.5.6",
     "@storybook/addon-interactions": "^6.5.6",

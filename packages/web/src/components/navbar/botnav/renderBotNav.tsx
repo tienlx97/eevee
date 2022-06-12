@@ -11,7 +11,7 @@ import {
   WriteFill,
 } from '../../icons/index';
 
-import { LinkR } from '@eevee/react-link';
+import { LinkIcon } from '@eevee/react-link';
 import { WriteRegular } from '../../icons/write/Write';
 
 /**
@@ -26,10 +26,10 @@ export const renderBotNav = (state: BotNavState) => {
       <slots.postition {...slotProps.postition}>
         <slots.content {...slotProps.content}>
           <div className={linkIconWrapperClassName}>
-            <LinkR aria-label="Home" title="Home" iconFill={HomeFill} iconRegular={HomeRegular} href="/home" />
+            <LinkIcon aria-label="Home" title="Home" iconFill={HomeFill} iconRegular={HomeRegular} href="/home" />
           </div>
           <div className={linkIconWrapperClassName}>
-            <LinkR
+            <LinkIcon
               aria-label="Search"
               title="Search"
               iconFill={SearchFill}
@@ -38,7 +38,7 @@ export const renderBotNav = (state: BotNavState) => {
             />
           </div>
           <div className={linkIconWrapperClassName}>
-            <LinkR
+            <LinkIcon
               aria-label="Notification"
               title="Notification"
               iconFill={NotificationFill}
@@ -47,7 +47,7 @@ export const renderBotNav = (state: BotNavState) => {
             />
           </div>
           <div className={linkIconWrapperClassName}>
-            <LinkR aria-label="Write" title="Write" iconRegular={WriteRegular} iconFill={WriteFill} href="/write" />
+            <LinkIcon aria-label="Write" title="Write" iconRegular={WriteRegular} iconFill={WriteFill} href="/write" />
           </div>
         </slots.content>
       </slots.postition>

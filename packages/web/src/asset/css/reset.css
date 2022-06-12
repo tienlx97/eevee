@@ -42,6 +42,12 @@ h6 {
   overflow-wrap: break-word;
 }
 
+ol {
+  /* padding: 0; */
+  padding-left: 10px;
+}
+
+ol,
 ul {
   padding: 0;
 }

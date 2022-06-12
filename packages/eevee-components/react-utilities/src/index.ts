@@ -1,4 +1,10 @@
-export { useIsomorphicLayoutEffect, useEventCallback, useId, usePrevious } from './hooks/index';
+export {
+  useIsomorphicLayoutEffect,
+  useEventCallback,
+  useId,
+  usePrevious,
+  usePrefersReducedMotion,
+} from './hooks/index';
 
 export { canUseDOM, defaultSSRContextValue, useIsSSR, useSSRContext, SSRProvider } from './ssr/index';
 export type { SSRContextValue } from './ssr/index';
@@ -6,10 +12,10 @@ export type { SSRContextValue } from './ssr/index';
 export {
   resolveShorthand,
   getSlots,
-  commonRootStyles,
-  commonWrapperStyles,
-  commonTextStyles,
-  commonTextStyles2,
+  resetCommonWrapperStyles,
+  resetCommonTextStyles,
+  resetTextFontStyles,
+  resetCommonTextOverflowStyles,
 } from './compose/index';
 export type {
   AsIntrinsicElement,
