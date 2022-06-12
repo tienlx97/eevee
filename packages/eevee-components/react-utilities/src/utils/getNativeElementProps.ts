@@ -1,9 +1,10 @@
 import * as React from 'react';
-import { anchorProperties, buttonProperties, htmlElementProperties, getNativeProps } from './properties';
+import { anchorProperties, buttonProperties, htmlElementProperties, getNativeProps, olProperties } from './properties';
 
 const nativeElementMap: Record<string, Record<string, number>> = {
   a: anchorProperties,
   button: buttonProperties,
+  ol: olProperties,
 };
 
 /**

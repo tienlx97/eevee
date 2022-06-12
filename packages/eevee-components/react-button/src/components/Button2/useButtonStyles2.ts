@@ -3,7 +3,12 @@ import { tokens } from '@eevee/react-theme';
 // import { iconFilledClassName, iconRegularClassName } from '@eevee/react-icons';
 import { shorthands, makeStyles, mergeClasses } from '@griffel/react';
 import type { SlotClassNames } from '@eevee/react-utilities';
-import { commonRootStyles, commonWrapperStyles, commonTextStyles, commonTextStyles2 } from '@eevee/react-utilities';
+import {
+  resetCommonWrapperStyles,
+  resetCommonTextStyles,
+  resetTextFontStyles,
+  resetCommonTextOverflowStyles,
+} from '@eevee/react-utilities';
 
 export const buttonClassNames: SlotClassNames<ButtonSlots2> = {
   root: 'eve-Button2',
@@ -12,7 +17,7 @@ export const buttonClassNames: SlotClassNames<ButtonSlots2> = {
 };
 
 const useButtonStyles = makeStyles({
-  base: commonRootStyles(),
+  base: resetCommonWrapperStyles(),
   root: {
     cursor: 'pointer',
     ...shorthands.borderRadius('9999px'),
@@ -39,7 +44,7 @@ const useButtonStyles = makeStyles({
 });
 
 const useIconAndTextStyles = makeStyles({
-  base: commonWrapperStyles(),
+  base: resetCommonTextStyles(),
   root: {
     display: 'flex',
     textAlign: 'center',
@@ -57,9 +62,9 @@ const useIconAndTextStyles = makeStyles({
 });
 
 const useTextStyles = makeStyles({
-  base: commonWrapperStyles(),
-  base2: commonTextStyles(),
-  base3: commonTextStyles2(),
+  base: resetCommonTextStyles(),
+  base2: resetTextFontStyles(),
+  base3: resetCommonTextOverflowStyles(),
   root: {
     minWidth: '0px',
     overflowWrap: 'break-word',

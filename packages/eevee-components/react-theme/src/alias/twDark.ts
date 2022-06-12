@@ -24,6 +24,10 @@ export const generateColorTokens = (): ColorTokens => ({
   foreground4: 'rgb(0,186,124)', // button react
   foreground5: 'rgb(249,24,128)', // button react
   foreground6: 'rgb(15, 20, 25)', // explore
+  foreground7: 'hsl(230, 100%, 67%)',
+  foreground8: 'hsl(53, 100%, 50%)',
+  foreground9: 'hsl(210, 25%, 88%)',
+  foreground10: 'hsl(210, 25%, 96%)',
   foregroundDisabled: '#5c5c5c',
   // shadow
   colorShadowAmbient: 'rgba(0,0,0,0.24)',

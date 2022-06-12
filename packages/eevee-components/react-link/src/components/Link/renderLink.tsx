@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Link as Link6 } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { getSlots } from '@eevee/react-utilities';
 import type { LinkSlots, LinkState } from './Link.types';
 
@@ -13,23 +13,17 @@ export const renderLink = (state: LinkState) => {
 
   if (linkType === 'internal') {
     return (
-      <Link6
+      <Link
         ref={ref as React.Ref<HTMLAnchorElement> | undefined}
         target={target}
         rel={rel}
         to={href as string}
         {...rest}
       >
-        {slots.icon && <slots.icon {...slotProps.icon} />}
-        {children && children}
-      </Link6>
+        {children}
+      </Link>
     );
   }
 
-  return (
-    <slots.root {...slotProps.root}>
-      {slots.icon && <slots.icon {...slotProps.icon} />}
-      {children && children}
-    </slots.root>
-  );
+  return <slots.root {...slotProps.root}>{slotProps.root.children}</slots.root>;
 };

@@ -30,7 +30,8 @@
     "@griffel/react": "1.1.0",
     "tslib": "2.4.0",
     "@eevee/react-utilities": "*",
-    "@eevee/react-icons": "*"
+    "@eevee/react-icons": "*",
+    "@react-spring/web": "9.4.5"
   },
   "peerDependencies": {
     "@types/react": ">=16.8.0",

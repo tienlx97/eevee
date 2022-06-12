@@ -10,3 +10,4 @@
 - [Git Hooks](https://www.atlassian.com/git/tutorials/git-hooks)
 - [Dark mode](https://www.joshwcomeau.com/react/dark-mode/)
 - ["parserOptions.project" has been set for @typescript-eslint/parser](https://stackoverflow.com/questions/58510287/parseroptions-project-has-been-set-for-typescript-eslint-parser)
+- [Define css variable](https://stackoverflow.com/questions/52005083/how-to-define-css-variables-in-style-attribute-in-react-and-typescript)
