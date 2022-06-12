@@ -36,17 +36,29 @@ const useMediaQueryStyles = makeStyles({
   contentQuery: {
     [`@media ${breakPoints.lgAndLarger}`]: {
       maxWidth: '800px', //'692px',
-      ...shorthands.margin(0, '32px'),
+      marginTop: 0,
+      marginRight: '32px',
+      marginLeft: '50px',
+      marginBottom: 0,
+      // ...shorthands.margin(0, 0, '50px', '32px'),
     },
 
     [`@media ${breakPoints.lg}`]: {
       maxWidth: '950px', //'692px',
-      ...shorthands.margin(0, '32px'),
+      marginTop: 0,
+      marginRight: '32px',
+      marginLeft: '50px',
+      marginBottom: 0,
+      // ...shorthands.margin(0, 0, '50px', '32px'),
     },
 
     [`@media ${breakPoints.md}`]: {
       maxWidth: '850px', //'692px',
-      ...shorthands.margin(0, '32px'),
+      marginTop: 0,
+      marginRight: '32px',
+      marginLeft: '50px',
+      marginBottom: 0,
+      // ...shorthands.margin(0, 0, '50px', '32px'),
     },
 
     [`@media ${breakPoints.sm}`]: {

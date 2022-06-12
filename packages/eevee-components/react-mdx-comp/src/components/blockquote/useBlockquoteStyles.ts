@@ -30,7 +30,7 @@ const useRootStyles = makeStyles({
     fontSize: '1.25rem',
     fontFamily: tokens.fontFamily,
     fontWeight: tokens.fontWeightMedium,
-    color: tokens.foreground2,
+    color: tokens.foreground10,
     marginTop: '1.5rem',
     marginBottom: '1.5rem',
 

@@ -25,6 +25,9 @@ export const generateColorTokens = (): ColorTokens => ({
   foreground5: 'rgb(249,24,128)',
   foreground6: 'rgb(255, 255, 255)',
   foreground7: 'hsl(245, 100%, 60%)',
+  foreground8: 'hsl(255, 85%, 30%)',
+  foreground9: 'hsl(225, 25%, 20%)',
+  foreground10: 'hsl(225, 15%, 15%)',
   foregroundDisabled: '#bdbdbd',
   // shadow
   colorShadowAmbient: 'rgba(0,0,0,0.12)',

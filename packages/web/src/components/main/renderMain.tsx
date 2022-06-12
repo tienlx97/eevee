@@ -2,7 +2,7 @@ import * as React from 'react';
 import { getSlots } from '@eevee/react-utilities';
 import { MainSlots, MainState } from './Main.types';
 
-import { Paragraph, Blockquote, Em, Li, Ol, Strike, Ul, PostImage } from '@eevee/react-mdx-comp';
+import { Paragraph, Blockquote, Em, H1, H2, InlineCode, Li, Ol, Strike, Ul, PostImage } from '@eevee/react-mdx-comp';
 import { TextLink } from '@eevee/react-link';
 
 /**
@@ -24,6 +24,7 @@ export const renderMain = (state: MainState) => {
             top of the viewport?{' '}
             <TextLink href="https://www.youtube.com/watch?v=Z2d9rw9RwyE">The Case for Whimsy</TextLink>{' '}
             <Em>really careful</Em> when setting fixed widths and heights. <Strike>This is strike through</Strike>
+            <InlineCode>transition</InlineCode>
           </Paragraph>
           <Blockquote>"This is blockquote"</Blockquote>
           <Ol>
@@ -41,6 +42,8 @@ export const renderMain = (state: MainState) => {
             </Li>
             <Li>If we set the width to be, the button will grow wider along with the font size.</Li>
           </Ul>
+          <H1>Unit summaries</H1>
+          <H2>Pixels</H2>
           <PostImage
             includeWhiteBackground={true}
             alt={`graph showing how the opacity goes from 1 to 0
