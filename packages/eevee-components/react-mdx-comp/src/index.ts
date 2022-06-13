@@ -7,3 +7,6 @@ export { Strike, strikeClassname } from './Strike';
 export { PostImage, postImageClassname } from './PostImage';
 export { InlineCode, inlineCodeClassname } from './InlineCode';
 export { H1, H2, H3 } from './ContentHeading';
+export { SideNote, Expanded } from './SideNote';
+export { HorizontalRule } from './HorizontalRule';
+export { CodeSnippet } from './CodeSnippet';

@@ -27,6 +27,26 @@ export type ColorTokens = {
   foreground8: string;
   foreground9: string;
   foreground10: string;
+  backgroundInfo: string;
+  backgroundSuccess: string;
+  backgroundWarning: string;
+  borderInfo: string;
+  borderSuccess: string;
+  borderWarning: string;
+
+  syntaxBg: string;
+  syntaxHighlight: string;
+  syntaxTxt: string;
+  syntaxComment: string;
+  syntaxProp: string;
+  syntaxBool: string;
+  syntaxVal: string;
+  syntaxStr: string;
+  syntaxName: string;
+  syntaxDel: string;
+  syntaxRegex: string;
+  syntaxFn: string;
+
   foregroundDisabled: string;
 
   colorShadowAmbient: string;
@@ -252,6 +272,7 @@ export type BreakPoints = {
   xlAndSmaller: string;
   //
   lgAndLarger: string;
+  xsAndLarger: string;
   xlAndExtraExtraLarger: string;
 };
 

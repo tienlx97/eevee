@@ -2,8 +2,57 @@ import * as React from 'react';
 import { getSlots } from '@eevee/react-utilities';
 import { MainSlots, MainState } from './Main.types';
 
-import { Paragraph, Blockquote, Em, H1, H2, InlineCode, Li, Ol, Strike, Ul, PostImage } from '@eevee/react-mdx-comp';
+import {
+  Paragraph,
+  Blockquote,
+  Em,
+  Expanded,
+  H1,
+  H2,
+  InlineCode,
+  HorizontalRule,
+  Li,
+  Ol,
+  SideNote,
+  Strike,
+  Ul,
+  PostImage,
+  CodeSnippet,
+} from '@eevee/react-mdx-comp';
 import { TextLink } from '@eevee/react-link';
+
+const code1Static = `
+const element = document.querySelector('.tooltip');
+console.log(element.offsetParent); // <main>`;
+
+const code2Static = `import { animated, useSpring } from 'react-spring';
+
+const Boop = ({ rotation = 0, timing = 150, children }) => {
+  const [isBooped, setIsBooped] = React.useState(false);
+
+  const style = useSpring({
+    display: 'inline-block',
+    backfaceVisibility: 'hidden',
+    transform: isBooped
+      ? \`rotate(\${rotation}deg)\`
+      : \`rotate(0deg)\`,
+  });
+
+  React.useEffect(() => {
+    // Unchanged
+  }, [isBooped, timing]);
+
+  const trigger = () => {
+    // Unchanged
+  };
+
+  return (
+    <animated.span onMouseEnter={trigger} style={style}>
+      {children}
+    </animated.span>
+  );
+};
+`;
 
 /**
  * Render the final JSX of Main
@@ -17,6 +66,34 @@ export const renderMain = (state: MainState) => {
       <div className={flexCenterStyle}>
         <slots.content {...slotProps.content}>
           {slotProps.root.children}
+          <Paragraph>
+            For example, did you notice that as you started scrolling on this page, the Bézier curves that border the
+            green title hero thingy started flattening? Keep your eye on the swoopy curves just above the post text as
+            you scroll through the top of the document. Notice how they become flat as they approach the header at the
+            top of the viewport?{' '}
+            <TextLink href="https://www.youtube.com/watch?v=Z2d9rw9RwyE">The Case for Whimsy</TextLink>{' '}
+            <Em>really careful</Em> when setting fixed widths and heights. <Strike>This is strike through</Strike>
+            <InlineCode>transition</InlineCode>
+          </Paragraph>
+          <Blockquote>"This is blockquote"</Blockquote>
+          <H1>Unit summaries</H1>
+          <H2>Pixels</H2>
+          <CodeSnippet code={code1Static} language="javascript" />
+          <CodeSnippet
+            code={code2Static}
+            language="jsx"
+            highlight="[[0,0],[5,11],[22,24]]"
+            clampMaxHeight={false}
+            lessBottomMargin={true}
+          />
+        </slots.content>
+      </div>
+    </slots.root>
+  );
+};
+
+/*
+
           <Paragraph>
             For example, did you notice that as you started scrolling on this page, the Bézier curves that border the
             green title hero thingy started flattening? Keep your eye on the swoopy curves just above the post text as
@@ -45,15 +122,65 @@ export const renderMain = (state: MainState) => {
           <H1>Unit summaries</H1>
           <H2>Pixels</H2>
           <PostImage
-            includeWhiteBackground={true}
             alt={`graph showing how the opacity goes from 1 to 0
             over the first second, and then stays at 0, forward in time`}
-            src="https://www.joshwcomeau.com/_next/image/?url=%2Fimages%2Fkeyframe-animations%2Ffill-mode-forwards.svg&w=640&q=75"
-            width={561}
+            includeWhiteBackground={true}
             height={284}
+            source="https://www.lag.vn"
+            src="https://www.joshwcomeau.com/_next/image/?url=%2Fimages%2Fkeyframe-animations%2Ffill-mode-forwards.svg&w=640&q=75"
+            title="Fake title"
+            width={561}
           />
-        </slots.content>
-      </div>
-    </slots.root>
-  );
-};
+          <SideNote type="info" title="It's like semantic versioning">
+            <Ul>
+              <Li>
+                If we set the width to be, the button won't grow with font size, leading to line-wrapping and a taller
+                button.
+              </Li>
+              <Li>If we set the width to be, the button will grow wider along with the font size.</Li>
+            </Ul>
+            <Paragraph>
+              <TextLink href="https://www.youtube.com/watch?v=Z2d9rw9RwyE">The Case for Whimsy</TextLink> I recognize
+              that not everyone has experience with software like Photoshop / Figma / Sketch. If the analogy above
+              didn't resonate, I have another one that you're more likely to be familiar with: semantic versioning.
+            </Paragraph>
+            <Expanded>
+              <Paragraph>
+                I recognize that not everyone has experience with software like Photoshop / Figma / Sketch. If the
+                analogy above didn't resonate, I have another one that you're more likely to be familiar with: semantic
+                versioning.
+              </Paragraph>
+            </Expanded>
+          </SideNote>
+          <SideNote type="warning" title="It's like semantic versioning">
+            <Paragraph>
+              <TextLink href="https://www.youtube.com/watch?v=Z2d9rw9RwyE">The Case for Whimsy</TextLink>I recognize
+              that not everyone has experience with software like Photoshop / Figma / Sketch. If the analogy above
+              didn't resonate, I have another one that you're more likely to be familiar with: semantic versioning.
+            </Paragraph>
+            <Expanded>
+              <Paragraph>
+                I recognize that not everyone has experience with software like Photoshop / Figma / Sketch. If the
+                analogy above didn't resonate, I have another one that you're more likely to be familiar with: semantic
+                versioning.
+              </Paragraph>
+            </Expanded>
+          </SideNote>
+          <SideNote type="success" title="It's like semantic versioning">
+            <Paragraph>
+              <TextLink href="https://www.youtube.com/watch?v=Z2d9rw9RwyE">The Case for Whimsy</TextLink>
+              <InlineCode>1234</InlineCode> I recognize that not everyone has experience with software like Photoshop /
+              Figma / Sketch. If the analogy above didn't resonate, I have another one that you're more likely to be
+              familiar with: semantic versioning.
+              <InlineCode>1235</InlineCode>
+            </Paragraph>
+            <Expanded>
+              <Paragraph>
+                <InlineCode>1235</InlineCode>I recognize that not everyone has experience with software like Photoshop /
+                Figma / Sketch. If the analogy above didn't resonate, I have another one that you're more likely to be
+                familiar with: semantic versioning.
+              </Paragraph>
+            </Expanded>
+          </SideNote>
+          <HorizontalRule maxWidth={200} />
+          */

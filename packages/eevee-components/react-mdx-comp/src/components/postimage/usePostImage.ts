@@ -4,11 +4,14 @@ import { PostImageProps, PostImageState } from './PostImage.types';
 import { usePostImageState } from './usePostImageState';
 
 export const usePostImage = (props: PostImageProps, ref?: React.Ref<HTMLImageElement>): PostImageState => {
-  const { type = 'default', as, wrap, caption, includeWhiteBackground, ...rest } = props;
+  const { type = 'default', as, wrap, caption, includeWhiteBackground, marginBottom, source, title, ...rest } = props;
 
   const state: PostImageState = {
-    type,
     includeWhiteBackground,
+    marginBottom,
+    source,
+    title,
+    type,
     components: {
       root: 'img',
       wrap: 'span',

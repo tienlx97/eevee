@@ -35,6 +35,7 @@ const useCaptionStyles = makeStyles({
     paddingTop: '12px',
     fontSize: '14px',
     textAlign: 'center',
+    color: 'black',
   },
 });
 
