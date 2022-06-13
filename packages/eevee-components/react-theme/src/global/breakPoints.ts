@@ -18,6 +18,7 @@ export const breakPoints: BreakPoints = {
   xlAndSmaller: `all and (max-width: ${BREAKPOINT_SIZES.xl - 1}px)`,
 
   lgAndLarger: `(min-width: ${BREAKPOINT_SIZES.lg}px )`,
+  xsAndLarger: `(min-width: ${BREAKPOINT_SIZES.xs}px )`,
   xlAndExtraExtraLarger: `all and (min-width: ${BREAKPOINT_SIZES.xxl}px)`,
 };
 /**
