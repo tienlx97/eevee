@@ -43,7 +43,7 @@ const useRootStyles = makeStyles({
     ...shorthands.padding(0, '32px'),
     ...shorthands.borderLeft('1px', 'solid', tokens.border1),
     minHeight: '100vh',
-    width: '394px',
+    width: '360px',
   },
 });
 

@@ -4,6 +4,7 @@ export {
   useId,
   usePrevious,
   usePrefersReducedMotion,
+  useBoop,
 } from './hooks/index';
 
 export { canUseDOM, defaultSSRContextValue, useIsSSR, useSSRContext, SSRProvider } from './ssr/index';

@@ -12,7 +12,7 @@ export const renderContentHeading = (state: ContentHeadingState) => {
     <slots.root {...slotProps.root}>
       <slots.heading {...slotProps.heading}>
         <slots.anchor {...slotProps.anchor}>
-          <LinkIcon className={iconClasses} size={24} style={{ opacity: showIcon ? 1 : 0 }} />
+          <LinkIcon className={iconClasses} size={20} style={{ opacity: showIcon ? 1 : 0 }} />
         </slots.anchor>
         {slotProps.root.children}
       </slots.heading>

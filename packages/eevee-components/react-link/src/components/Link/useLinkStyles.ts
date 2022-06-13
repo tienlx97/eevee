@@ -57,7 +57,7 @@ const useRootStyles = makeStyles({
         // textDecorationThickness: tokens.strokeWidthThin,
         // textDecorationLine: 'underline',
 
-        color: tokens.foreground7, // rgb(29, 155, 240)
+        // color: tokens.foreground7, // rgb(29, 155, 240)
 
         transitionProperty: 'box-shadow',
         transitionDuration: '200ms',

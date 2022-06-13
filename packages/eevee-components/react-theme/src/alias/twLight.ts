@@ -28,6 +28,27 @@ export const generateColorTokens = (): ColorTokens => ({
   foreground8: 'hsl(255, 85%, 30%)',
   foreground9: 'hsl(225, 25%, 20%)',
   foreground10: 'hsl(225, 15%, 15%)',
+
+  backgroundInfo: 'hsl(210, 55%, 92%)',
+  backgroundSuccess: 'hsla(160, 100%, 40%, 0.1)',
+  backgroundWarning: 'hsla(52, 100%, 50%, 0.25)',
+  borderInfo: 'hsl(245, 100%, 60%)',
+  borderSuccess: 'hsl(160, 100%, 40%)',
+  borderWarning: 'hsl(37, 100%, 50%)',
+
+  syntaxBg: 'hsl(225, 25%, 97%)',
+  syntaxHighlight: 'hsl(225, 25%, 93%)',
+  syntaxTxt: '#2A2A2A',
+  syntaxComment: '#467790',
+  syntaxProp: '#da0079',
+  syntaxBool: '#bf00b8',
+  syntaxVal: '#78909C',
+  syntaxStr: '#651fff',
+  syntaxName: '#AA00FF',
+  syntaxDel: 'rgb(255, 85, 85)',
+  syntaxRegex: '#3600d6',
+  syntaxFn: '#3D5AFE',
+
   foregroundDisabled: '#bdbdbd',
   // shadow
   colorShadowAmbient: 'rgba(0,0,0,0.12)',
