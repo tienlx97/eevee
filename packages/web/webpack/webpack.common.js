@@ -43,6 +43,10 @@ const commonConfig = {
     //   '@utilities': path.join(ROOT_DIR, '/src/utilities'),
     // },
     plugins: [tsPathsPlugin],
+    // ... rest of the resolve config
+    fallback: {
+      path: require.resolve('path-browserify'),
+    },
   },
 
   plugins: [
@@ -70,7 +74,18 @@ const commonConfig = {
   },
 
   module: {
+    // eslint-disable-next-line no-sparse-arrays
     rules: [
+      {
+        test: /\.mdx?$/,
+        use: [
+          {
+            loader: '@mdx-js/loader',
+            /** @type {import('@mdx-js/loader').Options} */
+            options: {},
+          },
+        ],
+      },
       typescriptRule,
       javascriptRule,
       // typescriptEsbuildRule,

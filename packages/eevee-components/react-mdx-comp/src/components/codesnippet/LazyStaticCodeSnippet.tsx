@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import * as React from 'react';
 
 import StaticCodeWrapper from './StaticCodeWrapper';
@@ -8,7 +7,7 @@ const LazyStaticCodeSnippet = (props: StaticCodeSnippetProps) => {
   const [Component, setComponent] = React.useState(() => StaticCodeWrapper);
 
   React.useEffect(() => {
-    import('./StaticCodeSnippet').then(Thing => setComponent(() => Thing.default));
+    import('./StaticCodeSnippet').then(Thing => setComponent(() => Thing.staticCodeSnippet));
   }, []);
 
   return <Component {...props} />;

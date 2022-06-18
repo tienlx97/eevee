@@ -9,6 +9,7 @@ import { siteConfig } from './siteConfig';
 import { App } from './app';
 
 import './asset/css/index.css';
+
 import { makeStyles } from '@griffel/react';
 
 if (typeof window !== 'undefined') {

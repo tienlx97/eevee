@@ -2,7 +2,7 @@ import { makeStyles, shorthands } from '@griffel/react';
 import * as React from 'react';
 import { tokens } from '../../../../react-theme/src/tokens';
 
-type HorizonTalRuleProps = {
+type HorizonTalRuleProps = JSX.IntrinsicElements['hr'] & {
   maxWidth?: number;
 };
 

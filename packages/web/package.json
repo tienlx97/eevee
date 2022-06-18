@@ -60,7 +60,8 @@
     "webpack-merge": "^5.8.0",
     "webpack-obfuscator": "^3.5.1",
     "@eevee/scripts": "*",
-    "copy-webpack-plugin": "5.1.2"
+    "copy-webpack-plugin": "5.1.2",
+    "path-browserify": "1.0.1"
   },
   "dependencies": {
     "@eevee/react-button": "*",
@@ -83,6 +84,9 @@
     "workbox-precaching": "6.5.3",
     "workbox-routing": "6.5.3",
     "workbox-strategies": "6.5.3",
-    "workbox-cacheable-response": "6.5.3"
+    "workbox-cacheable-response": "6.5.3",
+    "mdx-bundler": "9.0.1",
+    "esbuild": "^0.14.39",
+    "firebase": "9.8.3"
   }
 }

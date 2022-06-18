@@ -1,91 +1,24 @@
+/* eslint-disable react/jsx-no-bind */
+/* eslint-disable @eevee/max-len */
 import * as React from 'react';
 import { getSlots } from '@eevee/react-utilities';
 import { MainSlots, MainState } from './Main.types';
-
-import {
-  Paragraph,
-  Blockquote,
-  Em,
-  Expanded,
-  H1,
-  H2,
-  InlineCode,
-  HorizontalRule,
-  Li,
-  Ol,
-  SideNote,
-  Strike,
-  Ul,
-  PostImage,
-  CodeSnippet,
-} from '@eevee/react-mdx-comp';
-import { TextLink } from '@eevee/react-link';
-
-const code1Static = `
-const element = document.querySelector('.tooltip');
-console.log(element.offsetParent); // <main>`;
-
-const code2Static = `import { animated, useSpring } from 'react-spring';
-
-const Boop = ({ rotation = 0, timing = 150, children }) => {
-  const [isBooped, setIsBooped] = React.useState(false);
-
-  const style = useSpring({
-    display: 'inline-block',
-    backfaceVisibility: 'hidden',
-    transform: isBooped
-      ? \`rotate(\${rotation}deg)\`
-      : \`rotate(0deg)\`,
-  });
-
-  React.useEffect(() => {
-    // Unchanged
-  }, [isBooped, timing]);
-
-  const trigger = () => {
-    // Unchanged
-  };
-
-  return (
-    <animated.span onMouseEnter={trigger} style={style}>
-      {children}
-    </animated.span>
-  );
-};
-`;
+import { MDX } from '../../Mdx/index';
 
 /**
  * Render the final JSX of Main
  */
 export const renderMain = (state: MainState) => {
-  const { flexCenterStyle } = state;
+  const { flexCenterStyle, postContent } = state;
   const { slots, slotProps } = getSlots<MainSlots>(state);
 
   return (
     <slots.root {...slotProps.root}>
       <div className={flexCenterStyle}>
         <slots.content {...slotProps.content}>
+          {/* This is navigation render */}
           {slotProps.root.children}
-          <Paragraph>
-            For example, did you notice that as you started scrolling on this page, the Bézier curves that border the
-            green title hero thingy started flattening? Keep your eye on the swoopy curves just above the post text as
-            you scroll through the top of the document. Notice how they become flat as they approach the header at the
-            top of the viewport?{' '}
-            <TextLink href="https://www.youtube.com/watch?v=Z2d9rw9RwyE">The Case for Whimsy</TextLink>{' '}
-            <Em>really careful</Em> when setting fixed widths and heights. <Strike>This is strike through</Strike>
-            <InlineCode>transition</InlineCode>
-          </Paragraph>
-          <Blockquote>"This is blockquote"</Blockquote>
-          <H1>Unit summaries</H1>
-          <H2>Pixels</H2>
-          <CodeSnippet code={code1Static} language="javascript" />
-          <CodeSnippet
-            code={code2Static}
-            language="jsx"
-            highlight="[[0,0],[5,11],[22,24]]"
-            clampMaxHeight={false}
-            lessBottomMargin={true}
-          />
+          {postContent && <MDX source={postContent} />}
         </slots.content>
       </div>
     </slots.root>

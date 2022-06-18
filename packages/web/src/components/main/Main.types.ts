@@ -9,4 +9,5 @@ export type MainProps = EeveeProps<Partial<MainSlots>> & {};
 
 export type MainState = EeveeState<MainSlots> & {
   flexCenterStyle?: string;
+  postContent?: string;
 };

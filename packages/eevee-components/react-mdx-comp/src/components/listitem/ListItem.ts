@@ -9,7 +9,7 @@ import { renderListItem } from './renderListItem';
  * A Link is a reference to data that a user can follow by clicking or tapping it.
  */
 export const ListItem: ForwardRefComponent<ListItemProps> = React.forwardRef(
-  (props: ListItemProps, ref: React.Ref<HTMLLIElement>) => {
+  (props: ListItemProps, ref?: React.Ref<HTMLLIElement>) => {
     const state = useListItem(props, ref);
 
     useListItemStyles(state);

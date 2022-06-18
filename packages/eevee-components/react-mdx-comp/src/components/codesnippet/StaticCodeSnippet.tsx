@@ -1,14 +1,12 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-nocheck
 import * as React from 'react';
 import { makeStyles, mergeClasses, shorthands } from '@griffel/react';
-
 import { LiveProvider, LiveEditor } from 'react-live';
-
 import { syntaxTheme } from './syntax.helpers';
-
 import StaticCodeWrapper from './StaticCodeWrapper';
 import { LINE_HEIGHT } from './constants';
-
 import './StaticCodeSnippet.css';
 import type { StaticCodeSnippetProps } from './CodeSnippet.types';
 import { tokens } from '@eevee/react-theme';
@@ -26,10 +24,8 @@ const useRootStyles = makeStyles({
   inertEditor: {
     ...shorthands.overflow('unset !important'),
 
-    /*
-    The textarea is only needed for live-editable code.
-    This is not one of those.
-  */
+    // The textarea is only needed for live-editable code.
+    // This is not one of those.
     '& textara': {
       display: 'none !important',
     },
@@ -58,24 +54,19 @@ const useRootStyles = makeStyles({
   },
 });
 
-export default function staticCodeSnippet({
+const staticCodeSnippet = ({
   code,
   lang,
   highlightedLines = [],
   secretLive,
   clampMaxHeight,
   CodeWrapper = StaticCodeWrapper,
-}: StaticCodeSnippetProps) {
+}: StaticCodeSnippetProps) => {
   // eslint-disable-next-line react-hooks/rules-of-hooks
   const styles = useRootStyles();
 
   return (
-    <LiveProvider
-      code={code}
-      // mountStylesheet={false}
-      theme={syntaxTheme as any}
-      disabled={!secretLive}
-    >
+    <LiveProvider code={code} theme={syntaxTheme as any} disabled={!secretLive}>
       <CodeWrapper code={code} lang={lang} clampMaxHeight={clampMaxHeight}>
         {highlightedLines.map(([start, end]) => {
           const EXTEND_BY = 2;
@@ -101,4 +92,6 @@ export default function staticCodeSnippet({
       </CodeWrapper>
     </LiveProvider>
   );
-}
+};
+
+export { staticCodeSnippet };

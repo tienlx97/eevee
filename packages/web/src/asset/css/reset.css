@@ -63,6 +63,10 @@ body {
   transition: var(--foreground1) 350ms, var(--background1) 350ms;
 }
 
+a {
+  text-decoration: inherit;
+}
+
 a:focus {
   outline: 5px auto var(--foreground3);
 }

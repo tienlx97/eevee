@@ -1,13 +1,13 @@
 import * as React from 'react';
 import { resolveShorthand } from '@eevee/react-utilities';
 import type { ListItemProps, ListItemState } from './ListItem.types';
-import { ListContext } from '../list/index';
+import { ListContext, ListType } from '../list/index';
 import { useListItemState } from './useListItemState';
 export const useListItem = (props: ListItemProps, ref?: React.Ref<HTMLLIElement>): ListItemState => {
   const { as, content, animated, bullet = 'default', ...rest } = props;
   const context = React.useContext(ListContext);
   const state: ListItemState = {
-    type: context,
+    type: (context as ListType) || 'unordered',
     animated,
     bullet,
     components: {
