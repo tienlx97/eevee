@@ -19,13 +19,14 @@ export type Frontmatter = {
     [key: string]: string | Array<string>
   },
   title: string
-  author: {
-    name: string,
-    id: string,
-    url: string
-  },
+  // author: {
+  //   name: string,
+  //   id: string,
+  //   url: string
+  // },
+  id: string,
+  author: [],
   // optional
-  id?: string,
   archived?: boolean
   date?: string
   draft?: boolean

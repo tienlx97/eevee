@@ -3,6 +3,7 @@ on:
   push:
     branches:
       - dev
+      - feat/layout
 jobs:
   refresh:
     name: 🥬 Refresh Content

@@ -52,10 +52,10 @@ async function go() {
     });
 
     contentPaths.forEach(element => {
-      postMdxPost(element);
+      element.changeType != 'deleted' && postMdxPost(element);
     });
 
-    // console.log(`Content change request finished.`, { response });
+    console.log(`Content change request finished.`);
   } else {
     console.log('🆗 Not refreshing changed content because no content changed.');
   }
@@ -63,7 +63,6 @@ async function go() {
 
 async function postMdxPost(content: ChangedFile) {
   const result = await compileMdx(content.filename);
-
   const { categories, description, meta, title, id } = result.frontmatter;
 
   // generate id for new mdx post
@@ -80,13 +79,17 @@ async function postMdxPost(content: ChangedFile) {
     throw Error('title must define');
   }
   //  push to firestore
-  const postDocRef = doc(postCol, id);
+  const postDocRef = doc(postCol, `${id}`);
 
-  await setDoc(postDocRef, {
-    code: result.code,
-    frontmatter: result.frontmatter,
-    readTime: result.readTime,
-  });
+  await setDoc(
+    postDocRef,
+    {
+      code: result.code,
+      frontmatter: result.frontmatter,
+      readTime: result.readTime,
+    },
+    { merge: true },
+  );
 }
 
 go();
