@@ -17,7 +17,9 @@ const postCol = createCollection<Post>('posts');
 async function getChangedFiles(currentCommitSha: string = 'HEAD^', compareCommitSha: string = 'HEAD') {
   try {
     const lineParser = /^(?<change>\w).*?\s+(?<filename>.+$)/;
-    const gitOutput = execSync(`git diff --name-status ${currentCommitSha} ${compareCommitSha}`).toString();
+    // const gitOutput = execSync(`git diff --name-status ${currentCommitSha} ${compareCommitSha}`).toString();
+    const gitOutput = execSync(`git diff-tree --no-commit-id --name-status -r HEAD`).toString();
+    console.log(gitOutput);
     const changedFiles = gitOutput
       .split('\n')
       .map(line => line.match(lineParser)?.groups)

@@ -40,9 +40,12 @@ jobs:
       # End yarn setup
       - name: Install dependencies
         run: yarn install --frozen-lockfile
-      # Format code
-      - name: Formatting and linting
-        run: yarn code-style
-      # Commitlint s
-      - name: Validate all commits from PR
-        run: npx commitlint --from ${{ github.event.pull_request.base.sha }} --to ${{ github.event.pull_request.head.sha }} --verbose
+      # # Format code
+      # - name: Formatting and linting
+      #   run: yarn code-style
+      # # Commitlint s
+      # - name: Validate all commits from PR
+      #   run: npx commitlint --from ${{ github.event.pull_request.base.sha }} --to ${{ github.event.pull_request.head.sha }} --verbose
+
+      - name: 🥬 Refresh Content
+        run: yarn refresh-content
