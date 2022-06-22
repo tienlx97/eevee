@@ -20,6 +20,9 @@
     "esbuild": "0.14.45",
     "reading-time": "1.5.0",
     "remark-mdx-images": "1.0.3",
-    "firebase": "9.8.3"
+    "firebase": "9.8.3",
+    "plop": "^2.6.0",
+    "long": "5.2.0",
+    "big-integer": "1.6.51"
   }
 }

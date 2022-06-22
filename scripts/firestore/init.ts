@@ -1,5 +1,5 @@
 import { initializeApp } from 'firebase/app';
-import { getFirestore } from 'firebase/firestore';
+import { getFirestore, DocumentData, CollectionReference, collection } from 'firebase/firestore';
 
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
@@ -19,3 +19,19 @@ const app = initializeApp(firebaseConfig);
 
 // Export firestore incase we need to access it directly
 export const firestore = getFirestore(app);
+
+//
+
+// This is just a helper to add the type to the db responses
+const createCollection = <T = DocumentData>(collectionName: string) => {
+  return collection(firestore, collectionName) as CollectionReference<T>;
+};
+
+// export all your collections
+export type PoroId = {
+  epoch: number;
+  seq: number;
+  shard: number;
+  userId: number;
+};
+export const poroIdCol = createCollection<PoroId>('poro69');

@@ -43,4 +43,4 @@ export type {
   EeveeState,
 } from './compose/index';
 
-export { omit, getNativeElementProps } from './utils/index';
+export { getNativeElementProps, omit, slugify } from './utils/index';

@@ -1,3 +1,4 @@
+import type { ReadTimeResults } from "reading-time"
 /**
   * It's annoying that all these are set to optional I know, but there's
   * no great way to ensure that the MDX files have these properties,
@@ -10,18 +11,24 @@
  * @example
  */
 export type Frontmatter = {
-  archived?: boolean
-  draft?: boolean
-  title?: string
-  description?: string,
-  meta?: {
-    keywords?: Array<string>
-    [key: string]: string | Array<string> | undefined
+  // require
+  categories: Array<string>
+  description: string,
+  meta: {
+    keywords: Array<string>
+    [key: string]: string | Array<string>
   },
-
-  // Post meta
-  categories?: Array<string>
+  title: string
+  author: {
+    name: string,
+    id: string,
+    url: string
+  },
+  // optional
+  id?: string,
+  archived?: boolean
   date?: string
+  draft?: boolean
   bannerCloudinaryId?: string
   bannerCredit?: string
   bannerAlt?: string
@@ -40,12 +47,7 @@ export type MdxPage = {
 export type MdxListItem = Omit<MdxPage, 'code'>
 
 export type MDXCollection = MdxPage & {
-  readingTime: {
-    text: string,
-    minute: number,
-    time: number,
-    words: number
-  }
+  readTime: ReadTimeResults
 }
 
 export type GitHubFile = { path: string; content: string }

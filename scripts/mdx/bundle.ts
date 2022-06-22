@@ -4,6 +4,7 @@ import { bundleMDX } from 'mdx-bundler';
 import type TPQueue from 'p-queue';
 import calculateReadingTime from 'reading-time';
 import { remarkMdxImages } from 'remark-mdx-images';
+import type { Frontmatter, MDXCollection } from '../../typings/my-mdx/index';
 
 //reads the file
 const getSourceOfFile = (path: string) => {
@@ -13,9 +14,8 @@ const getSourceOfFile = (path: string) => {
 //Path to the posts folder
 export const POSTS_PATH = path.join(process.cwd(), '/content');
 
-async function compileMdx<FrontmatterType extends Record<string, unknown>, ReturnType extends unknown>(
-  filePath: string,
-) {
+// https://github.com/tino-brst/personal-site/blob/main/lib/mdast-util-toc.ts
+async function compileMdx(filePath: string) {
   if (process.platform === 'win32') {
     process.env.ESBUILD_BINARY_PATH = path.join(process.cwd(), 'node_modules', 'esbuild', 'esbuild.exe');
   } else {
@@ -26,23 +26,24 @@ async function compileMdx<FrontmatterType extends Record<string, unknown>, Retur
   const content = getSourceOfFile(directory);
 
   try {
-    const { code, frontmatter } = await bundleMDX({
+    const { code, frontmatter } = await bundleMDX<Frontmatter>({
       source: content,
       cwd: POSTS_PATH,
       mdxOptions: options => {
         options.remarkPlugins = [...(options.remarkPlugins ?? []), remarkMdxImages];
-
         return options;
       },
     });
 
     const readTime = calculateReadingTime(content);
 
-    return {
+    const state: MDXCollection = {
       code,
       readTime,
-      frontmatter: frontmatter as FrontmatterType,
-    } as ReturnType;
+      frontmatter,
+    };
+
+    return state;
   } catch (error) {
     console.error('Compilation error ');
     throw error;
@@ -60,12 +61,9 @@ async function getQueue() {
 
 // We have to use a queue because we can't run more than one of these at a time
 // or we'll hit an out of memory error because esbuild uses a lot of memory...
-async function queuedCompileMdx<FrontmatterType extends Record<string, unknown>, ReturnType extends unknown>(
-  ...args: Parameters<typeof compileMdx>
-) {
-  console.log(args);
+async function queuedCompileMdx(...args: Parameters<typeof compileMdx>) {
   const queue = await getQueue();
-  const result = await queue.add(() => compileMdx<FrontmatterType, ReturnType>(...args));
+  const result = await queue.add(() => compileMdx(...args));
   return result;
 }
 

@@ -5,6 +5,7 @@ export const changeTypes = {
   R: 'moved',
 };
 
-// export type ChangeFileState = {
-//   changeType:
-// }
+export type ChangedFile = {
+  changeType: 'modified' | 'added' | 'deleted' | 'moved';
+  filename: string;
+};

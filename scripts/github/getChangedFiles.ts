@@ -2,14 +2,7 @@
 
 import { execSync } from 'child_process';
 import { compileMdx } from '../mdx/index';
-import type { Frontmatter, MDXCollection } from '../../typings/my-mdx/index';
-
-const changeTypes = {
-  M: 'modified',
-  A: 'added',
-  D: 'deleted',
-  R: 'moved',
-};
+import { changeTypes, ChangedFile } from './getChangedFiles.types';
 
 /**
  * @param {*} currentCommitSha default `HEAD^`
@@ -24,7 +17,7 @@ async function getChangedFiles(currentCommitSha: string = 'HEAD^', compareCommit
       .split('\n')
       .map(line => line.match(lineParser)?.groups)
       .filter(Boolean);
-    const changes = [];
+    const changes: ChangedFile[] = [];
     for (const { change, filename } of changedFiles) {
       const changeType = changeTypes[change];
       if (changeType) {
@@ -41,50 +34,20 @@ async function getChangedFiles(currentCommitSha: string = 'HEAD^', compareCommit
 }
 
 async function go() {
-  // const changedFiles = (await getChangedFiles()) ?? [];
-  // const contentPaths = changedFiles
-  //   .filter(f => f.filename.startsWith('content'))
-  //   .map(f => f.filename.replace(/^content\//, ''));
-  const contentPaths = ['blog/blog-for-test/index.mdx'];
-  if (contentPaths.length) {
-    console.log(`⚡️ Content changed. Requesting the cache be refreshed.`, {
-      contentPaths,
-    });
-
-    contentPaths.forEach(element => {
-      compileMdx<Frontmatter, MDXCollection>(element).then(value => {
-        console.log(value);
-      });
-    });
-
-    // console.log(`Content change request finished.`, { response });
-  } else {
-    console.log('🆗 Not refreshing changed content because no content changed.');
-  }
-}
-
-// async function post2Firestore(contentPaths: string[]) {
-//   contentPaths.forEach(async p => {
-//     const result = await compileMdx<Frontmatter, MDXCollection>(p)
-//   });
-// }
-
-go();
-
-export async function go2() {
   const changedFiles = (await getChangedFiles()) ?? [];
   const contentPaths = changedFiles
     .filter(f => f.filename.startsWith('content'))
-    .map(f => f.filename.replace(/^content\//, ''));
+    .map(f => {
+      f.filename = f.filename.replace(/^content\//, '');
+      return f;
+    });
   if (contentPaths.length) {
     console.log(`⚡️ Content changed. Requesting the cache be refreshed.`, {
       contentPaths,
     });
 
     contentPaths.forEach(element => {
-      compileMdx(element).then(value => {
-        console.log(value);
-      });
+      postMdxPost(element);
     });
 
     // console.log(`Content change request finished.`, { response });
@@ -92,3 +55,31 @@ export async function go2() {
     console.log('🆗 Not refreshing changed content because no content changed.');
   }
 }
+
+async function postMdxPost(content: ChangedFile) {
+  const result = await compileMdx(content.filename);
+
+  const { categories, description, meta, title, id } = result.frontmatter;
+
+  // generate id for new mdx post
+
+  console.log(result);
+
+  if (content.changeType !== 'added') {
+    if (!id) {
+      throw Error('id is require, please undo id');
+    } else if (categories.length === 0) {
+      throw Error('category must define');
+    } else if (!description) {
+      throw Error('description must define');
+    } else if (!meta.keywords) {
+      throw Error('meta.keywords must define');
+    } else if (!title) {
+      throw Error('title must define');
+    }
+  } else {
+    // generate id for new post
+  }
+}
+
+go();
