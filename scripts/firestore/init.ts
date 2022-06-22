@@ -23,7 +23,7 @@ export const firestore = getFirestore(app);
 //
 
 // This is just a helper to add the type to the db responses
-const createCollection = <T = DocumentData>(collectionName: string) => {
+export const createCollection = <T = DocumentData>(collectionName: string) => {
   return collection(firestore, collectionName) as CollectionReference<T>;
 };
 
@@ -34,4 +34,5 @@ export type PoroId = {
   shard: number;
   userId: number;
 };
+
 export const poroIdCol = createCollection<PoroId>('poro69');

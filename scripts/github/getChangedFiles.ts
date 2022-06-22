@@ -3,6 +3,11 @@
 import { execSync } from 'child_process';
 import { compileMdx } from '../mdx/index';
 import { changeTypes, ChangedFile } from './getChangedFiles.types';
+import { createCollection } from '../firestore/init';
+import { setDoc, doc } from 'firebase/firestore';
+import type { Post } from '../../typings/my-mdx';
+
+const postCol = createCollection<Post>('posts');
 
 /**
  * @param {*} currentCommitSha default `HEAD^`
@@ -63,23 +68,25 @@ async function postMdxPost(content: ChangedFile) {
 
   // generate id for new mdx post
 
-  console.log(result);
-
-  if (content.changeType !== 'added') {
-    if (!id) {
-      throw Error('id is require, please undo id');
-    } else if (categories.length === 0) {
-      throw Error('category must define');
-    } else if (!description) {
-      throw Error('description must define');
-    } else if (!meta.keywords) {
-      throw Error('meta.keywords must define');
-    } else if (!title) {
-      throw Error('title must define');
-    }
-  } else {
-    // generate id for new post
+  if (!id) {
+    throw Error('id is require, please undo id');
+  } else if (categories.length === 0) {
+    throw Error('category must define');
+  } else if (!description) {
+    throw Error('description must define');
+  } else if (!meta.keywords) {
+    throw Error('meta.keywords must define');
+  } else if (!title) {
+    throw Error('title must define');
   }
+  //  push to firestore
+  const postDocRef = doc(postCol, id);
+
+  await setDoc(postDocRef, {
+    code: result.code,
+    frontmatter: result.frontmatter,
+    readTime: result.readTime,
+  });
 }
 
 go();

@@ -50,4 +50,6 @@ export type MDXCollection = MdxPage & {
   readTime: ReadTimeResults
 }
 
+export type Post = MDXCollection
+
 export type GitHubFile = { path: string; content: string }

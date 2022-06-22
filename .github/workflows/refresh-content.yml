@@ -1,0 +1,22 @@
+name: 🥬 Refresh Content
+on:
+  push:
+    branches:
+      - dev
+jobs:
+  refresh:
+    name: 🥬 Refresh Content
+    runs-on: ubuntu-latest
+    steps:
+      - name: ⬇️ Checkout repo
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: '50'
+
+      - name: ⎔ Setup node
+        uses: actions/setup-node@v2
+        with:
+          node-version: 16
+
+      - name: 🥬 Refresh Content
+        run: node --experimental-specifier-resolution=node --loader ts-node/esm ./scripts/github/getChangedFiles.ts
