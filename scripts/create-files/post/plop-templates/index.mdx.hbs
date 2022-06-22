@@ -1,0 +1,21 @@
+---
+id: {{postId}}
+title: {{title}}
+description: {{description}}
+date: {{date}}
+author:
+  - name: {{authorDetail.name}}
+  - url: {{authorDetail.url}}
+  - id: {{authorDetail.id}}
+categories:
+{{#each categoryList}}
+  - {{this}}
+{{/each}}
+meta:
+  keywords:
+  {{#each keywordList}}
+    - {{this}}
+  {{/each}}
+---
+
+import {} from '@eevee/react-mdx-comp'

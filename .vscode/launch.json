@@ -1,104 +1,34 @@
+// https://jestjs.io/docs/troubleshooting
 {
   "version": "0.2.0",
   "configurations": [
     {
-      "name": "Debug test",
+      "name": "Debug TS File",
       "type": "node",
       "request": "launch",
-      "program": "${workspaceRoot}/scripts/debug-test.js",
-      "cwd": "${fileDirname}",
-      "stopOnEntry": false,
-      "args": ["-i", "--watch"],
-      "runtimeExecutable": null,
-      "runtimeArgs": ["--nolazy", "--inspect"],
-      "env": {
-        "NODE_ENV": "development"
-      },
+      "runtimeExecutable": "node",
+      "args": ["${relativeFile}"],
+      "runtimeArgs": ["--nolazy", "-r", "ts-node/register/transpile-only"],
       "sourceMaps": true,
-      "outputCapture": "std",
-      "console": "integratedTerminal"
+      "cwd": "${workspaceRoot}"
     },
     {
-      "name": "Debug current open test",
+      "name": "Debug Jest Tests",
       "type": "node",
       "request": "launch",
-      "program": "${workspaceRoot}/scripts/debug-test.js",
-      "cwd": "${fileDirname}",
-      "stopOnEntry": false,
-      "args": ["-i", "--testPathPattern=\\b${fileBasenameNoExtension}", "--watch"],
-      "runtimeExecutable": null,
-      "runtimeArgs": ["--nolazy", "--inspect"],
-      "env": {
-        "NODE_ENV": "development"
-      },
-      "sourceMaps": true,
-      "outputCapture": "std",
-      "console": "integratedTerminal"
-    },
-    {
-      "name": "Debug current open test (v0)",
-      "type": "node",
-      "request": "launch",
-      "program": "${workspaceRoot}/scripts/debug-test.js",
-      "cwd": "${fileDirname}",
-      "stopOnEntry": false,
-      "args": ["-i", "--testPathPattern=\\b${fileBasenameNoExtension}", "--watch"],
-      "runtimeExecutable": null,
-      "runtimeArgs": ["--nolazy", "--inspect"],
-      "env": {
-        "NODE_ENV": "test"
-      },
-      "sourceMaps": true,
-      "outFiles": ["${workspaceRoot}/packages/fluentui/*/dist/**/*.js"],
-      "outputCapture": "std",
-      "console": "integratedTerminal"
-    },
-    {
-      "name": "Build @fluentui/react",
-      "type": "node",
-      "request": "launch",
-      "program": "${workspaceRoot}/scripts/just-scripts.js",
-      "cwd": "${workspaceRoot}/packages/react",
-      "stopOnEntry": false,
-      "args": ["ts"],
-      "runtimeExecutable": null,
-      "runtimeArgs": ["--nolazy", "--inspect"],
+      "runtimeArgs": [
+        "--inspect-brk",
+        "${workspaceRoot}/node_modules/.bin/jest",
+        "--runInBand",
+        "--env=jsdom"
+
+        // "--inspect-brk",
+        // "${workspaceRoot}/node_modules/.bin/jest",
+        // "--runInBand",
+        // "--detectOpenHandles"
+      ],
       "console": "integratedTerminal",
-      "env": {
-        "NODE_ENV": "development"
-      },
-      "sourceMaps": true
-    },
-    {
-      "name": "Debug lint imports",
-      "type": "node",
-      "request": "launch",
-      "program": "${workspaceRoot}/scripts/tasks/lint-imports.js",
-      "cwd": "${workspaceRoot}/packages/react",
-      "stopOnEntry": false,
-      "args": ["--name", "TestComponentName"],
-      "runtimeExecutable": null,
-      "runtimeArgs": ["--nolazy", "--inspect"],
-      "env": {
-        "NODE_ENV": "development"
-      },
-      "sourceMaps": true
-    },
-    {
-      "name": "Debug create-package",
-      "type": "node-terminal",
-      "request": "launch",
-      "command": "yarn create-package",
-      "cwd": "${workspaceFolder}",
-      "outputCapture": "std"
-    },
-    {
-      "name": "Debug create-component",
-      "type": "node-terminal",
-      "request": "launch",
-      "command": "yarn create-component",
-      "cwd": "${workspaceFolder}",
-      "outputCapture": "std"
+      "internalConsoleOptions": "neverOpen"
     }
   ]
 }
