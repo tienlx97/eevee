@@ -9,4 +9,5 @@ export type BlogProps = EeveeProps<Partial<BlogSlots>> & {};
 
 export type BlogState = EeveeState<BlogSlots> & {
   post?: Post;
+  postNotFound: boolean;
 };

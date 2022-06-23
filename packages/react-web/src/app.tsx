@@ -3,6 +3,9 @@ import { useLocation, Routes, Route } from 'react-router-dom';
 import { Page } from './components/layout/index';
 import { Scroll2Top } from './components/ scroll2top/index';
 
+const LazyPageNotFound = React.lazy(() =>
+  import('./pages/PageNotFound/index').then(module => ({ default: module.PageNotFound })),
+);
 const LazyBlogItem = React.lazy(() => import('./pages/Blog/index').then(module => ({ default: module.Blog })));
 
 export const App = () => {
@@ -12,7 +15,7 @@ export const App = () => {
     <Page>
       <Scroll2Top>
         <Routes>
-          <Route path="*" element={<div>Not found</div>} />
+          <Route path="*" element={<LazyPageNotFound />} />
           <Route path="/home" element={<div>Home</div>} />
           <Route path="/search" element={<div>Search</div>} />
           <Route path="/notification" element={<div>Notification</div>} />
