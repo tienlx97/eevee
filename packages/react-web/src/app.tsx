@@ -4,7 +4,7 @@ import ReactGA from 'react-ga4';
 import { Page } from './components/layout/index';
 import { Scroll2Top } from './components/ scroll2top/index';
 
-import { Blog } from './pages/Blog/index';
+const LazyBlogItem = React.lazy(() => import('./pages/Blog/index').then(module => ({ default: module.Blog })));
 
 export const App = () => {
   const location = useLocation();
@@ -18,11 +18,19 @@ export const App = () => {
     <Page>
       <Scroll2Top>
         <Routes>
+          <Route path="*" element={<div>Not found</div>} />
           <Route path="/home" element={<div>Home</div>} />
           <Route path="/search" element={<div>Search</div>} />
           <Route path="/notification" element={<div>Notification</div>} />
           <Route path="/write" element={<div>Write sth</div>} />
-          <Route path="/blog/:slug" element={<Blog />} />
+          <Route
+            path="/blog/:slug"
+            element={
+              <React.Suspense fallback={<div>Loading...</div>}>
+                <LazyBlogItem />
+              </React.Suspense>
+            }
+          />
         </Routes>
       </Scroll2Top>
     </Page>

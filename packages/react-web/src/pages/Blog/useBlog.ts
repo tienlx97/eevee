@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { getNativeElementProps } from '@eevee/react-utilities';
 import type { BlogProps, BlogState } from './Blog.types';
+import { useBlogState } from './useBlogState';
 
 /**
  * Create the state required to render Blog.
@@ -12,7 +13,7 @@ import type { BlogProps, BlogState } from './Blog.types';
  * @param ref - reference to root HTMLElement of Blog
  */
 export const useBlog = (props: BlogProps, ref: React.Ref<HTMLElement>): BlogState => {
-  return {
+  const state: BlogState = {
     // TODO add appropriate props/defaults
     components: {
       // TODO add each slot's element type or component
@@ -25,4 +26,8 @@ export const useBlog = (props: BlogProps, ref: React.Ref<HTMLElement>): BlogStat
       ...props,
     }),
   };
+
+  useBlogState(state);
+
+  return state;
 };
