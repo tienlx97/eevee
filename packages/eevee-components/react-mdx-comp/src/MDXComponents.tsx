@@ -26,8 +26,10 @@ import { InlineCode } from './InlineCode';
 
 import { CodeSnippet } from './CodeSnippet';
 
-import { ContentHeading, H1, H2, H3 } from './ContentHeading';
+import { ContentHeading, CH1, CH2, CH3 } from './ContentHeading';
 import type { ContentHeadingProps } from './ContentHeading';
+
+import { Heading, H1, H2, H3 } from './Heading';
 
 import { HorizontalRule } from './HorizontalRule';
 
@@ -62,6 +64,11 @@ export const MDXComponents = {
   PostImage,
   Strike,
   InlineCode,
+  CH1,
+  CH2,
+  CH3,
+  ContentHeading,
+  Heading,
   H1,
   H2,
   H3,

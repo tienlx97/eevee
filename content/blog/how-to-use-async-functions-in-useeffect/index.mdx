@@ -18,14 +18,15 @@ meta:
 
 import { InlineCode, SideNote } from '@eevee/react-mdx-comp';
 
-<strong>useEffect</strong> is usually the place where data fetching happens in React. Data fetching means using asynchronous
-functions, and using them in <strong>useEffect</strong> might not be as straightforward as you'd think. Read on to learn
-more about it!
+<InlineCode>useEffect</InlineCode> is usually the place where data fetching happens in React. Data fetching means using asynchronous
+functions, and using them in <InlineCode>useEffect</InlineCode> might not be as straightforward as you'd think. Read on to
+learn more about it!
 
 ## The wrong way
 
-There's one wrong way to do data fetching in <InlineCode>useEffect</InlineCode>. If you write the following code, your linter will scream at you!
+There's one wrong way to do data fetching in <InlineCode>useEffect</InlineCode> . If you write the following code, your linter will scream at you!
 
 <SideNote type="success">
-  You are using a linter right? If not, <a>you really should!</a>
+  You are using a linter right? If not,{' '}
+  <TextLink href="https://reactjs.org/docs/hooks-rules.html">you really should!</TextLink>
 </SideNote>
