@@ -39,3 +39,5 @@ if (!rootElement) {
 
 const root = client.createRoot(rootElement as Element);
 root.render(<Root />);
+
+// Initialize poroWorker if there's a service worker already.
