@@ -24,6 +24,8 @@ const reactMdxExportComp = [
   'CodeSnippet',
   'SandPack',
   'HorizontalRule',
+  'SideNote',
+  'Expanded',
 ];
 
 //reads the file

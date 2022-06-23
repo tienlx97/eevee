@@ -2,7 +2,7 @@ import * as React from 'react';
 import { SideNoteState } from './SideNote.types';
 import { useBoop } from '@eevee/react-utilities';
 
-interface ExpandedProps {
+export interface ExpandedProps {
   originalType?: 'expanded';
 }
 
@@ -41,6 +41,18 @@ export const useSideNoteState = (state: SideNoteState): SideNoteState => {
     transition: `background 350ms`,
     ...state.root.style,
   };
+
+  switch (state.type) {
+    case 'info':
+      !state.title && (state.title = 'Info');
+      break;
+    case 'success':
+      !state.title && (state.title = 'Tip');
+      break;
+    default:
+      !state.title && (state.title = 'Warning');
+      break;
+  }
 
   return state;
 };

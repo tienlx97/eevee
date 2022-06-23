@@ -16,3 +16,4 @@
 - [MDX sample 1](https://github.com/chrislicodes/personal-blog/blob/main/src/mdxTools/mdxServer/index.ts)
 - [Plop sample 2](https://github.com/microsoft/fluentui/blob/master/scripts/create-package/plopfile.ts)
 - [Plop sample 3](https://viblo.asia/p/su-dung-plop-de-generate-code-Qpmlew8kKrd)
+- [Async useEffect](https://devtrium.com/posts/async-functions-useeffect#the-wrong-way)

@@ -1,13 +1,12 @@
 import * as React from 'react';
 import { getSlots } from '@eevee/react-utilities';
 import { MainSlots, MainState } from './Main.types';
-import { MDX } from '../../Mdx/index';
 
 /**
  * Render the final JSX of Main
  */
 export const renderMain = (state: MainState) => {
-  const { flexCenterStyle, postContent } = state;
+  const { flexCenterStyle } = state;
   const { slots, slotProps } = getSlots<MainSlots>(state);
 
   return (
@@ -16,7 +15,6 @@ export const renderMain = (state: MainState) => {
         <slots.content {...slotProps.content}>
           {/* This is navigation render */}
           {slotProps.root.children}
-          {postContent && <MDX source={postContent} />}
         </slots.content>
       </div>
     </slots.root>

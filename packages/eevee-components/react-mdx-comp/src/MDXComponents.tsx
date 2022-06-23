@@ -31,6 +31,8 @@ import type { ContentHeadingProps } from './ContentHeading';
 
 import { HorizontalRule } from './HorizontalRule';
 
+import { SideNote, Expanded } from './SideNote';
+
 export const MDXComponents = {
   p: (props: ParagraphProps) => <Paragraph {...props} />,
   a: (props: TextLinkProps) => <TextLink {...props} />,
@@ -66,4 +68,6 @@ export const MDXComponents = {
   CodeSnippet,
   SandPack,
   HorizontalRule,
+  SideNote,
+  Expanded,
 };

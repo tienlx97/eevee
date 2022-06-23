@@ -1,7 +1,7 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from 'firebase/app';
 import { getFirestore, DocumentData, collection, CollectionReference } from 'firebase/firestore';
-import { Post, User } from './firebase.types';
+import type { Post } from 'typings/my-mdx';
 
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
@@ -28,5 +28,4 @@ const createCollection = <T = DocumentData>(collectionName: string) => {
 };
 
 // export all your collections
-export const usersCol = createCollection<User>('users');
 export const postCol = createCollection<Post>('posts');

@@ -1,5 +1,5 @@
 {
-  "packages": ["app/*", "packages/*", "packages/eevee/*", "packages/eevee-components/*", "scripts", "typings"],
+  "packages": ["packages/*", "packages/eevee/*", "packages/eevee-components/*", "scripts", "typings"],
   "npmClient": "yarn",
   "useWorkspaces": true,
   "version": "0.0.0"
