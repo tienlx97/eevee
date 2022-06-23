@@ -69,7 +69,8 @@ async function postMdxPost(content: ChangedFile) {
   const { categories, description, meta, title, id } = result.frontmatter;
 
   // generate id for new mdx post
-
+  // asume every thing true, no bug
+  // improve later
   if (!id) {
     throw Error('id is require, please undo id');
   } else if (categories.length === 0) {
