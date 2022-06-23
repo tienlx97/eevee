@@ -5,7 +5,7 @@
   "display": "standalone",
   "categories": ["blog", "news", "magazines"],
   "share_target": {
-    "action": "compose/log",
+    "action": "write",
     "enctype": "multipart/form-data",
     "method": "POST",
     "params": {
@@ -70,7 +70,7 @@
       "purpose": "any"
     }
   ],
-  "start_url": "https://main--poronote.netlify.app",
+  "start_url": "https://poronote.netlify.app",
   "scope": "/",
   "theme_color": "#000000",
   "background_color": "#000000"

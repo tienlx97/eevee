@@ -7,8 +7,8 @@ import type { Post } from 'typings/my-mdx';
 
 export const useBlogState = (state: BlogState): BlogState => {
   const { slug } = useParams();
-  const navigate = useNavigate();
   const [post, setPost] = React.useState<Post | undefined>(undefined);
+  const [postNotFound, setPostNotFound] = React.useState<boolean>(false);
 
   /**
    * If param changes value, findBySlug will be called twice.
@@ -25,11 +25,7 @@ export const useBlogState = (state: BlogState): BlogState => {
       const snaps = await getDocs(slugQuery);
 
       if (snaps.empty) {
-        navigate('/404', {
-          state: {
-            title: "This blog doesn't exist ",
-          },
-        });
+        setPostNotFound(true);
       }
 
       snaps.forEach(snap => {
@@ -50,11 +46,10 @@ export const useBlogState = (state: BlogState): BlogState => {
       // cancel any future `setPost`
       preventQuickRender = false;
     };
-
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [slug]);
 
   state.post = post;
+  state.postNotFound = postNotFound;
 
   return state;
 };

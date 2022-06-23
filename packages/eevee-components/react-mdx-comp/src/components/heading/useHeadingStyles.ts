@@ -6,48 +6,67 @@ export const headingClassname = {
   root: 'eve-Heading',
 };
 
+/*
+H0: 40 pt (45–38pt)
+H1: 32 pt (30–34pt)
+H2: 26 pt (24–28pt)
+H3: 22 pt (20–24pt)
+H4: 20 pt (18–22pt)
+P1*: 13pt (Minimum size)
+P2*: 11pt (Minimum size)
+*/
 const useRootStyles = makeStyles({
   'section-title': {
-    fontSize: 'calc(16 / 16 * 1rem)',
-    color: tokens.foreground5,
-    fontWeight: tokens.fontWeightMedium,
-    textTransform: 'uppercase',
-    letterSpacing: '2px',
-  },
-
-  'small-title': {
-    fontSize: 'calc(22 / 16 * 1rem)',
-    color: tokens.foreground10,
-  },
-
-  'medium-title': {
-    fontSize: 'calc(28 / 16 * 1rem)',
-    color: tokens.foreground10,
-    lineHeight: '1.2',
-  },
-
-  'large-title': {
-    fontSize: 'calc(38 / 16 * 1rem)',
-    color: tokens.foreground10,
-  },
-
-  'major-heading': {
+    // h1 32
     fontSize: 'calc(32 / 16 * 1rem)',
-    color: tokens.foreground8,
+    color: tokens.foreground8, // hsl(53, 100%, 50%)
+    fontWeight: tokens.fontWeightMedium,
+    // textTransform: 'uppercase',
+    letterSpacing: '2px',
+    //
     marginTop: '46px',
     marginBottom: '32px',
   },
 
+  'small-title': {
+    // h1 22
+    fontSize: 'calc(22 / 16 * 1rem)',
+    color: tokens.foreground10, // hsl(210, 25%, 96%)
+  },
+
+  'medium-title': {
+    // h1 28
+    fontSize: 'calc(28 / 16 * 1rem)',
+    color: tokens.foreground10, // hsl(210, 25%, 96%)
+    lineHeight: '1.2',
+  },
+
+  'large-title': {
+    // h1 38
+    fontSize: 'calc(38 / 16 * 1rem)',
+    color: tokens.foreground10, // hsl(210, 25%, 96%)
+  },
+
+  'major-heading': {
+    // h2 28
+    fontSize: 'calc(28 / 16 * 1rem)',
+    color: tokens.foreground5, // rgb(249,24,128)
+    marginTop: '40px',
+    marginBottom: '28px',
+  },
+
   'normal-heading': {
-    fontSize: 'calc(25 / 16 * 1rem)',
-    color: tokens.foreground9,
+    // h3 24
+    fontSize: 'calc(24 / 16 * 1rem)',
+    color: tokens.foreground9, // hsl(210, 25%, 88%)
     marginTop: '34px',
     marginBottom: '12px',
   },
 
   'minor-heading': {
+    // h4 20
     fontSize: 'calc(20 / 16 * 1rem)',
-    color: tokens.foreground9,
+    color: tokens.foreground9, // hsl(210, 25%, 88%)
     marginTop: '24px',
     marginBottom: '12px',
   },

@@ -3,10 +3,9 @@ name: Check packages
 on:
   push:
     branches:
-      - 'feat/**'
-      - 'dev'
-  pull_request:
-    type: [opened, reopened, synchronize]
+      - main
+  # pull_request:
+  #   type: [opened, reopened, synchronize]
   workflow_dispatch:
 
 jobs:
