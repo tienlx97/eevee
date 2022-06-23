@@ -3,8 +3,7 @@ name: Code-style
 on:
   push:
     branches:
-      - 'feat/**'
-      - 'dev'
+      - 'main'
   pull_request:
     type: [opened, reopened, synchronize]
   workflow_dispatch:
@@ -17,7 +16,7 @@ jobs:
       - name: Checkout repo
         uses: actions/checkout@v2
         with:
-          fetch-depth: 1
+          fetch-depth: '50'
 
       - name: Setup Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v2

@@ -2,7 +2,7 @@
 
 import { execSync } from 'child_process';
 import { compileMdx } from '../mdx/index';
-import { changeTypes, ChangedFile } from './getChangedFiles.types';
+import { ChangedFile, Change } from './getChangedFiles.types';
 import { createCollection } from '../firestore/init';
 import { setDoc, doc } from 'firebase/firestore';
 import type { Post } from '../../typings/my-mdx';
@@ -18,15 +18,18 @@ async function getChangedFiles(currentCommitSha: string = 'HEAD^', compareCommit
   try {
     const lineParser = /^(?<change>\w).*?\s+(?<filename>.+$)/;
     const gitOutput = execSync(`git diff --name-status ${currentCommitSha} ${compareCommitSha}`).toString();
+    // const gitOutput = execSync(`git diff-tree --no-commit-id --name-status -r  735ce1b 504a137  `).toString();
     const changedFiles = gitOutput
       .split('\n')
       .map(line => line.match(lineParser)?.groups)
       .filter(Boolean);
     const changes: ChangedFile[] = [];
     for (const { change, filename } of changedFiles) {
-      const changeType = changeTypes[change];
+      // const changeType = changeTypes[change];
+      const changeType = change as Change;
       if (changeType) {
-        changes.push({ changeType: changeTypes[change], filename });
+        // changes.push({ changeType: changeTypes[change], filename });
+        changes.push({ changeType, filename });
       } else {
         console.error(`Unknown change type: ${change} ${filename}`);
       }
@@ -52,10 +55,10 @@ async function go() {
     });
 
     contentPaths.forEach(element => {
-      postMdxPost(element);
+      if (element.changeType && element.changeType != 'D') postMdxPost(element);
     });
 
-    // console.log(`Content change request finished.`, { response });
+    console.log(`Content change request finished.`);
   } else {
     console.log('🆗 Not refreshing changed content because no content changed.');
   }
@@ -63,11 +66,11 @@ async function go() {
 
 async function postMdxPost(content: ChangedFile) {
   const result = await compileMdx(content.filename);
-
   const { categories, description, meta, title, id } = result.frontmatter;
 
   // generate id for new mdx post
-
+  // asume every thing true, no bug
+  // improve later
   if (!id) {
     throw Error('id is require, please undo id');
   } else if (categories.length === 0) {
@@ -80,13 +83,17 @@ async function postMdxPost(content: ChangedFile) {
     throw Error('title must define');
   }
   //  push to firestore
-  const postDocRef = doc(postCol, id);
+  const postDocRef = doc(postCol, `${id}`);
 
-  await setDoc(postDocRef, {
-    code: result.code,
-    frontmatter: result.frontmatter,
-    readTime: result.readTime,
-  });
+  await setDoc(
+    postDocRef,
+    {
+      code: result.code,
+      frontmatter: result.frontmatter,
+      readTime: result.readTime,
+    },
+    { merge: true },
+  );
 }
 
 go();

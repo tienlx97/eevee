@@ -1,6 +1,9 @@
 {
   "extends": "./scripts/tsconfig.json",
-  "include": ["./{apps,packages}/*/just.config.ts"]
+  "include": ["./{apps,packages}/*/just.config.ts"],
+  "ts-node": {
+    "esm": true
+  }
   // "extends": "./tsconfig.base.json",
   // "compilerOptions": {
   //   "target": "ES2019",

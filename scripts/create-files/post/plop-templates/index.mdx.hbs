@@ -1,12 +1,13 @@
 ---
 id: {{postId}}
 title: {{title}}
+slugify: {{slugifyTitle}}
 description: {{description}}
 date: {{date}}
 author:
-  - name: {{authorDetail.name}}
-  - url: {{authorDetail.url}}
-  - id: {{authorDetail.id}}
+  - {{authorDetail.name}}
+  - {{authorDetail.url}}
+  - {{authorDetail.id}}
 categories:
 {{#each categoryList}}
   - {{this}}
@@ -18,4 +19,6 @@ meta:
   {{/each}}
 ---
 
-import {} from '@eevee/react-mdx-comp'
+import {Em} from '@eevee/react-mdx-comp'
+
+Hello <Em>{{authorDetail.name}}</Em>

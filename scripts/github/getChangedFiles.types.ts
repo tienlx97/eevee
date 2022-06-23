@@ -5,7 +5,10 @@ export const changeTypes = {
   R: 'moved',
 };
 
+export type Change = 'M' | 'A' | 'D' | 'R' | undefined;
+
 export type ChangedFile = {
-  changeType: 'modified' | 'added' | 'deleted' | 'moved';
+  // changeType: 'modified' | 'added' | 'deleted' | 'moved';
+  changeType: Change;
   filename: string;
 };

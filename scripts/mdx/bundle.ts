@@ -6,6 +6,26 @@ import calculateReadingTime from 'reading-time';
 import { remarkMdxImages } from 'remark-mdx-images';
 import type { Frontmatter, MDXCollection } from '../../typings/my-mdx/index';
 
+const reactMdxExportComp = [
+  'Paragraph',
+  'TextLink',
+  'Blockquote',
+  'Ul',
+  'Ol',
+  'Li',
+  'I',
+  'Em',
+  'PostImage',
+  'Strike',
+  'InlineCode',
+  'H1',
+  'H2',
+  'H3',
+  'CodeSnippet',
+  'SandPack',
+  'HorizontalRule',
+];
+
 //reads the file
 const getSourceOfFile = (path: string) => {
   return fs.readFileSync(path, 'utf-8');
@@ -23,15 +43,24 @@ async function compileMdx(filePath: string) {
   }
 
   const directory = path.join(POSTS_PATH, '/', filePath);
-  const content = getSourceOfFile(directory);
 
   try {
+    const content = getSourceOfFile(directory);
+
     const { code, frontmatter } = await bundleMDX<Frontmatter>({
       source: content,
       cwd: POSTS_PATH,
       mdxOptions: options => {
         options.remarkPlugins = [...(options.remarkPlugins ?? []), remarkMdxImages];
         return options;
+      },
+
+      globals: {
+        '@eevee/react-mdx-comp': {
+          varName: 'reactMdxComp',
+          defaultExport: false,
+          namedExports: reactMdxExportComp,
+        },
       },
     });
 
@@ -45,6 +74,8 @@ async function compileMdx(filePath: string) {
 
     return state;
   } catch (error) {
+    // Here you get the error when the file was not found,
+    // but you also get any other error
     console.error('Compilation error ');
     throw error;
   }

@@ -12,20 +12,18 @@ import type { ReadTimeResults } from "reading-time"
  */
 export type Frontmatter = {
   // require
+  author: [],
   categories: Array<string>
   description: string,
+  id: string,
   meta: {
     keywords: Array<string>
     [key: string]: string | Array<string>
   },
+  slugify: string,
   title: string
-  author: {
-    name: string,
-    id: string,
-    url: string
-  },
+
   // optional
-  id?: string,
   archived?: boolean
   date?: string
   draft?: boolean
