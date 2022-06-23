@@ -1,15 +1,11 @@
-name: Code-style
-
+name: 🥬 Refresh Content
 on:
   push:
     branches:
-      - 'main'
-  pull_request:
-    type: [opened, reopened, synchronize]
-  workflow_dispatch:
+      - main
 
 jobs:
-  web-client:
+  refresh:
     name: request check
     runs-on: ubuntu-latest
     steps:
@@ -39,9 +35,6 @@ jobs:
       # End yarn setup
       - name: Install dependencies
         run: yarn install --frozen-lockfile
-      # Format code
-      - name: Formatting and linting
-        run: yarn code-style
-      # Commitlint s
-      - name: Validate all commits from PR
-        run: npx commitlint --from ${{ github.event.pull_request.base.sha }} --to ${{ github.event.pull_request.head.sha }} --verbose
+      # refresh content in content folder
+      - name: 🥬 Refresh Content
+        run: yarn refresh-content

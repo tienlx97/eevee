@@ -43,9 +43,10 @@ async function compileMdx(filePath: string) {
   }
 
   const directory = path.join(POSTS_PATH, '/', filePath);
-  const content = getSourceOfFile(directory);
 
   try {
+    const content = getSourceOfFile(directory);
+
     const { code, frontmatter } = await bundleMDX<Frontmatter>({
       source: content,
       cwd: POSTS_PATH,
@@ -73,6 +74,8 @@ async function compileMdx(filePath: string) {
 
     return state;
   } catch (error) {
+    // Here you get the error when the file was not found,
+    // but you also get any other error
     console.error('Compilation error ');
     throw error;
   }

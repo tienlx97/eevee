@@ -2,7 +2,7 @@
 
 import { execSync } from 'child_process';
 import { compileMdx } from '../mdx/index';
-import { changeTypes, ChangedFile } from './getChangedFiles.types';
+import { ChangedFile, Change } from './getChangedFiles.types';
 import { createCollection } from '../firestore/init';
 import { setDoc, doc } from 'firebase/firestore';
 import type { Post } from '../../typings/my-mdx';
@@ -25,9 +25,11 @@ async function getChangedFiles(currentCommitSha: string = 'HEAD^', compareCommit
       .filter(Boolean);
     const changes: ChangedFile[] = [];
     for (const { change, filename } of changedFiles) {
-      const changeType = changeTypes[change];
+      // const changeType = changeTypes[change];
+      const changeType = change as Change;
       if (changeType) {
-        changes.push({ changeType: changeTypes[change], filename });
+        // changes.push({ changeType: changeTypes[change], filename });
+        changes.push({ changeType, filename });
       } else {
         console.error(`Unknown change type: ${change} ${filename}`);
       }
@@ -53,7 +55,7 @@ async function go() {
     });
 
     contentPaths.forEach(element => {
-      element.changeType != 'deleted' && postMdxPost(element);
+      if (element.changeType && element.changeType != 'D') postMdxPost(element);
     });
 
     console.log(`Content change request finished.`);
