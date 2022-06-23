@@ -4,6 +4,8 @@ import ReactGA from 'react-ga4';
 import { Page } from './components/layout/index';
 import { Scroll2Top } from './components/ scroll2top/index';
 
+import { Blog } from './pages/Blog/index';
+
 export const App = () => {
   const location = useLocation();
 
@@ -20,6 +22,7 @@ export const App = () => {
           <Route path="/search" element={<div>Search</div>} />
           <Route path="/notification" element={<div>Notification</div>} />
           <Route path="/write" element={<div>Write sth</div>} />
+          <Route path="/blog/:slug" element={<Blog />} />
         </Routes>
       </Scroll2Top>
     </Page>

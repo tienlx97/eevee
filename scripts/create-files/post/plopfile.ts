@@ -116,6 +116,7 @@ module.exports = (plop: NodePlopAPI) => {
           data,
           skipIfExists: true,
         },
+        () => 'Blog generate ready!',
       ];
     },
   });
