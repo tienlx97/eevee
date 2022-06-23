@@ -30,6 +30,9 @@
     },
     {
       "path": "./css-type/tsconfig.json"
+    },
+    {
+      "path": "./my-mdx/tsconfig.json"
     }
   ]
 }

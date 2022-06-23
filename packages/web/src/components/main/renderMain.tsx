@@ -1,5 +1,3 @@
-/* eslint-disable react/jsx-no-bind */
-/* eslint-disable @eevee/max-len */
 import * as React from 'react';
 import { getSlots } from '@eevee/react-utilities';
 import { MainSlots, MainState } from './Main.types';

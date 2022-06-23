@@ -21,7 +21,6 @@
       "@eevee/react-shared-contexts": ["packages/eevee-components/react-shared-contexts/src/index.ts"],
       "@eevee/react-theme": ["packages/eevee-components/react-theme/src/index.ts"],
       "@eevee/react-utilities": ["packages/eevee-components/react-utilities/src/index.ts"],
-      "@eevee/scripts": ["scripts/index.ts"],
       "@eevee/react-mdx-comp": ["packages/eevee-components/react-mdx-comp/src/index.ts"],
       "@eevee/react-mdx-tool": ["packages/react-mdx-tool/src/index.ts"]
     }

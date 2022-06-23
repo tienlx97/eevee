@@ -1,20 +1,6 @@
 import * as React from 'react';
 import { ContentHeadingState } from './ContentHeading.types';
-
-const slugify = (str = '') => {
-  let slug = str
-    .toLowerCase()
-    .replace(/\s/g, '-')
-    .replace(/[^a-zA-Z0-9-]/g, '');
-
-  // If the value starts with a number, swap it out!
-  // Doing this in a dumb way for now.
-  if (slug.match(/^[\d]{1,2}/)) {
-    slug = slug.replace(/^[\d]{1,2}/, 'digit');
-  }
-
-  return slug;
-};
+import { slugify } from '@eevee/react-utilities';
 
 export const useContentHeadingState = (state: ContentHeadingState): ContentHeadingState => {
   const anchorId = slugify(state.root.children as string);
