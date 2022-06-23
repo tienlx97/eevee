@@ -1,6 +1,5 @@
 import * as React from 'react';
 import { useLocation, Routes, Route } from 'react-router-dom';
-import ReactGA from 'react-ga4';
 import { Page } from './components/layout/index';
 import { Scroll2Top } from './components/ scroll2top/index';
 
@@ -8,11 +7,6 @@ const LazyBlogItem = React.lazy(() => import('./pages/Blog/index').then(module =
 
 export const App = () => {
   const location = useLocation();
-
-  // detect route change
-  React.useEffect(() => {
-    ReactGA.send({ hitType: 'pageview', page: location.pathname });
-  }, [location]);
 
   return (
     <Page>
