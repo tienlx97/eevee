@@ -35,6 +35,8 @@ import { HorizontalRule } from './HorizontalRule';
 
 import { SideNote, Expanded } from './SideNote';
 
+import { CodeBlock } from './CodeBlock';
+
 export const MDXComponents = {
   p: (props: ParagraphProps) => <Paragraph {...props} />,
   a: (props: TextLinkProps) => <TextLink {...props} />,
@@ -51,6 +53,9 @@ export const MDXComponents = {
   h2: (props: ContentHeadingProps) => <CH2 {...props} />,
   h3: (props: ContentHeadingProps) => <CH3 {...props} />,
   hr: HorizontalRule,
+  code: CodeBlock,
+  // The code block renders <pre> so we just want a div here.
+  pre: (p: JSX.IntrinsicElements['div']) => <div {...p} />,
   // =======
   Paragraph,
   TextLink,
@@ -77,4 +82,5 @@ export const MDXComponents = {
   HorizontalRule,
   SideNote,
   Expanded,
+  CodeBlock,
 };
