@@ -25,7 +25,7 @@ const useIconWrapStyles = makeStyles({
     alignItems: 'center',
     paddingRight: '16px',
     paddingTop: '0',
-    color: tokens.foreground7,
+    color: tokens.f7,
   },
 });
 

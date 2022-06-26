@@ -9,7 +9,7 @@ export const blockquoteClassname = {
 const useRootStyles = makeStyles({
   root: {
     fontStyle: 'italic',
-    color: tokens.foreground2,
+    color: tokens.f2,
     ...shorthands.padding('0', '32px'),
     marginTop: '24px',
     marginBottom: '24px',
@@ -30,7 +30,7 @@ const useRootStyles = makeStyles({
     fontSize: '1.25rem',
     fontFamily: tokens.fontFamily,
     fontWeight: tokens.fontWeightMedium,
-    color: tokens.foreground10,
+    color: tokens.f10,
     marginTop: '1.5rem',
     marginBottom: '1.5rem',
 

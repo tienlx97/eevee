@@ -36,19 +36,29 @@ const useRootStyles = makeStyles({
     },
   },
 
-  info: {
-    backgroundColor: tokens.backgroundInfo, // 'var(--color-muted)',
-    ...shorthands.borderColor(tokens.borderInfo),
+  Note: {
+    backgroundColor: tokens.bgNote,
+    ...shorthands.borderColor(tokens.bNote),
   },
 
-  success: {
-    backgroundColor: tokens.backgroundSuccess, // 'var(--color-success-background)',
-    ...shorthands.borderColor(tokens.borderSuccess),
+  Tip: {
+    backgroundColor: tokens.bgTip,
+    ...shorthands.borderColor(tokens.bTip),
   },
 
-  warning: {
-    backgroundColor: tokens.backgroundWarning, //'var(--color-alert-background)',
-    ...shorthands.borderColor(tokens.borderWarning),
+  Important: {
+    backgroundColor: tokens.bgImportant,
+    ...shorthands.borderColor(tokens.bImportant),
+  },
+
+  Caution: {
+    backgroundColor: tokens.bgCaution,
+    ...shorthands.borderColor(tokens.bCaution),
+  },
+
+  Warning: {
+    backgroundColor: tokens.bgWarning,
+    ...shorthands.borderColor(tokens.bWarning),
   },
 });
 
@@ -59,7 +69,7 @@ const useIconWrapStyles = makeStyles({
     left: 0,
     transform: 'translate(calc(-50% - 1.5px), -50%)',
     ...shorthands.padding('8px'),
-    backgroundColor: tokens.background1,
+    backgroundColor: tokens.bg1,
     ...shorthands.borderRadius('50%'),
     '@media (max-width: 768px)': {
       display: 'none',
@@ -70,16 +80,24 @@ const useIconWrapStyles = makeStyles({
     },
   },
 
-  info: {
-    color: tokens.borderInfo,
+  Note: {
+    color: tokens.bNote,
   },
 
-  success: {
-    color: tokens.borderSuccess,
+  Tip: {
+    color: tokens.bTip,
   },
 
-  warning: {
-    color: tokens.borderWarning,
+  Important: {
+    color: tokens.bImportant,
+  },
+
+  Caution: {
+    color: tokens.bCaution,
+  },
+
+  Warning: {
+    color: tokens.bWarning,
     ...shorthands.borderRadius('25%', '25%'),
     left: '-1.5px',
   },
@@ -109,42 +127,72 @@ const useContentStyles = makeStyles({
     },
   },
 
-  info: {
+  Note: {
     '@media (hover: hover)': {
       [`& .${textLinkClassname.root}`]: {
-        color: tokens.foreground1,
-        boxShadow: `0px 1px 0px ${tokens.foreground3}`,
+        color: tokens.f1,
+        boxShadow: `0px 1px 0px ${tokens.bNote}`,
         fontWeight: tokens.fontWeightMedium,
       },
 
       [`& .${textLinkClassname.root}:hover`]: {
-        boxShadow: `0px 2px 0px ${tokens.foreground3}`,
+        boxShadow: `0px 2px 0px ${tokens.bNote}`,
       },
     },
   },
 
-  warning: {
+  Tip: {
     '@media (hover: hover)': {
       [`& .${textLinkClassname.root}`]: {
-        color: tokens.foreground1,
-        boxShadow: `0px 1px 0px ${tokens.borderWarning}`,
+        color: tokens.f1,
+        boxShadow: `0px 1px 0px ${tokens.bTip}`,
+        fontWeight: tokens.fontWeightMedium,
       },
 
       [`& .${textLinkClassname.root}:hover`]: {
-        boxShadow: `0px 2px 0px ${tokens.borderWarning}`,
+        boxShadow: `0px 2px 0px ${tokens.bTip}`,
       },
     },
   },
 
-  success: {
+  Warning: {
     '@media (hover: hover)': {
       [`& .${textLinkClassname.root}`]: {
-        color: tokens.foreground1,
-        boxShadow: `0px 1px 0px ${tokens.borderSuccess}`,
+        color: tokens.f1,
+        boxShadow: `0px 1px 0px ${tokens.bWarning}`,
+        fontWeight: tokens.fontWeightMedium,
       },
 
       [`& .${textLinkClassname.root}:hover`]: {
-        boxShadow: `0px 2px 0px ${tokens.borderSuccess}`,
+        boxShadow: `0px 2px 0px ${tokens.bWarning}`,
+      },
+    },
+  },
+
+  Caution: {
+    '@media (hover: hover)': {
+      [`& .${textLinkClassname.root}`]: {
+        color: tokens.f1,
+        boxShadow: `0px 1px 0px ${tokens.bCaution}`,
+        fontWeight: tokens.fontWeightMedium,
+      },
+
+      [`& .${textLinkClassname.root}:hover`]: {
+        boxShadow: `0px 2px 0px ${tokens.bCaution}`,
+      },
+    },
+  },
+
+  Important: {
+    '@media (hover: hover)': {
+      [`& .${textLinkClassname.root}`]: {
+        color: tokens.f1,
+        boxShadow: `0px 1px 0px ${tokens.bImportant}`,
+        fontWeight: tokens.fontWeightMedium,
+      },
+
+      [`& .${textLinkClassname.root}:hover`]: {
+        boxShadow: `0px 2px 0px ${tokens.bImportant}`,
       },
     },
   },
@@ -192,7 +240,7 @@ const useShowMoreStyles = makeStyles({
     display: 'flex',
     alignItems: 'center',
     ...shorthands.gap('4px'),
-    color: tokens.foreground1,
+    color: tokens.f1,
     fontWeight: tokens.fontWeightSemibold,
   },
 

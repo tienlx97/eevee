@@ -24,9 +24,11 @@ export const renderSideNote = (state: SideNoteState) => {
   return (
     <slots.root {...slotProps.root}>
       <div className={iconWrapClasses}>
-        {type === 'info' && <Info size={32} />}
-        {type === 'success' && <Success size={32} />}
-        {type === 'warning' && <Warning size={32} />}
+        {type === 'Note' && <Info size={32} />}
+        {type === 'Tip' && <Success size={32} />}
+        {type === 'Warning' && <Warning size={32} />}
+        {type === 'Important' && <Warning size={32} />}
+        {type === 'Caution' && <Warning size={32} />}
       </div>
       {title && <strong className={titleClasses}>{title}</strong>}
       <slots.content {...slotProps.content}>

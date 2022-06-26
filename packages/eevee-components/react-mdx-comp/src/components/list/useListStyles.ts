@@ -35,7 +35,7 @@ const useOrderedStyles = makeStyles({
       '::before': {
         content: "counters(var(--counter-name), '.') '. '",
         fontFeatureSettings: 'tnum',
-        color: tokens.foreground7,
+        color: tokens.f7,
         fontWeight: tokens.fontWeightMedium,
         paddingRight: '12px',
       },
@@ -44,7 +44,7 @@ const useOrderedStyles = makeStyles({
     // '& li::before': {
     //   content: "counters(var(--counter-name), '.') '. '",
     //   fontFeatureSettings: "'tnum'",
-    //   color: tokens.foreground7,
+    //   color: tokens.f7,
     //   fontWeight: tokens.fontWeightMedium,
     //   paddingRight: '12px',
     // },

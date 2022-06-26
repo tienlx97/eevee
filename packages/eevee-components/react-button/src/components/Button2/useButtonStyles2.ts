@@ -23,12 +23,12 @@ const useButtonStyles = makeStyles({
     ...shorthands.borderRadius('9999px'),
     ...shorthands.borderStyle('solid'),
     ...shorthands.borderWidth(tokens.strokeWidthThick),
-    ...shorthands.borderColor(tokens.background4),
+    ...shorthands.borderColor(tokens.bg4),
     userSelect: 'none',
     transitionDuration: '0.2s',
     transitionProperty: 'background-color, box-shadow',
     outlineStyle: 'none',
-    backgroundColor: tokens.background4,
+    backgroundColor: tokens.bg4,
     minHeight: '36px',
     minWidth: '36px',
     //margin-right: calc(-9px);
@@ -36,8 +36,8 @@ const useButtonStyles = makeStyles({
     '@media (hover: hover)': {
       ':hover': {
         // borderBottomColor: tokens.colorForeground3,
-        // color: tokens.foreground1, // #fff hsl(222, 22%, 5%)
-        backgroundColor: tokens.hover5,
+        // color: tokens.f1, // #fff hsl(222, 22%, 5%)
+        backgroundColor: tokens.h5,
       },
     },
   },
@@ -57,7 +57,7 @@ const useIconAndTextStyles = makeStyles({
     fontFamily: tokens.fontFamily,
     fontSize: tokens.fontSizeBase400,
     fontWeight: tokens.fontWeightSemibold,
-    color: tokens.background3,
+    color: tokens.bg3,
   },
 });
 

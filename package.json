@@ -32,9 +32,7 @@
     "postinstall": "node ./scripts/postinstall.js",
     "publish:beachball": "beachball publish -b origin/master --access public -y",
     "test": "lage test --verbose",
-    "create-post": "plop --plopfile ./scripts/create-files/post/plopfile.ts --dest . --require ./scripts/ts-node-register",
-    "create-component": "plop --plopfile ./scripts/create-files/component/plopfile.ts --dest . --require ./scripts/ts-node-register",
-    "refresh-content": "node --experimental-specifier-resolution=node --loader ts-node/esm scripts/github/getChangedFiles.ts"
+    "create-component": "plop --plopfile ./scripts/create-files/component/plopfile.ts --dest . --require ./scripts/ts-node-register"
   },
   "main": "index.js",
   "devDependencies": {

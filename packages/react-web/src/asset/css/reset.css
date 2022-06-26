@@ -58,9 +58,9 @@ ul {
 }
 
 body {
-  color: var(--foreground1);
-  background: var(--background1);
-  transition: var(--foreground1) 350ms, var(--background1) 350ms;
+  color: var(--f1);
+  background: var(--bg1);
+  transition: var(--f1) 350ms, var(--bg1) 350ms;
 }
 
 a {
@@ -68,7 +68,7 @@ a {
 }
 
 a:focus {
-  outline: 5px auto var(--foreground3);
+  outline: 5px auto var(--f3);
 }
 
 body,
@@ -96,8 +96,8 @@ code {
 
 *:focus {
   outline: 0 !important;
-  box-shadow: 0 0 0 0.2rem var(--foreground1),
-    /* use site bg color to create whitespace for faux focus ring */ 0 0 0 0.35rem var(--foreground3) !important;
+  box-shadow: 0 0 0 0.2rem var(--f1),
+    /* use site bg color to create whitespace for faux focus ring */ 0 0 0 0.35rem var(--f3) !important;
   /* faux focus ring color */
 }
 

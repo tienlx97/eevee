@@ -9,6 +9,7 @@
 import * as React from 'react';
 import { makeStyles, mergeClasses, shorthands } from '@griffel/react';
 import { tokens } from '@eevee/react-theme';
+import { MetaString } from './CodeBlock.types';
 const CodeBlock = React.lazy(() => import('./CodeBlock').then(module => ({ default: module.CodeBlock })));
 
 const useStyles = makeStyles({
@@ -20,7 +21,7 @@ const useStyles = makeStyles({
     overflowX: 'auto',
     display: 'flex',
     alignItems: 'center',
-    backgroundColor: tokens.background1,
+    backgroundColor: tokens.bg1,
     fontSize: '13.6px',
     ...shorthands.overflow('hidden'),
   },
@@ -41,10 +42,10 @@ const useStyles = makeStyles({
 
 export default React.memo(
   (props: {
-    isFromPackageImport: boolean;
+    isFromPackageImport?: boolean;
     children: string;
     className?: string;
-    metastring: string;
+    metastring?: MetaString;
     noMargin?: boolean;
     noMarkers?: boolean;
   }): any => {

@@ -11,5 +11,5 @@ export { H1, H2, H3 } from './Heading';
 export { SideNote, Expanded } from './SideNote';
 export { HorizontalRule } from './HorizontalRule';
 export { CodeSnippet } from './CodeSnippet';
-export { SandPack } from './SandPack';
+// export { SandPack } from './SandPack';
 export { MDXComponents } from './MDXComponents';

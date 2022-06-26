@@ -43,8 +43,8 @@ const useMediaQueryStyles = makeStyles({
 
 const usePositionStyles = makeStyles({
   position: {
-    backgroundColor: tokens.background1,
-    boxShadow: `0px 2px 10px ${tokens.border1}`,
+    backgroundColor: tokens.bg1,
+    boxShadow: `0px 2px 10px ${tokens.b1}`,
     display: 'block',
     position: 'fixed',
     left: 0,

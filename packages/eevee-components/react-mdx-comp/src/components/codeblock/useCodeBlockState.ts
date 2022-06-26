@@ -1,34 +1,34 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import type { CodeBlockState, InlineHiglight } from './CodeBlock.types';
-import rangeParser from 'parse-numeric-range';
 import { mergeClasses } from '@griffel/react';
+import { useInlineHiglightStyles } from './useInlineHighlightStyles';
 
 export const useCodeBlockState = (state: CodeBlockState): CodeBlockState => {
-  const { className, metastring, children } = state;
+  const { metastring, children } = state;
+  const inlineHighlightStyles = useInlineHiglightStyles();
 
   const getDecoratedLineInfo = () => {
     if (!metastring) {
       return [];
     }
 
-    const linesToHighlight = getHighlightLines(metastring);
+    const linesToHighlight = getHighlightLines(metastring.highlight);
     const highlightedLineConfig = linesToHighlight.map(line => {
       return {
-        className: 'bg-github-highlight dark:bg-opacity-10',
+        className: 'bg-github-highlight',
         line,
       };
     });
 
-    const inlineHighlightLines = getInlineHighlights(metastring, children);
+    const inlineHighlightLines = getInlineHighlights(children, metastring.highlight);
     const inlineHighlightConfig = inlineHighlightLines.map((line: InlineHiglight) => ({
       ...line,
       elementAttributes: { 'data-step': `${line.step}` },
       className: mergeClasses(
-        state.inlineHiglightClasses,
-        line.step === 1 && state.bgBlue,
-        line.step === 2 && state.bgYellow,
-        line.step === 3 && state.bgGreen,
-        line.step === 4 && state.bgPurple,
+        inlineHighlightStyles.root,
+        line.step === 1 && inlineHighlightStyles.bgBlue,
+        line.step === 2 && inlineHighlightStyles.bgYellow,
+        line.step === 3 && inlineHighlightStyles.bgGreen,
+        line.step === 4 && inlineHighlightStyles.bgPurple,
       ),
     }));
 
@@ -36,7 +36,7 @@ export const useCodeBlockState = (state: CodeBlockState): CodeBlockState => {
   };
 
   // e.g. "language-js"
-  const language = className?.substring(9);
+  const language = metastring?.language;
   state.filename = '/index.' + language;
   state.decorators = getDecoratedLineInfo();
 
@@ -45,7 +45,7 @@ export const useCodeBlockState = (state: CodeBlockState): CodeBlockState => {
 
 /**
  *
- * @param metastring string provided after the language in a markdown block
+ * @param highlight string provided after the language in a markdown block
  * @returns array of lines to highlight
  * @example
  * ```js {1-3,7} [[1, 1, 20, 33], [2, 4, 4, 8]] App.js active
@@ -54,18 +54,21 @@ export const useCodeBlockState = (state: CodeBlockState): CodeBlockState => {
  *
  * -> The metastring is `{1-3,7} [[1, 1, 20, 33], [2, 4, 4, 8]] App.js active`
  */
-function getHighlightLines(metastring: string): number[] {
+function getHighlightLines(highlight?: string): number[] {
+  if (!highlight) {
+    return [];
+  }
   const HIGHLIGHT_REGEX = /{([\d,-]+)}/;
-  const parsedMetastring = HIGHLIGHT_REGEX.exec(metastring);
+  const parsedMetastring = HIGHLIGHT_REGEX.exec(highlight);
   if (!parsedMetastring) {
     return [];
   }
-  return rangeParser(parsedMetastring[1]);
+  return parsePart(parsedMetastring[1]);
 }
 
 /**
  *
- * @param metastring string provided after the language in a markdown block
+ * @param highlight string provided after the language in a markdown block
  * @returns InlineHighlight[]
  * @example
  * ```js {1-3,7} [[1, 1, 'count'], [2, 4, 'setCount']] App.js active
@@ -74,15 +77,20 @@ function getHighlightLines(metastring: string): number[] {
  *
  * -> The metastring is `{1-3,7} [[1, 1, 'count', [2, 4, 'setCount']] App.js active`
  */
-function getInlineHighlights(metastring: string, code: string) {
+function getInlineHighlights(code: string, highlight?: string) {
+  if (!highlight) {
+    return [];
+  }
+
   const INLINE_HIGHT_REGEX = /(\[\[.*\]\])/;
-  const parsedMetastring = INLINE_HIGHT_REGEX.exec(metastring);
+  const parsedMetastring = INLINE_HIGHT_REGEX.exec(highlight);
   if (!parsedMetastring) {
     return [];
   }
 
   const lines = code.split('\n');
-  const encodedHiglights = JSON.parse(parsedMetastring[1]);
+  const encodedHiglights = JSON.parse(parsedMetastring[1].replace(/'/g, '"'));
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   return encodedHiglights.map(([step, lineNo, substr, fromIndex]: any[]) => {
     const line = lines[lineNo - 1];
     let index = line.indexOf(substr);
@@ -103,4 +111,41 @@ function getInlineHighlights(metastring: string, code: string) {
       endColumn: index + substr.length,
     };
   });
+}
+
+/**
+ * @param {string} string2Parse    The string to parse
+ * @returns {Array<number>}  Returns an energetic array.
+ */
+function parsePart(string2Parse: string): number[] {
+  const result: number[] = [];
+  let matches: RegExpMatchArray | null;
+
+  for (const str of string2Parse.split(',').map(ele => ele.trim())) {
+    // just a number
+    if (/^-?\d+$/.test(str)) {
+      result.push(parseInt(str, 10));
+    } else if ((matches = str.match(/^(-?\d+)(-|\.\.\.?|\u2025|\u2026|\u22EF)(-?\d+)$/))) {
+      // 1-5 or 1..5 (equivalent) or 1...5 (doesn't include 5)
+      // eslint-disable-next-line prefer-const
+      let [_, lhs, sep, rhs] = matches;
+
+      if (lhs && rhs) {
+        const _lhs = parseInt(lhs, 10);
+        let _rhs = parseInt(rhs, 10);
+        const incr = _lhs < _rhs ? 1 : -1;
+
+        // Make it inclusive by moving the right 'stop-point' away by one.
+        if (sep === '-' || sep === '..' || sep === '\u2025') {
+          _rhs += incr;
+        }
+
+        for (let i = _lhs; i !== _rhs; i += incr) {
+          result.push(i);
+        }
+      }
+    }
+  }
+
+  return result;
 }
