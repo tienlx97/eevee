@@ -18,8 +18,8 @@ export const useLinkIcon = (props: LinkIconProps, ref: React.Ref<HTMLAnchorEleme
     textWrap,
     iconFill,
     iconRegular,
-    iconWrapColor = tokens.foreground1,
-    rootColor = tokens.foreground3,
+    iconWrapColor = tokens.f1,
+    rootColor = tokens.f3,
     icon,
     ...rest
   } = props;

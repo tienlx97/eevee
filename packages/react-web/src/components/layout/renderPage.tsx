@@ -13,6 +13,7 @@ export const renderPage = (state: PageState) => {
       <NavBar />
       <Main>{slotProps.root.children}</Main>
       {!hide && <Right />}
+      {/* {!!hide && <Right />} */}
     </slots.root>
   );
 };

@@ -32,7 +32,7 @@ const useAnchorStyles = makeStyles({
       ...shorthands.outline('none'),
 
       [`& .${contentHeadingClassname.icon}`]: {
-        ...shorthands.outline('2px', 'auto', tokens.foreground3),
+        ...shorthands.outline('2px', 'auto', tokens.f3),
       },
     },
 

@@ -1,6 +1,6 @@
 import { makeStyles, shorthands } from '@griffel/react';
 import * as React from 'react';
-import { tokens } from '../../../../react-theme/src/tokens';
+import { tokens } from '@eevee/react-theme';
 
 type HorizonTalRuleProps = JSX.IntrinsicElements['hr'] & {
   maxWidth?: number;
@@ -33,7 +33,7 @@ const useHrStyles = makeStyles({
     height: '10px',
 
     '& line': {
-      stroke: tokens.border1,
+      stroke: tokens.b1,
       strokeWidth: tokens.strokeWidthThick,
       strokeLinecap: 'round',
       vectorEffect: 'non-scaling-stroke',

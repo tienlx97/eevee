@@ -18,7 +18,7 @@ const useRootStyles = makeStyles({
       content: '""',
       width: '100%',
       height: '3px',
-      backgroundColor: tokens.foreground7,
+      backgroundColor: tokens.f7,
       position: 'absolute',
       top: 0,
       left: 0,

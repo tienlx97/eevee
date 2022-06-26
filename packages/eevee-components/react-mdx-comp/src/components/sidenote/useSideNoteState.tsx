@@ -42,17 +42,7 @@ export const useSideNoteState = (state: SideNoteState): SideNoteState => {
     ...state.root.style,
   };
 
-  switch (state.type) {
-    case 'info':
-      !state.title && (state.title = 'Info');
-      break;
-    case 'success':
-      !state.title && (state.title = 'Tip');
-      break;
-    default:
-      !state.title && (state.title = 'Warning');
-      break;
-  }
+  !state.title && (state.title = state.type);
 
   return state;
 };

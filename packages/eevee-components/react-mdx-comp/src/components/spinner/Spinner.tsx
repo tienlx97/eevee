@@ -9,7 +9,7 @@ import './Spinner.css';
 const useStyles = makeStyles({
   wrapper: {
     display: 'block',
-    color: tokens.foreground1,
+    color: tokens.f1,
     opacity: 0.75,
     animationName: {
       from: {

@@ -1,2 +1,2 @@
 export * from './Ol';
-export { OlClassname } from './useOlStyles';
+export { olClassname } from './useOlStyles';

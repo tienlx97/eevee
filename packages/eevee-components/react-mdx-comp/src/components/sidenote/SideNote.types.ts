@@ -8,9 +8,11 @@ export type SideNoteSlots = {
   showMore: NonNullable<EeveeSlot<typeof Button>>;
 };
 
+export type SideNoteTypeName = 'Note' | 'Tip' | 'Important' | 'Caution' | 'Warning';
+
 export type SideNoteProps = EeveeProps<Partial<SideNoteSlots>> & {
   title?: string;
-  type?: 'info' | 'success' | 'warning';
+  type?: 'Note' | 'Tip' | 'Important' | 'Caution' | 'Warning';
 };
 
 export type SideNoteState = EeveeState<SideNoteSlots> &
