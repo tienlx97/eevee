@@ -61,6 +61,10 @@ export const EThemeProvider: React.FC<EThemeProviderProps> = ({ children, darkTh
       rawSetColorMode(colorValue);
 
       // Persist it on update
+      const html = targetDocument.getElementById('html-client-id');
+      if (html) {
+        html.className = colorValue === 'dark' ? 'dark' : '';
+      }
       localStorage.setItem('color-mode', String(colorValue));
     };
 

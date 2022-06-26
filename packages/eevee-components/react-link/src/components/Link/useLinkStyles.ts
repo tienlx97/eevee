@@ -37,7 +37,7 @@ const useRootStyles = makeStyles({
 
   focusIndicator: {
     ':focus': {
-      ...shorthands.outline('2px', 'auto', tokens.foreground7),
+      ...shorthands.outline('2px', 'auto', tokens.f7),
       outlineOffset: '2px',
     },
 
@@ -49,19 +49,19 @@ const useRootStyles = makeStyles({
     minWidth: '0px',
     overflowWrap: 'break-word',
     fontFamily: 'inherit',
-    color: tokens.foreground7,
+    color: tokens.f7,
 
     '@media (hover: hover)': {
-      boxShadow: `0px 0px 0px ${tokens.foreground7}`, // rgb(29, 155, 240)
+      boxShadow: `0px 0px 0px ${tokens.f7}`, // rgb(29, 155, 240)
       ':hover': {
         // textDecorationThickness: tokens.strokeWidthThin,
         // textDecorationLine: 'underline',
 
-        // color: tokens.foreground7, // rgb(29, 155, 240)
+        // color: tokens.f7, // rgb(29, 155, 240)
 
         transitionProperty: 'box-shadow',
         transitionDuration: '200ms',
-        boxShadow: `0px 2px 0px ${tokens.foreground7}`, // rgb(29, 155, 240)
+        boxShadow: `0px 2px 0px ${tokens.f7}`, // rgb(29, 155, 240)
       },
     },
   },

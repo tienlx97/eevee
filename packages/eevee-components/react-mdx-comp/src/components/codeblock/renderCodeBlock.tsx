@@ -3,7 +3,7 @@
 import * as React from 'react';
 import type { CodeBlockState } from './CodeBlock.types';
 import { SandpackCodeViewer, SandpackProvider, SandpackThemeProvider } from '@codesandbox/sandpack-react';
-import { CustomTheme } from '../sandpack/themes/index';
+import { CustomTheme } from './themes/index';
 /**
  * Render the final JSX of CodeBlock
  */

@@ -7,8 +7,7 @@
     "importHelpers": true,
     "jsx": "react",
     "noUnusedLocals": true,
-    "preserveConstEnums": true,
-    "allowSyntheticDefaultImports": true
+    "preserveConstEnums": true
   },
   "files": [],
   "include": ["src", "./babel.config.js", "./jest.config.js", "./.eslintrc.json"],

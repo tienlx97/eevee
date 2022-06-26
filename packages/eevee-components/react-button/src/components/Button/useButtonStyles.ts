@@ -26,9 +26,9 @@ const useRootStyles = makeStyles({
     textOverflow: 'ellipsis',
     whiteSpace: 'nowrap',
 
-    backgroundColor: tokens.background1, // #16181d #fff
-    color: tokens.foreground1, // #fff #hsl(222, 22%, 5%)
-    ...shorthands.border(tokens.strokeWidthThin, 'solid', tokens.border1), // #666666 #d1d1d1
+    backgroundColor: tokens.bg1, // #16181d #fff
+    color: tokens.f1, // #fff #hsl(222, 22%, 5%)
+    ...shorthands.border(tokens.strokeWidthThin, 'solid', tokens.b1), // #666666 #d1d1d1
 
     fontFamily: tokens.fontFamily,
 
@@ -37,7 +37,7 @@ const useRootStyles = makeStyles({
     ':hover': {
       // backgroundColor: tokens.colorBackground1Hover,
       // ...shorthands.borderColor(tokens.colorStroke1Hover), // #757575 #c7c7c7
-      color: tokens.foreground1,
+      color: tokens.f1,
 
       cursor: 'pointer',
 
@@ -86,18 +86,18 @@ const useRootStyles = makeStyles({
   // Appearance variations
   // for apearance = transparent
   transparent: {
-    backgroundColor: tokens.backgroundTransparent,
+    backgroundColor: tokens.bgTransparent,
     ...shorthands.borderColor('transparent'),
-    color: tokens.foreground1,
+    color: tokens.f1,
 
     ':hover': {
-      backgroundColor: tokens.backgroundTransparent,
+      backgroundColor: tokens.bgTransparent,
       ...shorthands.borderColor('transparent'),
       // color: tokens.colorForeground2BrandHover,
     },
 
     ':hover:active': {
-      backgroundColor: tokens.backgroundTransparent,
+      backgroundColor: tokens.bgTransparent,
       ...shorthands.borderColor('transparent'),
       // color: tokens.colorForeground2BrandPressed,
     },
@@ -156,16 +156,16 @@ const useRootStyles = makeStyles({
 const useRootDisabledStyles = makeStyles({
   // Base styles
   base: {
-    backgroundColor: tokens.backgroundDisabled, // #141414 ##f0f0f0
-    ...shorthands.borderColor(tokens.borderDisable), // #424242 #e0e0e0
-    color: tokens.foregroundDisabled, // #5c5c5c # #bdbdbd
+    backgroundColor: tokens.bgDisable, // #141414 ##f0f0f0
+    ...shorthands.borderColor(tokens.bDisable), // #424242 #e0e0e0
+    color: tokens.fDisable, // #5c5c5c # #bdbdbd
 
     cursor: 'not-allowed',
 
     ':hover': {
-      backgroundColor: tokens.backgroundDisabled, // #141414 ##f0f0f0
-      ...shorthands.borderColor(tokens.borderDisable), // #424242 #e0e0e0
-      color: tokens.foregroundDisabled, // #5c5c5c # #bdbdbd
+      backgroundColor: tokens.bgDisable, // #141414 ##f0f0f0
+      ...shorthands.borderColor(tokens.bDisable), // #424242 #e0e0e0
+      color: tokens.fDisable, // #5c5c5c # #bdbdbd
 
       cursor: 'not-allowed',
 
@@ -178,9 +178,9 @@ const useRootDisabledStyles = makeStyles({
     },
 
     ':hover:active': {
-      backgroundColor: tokens.backgroundDisabled, // #141414 ##f0f0f0
-      ...shorthands.borderColor(tokens.borderDisable), // #424242 #e0e0e0
-      color: tokens.foregroundDisabled, // #5c5c5c # #bdbdbd
+      backgroundColor: tokens.bgDisable, // #141414 ##f0f0f0
+      ...shorthands.borderColor(tokens.bDisable), // #424242 #e0e0e0
+      color: tokens.fDisable, // #5c5c5c # #bdbdbd
 
       cursor: 'not-allowed',
 
@@ -242,9 +242,9 @@ const useRootFocusStyles = makeStyles({
       outlineColor: 'transparent',
       outlineWidth: tokens.strokeWidthThick,
       outlineStyle: 'solid',
-      boxShadow: `
-        ${tokens.shadow4},
-        0 0 0 2px ${tokens.foreground1} `, // '#fff #000
+      // boxShadow: `
+      //   ${tokens.shadow4},
+      //   0 0 0 2px ${tokens.f1} `, // '#fff #000
       zIndex: 1,
     },
   },

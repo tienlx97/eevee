@@ -18,7 +18,7 @@ export const linkIconClassNames: SlotClassNames<LinkIconSlots> = {
 const useLinkStyles = makeStyles({
   focusIndicator: {
     ':focus': {
-      ...shorthands.outline('2px', 'auto', tokens.foreground3),
+      ...shorthands.outline('2px', 'auto', tokens.f3),
       outlineOffset: '2px',
     },
 
@@ -38,7 +38,7 @@ const useLinkStyles = makeStyles({
     transitionDuration: '0.2s',
     transitionProperty: 'background-color, box-shadow',
     outlineStyle: 'none',
-    backgroundColor: tokens.background4,
+    backgroundColor: tokens.bg4,
     //     margin-right: calc(-9px); // inject
   },
 
@@ -50,7 +50,9 @@ const useLinkStyles = makeStyles({
 });
 
 const useIconWrapStyles = makeStyles({
-  base: resetCommonTextStyles(),
+  base: {
+    ...resetCommonTextStyles(),
+  },
   reset: {
     ...resetCommonTextStyles(),
   },
@@ -66,7 +68,7 @@ const useIconWrapStyles = makeStyles({
     lineHeight: tokens.lineHeightBase300,
     fontSize: tokens.fontSizeBase400,
     fontWeight: tokens.fontWeightSemibold,
-    color: tokens.foreground1, // inject
+    color: tokens.f1, // inject
   },
 });
 
@@ -82,8 +84,8 @@ const useTextWrapStyles = makeStyles({
     lineHeight: tokens.lineHeightBase300,
     fontSize: tokens.fontSizeBase400,
     fontFamily: 'inherit',
-    // color: tokens.foreground3,
-    // ...shorthands.borderBottom('2px', 'solid', tokens.background3), // inject
+    // color: tokens.f3,
+    // ...shorthands.borderBottom('2px', 'solid', tokens.bg3), // inject
   },
 });
 
@@ -91,7 +93,7 @@ const useHoverStyles = makeStyles({
   iconOnly: {
     '@media (hover: hover)': {
       ':hover': {
-        backgroundColor: tokens.hover5,
+        backgroundColor: tokens.h5,
       },
     },
   },

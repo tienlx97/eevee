@@ -15,6 +15,10 @@ const useStyles = makeStyles({
     display: 'flex',
     alignItems: 'center',
     backgroundColor: tokens.syntaxBg,
+    '--tw-ring-offset-shadow': '0 0 #0000',
+    '--tw-ring-shadow': '0 0 #0000',
+    '--tw-shadow': '0px 0.8px 2px rgba(0,0,0,.032),0px 2.7px 6.7px rgba(0,0,0,.048),0px 12px 30px rgba(0,0,0,.08)',
+    boxShadow: 'var(--tw-ring-offset-shadow,0 0 #0000),var(--tw-ring-shadow,0 0 #0000),var(--tw-shadow)',
   },
   'my-8': {
     marginTop: '2rem',
@@ -26,7 +30,7 @@ const useStyles = makeStyles({
 const useInlineHiglightStyles = makeStyles({
   root: {
     '& *': {
-      color: tokens.foreground1,
+      color: tokens.f1,
     },
 
     '& code': {
@@ -43,23 +47,27 @@ const useInlineHiglightStyles = makeStyles({
     borderBottomWidth: '2px',
   },
   bgBlue: {
-    backgroundColor: tokens.foreground3,
-    ...shorthands.borderColor(tokens.foreground3),
+    backgroundColor: tokens.f3,
+    ...shorthands.borderColor(tokens.f3),
   },
 
   bgYellow: {
-    backgroundColor: tokens.foreground8,
-    ...shorthands.borderColor(tokens.foreground8),
+    backgroundColor: tokens.f8,
+    ...shorthands.borderColor(tokens.f8),
   },
 
   bgGreen: {
-    backgroundColor: tokens.foreground4,
-    ...shorthands.borderColor(tokens.foreground4),
+    backgroundColor: tokens.f4,
+    ...shorthands.borderColor(tokens.f4),
   },
 
   bgPurple: {
-    backgroundColor: tokens.foreground7,
-    ...shorthands.borderColor(tokens.foreground7),
+    backgroundColor: tokens.f7,
+    ...shorthands.borderColor(tokens.f7),
+  },
+
+  highlightClasses: {
+    backgroundColor: tokens.syntaxHighlight,
   },
 });
 

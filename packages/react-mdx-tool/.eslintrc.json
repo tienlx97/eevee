@@ -1,4 +1,0 @@
-{
-  "extends": ["plugin:@eevee/eslint-plugin/react"],
-  "root": true
-}

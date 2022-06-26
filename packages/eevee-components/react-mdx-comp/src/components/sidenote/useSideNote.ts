@@ -5,7 +5,7 @@ import { resolveShorthand } from '@eevee/react-utilities';
 import { useSideNoteState } from './useSideNoteState';
 
 export const useSideNote = (props: SideNoteProps, ref?: React.Ref<HTMLElement>): SideNoteState => {
-  const { as, content, type = 'info', title, showMore, ...rest } = props;
+  const { as, content, type = 'Tip', title, showMore, ...rest } = props;
 
   const state: SideNoteState = {
     title,

@@ -24,7 +24,7 @@ const useRootStyles = makeStyles({
       '::before': {
         content: "counters(var(--counter-name), '.') '. '",
         fontFeatureSettings: 'tnum',
-        color: tokens.foreground3,
+        color: tokens.f3,
         fontWeight: tokens.fontWeightMedium,
         paddingRight: '12px',
       },
@@ -33,7 +33,7 @@ const useRootStyles = makeStyles({
     // '& li::before': {
     //   content: "counters(var(--counter-name), '.') '. '",
     //   fontFeatureSettings: "'tnum'",
-    //   color: tokens.foreground3,
+    //   color: tokens.f3,
     //   fontWeight: tokens.fontWeightMedium,
     //   paddingRight: '12px',
     // },

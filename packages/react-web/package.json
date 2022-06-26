@@ -86,6 +86,7 @@
     "workbox-cacheable-response": "6.5.3",
     "mdx-bundler": "9.0.1",
     "esbuild": "^0.14.39",
-    "firebase": "9.8.3"
+    "firebase": "9.8.3",
+    "@codesandbox/sandpack-react": "v0.19.8-experimental.4"
   }
 }

@@ -1,6 +1,6 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import * as React from 'react';
 
-import { SandPack } from './SandPack';
 import { Paragraph } from './Paragraph';
 import type { ParagraphProps } from './Paragraph';
 
@@ -36,6 +36,69 @@ import { HorizontalRule } from './HorizontalRule';
 import { SideNote, Expanded } from './SideNote';
 
 import { CodeBlock } from './CodeBlock';
+import type { MetaString } from './CodeBlock';
+
+// type PreProps = Partial<React.ReactHTMLElement<HTMLPreElement>['props']> & {
+//   language: string;
+//   codeString: string;
+//   line?: string;
+//   fileName?: string;
+//   url?: string;
+//   className: string;
+// };
+
+/**
+ * Turns array elements into a type.
+ *
+ * `['name', 'email']` becomes `'name' | 'email'`
+ */
+type ArrayElement<ArrayType extends readonly unknown[]> = ArrayType[number];
+
+/**
+ * Returns an array of keys that matches the type `keyof T`
+ *
+ * @param object Any object.
+ */
+const keys = <T extends {}>(object: T): (keyof T)[] => {
+  const objectKeys = Object.keys(object);
+
+  return objectKeys.filter(key => object.hasOwnProperty(key)) as any;
+};
+
+const omit = <T extends {}, K extends (keyof T)[], P extends ArrayElement<K>>(object: T, fields: K): Omit<T, P> => {
+  return keys(object).reduce<any>((obj, field) => {
+    if (!fields.includes(field)) {
+      obj[field] = object[field];
+    }
+
+    return obj;
+  }, {});
+};
+
+const preToCodeBlock = (preProps: any) => {
+  if (
+    // children is code element
+    preProps.children &&
+    // code props
+    preProps.children.props
+  ) {
+    // we have a <pre><code> situation
+    const { children: codeString, className = '', ...props } = preProps.children.props;
+
+    const matches = className.match(/language-(?<lang>.*)/);
+
+    return {
+      metastring: {
+        fileName: preProps.filename,
+        highlight: preProps.highlight,
+        language: matches && matches.groups && matches.groups.lang ? matches.groups.lang : undefined,
+      } as MetaString,
+      children: codeString.trim() as string,
+      className,
+      ...omit(props, ['children']),
+    };
+  }
+};
 
 export const MDXComponents = {
   p: (props: ParagraphProps) => <Paragraph {...props} />,
@@ -53,9 +116,22 @@ export const MDXComponents = {
   h2: (props: ContentHeadingProps) => <CH2 {...props} />,
   h3: (props: ContentHeadingProps) => <CH3 {...props} />,
   hr: HorizontalRule,
-  code: CodeBlock,
+  code: ({ className, children, ...rest }: any) => <CodeBlock children={children as string} {...rest} />,
   // The code block renders <pre> so we just want a div here.
-  pre: (p: JSX.IntrinsicElements['div']) => <div {...p} />,
+  // pre: ({ children, className, style, ...rest }: any) => (
+  //   <div children={children} className={className} style={style} {...rest} />
+  // ),
+
+  pre: (preProps: Partial<React.ReactHTMLElement<HTMLPreElement>['props']>) => {
+    const props = preToCodeBlock(preProps);
+
+    if (props) {
+      return <CodeBlock {...props} />;
+    }
+
+    return <pre {...preProps} />;
+  },
+
   // =======
   Paragraph,
   TextLink,
@@ -78,7 +154,6 @@ export const MDXComponents = {
   H2,
   H3,
   CodeSnippet,
-  SandPack,
   HorizontalRule,
   SideNote,
   Expanded,

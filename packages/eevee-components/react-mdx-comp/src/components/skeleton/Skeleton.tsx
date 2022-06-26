@@ -17,7 +17,7 @@ export const Skeleton = () => {
 
   return (
     <div className={styles.wrapper}>
-      <Spinner size={48} color={tokens.foreground10} />
+      <Spinner size={48} color={tokens.f10} />
     </div>
   );
 };
