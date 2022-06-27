@@ -17,3 +17,4 @@
 - [Plop sample 2](https://github.com/microsoft/fluentui/blob/master/scripts/create-package/plopfile.ts)
 - [Plop sample 3](https://viblo.asia/p/su-dung-plop-de-generate-code-Qpmlew8kKrd)
 - [Async useEffect](https://devtrium.com/posts/async-functions-useeffect#the-wrong-way)
+- [Full width](https://css-tricks.com/full-width-containers-limited-width-parents/)
