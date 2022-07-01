@@ -19,3 +19,4 @@
 - [Async useEffect](https://devtrium.com/posts/async-functions-useeffect#the-wrong-way)
 - [Full width](https://css-tricks.com/full-width-containers-limited-width-parents/)
 - [mjs cjs](https://www.sensedeep.com/blog/posts/2021/how-to-create-single-source-npm-module.html)
+- [advance map typescript](https://medium.com/hypersphere-codes/advanced-typescript-mapped-types-and-more-b5d023bd6539)
