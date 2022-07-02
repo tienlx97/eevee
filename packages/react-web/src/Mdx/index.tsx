@@ -4,7 +4,7 @@ import { getMDXComponent } from 'mdx-bundler/client';
 //import globals
 import { MDXComponents } from '@eevee/react-mdx-comp';
 
-export const MDX: React.FC<{ source: string }> = ({ source }) => {
+export const MDX = ({ source }: { source: string }) => {
   const Component = useMemo(
     () =>
       getMDXComponent(source, {
@@ -12,5 +12,6 @@ export const MDX: React.FC<{ source: string }> = ({ source }) => {
       }),
     [source],
   );
-  return <Component components={{ ...MDXComponents }} />;
+
+  return <Component components={MDXComponents} />;
 };
