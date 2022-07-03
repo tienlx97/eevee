@@ -23,7 +23,13 @@ const Root = () => {
 
   return (
     <GAProvider>
-      <EeveeProvider dir="ltr" className={classes.wrapper} lightTheme={webLightTheme} darkTheme={webDarkTheme}>
+      <EeveeProvider
+        //
+        dir="ltr"
+        className={classes.wrapper}
+        lightTheme={webLightTheme}
+        darkTheme={webDarkTheme}
+      >
         <Router>
           <App />
         </Router>

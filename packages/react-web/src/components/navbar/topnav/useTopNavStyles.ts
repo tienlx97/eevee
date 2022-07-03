@@ -44,7 +44,7 @@ const useContentStyles = makeStyles({
     height: `${navHeight}px`,
     alignItems: 'center',
     position: 'fixed',
-    boxShadow: `0 0 #0000,0 0 #0000,0 1px 3px 0 ${tokens.b1},0 1px 2px 0 ${tokens.b1}`,
+    boxShadow: `0px -2px 10px ${tokens.b1}`,
     top: 0,
     right: 0,
     left: 0,
