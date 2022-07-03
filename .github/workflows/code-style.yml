@@ -4,6 +4,9 @@ on:
   push:
     branches:
       - main
+      - dev
+      - feat/*
+      - fix/*
   # pull_request:
   #   type: [opened, reopened, synchronize]
   workflow_dispatch:

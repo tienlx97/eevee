@@ -3,7 +3,7 @@ import * as client from 'react-dom/client';
 import { GAProvider } from './ga-context';
 import { BrowserRouter as Router } from 'react-router-dom';
 import { EeveeProvider } from '@eevee/react-provider';
-import { webDarkTheme, webLightTheme, tokens, themeGenerate } from '@eevee/react-theme';
+import { webDarkTheme, webLightTheme, tokens } from '@eevee/react-theme';
 
 import { App } from './app';
 
