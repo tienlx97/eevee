@@ -3,7 +3,7 @@ import * as client from 'react-dom/client';
 import { GAProvider } from './ga-context';
 import { BrowserRouter as Router } from 'react-router-dom';
 import { EeveeProvider } from '@eevee/react-provider';
-import { webDarkTheme, webLightTheme, tokens } from '@eevee/react-theme';
+import { webDarkTheme, webLightTheme, tokens, themeGenerate } from '@eevee/react-theme';
 
 import { App } from './app';
 
@@ -23,7 +23,13 @@ const Root = () => {
 
   return (
     <GAProvider>
-      <EeveeProvider dir="ltr" className={classes.wrapper} lightTheme={webLightTheme} darkTheme={webDarkTheme}>
+      <EeveeProvider
+        //
+        dir="ltr"
+        className={classes.wrapper}
+        lightTheme={webLightTheme}
+        darkTheme={webDarkTheme}
+      >
         <Router>
           <App />
         </Router>

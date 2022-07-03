@@ -644,9 +644,11 @@ export type Theme = FontSizeTokens &
   FontFamilyTokens &
   FontWeightTokens &
   // ColorPaletteTokens &
-  ColorTokens &
+  ColorTokens
+  // &
   // SanpackColor &
-  DurationTokens;
+  // DurationTokens
+  ;
 
 export type PartialTheme = Partial<Theme>;
 
