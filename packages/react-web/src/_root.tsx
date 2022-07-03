@@ -3,7 +3,7 @@ import * as client from 'react-dom/client';
 import { GAProvider } from './ga-context';
 import { BrowserRouter as Router } from 'react-router-dom';
 import { EeveeProvider } from '@eevee/react-provider';
-import { webDarkTheme, webLightTheme, tokens } from '@eevee/react-theme';
+import { webDarkTheme, webLightTheme, tokens, themeGenerate } from '@eevee/react-theme';
 
 import { App } from './app';
 
@@ -11,6 +11,9 @@ import './asset/css/index.css';
 import '@codesandbox/sandpack-react/dist/index.css';
 
 import { makeStyles } from '@griffel/react';
+
+// eslint-disable-next-line no-console
+console.log(themeGenerate);
 
 const useStyles = makeStyles({
   wrapper: {
@@ -23,7 +26,13 @@ const Root = () => {
 
   return (
     <GAProvider>
-      <EeveeProvider dir="ltr" className={classes.wrapper} lightTheme={webLightTheme} darkTheme={webDarkTheme}>
+      <EeveeProvider
+        //
+        dir="ltr"
+        className={classes.wrapper}
+        lightTheme={webLightTheme}
+        darkTheme={webDarkTheme}
+      >
         <Router>
           <App />
         </Router>

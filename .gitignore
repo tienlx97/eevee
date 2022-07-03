@@ -33,6 +33,7 @@ lib-es2015
 coverage
 dist
 dist-storybook
+build
 screenshots
 .cache
 

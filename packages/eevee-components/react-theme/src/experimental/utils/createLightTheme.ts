@@ -1,9 +1,9 @@
-import { colorPaletteTokens } from '../alias/lightColorPalette';
+// import { colorPaletteTokens } from '../alias/lightColorPalette';
 import { generateColorTokens } from '../alias/lightColor';
 
 import { borderRadius, fontSizes, lineHeights, fontFamilies, strokeWidths, fontWeights } from '../global/index';
 import type { BrandVariants, Theme } from '../theme.types';
-import { durations } from '../global/durations';
+// import { durations } from '../global/durations';
 import { horizontalSpacings, verticalSpacings } from '../global/spacings';
 
 export const createLightTheme: (brand: BrandVariants) => Theme = brand => {
@@ -18,9 +18,9 @@ export const createLightTheme: (brand: BrandVariants) => Theme = brand => {
     ...strokeWidths,
     ...horizontalSpacings,
     ...verticalSpacings,
-    ...durations,
+    // ...durations,
 
     ...colorTokens,
-    ...colorPaletteTokens,
+    // ...colorPaletteTokens,
   };
 };
