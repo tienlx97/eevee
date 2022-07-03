@@ -1,4 +1,3 @@
-/* eslint-disable no-unused-vars */
 /* eslint-disable @typescript-eslint/naming-convention */
 /* eslint-disable import/no-extraneous-dependencies */
 const fs = require('fs');
@@ -527,7 +526,8 @@ function loadPluginList(isEnvProduction, env, isEnvDevelopment, shouldUseReactRe
     isEnvProduction &&
       fs.existsSync(swSrc) &&
       new WorkboxWebpackPlugin.InjectManifest({
-        swSrc,
+        swSrc: './src/sw.js',
+        swDest: 'sw.js',
         dontCacheBustURLsMatching: /\.[0-9a-f]{8}\./,
         exclude: [/\.map$/, /asset-manifest\.json$/, /LICENSE/],
         // Bump up the default maximum size (2mb) that's precached,

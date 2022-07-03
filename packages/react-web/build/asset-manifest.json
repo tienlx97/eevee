@@ -1,8 +1,9 @@
 {
   "files": {
-    "main.css": "/static/css/main.0d5175f0.css",
-    "main.js": "/static/js/main.72095e55.js",
+    "main.css": "/static/css/main.17022677.css",
+    "main.js": "/static/js/main.b91ef8de.js",
     "static/js/66.2e86f523.chunk.js": "/static/js/66.2e86f523.chunk.js",
+    "sw.js": "/sw.js",
     "static/media/sriracha.woff2": "/static/media/sriracha.bb7e4281fdbceb24e0d2.woff2",
     "static/media/LeagueMono-Bold.woff2": "/static/media/LeagueMono-Bold.2e3b96597e831fa08636.woff2",
     "static/media/wotfard-medium-webfont.woff2": "/static/media/wotfard-medium-webfont.557bb8cd24a5acee86f6.woff2",
@@ -260,8 +261,6 @@
     "../lib/packages/react-web/src/components/toggleTheme/useToggleTheme.d.ts": "/../lib/packages/react-web/src/components/toggleTheme/useToggleTheme.d.ts",
     "../lib/packages/react-web/src/pages/Blog/useBlogState.d.ts": "/../lib/packages/react-web/src/pages/Blog/useBlogState.d.ts",
     "../lib/packages/react-web/src/pages/common/PageOrPageNotFound.d.ts": "/../lib/packages/react-web/src/pages/common/PageOrPageNotFound.d.ts",
-    "../lib/packages/eevee-components/react-theme/src/experimental/alias/darkColorPalette.d.ts": "/../lib/packages/eevee-components/react-theme/src/experimental/alias/darkColorPalette.d.ts",
-    "../lib/packages/eevee-components/react-theme/src/experimental/alias/lightColorPalette.d.ts": "/../lib/packages/eevee-components/react-theme/src/experimental/alias/lightColorPalette.d.ts",
     "../lib/packages/eevee-components/react-theme/src/experimental/global/borderRadius.d.ts": "/../lib/packages/eevee-components/react-theme/src/experimental/global/borderRadius.d.ts",
     "../lib/packages/react-web/src/Mdx/index.d.ts": "/../lib/packages/react-web/src/Mdx/index.d.ts",
     "../lib/packages/eevee-components/react-theme/src/experimental/global/strokeWidths.d.ts": "/../lib/packages/eevee-components/react-theme/src/experimental/global/strokeWidths.d.ts",
@@ -353,9 +352,9 @@
     "../lib/packages/react-web/src/components/icons/write/index.d.ts": "/../lib/packages/react-web/src/components/icons/write/index.d.ts",
     "../lib/packages/react-web/src/components/navbar/sidenav/top/index.d.ts": "/../lib/packages/react-web/src/components/navbar/sidenav/top/index.d.ts",
     "../lib/packages/react-web/src/constants/index.d.ts": "/../lib/packages/react-web/src/constants/index.d.ts",
-    "main.0d5175f0.css.map": "/static/css/main.0d5175f0.css.map",
-    "main.72095e55.js.map": "/static/js/main.72095e55.js.map",
+    "main.17022677.css.map": "/static/css/main.17022677.css.map",
+    "main.b91ef8de.js.map": "/static/js/main.b91ef8de.js.map",
     "66.2e86f523.chunk.js.map": "/static/js/66.2e86f523.chunk.js.map"
   },
-  "entrypoints": ["static/css/main.0d5175f0.css", "static/js/main.72095e55.js"]
+  "entrypoints": ["static/css/main.17022677.css", "static/js/main.b91ef8de.js"]
 }
