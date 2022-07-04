@@ -1,7 +1,7 @@
 import { makeStyles, shorthands } from '@griffel/react';
 import * as React from 'react';
 import { LinkIcon } from '@eevee/react-link';
-import { Face, Kid } from '../../../icons/index';
+import { Face } from '../../../icons/index';
 
 const useRootStyles = makeStyles({
   base: {
@@ -16,7 +16,7 @@ export const Top = () => {
   const styles = useRootStyles();
   return (
     <div className={styles.base}>
-      <LinkIcon icon={<Kid width={40} height={40} />} href="/home" />
+      <LinkIcon icon={<Face width={40} height={40} />} href="/home" />
     </div>
   );
 };
