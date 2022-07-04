@@ -12,6 +12,8 @@ import '@codesandbox/sandpack-react/dist/index.css';
 
 import { makeStyles } from '@griffel/react';
 
+import registerServiceWorker from './serviceWorkerRegistration';
+
 const useStyles = makeStyles({
   wrapper: {
     backgroundColor: tokens.bg1,
@@ -48,3 +50,4 @@ const root = client.createRoot(rootElement as Element);
 root.render(<Root />);
 
 // Initialize poroWorker if there's a service worker already.
+registerServiceWorker();
