@@ -1,6 +1,6 @@
 import { SlotClassNames } from '@eevee/react-utilities';
 import { makeStyles, mergeClasses, shorthands } from '@griffel/react';
-import { breakPoints } from '@eevee/react-theme';
+import { breakPoints, tokens } from '@eevee/react-theme';
 import { PostImageSlots, PostImageState } from './PostImage.types';
 
 export const postImageClassname: SlotClassNames<PostImageSlots> = {
@@ -35,7 +35,7 @@ const useCaptionStyles = makeStyles({
     paddingTop: '12px',
     fontSize: '14px',
     textAlign: 'center',
-    color: 'black',
+    color: tokens.f1,
   },
 });
 

@@ -1,7 +1,6 @@
 import { makeStyles, shorthands } from '@griffel/react';
 import * as React from 'react';
 import { LinkIcon } from '@eevee/react-link';
-import { tokens } from '@eevee/react-theme';
 import { Face } from '../../../icons/index';
 
 const useRootStyles = makeStyles({
