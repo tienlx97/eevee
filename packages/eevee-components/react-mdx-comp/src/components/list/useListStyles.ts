@@ -28,6 +28,8 @@ const useOrderedStyles = makeStyles({
     counterReset: 'counts',
     listStyleType: 'none',
 
+    paddingLeft: '16px',
+
     '& li': {
       counterIncrement: 'counts',
       alignItems: 'baseline',
@@ -73,6 +75,7 @@ const useUnOrderedStyles = makeStyles({
     fontSize: 'calc(19/16*1rem)',
     marginBottom: '32px',
     listStyleType: 'none',
+    paddingLeft: '16px',
 
     [`@media ${breakPoints.xsAndSmaller}`]: {
       fontSize: 'calc(18 / 16 * 1rem)',
