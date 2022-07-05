@@ -68,12 +68,12 @@ export const EThemeProvider: React.FC<EThemeProviderProps> = ({ children, darkTh
       // set theme pwa tag
       const themeTag = root.querySelector('meta[name="theme-color"]');
       if (themeTag) {
-        themeTag.setAttribute('content', String(theme.b1));
+        themeTag.setAttribute('content', String(theme.bg1));
       }
       // ios bar
       const iosStatusBar = root.querySelector('meta[name="apple-mobile-web-app-status-bar-style"]');
       if (iosStatusBar) {
-        iosStatusBar.setAttribute('content', String(theme.b1));
+        iosStatusBar.setAttribute('content', String(theme.bg1));
       }
 
       localStorage.setItem('color-mode', String(colorValue));
