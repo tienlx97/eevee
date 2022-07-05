@@ -455,6 +455,9 @@
       if (html) {
         html.className = color === 'dark' ? color : '';
       }
+      document.querySelector('meta[name="theme-color"]').setAttribute('content', theme.bg1);
+      document.querySelector('meta[name="apple-mobile-web-app-status-bar-style"]').setAttribute('content', theme.bg1);
+
       localStorage.setItem('color-mode', color);
     </script>
 
