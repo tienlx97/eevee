@@ -39,7 +39,7 @@ registerRoute(
   //   url.origin ===
   //   "https://raw.githubusercontent.com/lexuantien/resource/main/fonts/",
   new CacheFirst({
-    cacheName: 'github-fonts-webfonts',
+    cacheName: 'github-fonts',
     plugins: [
       new CacheableResponsePlugin({
         statuses: [0, 200],
