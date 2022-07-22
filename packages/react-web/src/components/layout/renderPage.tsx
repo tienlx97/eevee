@@ -4,6 +4,7 @@ import { Main } from '../main/index';
 import { Right } from '../right/Right';
 import { PageSlot, PageState } from './Page.types';
 import { getSlots } from '@eevee/react-utilities';
+import { BlogContextProvider } from '../../contexts/BlogContext';
 
 export const renderPage = (state: PageState) => {
   const { hide } = state;
@@ -11,8 +12,10 @@ export const renderPage = (state: PageState) => {
   return (
     <slots.root {...slotProps.root}>
       <NavBar />
-      <Main>{slotProps.root.children}</Main>
-      {!hide && <Right />}
+      <BlogContextProvider>
+        <Main>{slotProps.root.children}</Main>
+        {!hide && <Right />}
+      </BlogContextProvider>
       {/* {!!hide && <Right />} */}
     </slots.root>
   );

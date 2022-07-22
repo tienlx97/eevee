@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { useLocation, Routes, Route } from 'react-router-dom';
+import { Routes, Route } from 'react-router-dom';
 import { Page } from './components/layout/index';
 import { Scroll2Top } from './components/ scroll2top/index';
 
@@ -9,8 +9,6 @@ const LazyPageNotFound = React.lazy(() =>
 const LazyBlogItem = React.lazy(() => import('./pages/Blog/index').then(module => ({ default: module.Blog })));
 
 export const App = () => {
-  const location = useLocation();
-
   return (
     <Page>
       <Scroll2Top>

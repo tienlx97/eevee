@@ -91,7 +91,7 @@ const useRootStylesV2 = makeStyles({
   'medium-title': {
     // h1 28
     fontSize: 'calc(28 / 16 * 1rem)',
-    color: tokens.f10,// gray-1000
+    color: tokens.f10, // gray-1000
     lineHeight: '1.2',
   },
 
@@ -104,18 +104,18 @@ const useRootStylesV2 = makeStyles({
   'major-heading': {
     // h2 32
     fontSize: 'calc(32 / 16 * 1rem)',
-    color: tokens.f8,// hsl(53, 100%, 50%)
-    marginTop: '96px',
-    marginBottom: '32px',
+    color: tokens.f8, // hsl(53, 100%, 50%)
+    marginTop: '66px',
+    marginBottom: '25px',
   },
 
   'normal-heading': {
     // h3 25
     fontSize: 'calc(25 / 16 * 1rem)',
     color: tokens.f9, // hsl(210, 25%, 88%)
-    marginTop: '64px',
+    marginTop: '44px',
     marginBottom: '15px',
-    fontWeight: "bolder"
+    fontWeight: 'bolder',
   },
 
   'minor-heading': {
@@ -129,7 +129,7 @@ const useRootStylesV2 = makeStyles({
 
 export const useHeadingStyles = (state: HeadingState): HeadingState => {
   // const rootStyles = useRootStyles();
-  const rootStylesV2 = useRootStylesV2()
+  const rootStylesV2 = useRootStylesV2();
 
   const { type } = state;
 

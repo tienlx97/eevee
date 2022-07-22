@@ -1,5 +1,6 @@
 import * as React from 'react';
 import * as client from 'react-dom/client';
+
 import { GAProvider } from './ga-context';
 import { BrowserRouter as Router } from 'react-router-dom';
 import { EeveeProvider } from '@eevee/react-provider';
@@ -8,11 +9,13 @@ import { webDarkTheme, webLightTheme, tokens } from '@eevee/react-theme';
 import { App } from './app';
 
 import './asset/css/index.css';
+
 import '@codesandbox/sandpack-react/dist/index.css';
 
 import { makeStyles } from '@griffel/react';
 
 import registerServiceWorker from './serviceWorkerRegistration';
+import { BlogContextProvider } from './contexts/BlogContext';
 
 const useStyles = makeStyles({
   wrapper: {
@@ -24,19 +27,19 @@ const Root = () => {
   const classes = useStyles();
 
   return (
-    <GAProvider>
-      <EeveeProvider
-        //
-        dir="ltr"
-        className={classes.wrapper}
-        lightTheme={webLightTheme}
-        darkTheme={webDarkTheme}
-      >
-        <Router>
+    <Router>
+      <GAProvider>
+        <EeveeProvider
+          //
+          dir="ltr"
+          className={classes.wrapper}
+          lightTheme={webLightTheme}
+          darkTheme={webDarkTheme}
+        >
           <App />
-        </Router>
-      </EeveeProvider>
-    </GAProvider>
+        </EeveeProvider>
+      </GAProvider>
+    </Router>
   );
 };
 

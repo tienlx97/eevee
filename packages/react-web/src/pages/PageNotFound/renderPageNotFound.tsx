@@ -2,7 +2,7 @@ import * as React from 'react';
 import { getSlots } from '@eevee/react-utilities';
 import type { PageNotFoundState, PageNotFoundSlots } from './PageNotFound.types';
 import { TextLink } from '@eevee/react-link';
-import { H1, Paragraph, InlineCode } from '@eevee/react-mdx-comp';
+import { H2, Paragraph, InlineCode } from '@eevee/react-mdx-comp';
 
 /**
  * Render the final JSX of PageNotFound
@@ -14,7 +14,7 @@ export const renderPageNotFound = (state: PageNotFoundState) => {
   // TODO Add additional slots in the appropriate place
   return (
     <slots.root {...slotProps.root}>
-      <H1>Page not found</H1>
+      <H2>Page not found</H2>
       {url && url !== '' && (
         <Paragraph>
           Sorry, the page <InlineCode>{url}</InlineCode> could not be found.
