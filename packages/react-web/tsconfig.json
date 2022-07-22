@@ -16,11 +16,6 @@
     "lib": ["es6", "dom"],
     "types": ["react-dom-18", "static-assets", "webpack-env"],
     "skipLibCheck": true
-    // "paths": {
-    //   "@components/*": ["src/components/*"],
-    //   "@hooks": ["src/hooks/*"],
-    //   "@utilities": ["src/utilities/*"]
-    // }
   },
   "include": ["src", "./babel.config.js", "./jest.config.js", "./.eslintrc.json"]
 }

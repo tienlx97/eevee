@@ -1,15 +1,20 @@
-export const getStylesForDepth = (level: number, isActiveHeading: boolean) => {
+import { tokens } from '@eevee/react-theme';
+
+export const getStylesForDepth = (depth: number, isActiveHeading: boolean) => {
   const base = {
-    color: isActiveHeading ? 'var(--color-primary)' : undefined,
+    color: isActiveHeading ? tokens.f3 : undefined,
     opacity: isActiveHeading ? 1 : undefined,
   };
 
-  switch (level) {
+  switch (depth) {
     case 1:
       return {
         ...base,
-        marginTop: 10,
+        // marginTop: 10,
         '--font-size-px': 15,
+        fontWeight: 600,
+        fontSize: '1rem',
+        lineHeight: '1.5rem',
       };
 
     case 2:
@@ -18,6 +23,9 @@ export const getStylesForDepth = (level: number, isActiveHeading: boolean) => {
         marginTop: 3,
         '--font-size-px': 14,
         paddingLeft: 12,
+        fontWeight: 500,
+        fontSize: '.875rem',
+        lineHeight: '1.25rem',
       };
 
     case 3:
@@ -29,7 +37,7 @@ export const getStylesForDepth = (level: number, isActiveHeading: boolean) => {
       };
 
     default:
-      throw new Error('Unsupported heading size: ' + level);
+      throw new Error('Unsupported heading size: ' + depth);
   }
 };
 

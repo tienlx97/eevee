@@ -25,19 +25,12 @@ const useStyles = makeStyles({
 
   contentLinkHeading: {
     display: 'block',
-    opacity: 0.7,
     color: tokens.f10,
     textDecorationLine: 'none',
-    textTransform: 'uppercase',
-
-    transitionProperty: 'opacity',
-    transitionDuration: '500ms',
-    transitionTimingFunction: 'ease',
-    transitionDelay: '0s',
-    fontSize: 'calc(var(--font-size-px) / 16 * 1rem)',
-
+    // fontSize: 'calc(var(--font-size-px) / 16 * 1rem)',
     '&:hover, &:focus': {
-      opacity: 1,
+      // opacity: 1,
+      color: tokens.f8,
       transitionProperty: 'opacity',
       transitionDuration: '0ms',
       transitionTimingFunction: 'ease',

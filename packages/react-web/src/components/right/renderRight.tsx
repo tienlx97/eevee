@@ -32,6 +32,7 @@ const useRootStyles = makeStyles({
  * Render the final JSX of Right
  */
 export const renderRight = (state: RightState) => {
+  const { toc } = state;
   // eslint-disable-next-line react-hooks/rules-of-hooks
   const rootStyles = useRootStyles();
   const { slots, slotProps } = getSlots<RightSlots>(state);
@@ -41,7 +42,8 @@ export const renderRight = (state: RightState) => {
       <div className={rootStyles.root}>
         <div className={rootStyles.div2}>
           <div className={rootStyles.div3}>
-            <Toc />
+            {/*  */}
+            {toc && <Toc toc={toc} />}
           </div>
         </div>
       </div>

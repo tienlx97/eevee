@@ -13,12 +13,15 @@ import { useTocState } from './useTocState';
  * @param ref - reference to root HTMLElement of Toc
  */
 export const useToc = (props: TocProps, ref: React.Ref<HTMLElement>): TocState => {
+  const { toc } = props;
+
   const state: TocState = {
     // TODO add appropriate props/defaults
     components: {
       // TODO add each slot's element type or component
       root: 'div',
     },
+    toc,
     // TODO add appropriate slots, for example:
     // mySlot: resolveShorthand(props.mySlot),
     root: getNativeElementProps('div', {

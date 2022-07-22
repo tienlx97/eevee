@@ -4,6 +4,7 @@ import { tokens } from '@eevee/react-theme';
 
 type HorizonTalRuleProps = JSX.IntrinsicElements['hr'] & {
   maxWidth?: number;
+  splashStyles?: React.CSSProperties;
 };
 
 const useVisuallyHiddenStyles = makeStyles({
@@ -75,14 +76,19 @@ export const normalize = (
   return (newScaleMax - newScaleMin) * standardNormalization + newScaleMin;
 };
 
-export const HorizontalRule = ({ maxWidth = 100 }: HorizonTalRuleProps) => {
+export const HorizontalRule = ({ maxWidth = 100, splashStyles }: HorizonTalRuleProps) => {
   const hrStyles = useHrStyles();
   return (
     <>
       <VisuallyHidden>
         <hr className={hrStyles.root} />
       </VisuallyHidden>
-      <svg className={hrStyles.svg} preserveAspectRatio="none" fill="none" style={{ width: '100%', maxWidth }}>
+      <svg
+        className={hrStyles.svg}
+        preserveAspectRatio="none"
+        fill="none"
+        style={{ width: '100%', maxWidth, ...splashStyles }}
+      >
         {range(NUM_OF_SEGMENTS).map(i => {
           const x1 = normalize(i, 0, NUM_OF_SEGMENTS, 0, maxWidth);
           const y1 = 0;

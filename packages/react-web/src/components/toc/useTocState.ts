@@ -1,25 +1,21 @@
 import * as React from 'react';
-import type { TocState, TocType } from './Toc.types';
+import type { TocState } from './Toc.types';
+import type { Toc } from 'typings/my-mdx/index';
+
 import { throttle } from './utils';
 
 export const useTocState = (state: TocState): TocState => {
-  // const { toc } = state;
-
-  const toc = [
-    { value: 'Layers and groups', url: '#layers-and-groups', depth: 1 },
-    { value: 'Fixing our example', url: '#fixing-our-example', depth: 1 },
-    { value: 'Creating stacking contexts', url: '#creating-stacking-contexts', depth: 1 },
-    { value: 'A common misconception about z-index', url: '#a-common-misconception-about-z-index', depth: 1 },
-    { value: 'Hold on a minute…', url: '#hold-on-a-minute', depth: 1 },
-  ] as TocType[];
+  const { toc } = state;
 
   const largeEnoughHeadings = toc.filter(h => h.depth <= 2);
   state.headingsWithIds = largeEnoughHeadings;
-  state.activeHeadingId = useActiveHeading(largeEnoughHeadings);
+  const activeHeading = useActiveHeading(largeEnoughHeadings);
+  state.activeHeadingId = activeHeading;
+
   return state;
 };
 
-const useActiveHeading = (headings: TocType[]) => {
+const useActiveHeading = (headings: Toc[]) => {
   const [activeHeadingId, setActiveHeading] = React.useState<string | undefined>(undefined);
 
   React.useEffect(() => {
@@ -44,7 +40,7 @@ const useActiveHeading = (headings: TocType[]) => {
       // although this would have to be a VERY long intro to ever be true.
 
       let headingBoxes = headings.map(({ url }) => {
-        const elem = document.querySelector(`#${url}`);
+        const elem = document.querySelector(url);
 
         if (!elem) {
           return null;
