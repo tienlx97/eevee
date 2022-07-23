@@ -6,7 +6,7 @@ export { Em, emClassname } from './Em';
 export { Strike, strikeClassname } from './Strike';
 export { PostImage, postImageClassname } from './PostImage';
 export { InlineCode, inlineCodeClassname } from './InlineCode';
-export { CH1, CH2, CH3 } from './ContentHeading';
+export { CH1, CH2, CH3, ContentHeading } from './ContentHeading';
 export { H1, H2, H3, Heading } from './Heading';
 export { SideNote, Expanded } from './SideNote';
 export { HorizontalRule } from './HorizontalRule';

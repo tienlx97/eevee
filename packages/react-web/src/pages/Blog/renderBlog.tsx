@@ -8,14 +8,10 @@ import { PageOrPageNotFound } from '../common/index';
  * Render the final JSX of Blog
  */
 export const renderBlog = (state: BlogState) => {
-  const { post, postNotFound } = state;
+  const { post } = state;
   const { slots, slotProps } = getSlots<BlogSlots>(state);
 
   // TODO Add additional slots in the appropriate place
 
-  return (
-    <PageOrPageNotFound pageNotFound={postNotFound}>
-      <slots.root {...slotProps.root}>{post && <MDX source={post.code} />}</slots.root>
-    </PageOrPageNotFound>
-  );
+  return <slots.root {...slotProps.root}>{post && <MDX source={post.code} />}</slots.root>;
 };

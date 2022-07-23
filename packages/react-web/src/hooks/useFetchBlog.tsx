@@ -3,10 +3,12 @@ import { useParams } from 'react-router-dom';
 import { getDocs, query, where } from 'firebase/firestore';
 import { postCol } from '../firebase/firebase';
 import { useBlogContext } from '../contexts/BlogContext';
+import { useErrorStatusContext } from '../contexts/ErrorContext';
 
 export const useFetchBlog = () => {
   const { slug } = useParams();
-  const { setPost, content, postNotFound } = useBlogContext();
+  const { setErrorStatusCode } = useErrorStatusContext();
+  const { setPost, content } = useBlogContext();
 
   React.useEffect(() => {
     let preventQuickRender = true;
@@ -16,6 +18,7 @@ export const useFetchBlog = () => {
       const snaps = await getDocs(slugQuery);
 
       if (snaps.empty) {
+        setErrorStatusCode(404);
         setPost(undefined);
       }
 
@@ -29,9 +32,7 @@ export const useFetchBlog = () => {
 
     findBySlug()
       // make sure to catch any error
-      .catch(err => {
-        throw err;
-      });
+      .catch(err => setErrorStatusCode(404));
 
     return () => {
       // cancel any future `setPost`
@@ -40,5 +41,5 @@ export const useFetchBlog = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [slug]);
 
-  return { content, postNotFound };
+  return { content };
 };

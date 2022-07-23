@@ -21,16 +21,23 @@ const useStyles = makeStyles({
   toc: {
     color: tokens.f9,
     marginBottom: '16px',
+    textTransform: 'uppercase',
   },
 
   contentLinkHeading: {
     display: 'block',
-    color: tokens.f10,
+    color: tokens.f1,
     textDecorationLine: 'none',
-    // fontSize: 'calc(var(--font-size-px) / 16 * 1rem)',
+    opacity: 0.8,
+    transitionProperty: 'opacity',
+    transitionDuration: '500ms',
+    transitionTimingFunction: 'ease',
+    transitionDelay: '0s',
+
+    fontSize: 'calc(var(--font-size-px) / 16 * 1rem)',
     '&:hover, &:focus': {
-      // opacity: 1,
-      color: tokens.f8,
+      opacity: 1,
+      // color: tokens.f8,
       transitionProperty: 'opacity',
       transitionDuration: '0ms',
       transitionTimingFunction: 'ease',

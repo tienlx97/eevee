@@ -14,7 +14,6 @@ import { useBlogState } from './useBlogState';
  */
 export const useBlog = (props: BlogProps, ref: React.Ref<HTMLElement>): BlogState => {
   const state: BlogState = {
-    postNotFound: false,
     // TODO add appropriate props/defaults
     components: {
       // TODO add each slot's element type or component
