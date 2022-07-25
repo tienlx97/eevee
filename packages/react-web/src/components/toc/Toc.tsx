@@ -1,24 +1,114 @@
 import * as React from 'react';
-import type { TocState } from './Toc.types';
-import type { Toc } from 'typings/my-mdx/index';
+import { makeStyles } from '@griffel/react';
+import { tokens } from '@eevee/react-theme';
+import type { Toc as TocType } from 'typings/my-mdx/index';
+import { Heading } from '@eevee/react-mdx-comp';
+import { getStylesForDepth, throttle } from './utils';
+import { useBlogContext } from '../../contexts/BlogContext';
 
-import { throttle } from './utils';
+/**
+ * Styles for the root slot
+ */
+const useStyles = makeStyles({
+  root: {
+    // TODO Add default styles for the root element
+  },
 
-export const useTocState = (state: TocState): TocState => {
-  const { toc } = state;
+  toc: {
+    color: tokens.f9,
+    marginBottom: '16px',
+    textTransform: 'uppercase',
+  },
 
-  const largeEnoughHeadings = toc.filter(h => h.depth <= 2);
-  state.headingsWithIds = largeEnoughHeadings;
+  contentLinkHeading: {
+    display: 'block',
+    color: tokens.f1,
+    textDecorationLine: 'none',
+    opacity: 0.8,
+    transitionProperty: 'opacity',
+    transitionDuration: '500ms',
+    transitionTimingFunction: 'ease',
+    transitionDelay: '0s',
+
+    fontSize: 'calc(var(--font-size-px) / 16 * 1rem)',
+    '&:hover, &:focus': {
+      opacity: 1,
+      // color: tokens.f8,
+      transitionProperty: 'opacity',
+      transitionDuration: '0ms',
+      transitionTimingFunction: 'ease',
+      transitionDelay: '0s',
+    },
+  },
+
+  // TODO add additional classes for different states and/or slots
+});
+
+export const Toc = () => {
+  const styles = useStyles();
+  const { content } = useBlogContext();
+
+  const toc = content?.read()?.toc;
+
+  const largeEnoughHeadings = toc?.filter(h => h.depth <= 2);
+
   const activeHeading = useActiveHeading(largeEnoughHeadings);
-  state.activeHeadingId = activeHeading;
 
-  return state;
+  React.useEffect(() => {
+    if (!content) {
+      return;
+    }
+  }, [content]);
+
+  return largeEnoughHeadings ? (
+    <div className={styles.root}>
+      <div style={{ display: 'flex' }}>
+        <Heading as="h2" type="section-title" className={styles.toc}>
+          Table of Contents
+        </Heading>
+        <div
+          style={{
+            flexGrow: 1,
+            alignSelf: 'center',
+            marginLeft: '10px',
+            height: '1px',
+            backgroundColor: 'var(--f9)',
+          }}
+        />
+      </div>
+      <a
+        //
+        href="#introduction"
+        className={styles.contentLinkHeading}
+        style={getStylesForDepth(1, !activeHeading)}
+      >
+        Introduction
+      </a>
+      {largeEnoughHeadings &&
+        largeEnoughHeadings.map((heading, index) => (
+          <a
+            key={index}
+            href={heading.url}
+            className={styles.contentLinkHeading}
+            style={getStylesForDepth(heading.depth, activeHeading === heading.url)}
+          >
+            {heading.value}
+          </a>
+        ))}
+    </div>
+  ) : (
+    <></>
+  );
 };
 
-const useActiveHeading = (headings: Toc[]) => {
+const useActiveHeading = (headings?: TocType[]) => {
   const [activeHeadingId, setActiveHeading] = React.useState<string | undefined>(undefined);
 
   React.useEffect(() => {
+    if (!headings) {
+      return;
+    }
+
     const handleScroll = throttle(() => {
       // If we're all the way at the top, there is no active heading.
       // This is done because "Introduction", the first link in the TOC, will

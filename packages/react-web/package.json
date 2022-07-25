@@ -110,7 +110,8 @@
     "esbuild": "^0.14.39",
     "firebase": "9.8.3",
     "@codesandbox/sandpack-react": "v0.19.8-experimental.4",
-    "dotenv": "^16.0.1"
+    "dotenv": "^16.0.1",
+    "react-error-boundary": "3.1.4"
   },
   "browserslist": {
     "production": [

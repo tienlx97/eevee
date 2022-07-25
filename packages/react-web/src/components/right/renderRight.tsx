@@ -3,6 +3,8 @@ import { getSlots } from '@eevee/react-utilities';
 import { RightSlots, RightState } from './Right.types';
 import { makeStyles, shorthands } from '@griffel/react';
 import { Toc } from '../toc/index';
+import { Spinner } from '../spinner/Spinner';
+import { ErrorBoundary } from 'react-error-boundary';
 
 const useRootStyles = makeStyles({
   root: {
@@ -32,7 +34,6 @@ const useRootStyles = makeStyles({
  * Render the final JSX of Right
  */
 export const renderRight = (state: RightState) => {
-  const { toc } = state;
   // eslint-disable-next-line react-hooks/rules-of-hooks
   const rootStyles = useRootStyles();
   const { slots, slotProps } = getSlots<RightSlots>(state);
@@ -42,8 +43,9 @@ export const renderRight = (state: RightState) => {
       <div className={rootStyles.root}>
         <div className={rootStyles.div2}>
           <div className={rootStyles.div3}>
-            {/*  */}
-            {toc && <Toc toc={toc} />}
+            <ErrorBoundary fallback={<div>Soryy</div>}>
+              <React.Suspense fallback={<Spinner />}>{<Toc />}</React.Suspense>
+            </ErrorBoundary>
           </div>
         </div>
       </div>

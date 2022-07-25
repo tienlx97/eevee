@@ -12,10 +12,8 @@ export const renderPage = (state: PageState) => {
   return (
     <slots.root {...slotProps.root}>
       <NavBar />
-      <BlogContextProvider>
-        <Main>{slotProps.root.children}</Main>
-        {!hide && <Right />}
-      </BlogContextProvider>
+      <Main>{slotProps.root.children}</Main>
+      {!hide && <Right />}
       {/* {!!hide && <Right />} */}
     </slots.root>
   );

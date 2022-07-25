@@ -1,13 +1,12 @@
 import * as React from 'react';
-import { useParams } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { getDocs, query, where } from 'firebase/firestore';
 import { postCol } from '../firebase/firebase';
 import { useBlogContext } from '../contexts/BlogContext';
-import { useErrorStatusContext } from '../contexts/ErrorContext';
 
-export const useFetchBlog = () => {
-  const { slug } = useParams();
-  const { setErrorStatusCode } = useErrorStatusContext();
+export const useFetchBlog = (slug?: string) => {
+  const navigate = useNavigate();
+  const { pathname } = useLocation();
   const { setPost, content } = useBlogContext();
 
   React.useEffect(() => {
@@ -18,21 +17,33 @@ export const useFetchBlog = () => {
       const snaps = await getDocs(slugQuery);
 
       if (snaps.empty) {
-        setErrorStatusCode(404);
-        setPost(undefined);
+        // setPost(undefined);
+        navigate(pathname, {
+          replace: true,
+          state: {
+            errorStatusCode: 404,
+          },
+        });
       }
 
       snaps.forEach(snap => {
         // snap.data() is never undefined for query doc snapshots
         if (preventQuickRender) {
-          setPost(snap.data());
+          // setPost(snap.data());
         }
       });
     };
 
     findBySlug()
       // make sure to catch any error
-      .catch(err => setErrorStatusCode(404));
+      .catch(() =>
+        navigate(pathname, {
+          replace: true,
+          state: {
+            errorStatusCode: 404,
+          },
+        }),
+      );
 
     return () => {
       // cancel any future `setPost`

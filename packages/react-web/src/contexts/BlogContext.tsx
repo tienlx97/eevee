@@ -1,19 +1,20 @@
 import * as React from 'react';
 import type { Post } from 'typings/my-mdx/index';
+import { SuspenseResponse } from '../utilities/suspense';
 
 export type BlogContextValue = {
-  content?: Post;
-  setPost: (post?: Post) => void;
+  content?: SuspenseResponse<Post>;
+  setPost: (post: SuspenseResponse<Post>) => void;
 };
 
 const BlogContext = React.createContext<BlogContextValue | undefined>(undefined);
 
 export const BlogContextProvider: React.FC = ({ children }) => {
-  const [content, setContent] = React.useState<Post>();
+  const [content, setContent] = React.useState<SuspenseResponse<Post>>();
 
   const value = React.useMemo(() => {
-    const setPost = (newPost?: Post) => {
-      setContent(newPost);
+    const setPost = (post?: SuspenseResponse<Post>) => {
+      setContent(post);
     };
     return { content, setPost };
   }, [content]);
