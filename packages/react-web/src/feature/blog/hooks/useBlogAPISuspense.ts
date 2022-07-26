@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { useBlogContext } from '@context/index';
-import { withPromise, SuspenseResponse } from '@lib/index';
+import { withPromise, SuspenseResponse } from '@libs/index';
 import { BlogFetcher } from '../services/BlogFetcher';
 import type { Post } from 'typings/my-mdx/index';
 

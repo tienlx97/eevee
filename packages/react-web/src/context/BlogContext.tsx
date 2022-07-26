@@ -1,6 +1,6 @@
 import * as React from 'react';
 import type { Post } from 'typings/my-mdx/index';
-import { SuspenseResponse } from '@lib/index';
+import { SuspenseResponse } from '@libs/index';
 
 export type BlogContextValue = {
   content?: SuspenseResponse<Post | null>;

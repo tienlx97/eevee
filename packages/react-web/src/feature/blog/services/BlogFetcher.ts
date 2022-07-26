@@ -1,6 +1,6 @@
-import { postCol } from '@lib/firebase/index';
+import { postCol } from '@libs/firebase/index';
 import { query, where, limit, getDocs } from 'firebase/firestore';
-import { delay } from '@lib/index';
+import { delay } from '@libs/index';
 
 export const BlogFetcher = async (slug: string) => {
   const slugQuery = query(postCol, where('frontmatter.slugify', '==', slug), limit(1));
