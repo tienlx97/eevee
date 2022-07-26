@@ -54,7 +54,7 @@ const commonConfig = {
     miniCssExtactPlugin,
     definePlugin,
     forkTsPlugin,
-    new CopyPlugin([{ from: 'src/copy2public', to: '' }]),
+    new CopyPlugin([{ from: 'src/asset/copy2public', to: '' }]),
     new WorkboxPlugin.InjectManifest({
       swSrc: './src/src-sw.js',
       swDest: 'sw.js',

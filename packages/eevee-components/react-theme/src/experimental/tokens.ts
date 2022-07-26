@@ -89,6 +89,7 @@ export const tokens: Record<keyof Theme, string> = {
   f10: 'var(--f10)',
   fDisable: 'var(--fDisable)',
   b1: 'var(--b1)',
+  b2: 'var(--b2)',
   bNote: 'var(--bNote)',
   bImportant: 'var(--bImportant)',
   bTip: 'var(--bTip)',

@@ -39,7 +39,7 @@ const useRootStylesV1 = makeStyles({
     // h1 32
     fontSize: 'calc(32 / 16 * 1rem)',
     color: tokens.f8, // rgb(249,24,128)
-    marginTop: '66px',
+    marginTop: '50px',
     marginBottom: '25px',
   },
 
@@ -47,7 +47,7 @@ const useRootStylesV1 = makeStyles({
     // h2 25
     fontSize: 'calc(25 / 16 * 1rem)',
     color: tokens.f5, // hsl(53, 100%, 50%)
-    marginTop: '44px',
+    marginTop: '30px',
     marginBottom: '15px',
     fontWeight: 'bolder',
   },

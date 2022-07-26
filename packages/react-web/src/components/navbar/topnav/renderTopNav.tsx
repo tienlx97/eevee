@@ -1,9 +1,11 @@
 import * as React from 'react';
 import { getSlots } from '@eevee/react-utilities';
-import { TopNavSlots, TopNavState } from './TopNav.types';
-import { ToggleTheme } from '../../toggleTheme/index';
 import { LinkIcon } from '@eevee/react-link';
-import { Face } from '../../icons/index';
+import { Face } from '@components/icons/index';
+import { ToggleTheme } from '@components/toggleTheme/index';
+
+import { TopNavSlots, TopNavState } from './TopNav.types';
+
 /**
  * Render the final JSX of TopNav
  */

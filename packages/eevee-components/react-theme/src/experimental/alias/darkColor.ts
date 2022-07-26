@@ -1,8 +1,7 @@
 import type { ColorTokens, BrandVariants } from '../theme.types';
 import { black, grey, blackAlpha, personaSharedColors } from '../global/colors';
 
-export const generateColorTokens = (brand: BrandVariants): ColorTokens =>
-({
+export const generateColorTokens = (brand: BrandVariants): ColorTokens => ({
   bg1: black, // #000
   bg2: grey[10], // #1a1a1a
   bg3: grey[98], // #fafafa ,
@@ -29,6 +28,8 @@ export const generateColorTokens = (brand: BrandVariants): ColorTokens =>
   fDisable: '#5c5c5c',
   //
   b1: personaSharedColors.anchor.shade20,
+  b2: personaSharedColors.anchor.shade20,
+
   bNote: 'hsl(230, 100%, 67%)',
   bImportant: personaSharedColors.blue.primary,
   bTip: 'hsl(160, 100%, 40%)',
@@ -74,6 +75,10 @@ export const generateColorTokens = (brand: BrandVariants): ColorTokens =>
   themeProperty: '#77b7d7',
   themeStatic: '#c64640',
   themeString: '#977cdc',
-  bg5: '', bg6: '', bg7: '', bg8: '', bg9: '', bg10: ''
-
+  bg5: '',
+  bg6: '',
+  bg7: '',
+  bg8: '',
+  bg9: '',
+  bg10: '',
 });

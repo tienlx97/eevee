@@ -1,1 +1,0 @@
-export { Right } from './Right';

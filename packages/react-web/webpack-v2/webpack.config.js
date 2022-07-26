@@ -519,14 +519,14 @@ function loadPluginList(isEnvProduction, env, isEnvDevelopment, shouldUseReactRe
     //   // contextRegExp: /moment$/,
     // }),
 
-    new CopyPlugin([{ from: 'src/copy2public', to: '' }]),
+    new CopyPlugin([{ from: 'src/asset/copy2public', to: '' }]),
 
     // Generate a service worker script that will precache, and keep up to date,
     // the HTML & assets that are part of the webpack build.
     isEnvProduction &&
       fs.existsSync(swSrc) &&
       new WorkboxWebpackPlugin.InjectManifest({
-        swSrc: './src/sw.js',
+        swSrc: './src/feature/pwa/sw.js',
         swDest: 'sw.js',
         dontCacheBustURLsMatching: /\.[0-9a-f]{8}\./,
         exclude: [/\.map$/, /asset-manifest\.json$/, /LICENSE/],

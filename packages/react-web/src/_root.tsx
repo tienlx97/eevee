@@ -1,21 +1,21 @@
 import * as React from 'react';
 import * as client from 'react-dom/client';
-
-import { GAProvider } from './ga-context';
 import { BrowserRouter as Router } from 'react-router-dom';
-import { EeveeProvider } from '@eevee/react-provider';
+import { makeStyles } from '@griffel/react';
+
 import { webDarkTheme, webLightTheme, tokens } from '@eevee/react-theme';
 
 import { App } from './app';
 
+// css
 import './asset/css/index.css';
-
 import '@codesandbox/sandpack-react/dist/index.css';
 
-import { makeStyles } from '@griffel/react';
+// provider
+import { EeveeProvider } from '@eevee/react-provider';
+import { GAProvider, BlogContextProvider } from '@context/index';
 
-import registerServiceWorker from './serviceWorkerRegistration';
-import { BlogContextProvider } from './contexts/BlogContext';
+import { registerServiceWorker } from '@feature/pwa/index';
 
 const useStyles = makeStyles({
   wrapper: {

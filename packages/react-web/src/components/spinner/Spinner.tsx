@@ -1,10 +1,20 @@
 /* eslint-disable @eevee/max-len */
 import * as React from 'react';
 import { tokens } from '@eevee/react-theme';
+import { makeStyles, mergeClasses } from '@griffel/react';
 
-export const Spinner = () => {
+const useRootStyles = makeStyles({
+  root: {
+    display: 'flex',
+    justifyContent: 'center',
+    paddingTop: '10px',
+  },
+});
+
+export const Spinner = ({ className, ...props }: JSX.IntrinsicElements['div']) => {
+  const rootStyles = useRootStyles();
   return (
-    <div style={{ display: 'flex', justifyContent: 'center' }}>
+    <div className={mergeClasses(rootStyles.root, className)} {...props}>
       <svg style={{ color: tokens.f3 }} viewBox="0 0 2400 2400" width={18} height={18}>
         <g strokeWidth={200} strokeLinecap="round" stroke="currentColor" fill="none">
           <path d="M1200 600L1200 100" />

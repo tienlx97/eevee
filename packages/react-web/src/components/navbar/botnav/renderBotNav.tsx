@@ -9,10 +9,10 @@ import {
   SearchFill,
   SearchRegular,
   WriteFill,
-} from '../../icons/index';
+  WriteRegular,
+} from '@components/icons/index';
 
 import { LinkIcon } from '@eevee/react-link';
-import { WriteRegular } from '../../icons/write/Write';
 
 /**
  * Render the final JSX of BotNav

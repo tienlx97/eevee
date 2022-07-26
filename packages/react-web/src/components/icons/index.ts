@@ -6,3 +6,8 @@ export * from './Sun';
 export * from './Moon';
 export * from './Face';
 export * from './Kid';
+export * from './Twitter';
+export * from './Facebook';
+export * from './LinkedIn';
+export * from './CopyLink';
+export * from './Save';

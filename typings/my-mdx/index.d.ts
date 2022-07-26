@@ -1,6 +1,6 @@
 
 export type FrontMatter = {
-  author: [],
+  author: string[],
   categories: Array<string>
   description: string,
   id: string,
@@ -25,7 +25,7 @@ export type ReadTime = {
   minutes: number;
   text: string;
   time: number;
-  word: number;
+  words: number;
 };
 
 export type Toc = {

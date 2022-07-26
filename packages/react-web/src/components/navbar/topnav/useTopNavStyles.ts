@@ -1,9 +1,9 @@
 import { SlotClassNames } from '@eevee/react-utilities';
 import { mergeClasses, makeStyles, shorthands } from '@griffel/react';
-import { TopNavSlots, TopNavState } from './TopNav.types';
-
 import { breakPoints, tokens } from '@eevee/react-theme';
-import { navHeight } from '../../../constants/css';
+
+import { TopNavSlots, TopNavState } from './TopNav.types';
+import { NAV_HEIGHT } from '@constants/index';
 
 export const topNavClassNames: SlotClassNames<TopNavSlots> = {
   root: 'eve-TopNav',
@@ -41,7 +41,7 @@ const useContentStyles = makeStyles({
     justifyContent: 'space-between',
     ...shorthands.padding('0', '24px'),
     backgroundColor: tokens.bg1,
-    height: `${navHeight}px`,
+    height: `${NAV_HEIGHT}px`,
     alignItems: 'center',
     position: 'fixed',
     boxShadow: `0px -2px 10px ${tokens.b1}`,
@@ -54,7 +54,7 @@ const useContentStyles = makeStyles({
 
 const useGapStyles = makeStyles({
   gapHeight: {
-    height: `${navHeight}px`,
+    height: `${NAV_HEIGHT}px`,
     display: 'block',
   },
 });
@@ -64,24 +64,9 @@ export const useTopNavStyles = (state: TopNavState) => {
   const mediaQueryStyles = useMediaQueryStyles();
   const contentStyles = useContentStyles();
   const gapStyles = useGapStyles();
-  state.root.className = mergeClasses(
-    //
-    topNavClassNames.root,
-    mediaQueryStyles.query,
-    state.root.className,
-  );
+  state.root.className = mergeClasses(topNavClassNames.root, mediaQueryStyles.query, state.root.className);
 
-  state.gap.className = mergeClasses(
-    //
-    topNavClassNames.gap,
-    gapStyles.gapHeight,
-    state.gap.className,
-  );
+  state.gap.className = mergeClasses(topNavClassNames.gap, gapStyles.gapHeight, state.gap.className);
 
-  state.content.className = mergeClasses(
-    //
-    topNavClassNames.content,
-    contentStyles.wrapper,
-    state.content.className,
-  );
+  state.content.className = mergeClasses(topNavClassNames.content, contentStyles.wrapper, state.content.className);
 };

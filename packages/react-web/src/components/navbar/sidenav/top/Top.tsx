@@ -1,7 +1,7 @@
-import { makeStyles, shorthands } from '@griffel/react';
 import * as React from 'react';
+import { makeStyles, shorthands } from '@griffel/react';
 import { LinkIcon } from '@eevee/react-link';
-import { Face } from '../../../icons/index';
+import { Face } from '@components/icons/index';
 
 const useRootStyles = makeStyles({
   base: {

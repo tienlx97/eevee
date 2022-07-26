@@ -4,7 +4,7 @@ import { tokens } from '@eevee/react-theme';
 import type { Toc as TocType } from 'typings/my-mdx/index';
 import { Heading } from '@eevee/react-mdx-comp';
 import { getStylesForDepth, throttle } from './utils';
-import { useBlogContext } from '../../contexts/BlogContext';
+import { useBlogContext } from '../../context/BlogContext';
 
 /**
  * Styles for the root slot
@@ -48,9 +48,9 @@ export const Toc = () => {
   const styles = useStyles();
   const { content } = useBlogContext();
 
-  const toc = content?.read()?.toc;
+  const blog = content?.read();
 
-  const largeEnoughHeadings = toc?.filter(h => h.depth <= 2);
+  const largeEnoughHeadings = blog?.toc.filter(h => h.depth <= 2);
 
   const activeHeading = useActiveHeading(largeEnoughHeadings);
 

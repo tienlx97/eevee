@@ -1,8 +1,8 @@
 import { SlotClassNames } from '@eevee/react-utilities';
 import { mergeClasses, makeStyles } from '@griffel/react';
-import { SideNavState, SideNavSlots } from './SideNav.types';
-
 import { breakPoints, tokens } from '@eevee/react-theme';
+
+import { SideNavState, SideNavSlots } from './SideNav.types';
 
 export const sideNavClassNames: SlotClassNames<SideNavSlots> = {
   root: 'eve-SideNav',
@@ -59,17 +59,11 @@ export const useSideNavStyles = (state: SideNavState) => {
   const contentStyles = useContentStyles();
 
   state.root.className = mergeClasses(
-    //
     sideNavClassNames.root,
     rootStyles.height,
     mediaQueryStyles.query,
     state.root.className,
   );
 
-  state.content.className = mergeClasses(
-    //
-    sideNavClassNames.content,
-    contentStyles.content,
-    state.content.className,
-  );
+  state.content.className = mergeClasses(sideNavClassNames.content, contentStyles.content, state.content.className);
 };
