@@ -7,6 +7,10 @@ import { Toc } from '@components/toc/index';
 import { Spinner } from '@components/spinner/Spinner';
 
 import { RightBarSlots, RightBarState } from './RightBar.types';
+import { Porfolio } from '../porfolio/index';
+import { PorfolioSkeleton } from '../skeleton/PorfolioSkeleton';
+import { TocSkeleton } from '../skeleton/TocSkeleton';
+import { Link } from 'react-router-dom';
 
 const useRootStyles = makeStyles({
   root: {
@@ -16,19 +20,20 @@ const useRootStyles = makeStyles({
     position: 'relative',
   },
 
-  div2: {
-    top: 0,
-    position: 'sticky',
-    display: 'flex',
-    flexDirection: 'column',
-    minHeight: '100vh',
-  },
+  // div2: {
+  //   top: 0,
+  //   position: 'sticky',
+  //   display: 'flex',
+  //   flexDirection: 'column',
+  //   minHeight: '100vh',
+  // },
 
   div3: {
     display: 'block',
     flexGrow: 1,
     flexShrink: 0,
     flexBasis: 'auto',
+    position: 'relative',
   },
 });
 
@@ -38,17 +43,66 @@ const useRootStyles = makeStyles({
 export const renderRightBar = (state: RightBarState) => {
   // eslint-disable-next-line react-hooks/rules-of-hooks
   const rootStyles = useRootStyles();
+  const { slug } = state;
   const { slots, slotProps } = getSlots<RightBarSlots>(state);
 
   return (
     <slots.root {...slotProps.root}>
       <div className={rootStyles.root}>
-        <div className={rootStyles.div2}>
-          <div className={rootStyles.div3}>
-            <ErrorBoundary fallback={<div>Soryy</div>}>
-              <React.Suspense fallback={<Spinner />}>{<Toc />}</React.Suspense>
+        <div style={{ opacity: 0 }}>Love Gnart</div>
+
+        {state.slug && (
+          <>
+            <ErrorBoundary fallback={<Spinner />}>
+              <React.Suspense fallback={<PorfolioSkeleton style={{ marginTop: '20px' }} />}>
+                <Porfolio slug={slug} style={{ marginTop: '20px' }} />
+              </React.Suspense>
             </ErrorBoundary>
-          </div>
+            <ErrorBoundary fallback={<Spinner />}>
+              <React.Suspense fallback={<TocSkeleton />}>
+                <Toc slug={slug} />
+              </React.Suspense>
+            </ErrorBoundary>
+          </>
+        )}
+      </div>
+      <div
+        style={{
+          position: 'fixed',
+          bottom: 0,
+          paddingTop: '5px',
+          paddingBottom: '5px',
+          display: 'flex',
+          flexWrap: 'wrap',
+          flexDirection: 'row',
+          backgroundColor: 'var(--bg1)',
+          width: '100%',
+        }}
+      >
+        <div style={{ marginRight: '6px' }}>
+          <Link style={{ color: 'inherit', fontSize: '11px' }} to="">
+            Help
+          </Link>
+        </div>
+        <div style={{ marginRight: '6px' }}>
+          <Link style={{ color: 'inherit', fontSize: '11px' }} to="">
+            Privacy
+          </Link>
+        </div>
+        <div style={{ marginRight: '6px' }}>
+          <Link style={{ color: 'inherit', fontSize: '11px' }} to="">
+            Term
+          </Link>
+        </div>
+        <div style={{ marginRight: '6px' }}>
+          <Link style={{ color: 'inherit', fontSize: '11px' }} to="">
+            About
+          </Link>
+        </div>
+        <div style={{ marginRight: '6px' }}>
+          <Link style={{ color: 'inherit', fontSize: '11px' }} to="">
+            Carrers
+          </Link>
         </div>
       </div>
     </slots.root>

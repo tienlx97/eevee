@@ -7,5 +7,5 @@ export type RightBarSlots = {
 export type RightBarProps = EeveeProps<Partial<RightBarSlots>> & {};
 
 export type RightBarState = EeveeState<RightBarSlots> & {
-  toc?: any;
+  slug?: string;
 };

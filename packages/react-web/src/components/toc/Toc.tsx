@@ -4,7 +4,7 @@ import { tokens } from '@eevee/react-theme';
 import type { Toc as TocType } from 'typings/my-mdx/index';
 import { Heading } from '@eevee/react-mdx-comp';
 import { getStylesForDepth, throttle } from './utils';
-import { useBlogContext } from '../../context/BlogContext';
+import { useBlogAPISWR } from '../../feature/blog/index';
 
 /**
  * Styles for the root slot
@@ -12,6 +12,8 @@ import { useBlogContext } from '../../context/BlogContext';
 const useStyles = makeStyles({
   root: {
     // TODO Add default styles for the root element
+    top: '10px',
+    position: 'sticky',
   },
 
   toc: {
@@ -44,21 +46,17 @@ const useStyles = makeStyles({
   // TODO add additional classes for different states and/or slots
 });
 
-export const Toc = () => {
+type TocProps = {
+  slug?: string;
+};
+
+export const Toc = ({ slug }: TocProps) => {
   const styles = useStyles();
-  const { content } = useBlogContext();
+  const post = useBlogAPISWR(slug);
 
-  const blog = content?.read();
-
-  const largeEnoughHeadings = blog?.toc.filter(h => h.depth <= 2);
+  const largeEnoughHeadings = post?.toc.filter(h => h.depth <= 2);
 
   const activeHeading = useActiveHeading(largeEnoughHeadings);
-
-  React.useEffect(() => {
-    if (!content) {
-      return;
-    }
-  }, [content]);
 
   return largeEnoughHeadings ? (
     <div className={styles.root}>

@@ -11,3 +11,5 @@ export * from './Facebook';
 export * from './LinkedIn';
 export * from './CopyLink';
 export * from './Save';
+export * from './Clap';
+export * from './Comment';

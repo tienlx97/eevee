@@ -8,6 +8,7 @@ import type { Post } from 'typings/my-mdx/index';
 import { CopyLink, Facebook, LinkedIn, Save, Twitter } from '@components/icons/index';
 import { LinkIcon } from '@eevee/react-link';
 import { ButtonR, Button } from '@eevee/react-button';
+import { useBlogParam, useBlogAPISWR } from '../../hooks/index';
 
 const useRootStyles = makeStyles({
   root: {
@@ -174,7 +175,7 @@ const CircleAvatar = ({ post }: { post: Post }) => {
           width={48}
           height={48}
           className={avatarStyles.root}
-          src="https://avatars.githubusercontent.com/u/25848009?s=400&u=ed68400f7edbffc18c7e0e373749e5451c335998&v=4"
+          src="https://miro.medium.com/fit/c/176/176/1*jYZMrp0UVc4FknqTsdBuvw.jpeg"
         />
       </Link>
     </div>
@@ -208,9 +209,8 @@ export function PostHeader() {
   const displayStyles = useDisplayStyles();
   const socialListStyles = useSocialStyles();
 
-  const { content } = useBlogContext();
-
-  const post = content?.read();
+  const slug = useBlogParam();
+  const post = useBlogAPISWR(slug);
 
   return post ? (
     <div className={rootStyles.root}>

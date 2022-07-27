@@ -1,9 +1,10 @@
 import * as React from 'react';
 import { Spinner } from '@components/spinner/Spinner';
-import { PostDetail, PostHeader, PublishIn } from '@feature/blog/index';
+import { PostDetail, PostHeader, PublishIn, Reaction } from '@feature/blog/index';
 import { getSlots } from '@eevee/react-utilities';
 
 import type { BlogPageState, BlogPageSlots } from './BlogPage.types';
+import { ReactionSkeleton } from '@components/skeleton/ReactionSkeleton';
 
 const hide = true;
 
@@ -25,6 +26,9 @@ export const renderBlogPage = (state: BlogPageState) => {
           </React.Suspense>
         </slots.root>
       </div>
+      <React.Suspense fallback={<></>}>
+        <Reaction />
+      </React.Suspense>
     </div>
   );
 };

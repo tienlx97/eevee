@@ -1,4 +1,4 @@
-import { makeStyles, mergeClasses } from '@griffel/react';
+import { makeStyles, mergeClasses, shorthands } from '@griffel/react';
 import type { PageNotFoundSlots, PageNotFoundState } from './PageNotFound.types';
 import type { SlotClassNames } from '@eevee/react-utilities';
 
@@ -15,6 +15,7 @@ export const ClassNames: SlotClassNames<PageNotFoundSlots> = {
 const useStyles = makeStyles({
   root: {
     // TODO Add default styles for the root element
+    ...shorthands.padding(0, '15px'),
   },
 
   // TODO add additional classes for different states and/or slots
