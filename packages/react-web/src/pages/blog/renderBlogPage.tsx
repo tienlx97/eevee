@@ -1,34 +1,38 @@
 import * as React from 'react';
 import { Spinner } from '@components/spinner/Spinner';
-import { PostDetail, PostHeader, PublishIn, Reaction } from '@feature/blog/index';
-import { getSlots } from '@eevee/react-utilities';
+import {
+  PostDetail,
+  PostHeader,
+  PostHeaderSkeleton,
+  Reaction,
+  ReactionSkeleton,
+  PostDetailSkeleton,
+} from '@feature/blog/index';
 
-import type { BlogPageState, BlogPageSlots } from './BlogPage.types';
-import { ReactionSkeleton } from '@components/skeleton/ReactionSkeleton';
-
-const hide = true;
+import type { BlogPageState } from './BlogPage.types';
 
 /**
  * Render the final JSX of Blog
  */
 export const renderBlogPage = (state: BlogPageState) => {
-  const { flexCenterClassName } = state;
-  const { slots, slotProps } = getSlots<BlogPageSlots>(state);
+  const { reactionClassName } = state;
 
   return (
-    <div className={flexCenterClassName}>
-      {!hide && <PublishIn />}
-      <div style={{ display: 'flex', justifyContent: 'center' }}>
-        <slots.root {...slotProps.root}>
-          <React.Suspense fallback={<Spinner />}>
-            <PostHeader />
-            <PostDetail />
-          </React.Suspense>
-        </slots.root>
-      </div>
-      <React.Suspense fallback={<></>}>
-        <Reaction />
+    <>
+      <React.Suspense
+        fallback={
+          <>
+            <PostHeaderSkeleton />
+            <PostDetailSkeleton />
+          </>
+        }
+      >
+        <PostHeader />
+        <PostDetail />
       </React.Suspense>
-    </div>
+      <React.Suspense fallback={<ReactionSkeleton className={reactionClassName} />}>
+        <Reaction className={reactionClassName} />
+      </React.Suspense>
+    </>
   );
 };

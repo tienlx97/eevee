@@ -80,27 +80,27 @@ export const renderRightBar = (state: RightBarState) => {
         }}
       >
         <div style={{ marginRight: '6px' }}>
-          <Link style={{ color: 'inherit', fontSize: '11px' }} to="">
+          <Link style={{ color: 'inherit', fontSize: '11px' }} to="help">
             Help
           </Link>
         </div>
         <div style={{ marginRight: '6px' }}>
-          <Link style={{ color: 'inherit', fontSize: '11px' }} to="">
+          <Link style={{ color: 'inherit', fontSize: '11px' }} to="privacy">
             Privacy
           </Link>
         </div>
         <div style={{ marginRight: '6px' }}>
-          <Link style={{ color: 'inherit', fontSize: '11px' }} to="">
+          <Link style={{ color: 'inherit', fontSize: '11px' }} to="/term">
             Term
           </Link>
         </div>
         <div style={{ marginRight: '6px' }}>
-          <Link style={{ color: 'inherit', fontSize: '11px' }} to="">
+          <Link style={{ color: 'inherit', fontSize: '11px' }} to="/about">
             About
           </Link>
         </div>
         <div style={{ marginRight: '6px' }}>
-          <Link style={{ color: 'inherit', fontSize: '11px' }} to="">
+          <Link style={{ color: 'inherit', fontSize: '11px' }} to="/carrers">
             Carrers
           </Link>
         </div>

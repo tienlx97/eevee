@@ -1,4 +1,7 @@
 export * from './postDetail/index';
-export { PublishIn } from './publishIn/index';
-export { PostHeader } from './postHeader/index';
-export { Reaction } from './reaction/index';
+export * from './publishIn/index';
+export * from './postHeader/index';
+export * from './reaction/index';
+export * from './circleAvatar/index';
+export * from './authorReadTime/index';
+export * from './socialList/index';

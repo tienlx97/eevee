@@ -1,14 +1,20 @@
 import * as React from 'react';
-import { makeStyles, shorthands } from '@griffel/react';
-import { breakPoints, tokens } from '@eevee/react-theme';
-import { useBlogContext } from '@context/index';
-import { Link } from 'react-router-dom';
-import { toDate } from '@utilities/toDate';
-import type { Post } from 'typings/my-mdx/index';
-import { CopyLink, Facebook, LinkedIn, Save, Twitter } from '@components/icons/index';
-import { LinkIcon } from '@eevee/react-link';
+import { makeStyles, mergeClasses } from '@griffel/react';
+
+import { breakPoints } from '@eevee/react-theme';
 import { ButtonR, Button } from '@eevee/react-button';
-import { useBlogParam, useBlogAPISWR } from '../../hooks/index';
+
+import { Save } from '@components/icons/index';
+
+import { useBlogParam, useBlogAPISWR } from '@feature/blog/hooks/index';
+import {
+  CircleAvatar,
+  AuthorReadTime,
+  SocialList,
+  AuthorReadTimeSkeleton,
+  CirCleSkeleton,
+  SocialListSkeleton,
+} from '@feature/blog/components/index';
 
 const useRootStyles = makeStyles({
   root: {
@@ -38,22 +44,10 @@ const useRootStyles = makeStyles({
       marginBottom: '24px',
     },
   },
-
-  'mr-8': {
-    marginRight: '8px',
-  },
-});
-
-const useAvatarStyles = makeStyles({
-  root: {
-    width: '48px',
-    height: '48px',
-    ...shorthands.borderRadius('50%'),
-  },
 });
 
 const useDisplayStyles = makeStyles({
-  root: {
+  itemStart: {
     display: 'flex',
     alignItems: 'flex-start',
     justifyContent: 'space-between',
@@ -68,31 +62,12 @@ const useDisplayStyles = makeStyles({
     alignItems: 'center',
   },
 
-  block: {
-    display: 'block',
-  },
-
   'mr-16': {
     marginRight: '16px',
   },
-});
 
-const useReadTimeStyles = makeStyles({
-  root: {
-    flexWrap: 'wrap',
-    alignItems: 'center',
-    display: 'flex',
-  },
-});
-
-const useDotStyles = makeStyles({
-  root: {
-    display: 'inline-block',
-    ...shorthands.padding('0', '8px'),
-  },
-
-  dot: {
-    color: tokens.f1,
+  'mr-8': {
+    marginRight: '8px',
   },
 });
 
@@ -140,65 +115,82 @@ const useSocialStyles = makeStyles({
   },
 });
 
-const Dot = () => {
-  const dotStyles = useDotStyles();
-  return (
-    <div className={dotStyles.root}>
-      <span className={dotStyles.dot}>·</span>
-    </div>
-  );
-};
+const useSkeletonStyles = makeStyles({
+  web: {
+    [`@media ${breakPoints.lgAndLarger}`]: {
+      display: 'inline-flex',
+    },
+    [`@media ${breakPoints.lg}`]: {
+      display: 'inline-flex',
+    },
+    [`@media ${breakPoints.md}`]: {
+      display: 'inline-flex',
+    },
+    [`@media ${breakPoints.sm}`]: {
+      display: 'none',
+    },
+    [`@media ${breakPoints.xs}`]: {
+      display: 'none',
+    },
+  },
 
-const AuthorReadTime = ({ post }: { post: Post }) => {
-  const readTimeStyles = useReadTimeStyles();
-  return (
-    <div>
-      <div>{(post.frontmatter.author as any)[0]}</div>
-      <div className={readTimeStyles.root}>
-        <p>{toDate(post.frontmatter.date)}</p>
-        <Dot />
-        <div>{post.readTime.text}</div>
-        <Dot />
-        <div>{post.readTime.words} words</div>
-      </div>
-    </div>
-  );
-};
+  mobile: {
+    paddingTop: '24px',
 
-const CircleAvatar = ({ post }: { post: Post }) => {
+    [`@media ${breakPoints.lgAndLarger}`]: {
+      display: 'none',
+    },
+
+    [`@media ${breakPoints.lg}`]: {
+      display: 'none',
+    },
+
+    [`@media ${breakPoints.md}`]: {
+      display: 'none',
+    },
+
+    [`@media ${breakPoints.sm}`]: {
+      display: 'inline-flex',
+    },
+
+    [`@media ${breakPoints.xs}`]: {
+      display: 'inline-flex',
+    },
+  },
+});
+
+export const PostHeaderSkeleton = () => {
+  const rootStyles = useRootStyles();
   const displayStyles = useDisplayStyles();
-  const avatarStyles = useAvatarStyles();
+  const skeletonStyles = useSkeletonStyles();
+
   return (
-    <div className={displayStyles['mr-16']}>
-      <Link to="" rel="noopener follow">
-        <img
-          width={48}
-          height={48}
-          className={avatarStyles.root}
-          src="https://miro.medium.com/fit/c/176/176/1*jYZMrp0UVc4FknqTsdBuvw.jpeg"
+    <div className={mergeClasses(rootStyles.root, 'skeleton-wrapper')}>
+      <div className={displayStyles.itemStart}>
+        <div className={displayStyles.flex}>
+          <CirCleSkeleton />
+          <AuthorReadTimeSkeleton />
+        </div>
+        <SocialListSkeleton className={skeletonStyles.web}>
+          <div
+            className="skeleton-line heading"
+            style={{ margin: '0px 4px 0px 28px', width: '24px', height: '24px', alignSelf: 'center' }}
+          />
+        </SocialListSkeleton>
+      </div>
+      <SocialListSkeleton before={true} className={skeletonStyles.mobile}>
+        <div
+          className="skeleton-line"
+          style={{
+            marginRight: '8px',
+            borderRadius: '50px',
+            marginBottom: '0px',
+            width: '80px',
+            height: '36px',
+            alignSelf: 'center',
+          }}
         />
-      </Link>
-    </div>
-  );
-};
-
-type SocialListProps = JSX.IntrinsicElements['div'] & {
-  before?: boolean;
-};
-
-const SocialList: React.FC<SocialListProps> = ({ children, before = false, ...props }) => {
-  const displayStyles = useDisplayStyles();
-
-  return (
-    <div className={displayStyles.itemCenter}>
-      <div {...props}>
-        {before && children}
-        <LinkIcon aria-label="Facebook" title="Share on Facebook" icon={<Facebook />} href="/" />
-        <LinkIcon aria-label="Twitter" title="Share on Twitter" icon={<Twitter />} href="/" />
-        <LinkIcon aria-label="LinkedIn" title="Share on LinkedIn" icon={<LinkedIn />} href="/" />
-        <LinkIcon aria-label="Copy link" title="Copy link" icon={<CopyLink />} href="/" />
-        {!before && children}
-      </div>
+      </SocialListSkeleton>
     </div>
   );
 };
@@ -215,13 +207,23 @@ export function PostHeader() {
   return post ? (
     <div className={rootStyles.root}>
       {/* > mobile */}
-      <div className={displayStyles.root}>
+      <div className={displayStyles.itemStart}>
         <div className={displayStyles.flex}>
-          <CircleAvatar post={post} />
-          <AuthorReadTime post={post} />
+          <CircleAvatar
+            width={48}
+            height={48}
+            className={displayStyles['mr-16']}
+            url="https://miro.medium.com/fit/c/176/176/1*jYZMrp0UVc4FknqTsdBuvw.jpeg"
+          />
+          <AuthorReadTime
+            authorName={post.frontmatter.author[0].name}
+            authorNickName={post.frontmatter.author[1].nickName}
+            date={post.frontmatter.date}
+            readTime={post.readTime}
+          />
         </div>
         <SocialList className={socialListStyles.web}>
-          <LinkIcon style={{ margin: '0px 4px 0px 28px' }} aria-label="Save" title="Save" icon={<Save />} href="/" />
+          <ButtonR style={{ margin: '0px 4px 0px 28px' }} aria-label="Save" title="Save" icon={<Save />} />
         </SocialList>
       </div>
       {/* <= mobile */}
@@ -230,7 +232,7 @@ export function PostHeader() {
           iconPosition="before"
           appearance="unstyled"
           shape="circular"
-          icon={{ as: 'span', className: rootStyles['mr-8'], children: <Save /> }}
+          icon={{ as: 'span', className: displayStyles['mr-8'], children: <Save /> }}
         >
           Save
         </Button>
@@ -240,5 +242,3 @@ export function PostHeader() {
     <></>
   );
 }
-
-// {/* <LinkIcon style={{ margin: '0px 4px 0px 28px' }} aria-label="Save" title="Save" icon={<Save />} href="/" /> */}

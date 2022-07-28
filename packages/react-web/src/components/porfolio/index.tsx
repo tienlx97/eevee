@@ -63,7 +63,7 @@ export const Porfolio = ({ slug, ...props }: Props) => {
       </Link>
       <div className={displayStyles['mt-16']} />
       <Link className={rootStyles.textInherit} to="">
-        <h2 className={rootStyles.title}>{(blog.frontmatter.author as any)[0]}</h2>
+        <h2 className={rootStyles.title}>{blog.frontmatter.author[0].name}</h2>
       </Link>
       <div className={displayStyles['mt-4']} />
       <span>61 followers</span>

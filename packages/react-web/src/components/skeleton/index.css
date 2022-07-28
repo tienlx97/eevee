@@ -1,3 +1,4 @@
+.skeleton-wrapper,
 .skeleton-img,
 .skeleton-avatar,
 .tweet-footer,
@@ -23,6 +24,11 @@
 }
 
 .skeleton-avatar {
+  background-color: var(--b2);
+  border-radius: 100%;
+}
+
+.skeleton-avatar-no-ann {
   background-color: var(--b2);
   border-radius: 100%;
 }
@@ -62,6 +68,10 @@
 
 .heading-2 {
   height: 1.1em;
+}
+
+.heading-3 {
+  height: 1.8em;
 }
 
 .tweet-header {

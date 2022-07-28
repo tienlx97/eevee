@@ -4,66 +4,47 @@ import type { BlogPageSlots, BlogPageState } from './BlogPage.types';
 import { breakPoints } from '@eevee/react-theme';
 
 export const ClassName = 'eve-BlogPage';
-export const ClassNames: SlotClassNames<BlogPageSlots> = {
+export const ClassNames = {
   root: 'eve-Blog',
   // TODO: add class names for all slots on BlogSlots.
   // Should be of the form `<slotName>: 'eve-Blog__<slotName>`
+  displayCenter: 'eve-BlogPage__displayCenter',
 };
 
 /**
  * Styles for the root slot
  */
 const useStyles = makeStyles({
-  root: {
-    // TODO Add default styles for the root element
-    width: '100%',
-    minWidth: 0,
-    height: 'fit-content',
-  },
+  root: {},
 
   // TODO add additional classes for different states and/or slots
+});
 
-  contentQuery: {
+const useReactionStyles = makeStyles({
+  root: {
+    position: 'fixed',
+    alignSelf: 'center',
+    justifySelf: 'center',
+
     [`@media ${breakPoints.lgAndLarger}`]: {
-      maxWidth: '800px',
-      marginTop: 0,
-      marginRight: '30px',
-      marginLeft: '30px',
-      marginBottom: 0,
-      // ...shorthands.margin(0, 0, '50px', '32px'),
+      bottom: '16px',
     },
 
     [`@media ${breakPoints.lg}`]: {
-      maxWidth: '950px',
-      marginTop: 0,
-      marginRight: '30px',
-      marginLeft: '30px',
-      marginBottom: 0,
-      // ...shorthands.margin(0, 0, '50px', '32px'),
+      bottom: '69px',
     },
 
     [`@media ${breakPoints.md}`]: {
-      maxWidth: '850px',
-      marginTop: 0,
-      marginRight: '30px',
-      marginLeft: '30px',
-      marginBottom: 0,
-      // ...shorthands.margin(0, 0, '50px', '32px'),
+      bottom: '69px',
     },
 
     [`@media ${breakPoints.sm}`]: {
-      ...shorthands.margin(0, '15px'),
+      bottom: '69px',
     },
 
     [`@media ${breakPoints.xs}`]: {
-      ...shorthands.margin(0, '15px'),
+      bottom: '69px',
     },
-  },
-
-  flexCenterClassName: {
-    display: 'flex',
-    justifyContent: 'center',
-    flexDirection: 'column',
   },
 });
 
@@ -72,13 +53,12 @@ const useStyles = makeStyles({
  */
 export const useBlogPageStyles = (state: BlogPageState): BlogPageState => {
   const styles = useStyles();
-
-  state.root.className = mergeClasses(ClassName, styles.root, styles.contentQuery, state.root.className);
+  const reactionStyles = useReactionStyles();
+  state.root.className = mergeClasses(ClassName, styles.root, state.root.className);
 
   // TODO Add class names to slots, for example:
   // state.mySlot.className = mergeClasses(styles.mySlot, state.mySlot.className);
 
-  state.flexCenterClassName = styles.flexCenterClassName;
-
+  state.reactionClassName = reactionStyles.root;
   return state;
 };

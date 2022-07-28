@@ -1,19 +1,22 @@
 
+export type Author = {
+  id: number;
+  name: string;
+  nickName: string;
+  url: string;
+}
+
 export type FrontMatter = {
-  author: string[],
-  categories: Array<string>
+  author: Author[],
+  tags: Array<string>
   description: string,
   id: string,
-  meta: {
-    keywords: Array<string>
-    [key: string]: string | Array<string>
-  },
   slugify: string,
   title: string
 
   // optional
   archived?: boolean
-  date?: string
+  date: string
   draft?: boolean
   bannerCloudinaryId?: string
   bannerCredit?: string

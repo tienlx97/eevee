@@ -9,5 +9,5 @@ export type BlogPageProps = EeveeProps<Partial<BlogPageSlots>> & {};
 
 export type BlogPageState = EeveeState<BlogPageSlots> & {
   post?: Post | null | undefined;
-  flexCenterClassName?: string;
+  reactionClassName?: string;
 };

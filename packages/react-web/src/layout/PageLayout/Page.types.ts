@@ -9,4 +9,7 @@ export type PageLayoutProps = EeveeProps<PageLayoutSlot> & {};
 export type PageLayoutState = EeveeState<PageLayoutSlot> & {
   hide: boolean;
   commonMainLayout?: string;
+  centerClassName?: string;
+  displayCenterClassName?: string;
+  fixContentClassName?: string;
 };
