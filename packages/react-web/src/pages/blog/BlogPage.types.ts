@@ -1,3 +1,4 @@
+import * as React from 'react';
 import type { EeveeProps, EeveeSlot, EeveeState } from '@eevee/react-utilities';
 import type { Post } from 'typings/my-mdx';
 

@@ -76,10 +76,10 @@ export const normalize = (
   return (newScaleMax - newScaleMin) * standardNormalization + newScaleMin;
 };
 
-export const HorizontalRule = ({ maxWidth = 100, splashStyles }: HorizonTalRuleProps) => {
+export const HorizontalRule = ({ maxWidth = 100, splashStyles, ...props }: HorizonTalRuleProps) => {
   const hrStyles = useHrStyles();
   return (
-    <>
+    <div {...props}>
       <VisuallyHidden>
         <hr className={hrStyles.root} />
       </VisuallyHidden>
@@ -98,6 +98,6 @@ export const HorizontalRule = ({ maxWidth = 100, splashStyles }: HorizonTalRuleP
           return <line key={i} x1={x1} y1={y1} x2={x2} y2={y2} />;
         })}
       </svg>
-    </>
+    </div>
   );
 };

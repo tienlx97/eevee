@@ -132,7 +132,7 @@ export const tokens: Record<keyof Theme, string> = {
   themeProperty: 'var(--themeProperty)',
   themeStatic: 'var(--themeStatic)',
   themeString: 'var(--themeString)',
-  bg5: '',
+  bg5: 'var(--bg5)',
   bg6: '',
   bg7: '',
   bg8: '',

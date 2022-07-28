@@ -14,6 +14,8 @@ const useStyles = makeStyles({
     // TODO Add default styles for the root element
     top: '10px',
     position: 'sticky',
+    overflowY: 'hidden',
+    overflowX: 'hidden',
   },
 
   toc: {
@@ -74,25 +76,37 @@ export const Toc = ({ slug }: TocProps) => {
           }}
         />
       </div>
-      <a
-        //
-        href="#introduction"
-        className={styles.contentLinkHeading}
-        style={getStylesForDepth(1, !activeHeading)}
+      <div
+        // https://stackoverflow.com/questions/16670931/hide-scroll-bar-but-while-still-being-able-to-scroll
+        style={{
+          overflowY: 'scroll',
+          height: '50vh',
+          width: '100%',
+          paddingRight: '17px',
+          boxSizing: 'content-box',
+        }}
       >
-        Introduction
-      </a>
-      {largeEnoughHeadings &&
-        largeEnoughHeadings.map((heading, index) => (
-          <a
-            key={index}
-            href={heading.url}
-            className={styles.contentLinkHeading}
-            style={getStylesForDepth(heading.depth, activeHeading === heading.url)}
-          >
-            {heading.value}
-          </a>
-        ))}
+        <a
+          //
+          href="#introduction"
+          className={styles.contentLinkHeading}
+          style={getStylesForDepth(1, !activeHeading)}
+        >
+          Introduction
+        </a>
+        {largeEnoughHeadings &&
+          largeEnoughHeadings.map((heading, index) => (
+            <a
+              key={index}
+              href={heading.url}
+              className={styles.contentLinkHeading}
+              style={getStylesForDepth(heading.depth, activeHeading === heading.url)}
+            >
+              {heading.value}
+            </a>
+          ))}
+        <div style={{ height: '40px' }} />
+      </div>
     </div>
   ) : (
     <></>

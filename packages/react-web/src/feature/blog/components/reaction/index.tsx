@@ -40,13 +40,13 @@ const useRootStyles = makeStyles({
   },
 });
 
-export const Reaction = (props: JSX.IntrinsicElements['div']) => {
+export const Reaction = React.forwardRef<HTMLDivElement, JSX.IntrinsicElements['div']>((props, ref) => {
   const slug = useBlogParam();
   useBlogAPISWR(slug);
   const styles = useRootStyles();
 
   return (
-    <div {...props}>
+    <div {...props} ref={ref}>
       <div className={styles.wrapper}>
         <div className={styles.flex}>
           <div className={styles['mr-5']}>
@@ -64,7 +64,7 @@ export const Reaction = (props: JSX.IntrinsicElements['div']) => {
       </div>
     </div>
   );
-};
+});
 
 export const ReactionSkeleton = ({ className, ...props }: JSX.IntrinsicElements['div']) => {
   const styles = useRootStyles();

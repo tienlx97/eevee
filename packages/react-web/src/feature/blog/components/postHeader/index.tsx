@@ -216,8 +216,8 @@ export function PostHeader() {
             url="https://miro.medium.com/fit/c/176/176/1*jYZMrp0UVc4FknqTsdBuvw.jpeg"
           />
           <AuthorReadTime
-            authorName={post.frontmatter.author[0].name}
-            authorNickName={post.frontmatter.author[1].nickName}
+            authorName={post.frontmatter.author[0]}
+            authorNickName={post.frontmatter.author[1]}
             date={post.frontmatter.date}
             readTime={post.readTime}
           />

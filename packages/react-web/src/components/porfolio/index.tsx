@@ -53,7 +53,7 @@ export const Porfolio = ({ slug, ...props }: Props) => {
 
   return blog ? (
     <div {...props}>
-      <Link to="/">
+      <Link to={`/@${blog.frontmatter.author[1]}`}>
         <img
           width={69}
           height={69}
@@ -62,16 +62,13 @@ export const Porfolio = ({ slug, ...props }: Props) => {
         />
       </Link>
       <div className={displayStyles['mt-16']} />
-      <Link className={rootStyles.textInherit} to="">
-        <h2 className={rootStyles.title}>{blog.frontmatter.author[0].name}</h2>
+      <Link className={rootStyles.textInherit} to={`/@${blog.frontmatter.author[1]}`}>
+        <h2 className={rootStyles.title}>{blog.frontmatter.author[0]}</h2>
       </Link>
       <div className={displayStyles['mt-4']} />
       <span>61 followers</span>
       <div className={displayStyles['mt-12']} />
-      <p>
-        Developer | Technology evangelist | Distributed Systems | Coffee. I write about Experiences, Stories, Opinions
-        and Musings around Tech & Culture
-      </p>
+      <p>{blog.frontmatter.author[3]}</p>
       <div className={displayStyles['mt-24']} />
     </div>
   ) : (

@@ -7,7 +7,7 @@ export type Author = {
 }
 
 export type FrontMatter = {
-  author: Author[],
+  author: Array<string>,
   tags: Array<string>
   description: string,
   id: string,

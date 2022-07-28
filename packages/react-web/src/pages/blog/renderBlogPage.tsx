@@ -16,7 +16,6 @@ import type { BlogPageState } from './BlogPage.types';
  */
 export const renderBlogPage = (state: BlogPageState) => {
   const { reactionClassName } = state;
-
   return (
     <>
       <React.Suspense
@@ -31,7 +30,7 @@ export const renderBlogPage = (state: BlogPageState) => {
         <PostDetail />
       </React.Suspense>
       <React.Suspense fallback={<ReactionSkeleton className={reactionClassName} />}>
-        <Reaction className={reactionClassName} />
+        <Reaction id="eve-BlogPage__reaction" className={reactionClassName} />
       </React.Suspense>
     </>
   );

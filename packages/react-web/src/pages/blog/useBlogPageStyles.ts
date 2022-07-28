@@ -9,6 +9,7 @@ export const ClassNames = {
   // TODO: add class names for all slots on BlogSlots.
   // Should be of the form `<slotName>: 'eve-Blog__<slotName>`
   displayCenter: 'eve-BlogPage__displayCenter',
+  reactionClassName: 'eve-BlogPage__reaction',
 };
 
 /**
@@ -59,6 +60,6 @@ export const useBlogPageStyles = (state: BlogPageState): BlogPageState => {
   // TODO Add class names to slots, for example:
   // state.mySlot.className = mergeClasses(styles.mySlot, state.mySlot.className);
 
-  state.reactionClassName = reactionStyles.root;
+  state.reactionClassName = mergeClasses(ClassNames.reactionClassName, reactionStyles.root);
   return state;
 };
