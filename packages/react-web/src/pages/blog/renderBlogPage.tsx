@@ -11,6 +11,8 @@ import {
 
 import type { BlogPageState } from './BlogPage.types';
 import { CommentSystem } from '@components/comment/index';
+import { Mimikyu } from '@components/icons/index';
+import { Link } from 'react-router-dom';
 
 /**
  * Render the final JSX of Blog
@@ -22,6 +24,9 @@ export const renderBlogPage = (state: BlogPageState) => {
 
   return (
     <>
+      <Link to="/home">
+        <Mimikyu width={35} height={35} />
+      </Link>{' '}
       <CommentSystem
         // eslint-disable-next-line react/jsx-no-bind
         onClose={() => setOpenComment(false)}

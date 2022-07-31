@@ -1,7 +1,8 @@
 import * as React from 'react';
 import { makeStyles, shorthands } from '@griffel/react';
 import { LinkIcon } from '@eevee/react-link';
-import { Face } from '@components/icons/index';
+import { Mimikyu } from '@components/icons/index';
+import { Link } from 'react-router-dom';
 
 const useRootStyles = makeStyles({
   base: {
@@ -16,7 +17,9 @@ export const Top = () => {
   const styles = useRootStyles();
   return (
     <div className={styles.base}>
-      <LinkIcon icon={<Face width={40} height={40} />} href="/home" />
+      <Link to="/home">
+        <Mimikyu width={35} height={35} />
+      </Link>
     </div>
   );
 };
