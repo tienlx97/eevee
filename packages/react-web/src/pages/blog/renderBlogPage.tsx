@@ -24,9 +24,6 @@ export const renderBlogPage = (state: BlogPageState) => {
 
   return (
     <>
-      <Link to="/home">
-        <Mimikyu width={35} height={35} />
-      </Link>{' '}
       <CommentSystem
         // eslint-disable-next-line react/jsx-no-bind
         onClose={() => setOpenComment(false)}
