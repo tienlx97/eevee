@@ -32,6 +32,16 @@ const useRootStyles = makeStyles({
     justifyContent: 'flex-end',
     msFlexDirection: 'column',
   },
+
+  queryNotShow: {
+    pointerEvents: 'none',
+    opacity: 0,
+  },
+
+  queryShow: {
+    pointerEvents: 'all',
+    opacity: 1,
+  },
 });
 
 const useCommentStyles = makeStyles({
@@ -105,10 +115,12 @@ const useCommentStyles = makeStyles({
     },
 
     [`@media ${breakPoints.sm}`]: {
+      boxShadow: `${tokens.b2} 5px 0px 12px`,
       transform: 'translateY(30px)',
     },
 
     [`@media ${breakPoints.xs}`]: {
+      boxShadow: `${tokens.b2} 5px 0px 12px`,
       transform: 'translateY(30px)',
     },
   },
@@ -122,15 +134,10 @@ type CommentSystemProps = {
 export const CommentSystem = ({ show, onClose }: CommentSystemProps) => {
   const styles = useRootStyles();
   const commentStyles = useCommentStyles();
-
   const { colorMode } = useTheme();
   const theme = THEME_MAPPING[colorMode as keyof typeof THEME_MAPPING];
 
   const blurAllDynamicProps = {
-    style: {
-      pointerEvents: show ? 'all' : 'none',
-      opacity: show ? 1 : 0,
-    } as React.CSSProperties,
     role: 'presentation',
     'aria-hidden': show ? 'false' : 'true',
   } as JSX.IntrinsicElements['div'];
@@ -140,8 +147,18 @@ export const CommentSystem = ({ show, onClose }: CommentSystemProps) => {
   } as JSX.IntrinsicElements['div'];
 
   return (
-    <div className="eve-CommentSystem" role="dialog" aria-modal="true" tabIndex={-1}>
-      <div {...blurAllDynamicProps} className={styles.blurAll} onClick={onClose} />
+    <div
+      className="eve-CommentSystem"
+      style={{ display: show ? 'block' : 'none' }}
+      role="dialog"
+      aria-modal="true"
+      tabIndex={-1}
+    >
+      <div
+        {...blurAllDynamicProps}
+        className={mergeClasses(styles.blurAll, styles.queryNotShow, show && styles.queryShow)}
+        onClick={onClose}
+      />
       <div
         className={mergeClasses(commentStyles.root, commentStyles.queryNotShow, show && commentStyles.queryShow)}
         {...commentWrapperDynamicProps}
