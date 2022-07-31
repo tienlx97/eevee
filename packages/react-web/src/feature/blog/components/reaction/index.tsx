@@ -38,7 +38,11 @@ const useRootStyles = makeStyles({
   },
 });
 
-export const Reaction = (props: JSX.IntrinsicElements['div']) => {
+type ReactionProps = JSX.IntrinsicElements['div'] & {
+  setOpenComment: (value: boolean) => void;
+};
+
+export const Reaction = ({ setOpenComment, ...props }: ReactionProps) => {
   const slug = useBlogParam();
   useBlogAPISWR(slug);
   const styles = useRootStyles();
@@ -54,9 +58,12 @@ export const Reaction = (props: JSX.IntrinsicElements['div']) => {
           </div>
           <div className={styles.spacing} />
           <div className={styles['mr-5']}>
-            <Button className={styles['text-base']} icon={{ children: <Comment />, className: styles['mr-5'] }}>
-              250
-            </Button>
+            <Button
+              // eslint-disable-next-line react/jsx-no-bind
+              onClick={() => setOpenComment(true)}
+              className={styles['text-base']}
+              icon={{ children: <Comment />, className: styles['mr-5'] }}
+            />
           </div>
         </div>
       </div>

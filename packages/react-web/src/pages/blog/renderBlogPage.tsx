@@ -17,9 +17,16 @@ import { CommentSystem } from '@components/comment/index';
  */
 export const renderBlogPage = (state: BlogPageState) => {
   const { reactionClassName } = state;
+  // eslint-disable-next-line react-hooks/rules-of-hooks
+  const [isOpenComment, setOpenComment] = React.useState(false);
+
   return (
     <>
-      <CommentSystem isOpen={true} />
+      <CommentSystem
+        // eslint-disable-next-line react/jsx-no-bind
+        onClose={() => setOpenComment(false)}
+        show={isOpenComment}
+      />
       <React.Suspense
         fallback={
           <>
@@ -32,7 +39,12 @@ export const renderBlogPage = (state: BlogPageState) => {
         <PostDetail />
       </React.Suspense>
       <React.Suspense fallback={<ReactionSkeleton className={reactionClassName} />}>
-        <Reaction id="eve-BlogPage__reaction" className={reactionClassName} />
+        <Reaction
+          // eslint-disable-next-line react/jsx-no-bind
+          setOpenComment={val => setOpenComment(val)}
+          id="eve-BlogPage__reaction"
+          className={reactionClassName}
+        />
       </React.Suspense>
     </>
   );
