@@ -81,7 +81,7 @@ export const CommentSystem = ({ isOpen }: CommentSystemProps) => {
           strict="0"
           emitMetadata="1"
           inputPosition="top"
-          theme="light"
+          theme="https://raw.githubusercontent.com/lexuantien/eevee/dev/resource/css/commentSystem.css"
           lang="en"
           loading="lazy"
         />
