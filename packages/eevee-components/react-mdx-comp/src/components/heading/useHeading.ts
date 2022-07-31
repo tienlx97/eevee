@@ -16,7 +16,7 @@ export const useHeading = (props: HeadingProps, ref?: React.Ref<HTMLElement>): H
     root: getNativeElementProps(as, {
       ref,
       ...rest,
-      as: as,
+      as,
     }),
   };
 

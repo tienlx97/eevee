@@ -1,7 +1,7 @@
 {
-  "short_name": "Poro",
-  "name": "Poro",
-  "description": "Poro blog",
+  "short_name": "tienlx97",
+  "name": "tienlx97",
+  "description": "Personal website",
   "display": "standalone",
   "categories": ["blog", "news", "magazines"],
   "share_target": {
@@ -70,8 +70,8 @@
       "purpose": "any"
     }
   ],
-  "start_url": "https://poronote.netlify.app",
+  "start_url": "https://tienlx97.netlify.app",
   "scope": "/",
-  "theme_color": "#000000",
-  "background_color": "#000000"
+  "theme_color": "#fff",
+  "background_color": "#fff"
 }

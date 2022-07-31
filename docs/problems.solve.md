@@ -20,3 +20,7 @@
 - [Full width](https://css-tricks.com/full-width-containers-limited-width-parents/)
 - [mjs cjs](https://www.sensedeep.com/blog/posts/2021/how-to-create-single-source-npm-module.html)
 - [advance map typescript](https://medium.com/hypersphere-codes/advanced-typescript-mapped-types-and-more-b5d023bd6539)
+- [feature base design](https://feature-sliced.design/en/docs/guides/examples/auth)
+- [react folder structure](https://profy.dev/article/react-folder-structure#growth-we-need-pages)
+- [hide scrollbar](https://stackoverflow.com/questions/16670931/hide-scroll-bar-but-while-still-being-able-to-scroll)
+- [Modal](https://medium.com/tinyso/how-to-create-a-modal-component-in-react-from-basic-to-advanced-a3357a2a716a)

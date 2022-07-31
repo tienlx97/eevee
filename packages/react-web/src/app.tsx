@@ -1,35 +1,32 @@
 import * as React from 'react';
-import { useLocation, Routes, Route } from 'react-router-dom';
-import { Page } from './components/layout/index';
-import { Scroll2Top } from './components/ scroll2top/index';
+import { Routes, Route } from 'react-router-dom';
+
+import { PageLayout } from '@layout/index';
+import { BlogPage } from '@pages/index';
+import { Scroll2Top } from '@components/scroll2top/index';
+import { ErrorHandler } from '@context/index';
 
 const LazyPageNotFound = React.lazy(() =>
   import('./pages/PageNotFound/index').then(module => ({ default: module.PageNotFound })),
 );
-const LazyBlogItem = React.lazy(() => import('./pages/Blog/index').then(module => ({ default: module.Blog })));
 
 export const App = () => {
-  const location = useLocation();
-
   return (
-    <Page>
+    <PageLayout>
       <Scroll2Top>
-        <Routes>
-          <Route path="*" element={<LazyPageNotFound />} />
-          <Route path="/home" element={<div>Home</div>} />
-          <Route path="/search" element={<div>Search</div>} />
-          <Route path="/notification" element={<div>Notification</div>} />
-          <Route path="/write" element={<div>Write sth</div>} />
-          <Route
-            path="/blog/:slug"
-            element={
-              <React.Suspense fallback={<div>Loading...</div>}>
-                <LazyBlogItem />
-              </React.Suspense>
-            }
-          />
-        </Routes>
+        <ErrorHandler>
+          <Routes>
+            <Route path="*" element={<LazyPageNotFound />} />
+            <Route path="/blog/:slug" element={<BlogPage />} />
+            <Route path="/@" element={<></>} />
+            <Route path="/home" element={<div>Home</div>} />
+            <Route path="/search" element={<div>Search</div>} />
+            <Route path="/notification" element={<div>Notification</div>} />
+            <Route path="/write" element={<div>Write sth</div>} />
+            <Route path="/404/:slug" element={<LazyPageNotFound />} />
+          </Routes>
+        </ErrorHandler>
       </Scroll2Top>
-    </Page>
+    </PageLayout>
   );
 };

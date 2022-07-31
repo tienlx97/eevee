@@ -1,6 +1,6 @@
 import * as React from 'react';
-import type { PageNotFoundState } from './PageNotFound.types';
 import { useLocation } from 'react-router-dom';
+import type { PageNotFoundState } from './PageNotFound.types';
 
 export const usePageNotFoundState = (state: PageNotFoundState): PageNotFoundState => {
   const location = useLocation();

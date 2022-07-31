@@ -36,6 +36,7 @@ export type ColorTokens = {
   bCaution: string;
   bWarning: string;
   b1: string;
+  b2: string;
   bDisable: string;
 
   // Old code snippet
@@ -644,11 +645,10 @@ export type Theme = FontSizeTokens &
   FontFamilyTokens &
   FontWeightTokens &
   // ColorPaletteTokens &
-  ColorTokens
-  // &
-  // SanpackColor &
-  // DurationTokens
-  ;
+  ColorTokens;
+// &
+// SanpackColor &
+// DurationTokens
 
 export type PartialTheme = Partial<Theme>;
 

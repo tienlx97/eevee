@@ -1,3 +1,14 @@
-export const navWidth = 50;
+export const NAV_WIDTH = 50;
 
-export const navHeight = 56;
+export const NAV_HEIGHT = 56;
+
+export const MAX_PAGE_WIDTH = '1504px';
+
+export const IOS_BOTTOM_PADDING = 'env(safe-area-inset-bottom)';
+
+export const THEME_MAPPING = {
+  light: 'light',
+  dark: 'dark',
+};
+
+export const COMMENT_WIDTH = '414px';

@@ -1,0 +1,4 @@
+{
+  "origins": ["https://dev--tienlx97.netlify.app/", "https://tienlx97.netlify.app/"],
+  "originsRegex": ["http://localhost:[0-9]+"]
+}

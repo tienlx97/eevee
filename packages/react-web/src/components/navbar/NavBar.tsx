@@ -1,14 +1,14 @@
 import * as React from 'react';
 import { makeStyles, shorthands } from '@griffel/react';
-
 import { breakPoints, tokens } from '@eevee/react-theme';
 
 import { SideNav } from './sidenav/index';
 import { TopNav } from './topnav/index';
 import { BotNav } from './botnav/index';
 
-import { useMediaQuery } from '../../hooks/index';
-import { navWidth } from '../../constants/index';
+import { useMediaQuery } from '@hooks/index';
+import { NAV_WIDTH } from '@constants/index';
+
 const useMediaQueryStyles = makeStyles({
   // wrapper all navbar
   query: {
@@ -17,9 +17,9 @@ const useMediaQueryStyles = makeStyles({
     //  min-width: 1080
     [`@media ${breakPoints.lgAndLarger}`]: {
       flexShrink: 1,
-      width: `${navWidth}px`,
+      width: `${NAV_WIDTH}px`,
       minHeight: '100vh',
-      ...shorthands.borderRight('1px', 'solid', tokens.b1),
+      ...shorthands.borderRight('1px', 'solid', tokens.b2),
     },
 
     [`@media ${breakPoints.lgAndSmaller}`]: {

@@ -21,7 +21,17 @@
       "@eevee/react-shared-contexts": ["packages/eevee-components/react-shared-contexts/src/index.ts"],
       "@eevee/react-theme": ["packages/eevee-components/react-theme/src/index.ts"],
       "@eevee/react-utilities": ["packages/eevee-components/react-utilities/src/index.ts"],
-      "@eevee/react-mdx-comp": ["packages/eevee-components/react-mdx-comp/src/index.ts"]
+      "@eevee/react-mdx-comp": ["packages/eevee-components/react-mdx-comp/src/index.ts"],
+
+      "@components/*": ["packages/react-web/src/components/*"],
+      "@constants/*": ["packages/react-web/src/constants/*"],
+      "@context/*": ["packages/react-web/src/context/*"],
+      "@feature/*": ["packages/react-web/src/feature/*"],
+      "@hooks/*": ["packages/react-web/src/hooks/*"],
+      "@layout/*": ["packages/react-web/src/layout/*"],
+      "@libs/*": ["packages/react-web/src/libs/*"],
+      "@pages/*": ["packages/react-web/src/pages/*"],
+      "@utilities/*": ["packages/react-web/src/utilities/*"]
     }
   },
   "exclude": ["node_modules"]

@@ -1,0 +1,79 @@
+.skeleton-wrapper,
+.skeleton-img,
+.skeleton-avatar,
+.tweet-footer,
+.tweet-text,
+.tweet-header {
+  -webkit-animation: skeleton 1s ease-in-out forwards infinite;
+  animation: skeleton 1s ease-in-out forwards infinite;
+  -webkit-animation-direction: alternate;
+  animation-direction: alternate;
+}
+
+@keyframes skeleton {
+  0% {
+    opacity: 0.2;
+    transform: translateY(6px) scale(0.98);
+  }
+
+  85%,
+  100% {
+    opacity: 1;
+    transform: translateY(0px) scale(1);
+  }
+}
+
+.skeleton-avatar {
+  background-color: var(--b2);
+  border-radius: 100%;
+}
+
+.skeleton-avatar-no-ann {
+  background-color: var(--b2);
+  border-radius: 100%;
+}
+
+.skeleton-line {
+  height: 0.7rem;
+  background-color: var(--b2);
+  border-radius: 3px;
+  margin-bottom: 0.3rem;
+}
+
+.skeleton-img {
+  height: 250px;
+  background-color: var(--b2);
+  border-radius: 0.75rem;
+  margin-top: 1.5rem;
+  -webkit-animation-delay: 300ms;
+  animation-delay: 300ms;
+}
+
+.skeleton-button {
+  display: block;
+  width: 26px;
+  height: 26px;
+  background-color: var(--b2);
+  flex-shrink: 0;
+}
+
+.tweet-text {
+  -webkit-animation-delay: 200ms;
+  animation-delay: 200ms;
+}
+
+.heading {
+  height: 1.2em;
+}
+
+.heading-2 {
+  height: 1.1em;
+}
+
+.heading-3 {
+  height: 1.8em;
+}
+
+.tweet-header {
+  transform-origin: bottom;
+}

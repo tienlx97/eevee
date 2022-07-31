@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { makeStyles } from '@griffel/react';
-import { ToggleTheme } from '../../../toggleTheme/index';
+import { ToggleTheme } from '@components/toggleTheme/index';
 
 const useRootStyles = makeStyles({
   root: {

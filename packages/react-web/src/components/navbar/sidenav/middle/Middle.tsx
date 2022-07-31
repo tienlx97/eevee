@@ -9,7 +9,7 @@ import {
   SearchFill,
   NotificationFill,
   WriteRegular,
-} from '../../../icons/index';
+} from '@components/icons/index';
 import { LinkIcon } from '@eevee/react-link';
 
 const useRootStyles = makeStyles({

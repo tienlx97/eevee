@@ -37,7 +37,7 @@ const useRootStyles = makeStyles({
     ':hover': {
       // backgroundColor: tokens.colorBackground1Hover,
       // ...shorthands.borderColor(tokens.colorStroke1Hover), // #757575 #c7c7c7
-      color: tokens.f1,
+      color: tokens.f4,
 
       cursor: 'pointer',
 

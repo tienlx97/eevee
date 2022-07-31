@@ -1,9 +1,11 @@
 import * as React from 'react';
 import { getSlots } from '@eevee/react-utilities';
+import { Mimikyu } from '@components/icons/index';
+import { ToggleTheme } from '@components/toggleTheme/index';
+
 import { TopNavSlots, TopNavState } from './TopNav.types';
-import { ToggleTheme } from '../../toggleTheme/index';
-import { LinkIcon } from '@eevee/react-link';
-import { Face } from '../../icons/index';
+import { Link } from 'react-router-dom';
+
 /**
  * Render the final JSX of TopNav
  */
@@ -13,7 +15,9 @@ export const renderTopNav = (state: TopNavState) => {
   return (
     <slots.root {...slotProps.root}>
       <slots.content {...slotProps.content}>
-        <LinkIcon icon={<Face width={35} height={35} />} href="/home" />
+        <Link to="/home">
+          <Mimikyu width={35} height={35} />
+        </Link>
         <div style={{ display: 'flex', alignItems: 'center' }}>
           <ToggleTheme />
         </div>

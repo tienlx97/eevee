@@ -1,9 +1,9 @@
 import { SlotClassNames } from '@eevee/react-utilities';
-import { mergeClasses, makeStyles, shorthands } from '@griffel/react';
+import { mergeClasses, makeStyles } from '@griffel/react';
 import { BotNavSlots, BotNavState } from './BotNav.types';
 
 import { breakPoints, tokens } from '@eevee/react-theme';
-import { navHeight } from '../../../constants/css';
+import { NAV_HEIGHT, IOS_BOTTOM_PADDING } from '@constants/index';
 
 export const botNavClassNames: SlotClassNames<BotNavSlots> = {
   root: 'eve-BotNav',
@@ -13,7 +13,7 @@ export const botNavClassNames: SlotClassNames<BotNavSlots> = {
 
 const useSafePaddingStyles = makeStyles({
   root: {
-    paddingBottom: 'env(safe-area-inset-bottom)',
+    paddingBottom: IOS_BOTTOM_PADDING,
   },
 });
 
@@ -56,7 +56,7 @@ const usePositionStyles = makeStyles({
 
 const useContentStyles = makeStyles({
   wrapper: {
-    height: `${navHeight}px`,
+    height: `${NAV_HEIGHT}px`,
     position: 'relative',
     zIndex: 600,
     display: 'flex',
@@ -84,7 +84,6 @@ export const useBotNavStyles = (state: BotNavState) => {
   const linkIconWrapper = useLinkIconWrapperStyles();
 
   state.root.className = mergeClasses(
-    //
     botNavClassNames.root,
     // rootStyles.root,
     mediaQueryStyles.query,
@@ -92,7 +91,6 @@ export const useBotNavStyles = (state: BotNavState) => {
   );
 
   state.postition.className = mergeClasses(
-    //
     iphoneSafePadding.root,
     botNavClassNames.postition,
     positionStyles.position,
