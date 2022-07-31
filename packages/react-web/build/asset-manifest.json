@@ -1,11 +1,16 @@
 {
   "files": {
-    "main.css": "/static/css/main.0cf8a246.css",
-    "main.js": "/static/js/main.5196c7ff.js",
+    "main.css": "/static/css/main.f0e734f1.css",
+    "main.js": "/static/js/main.9beb40e4.js",
+    "static/js/239.d0227df9.chunk.js": "/static/js/239.d0227df9.chunk.js",
+    "static/css/847.5cd21aac.chunk.css": "/static/css/847.5cd21aac.chunk.css",
+    "static/js/847.978eacde.chunk.js": "/static/js/847.978eacde.chunk.js",
+    "static/js/227.e87a4926.chunk.js": "/static/js/227.e87a4926.chunk.js",
     "static/js/66.ac82ae9e.chunk.js": "/static/js/66.ac82ae9e.chunk.js",
+    "static/js/116.acd83eb0.chunk.js": "/static/js/116.acd83eb0.chunk.js",
+    "static/js/419.c690d529.chunk.js": "/static/js/419.c690d529.chunk.js",
     "static/media/sriracha.woff2": "/static/media/sriracha.bb7e4281fdbceb24e0d2.woff2",
     "static/media/LeagueMono-Bold.woff2": "/static/media/LeagueMono-Bold.2e3b96597e831fa08636.woff2",
-    "sw.js": "/sw.js",
     "static/media/wotfard-medium-webfont.woff2": "/static/media/wotfard-medium-webfont.557bb8cd24a5acee86f6.woff2",
     "static/media/wotfard-semibold-webfont.woff2": "/static/media/wotfard-semibold-webfont.94686c8d7fb6d793e806.woff2",
     "static/media/wotfard-regular-webfont.woff2": "/static/media/wotfard-regular-webfont.52f036eb37a10b2a2eda.woff2",
@@ -13,5 +18,5 @@
     "static/media/LeagueMono-Regular.woff2": "/static/media/LeagueMono-Regular.db3b8a851babfcb98c53.woff2",
     "index.html": "/index.html"
   },
-  "entrypoints": ["static/css/main.0cf8a246.css", "static/js/main.5196c7ff.js"]
+  "entrypoints": ["static/css/main.f0e734f1.css", "static/js/main.9beb40e4.js"]
 }

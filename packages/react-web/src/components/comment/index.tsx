@@ -30,7 +30,7 @@ const useCommentStyles = makeStyles({
     width: '40vw',
     ...shorthands.padding('16px'),
     zIndex: 520,
-    backgroundColor: 'white',
+    backgroundColor: 'black',
     left: '100%',
     ...shorthands.overflow('auto'),
     boxShadow: 'rgb(0 0 0 / 15%) 0px 4px 12px',
@@ -81,7 +81,7 @@ export const CommentSystem = ({ isOpen }: CommentSystemProps) => {
           strict="0"
           emitMetadata="1"
           inputPosition="top"
-          theme="https://raw.githubusercontent.com/lexuantien/eevee/dev/resource/css/commentSystem.css"
+          theme="https://cycool29.github.io/assets/styles/comments.css"
           lang="en"
           loading="lazy"
         />

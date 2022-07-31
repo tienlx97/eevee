@@ -7,11 +7,11 @@
       content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=0,viewport-fit=cover"
     />
     <meta name="apple-mobile-web-app-status-bar-style" content="white" />
-    <meta name="apple-mobile-web-app-title" content="Poro" />
+    <meta name="apple-mobile-web-app-title" content="tienlx97" />
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="mobile-web-app-capable" content="yes" />
-    <meta name="theme-color" content="#000000" />
-    <link rel="canonical" href="https://main--poronote.netlify.app/" />
+    <meta name="theme-color" content="#fff" />
+    <link rel="canonical" href="https://tienlx97.netlify.app/" />
     <link rel="manifest" href="manifest.json" crossorigin="use-credentials" />
     <link
       rel="apple-touch-icon"
@@ -236,6 +236,7 @@
           f10: 'hsl(210, 25%, 96%)',
           fDisable: '#5c5c5c',
           b1: '#2b3135',
+          b2: '#2b3135',
           bNote: 'hsl(230, 100%, 67%)',
           bImportant: '#0078d4',
           bTip: 'hsl(160, 100%, 40%)',
@@ -278,10 +279,10 @@
           themeProperty: '#77b7d7',
           themeStatic: '#c64640',
           themeString: '#977cdc',
-          bg5: '',
-          bg6: '',
-          bg7: '',
-          bg8: '',
+          bg5: 'hsl(200deg, 50%, 60%)',
+          bg6: 'rgb(22, 24, 28)',
+          bg7: '#163952',
+          bg8: 'rgb(29, 161, 242)',
           bg9: '',
           bg10: '',
         },
@@ -367,6 +368,7 @@
           f10: 'hsl(225, 15%, 15%)',
           fDisable: '#5c5c5c',
           b1: '#2b3135',
+          b2: 'rgba(230, 230, 230, 1)',
           bNote: 'hsl(245, 100%, 60%)',
           bImportant: '#0078d4',
           bTip: 'hsl(160, 100%, 40%)',
@@ -409,10 +411,10 @@
           themeProperty: '#005cc5',
           themeStatic: '#032f62',
           themeString: '#032f62',
-          bg5: '',
-          bg6: '',
-          bg7: '',
-          bg8: '',
+          bg5: 'hsl(200deg, 75%, 65%)',
+          bg6: 'rgb(247, 249, 249)',
+          bg7: '#d2ebfc',
+          bg8: '#1d9bf0',
           bg9: '',
           bg10: '',
         };
@@ -427,7 +429,10 @@
         doc = window.document.documentElement;
       Object.keys(theme).reduce((e, t) => (doc.style.setProperty(`--${t}`, String(theme[t])), e), '');
       const html = window.document.getElementById('html-client-id');
-      html && (html.className = 'dark' === color ? color : ''), localStorage.setItem('color-mode', color);
+      html && (html.className = 'dark' === color ? color : ''),
+        document.querySelector('meta[name="theme-color"]').setAttribute('content', theme.bg1),
+        document.querySelector('meta[name="apple-mobile-web-app-status-bar-style"]').setAttribute('content', theme.bg1),
+        localStorage.setItem('color-mode', color);
     </script>
     <script>
       if (void 0 === Poro) var Poro = {};
@@ -466,8 +471,8 @@
           document.head.appendChild(gaScript);
       }
     </script>
-    <script defer="defer" src="/static/js/main.5196c7ff.js"></script>
-    <link href="/static/css/main.0cf8a246.css" rel="stylesheet" />
+    <script defer="defer" src="/static/js/main.9beb40e4.js"></script>
+    <link href="/static/css/main.f0e734f1.css" rel="stylesheet" />
   </head>
   <body>
     <noscript>You need to enable JavaScript to run this.</noscript>

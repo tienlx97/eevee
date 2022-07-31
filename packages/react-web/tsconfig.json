@@ -25,8 +25,8 @@
     "module": "esnext",
     "moduleResolution": "Node",
     "resolveJsonModule": true,
-    "isolatedModules": true,
-    "noEmit": true
+    "isolatedModules": true
+    // "noEmit": true
   },
   "include": ["src", "./babel.config.js", "./jest.config.js", "./.eslintrc.json"]
 }
