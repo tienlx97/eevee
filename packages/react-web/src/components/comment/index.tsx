@@ -41,7 +41,7 @@ const useCommentStyles = makeStyles({
     boxSizing: 'border-box',
     top: '0px',
 
-    ...shorthands.padding('0px', '24px'),
+    ...shorthands.padding('0px', '24px', '24px', '24px'),
     zIndex: 520,
     backgroundColor: tokens.bg1,
     left: '100%',
