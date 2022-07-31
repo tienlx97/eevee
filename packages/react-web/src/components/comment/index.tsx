@@ -149,7 +149,7 @@ export const CommentSystem = ({ show, onClose }: CommentSystemProps) => {
   return (
     <div
       className="eve-CommentSystem"
-      style={{ display: show ? 'block' : 'none' }}
+      style={{ visibility: show ? 'visible' : 'hidden' }}
       role="dialog"
       aria-modal="true"
       tabIndex={-1}
