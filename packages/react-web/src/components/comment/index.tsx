@@ -2,7 +2,7 @@ import * as React from 'react';
 import Giscus from '@giscus/react';
 import { makeStyles, mergeClasses, shorthands } from '@griffel/react';
 import { Button, ButtonR } from '@eevee/react-button';
-import { Close } from '@components/icons/index';
+import { Close, Community } from '@components/icons/index';
 import { breakPoints, tokens } from '@eevee/react-theme';
 import { useTheme } from '@eevee/react-shared-contexts';
 import { THEME_MAPPING, COMMENT_WIDTH } from '@constants/index';
@@ -26,10 +26,11 @@ const useRootStyles = makeStyles({
   },
 
   closeButtonWrapper: {
-    ...shorthands.padding('5px'),
+    ...shorthands.padding('24px', '0px'),
     display: 'flex',
     flexDirection: 'row',
     justifyContent: 'flex-end',
+    msFlexDirection: 'column',
   },
 });
 
@@ -40,7 +41,7 @@ const useCommentStyles = makeStyles({
     boxSizing: 'border-box',
     top: '0px',
 
-    ...shorthands.padding('16px'),
+    ...shorthands.padding('0px', '24px'),
     zIndex: 520,
     backgroundColor: tokens.bg1,
     left: '100%',
@@ -146,6 +147,7 @@ export const CommentSystem = ({ show, onClose }: CommentSystemProps) => {
         {...commentWrapperDynamicProps}
       >
         <div className={styles.closeButtonWrapper}>
+          <ButtonR icon={<Community />} />
           <ButtonR onClick={onClose} icon={<Close />} />
         </div>
         <Giscus
