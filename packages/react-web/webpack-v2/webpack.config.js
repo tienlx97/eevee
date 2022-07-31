@@ -520,6 +520,7 @@ function loadPluginList(isEnvProduction, env, isEnvDevelopment, shouldUseReactRe
     // }),
 
     new CopyPlugin([{ from: 'src/asset/copy2public', to: '' }]),
+    new CopyPlugin([{ from: 'src/asset/fix-css', to: 'static/css/' }]),
 
     // Generate a service worker script that will precache, and keep up to date,
     // the HTML & assets that are part of the webpack build.
