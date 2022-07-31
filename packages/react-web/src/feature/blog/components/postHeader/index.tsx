@@ -213,7 +213,7 @@ export function PostHeader() {
             width={48}
             height={48}
             className={displayStyles['mr-16']}
-            url="https://miro.medium.com/fit/c/176/176/1*jYZMrp0UVc4FknqTsdBuvw.jpeg"
+            url="https://source.unsplash.com/random"
           />
           <AuthorReadTime
             authorName={post.frontmatter.author[0]}

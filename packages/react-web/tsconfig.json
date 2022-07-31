@@ -3,19 +3,30 @@
   "compilerOptions": {
     "target": "es5",
     "outDir": "lib",
-    "module": "commonjs",
+    // "module": "commonjs",
     "jsx": "react",
     "declaration": false,
     "sourceMap": false,
     "experimentalDecorators": true,
     "forceConsistentCasingInFileNames": true,
-    "moduleResolution": "node",
+    // "moduleResolution": "node",
     "preserveConstEnums": true,
     "strictNullChecks": true,
     "noImplicitAny": true,
-    "lib": ["es6", "dom"],
+    "lib": ["es6", "dom", "dom.iterable", "esnext"],
     "types": ["react-dom-18", "static-assets", "webpack-env"],
-    "skipLibCheck": true
+    "skipLibCheck": true,
+
+    "allowJs": true,
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "strict": true,
+    "noFallthroughCasesInSwitch": true,
+    "module": "esnext",
+    "moduleResolution": "Node",
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "noEmit": true
   },
   "include": ["src", "./babel.config.js", "./jest.config.js", "./.eslintrc.json"]
 }

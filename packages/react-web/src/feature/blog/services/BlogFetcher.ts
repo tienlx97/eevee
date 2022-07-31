@@ -6,7 +6,7 @@ export const BlogFetcher = async (slug: string) => {
   const slugQuery = query(postCol, where('frontmatter.slugify', '==', slug), limit(1));
   const snaps = await getDocs(slugQuery);
 
-  await delay(1000);
+  await delay(400);
   if (snaps.empty) {
     return null;
   }

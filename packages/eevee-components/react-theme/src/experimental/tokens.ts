@@ -133,9 +133,9 @@ export const tokens: Record<keyof Theme, string> = {
   themeStatic: 'var(--themeStatic)',
   themeString: 'var(--themeString)',
   bg5: 'var(--bg5)',
-  bg6: '',
-  bg7: '',
-  bg8: '',
+  bg6: 'var(--bg6)',
+  bg7: 'var(--bg7)',
+  bg8: 'var(--bg8)',
   bg9: '',
   bg10: '',
 };

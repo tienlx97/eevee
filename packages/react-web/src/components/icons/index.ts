@@ -13,3 +13,5 @@ export * from './CopyLink';
 export * from './Save';
 export * from './Clap';
 export * from './Comment';
+export * from './Community';
+export * from './Close';

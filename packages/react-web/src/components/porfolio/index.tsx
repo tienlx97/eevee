@@ -24,7 +24,9 @@ const useDisplayStyles = makeStyles({
 });
 
 const useRootStyles = makeStyles({
-  root: {
+  root: {},
+
+  avatar: {
     ...shorthands.borderRadius('50%'),
   },
 
@@ -54,12 +56,7 @@ export const Porfolio = ({ slug, ...props }: Props) => {
   return blog ? (
     <div {...props}>
       <Link to={`/@${blog.frontmatter.author[1]}`}>
-        <img
-          width={69}
-          height={69}
-          className={rootStyles.root}
-          src="https://miro.medium.com/fit/c/176/176/1*jYZMrp0UVc4FknqTsdBuvw.jpeg"
-        />
+        <img width={69} height={69} className={rootStyles.avatar} src="https://source.unsplash.com/random" />
       </Link>
       <div className={displayStyles['mt-16']} />
       <Link className={rootStyles.textInherit} to={`/@${blog.frontmatter.author[1]}`}>
@@ -69,7 +66,6 @@ export const Porfolio = ({ slug, ...props }: Props) => {
       <span>61 followers</span>
       <div className={displayStyles['mt-12']} />
       <p>{blog.frontmatter.author[3]}</p>
-      <div className={displayStyles['mt-24']} />
     </div>
   ) : (
     <></>

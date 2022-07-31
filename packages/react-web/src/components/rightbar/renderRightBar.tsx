@@ -11,6 +11,7 @@ import { Porfolio } from '../porfolio/index';
 import { PorfolioSkeleton } from '../skeleton/PorfolioSkeleton';
 import { TocSkeleton } from '../skeleton/TocSkeleton';
 import { Link } from 'react-router-dom';
+import { BlogRightBar } from '@feature/blog/index';
 
 const useRootStyles = makeStyles({
   root: {
@@ -50,21 +51,7 @@ export const renderRightBar = (state: RightBarState) => {
     <slots.root {...slotProps.root}>
       <div className={rootStyles.root}>
         <div style={{ opacity: 0 }}>Love Gnart</div>
-
-        {state.slug && (
-          <>
-            <ErrorBoundary fallback={<Spinner />}>
-              <React.Suspense fallback={<PorfolioSkeleton style={{ marginTop: '20px' }} />}>
-                <Porfolio slug={slug} style={{ marginTop: '20px' }} />
-              </React.Suspense>
-            </ErrorBoundary>
-            <ErrorBoundary fallback={<Spinner />}>
-              <React.Suspense fallback={<TocSkeleton />}>
-                <Toc slug={slug} />
-              </React.Suspense>
-            </ErrorBoundary>
-          </>
-        )}
+        <BlogRightBar />
       </div>
       <div
         style={{

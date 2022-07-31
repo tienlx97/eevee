@@ -1,7 +1,7 @@
 import { makeStyles, mergeClasses, shorthands } from '@griffel/react';
-import type { SlotClassNames } from '@eevee/react-utilities';
-import type { BlogPageSlots, BlogPageState } from './BlogPage.types';
+import type { BlogPageState } from './BlogPage.types';
 import { breakPoints } from '@eevee/react-theme';
+import { NAV_HEIGHT } from '@constants/index';
 
 export const ClassName = 'eve-BlogPage';
 export const ClassNames = {
@@ -21,6 +21,8 @@ const useStyles = makeStyles({
   // TODO add additional classes for different states and/or slots
 });
 
+const bottomHeight = `calc(${NAV_HEIGHT + 10}px + env(safe-area-inset-bottom))`;
+
 const useReactionStyles = makeStyles({
   root: {
     position: 'fixed',
@@ -32,19 +34,19 @@ const useReactionStyles = makeStyles({
     },
 
     [`@media ${breakPoints.lg}`]: {
-      bottom: '69px',
+      bottom: bottomHeight,
     },
 
     [`@media ${breakPoints.md}`]: {
-      bottom: '69px',
+      bottom: bottomHeight,
     },
 
     [`@media ${breakPoints.sm}`]: {
-      bottom: '69px',
+      bottom: bottomHeight,
     },
 
     [`@media ${breakPoints.xs}`]: {
-      bottom: '69px',
+      bottom: bottomHeight,
     },
   },
 });

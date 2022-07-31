@@ -12,6 +12,7 @@ export const getStylesForDepth = (depth: number, isActiveHeading: boolean) => {
         ...base,
         // marginTop: 10,
         '--font-size-px': 15,
+        paddingLeft: 5,
       };
 
     case 2:
@@ -19,7 +20,7 @@ export const getStylesForDepth = (depth: number, isActiveHeading: boolean) => {
         ...base,
         marginTop: 3,
         '--font-size-px': 14,
-        paddingLeft: 12,
+        paddingLeft: 20,
       };
 
     case 3:
@@ -27,7 +28,7 @@ export const getStylesForDepth = (depth: number, isActiveHeading: boolean) => {
         ...base,
         marginTop: 3,
         '--font-size-px': 12,
-        paddingLeft: 24,
+        paddingLeft: 35,
       };
 
     default:

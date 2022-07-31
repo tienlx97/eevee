@@ -42,10 +42,10 @@ const useRootStyles = makeStyles({
   },
 });
 
-export const TagList = React.forwardRef<HTMLElement, TagProps>(({ tagList }, ref) => {
+export const TagList = ({ tagList }: TagProps) => {
   const rootStyles = useRootStyles();
   return (
-    <section ref={ref}>
+    <section>
       <Heading type="section-title" as="h2">
         Tags
       </Heading>
@@ -65,4 +65,4 @@ export const TagList = React.forwardRef<HTMLElement, TagProps>(({ tagList }, ref
       </div>
     </section>
   );
-});
+};

@@ -3,7 +3,7 @@ import { mergeClasses, makeStyles } from '@griffel/react';
 import { BotNavSlots, BotNavState } from './BotNav.types';
 
 import { breakPoints, tokens } from '@eevee/react-theme';
-import { NAV_HEIGHT } from '@constants/index';
+import { NAV_HEIGHT, IOS_BOTTOM_PADDING } from '@constants/index';
 
 export const botNavClassNames: SlotClassNames<BotNavSlots> = {
   root: 'eve-BotNav',
@@ -13,7 +13,7 @@ export const botNavClassNames: SlotClassNames<BotNavSlots> = {
 
 const useSafePaddingStyles = makeStyles({
   root: {
-    paddingBottom: 'env(safe-area-inset-bottom)',
+    paddingBottom: IOS_BOTTOM_PADDING,
   },
 });
 

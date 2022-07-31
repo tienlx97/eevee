@@ -6,3 +6,6 @@ export * from './circleAvatar/index';
 export * from './authorReadTime/index';
 export * from './socialList/index';
 export * from './tag/index';
+export * from './morePost/index';
+export * from './blogRightBar/index';
+export * from './toc/index';

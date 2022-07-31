@@ -40,7 +40,7 @@ const useRootStyles = makeStyles({
   root: {
     backgroundColor: tokens.bg1,
     boxSizing: 'border-box',
-    ...shorthands.padding('0', '20px'),
+    ...shorthands.padding('0', '10px'),
     ...shorthands.borderLeft('1px', 'solid', tokens.b2),
     minHeight: '100vh',
     width: '360px',

@@ -44,6 +44,14 @@ export type Post = {
   toc: Toc[];
 }
 
+export type MorePost = {
+  postTitle: string;
+  authorImg: string;
+  authorName: string;
+  publishDate: string;
+  postUrl: string;
+}
+
 export type GitHubFile = { path: string; content: string }
 
 

@@ -22,3 +22,4 @@
 - [advance map typescript](https://medium.com/hypersphere-codes/advanced-typescript-mapped-types-and-more-b5d023bd6539)
 - [feature base design](https://feature-sliced.design/en/docs/guides/examples/auth)
 - [react folder structure](https://profy.dev/article/react-folder-structure#growth-we-need-pages)
+- [hide scrollbar](https://stackoverflow.com/questions/16670931/hide-scroll-bar-but-while-still-being-able-to-scroll)

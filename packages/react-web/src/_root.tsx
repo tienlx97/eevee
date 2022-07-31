@@ -36,9 +36,7 @@ const Root = () => {
           lightTheme={webLightTheme}
           darkTheme={webDarkTheme}
         >
-          <BlogContextProvider>
-            <App />
-          </BlogContextProvider>
+          <App />
         </EeveeProvider>
       </GAProvider>
     </Router>

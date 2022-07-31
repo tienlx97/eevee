@@ -3,6 +3,7 @@ import { makeStyles, shorthands } from '@griffel/react';
 import { tokens } from '@eevee/react-theme';
 import { Heading } from '@eevee/react-mdx-comp';
 import { getStylesForDepth, useActiveHeading, useBlogAPISWR } from '@feature/blog/index';
+import { Spinner } from '@components/spinner2/index';
 
 /**
  * Styles for the root slot
@@ -78,7 +79,7 @@ const useTocSkeleton = makeStyles({
   },
 
   tocList: {
-    height: '300px',
+    height: '125px',
     width: '100%',
   },
 });
@@ -126,10 +127,9 @@ export const TocSkeleton = () => {
 
   return (
     <div className={styles.root}>
-      <Heading as="h2" type="section-title" className={styles.tocHeading}>
-        Table of Contents
-      </Heading>
-      <div className={styles.tocList} />
+      <div className={styles.tocList}>
+        <Spinner />
+      </div>
     </div>
   );
 };

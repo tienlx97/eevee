@@ -10,6 +10,12 @@ const useRootStyles = makeStyles({
   'mr-16': {
     marginRight: '16px',
   },
+
+  flex: {
+    display: 'flex',
+    flexDirection: 'row',
+    color: 'inherit',
+  },
 });
 
 const useSkeletonStyles = makeStyles({
@@ -24,6 +30,7 @@ type CircleAvatarProps = JSX.IntrinsicElements['div'] & {
   width?: number;
   height?: number;
   url: string;
+  title?: string;
 };
 
 export const CirCleSkeleton = () => {
@@ -31,12 +38,21 @@ export const CirCleSkeleton = () => {
   return <div className={mergeClasses(skeletonStyles.circleAvatar, 'skeleton-avatar-no-ann')} />;
 };
 
-export const CircleAvatar = ({ height = 48, url, width = 48, className, ...props }: CircleAvatarProps) => {
+export const CircleAvatar = ({
+  height = 48,
+  url,
+  width = 48,
+  title,
+  children,
+  className,
+  ...props
+}: CircleAvatarProps) => {
   const styles = useRootStyles();
   return (
     <div className={className} {...props}>
-      <Link to="" rel="noopener follow">
+      <Link className={mergeClasses(styles.flex)} to="" rel="noopener follow">
         <img width={height} height={width} className={styles.root} src={url} />
+        {children && children}
       </Link>
     </div>
   );

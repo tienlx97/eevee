@@ -1,9 +1,25 @@
 import * as React from 'react';
+import { tokens } from '@eevee/react-theme';
 import { useParams } from 'react-router-dom';
-import { MDX } from '@components/Mdx/index';
 import { H1, HorizontalRule } from '@eevee/react-mdx-comp';
 import { useBlogAPISWR, TagList } from '@feature/blog/index';
-import { tokens } from '@eevee/react-theme';
+import { MDX } from '@components/Mdx/index';
+
+export const PostDetail = (props: JSX.IntrinsicElements['div']) => {
+  const { slug } = useParams();
+  const post = useBlogAPISWR(slug);
+
+  return post ? (
+    <div style={{ height: '100%' }} {...props}>
+      <H1 style={{ color: tokens.f10, marginTop: '0' }}>{post.frontmatter.title}</H1>
+      <MDX source={post.code} />
+      <TagList tagList={post.frontmatter.tags as any} />
+      <HorizontalRule />
+    </div>
+  ) : (
+    <></>
+  );
+};
 
 export const PostDetailSkeleton = () => {
   return (
@@ -34,20 +50,3 @@ export const PostDetailSkeleton = () => {
     </div>
   );
 };
-
-export const PostDetail = React.forwardRef<HTMLDivElement>((props, ref) => {
-  const { slug } = useParams();
-  const post = useBlogAPISWR(slug);
-  const containerRef = React.useRef<HTMLElement>(null);
-
-  return post ? (
-    <div ref={ref} style={{ height: '100%' }}>
-      <H1 style={{ color: tokens.f10, marginTop: '0' }}>{post.frontmatter.title}</H1>
-      <MDX source={post.code} />
-      <TagList ref={containerRef} tagList={post.frontmatter.tags as any} />
-      <HorizontalRule id="eve-PostDetail__HR" className="eve-PostDetail__HR" />
-    </div>
-  ) : (
-    <></>
-  );
-});

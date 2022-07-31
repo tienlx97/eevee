@@ -1,11 +1,9 @@
 import * as React from 'react';
-import { Clap } from '@components/icons/Clap';
-import { Comment } from '@components/icons/Comment';
-import { Button } from '@eevee/react-button';
-import { useBlogParam } from '../../hooks/usBlogParam';
-import { useBlogAPISWR } from '../../hooks/useBlogAPISuspense';
 import { makeStyles, mergeClasses, shorthands } from '@griffel/react';
 import { tokens } from '@eevee/react-theme';
+import { Button } from '@eevee/react-button';
+import { Clap, Comment } from '@components/icons/index';
+import { useBlogParam, useBlogAPISWR } from '@feature/blog/index';
 
 const useRootStyles = makeStyles({
   wrapper: {
@@ -40,13 +38,13 @@ const useRootStyles = makeStyles({
   },
 });
 
-export const Reaction = React.forwardRef<HTMLDivElement, JSX.IntrinsicElements['div']>((props, ref) => {
+export const Reaction = (props: JSX.IntrinsicElements['div']) => {
   const slug = useBlogParam();
   useBlogAPISWR(slug);
   const styles = useRootStyles();
 
   return (
-    <div {...props} ref={ref}>
+    <div {...props}>
       <div className={styles.wrapper}>
         <div className={styles.flex}>
           <div className={styles['mr-5']}>
@@ -64,7 +62,7 @@ export const Reaction = React.forwardRef<HTMLDivElement, JSX.IntrinsicElements['
       </div>
     </div>
   );
-});
+};
 
 export const ReactionSkeleton = ({ className, ...props }: JSX.IntrinsicElements['div']) => {
   const styles = useRootStyles();

@@ -28,11 +28,9 @@ export const PorfolioSkeleton = (props: JSX.IntrinsicElements['div']) => {
       </div>
       <div style={{ marginTop: '12px' }} />
       <div className="tweet-text">
-        <div className="skeleton-line heading" style={{ width: '90%' }} />
         <div className="skeleton-line heading" style={{ width: '100%' }} />
-        <div className="skeleton-line heading" style={{ width: '35%' }} />
+        <div className="skeleton-line heading" style={{ width: '60%' }} />
       </div>
-      <div style={{ marginBottom: '15px' }} />
     </div>
   );
 };

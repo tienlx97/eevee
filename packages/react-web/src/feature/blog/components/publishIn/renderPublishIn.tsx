@@ -62,7 +62,7 @@ export const renderPublishIn = (state: PublishInState) => {
             <div className={rootStyles.publishInWrapper}>
               <div className={rootStyles.publishInText}>Published in</div>
             </div>
-            <TextLink href="/">Technology</TextLink>
+            <TextLink href="/">Tiki</TextLink>
           </div>
         </div>
       </div>

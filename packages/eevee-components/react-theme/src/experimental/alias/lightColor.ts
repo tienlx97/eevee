@@ -76,9 +76,9 @@ export const generateColorTokens = (brand: BrandVariants): ColorTokens => ({
   themeStatic: '#032f62',
   themeString: '#032f62',
   bg5: 'hsl(200deg, 75%, 65%)',
-  bg6: '',
-  bg7: '',
-  bg8: '',
+  bg6: 'rgb(247, 249, 249)',
+  bg7: '#d2ebfc',
+  bg8: '#1d9bf0',
   bg9: '',
   bg10: '',
 });
