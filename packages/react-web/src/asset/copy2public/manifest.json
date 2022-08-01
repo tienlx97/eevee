@@ -1,6 +1,6 @@
 {
-  "short_name": "tienlx97",
-  "name": "tienlx97",
+  "short_name": "mimikyu",
+  "name": "mimikyu",
   "description": "Personal website",
   "display": "standalone",
   "categories": ["blog", "news", "magazines"],
@@ -70,7 +70,7 @@
       "purpose": "any"
     }
   ],
-  "start_url": "https://tienlx97.netlify.app",
+  "start_url": "https://mimikyu.netlify.app",
   "scope": "/",
   "theme_color": "#fff",
   "background_color": "#fff"

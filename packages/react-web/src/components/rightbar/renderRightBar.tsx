@@ -1,15 +1,7 @@
 import * as React from 'react';
-import { makeStyles, shorthands } from '@griffel/react';
-import { ErrorBoundary } from 'react-error-boundary';
+import { makeStyles } from '@griffel/react';
 import { getSlots } from '@eevee/react-utilities';
-
-import { Toc } from '@components/toc/index';
-import { Spinner } from '@components/spinner/Spinner';
-
 import { RightBarSlots, RightBarState } from './RightBar.types';
-import { Porfolio } from '../porfolio/index';
-import { PorfolioSkeleton } from '../skeleton/PorfolioSkeleton';
-import { TocSkeleton } from '../skeleton/TocSkeleton';
 import { Link } from 'react-router-dom';
 import { BlogRightBar } from '@feature/blog/index';
 
