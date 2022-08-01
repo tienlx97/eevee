@@ -1,4 +1,4 @@
 {
-  "origins": ["https://dev--tienlx97.netlify.app/", "https://tienlx97.netlify.app/"],
+  "origins": ["https://dev--mimikyu.netlify.app/", "https://mimikyu.netlify.app/"],
   "originsRegex": ["http://localhost:[0-9]+"]
 }

@@ -9,3 +9,4 @@ export * from './tag/index';
 export * from './morePost/index';
 export * from './blogRightBar/index';
 export * from './toc/index';
+export * from './toc-v2/index';

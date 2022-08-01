@@ -1,13 +1,18 @@
 import * as React from 'react';
 import { tokens } from '@eevee/react-theme';
 import { useParams } from 'react-router-dom';
-import { H1, HorizontalRule } from '@eevee/react-mdx-comp';
+import { CH1, H1, HorizontalRule } from '@eevee/react-mdx-comp';
 import { useBlogAPISWR, TagList } from '@feature/blog/index';
 import { MDX } from '@components/Mdx/index';
+import { getHeaderAnchors } from '../../hooks/useTocHighlight';
 
 export const PostDetail = (props: JSX.IntrinsicElements['div']) => {
   const { slug } = useParams();
   const post = useBlogAPISWR(slug);
+
+  if (post) {
+    getHeaderAnchors();
+  }
 
   return post ? (
     <div style={{ height: '100%' }} {...props}>

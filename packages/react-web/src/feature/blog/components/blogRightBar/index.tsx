@@ -4,7 +4,7 @@ import { ErrorBoundary } from 'react-error-boundary';
 import { Porfolio } from '@components/porfolio/index';
 import { Spinner } from '@components/spinner/Spinner';
 import { PorfolioSkeleton } from '@components/skeleton/PorfolioSkeleton';
-import { useBlogParam, MorePost, TocSkeleton, MorePostSkeleton, Toc } from '@feature/blog/index';
+import { useBlogParam, MorePost, TocSkeleton, MorePostSkeleton, TocV2 } from '@feature/blog/index';
 
 import { MockMorePostList } from '@feature/blog/mocks/MorePost';
 
@@ -38,7 +38,7 @@ export const BlogRightBar = () => {
       <div className={styles.sticky}>
         <ErrorBoundary fallback={<Spinner />}>
           <React.Suspense fallback={<TocSkeleton />}>
-            <Toc slug={slug} />
+            <TocV2 slug={slug} />
           </React.Suspense>
         </ErrorBoundary>
         <div style={{ height: '24px' }} />
