@@ -1,3 +1,5 @@
+//#region imports
+
 import * as React from 'react';
 import * as client from 'react-dom/client';
 import { BrowserRouter as Router } from 'react-router-dom';
@@ -10,12 +12,15 @@ import { App } from './app';
 // css
 import './asset/css/index.css';
 import '@codesandbox/sandpack-react/dist/index.css';
+// import '@code-hike/mdx/dist/index.css';
 
 // provider
-import { EeveeProvider } from '@eevee/react-provider';
-import { GAProvider, BlogContextProvider } from '@context/index';
+import { EeveeProvider as ConfigProvider } from '@eevee/react-provider';
+import { GAProvider } from '@context/index';
 
 import { registerServiceWorker } from '@feature/pwa/index';
+
+//#endregion
 
 const useStyles = makeStyles({
   wrapper: {
@@ -24,22 +29,16 @@ const useStyles = makeStyles({
 });
 
 const Root = () => {
-  const classes = useStyles();
+  const styles = useStyles();
 
   return (
-    <Router>
-      <GAProvider>
-        <EeveeProvider
-          //
-          dir="ltr"
-          className={classes.wrapper}
-          lightTheme={webLightTheme}
-          darkTheme={webDarkTheme}
-        >
+    <GAProvider>
+      <ConfigProvider dir="ltr" className={styles.wrapper} lightTheme={webLightTheme} darkTheme={webDarkTheme}>
+        <Router>
           <App />
-        </EeveeProvider>
-      </GAProvider>
-    </Router>
+        </Router>
+      </ConfigProvider>
+    </GAProvider>
   );
 };
 

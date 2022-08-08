@@ -36,14 +36,13 @@ const useRootStyles = makeStyles({
 export const renderRightBar = (state: RightBarState) => {
   // eslint-disable-next-line react-hooks/rules-of-hooks
   const rootStyles = useRootStyles();
-  const { slug } = state;
   const { slots, slotProps } = getSlots<RightBarSlots>(state);
 
   return (
     <slots.root {...slotProps.root}>
       <div className={rootStyles.root}>
         <div style={{ opacity: 0 }}>Love Gnart</div>
-        <BlogRightBar />
+        {state.slug && <BlogRightBar />}
       </div>
       <div
         style={{

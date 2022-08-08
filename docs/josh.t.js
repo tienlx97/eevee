@@ -1,1353 +1,1550 @@
-var m = Object.defineProperty,
-  d = Object.defineProperties;
-var u = Object.getOwnPropertyDescriptors;
-var o = Object.getOwnPropertySymbols;
-var s = Object.prototype.hasOwnProperty,
-  r = Object.prototype.propertyIsEnumerable;
-var l = (t, i, a) => (i in t ? m(t, i, { enumerable: !0, configurable: !0, writable: !0, value: a }) : (t[i] = a)),
-  e = (t, i) => {
-    for (var a in i || (i = {})) s.call(i, a) && l(t, a, i[a]);
-    if (o) for (var a of o(i)) r.call(i, a) && l(t, a, i[a]);
+var h = Object.defineProperty,
+  m = Object.defineProperties;
+var c = Object.getOwnPropertyDescriptors;
+var a = Object.getOwnPropertySymbols;
+var r = Object.prototype.hasOwnProperty,
+  s = Object.prototype.propertyIsEnumerable;
+var l = (t, n, i) => (n in t ? h(t, n, { enumerable: !0, configurable: !0, writable: !0, value: i }) : (t[n] = i)),
+  e = (t, n) => {
+    for (var i in n || (n = {})) r.call(n, i) && l(t, i, n[i]);
+    if (a) for (var i of a(n)) s.call(n, i) && l(t, i, n[i]);
     return t;
   },
-  p = (t, i) => d(t, u(i));
-var h = (t, i) => {
-  var a = {};
-  for (var n in t) s.call(t, n) && i.indexOf(n) < 0 && (a[n] = t[n]);
-  if (t != null && o) for (var n of o(t)) i.indexOf(n) < 0 && r.call(t, n) && (a[n] = t[n]);
-  return a;
+  p = (t, n) => m(t, c(n));
+var d = (t, n) => {
+  var i = {};
+  for (var o in t) r.call(t, o) && n.indexOf(o) < 0 && (i[o] = t[o]);
+  if (t != null && a) for (var o of a(t)) n.indexOf(o) < 0 && s.call(t, o) && (i[o] = t[o]);
+  return i;
 };
 const makeShortcode = t =>
-    function (a) {
+    function (i) {
       return (
         console.warn('Component ' + t + ' was not imported, exported, or provided by MDXProvider as global scope'),
-        mdx('div', e({}, a))
+        mdx('div', e({}, i))
       );
     },
   Sidenote = makeShortcode('Sidenote'),
-  SideBySide = makeShortcode('SideBySide'),
-  Spacer = makeShortcode('Spacer'),
-  EmDemo = makeShortcode('EmDemo'),
-  Playground = makeShortcode('Playground'),
-  Asterisk = makeShortcode('Asterisk'),
-  RemDemo = makeShortcode('RemDemo'),
+  TerminalScreenshot = makeShortcode('TerminalScreenshot'),
+  Save = makeShortcode('Save'),
+  VimeoVideoPlayer = makeShortcode('VimeoVideoPlayer'),
   VideoGif = makeShortcode('VideoGif'),
-  PxRemComparisonDemo = makeShortcode('PxRemComparisonDemo'),
-  RemPaddingDemo = makeShortcode('RemPaddingDemo'),
-  ImageCompare = makeShortcode('ImageCompare'),
-  VerticalMarginsDemo = makeShortcode('VerticalMarginsDemo'),
-  ButtonWidthDemo = makeShortcode('ButtonWidthDemo'),
+  Asterisk = makeShortcode('Asterisk'),
+  PostImage = makeShortcode('PostImage'),
+  NewsletterSignup = makeShortcode('NewsletterSignup'),
   layoutProps = {},
   MDXLayout = 'wrapper';
-function MDXContent(a) {
-  var n = a,
-    { components: t } = n,
-    i = h(n, ['components']);
+function MDXContent(i) {
+  var o = i,
+    { components: t } = o,
+    n = d(o, ['components']);
   return mdx(
     MDXLayout,
-    p(e(e({}, layoutProps), i), { components: t, mdxType: 'MDXLayout' }),
+    p(e(e({}, layoutProps), n), { components: t, mdxType: 'MDXLayout' }),
     mdx(
-      'blockquote',
-      {
-        style: {
-          color: 'var(--color-gray-700)',
-          fontSize: '1.25rem',
-          fontWeight: 'var(--font-weight-medium)',
-          marginTop: '3rem',
-          marginBottom: '1.5rem',
-          padding: 0,
-        },
-      },
-      '\u201CShould I use pixels or ems/rems?!\u201D',
+      'p',
+      null,
+      "Modern front-end frameworks like React, Angular, and Vue rely heavily on the terminal. If you're not comfortable with command line interfaces, you'll struggle to run a local development server or build your application!",
     ),
     mdx(
       'p',
       null,
-      'This is a question I hear a lot. Often with a dollop of anxiety or frustration behind the words. \u{1F605}',
+      "There's something deeply ironic about this. Our whole job is to build ",
+      mdx('em', { parentName: 'p' }, 'graphical user interfaces'),
+      ', but the tools we use in our development are mostly command-line based!',
     ),
     mdx(
       'p',
       null,
-      "It's an emotionally-charged question because there are a ",
-      mdx('em', { parentName: 'p' }, 'lot'),
-      " of conflicting opinions out there, and it can be overwhelming. Maybe you've heard that rems are better for accessibility. Or maybe you've heard that the problem is fixed and pixels are fine?",
+      "Unless you have a Computer Science background, or grew up using a computer in the 80s, you probably won't have very much terminal experience. And yet, most online resources assume that you're already proficient!",
     ),
     mdx(
       'p',
       null,
-      'The truth is, if you want to build the most-accessible product possible, ',
-      mdx('strong', { parentName: 'p' }, 'you need to use both pixels ', mdx('i', null, 'and'), ' ems/rems.'),
-      " It's not an either/or situation. There are circumstances where rems are more accessible, and other circumstances where ",
-      mdx('i', null, 'pixels'),
-      ' are more accessible.',
+      'It takes years of practice to become a terminal guru, ',
+      mdx('strong', { parentName: 'p' }, "but here's the good news:"),
+      " we can take a shortcut. We don't really need to know 98% of the stuff you can do with a terminal. If we focus on the most-important critical fundamentals, we should be able to become comfortable with the command line in a remarkably short amount of time. \u2728",
     ),
-    mdx('p', null, "So, here's what we're going to do in this tutorial:"),
+    mdx(
+      'p',
+      null,
+      mdx('strong', { parentName: 'p' }, "That's what this blog post is all about."),
+      " It's the missing manual of terminal fundamentals needed to work with modern JS frameworks like React, so you can move onto the fun stuff: building user interfaces!",
+    ),
+    mdx(
+      'p',
+      null,
+      "I'll also share all of my favourite ",
+      mdx('em', { parentName: 'p' }, 'tips and tricks'),
+      ' for getting the most out of the terminal, the stuff I wish someone had shown me when I was first getting started.',
+    ),
+    mdx('h1', null, 'Getting set up'),
+    mdx('p', null, "Alright, so there's two things we need to do before anything else."),
+    mdx(
+      'p',
+      null,
+      'First, we need some terminal software. This is the application that runs the command-line environment.',
+    ),
+    mdx(
+      'p',
+      null,
+      "Just about every operating system will come with a built-in terminal, like MacOS' Terminal.app, or Windows' Command Prompt. These applications work, but they're pretty underwhelming. Most developers opt to use something else.",
+    ),
+    mdx(
+      'p',
+      null,
+      "The choice of terminal application isn't ",
+      mdx('em', { parentName: 'p' }, 'super'),
+      " important, as long as you're using something modern. That said, I have two main recommendations:",
+    ),
     mdx(
       'ol',
       null,
       mdx(
         'li',
         { parentName: 'ol' },
-        "We'll briefly cover how each unit works, to make sure we're all building on the same solid foundation.",
+        mdx('a', e({ parentName: 'li' }, { href: 'https://hyper.is/' }), 'Hyper'),
+        ". Hyper is a modern, multi-platform terminal application. It's beautiful, and comes with some handy modern features, like the ability to split into multiple panes.",
       ),
       mdx(
         'li',
         { parentName: 'ol' },
-        "We'll look at what the accessibility considerations are, and how each unit can affect these considerations.",
+        'If you use VS Code as your code editor, VS Code comes with a powerful, modern terminal built in. This is nice, since it means your code and terminal can run side-by-side in the same application. You can pop open the terminal in VS Code by selecting View \u2192 Terminal.',
       ),
-      mdx(
-        'li',
-        { parentName: 'ol' },
-        "We'll build a mental model we can use to help us decide which unit to use in ",
-        mdx('i', null, 'any'),
-        ' scenario.',
-      ),
-      mdx('li', { parentName: 'ol' }, "I'll share my favourite tips and tricks for converting between units."),
+    ),
+    mdx('p', null, "I'll be using Hyper for all the examples in this blog post."),
+    mdx(
+      'p',
+      null,
+      "Now, the terminal application is only half of the equation. We also need to make sure we're running the right ",
+      mdx('em', { parentName: 'p' }, 'shell language'),
+      '.',
     ),
     mdx(
       'p',
       null,
-      "By the end, you'll be able to ",
-      mdx('em', { parentName: 'p' }, 'use your intuition'),
-      ' to be able to figure out which unit to use in any scenario. \u{1F604}',
-    ),
-    mdx('h1', null, 'Unit summaries'),
-    mdx('h2', null, 'Pixels'),
-    mdx(
-      'p',
-      null,
-      'The most popular unit for anything size-related is the ',
-      mdx('inlineCode', { parentName: 'p' }, 'px'),
-      ' unit, short for \u201Cpixel\u201D:',
-    ),
-    mdx(
-      'pre',
-      null,
-      mdx(
-        'code',
-        e({ parentName: 'pre' }, { className: 'language-css' }),
-        `.box {
-  width: 1000px;
-  margin-top: 32px;
-  padding: 8px;
-}
-`,
-      ),
+      "When we type a command into the terminal and press \u201Center\u201D, that command will be interpreted by the shell language. It's essentially the environment running within the terminal application.",
     ),
     mdx(
       'p',
       null,
-      'In theory, ',
-      mdx('inlineCode', { parentName: 'p' }, '1px'),
-      ` is equal to a single dot in a computer monitor or phone screen. They're the least-abstract unit we have in CSS, the closest "to the metal". As a result, they tend to feel pretty intuitive.`,
+      'The most popular shell language is ',
+      mdx('strong', { parentName: 'p' }, 'Bash'),
+      ". When you see command-line instructions online, it's likely that the instructions are assuming Bash. This is the default shell language used by most Linux distributions.",
+    ),
+    mdx(
+      'p',
+      null,
+      'Modern MacOS versions ship with ',
+      mdx('strong', { parentName: 'p' }, 'Zsh'),
+      ` instead of Bash, but Zsh is very similar: it's part of the same "family", and shares almost all of the same commands. For our purposes, they can be used interchangeably.`,
+    ),
+    mdx(
+      'p',
+      null,
+      `If you're using either Linux or MacOS, you're good to go. Your computer is already using an "industry standard" shell language. If you're using Windows, however, we have a bit of work to do.`,
     ),
     mdx(
       Sidenote,
-      { title: 'Hardware vs. software pixels', mdxType: 'Sidenote' },
+      { title: 'A helpful analogy', mdxType: 'Sidenote' },
       mdx(
         'p',
         null,
-        'So, the ',
-        mdx('inlineCode', { parentName: 'p' }, 'px'),
-        " unit is a bit of a lie. It doesn't ",
-        mdx('i', null, 'actually'),
-        ' map neatly onto hardware pixels.',
+        'Have you ever popped open the developer console in your web browser to run some arbitrary JavaScript code?',
       ),
+      mdx('img', {
+        alt: "Screenshot of the Chrome developer tools' console tab, showing a couple of basic JS statements being executed",
+        src: '/images/terminal-for-js-devs/js-console.png',
+      }),
       mdx(
         'p',
         null,
-        "If you look at a modern display under a microscope, you'll realize that they aren't made up of crisp little R/G/B rectangles anymore. Here are close-up shots of the screens on the Apple Watch and Apple iPhone:",
-      ),
-      mdx(
-        SideBySide,
-        { style: { marginBottom: '1rem' }, mdxType: 'SideBySide' },
-        mdx('img', { src: '/images/pixels-and-accessibility/pixel-closeup-apple-watch.jpg' }),
-        mdx('img', { src: '/images/pixels-and-accessibility/pixel-closeup-iphone.jpg' }),
-      ),
-      mdx(
-        'p',
-        { style: { textAlign: 'center' } },
-        '(Sources: ',
-        mdx('a', { href: 'https://9to5mac.com/2015/07/07/apple-watch-display-pixels/' }, 'Apple Watch'),
-        ' and ',
-        mdx('a', { href: 'https://www.displaymate.com/Diamond_45s.html' }, 'iPhone'),
-        '.)',
-      ),
-      mdx(Spacer, { size: 32, mdxType: 'Spacer' }),
-      mdx(
-        'p',
-        null,
-        "Even before manufacturers started getting creative with pixel grids, there was still a distinction between the physical pixels in a screen and the software pixels we write in CSS. Every time a user changes their screen's resolution or zooms in, they're changing how software pixels map onto hardware pixels.",
+        'In this case, the application is Chrome, and the language is JavaScript. Chrome provides the command-line interface, but when we run commands, those commands are interpreted using JavaScript.',
       ),
       mdx(
         'p',
         null,
-        'That said, none of this should really affect how we feel about the ',
-        mdx('inlineCode', { parentName: 'p' }, 'px'),
-        " unit. It's still the most concrete unit we have!",
+        "It's the same setup when it comes to the terminal. A terminal application like Hyper might be running the Bash shell language. Unlike web browsers, however, terminal applications can switch between multiple shell languages!",
       ),
     ),
-    mdx('h2', null, 'Ems'),
+    mdx('h2', null, 'Windows setup'),
+    mdx(
+      'p',
+      null,
+      'Alright, first, let me preface this by emphatically admitting that I am ',
+      mdx('em', { parentName: 'p' }, 'not'),
+      " an expert when it comes to Windows development. Please take everything I'm about to say with a grain of salt. \u{1F605}",
+    ),
+    mdx(
+      'p',
+      null,
+      "Bash is a Linux-based shell language, and it won't run natively in Windows. Fortunately, newer versions of Windows come with the ability to install and run Linux as if it were any other application. This is known as ",
+      mdx('i', null, 'Windows Subsystem for Linux'),
+      ', commonly abbreviated to WSL.',
+    ),
+    mdx(
+      'p',
+      null,
+      "Here's a tutorial that runs through the steps required: ",
+      mdx(
+        'a',
+        e({ parentName: 'p' }, { href: 'https://candid.technology/zsh-windows-10/' }),
+        'How to install and use Zsh in Windows 10',
+      ),
+      '.',
+    ),
+    mdx('p', null, "I ran through these steps myself, and while it's definitely a bit tedious, it does the job!"),
+    mdx(
+      'p',
+      null,
+      "Once it's set up, you'll be able to configure your terminal application to use Bash or Zsh. Here are some instructions for ",
+      mdx(
+        'a',
+        e(
+          { parentName: 'p' },
+          {
+            href: 'https://hashnode.com/post/customize-hyper-terminal-in-windows-using-oh-my-zsh-and-powerline-fonts-ckggfmcwc00brrls1f8va9jfl#install-hyper-terminal',
+          },
+        ),
+        'configuring Hyper to use Zsh',
+      ),
+      '.',
+    ),
+    mdx(
+      'p',
+      null,
+      'If you have trouble with any of these steps, there are other solutions you can try. A popular method is ',
+      mdx('a', e({ parentName: 'p' }, { href: 'https://www.atlassian.com/git/tutorials/git-bash' }), 'Git Bash'),
+      ', which allows you to run Bash within Windows using emulation.',
+    ),
+    mdx(
+      'p',
+      null,
+      "Ultimately, it doesn't matter how you get there. The important thing is for you to be able to use either Bash or Zsh within Windows.",
+    ),
+    mdx(
+      Sidenote,
+      { title: 'Cmder', mdxType: 'Sidenote' },
+      mdx(
+        'p',
+        null,
+        'Lou from France reached out to recommend ',
+        mdx('a', e({ parentName: 'p' }, { href: 'https://cmder.net/' }), 'Cmder'),
+        ', a terminal emulator for Windows.',
+      ),
+      mdx(
+        'p',
+        null,
+        "I haven't personally tried it, but it seems to offer everything you need in 1 quick and simple install. If you've struggled with some of the other methods mentioned here, it might be worth a shot!",
+      ),
+    ),
+    mdx('h1', null, 'Hello World'),
+    mdx('p', null, "When you first open the terminal application, you're met with this rather unhelpful interface:"),
+    mdx(TerminalScreenshot, {
+      slug: 'initial',
+      alt: 'A terminal application showing a default prompt',
+      mdxType: 'TerminalScreenshot',
+    }),
+    mdx(
+      'p',
+      null,
+      "Your terminal will likely look a bit different, based on your operating system / terminal application / shell language. Ultimately, however, you'll probably be looking at a single line of text, and a bunch of empty space.",
+    ),
+    mdx(
+      'p',
+      null,
+      'The single line of text is known as a ',
+      mdx('em', { parentName: 'p' }, 'prompt'),
+      ". It's called a \u201Cprompt\u201D because it's waiting for you to provide some sort of instruction.",
+    ),
+    mdx(
+      'p',
+      null,
+      'For our first command, enter the text ',
+      mdx('inlineCode', { parentName: 'p' }, 'echo "hello world"'),
+      ' and press enter:',
+    ),
+    mdx(TerminalScreenshot, {
+      slug: 'echo',
+      alt: "Running the 'echo' command, repeating a short string",
+      mdxType: 'TerminalScreenshot',
+    }),
+    mdx(
+      'p',
+      null,
+      'The syntax is a bit different, but you can think of commands like built-in JavaScript functions. The ',
+      mdx('inlineCode', { parentName: 'p' }, 'echo'),
+      ' command is very similar to the ',
+      mdx('inlineCode', { parentName: 'p' }, 'console.log'),
+      ' function in JavaScript.',
+    ),
+    mdx(
+      'p',
+      null,
+      'Like functions, commands take arguments. In this case, ',
+      mdx('inlineCode', { parentName: 'p' }, 'echo'),
+      ' takes a single argument, the string to output.',
+    ),
+    mdx(
+      'p',
+      null,
+      "When we press \u201Center\u201D, the command is immediately executed, and our value is logged. A fresh prompt is rendered below, to let us know that it's ready to receive the next instruction.",
+    ),
+    mdx('p', null, "And just like that, you've run your first terminal command!"),
+    mdx(
+      Sidenote,
+      { title: 'Skip the \u201C$\u201D!', mdxType: 'Sidenote' },
+      mdx('p', null, "When reading installation instructions for an NPM package, you'll often see things like this:"),
+      mdx(
+        'pre',
+        null,
+        mdx(
+          'code',
+          e(
+            { parentName: 'pre' },
+            { className: 'language-null', metastring: 'lessBottomMargin', lessBottomMargin: !0 },
+          ),
+          `$ npm install some-package
+`,
+        ),
+      ),
+      mdx(
+        'p',
+        null,
+        "If you try and run this entire bit of text, you'll get an error. This is because the dollar sign (",
+        mdx('inlineCode', { parentName: 'p' }, '$'),
+        ") isn't meant to be included. You're meant to type everything ",
+        mdx('i', null, 'after'),
+        ' the dollar sign.',
+      ),
+      mdx(
+        'p',
+        null,
+        "Why would the installation instructions include a random symbol that isn't actually part of the command!? Well, in the Bash shell language, ",
+        mdx('inlineCode', { parentName: 'p' }, '$'),
+        ' is the "prompt character", shown at the end of the prompt.',
+      ),
+      mdx(
+        'p',
+        null,
+        `It's essentially a symbol that says "Hey, this stuff over here is meant to be run in the terminal!"`,
+      ),
+      mdx(
+        'p',
+        null,
+        'Even though ',
+        mdx('inlineCode', { parentName: 'p' }, '$'),
+        " isn't actually used as the prompt character in many modern shell languages like Zsh, the symbolism lives on, like how the \u201Csave\u201D icon is a floppy disk (",
+        mdx(Save, { size: 16, style: { display: 'inline' }, mdxType: 'Save' }),
+        ") even though we haven't used floppy disks in decades.",
+      ),
+    ),
+    mdx('h1', null, 'Navigation'),
+    mdx(
+      'p',
+      null,
+      "The main purpose of a terminal is to enable you to move around the file system and open/run things. It's essentially a text-based version of the GUI file explorers we use every day (eg. Finder, Windows Explorer).",
+    ),
+    mdx(
+      'p',
+      null,
+      "To help us navigate around, there are lots of terminal commands we can use. Let's explore some of them.",
+    ),
     mdx(
       'p',
       null,
       'The ',
-      mdx('inlineCode', { parentName: 'p' }, 'em'),
-      " unit is an interesting fellow. It's a ",
-      mdx('em', { parentName: 'p' }, 'relative'),
-      " unit, based on the element's calculated font size.",
+      mdx('inlineCode', { parentName: 'p' }, 'pwd'),
+      ` command stands for \u201CPrint Working Directory\u201D, and it's sorta like the "You are here" arrow on shopping mall directories. It tells you where you are right now:`,
     ),
-    mdx('p', null, 'Fiddle with these sliders to see what I mean:'),
-    mdx(EmDemo, { mdxType: 'EmDemo' }),
-    mdx(
-      'p',
-      null,
-      'Essentially, ',
-      mdx('inlineCode', { parentName: 'p' }, 'em'),
-      " is a ratio. If our paragraph has a bottom margin of 1.5em, we're saying that it should be 1.5x the font size. This allows us to \u201Canchor\u201D one value to another, so that they scale proportionally.",
-    ),
-    mdx(
-      'p',
-      null,
-      "Here's a silly example. Each word in the following sentence uses a smaller ",
-      mdx('inlineCode', { parentName: 'p' }, 'em'),
-      " value, giving the impression of a sentence fading into the distance. Try tweaking the paragraph's font-size, and notice how everything \u201Czooms in\u201D:",
-    ),
-    mdx(Playground, {
-      id: 'ems-pt2',
-      html: `
-<style>
-  p {
-    /* Change me! */
-    font-size: 24px;
-  }
-</style>
-
-<p>
-  <span style="font-size: 1em">
-    This
-  </span>
-  <span style="font-size: 0.8em">
-    sentence
-  </span>
-  <span style="font-size: 0.64em">
-    gets
-  </span>
-  <span style="font-size: 0.5em">
-    quieter
-  </span>
-  <span style="font-size: 0.4em">
-    and
-  </span>
-  <span style="font-size: 0.32em">
-    quieter
-  </span>
-</p>`,
-      mdxType: 'Playground',
+    mdx(TerminalScreenshot, {
+      slug: 'pwd',
+      alt: "Running the 'pwd' command, which shows the current path (/Users/joshu)",
+      mdxType: 'TerminalScreenshot',
     }),
+    mdx(
+      'p',
+      null,
+      `When you open the terminal application, you're generally tossed into the "home" directory, the one that contains the Documents and Desktop directories. On my particular machine, this directory is located at `,
+      mdx('inlineCode', { parentName: 'p' }, '/Users/joshu'),
+      '.',
+    ),
+    mdx(
+      'p',
+      null,
+      'You can see the contents of the current directory using the ',
+      mdx('inlineCode', { parentName: 'p' }, 'ls'),
+      ' command (short for \u201CList\u201D):',
+    ),
+    mdx(TerminalScreenshot, {
+      slug: 'ls-v2',
+      alt: "Running the 'ls' command, showing a set of all files and folders in the current working directory",
+      mdxType: 'TerminalScreenshot',
+    }),
+    mdx(
+      'p',
+      null,
+      'In my particular terminal, directories are bold and written in a light aqua color, while single files are regular weight and written in white.',
+    ),
+    mdx(
+      'p',
+      null,
+      'We can move around the file system with the ',
+      mdx('inlineCode', { parentName: 'p' }, 'cd'),
+      ' (\u201CChange Directory\u201D) command:',
+    ),
+    mdx(TerminalScreenshot, {
+      slug: 'cd',
+      alt: "Running the 'cd' command, to enter one of the directories shown in the previous 'ls'. Afterwards, 'pwd' is run to confirm the new location",
+      mdxType: 'TerminalScreenshot',
+    }),
+    mdx('p', null, 'This is equivalent to double-clicking the \u201Cstuff\u201D directory in a GUI file explorer.'),
     mdx(
       Sidenote,
       { type: 'warning', mdxType: 'Sidenote' },
       mdx(
         'p',
         null,
-        mdx('strong', { parentName: 'p' }, 'Note:'),
-        ' To make it easier to understand how the ',
-        mdx('inlineCode', { parentName: 'p' }, 'em'),
-        " unit works, we're using pixel-based font sizes here. As we'll learn shortly, however, this is a bad idea. Please don't do this in real applications!",
+        'Notice that the prompt changes from the tilde character (~) to \u201Cstuff\u201D. In the Zsh shell language, the default prompt consists of an arrow and the name of the current directory, like \u201C\u2192 Documents\u201D.',
+      ),
+      mdx(
+        'p',
+        null,
+        "But wait, why was it a tilde character before, instead of the name of the parent directory? On MacOS and Linux, the tilde character is shorthand for the user's home directory. On my machine, \u201C~\u201D is equivalent to \u201C/Users/joshu\u201D.",
+      ),
+      mdx(
+        'p',
+        null,
+        "It's very easy to mistakenly assume that \u201C~\u201D is a prompt character, like \u201C\\$\u201D is in Bash.",
       ),
     ),
-    mdx('h2', null, 'Rems'),
     mdx(
       'p',
       null,
-      "It's old news now, but there was a time when the ",
-      mdx('inlineCode', { parentName: 'p' }, 'rem'),
-      ' unit was a shiny new addition to the CSS language.',
+      'What if I want to go up one level, back to the home directory? I can use the ',
+      mdx('inlineCode', { parentName: 'p' }, 'cd'),
+      ' command for this as well, with two dots (',
+      mdx('inlineCode', { parentName: 'p' }, '..'),
+      ').',
+    ),
+    mdx(TerminalScreenshot, {
+      slug: 'cd-up',
+      alt: "Running 'cd ..', which takes the user back up to the previous directory.",
+      mdxType: 'TerminalScreenshot',
+    }),
+    mdx(
+      'p',
+      null,
+      'The dot character (',
+      mdx('inlineCode', { parentName: 'p' }, '.'),
+      ') has a special meaning in most shell languages:',
+    ),
+    mdx(
+      'ul',
+      null,
+      mdx(
+        'li',
+        { parentName: 'ul' },
+        'A single dot (',
+        mdx('inlineCode', { parentName: 'li' }, '.'),
+        ') refers to the ',
+        mdx('em', { parentName: 'li' }, 'current directory'),
+        '.',
+      ),
+      mdx(
+        'li',
+        { parentName: 'ul' },
+        'Two dots (',
+        mdx('inlineCode', { parentName: 'li' }, '..'),
+        ') refer to the ',
+        mdx('em', { parentName: 'li' }, 'parent directory'),
+        '.',
+      ),
     ),
     mdx(
       'p',
       null,
-      "It was introduced because there's a common frustrating issue with the ",
-      mdx('inlineCode', { parentName: 'p' }, 'em'),
-      ' unit: ',
-      mdx('strong', { parentName: 'p' }, 'it compounds.'),
+      "If you've worked with module systems in JavaScript, you're probably already familiar with this convention. It uses the same notation, using two dots to refer to the parent directory:",
     ),
-    mdx('p', null, 'For example, consider the following snippet:'),
     mdx(
       'pre',
       null,
       mdx(
         'code',
-        e({ parentName: 'pre' }, { className: 'language-html' }),
-        `<style>
-  main {
-    font-size: 1.125em;
-  }
-  article {
-    font-size: 0.9em;
-  }
-  p.intro {
-    font-size: 1.25em;
-  }
-</style>
-
-<main>
-  <article>
-    <p class="intro">
-      What size is this text?
-    </p>
-  </article>
-</main>
+        e({ parentName: 'pre' }, { className: 'language-js', metastring: 'lessBottomMargin', lessBottomMargin: !0 }),
+        `import { COLORS } from '../../constants';
+import Button from '../Button';
 `,
       ),
     ),
     mdx(
       'p',
       null,
-      'How large, in pixels, is that ',
-      mdx('inlineCode', { parentName: 'p' }, '.intro'),
-      ' paragraph font?',
+      'One important thing to know about ',
+      mdx('inlineCode', { parentName: 'p' }, 'cd'),
+      ' is that it can take complex paths. Terminal beginners will often go one step at a time, like they would in a GUI file explorer:',
+    ),
+    mdx(TerminalScreenshot, {
+      slug: 'cd-step-by-step',
+      alt: "Using 'cd' to step down through 4 different directories",
+      mdxType: 'TerminalScreenshot',
+    }),
+    mdx('p', null, "This works, but it's a lot of extra work. We can make the same jump in a single step like this:"),
+    mdx(TerminalScreenshot, {
+      slug: 'cd-single-bound',
+      alt: "Running the 'cd' command to make the same transition as before, but doing it in 1 single step: 'cd things/some-project/src/components'",
+      mdxType: 'TerminalScreenshot',
+    }),
+    mdx('h2', null, 'Tab auto-completion'),
+    mdx(
+      'p',
+      null,
+      "One of the most intimidating things about the terminal is that it doesn't give you any clues or hints. With a GUI file explorer, you can see a full list of files and folders, to refresh your memory and help you find what you're looking for.",
     ),
     mdx(
       'p',
       null,
-      'To figure it out, we have to multiply each ratio. The root font size is 16px by default, and so the equation is ',
-      mdx('inlineCode', { parentName: 'p' }, '16 \xD7 1.125 \xD7 0.9 \xD7 1.25'),
-      '. The answer is 20.25 pixels.',
+      'If you want to use ',
+      mdx('inlineCode', { parentName: 'p' }, 'cd'),
+      " as I propose, leaping from 1 spot to another in a single bound, it might seem like you'd need a photographic memory. You can't do it unless you remember the exact name of every directory in the chain, right?",
     ),
     mdx(
       'p',
       null,
-      mdx('strong', { parentName: 'p' }, 'What? Why??'),
-      ' This happens because font size is ',
-      mdx('em', { parentName: 'p' }, 'inheritable'),
-      '. The paragraph has a font size of ',
-      mdx('inlineCode', { parentName: 'p' }, '1.25em'),
-      ', which means \u201C1.25x the current font size\u201D. But what ',
-      mdx('i', null, 'is'),
-      ' the current font size? Well, it gets inherited from the parent: ',
-      mdx('inlineCode', { parentName: 'p' }, '0.9em'),
-      ". And so it's 1.25x the parent, which is 0.9x ",
-      mdx('em', { parentName: 'p' }, 'its'),
-      ' parent, which is 1.125x ',
-      mdx('em', { parentName: 'p' }, 'its'),
-      ' parent.',
+      'Fortunately, an incredibly-handy trick makes this much easier: ',
+      mdx('em', { parentName: 'p' }, 'tab autocompletion'),
+      '.',
+    ),
+    mdx('p', null, "It'll be easier for me to show you how this works in a short video:"),
+    mdx(
+      'div',
+      { style: { maxWidth: 1144 / 2, marginLeft: 'auto', marginRight: 'auto' } },
+      mdx(VimeoVideoPlayer, {
+        playbackId: '700226454',
+        width: 1144 / 2,
+        aspectRatio: 668 / 1144,
+        mdxType: 'VimeoVideoPlayer',
+      }),
     ),
     mdx(
       'p',
       null,
-      'Essentially, we need to multiply every ',
-      mdx('inlineCode', { parentName: 'p' }, 'em'),
-      ' value in the tree until we either hit a "fixed" value (using pixels), or we make it all the way to the top of the tree. This is exactly as gnarly as it sounds. \u{1F62C}',
+      'The Tab key is critically important when it comes to using the terminal effectively. In addition to the navigation tricks shown here, we can also use Tab to auto-complete Git branches, or fill in the rest of a command.',
+    ),
+    mdx('p', null, 'Try pressing Tab in different circumstances, and see what happens!'),
+    mdx(
+      Sidenote,
+      { title: 'Visual autocomplete', mdxType: 'Sidenote' },
+      mdx(
+        'p',
+        null,
+        "If you're finding it difficult to get the hang of tab autocompletion, you might be interested in ",
+        mdx('a', e({ parentName: 'p' }, { href: 'https://fig.io/' }), 'Fig'),
+        '. Fig is a terminal plugin which adds editor-style autocompletion:',
+      ),
+      mdx(VideoGif, { src: 'https://fig.io/videos/main-demo-grey.mp4', mdxType: 'VideoGif' }),
+      mdx(
+        'p',
+        null,
+        "I've also just started experimenting with ",
+        mdx('a', e({ parentName: 'p' }, { href: 'https://www.warp.dev/' }), 'Warp'),
+        ", a modern terminal built for speed and user experience. At the time of writing, it's MacOS-exclusive, but they do plan on porting it to Windows and Linux after the beta.",
+      ),
+      mdx(
+        'p',
+        null,
+        "We're living in a bit of a terminal renaissance, and there's lots of tools that aim to make it a bit less intimidating!",
+      ),
+    ),
+    mdx('h1', null, 'Flags'),
+    mdx(
+      'p',
+      null,
+      'Earlier, I said that commands in Bash/Zsh are like functions in JavaScript. The analogy breaks down a bit when it comes to ',
+      mdx('em', { parentName: 'p' }, 'flags'),
+      '.',
+    ),
+    mdx('p', null, 'Flags are modifiers that tweak the behaviour of commands in predefined ways.'),
+    mdx(
+      'p',
+      null,
+      "For example, let's look at the ",
+      mdx('inlineCode', { parentName: 'p' }, 'rm'),
+      ' command. This command allows us to delete individual files:',
+    ),
+    mdx(TerminalScreenshot, {
+      slug: 'rm-1',
+      alt: "Running 'rm theme-song.mp3', and then running 'ls' to show that the file was deleted.",
+      mdxType: 'TerminalScreenshot',
+    }),
+    mdx(
+      'p',
+      null,
+      "We don't get any sort of confirmation, but if we check, the ",
+      mdx('inlineCode', { parentName: 'p' }, 'theme-song.mp3'),
+      ' file has indeed been deleted.',
+      mdx(Asterisk, { content: 'Having my own theme song was a silly idea anyway.', mdxType: 'Asterisk' }),
+    ),
+    mdx(
+      Sidenote,
+      { type: 'warning', title: 'Proceed with caution!', mdxType: 'Sidenote' },
+      mdx('p', null, 'Before we go any further, I should warn you: terminals can be pretty unforgiving.'),
+      mdx(
+        'p',
+        null,
+        'The ',
+        mdx('inlineCode', { parentName: 'p' }, 'rm'),
+        ` command doesn't have an "Are you sure?" confirmation prompt. And there's no undo. When you delete a file with `,
+        mdx('inlineCode', { parentName: 'p' }, 'rm'),
+        ", it doesn't go to the recycle bin / trash can. It's ",
+        mdx('strong', { parentName: 'p' }, 'permanently and irrevocably deleted'),
+        '.',
+        mdx(Asterisk, {
+          content:
+            'It can be possible to recover deleted data using specialized software, but this is a hit-or-miss process.',
+          mdxType: 'Asterisk',
+        }),
+      ),
+      mdx(
+        'p',
+        null,
+        "This is a common theme with the terminal. There aren't many safety mechanisms. So please, ",
+        mdx('strong', { parentName: 'p' }, 'be very careful when using commands like \u201Crm\u201D!'),
+      ),
     ),
     mdx(
       'p',
       null,
-      'To solve this problem, the CSS language designers created the ',
-      mdx('inlineCode', { parentName: 'p' }, 'rem'),
-      ' unit. It stands for \u201CRoot EM\u201D.',
+      'If you try and use the ',
+      mdx('inlineCode', { parentName: 'p' }, 'rm'),
+      " command on a directory, you'll get an error:",
     ),
+    mdx(TerminalScreenshot, {
+      slug: 'rm-error',
+      alt: "Running the 'rm' command on a directory, and getting an error",
+      mdxType: 'TerminalScreenshot',
+    }),
+    mdx(
+      'p',
+      null,
+      'By default, ',
+      mdx('inlineCode', { parentName: 'p' }, 'rm'),
+      ' can only remove individual files, but we can change this rule with the ',
+      mdx('inlineCode', { parentName: 'p' }, 'r'),
+      ' flag:',
+    ),
+    mdx(TerminalScreenshot, {
+      slug: 'rm-r',
+      alt: "Running the 'rm' command with the 'r' flag, and successfully deleting the directory",
+      mdxType: 'TerminalScreenshot',
+    }),
     mdx(
       'p',
       null,
       'The ',
-      mdx('inlineCode', { parentName: 'p' }, 'rem'),
-      ' unit is like the ',
-      mdx('inlineCode', { parentName: 'p' }, 'em'),
-      " unit, except it's always a multiple of the font size on the ",
-      mdx('em', { parentName: 'p' }, 'root node'),
-      ', the ',
-      mdx('inlineCode', { parentName: 'p' }, '<html>'),
-      ' element. It ignores any inherited font sizes, and always calculates based on the top-level node.',
-    ),
-    mdx(
-      'p',
-      null,
-      'Documents have a default font size of 16px, which means that ',
-      mdx('inlineCode', { parentName: 'p' }, '1rem'),
-      ' has a \u201Cnative\u201D value of 16px.',
-      mdx(Asterisk, {
-        content: 'This value, however, is user-configurable! More on this shortly',
-        mdxType: 'Asterisk',
-      }),
-    ),
-    mdx(
-      'p',
-      null,
-      'We can re-define the value of ',
-      mdx('inlineCode', { parentName: 'p' }, '1rem'),
-      ' by changing the ',
-      mdx('inlineCode', { parentName: 'p' }, 'font-size'),
-      ' on the root node:',
-    ),
-    mdx(RemDemo, { mdxType: 'RemDemo' }),
-    mdx('p', null, 'We ', mdx('em', { parentName: 'p' }, 'can'), " do this, but we shouldn't."),
-    mdx('p', null, 'In order to understand why, we need to talk about accessibility.'),
-    mdx('h1', null, 'Accessibility considerations'),
-    mdx(
-      'p',
-      null,
-      'The main accessibility consideration when it comes to pixel-vs-em/rem is ',
-      mdx('em', { parentName: 'p' }, 'vision'),
-      '. We want people with limited vision to be able to comfortably read the sentences and paragraphs on our websites and web applications.',
-    ),
-    mdx('p', null, 'There are a few ways that folks with limited vision can increase the size of text.'),
-    mdx(
-      'p',
-      null,
-      "One method is to use the browser's zoom functionality. The standard keyboard shortcut for this is ",
-      mdx('inlineCode', { parentName: 'p' }, '\u2318'),
-      ' + ',
-      mdx('inlineCode', { parentName: 'p' }, '+'),
-      ' on MacOS, ',
-      mdx('inlineCode', { parentName: 'p' }, 'ctrl'),
-      ' + ',
-      mdx('inlineCode', { parentName: 'p' }, '+'),
-      ' on Windows/Linux.',
-    ),
-    mdx(VideoGif, {
-      noBorder: !0,
-      src: 'https://storage.googleapis.com/joshwcomeau/chrome-zoom.mp4',
-      maxWidth: 1920 / 2,
-      mdxType: 'VideoGif',
-    }),
-    mdx('p', null, "I'll call this method ", mdx('em', { parentName: 'p' }, 'zooming'), ' in this tutorial.'),
-    mdx(
-      'p',
-      null,
-      'The Web Content Accessibility Guidelines (WCAG) state that in order to be accessible, a site should be ',
-      mdx('a', e({ parentName: 'p' }, { href: 'https://www.w3.org/TR/WCAG21/#resize-text' }), 'usable at 200% zoom'),
-      ". I've heard from accessibility advocates that this number is really a minimum, and that many folks with vision disorders often crank much higher than that.",
-    ),
-    mdx(
-      'p',
-      null,
-      "Finally, there's another method, one that fewer developers know about. We can also increase the default font size in our browser settings:",
-    ),
-    mdx(VideoGif, {
-      noBorder: !0,
-      src: 'https://storage.googleapis.com/joshwcomeau/chrome-font-scaling.mp4',
-      maxWidth: 1920 / 2,
-      mdxType: 'VideoGif',
-    }),
-    mdx('p', null, "I'll call this method ", mdx('em', { parentName: 'p' }, 'font scaling'), ' in this tutorial.'),
-    mdx(
-      'p',
-      null,
-      'Font scaling works by re-defining the \u201Cbaseline\u201D font size, the default font size that all relative units will be based on (rem, em, %).',
-    ),
-    mdx(
-      'p',
-      null,
-      'Remember earlier, when we said that ',
-      mdx('inlineCode', { parentName: 'p' }, '1rem'),
-      " was equal to 16px? That's only true if the user hasn't touched their default font size! If they boost their default font size to 32px, each rem will now be ",
-      mdx('i', null, '32px'),
-      ' instead of 16.',
-    ),
-    mdx(
-      'p',
-      null,
-      'Essentially, you can think of font scaling as ',
-      mdx('em', { parentName: 'p' }, 'changing the definition of 1 rem.'),
-    ),
-    mdx(
-      'p',
-      null,
-      mdx('strong', { parentName: 'p' }, "Here's where we hit our first accessibility snag."),
-      " When we use a pixel value for a font-size on the page, it will no longer be affected by the user's chosen default font size.",
-    ),
-    mdx(PxRemComparisonDemo, { mdxType: 'PxRemComparisonDemo' }),
-    mdx(
-      'p',
-      null,
-      'This is why we should use relative units like ',
-      mdx('inlineCode', { parentName: 'p' }, 'rem'),
-      ' and ',
-      mdx('inlineCode', { parentName: 'p' }, 'em'),
-      ' for text size. It gives the user the ability to redefine their value, to suit their needs.',
-    ),
-    mdx(
-      'p',
-      null,
-      "Now, the picture isn't as bleak as it used to be, thanks to ",
-      mdx('em', { parentName: 'p' }, 'browser zooming'),
-      '.',
-    ),
-    mdx(
-      'p',
-      null,
-      'When the user zooms in or out, ',
-      mdx('em', { parentName: 'p' }, 'everything'),
-      ' gets bigger. It essentially applies a multiple to every unit, including pixels. It affects everything except viewport units (like ',
-      mdx('inlineCode', { parentName: 'p' }, 'vw'),
-      ' and ',
-      mdx('inlineCode', { parentName: 'p' }, 'vh'),
-      '). This has been the case for many years now, across all major browsers.',
-    ),
-    mdx(
-      'p',
-      null,
-      "So, if users can always zoom to increase their font size, do we really need to worry about supporting font scaling as well? Isn't one option good enough?",
-    ),
-    mdx(
-      'p',
-      null,
-      "The problem is that zoom is really intended to be used on a site-by-site basis. Someone might have to manually tinker and fuss with the zoom every time they visit a new site. Wouldn't it be better if they could set a baseline font size, one that is large enough for them to read comfortably, and have that size be universally respected?",
-    ),
-    mdx(
-      'p',
-      null,
-      "(Let's also keep in mind that not everyone can trigger a keyboard shortcut easily. A few years ago, I suffered a nerve injury that left me unable to use a keyboard. I interacted with the computer ",
-      mdx('a', e({ parentName: 'p' }, { href: '/blog/hands-free-coding/' }), 'using dictation and eye-tracking'),
-      '. Suddenly, each \u201Ckeystroke\u201D became a lot more taxing!)',
-    ),
-    mdx(
-      'p',
-      null,
-      'As a general rule, we should give the user as much control as possible, and we should ',
-      mdx('em', { parentName: 'p' }, 'never'),
-      " disable or block their settings from working. For this reason, it's very important to use a relative unit like ",
-      mdx('inlineCode', { parentName: 'p' }, 'rem'),
-      ' for typography.',
-    ),
-    mdx('h1', null, 'Strategic unit deployment'),
-    mdx(
-      'p',
-      null,
-      'Alright, so you might be thinking: if the ',
-      mdx('inlineCode', { parentName: 'p' }, 'rem'),
-      ' unit is respected by both zooming ',
-      mdx('em', { parentName: 'p' }, 'and'),
-      " font-scaling, shouldn't I always use ",
-      mdx('inlineCode', { parentName: 'p' }, 'rem'),
-      ' values? Why would I ever use pixels?',
-    ),
-    mdx(
-      'p',
-      null,
-      "Well, let's see what happens when we use ",
-      mdx('inlineCode', { parentName: 'p' }, 'rem'),
-      ' values for padding:',
-    ),
-    mdx(RemPaddingDemo, { mdxType: 'RemPaddingDemo' }),
-    mdx(
-      'p',
-      null,
-      'Remember that ',
-      mdx(
-        'strong',
-        { parentName: 'p' },
-        mdx('inlineCode', { parentName: 'strong' }, 'rem'),
-        " values scale with the user's default font size.",
-      ),
-      ' This is a good thing when it comes to typography. Is it a good thing when it comes to other stuff, though? Do I actually want ',
-      mdx('em', { parentName: 'p' }, 'everything'),
-      ' to scale with font size?',
-    ),
-    mdx(
-      'p',
-      null,
-      "There's an implicit trade-off when it comes to text size. The larger the text is, the fewer characters can fit on each line. When the user cranks up the text by 250%, we can only fit a few words per line.",
-    ),
-    mdx(
-      'p',
-      null,
-      'When we use ',
-      mdx('inlineCode', { parentName: 'p' }, 'rem'),
-      ' values for horizontal padding, though ',
-      mdx('strong', { parentName: 'p' }, 'we amplify this negative side-effect!'),
-      " We're reducing the amount of usable space, further restricting how many words can fit on each line.",
-    ),
-    mdx(
-      'p',
-      null,
-      'This is bad',
-      mdx('br', null),
-      `
-because`,
-      mdx('br', null),
-      `
-paragraphs`,
-      mdx('br', null),
-      `
-like this one`,
-      mdx('br', null),
-      `
-with only a`,
-      mdx('br', null),
-      `
-few words per`,
-      mdx('br', null),
-      `
-line are`,
-      mdx('br', null),
-      `
-unpleasant to`,
-      mdx('br', null),
-      `
-read.`,
-    ),
-    mdx(
-      'p',
-      null,
-      "Similarly, how about border widths? It doesn't really make sense for a border to become thicker as the user scales up their preferred text size, does it?",
-    ),
-    mdx(
-      'p',
-      null,
-      'This is why we want to use these units ',
-      mdx('em', { parentName: 'p' }, 'strategically'),
-      ". When picking between pixels and rems, here's the question you should be asking yourself:",
-    ),
-    mdx(
-      'blockquote',
-      { style: { color: 'var(--color-gray-700)', fontSize: '1.4rem', marginTop: '3rem', marginBottom: '3rem' } },
-      "\u201CShould this value scale up as the user increases their browser's default font size?\u201D",
-    ),
-    mdx(
-      'p',
-      null,
-      'This question is the root of the mental model I use. If the value should increase with the default font size, I use ',
-      mdx('inlineCode', { parentName: 'p' }, 'rem'),
-      '. Otherwise, I use ',
-      mdx('inlineCode', { parentName: 'p' }, 'px'),
-      '.',
-    ),
-    mdx(
-      'p',
-      null,
-      'That said, the ',
-      mdx('i', null, 'answer'),
-      " to this question isn't always obvious. Let's look at some examples.",
-    ),
-    mdx('h2', null, 'Media queries'),
-    mdx('p', null, 'Should we use pixels or rems for our media query values?'),
-    mdx(
-      'pre',
-      null,
-      mdx(
-        'code',
-        e({ parentName: 'pre' }, { className: 'language-css' }),
-        `/* Should we do this: */
-@media (min-width: 800px) {
-  }
-
-/* \u2026Or this: */
-@media (min-width: 50rem) {
-}
-`,
-      ),
-    ),
-    mdx('p', null, "It's probably not obvious what the distinction is here, so let's break it down."),
-    mdx(
-      'p',
-      null,
-      'Suppose a user sets their default text size to 32px, double the standard text size. This means that 50rem will now be equal to ',
-      mdx('i', null, '1600px'),
-      ' instead of 800px.',
-    ),
-    mdx(
-      'p',
-      null,
-      'By sliding the breakpoint up like this, it means that the user will see the ',
-      mdx('i', null, 'mobile'),
-      " layout until their window is at least 1600px wide. If they're on a laptop, it's very likely they'll see the mobile layout instead of the desktop layout.",
-    ),
-    mdx(
-      'p',
-      null,
-      "At first, I thought this seemed like a bad thing. They're not actually a mobile user, so why would we show them the mobile layout??",
-    ),
-    mdx(
-      'p',
-      null,
-      "I've come to realize, however, that ",
-      mdx('strong', { parentName: 'p' }, 'we usually ', mdx('i', null, 'do'), ' want to use rems for media queries.'),
-    ),
-    mdx('p', null, "Let's look at a real-world example."),
-    mdx('p', null, 'On my course platform, I have a left-hand navigation list, with the content shown on the right:'),
-    mdx('img', {
-      alt: 'Screenshot of a lesson in a course platform, with left-hand navigation',
-      src: '/images/pixels-and-accessibility/cp-desktop.png',
-      width: 2542 / 2,
-      height: 1448 / 2,
-    }),
-    mdx(
-      'p',
-      null,
-      'On smaller screens, I want to maximize the amount of space for the content, and so the navigation becomes toggleable:',
-    ),
-    mdx(VideoGif, {
-      noBorder: !0,
-      src: '/images/pixels-and-accessibility/cp-tablet.mp4',
-      maxWidth: 1638 / 2,
-      mdxType: 'VideoGif',
-    }),
-    mdx(
-      'p',
-      null,
-      "Let's see what happens when the user visits with a 32px default font size, using both pixels and rem media queries:",
-    ),
-    mdx(ImageCompare, {
-      maxImageWidth: 600,
-      firstTitle: 'Pixel Media Query',
-      secondTitle: 'Rem Media Query',
-      firstChild: mdx('img', {
-        type: 'native',
-        alt: 'The desktop layout is used, with HUGE text, and not much space for it',
-        src: '/images/pixels-and-accessibility/media-query-in-px.png',
-        style: { width: '100%', display: 'block' },
-      }),
-      secondChild: mdx('img', {
-        type: 'native',
-        alt: 'The mobile layout is used, with HUGE text, and plenty of space for it',
-        src: '/images/pixels-and-accessibility/media-query-in-rem.png',
-        style: { width: '100%', display: 'block' },
-      }),
-      mdxType: 'ImageCompare',
-    }),
-    mdx(
-      'p',
-      null,
-      'As we increase the size of the text, the left-hand navigation gets wider and wider (because it uses a rem-based width). As a result, the main content area gets squeezed smaller and smaller.',
-    ),
-    mdx(
-      'p',
-      null,
-      'When we use a rem-based media query, however, we drop back down to the \u201Cmobile\u201D layout. As a result, the content becomes much more readable, and the experience is much improved.',
-    ),
-    mdx(
-      'p',
-      null,
-      "We're so used to thinking of media queries in terms of mobile/tablet/desktop, but I think it's more helpful to think in terms of ",
-      mdx('strong', { parentName: 'p' }, 'available space.'),
-    ),
-    mdx(
-      'p',
-      null,
-      'A mobile user has less available space than a desktop user, and so we design layouts that are optimized for that amount of space. Similarly, when someone cranks up their default font size, they ',
-      mdx('i', null, 'reduce the amount of available space,'),
-      ' and so they should probably receive the same optimizations.',
-    ),
-    mdx('h2', null, 'Vertical margins'),
-    mdx('p', null, "Let's look at another scenario. Vertical margins:"),
-    mdx(VerticalMarginsDemo, { mdxType: 'VerticalMarginsDemo' }),
-    mdx(
-      'p',
-      null,
-      "Vertical margins on text (assuming we're working in a horizontally-written language like English) are typically used to improve its readability. We add extra space between paragraphs so that we can quickly tell where one paragraph ends and the next one begins.",
+      mdx('inlineCode', { parentName: 'p' }, 'r'),
+      ' flag stands for \u201Crecursive\u201D. It will delete everything inside the ',
+      mdx('inlineCode', { parentName: 'p' }, 'stuff'),
+      ' directory, anything inside the directories inside the ',
+      mdx('inlineCode', { parentName: 'p' }, 'stuff'),
+      ' directory, anything inside directories inside the directories inside the ',
+      mdx('inlineCode', { parentName: 'p' }, 'stuff'),
+      ' directory, and so on.',
       mdx(Asterisk, {
         content:
-          'Interestingly, the web is somewhat unique in terms of paragraph spacing. Print media, like books, indent the first line of each new paragraph, without adding any additional vertical space between paragraphs.',
+          "It's easy to take this for granted, but when we delete a directory, the computer has to do a non-trivial amount of work to figure out exactly which files should be removed from the disk drive!",
         mdxType: 'Asterisk',
       }),
     ),
     mdx(
       'p',
       null,
-      "This space has a \u201Cfunctional\u201D purpose when it comes to text. We aren't using it aesthetically.",
+      'You might also run into some file permission issues. For that reason, the ',
+      mdx('inlineCode', { parentName: 'p' }, 'f'),
+      ' flag (Force) is commonly used as well. We can group multiple flags with a single dash, like this:',
+    ),
+    mdx(TerminalScreenshot, {
+      slug: 'rm-rf',
+      alt: "Running the 'rm' command with the 'r' and 'f' flags",
+      mdxType: 'TerminalScreenshot',
+    }),
+    mdx(
+      'p',
+      null,
+      "Flags take many shapes and sizes. By convention, it's common for flags to have a short form (eg. ",
+      mdx('inlineCode', { parentName: 'p' }, '-f'),
+      ') and a long form (',
+      mdx('inlineCode', { parentName: 'p' }, '--force'),
+      '). The long form typically uses two dashes, and uses whole words instead of individual letters.',
     ),
     mdx(
       'p',
       null,
-      "For these reasons, I think it does make sense to scale these margins with the user's chosen root font size.",
+      "Let's look at one more example. the ",
+      mdx('inlineCode', { parentName: 'p' }, 'ls'),
+      ' command we saw earlier is commonly called with two flags:',
+    ),
+    mdx(
+      'ul',
+      null,
+      mdx(
+        'li',
+        { parentName: 'ul' },
+        'The ',
+        mdx('inlineCode', { parentName: 'li' }, 'l'),
+        ' flag, \u201Clong\u201D, which prints the directory contents in a detailed list with metadata.',
+      ),
+      mdx(
+        'li',
+        { parentName: 'ul' },
+        'The ',
+        mdx('inlineCode', { parentName: 'li' }, 'a'),
+        ` flag, "all", which'll include hidden files and directories.`,
+      ),
+    ),
+    mdx('p', null, 'This changes the output considerably:'),
+    mdx(TerminalScreenshot, {
+      slug: 'ls-la',
+      alt: "Running 'ls -la'. A detailed list is shown, along with hidden files and folders.",
+      mdxType: 'TerminalScreenshot',
+    }),
+    mdx(
+      'p',
+      null,
+      "There's a lot of noise here, including the ridiculously-obfuscated permission glyphs. But some of the metadata, like the dates that show when a file was last updated, can be useful!",
     ),
     mdx(
       Sidenote,
-      { title: 'A rare opportunity for the \u201Cem\u201D unit', mdxType: 'Sidenote' },
+      { title: 'The manual', mdxType: 'Sidenote' },
       mdx(
         'p',
         null,
-        'When I need a relative unit, I almost always reach for ',
-        mdx('inlineCode', { parentName: 'p' }, 'rem'),
-        ". It's much simpler and more predictable than ",
-        mdx('inlineCode', { parentName: 'p' }, 'em'),
-        ', for the \u201Ccompounding\u201D issues ',
-        mdx('a', e({ parentName: 'p' }, { href: '#rems' }), 'discussed earlier'),
+        'In order to learn more about commands, you can use the ',
+        mdx('inlineCode', { parentName: 'p' }, 'man'),
+        ' command (short for \u201Cmanual\u201D) to pull up the built-in documentation for it:',
+      ),
+      mdx(TerminalScreenshot, {
+        slug: 'man',
+        alt: "Running the 'man' command to view 'ls' documentation",
+        mdxType: 'TerminalScreenshot',
+      }),
+      mdx(
+        'p',
+        null,
+        "I'll warn you now, the ",
+        mdx('inlineCode', { parentName: 'p' }, 'man'),
+        ' documentation is dense and often hard to parse. But it can still be useful to learn what flags are available for certain commands.',
+      ),
+      mdx(
+        'p',
+        null,
+        "In some cases, the file will open in your default text editor, but often it'll open \u201Cin-terminal\u201D, as shown in this image. This uses a program known as ",
+        mdx('inlineCode', { parentName: 'p' }, 'less'),
         '.',
       ),
       mdx(
         'p',
         null,
-        'That said, the ',
-        mdx('inlineCode', { parentName: 'p' }, 'em'),
-        ' unit works particularly well when it comes to margins on headings and paragraphs.',
-      ),
-      mdx(
-        'expanded',
-        null,
-        mdx('p', null, "As an example, here's how I might style the headings using rems:"),
-        mdx(
-          'pre',
-          null,
-          mdx(
-            'code',
-            e(
-              { parentName: 'pre' },
-              { className: 'language-css', metastring: 'lessBottomMargin', lessBottomMargin: !0 },
-            ),
-            `h1 {
-  font-size: 3rem
-  margin-top: 6rem;
-  margin-bottom: 1.5rem;
-}
-h2 {
-  font-size: 2rem
-  margin-top: 4rem;
-  margin-bottom: 1rem;
-}
-h3 {
-  font-size: 1.5rem;
-  margin-top: 3rem;
-  margin-bottom: 0.75rem;
-}
-`,
-          ),
-        ),
-        mdx(
-          'p',
-          null,
-          'Because each heading level has its own font size, we need to calculate unique margin values for each one.',
-        ),
-        mdx(
-          'p',
-          null,
-          "Here's the exact same UI, described using ",
-          mdx('inlineCode', { parentName: 'p' }, 'em'),
-          ' instead:',
-        ),
-        mdx(
-          'pre',
-          null,
-          mdx(
-            'code',
-            e(
-              { parentName: 'pre' },
-              { className: 'language-css', metastring: 'lessBottomMargin', lessBottomMargin: !0 },
-            ),
-            `h1 {
-  font-size: 3rem;
-}
-h2 {
-  font-size: 2rem;
-}
-h3 {
-  font-size: 1.5rem;
-}
-
-h1, h2, h3 {
-  margin-top: 2em;
-  margin-bottom: 0.5em;
-}
-`,
-          ),
-        ),
-        mdx(
-          'p',
-          null,
-          'Each heading level has a unique font size, but with ',
-          mdx('inlineCode', { parentName: 'p' }, 'em'),
-          ', they can share their margin declarations. This is because ',
-          mdx('inlineCode', { parentName: 'p' }, 'em'),
-          " is calculated based on the current element's font size.",
-        ),
-        mdx(
-          'p',
-          null,
-          "In other words, we're saying that each heading level should have \u201C2x\u201D top margin, and \u201C0.5x\u201D bottom margin. Those ratios are applied to the heading's font size.",
-        ),
-        mdx(
-          'p',
-          null,
-          'Ultimately, both approaches are 100% valid, and equally accessible. I just wanted to share this neat little ',
-          mdx('inlineCode', { parentName: 'p' }, 'em'),
-          ' trick. \u{1F604}',
-        ),
-      ),
-    ),
-    mdx('h2', null, 'Widths and heights'),
-    mdx('p', null, "Alright, let's consider one more scenario. Here we have a button with a fixed width:"),
-    mdx(ButtonWidthDemo, { mdxType: 'ButtonWidthDemo' }),
-    mdx(
-      'p',
-      null,
-      "So, we know that the button's ",
-      mdx('inlineCode', { parentName: 'p' }, 'font-size'),
-      ' should be set in rems\u2026 but what about its ',
-      mdx('inlineCode', { parentName: 'p' }, 'width'),
-      '?',
-    ),
-    mdx('p', null, "There's a really interesting trade-off here:"),
-    mdx(
-      'ul',
-      null,
-      mdx(
-        'li',
-        { parentName: 'ul' },
-        'If we set the width to be ',
-        mdx('inlineCode', { parentName: 'li' }, '240px'),
-        ", the button won't grow with font size, leading to line-wrapping and a taller button.",
-      ),
-      mdx(
-        'li',
-        { parentName: 'ul' },
-        'If we set the width to be ',
-        mdx('inlineCode', { parentName: 'li' }, '15rem'),
-        ', the button will grow wider along with the font size.',
-      ),
-    ),
-    mdx(
-      'p',
-      null,
-      mdx('strong', { parentName: 'p' }, 'Which approach is best?'),
-      ' Well, it depends on the circumstances!',
-    ),
-    mdx(
-      'p',
-      null,
-      "In most cases, I think it makes more sense to use rems. This preserves the button's proportions, its aesthetics. And it reduces the risk of an overflow, if the button has a particularly long word.",
-    ),
-    mdx(
-      'p',
-      null,
-      'In some cases, though, pixels might be the better option. Maybe if you have a very specific layout in mind, and vertical space is more plentiful than horizontal space.',
-    ),
-    mdx(
-      Sidenote,
-      { title: 'Constraints', type: 'warning', mdxType: 'Sidenote' },
-      mdx(
-        'p',
-        null,
-        'In general, we need to be ',
-        mdx('em', { parentName: 'p' }, 'really careful'),
-        ' when setting fixed widths and heights.',
+        'To scroll the document in ',
+        mdx('inlineCode', { parentName: 'p' }, 'less'),
+        ', use the up/down arrow keys. On modern versions of MacOS, you can also use the mousewheel to scroll, though this may lead to buggy behaviour on other platforms.',
       ),
       mdx(
         'p',
         null,
-        'In the example above, setting ',
-        mdx('inlineCode', { parentName: 'p' }, 'width: 15rem'),
-        ' will, in many cases, break mobile layouts, since it may produce a value too large for its container when the user cranks up their default font size!',
-      ),
-      mdx('p', null, 'We can often mitigate this by clamping it to a maximum of 100%:'),
-      mdx(
-        'pre',
-        null,
-        mdx(
-          'code',
-          e({ parentName: 'pre' }, { className: 'language-css', metastring: 'lessBottomMargin', lessBottomMargin: !0 }),
-          `.button {
-  max-width: 100%;
-}
-`,
-        ),
-      ),
-      mdx(
-        'p',
-        null,
-        'Similarly, when it comes to heights, we often want to use ',
-        mdx('inlineCode', { parentName: 'p' }, 'min-height'),
-        ' instead of ',
-        mdx('inlineCode', { parentName: 'p' }, 'height'),
-        '. This allows the container to grow as tall as it needs, in order to contain its children. This becomes important when a user scales up their font size, since the text will wind up wrapping onto more lines.',
+        "When you're finished, press ",
+        mdx('inlineCode', { parentName: 'p' }, 'q'),
+        ' to quit. It should restore the typical terminal view.',
       ),
     ),
-    mdx('h1', null, 'Test your intuition'),
+    mdx('h1', null, 'Interrupting commands'),
+    mdx('p', null, 'Some processes are long-running, and will need to be interrupted.'),
     mdx(
       'p',
       null,
-      "Alright, so we've learned that ",
-      mdx('inlineCode', { parentName: 'p' }, 'rem'),
-      " values should be used when we want to scale a value with the user's default font size.",
-    ),
-    mdx('p', null, "What if it isn't obvious which option is best, though? Like with the button width?"),
-    mdx(
-      'p',
-      null,
-      "The best thing to do in these cases is to test it. Change your browser's default font size to 32px or 48px, and see how your app feels. Try using pixels, and then try using rems. Which option produces the best user experience, the most readable content?",
-    ),
-    mdx(
-      'p',
-      null,
-      "Over time, you'll develop a stronger and stronger intuition, as you see for yourself what to do in specific circumstances.",
-    ),
-    mdx(
-      'p',
-      null,
-      mdx('strong', { parentName: 'p' }, "Not sure how to change your browser's default font size?"),
-      " Here's the documentation for the most commonly-used browsers:",
-    ),
-    mdx(
-      'ul',
-      null,
-      mdx(
-        'li',
-        { parentName: 'ul' },
-        mdx(
-          'a',
-          e(
-            { parentName: 'li' },
-            { href: 'https://support.google.com/chrome/answer/96810?hl=en&co=GENIE.Platform%3DDesktop' },
-          ),
-          'Chrome',
-        ),
-      ),
-      mdx(
-        'li',
-        { parentName: 'ul' },
-        mdx(
-          'a',
-          e(
-            { parentName: 'li' },
-            { href: 'https://support.mozilla.org/en-US/kb/change-fonts-and-colors-websites-use' },
-          ),
-          'Firefox',
-        ),
-      ),
-      mdx(
-        'li',
-        { parentName: 'ul' },
-        mdx('a', e({ parentName: 'li' }, { href: 'https://support.apple.com/en-gb/HT207209' }), 'Safari'),
-      ),
-      mdx(
-        'li',
-        { parentName: 'ul' },
-        mdx(
-          'a',
-          e(
-            { parentName: 'li' },
-            {
-              href: 'https://support.microsoft.com/en-us/microsoft-edge/increase-default-text-size-in-microsoft-edge-c62f80af-381d-0716-25a3-c4856dd3806c',
-            },
-          ),
-          'Edge',
-        ),
-      ),
-    ),
-    mdx('p', null, "If your browser isn't listed here, a quick Google search should turn it up!"),
-    mdx('h1', null, 'Quick tricks vs. mental models'),
-    mdx(
-      'p',
-      null,
-      'I have a philosophy when it comes to learning: ',
-      mdx(
-        'strong',
-        { parentName: 'p' },
-        "It's better to build an intuition than it is to rely on rote practice and memorization.",
-      ),
-    ),
-    mdx(
-      'p',
-      null,
-      'This blog post ',
-      mdx('i', null, 'could'),
-      ' have been a quick list of rules: \u201CUse pixels for X, use rems for Y\u201D. But how useful would it actually have been?',
-    ),
-    mdx(
-      'p',
-      null,
-      'The truth is, the real world is messy and complicated. No set of rules can possibly be comprehensive enough to cover every possible scenario. Even after writing CSS for 15 years, I still find myself facing novel layout challenges all the time!',
-    ),
-    mdx(
-      'p',
-      null,
-      mdx('em', { parentName: 'p' }, "When we focus on building an intuition, we don't need to memorize rules."),
-      " We can rely on our mental model to come up with the right answer. It's wayyy more practical.",
-    ),
-    mdx(
-      'p',
-      null,
-      'And yet, most of us learn from \u201Cquick tricks\u201D. We pick up an interesting nugget on Twitter. We memorize a lil\u2019 snippet to center a div or apply a flexible grid. And, ',
-      mdx('em', { parentName: 'p' }, 'inevitably,'),
-      " we hit snags where the snippet doesn't work as we expect, and we have no idea why.",
-    ),
-    mdx(
-      'p',
-      null,
-      'I think this is why so many developers dislike writing CSS. We have a patchy mental model, and those holes make the language feel brittle and unpredictable, like a house of cards that is always on the verge of collapse.',
-    ),
-    mdx(
-      'p',
-      null,
-      'When we focus on building an intuition, on learning how CSS ',
-      mdx('em', { parentName: 'p' }, 'really'),
-      " works, the language becomes a joy to use. I used to find CSS frustrating, but now, it's one of my favourite parts of web development. I ",
-      mdx('em', { parentName: 'p' }, 'love'),
-      ' writing CSS.',
-    ),
-    mdx(
-      'p',
-      null,
-      "I wanted to share this joy, and so I quit my job and spent a year building a comprehensive self-paced online course. It's called ",
-      mdx('a', e({ parentName: 'p' }, { href: 'https://css-for-js.dev/' }), 'CSS for JavaScript Developers'),
+      'For example, open your terminal application and try running the following command: ',
+      mdx('inlineCode', { parentName: 'p' }, 'ping 8.8.8.8'),
       '.',
     ),
     mdx(
       'p',
       null,
-      "This course takes the approach we've used in this tutorial and applies it to ",
-      mdx('strong', { parentName: 'p' }, 'the entire CSS language.'),
-      ' Using interactive demos and live-editable code snippets, we explore how the language works, and how you can build an intuition you can use to implement ',
-      mdx('em', { parentName: 'p' }, 'any'),
-      ' layout. Not just the ones we cover explicitly.',
+      'The ',
+      mdx('inlineCode', { parentName: 'p' }, 'ping'),
+      " command will check the latency against a given IP address. It's useful for checking whether a given server is online or not. ",
+      mdx('inlineCode', { parentName: 'p' }, '8.8.8.8'),
+      " is the IP address for Google's DNS server.",
+    ),
+    mdx(TerminalScreenshot, {
+      slug: 'ping',
+      alt: "Running 'ping 8.8.8.8'. The terminal fills up with results, showing that the pings come back after 30-45 milliseconds.",
+      mdxType: 'TerminalScreenshot',
+    }),
+    mdx(
+      'p',
+      null,
+      "Unlike the commands we've seen so far, ",
+      mdx('inlineCode', { parentName: 'p' }, 'ping'),
+      " is a long-running process. It never stops; by default, it'll keep pinging Google's DNS server until the end of time.",
     ),
     mdx(
       'p',
       null,
-      "I built a custom course platform from scratch, using the same technology stack as my blog. But it's so much more. It includes tons of bite-sized videos, exercises, real-world-inspired projects, and even a handful of mini-games. \u2728",
+      "When we're satisfied with the results, we can interrupt it by holding ",
+      mdx('inlineCode', { parentName: 'p' }, 'ctrl'),
+      ' and pressing ',
+      mdx('inlineCode', { parentName: 'p' }, 'c'),
+      '. Even on MacOS, where most shortcuts use the ',
+      mdx('inlineCode', { parentName: 'p' }, '\u2318'),
+      ' modifier, we use ',
+      mdx('inlineCode', { parentName: 'p' }, 'ctrl'),
+      '.',
     ),
     mdx(
       'p',
       null,
-      "It's specifically built for JavaScript developers, folks who use a component-based framework like React or Vue. In addition to core language concepts, we also explore things like how to build a component library from scratch.",
+      'Another helpful command is ',
+      mdx('inlineCode', { parentName: 'p' }, 'ctrl'),
+      ' + ',
+      mdx('inlineCode', { parentName: 'p' }, 'd'),
+      '. This will end the current session. If ',
+      mdx('inlineCode', { parentName: 'p' }, 'ctrl'),
+      ' + ',
+      mdx('inlineCode', { parentName: 'p' }, 'c'),
+      " isn't working for some reason, ",
+      mdx('inlineCode', { parentName: 'p' }, 'ctrl'),
+      ' + ',
+      mdx('inlineCode', { parentName: 'p' }, 'd'),
+      ' may work instead.',
     ),
-    mdx('p', null, "If you're sick of not understanding how CSS works, this course is for you. \u{1F496}"),
     mdx(
       'p',
       null,
-      'Learn more here: ',
-      mdx('a', e({ parentName: 'p' }, { href: 'https://css-for-js.dev' }), 'https://css-for-js.dev/'),
+      'Finally, if all else fails, you can close the current tab/window. The shortcut depends on the OS and terminal application. Using Hyper on MacOS, this is done with ',
+      mdx('inlineCode', { parentName: 'p' }, '\u2318'),
+      ' + ',
+      mdx('inlineCode', { parentName: 'p' }, 'w'),
+      '.',
     ),
     mdx(
-      'a',
-      { href: 'https://css-for-js.dev/' },
-      mdx('img', {
-        src: '/images/css-for-js-banner.png',
-        alt: 'Banner with the headline \u201CStop wrestling with CSS\u201D. Sub-heading: \u201CThe all-new interactive learning experiecne designed to help JavaScript developers become confident with CSS\u201D',
-        width: 2076,
-        height: 1066,
+      Sidenote,
+      { title: 'Exiting Vi / Vim', mdxType: 'Sidenote' },
+      mdx(
+        'p',
+        null,
+        'Occasionally, you might find yourself editing a file using either Vi or Vim. These editors are notoriously difficult to quit; ',
+        mdx('inlineCode', { parentName: 'p' }, 'ctrl'),
+        ' + ',
+        mdx('inlineCode', { parentName: 'p' }, 'c'),
+        " won't help you here!",
+      ),
+      mdx('p', null, 'To quit without saving, follow these steps:'),
+      mdx(
+        'ul',
+        null,
+        mdx('li', { parentName: 'ul' }, 'Press ', mdx('inlineCode', { parentName: 'li' }, 'Escape'), '.'),
+        mdx(
+          'li',
+          { parentName: 'ul' },
+          'Press ',
+          mdx('inlineCode', { parentName: 'li' }, ':'),
+          '. This should add a prompt at the bottom of the terminal.',
+        ),
+        mdx('li', { parentName: 'ul' }, 'Type ', mdx('inlineCode', { parentName: 'li' }, 'q!'), ' and press Enter.'),
+      ),
+    ),
+    mdx('h1', null, 'Common development tasks'),
+    mdx(
+      'p',
+      null,
+      "So far, we've seen lots of general-computing examples of how to do stuff with the terminal. Let's look at how we'd accomplish some typical development tasks!",
+    ),
+    mdx(
+      'p',
+      null,
+      "These examples assume that you have Node.js installed. If you haven't installed it yet, you can ",
+      mdx('a', e({ parentName: 'p' }, { href: 'https://nodejs.org/en/' }), 'download a copy from the Node homepage'),
+      '.',
+    ),
+    mdx('h2', null, 'Managing dependencies'),
+    mdx(
+      'p',
+      null,
+      "Let's imagine it's your first day on the job. The team has given you access to the source code, and you've downloaded it onto your machine. Now what?",
+    ),
+    mdx('p', null, "Well, the first step is to download the project's third-party dependencies!"),
+    mdx('p', null, 'Here are the steps to follow:'),
+    mdx(
+      'pre',
+      null,
+      mdx(
+        'code',
+        e({ parentName: 'pre' }, {}),
+        `cd path/to/project
+npm install
+`,
+      ),
+    ),
+    mdx(
+      'p',
+      null,
+      mdx('inlineCode', { parentName: 'p' }, 'npm'),
+      " stands for Node Package Manager. It's installed automatically when you install Node.js.",
+    ),
+    mdx(
+      'p',
+      null,
+      'Running this command will download all of the third-party code that the project depends on from the NPM repository. This code will live in a local ',
+      mdx('inlineCode', { parentName: 'p' }, 'node_modules'),
+      ' directory.',
+    ),
+    mdx('h2', null, 'Running NPM scripts'),
+    mdx('p', null, "Alright, so you've got the third-party code downloaded. Now what?"),
+    mdx(
+      'p',
+      null,
+      "If you check out the project's ",
+      mdx('inlineCode', { parentName: 'p' }, 'package.json'),
+      ", you'll likely see a section that looks like this:",
+    ),
+    mdx(
+      'pre',
+      null,
+      mdx(
+        'code',
+        e({ parentName: 'pre' }, { className: 'language-json' }),
+        `{
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
+  }
+}
+`,
+      ),
+    ),
+    mdx(
+      'p',
+      null,
+      'These \u201Cscripts\u201D are tasks that can be run with the NPM utility. They can be executed by running ',
+      mdx('inlineCode', { parentName: 'p' }, 'npm run [name]'),
+      ". For example, to boot up a local development server, we'd run:",
+    ),
+    mdx(
+      'pre',
+      null,
+      mdx(
+        'code',
+        e({ parentName: 'pre' }, {}),
+        `cd path/to/project
+npm run start
+`,
+      ),
+    ),
+    mdx(
+      'p',
+      null,
+      'Running this command starts a long-running process. It launches a Node server that allows us to work on our application, watching for changes to the files and re-bundling when we edit them.',
+    ),
+    mdx(
+      'p',
+      null,
+      "When we're done, we can kill the server with ",
+      mdx('inlineCode', { parentName: 'p' }, 'ctrl'),
+      ' + ',
+      mdx('inlineCode', { parentName: 'p' }, 'c'),
+      '.',
+    ),
+    mdx(
+      'p',
+      null,
+      'The beautiful thing about NPM scripts is that they ',
+      mdx('em', { parentName: 'p' }, 'standardize'),
+      ' things. ',
+      mdx('inlineCode', { parentName: 'p' }, 'start'),
+      ', ',
+      mdx('inlineCode', { parentName: 'p' }, 'build'),
+      ', and ',
+      mdx('inlineCode', { parentName: 'p' }, 'test'),
+      " are conventional names for these standard tasks. As a result, we don't have to memorize bespoke commands for each project, even if the projects use radically different tools.",
+      mdx(Asterisk, {
+        content:
+          "That said, there are some tools that don't follow these conventions. Be sure to check the project's package.json file for a full list of available scripts.",
+        mdxType: 'Asterisk',
       }),
     ),
-    mdx('h1', null, 'Bonus: Rem quality of life'),
     mdx(
       'p',
       null,
-      "Alright, so as we've seen, there are plenty of cases where we need to use ",
-      mdx('inlineCode', { parentName: 'p' }, 'rem'),
-      ' values for best results.',
+      "(We can also create our own NPM scripts! This is something I do extensively in my projects. I'll be publishing a blog post all about this at some point, ",
+      mdx('a', e({ parentName: 'p' }, { href: 'https://joshwcomeau.com/subscribe' }), 'subscribe'),
+      " so you don't miss it!)",
+    ),
+    mdx('h2', null, 'Opening the project in your IDE'),
+    mdx(
+      'p',
+      null,
+      "When I want to start working on a project, I start by navigating to the project's root directory in the terminal. Then I run the following command:",
+    ),
+    mdx(
+      'pre',
+      null,
+      mdx(
+        'code',
+        e({ parentName: 'pre' }, { className: 'language-null', metastring: 'lessBottomMargin', lessBottomMargin: !0 }),
+        `cd path/to/project
+code .
+`,
+      ),
     ),
     mdx(
       'p',
       null,
-      "Unfortunately, this unit can often be pretty frustrating to work with. It's not easy to do the conversion math in our heads. And we wind up with ",
-      mdx('em', { parentName: 'p' }, 'a lot'),
-      ' of decimals:',
+      'As discussed, ',
+      mdx('inlineCode', { parentName: 'p' }, '.'),
+      ' refers to the current working directory. ',
+      mdx('inlineCode', { parentName: 'p' }, 'code'),
+      ' is a command added by my code editor, VS Code. Running this command opens the entire project in my code editor, making it easy for me to jump between files as-needed.',
+    ),
+    mdx(
+      'p',
+      null,
+      "Note that the command will vary depending on your editor. And, for folks on MacOS who use VS Code, you'll need to ",
+      mdx('a', e({ parentName: 'p' }, { href: 'https://code.visualstudio.com/docs/setup/mac' }), 'do a bit of work'),
+      ' to enable the ',
+      mdx('inlineCode', { parentName: 'p' }, 'code'),
+      ' command.',
+    ),
+    mdx('h2', null, 'Reinstalling dependencies'),
+    mdx(
+      'p',
+      null,
+      'You know how the standard advice for ',
+      mdx('em', { parentName: 'p' }, 'any'),
+      ' computer problem is to turn it off and on again?',
+    ),
+    mdx(
+      'p',
+      null,
+      'The JavaScript version of that is to reinstall the NPM dependencies. Sometimes, they just need to be erased and re-downloaded. This is ',
+      mdx('em', { parentName: 'p' }, 'especially'),
+      ' true if you occasionally pop into your ',
+      mdx('inlineCode', { parentName: 'p' }, 'node_modules'),
+      ' and edit the files to help with debugging.',
+      mdx(Asterisk, {
+        content: "This is a debugging superpower. Don't be afraid to tinker with the code inside node_modules!",
+        mdxType: 'Asterisk',
+      }),
+    ),
+    mdx('p', null, "Here's how we can do this:"),
+    mdx(
+      'pre',
+      null,
+      mdx(
+        'code',
+        e({ parentName: 'pre' }, { className: 'language-null', metastring: 'lessBottomMargin', lessBottomMargin: !0 }),
+        `cd path/to/project
+rm -rf node_modules
+npm install
+`,
+      ),
+    ),
+    mdx(
+      'p',
+      null,
+      "Once we're in the correct directory, we delete all third-party code with the ",
+      mdx('inlineCode', { parentName: 'p' }, 'rm'),
+      ' command, and then re-install it with ',
+      mdx('inlineCode', { parentName: 'p' }, 'npm install'),
+      '.',
+    ),
+    mdx('h2', null, 'Working with Git'),
+    mdx(
+      'p',
+      null,
+      'While there ',
+      mdx('em', { parentName: 'p' }, 'are'),
+      ' GUI applications for working with Git, many developers prefer to use the command line for Git-related tasks.',
+    ),
+    mdx(
+      'p',
+      null,
+      "A full command-line Git tutorial is well beyond the scope of this blog post, but here's a quick cheat-sheet of the commands I use often:",
+    ),
+    mdx(
+      'pre',
+      null,
+      mdx(
+        'code',
+        e({ parentName: 'pre' }, {}),
+        `// Download a Git repository onto
+// your local machine
+git clone [URL]
+
+// Check which files have been modified
+git status -s
+
+// View changes
+git diff
+
+// Stage all files
+git add .
+
+// Commit staged files
+git commit -m "Short descriptive message"
+
+// Create a new local branch
+git switch -c [new branch name]
+
+// Switch branches
+git switch [branch name]
+
+// Push your code to Github (or wherever
+// the project lives)
+git push origin [branch name]
+
+// Start an interactive rebase
+git rebase -i [branch name or commit hash]
+`,
+      ),
+    ),
+    mdx('h1', null, 'Lil\u2019 tricks'),
+    mdx(
+      'p',
+      null,
+      "Over the years, I've picked up some nifty little terminal tips. They aren't ",
+      mdx('em', { parentName: 'p' }, 'critical'),
+      ', but they help improve the developer experience of using the terminal.',
+    ),
+    mdx('h2', null, 'Cycling and toggling commands'),
+    mdx(
+      'p',
+      null,
+      `Many terminal applications will keep a log of every command you've run in a given session. You can cycle through previous commands using the "up" arrow.`,
+    ),
+    mdx(
+      'p',
+      null,
+      `If I know I've run a command recently, it's usually faster to hit "up" a couple times rather than typing it out from scratch!`,
+    ),
+    mdx(
+      'p',
+      null,
+      "Here's one more ",
+      mdx('em', { parentName: 'p' }, 'amazing'),
+      ' little trick I learned a while back: the ',
+      mdx('inlineCode', { parentName: 'p' }, '-'),
+      ' character.',
+    ),
+    mdx(
+      'p',
+      null,
+      'Suppose we want to bounce back and forth between two directories with ',
+      mdx('inlineCode', { parentName: 'p' }, 'cd'),
+      '. We can do that by typing out the whole path, over and over and over:',
+    ),
+    mdx(
+      'div',
+      { style: { maxWidth: 1144 / 2, marginLeft: 'auto', marginRight: 'auto' } },
+      mdx(VimeoVideoPlayer, {
+        playbackId: '700229679',
+        width: 1144 / 2,
+        aspectRatio: 668 / 1144,
+        mdxType: 'VimeoVideoPlayer',
+      }),
+    ),
+    mdx('h2', null, 'Clearing the terminal'),
+    mdx('p', null, 'Like a clear desk, a clear terminal can lead to a clear mind.'),
+    mdx(
+      'p',
+      null,
+      "There are a few ways to accomplish this. There's a ",
+      mdx('inlineCode', { parentName: 'p' }, 'clear'),
+      ' command, which will erase all previously-entered commands, and making it seem like you just started a new terminal session.',
+    ),
+    mdx(
+      'p',
+      null,
+      "There's also a universal shortcut, ",
+      mdx('inlineCode', { parentName: 'p' }, 'ctrl'),
+      ' + ',
+      mdx('inlineCode', { parentName: 'p' }, 'L'),
+      '. This has the same effect as the ',
+      mdx('inlineCode', { parentName: 'p' }, 'clear'),
+      ' command. It should work across MacOS, Windows, and Linux.',
+    ),
+    mdx(
+      'p',
+      null,
+      "This command/shortcut is implemented within Bash/Zsh. It's part of the shell environment. This means that it only works while the shell is idle, when you have a prompt waiting to receive instructions.",
+    ),
+    mdx(
+      'p',
+      null,
+      'Certain terminal applications also implement their own shortcuts, and these shortcuts can work ',
+      mdx('strong', { parentName: 'p' }, 'even while the shell is busy.'),
+      " Here are the list of shortcuts I'm aware of:",
     ),
     mdx(
       'ul',
       null,
-      mdx('li', { parentName: 'ul' }, '14px \u2192 0.875rem'),
-      mdx('li', { parentName: 'ul' }, '15px \u2192 0.9375rem'),
-      mdx('li', { parentName: 'ul' }, mdx('strong', { parentName: 'li' }, '16px \u2192 1rem')),
-      mdx('li', { parentName: 'ul' }, '17px \u2192 1.0625rem'),
-      mdx('li', { parentName: 'ul' }, '18px \u2192 1.125rem'),
-      mdx('li', { parentName: 'ul' }, '19px \u2192 1.1875rem'),
-      mdx('li', { parentName: 'ul' }, '20px \u2192 1.25rem'),
-      mdx('li', { parentName: 'ul' }, '21px \u2192 1.3125rem'),
-    ),
-    mdx(
-      'p',
-      null,
-      "Before you go memorize this list, let's look at some of the things we can do to improve the experience of working with rems.",
-    ),
-    mdx('h2', null, 'The 62.5% trick'),
-    mdx('p', null, "Let's start with one of the most common options I've seen shared online."),
-    mdx('p', null, "Here's what it looks like:"),
-    mdx(
-      'pre',
-      null,
       mdx(
-        'code',
-        e({ parentName: 'pre' }, { className: 'language-css' }),
-        `html {
-  font-size: 62.5%;
-}
-
-p {
-  /* Equivalent to 18px */
-  font-size: 1.8rem;
-}
-h3 {
-  /* Equivalent to 21px */
-  font-size: 2.1rem;
-}
-`,
+        'li',
+        { parentName: 'ul' },
+        'On MacOS, across just about any shell (Terminal.app, iTerm2, Hyper), the shortcut is ',
+        mdx('inlineCode', { parentName: 'li' }, '\u2318'),
+        ' + ',
+        mdx('inlineCode', { parentName: 'li' }, 'k'),
+      ),
+      mdx(
+        'li',
+        { parentName: 'ul' },
+        'If you use Hyper on non-MacOS platforms, the shortcut is ',
+        mdx('inlineCode', { parentName: 'li' }, 'ctrl'),
+        ' + ',
+        mdx('inlineCode', { parentName: 'li' }, 'shift'),
+        ' + ',
+        mdx('inlineCode', { parentName: 'li' }, 'k'),
+        '.',
       ),
     ),
     mdx(
       'p',
       null,
-      "The idea is that we're scaling down the root font size so that each ",
-      mdx('inlineCode', { parentName: 'p' }, 'rem'),
-      ' unit is equal to 10px instead of 16px.',
+      mdx('strong', { parentName: 'p' }, 'These application-level shortcuts are way better.'),
+      ' You can use them even when the shell is busy.',
     ),
     mdx(
       'p',
       null,
-      'People like this solution because the math becomes way easier. To get the ',
-      mdx('inlineCode', { parentName: 'p' }, 'rem'),
-      ' equivalent of 18px, you move the decimal (1.8rem) instead of having to divide 18 by 16 (1.125rem).',
+      "For example, let's say you're running a dev server. This is a long-running process, and so the ",
+      mdx('inlineCode', { parentName: 'p' }, 'ctrl'),
+      ' + ',
+      mdx('inlineCode', { parentName: 'p' }, 'L'),
+      " shortcut won't work. As you work on the project, lots of messages will be logged in the terminal window. The application shortcuts allow you to clear away stale logs, as if archiving old emails. ",
+      mdx('strong', { parentName: 'p' }, 'This is really helpful,'),
+      ' and a great example of how modern terminal applications make our lives easier.',
     ),
     mdx(
       'p',
       null,
-      mdx('strong', { parentName: 'p' }, "But, honestly, I don't recommend this approach."),
-      ' There are a couple of reasons.',
+      'Thanks to ',
+      mdx(
+        'a',
+        e({ parentName: 'p' }, { href: 'https://twitter.com/hovhaDovah/status/1516444641960382466' }),
+        'Aleksandr',
+      ),
+      ' and Joseph Cagle for helping me understand how this works on non-MacOS platforms!',
+    ),
+    mdx('h2', null, 'Aliases'),
+    mdx(
+      'p',
+      null,
+      "Every now and then, I'll find myself typing out the same command over and over. If this command is long or complex, it's annoying to have to type it out every time, and to remember it verbatim.",
     ),
     mdx(
       'p',
       null,
-      'First, It can break compatibility with third-party packages. If you use a tooltip library that uses rem-based font sizes, text in those tooltips is going to be 37.5% smaller than it should be! Similarly, it can break browser extensions the end user has.',
+      'Bash and Zsh support ',
+      mdx('em', { parentName: 'p' }, 'aliases'),
+      ', a way of creating custom shortcuts. For example, I can set it up so that whenever I enter ',
+      mdx('inlineCode', { parentName: 'p' }, 'hi'),
+      ', it automatically runs ',
+      mdx('inlineCode', { parentName: 'p' }, 'echo "Hello World!"'),
+      ':',
     ),
+    mdx(TerminalScreenshot, {
+      slug: 'alias',
+      alt: "Running the 'alias' command, to create an alias for the echo command",
+      mdxType: 'TerminalScreenshot',
+    }),
     mdx(
       'p',
       null,
-      "There's a baseline assumption on the web that ",
-      mdx('inlineCode', { parentName: 'p' }, '1rem'),
-      " will produce readable text. I don't wanna mess with that assumption.",
+      'Setting up aliases is a bit beyond the scope of this tutorial, and the instructions are a bit different depending on your shell language. Here are some helpful tutorials that go into more depth:',
     ),
     mdx(
-      'p',
+      'ul',
       null,
-      "Also, there are significant migration challenges to this approach. There's no reasonable way to \u201Cincrementally adopt\u201D it",
-      mdx(Asterisk, {
-        content: mdx(
-          React.Fragment,
-          null,
-          'Well, you ',
-          mdx('em', null, 'could'),
-          ", but then the definition of 1rem wouldn't be consistent across the site/app, which sounds like a nightmare",
+      mdx(
+        'li',
+        { parentName: 'ul' },
+        mdx(
+          'a',
+          e({ parentName: 'li' }, { href: 'https://linuxize.com/post/how-to-create-bash-aliases/' }),
+          'Bash aliases',
         ),
-        mdxType: 'Asterisk',
-      }),
-      ". You'll need to update every declaration that uses ",
-      mdx('inlineCode', { parentName: 'p' }, 'rem'),
-      " units across the app. Plus, you'll need to convince all your teammates that it's worth the trouble. Logistically, I'm not sure how realistic it is for most teams.",
+      ),
+      mdx(
+        'li',
+        { parentName: 'ul' },
+        mdx('a', e({ parentName: 'li' }, { href: 'https://linuxhint.com/configure-use-aliases-zsh/' }), 'Zsh aliases'),
+      ),
     ),
-    mdx('p', null, "Let's look at some alternative options."),
-    mdx('h2', null, 'Calculated values'),
+    mdx('h2', null, 'Switching to a GUI file explorer'),
+    mdx(
+      'p',
+      null,
+      "Unless you've reached black-belt status with the terminal, there will be times when you want to open the working directory in a GUI file explorer.",
+    ),
+    mdx('p', null, 'On MacOS, the ', mdx('inlineCode', { parentName: 'p' }, 'open .'), ' command will do this:'),
+    mdx(VideoGif, {
+      src: 'https://storage.googleapis.com/joshwcomeau/t-open.mp4',
+      alt: "The 'open' command is run, opening the current directory",
+      mdxType: 'VideoGif',
+    }),
     mdx(
       'p',
       null,
       'The ',
-      mdx('inlineCode', { parentName: 'p' }, 'calc'),
-      ' CSS function can be used to translate pixel values to rems:',
+      mdx('inlineCode', { parentName: 'p' }, 'open'),
+      ' command is generally used to open a file, the same way double-clicking a file opens it in a GUI file explorer.',
+    ),
+    mdx(
+      'p',
+      null,
+      'When we try to open a ',
+      mdx('em', { parentName: 'p' }, 'directory'),
+      ", however, it'll choose to pop open a new Finder window, showing the contents of that directory.",
+    ),
+    mdx(
+      'p',
+      null,
+      'And since the dot character (',
+      mdx('inlineCode', { parentName: 'p' }, '.'),
+      ') refers to the current directory, ',
+      mdx('inlineCode', { parentName: 'p' }, 'open .'),
+      ' allows us to switch from the terminal to Finder, to continue our work outside of the terminal.',
+    ),
+    mdx(
+      'p',
+      null,
+      'On Windows, you can use ',
+      mdx('inlineCode', { parentName: 'p' }, 'explorer .'),
+      ' to accomplish the same goal! Thanks to ',
+      mdx('a', e({ parentName: 'p' }, { href: 'https://twitter.com/luniestro/status/1516427957467852802' }), 'Lukas'),
+      ' and ',
+      mdx(
+        'a',
+        e({ parentName: 'p' }, { href: 'https://twitter.com/ZagglesZurek/status/1516447452726894596' }),
+        'Agata',
+      ),
+      ' for letting me know. \u{1F604}',
+    ),
+    mdx(
+      'p',
+      null,
+      'On Linux, ',
+      mdx('inlineCode', { parentName: 'p' }, 'xdg-open'),
+      ' can be used to open files, or the current directory, so long as the Linux distro implements the FreeDesktop standard. Thanks to ',
+      mdx(
+        'a',
+        e({ parentName: 'p' }, { href: 'https://twitter.com/thedaviddelta/status/1516417270343471113' }),
+        'David',
+      ),
+      ' for letting me know!',
+    ),
+    mdx('h2', null, 'Chaining commands'),
+    mdx('p', null, 'Whenever I clone a new project from Github, I generally want to do two things in a row:'),
+    mdx(
+      'ul',
+      null,
+      mdx(
+        'li',
+        { parentName: 'ul' },
+        mdx('inlineCode', { parentName: 'li' }, 'npm install'),
+        ', to fetch third-party dependencies',
+      ),
+      mdx(
+        'li',
+        { parentName: 'ul' },
+        mdx('inlineCode', { parentName: 'li' }, 'npm run start'),
+        ', to boot up a local development server',
+      ),
+    ),
+    mdx(
+      'p',
+      null,
+      'The ',
+      mdx('inlineCode', { parentName: 'p' }, 'npm install'),
+      " command typically takes a few minutes. I don't have the attention span to sit and watch dependencies download, and so I'll often distract myself with Twitter. The next thing I know, 20 minutes have passed, and I totally forgot I was going to start a dev server. \u{1F62C}",
+    ),
+    mdx(
+      'p',
+      null,
+      'We can solve this problem using ',
+      mdx('em', { parentName: 'p' }, 'chaining'),
+      ". Here's how it works:",
+    ),
+    mdx(TerminalScreenshot, {
+      slug: 'chain',
+      alt: 'Chaining two NPM commands with double ampersands',
+      mdxType: 'TerminalScreenshot',
+    }),
+    mdx(
+      'p',
+      null,
+      'The ',
+      mdx('inlineCode', { parentName: 'p' }, '&&'),
+      ' operator allows us to chain multiple commands together. The first command will be executed, ',
+      mdx('inlineCode', { parentName: 'p' }, 'npm install'),
+      '. The moment it finishes, the second command will be run automatically.',
+    ),
+    mdx(
+      'p',
+      null,
+      'This is a particularly neat trick because ',
+      mdx('inlineCode', { parentName: 'p' }, 'npm run start'),
+      " generally opens a browser window, capturing my attention and letting me know that everything's ready for me. ",
+      mdx('inlineCode', { parentName: 'p' }, 'npm install'),
+      ', by contrast, finishes silently.',
+    ),
+    mdx(
+      'p',
+      null,
+      "Once I got the hang of chaining, I started using it everywhere. I'll often queue up a bunch of Git commands:",
     ),
     mdx(
       'pre',
       null,
       mdx(
         'code',
-        e({ parentName: 'pre' }, { className: 'language-css' }),
-        `p {
-  /* Produces 1.125rem. Equivalent to 18px */
-  font-size: calc(18rem / 16);
-}
-h3 {
-  /* Produces 1.3125rem. Equivalent to 21px */
-  font-size: calc(21rem / 16);
-}
-h2 {
-  /* Produces 1.5rem. Equivalent to 24px */
-  font-size: calc(24rem / 16);
-}
-h1 {
-  /* Produces 2rem. Equivalent to 32px */
-  font-size: calc(32rem / 16);
-}
+        e({ parentName: 'pre' }, {}),
+        `git add . && git commit -m "Stuff" && git push origin main
 `,
       ),
     ),
+    mdx('h2', null, 'Terminal tiling and tabs'),
+    mdx('p', null, "Alright, so let's talk about how to keep our workspace organized."),
     mdx(
       'p',
       null,
-      '(Thanks to Twitter user ',
-      mdx('a', e({ parentName: 'p' }, { href: 'https://twitter.com/cahnory/status/1527311858272587778' }), 'Cahnory'),
-      ' for improving on my original idea!)',
+      'Running a dev server with ',
+      mdx('inlineCode', { parentName: 'p' }, 'npm run start'),
+      ' is a long-running process. I often have dev servers run uninterrupted for weeks at a time!',
     ),
     mdx(
       'p',
       null,
-      'Pretty cool, right? We can do the math right there inside the CSS declaration, and ',
-      mdx('inlineCode', { parentName: 'p' }, 'calc'),
-      ' will spit out the correct answer.',
+      "When a terminal session is busy on a task, it isn't able to accept additional commands. Remember, the prompt is used to show that the terminal is waiting for a command; if we don't see a prompt, we can't run anything in that given session!",
     ),
     mdx(
       'p',
       null,
-      "This is a viable approach, but it's a bit of a mouthful. It's a lot of typing every time you want to use a ",
-      mdx('inlineCode', { parentName: 'p' }, 'rem'),
-      ' value.',
+      'Fortunately, modern terminal applications make it easy to run many terminal sessions in the same application.',
     ),
-    mdx('p', null, "Let's look at one more approach."),
-    mdx('h2', null, 'Leveraging CSS variables'),
-    mdx('p', null, "This is my favourite option. Here's what it looks like:"),
     mdx(
-      'pre',
+      'p',
       null,
+      'In Hyper, we can split the window into multiple vertical panes by selecting Shell -> Split down. On MacOS, the shortcut is ',
+      mdx('inlineCode', { parentName: 'p' }, 'Shift'),
+      ' + ',
+      mdx('inlineCode', { parentName: 'p' }, '\u2318'),
+      ' + ',
+      mdx('inlineCode', { parentName: 'p' }, 'd'),
+      '. This creates two independent sessions:',
+    ),
+    mdx(TerminalScreenshot, {
+      slug: 'tiled',
+      alt: 'Two terminal sessions, one on top of the other',
+      height: 1462,
+      mdxType: 'TerminalScreenshot',
+    }),
+    mdx(
+      'p',
+      null,
+      'By splitting the window into multiple sessions, the top session can focus on running the dev server, and highlighting errors and other important information. The bottom session can be used to run shorter tasks.',
+    ),
+    mdx(
+      'p',
+      null,
+      'Sometimes, projects will require multiple long-running tasks; maybe we have a dev server ',
+      mdx('i', null, 'and'),
+      " a test watcher. In that case, we'd split the window into 3 sessions.",
+    ),
+    mdx(
+      'p',
+      null,
+      'In Hyper, we can also create ',
+      mdx('em', { parentName: 'p' }, 'multiple tabs'),
+      '. New tabs can be created with Shell -> New Tab. On MacOS, the shortcut is the same as it is to create new tabs in a web browser: ',
+      mdx('inlineCode', { parentName: 'p' }, '\u2318'),
+      ' + ',
+      mdx('inlineCode', { parentName: 'p' }, 't'),
+      '.',
+    ),
+    mdx(
+      'p',
+      null,
+      mdx('strong', { parentName: 'p' }, 'When do we use tabs vs. tiles?'),
+      ' I like to have 1 tab per project. Each tab can be split into as many sessions are required for that specific project.',
+    ),
+    mdx(
+      Sidenote,
+      { title: 'Editor + Terminal arrangements', mdxType: 'Sidenote' },
+      mdx('p', null, "Here's how I arrange my code editor and terminal application:"),
+      mdx(PostImage, {
+        src: '/images/terminal-for-js-devs/editor-terminal-layout.png',
+        width: 4096,
+        height: 2258,
+        alt: 'Screenshot of my code setup, with a two-pane code editor on the left and a terminal column on the right, split vertically into 2 sessions',
+        mdxType: 'PostImage',
+      }),
       mdx(
-        'code',
-        e({ parentName: 'pre' }, { className: 'language-css' }),
-        `html {
-  --14px: 0.875rem;
-  --15px: 0.9375rem;
-  --16px: 1rem;
-  --17px: 1.0625rem;
-  --18px: 1.125rem;
-  --19px: 1.1875rem;
-  --20px: 1.25rem;
-  --21px: 1.3125rem;
-}
-
-h1 {
-  font-size: var(--21px);
-}
-`,
+        'p',
+        null,
+        'I use a 27" monitor, and this size is just large enough to support two full-height code views and a terminal application with up to 3 split panes. The code editor takes up 2/3rds of the available horizontal space.',
       ),
-    ),
-    mdx(
-      'p',
-      null,
-      "We can do all the calculations once, and use CSS variables to store those options. When we need to use them, it's almost as easy as typing pixel values, but fully accessible! \u2728",
-    ),
-    mdx(
-      'p',
-      null,
-      "It's a bit unconventional to start CSS variables with a number like this, but it's compliant with the spec, and appears to work across all major browsers.",
-    ),
-    mdx('p', null, 'If you use a design system with a spacing scale, we can use this same trick:'),
-    mdx(
-      'pre',
-      null,
       mdx(
-        'code',
-        e({ parentName: 'pre' }, { className: 'language-css' }),
-        `html {
-  --font-size-xs: 0.75rem;
-  --font-size-sm: 0.875rem;
-  --font-size-md: 1rem;
-  --font-size-lg: 1.125rem;
-  --font-size-xl: 1.3125rem;
-  --font-size-2xl: 1.5rem;
-  --font-size-3xl: 2.652rem;
-  --font-size-4xl: 4rem;
-}
-`,
+        'p',
+        null,
+        'I use ',
+        mdx('a', e({ parentName: 'p' }, { href: 'https://rectangleapp.com/' }), 'Rectangle'),
+        ' to manage the window positions. Using keyboard shortcuts, I can quickly snap my editor and terminal application into place.',
+      ),
+      mdx(
+        'p',
+        null,
+        'This stuff is ',
+        mdx('em', { parentName: 'p' }, 'super'),
+        " subjective, and there's no right/wrong way to do it, but this has been my go-to layout for years now, and it's helped me a ton!",
       ),
     ),
+    mdx('h1', null, 'The journey continues'),
+    mdx('p', null, "Phew! We covered a lot of ground in this one. Hopefully, you aren't feeling too overwhelmed!"),
     mdx(
       'p',
       null,
-      'CSS variables are absolutely delightful. We explore a bunch of cool things we can do with them in ',
-      mdx('a', e({ parentName: 'p' }, { href: 'https://css-for-js.dev/' }), 'CSS for JavaScript Developers'),
-      '!',
+      "The terminal has a well-earned reputation for being intimidating and tricky for beginners. It's totally normal if you struggle with it!",
     ),
     mdx(
       'p',
       null,
-      "Ultimately, all of these methods will work. I certainly have my preferences, but the important thing is the end user experience. As long as they can adjust the size of all text on the page, you're doing it right. \u{1F4AF}",
+      'Hopefully, though, this blog post has at least cut down the scope of what you need to learn. There is a lot you can do with the terminal, but we can get by just fine focusing on a (relatively) narrow sliver.',
+    ),
+    mdx('p', null, 'If you found this blog post helpful, please share it with someone!'),
+    mdx(
+      'p',
+      null,
+      mdx('em', { parentName: 'p' }, 'Also:'),
+      " I have a bunch of other blog posts planned, all about JavaScript and React. If you'd like to follow along, the best way is to sign up for my newsletter! \u{1F604}",
+    ),
+    mdx(
+      'p',
+      null,
+      "I'll let you know whenever I publish new content, about once or twice a month. I also send occasional subscriber-only goodies. \u{1F36C}",
+    ),
+    mdx(
+      'div',
+      { style: { marginBottom: 48 } },
+      mdx(NewsletterSignup, { variant: 'minimal', mdxType: 'NewsletterSignup' }),
+    ),
+    mdx(
+      'p',
+      null,
+      mdx('strong', { parentName: 'p' }, 'I hate spam as much as you do.'),
+      " If you decide you don't want to receive my newsletter anymore, you can unsubscribe in a single click. \u{1F4A8}",
     ),
   );
 }

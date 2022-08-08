@@ -24,8 +24,6 @@ import { PostImage } from './PostImage';
 
 import { InlineCode } from './InlineCode';
 
-import { CodeSnippet } from './CodeSnippet';
-
 import { ContentHeading, CH1, CH2, CH3 } from './ContentHeading';
 import type { ContentHeadingProps } from './ContentHeading';
 
@@ -36,101 +34,81 @@ import { HorizontalRule } from './HorizontalRule';
 import { SideNote, Expanded } from './SideNote';
 
 import { CodeBlock } from './CodeBlock';
-import type { MetaString } from './CodeBlock';
 
-// type PreProps = Partial<React.ReactHTMLElement<HTMLPreElement>['props']> & {
-//   language: string;
-//   codeString: string;
-//   line?: string;
-//   fileName?: string;
-//   url?: string;
-//   className: string;
-// };
+const Strong = (strong: JSX.IntrinsicElements['strong']) => <strong style={{ fontWeight: 700 }} {...strong} />;
 
-/**
- * Turns array elements into a type.
- *
- * `['name', 'email']` becomes `'name' | 'email'`
- */
-type ArrayElement<ArrayType extends readonly unknown[]> = ArrayType[number];
+export const MDXComponents = {
+  // a line is a <p /> tag
+  p: (props: ParagraphProps) => <Paragraph {...props} />,
+  // #
+  h1: (props: ContentHeadingProps) => <CH1 {...props} />,
+  // ##
+  h2: (props: ContentHeadingProps) => <CH2 {...props} />,
+  // ###
+  h3: (props: ContentHeadingProps) => <CH3 {...props} />,
+  // italic tag
+  i: (props: JSX.IntrinsicElements['em']) => <em {...props} />,
+  // *a*: em
+  em: (props: EmProps) => <Em {...props} type="default" />,
+  // **a**: strong
+  strong: Strong,
+  // ~~strike through~~
+  del: (props: any) => {
+    return <Strike {...props} />;
+  },
+  /*
+  1. First item
+  2. Second item
+  */
+  ol: (props: any) => <List {...props} type="ordered" />,
 
-/**
- * Returns an array of keys that matches the type `keyof T`
- *
- * @param object Any object.
- */
-const keys = <T extends {}>(object: T): (keyof T)[] => {
-  const objectKeys = Object.keys(object);
+  /*
+   [* - +] First item (recommend -)
+   */
+  ul: (props: any) => <List {...props} unordered={{ as: 'ul', props }} type="unordered" />,
 
-  return objectKeys.filter(key => object.hasOwnProperty(key)) as any;
-};
+  li: (props: any) => <ListItem {...props} />,
 
-const omit = <T extends {}, K extends (keyof T)[], P extends ArrayElement<K>>(object: T, fields: K): Omit<T, P> => {
-  return keys(object).reduce<any>((obj, field) => {
-    if (!fields.includes(field)) {
-      obj[field] = object[field];
+  // [tien](https://mdxjs.com/playground/)
+  a: (props: TextLinkProps) => <TextLink {...props} />,
+
+  img: (props: any) => <PostImage {...props} type="native" />,
+
+  // > blockquote
+  blockquote: (props: BlockquoteProps) => <Blockquote {...props} />,
+
+  code: (props: any) => {
+    // for backtick
+    if (props.className) {
+      const { children, ...rest } = props;
+      return <CodeBlock children={children as string} {...rest} />;
     }
+    // `inline code`
+    return <InlineCode {...props} />;
+  },
 
-    return obj;
-  }, {});
-};
-
-const preToCodeBlock = (preProps: any) => {
-  if (
-    // children is code element
-    preProps.children &&
-    // code props
-    preProps.children.props
-  ) {
-    // we have a <pre><code> situation
-    const { children: codeString, className = '', ...props } = preProps.children.props;
-
-    const matches = className.match(/language-(?<lang>.*)/);
-
-    return {
-      metastring: {
+  pre: (preProps: any) => {
+    if (preProps.highlight) {
+      const { children, className = '' } = preProps.children.props;
+      const matches = className.match(/language-(?<lang>.*)/);
+      const prop = {
         fileName: preProps.filename,
         highlight: preProps.highlight,
         language: matches && matches.groups && matches.groups.lang ? matches.groups.lang : undefined,
-      } as MetaString,
-      children: codeString.trim() as string,
-      className,
-      ...omit(props, ['children']),
-    };
-  }
-};
-
-export const MDXComponents = {
-  p: (props: ParagraphProps) => <Paragraph {...props} />,
-  a: (props: TextLinkProps) => <TextLink {...props} />,
-  blockquote: (props: BlockquoteProps) => <Blockquote {...props} />,
-  ul: (props: JSX.IntrinsicElements['ul']) => <List unordered={{ as: 'ul', props }} type="unordered" />,
-  ol: (props: JSX.IntrinsicElements['ol']) => <List ordered={{ as: 'ol', props }} type="ordered" />,
-  li: ({ ref, ...props }: JSX.IntrinsicElements['li']) => <ListItem {...props} />,
-  i: (props: JSX.IntrinsicElements['em']) => <em {...props} />,
-  em: (props: EmProps) => <Em {...props} type="default" />,
-  strike: Strike,
-  inlineCode: InlineCode,
-  // // code: CodeSnippet,
-  h1: (props: ContentHeadingProps) => <CH1 {...props} />,
-  h2: (props: ContentHeadingProps) => <CH2 {...props} />,
-  h3: (props: ContentHeadingProps) => <CH3 {...props} />,
-  hr: HorizontalRule,
-  code: ({ className, children, ...rest }: any) => <CodeBlock children={children as string} {...rest} />,
-  // The code block renders <pre> so we just want a div here.
-  // pre: ({ children, className, style, ...rest }: any) => (
-  //   <div children={children} className={className} style={style} {...rest} />
-  // ),
-
-  pre: (preProps: Partial<React.ReactHTMLElement<HTMLPreElement>['props']>) => {
-    const props = preToCodeBlock(preProps);
-
-    if (props) {
-      return <CodeBlock {...props} />;
+        className,
+      };
+      return (
+        <div>
+          <CodeBlock children={children as string} {...prop} />
+        </div>
+      );
+    } else {
+      return <pre {...preProps} />;
     }
-
-    return <pre {...preProps} />;
   },
+
+  // ***
+  hr: HorizontalRule,
 
   // =======
   Paragraph,
@@ -153,7 +131,6 @@ export const MDXComponents = {
   H1,
   H2,
   H3,
-  CodeSnippet,
   HorizontalRule,
   SideNote,
   Expanded,

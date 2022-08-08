@@ -11,10 +11,12 @@ import { useCodeBlockState } from './useCodeBlockState';
  * @param ref - reference to root HTMLElement of CodeBlock
  */
 export const useCodeBlock = (props: CodeBlockProps): CodeBlockState => {
-  const { children, className = 'language-js', metastring, noMargin = false } = props;
+  const { children, className = 'language-js', fileName, highlight, language, noMargin = false } = props;
   const state: CodeBlockState = {
     children,
-    metastring,
+    fileName,
+    language,
+    highlight,
     noMargin,
     className,
   };

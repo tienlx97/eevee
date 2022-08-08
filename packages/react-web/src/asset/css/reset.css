@@ -100,8 +100,9 @@ code {
 
 *:focus {
   outline: 0 !important;
-  box-shadow: 0 0 0 0.2rem var(--f1),
-    /* use site bg color to create whitespace for faux focus ring */ 0 0 0 0.35rem var(--f3) !important;
+  /* box-shadow: 0 0 0 0.2rem var(--f1), */
+  /* use site bg color to create whitespace for faux focus ring */
+  /* 0 0 0 0.35rem var(--f3) !important; */
   /* faux focus ring color */
 }
 

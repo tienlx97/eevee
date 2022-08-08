@@ -12,7 +12,7 @@ const useRootStyles = makeStyles({
   root: {
     fontFamily: tokens.fontFamilySpicy,
     letterSpacing: '-0.25px',
-    fontStyle: 'normal',
+    // fontStyle: 'normal',
     fontWeight: tokens.fontWeightRegular,
     color: 'inherit', // <- inject color
   },

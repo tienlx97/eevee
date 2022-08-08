@@ -4,24 +4,26 @@ export type Author = {
   name: string;
   nickName: string;
   url: string;
+  description: string;
 }
 
+export type PostType = "story" | "diary";
+
 export type FrontMatter = {
-  author: Array<string>,
-  tags: Array<string>
-  description: string,
-  id: string,
-  slugify: string,
-  title: string
+  // require
+  author: Author;
+  tags: Array<string>;
+  description: string;
+  postId: string;
+  slugify: string;
+  title: string;
+  post: PostType;
+  language: string;
+  date: string;
 
   // optional
-  archived?: boolean
-  date: string
-  draft?: boolean
-  bannerCloudinaryId?: string
-  bannerCredit?: string
-  bannerAlt?: string
-  bannerTitle?: string
+  archived?: boolean;
+  draft?: boolean;
 };
 
 export type ReadTime = {
@@ -43,6 +45,14 @@ export type Post = {
   readTime: ReadTime;
   toc: Toc[];
 }
+
+export type PostI18n = {
+  slugify: string;
+  en?: Post;
+  vi?: Post;
+  ja?: Post;
+};
+
 
 export type MorePost = {
   postTitle: string;

@@ -1,5 +1,4 @@
 import * as React from 'react';
-import { Spinner } from '@components/spinner/Spinner';
 import {
   PostDetail,
   PostHeader,
@@ -10,44 +9,46 @@ import {
 } from '@feature/blog/index';
 
 import type { BlogPageState } from './BlogPage.types';
-import { CommentSystem } from '@components/comment/index';
-import { Mimikyu } from '@components/icons/index';
-import { Link } from 'react-router-dom';
+import { CommentSystem } from '@components/comment-system/index';
+import { Close } from '../../components/icons/Close';
 
 /**
  * Render the final JSX of Blog
  */
 export const renderBlogPage = (state: BlogPageState) => {
-  const { reactionClassName } = state;
-  // eslint-disable-next-line react-hooks/rules-of-hooks
-  const [isOpenComment, setOpenComment] = React.useState(false);
+  const { reactionClassName, post, error, setOpenComment, isOpenComment } = state;
+
+  if (!post && !error) {
+    return (
+      <>
+        <PostHeaderSkeleton />
+        <PostDetailSkeleton />
+        <ReactionSkeleton className={reactionClassName} />
+      </>
+    );
+  }
+
+  if (!post) {
+    return <></>;
+  }
 
   return (
     <>
       <CommentSystem
         // eslint-disable-next-line react/jsx-no-bind
-        onClose={() => setOpenComment(false)}
-        show={isOpenComment}
+        onClose={() => setOpenComment!(false)}
+        show={isOpenComment ?? false}
+        closeButton={{ icon: <Close /> }}
       />
-      <React.Suspense
-        fallback={
-          <>
-            <PostHeaderSkeleton />
-            <PostDetailSkeleton />
-          </>
-        }
-      >
-        <PostHeader />
-        <PostDetail />
-      </React.Suspense>
-      <React.Suspense fallback={<ReactionSkeleton className={reactionClassName} />}>
-        <Reaction
-          // eslint-disable-next-line react/jsx-no-bind
-          setOpenComment={val => setOpenComment(val)}
-          id="eve-BlogPage__reaction"
-          className={reactionClassName}
-        />
-      </React.Suspense>
+      <PostHeader post={post} />
+      <PostDetail post={post} />
+
+      <Reaction
+        // eslint-disable-next-line react/jsx-no-bind
+        setOpenComment={val => setOpenComment!(val)}
+        id="eve-BlogPage__reaction"
+        className={reactionClassName}
+      />
     </>
   );
 };

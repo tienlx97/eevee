@@ -1,13 +1,12 @@
 import * as React from 'react';
 import type { MorePost as MorePostType } from 'typings/my-mdx/index';
 import { Heading } from '@eevee/react-mdx-comp';
-import { CircleAvatar } from '../circleAvatar/index';
+import { CircleAvatar } from '@components/circle-avatar/index';
 import { makeStyles, mergeClasses, shorthands } from '@griffel/react';
 import { tokens } from '@eevee/react-theme';
 import { Link } from 'react-router-dom';
 import { toDate } from '@utilities/toDate';
 import { Spinner } from '@components/spinner2/index';
-import { useBlogAPISWR } from '../../hooks/useBlogAPISuspense';
 
 const useRootStyles = makeStyles({
   root: {
@@ -126,7 +125,6 @@ type MorePostProps = {
 
 export const MorePost = ({ morePostList, slug }: MorePostProps) => {
   const styles = useRootStyles();
-  useBlogAPISWR(slug);
 
   return morePostList ? (
     <div className={styles.root}>

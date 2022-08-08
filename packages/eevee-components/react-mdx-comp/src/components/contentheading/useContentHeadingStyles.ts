@@ -8,6 +8,7 @@ export const contentHeadingClassname = {
   icon: 'eve-ContentHeading__anchor--link-icon',
 };
 
+
 const useRootStyles = makeStyles({
   root: {
     position: 'relative',
@@ -103,7 +104,11 @@ export const useContentHeadingStyles = (state: ContentHeadingState): ContentHead
   // state.anchor.className = mergeClasses(contentHeadingClassname.anchor, anchorStyles.root, state.anchor.className);
 
   // version 2
-  state.root.className = mergeClasses(contentHeadingClassname.root, rootStyles['root-v2'], state.root.className);
+  state.heading.className = mergeClasses(
+    contentHeadingClassname.root,
+    rootStyles['root-v2'],
+    state.root.className);
+
   state.anchor.className = mergeClasses(
     contentHeadingClassname.anchor,
     'mdx-header-anchor',

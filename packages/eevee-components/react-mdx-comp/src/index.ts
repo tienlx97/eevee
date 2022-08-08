@@ -10,6 +10,5 @@ export { CH1, CH2, CH3, ContentHeading } from './ContentHeading';
 export { H1, H2, H3, Heading } from './Heading';
 export { SideNote, Expanded } from './SideNote';
 export { HorizontalRule } from './HorizontalRule';
-export { CodeSnippet } from './CodeSnippet';
 // export { SandPack } from './SandPack';
 export { MDXComponents } from './MDXComponents';

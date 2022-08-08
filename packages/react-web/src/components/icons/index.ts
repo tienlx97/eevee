@@ -17,3 +17,4 @@ export * from './Community';
 export * from './Close';
 
 export * from './pokemon/index';
+export * from './Eye';

@@ -10,5 +10,8 @@ export type BlogPageProps = EeveeProps<Partial<BlogPageSlots>> & {};
 
 export type BlogPageState = EeveeState<BlogPageSlots> & {
   post?: Post | null | undefined;
+  error?: any;
   reactionClassName?: string;
+  isOpenComment?: boolean;
+  setOpenComment?: React.Dispatch<React.SetStateAction<boolean>>;
 };

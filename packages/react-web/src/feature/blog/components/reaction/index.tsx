@@ -3,7 +3,7 @@ import { makeStyles, mergeClasses, shorthands } from '@griffel/react';
 import { breakPoints, tokens } from '@eevee/react-theme';
 import { Button } from '@eevee/react-button';
 import { Clap, Comment } from '@components/icons/index';
-import { useBlogParam, useBlogAPISWR } from '@feature/blog/index';
+import { useBlogParam } from '@feature/blog/index';
 
 const useRootStyles = makeStyles({
   wrapper: {
@@ -72,7 +72,6 @@ type ReactionProps = JSX.IntrinsicElements['div'] & {
 
 export const Reaction = ({ setOpenComment, ...props }: ReactionProps) => {
   const slug = useBlogParam();
-  useBlogAPISWR(slug);
   const styles = useRootStyles();
 
   return (

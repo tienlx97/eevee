@@ -2,8 +2,7 @@ import { makeStyles, shorthands } from '@griffel/react';
 import * as React from 'react';
 import { Link } from 'react-router-dom';
 import { tokens } from '@eevee/react-theme';
-import { useBlogContext } from '@context/index';
-import { useBlogAPISWR } from '../../feature/blog/index';
+import type { Author } from 'typings/my-mdx/index';
 
 const useDisplayStyles = makeStyles({
   'mt-16': {
@@ -44,30 +43,26 @@ const useRootStyles = makeStyles({
 });
 
 type Props = JSX.IntrinsicElements['div'] & {
-  slug?: string;
+  author: Author;
 };
 
-export const Porfolio = ({ slug, ...props }: Props) => {
+export const Porfolio = ({ author, ...props }: Props) => {
   const rootStyles = useRootStyles();
   const displayStyles = useDisplayStyles();
 
-  const blog = useBlogAPISWR(slug);
-
-  return blog ? (
+  return (
     <div {...props}>
-      <Link to={`/@${blog.frontmatter.author[1]}`}>
+      <Link to={`/@${author.name}`}>
         <img width={69} height={69} className={rootStyles.avatar} src="https://source.unsplash.com/random" />
       </Link>
       <div className={displayStyles['mt-16']} />
-      <Link className={rootStyles.textInherit} to={`/@${blog.frontmatter.author[1]}`}>
-        <h2 className={rootStyles.title}>{blog.frontmatter.author[0]}</h2>
+      <Link className={rootStyles.textInherit} to={`/@${author.nickName}`}>
+        <h2 className={rootStyles.title}>{author.nickName}</h2>
       </Link>
       <div className={displayStyles['mt-4']} />
       <span>61 followers</span>
       <div className={displayStyles['mt-12']} />
-      <p>{blog.frontmatter.author[3]}</p>
+      <p>{author.description}</p>
     </div>
-  ) : (
-    <></>
   );
 };

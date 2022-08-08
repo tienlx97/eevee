@@ -188,6 +188,7 @@ function loadResolve(isEnvProductionProfile) {
   return {
     fallback: {
       path: require.resolve('path-browserify'),
+      stream: require.resolve('stream-browserify'),
     },
 
     // This allows you to set a fallback for where webpack should look for modules.
