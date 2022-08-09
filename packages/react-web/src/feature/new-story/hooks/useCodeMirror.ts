@@ -1,86 +1,41 @@
+/* eslint-disable import/no-extraneous-dependencies */
 import * as React from 'react';
 import { EditorState } from '@codemirror/state';
-// eslint-disable-next-line import/no-extraneous-dependencies
-import { EditorView, keymap, highlightActiveLine, MatchDecorator } from '@codemirror/view';
+import { EditorView, keymap, highlightActiveLine } from '@codemirror/view';
 import { defaultKeymap } from '@codemirror/commands';
 import { history, historyKeymap } from '@codemirror/history';
 import { indentOnInput } from '@codemirror/language';
 import { bracketMatching } from '@codemirror/matchbrackets';
-import { lineNumbers, highlightActiveLineGutter } from '@codemirror/gutter';
-import { defaultHighlightStyle, HighlightStyle, tags } from '@codemirror/highlight';
+import { lineNumbers, gutter } from '@codemirror/gutter';
+import { defaultHighlightStyle } from '@codemirror/highlight';
 import { markdown, markdownLanguage } from '@codemirror/lang-markdown';
 import { languages } from '@codemirror/language-data';
-import { tokens } from '@eevee/react-theme';
+import { syntaxHighlighting, transparentTheme } from '../utils/CustomCodemirror';
+import { foldGutter, foldKeymap } from '@codemirror/fold';
 
-export const transparentTheme = EditorView.theme({
-  '&': {
-    backgroundColor: 'transparent !important',
-    padding: '16px 0',
-    height: '100%',
-  },
-  '.cm-scroller': {
-    height: '100%',
-  },
-  '.cm-content': {
-    caretColor: tokens.f1,
-  },
-  '.cm-activeLineGutter, .cm-activeLine': {
-    backgroundColor: 'transparent !important',
-  },
+// import { vim } from "@replit/codemirror-vim"
+// import { CompletionContext, autocompletion } from "@codemirror/autocomplete"
+// function myCompletions(context: CompletionContext) {
+//   const word = context.matchBefore(/<*^((?! ).)*$/)
+//   console.log(word);
 
-  '.cm-gutters ': {
-    backgroundColor: 'transparent !important',
-    border: 'none',
-    paddingRight: '4px',
-  },
-});
+//   if (!word || (word.from === word.to && !context.explicit)) { return null }
 
-const syntaxHighlighting = HighlightStyle.define([
-  {
-    tag: tags.heading1,
-    color: tokens.f8,
-  },
-  {
-    tag: tags.heading2,
-    color: tokens.f5,
-  },
-  {
-    tag: tags.heading3,
-    color: tokens.f9,
-  },
-  {
-    tag: tags.strong,
-    color: 'inherit',
-    fontWeight: 600,
-  },
-  {
-    tag: tags.emphasis,
-    fontFamily: tokens.fontFamilySpicy,
-    letterSpacing: '-0.25px',
-    color: 'inherit',
-    fontStyle: 'italic',
-    fontWeight: 400,
-  },
-  {
-    tag: tags.link,
-    color: tokens.f3,
-  },
-  {
-    tag: tags.strikethrough,
-    class: 'eve-md-strikethrough',
-  },
-  {
-    tag: tags.quote,
-    fontStyle: 'italic',
-    fontSize: '1.25rem',
-    fontFamily: tokens.fontFamily,
-    fontWeight: tokens.fontWeightMedium,
-    color: tokens.f10,
-    marginTop: '1.5rem',
-    marginBottom: '1.5rem',
-    padding: '0px 1rem',
-  },
-]);
+//   if (word.text[0] === '<') {
+//     return {
+//       from: word.from + 1,
+//       options: [
+//         { label: "img", apply: 'PostImage ' },
+//         { label: "link", apply: 'TextLink ' },
+//         { label: "note", apply: 'SideNote ' },
+//         { label: "expanded", apply: 'Expanded ' },
+//         { label: "p", apply: 'Paragraph ' },
+//       ]
+//     }
+//   }
+
+//   return null
+// }
 
 interface Props {
   initialDoc: string;
@@ -100,9 +55,17 @@ export const useCodeMirror = <T extends Element>(props: Props): [React.MutableRe
     const startState = EditorState.create({
       doc: props.initialDoc,
       extensions: [
-        keymap.of([...defaultKeymap, ...historyKeymap]),
+        // autocompletion({
+        //   override: [myCompletions]
+        // }),
+        keymap.of([...defaultKeymap, ...historyKeymap, ...foldKeymap]),
+        // add vim key
+        // vim(),
+        // showline
         lineNumbers(),
-        highlightActiveLineGutter(),
+        // gutter({ class: "cm-mygutter" }),
+        foldGutter(),
+        // highlightActiveLineGutter(),
         history(),
         indentOnInput(),
         bracketMatching(),
@@ -113,7 +76,6 @@ export const useCodeMirror = <T extends Element>(props: Props): [React.MutableRe
           codeLanguages: languages,
           addKeymap: true,
         }),
-        // oneDark,
         transparentTheme,
         syntaxHighlighting,
         EditorView.lineWrapping,

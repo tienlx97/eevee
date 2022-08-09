@@ -42,7 +42,7 @@ const useStyles = makeStyles({
 
 const useHeaderStyles = makeStyles({
   root: {
-    ...shorthands.borderBottom('1px', 'solid', tokens.b2),
+    ...shorthands.borderBottom('1px', 'groove', tokens.b2),
     position: 'relative',
     display: 'flex',
     // ...shorthands.padding('0', '16px'),
@@ -79,25 +79,8 @@ const useHeaderStyles = makeStyles({
 });
 
 const useEditorStyles = makeStyles({
-  editorAndTabListWrapper: {
-    display: 'flex',
-    flexDirection: 'row',
-    position: 'relative',
-    width: '100%',
-    height: '100%',
-    ...shorthands.overflow('hidden'),
-  },
-
-  editorWrapper: {
-    position: 'relative',
-    width: '100%',
-    height: '100%',
-    ...shorthands.overflow('hidden'),
-    fontSize: '17px',
-  },
-
   editor: {
-    position: 'absolute',
+    // position: 'absolute',
     width: '100%',
     height: '100%',
     ...shorthands.overflow('auto'),
@@ -128,8 +111,6 @@ export const useNewStoryStyles = (state: NewStoryState): NewStoryState => {
     ...state.hiddenButton.style,
   };
 
-  state.editorAndTabListWrapperClassName = editorStyles.editorAndTabListWrapper;
-  state.editorWrapperClassName = editorStyles.editorWrapper;
   state.editorClassName = editorStyles.editor;
 
   state.editor.className = mergeClasses(ClassNames.editor, editorStyles.editor, state.editor.className);

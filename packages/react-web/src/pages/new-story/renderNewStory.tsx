@@ -22,21 +22,17 @@ export const renderNewStory = (state: NewStoryState) => {
         </div>
         <slots.hiddenButton {...slotProps.hiddenButton} />
       </slots.headerWrapper>
-      <div className={editorAndTabListWrapperClassName}>
-        <div className={editorWrapperClassName}>
-          <div className={editorClassName}>
-            <slots.editor style={{ visibility: !isOpenPreview ? 'visible' : 'hidden' }} {...slotProps.editor} />
-            {isOpenPreview && (
-              <div
-                style={{
-                  padding: '10px 16px',
-                }}
-              >
-                <MDXRemote compiledSource={compiledSource!} />
-              </div>
-            )}
+      <div className={editorClassName}>
+        <slots.editor style={{ display: !isOpenPreview ? 'block' : 'none' }} {...slotProps.editor} />
+        {isOpenPreview && (
+          <div
+            style={{
+              padding: '10px 16px',
+            }}
+          >
+            <MDXRemote compiledSource={compiledSource!} />
           </div>
-        </div>
+        )}
       </div>
     </slots.root>
   );
