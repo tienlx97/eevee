@@ -2,16 +2,18 @@
 import * as React from 'react';
 import { EditorState } from '@codemirror/state';
 import { EditorView, keymap, highlightActiveLine } from '@codemirror/view';
-import { defaultKeymap } from '@codemirror/commands';
+import { defaultKeymap, indentWithTab } from '@codemirror/commands';
 import { history, historyKeymap } from '@codemirror/history';
 import { indentOnInput } from '@codemirror/language';
 import { bracketMatching } from '@codemirror/matchbrackets';
+import { closeBrackets, closeBracketsKeymap } from '@codemirror/closebrackets';
 import { lineNumbers, gutter } from '@codemirror/gutter';
 import { defaultHighlightStyle } from '@codemirror/highlight';
 import { markdown, markdownLanguage } from '@codemirror/lang-markdown';
 import { languages } from '@codemirror/language-data';
 import { syntaxHighlighting, transparentTheme } from '../utils/CustomCodemirror';
 import { foldGutter, foldKeymap } from '@codemirror/fold';
+import { lintKeymap } from '@codemirror/lint';
 
 // import { vim } from "@replit/codemirror-vim"
 // import { CompletionContext, autocompletion } from "@codemirror/autocomplete"
@@ -58,7 +60,14 @@ export const useCodeMirror = <T extends Element>(props: Props): [React.MutableRe
         // autocompletion({
         //   override: [myCompletions]
         // }),
-        keymap.of([...defaultKeymap, ...historyKeymap, ...foldKeymap]),
+        keymap.of([
+          ...defaultKeymap,
+          indentWithTab,
+          ...historyKeymap,
+          ...foldKeymap,
+          ...closeBracketsKeymap,
+          ...lintKeymap,
+        ]),
         // add vim key
         // vim(),
         // showline
@@ -68,6 +77,7 @@ export const useCodeMirror = <T extends Element>(props: Props): [React.MutableRe
         // highlightActiveLineGutter(),
         history(),
         indentOnInput(),
+        closeBrackets(),
         bracketMatching(),
         defaultHighlightStyle.fallback,
         highlightActiveLine(),

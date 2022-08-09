@@ -7,14 +7,17 @@ export const syntaxHighlighting = HighlightStyle.define([
   {
     tag: tags.heading1,
     color: tokens.f8,
+    fontSize: 'calc(32 / 16 * 1rem)',
   },
   {
     tag: tags.heading2,
     color: tokens.f5,
+    fontSize: 'calc(25 / 16 * 1rem)',
   },
   {
     tag: tags.heading3,
     color: tokens.f9,
+    fontSize: 'calc(20 / 16 * 1rem)',
   },
   {
     tag: tags.strong,
@@ -47,6 +50,10 @@ export const syntaxHighlighting = HighlightStyle.define([
     marginTop: '1.5rem',
     marginBottom: '1.5rem',
     padding: '0px 1rem',
+  },
+  {
+    tag: tags.list,
+    color: tokens.f7,
   },
 ]);
 
