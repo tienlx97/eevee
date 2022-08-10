@@ -71,7 +71,6 @@ type ReactionProps = JSX.IntrinsicElements['div'] & {
 };
 
 export const Reaction = ({ setOpenComment, ...props }: ReactionProps) => {
-  const slug = useBlogParam();
   const styles = useRootStyles();
 
   return (

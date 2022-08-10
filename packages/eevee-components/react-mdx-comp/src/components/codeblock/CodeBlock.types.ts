@@ -13,7 +13,7 @@ export type CodeBlockWrapperProps = {
   className?: string;
   noMargin?: boolean;
   noMarkers?: boolean;
-}
+};
 
 export type Language =
   | 'markup'
@@ -73,7 +73,10 @@ export interface InlineHiglight {
   endColumn: number;
 }
 
-export type CodeBlockState = Pick<CodeBlockProps, 'children' | 'className' | 'fileName' | 'highlight' | 'language' | 'noMargin'> & {
+export type CodeBlockState = Pick<
+  CodeBlockProps,
+  'children' | 'className' | 'fileName' | 'highlight' | 'language' | 'noMargin'
+> & {
   rootClasses?: string;
   inlineHiglightClasses?: string;
 

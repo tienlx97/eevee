@@ -6,6 +6,7 @@ import { useBlogParam, MorePost, TocSkeleton, MorePostSkeleton, TocBeta } from '
 import { MockMorePostList } from '@feature/blog/mocks/MorePost';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { useBlog } from '@feature/blog/index';
+import type { Post } from 'typings/my-mdx/index';
 
 const useStyles = makeStyles({
   sticky: {
@@ -17,39 +18,28 @@ const useStyles = makeStyles({
   },
 });
 
-export const BlogRightBar = () => {
+export const BlogRightBarSkeleton = () => {
+  const styles = useStyles();
+  return (
+    <>
+      <PorfolioSkeleton style={{ padding: '0px 16px' }} />
+      <div style={{ height: '24px' }} />
+      <div className={styles.sticky}>
+        <TocSkeleton />
+        <div style={{ height: '24px' }} />
+        <MorePostSkeleton />
+      </div>
+    </>
+  );
+};
+
+type BlogRightBar = {
+  post: Post;
+};
+
+export const BlogRightBar = ({ post: data }: BlogRightBar) => {
   const styles = useStyles();
   const slug = useBlogParam();
-  const { pathname } = useLocation();
-  const navigate = useNavigate();
-  const { data, error } = useBlog(slug);
-
-  if (error) {
-    navigate(pathname, {
-      replace: true,
-      state: {
-        errorStatusCode: 404,
-      },
-    });
-  }
-
-  if (!data && !error) {
-    return (
-      <>
-        <PorfolioSkeleton style={{ padding: '0px 16px' }} />
-        <div style={{ height: '24px' }} />
-        <div className={styles.sticky}>
-          <TocSkeleton />
-          <div style={{ height: '24px' }} />
-          <MorePostSkeleton />
-        </div>
-      </>
-    );
-  }
-
-  if (!data) {
-    return <></>;
-  }
 
   return (
     <>

@@ -15,6 +15,9 @@ export * from './Clap';
 export * from './Comment';
 export * from './Community';
 export * from './Close';
-
+export * from './User';
 export * from './pokemon/index';
 export * from './Eye';
+export * from './Preview';
+export * from './Edit';
+export * from './Publish';

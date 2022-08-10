@@ -55,6 +55,7 @@ export const serialize = async (
   });
 
   const compiledSource = String(compiledMdx);
+
   const readTime = getReadingTime(readingArr);
 
   return {

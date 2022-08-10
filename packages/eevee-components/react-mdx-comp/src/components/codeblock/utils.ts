@@ -10,7 +10,6 @@
  * -> The metastring is `{1-3,7} [[1, 1, 20, 33], [2, 4, 4, 8]] App.js active`
  */
 export function getHighlightLines(highlight: string): number[] {
-
   const HIGHLIGHT_REGEX = /{([\d,-]+)}/;
   const parsedMetastring = HIGHLIGHT_REGEX.exec(highlight);
   if (!parsedMetastring) {
@@ -31,7 +30,6 @@ export function getHighlightLines(highlight: string): number[] {
  * -> The metastring is `{1-3,7} [[1, 1, 'count', [2, 4, 'setCount']] App.js active`
  */
 export function getInlineHighlights(code: string, highlight: string) {
-
   const INLINE_HIGHT_REGEX = /(\[\[.*\]\])/;
   const parsedMetastring = INLINE_HIGHT_REGEX.exec(highlight);
   if (!parsedMetastring) {

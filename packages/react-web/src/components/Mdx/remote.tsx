@@ -5,6 +5,7 @@ import * as mdx from '@mdx-js/react';
 import { MDXRemoteSerializeResult } from './types';
 
 import { MDXComponents } from '@eevee/react-mdx-comp';
+import { ErrorBoundary } from 'react-error-boundary';
 
 // requestIdleCallback types found here: https://github.com/microsoft/TypeScript/issues/21309
 type RequestIdleCallbackHandle = number;

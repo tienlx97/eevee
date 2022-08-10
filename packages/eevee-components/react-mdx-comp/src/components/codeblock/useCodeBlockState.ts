@@ -42,4 +42,3 @@ export const useCodeBlockState = (state: CodeBlockState): CodeBlockState => {
 
   return state;
 };
-

@@ -37,8 +37,8 @@ const useRootStyles = makeStyles({
   root: {
     display: 'flex',
     justifyContent: 'space-between',
-    maxWidth: `${MAX_PAGE_WIDTH}`,
-    ...shorthands.margin('auto'),
+    // maxWidth: `${MAX_PAGE_WIDTH}`,
+    // ...shorthands.margin('auto'),
   },
 });
 

@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { getNativeElementProps } from '@eevee/react-utilities';
-import type { WriteLayoutProps, WriteLayoutState } from './WriteLayout.types';
-import { useWriteLayoutState } from './useWriteLayoutState';
+import type { MiddleLayoutProps, MiddleLayoutState } from './MiddleLayout.types';
+import { useMiddleLayoutState } from './useMiddleLayoutState';
 
 /**
  * Create the state required to render WriteLayout.
@@ -12,13 +12,14 @@ import { useWriteLayoutState } from './useWriteLayoutState';
  * @param props - props from this instance of WriteLayout
  * @param ref - reference to root HTMLElement of WriteLayout
  */
-export const useWriteLayout = (props: WriteLayoutProps, ref: React.Ref<HTMLElement>): WriteLayoutState => {
-  const state: WriteLayoutState = {
+export const useMiddleLayout = (props: MiddleLayoutProps, ref: React.Ref<HTMLElement>): MiddleLayoutState => {
+  const state: MiddleLayoutState = {
     // TODO add appropriate props/defaults
     components: {
       // TODO add each slot's element type or component
       root: 'main',
     },
+    styles: [],
     // TODO add appropriate slots, for example:
     // mySlot: resolveShorthand(props.mySlot),
     root: getNativeElementProps('main', {
@@ -27,7 +28,7 @@ export const useWriteLayout = (props: WriteLayoutProps, ref: React.Ref<HTMLEleme
     }),
   };
 
-  useWriteLayoutState(state);
+  useMiddleLayoutState(state);
 
   return state;
 };

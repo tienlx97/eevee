@@ -2,8 +2,10 @@ import * as React from 'react';
 import { getNativeElementProps, resolveShorthand } from '@eevee/react-utilities';
 import type { NewStoryProps, NewStoryState } from './NewStory.types';
 import { useNewStoryState } from './useNewStoryState';
-import { ButtonR } from '@eevee/react-button';
+import { Button } from '@eevee/react-button';
 import { Editor } from '@feature/new-story/index';
+import { MiddleLayout, RightLayout } from '@layout/index';
+import { BlurSystem } from '@components/blur-system/index';
 
 /**
  * Create the state required to render NewStory.
@@ -15,7 +17,17 @@ import { Editor } from '@feature/new-story/index';
  * @param ref - reference to root HTMLElement of NewStory
  */
 export const useNewStory = (props: NewStoryProps, ref: React.Ref<HTMLElement>): NewStoryState => {
-  const { headerWrapper, documentTitle, documentTitleLabel, hiddenButton, editor, ...rest } = props;
+  const {
+    headerWrapper,
+    documentTitle,
+    documentTitleLabel,
+    hiddenButton,
+    editor,
+    middleLayout,
+    rightLayout,
+    blurSystem,
+    ...rest
+  } = props;
 
   const state: NewStoryState = {
     // TODO add appropriate props/defaults
@@ -25,8 +37,11 @@ export const useNewStory = (props: NewStoryProps, ref: React.Ref<HTMLElement>): 
       headerWrapper: 'div',
       documentTitleLabel: 'h2',
       documentTitle: 'input',
-      hiddenButton: ButtonR,
+      hiddenButton: Button,
       editor: Editor,
+      middleLayout: MiddleLayout,
+      rightLayout: RightLayout,
+      blurSystem: BlurSystem,
     },
     // TODO add appropriate slots, for example:
     // mySlot: resolveShorthand(props.mySlot),
@@ -57,6 +72,18 @@ export const useNewStory = (props: NewStoryProps, ref: React.Ref<HTMLElement>): 
       required: true,
     }),
     editor: resolveShorthand(editor, {
+      defaultProps: {},
+      required: true,
+    }),
+    middleLayout: resolveShorthand(middleLayout, {
+      defaultProps: {},
+      required: true,
+    }),
+    rightLayout: resolveShorthand(rightLayout, {
+      defaultProps: {},
+      required: true,
+    }),
+    blurSystem: resolveShorthand(blurSystem, {
       defaultProps: {},
       required: true,
     }),

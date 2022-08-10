@@ -7,7 +7,7 @@ export const useRightBar = (props: RightBarProps, ref: React.Ref<HTMLDivElement>
     components: {
       root: 'div',
     },
-
+    styles: [],
     root: {
       ref,
       ...props,

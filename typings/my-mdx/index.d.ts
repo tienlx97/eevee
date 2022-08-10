@@ -1,6 +1,9 @@
 
 export type Author = {
   id: number;
+  uid: string,
+  email: string,
+  photoURL: string;
   name: string;
   nickName: string;
   url: string;
@@ -46,14 +49,6 @@ export type Post = {
   toc: Toc[];
 }
 
-export type PostI18n = {
-  slugify: string;
-  en?: Post;
-  vi?: Post;
-  ja?: Post;
-};
-
-
 export type MorePost = {
   postTitle: string;
   authorImg: string;
@@ -65,3 +60,23 @@ export type MorePost = {
 export type GitHubFile = { path: string; content: string }
 
 
+//
+
+export type FrontMatterI69n = {
+  // require
+  tags: Array<string>;
+  title: string;
+};
+
+
+export type PostI69n = {
+  postId?: string;
+  authorID: string;
+  compileCode: string;
+  mdxCode: string;
+  readTime: ReadTime;
+  toc: Toc[];
+  frontmatter: FrontMatterI69n;
+  slugify: string;
+  date: string;
+}

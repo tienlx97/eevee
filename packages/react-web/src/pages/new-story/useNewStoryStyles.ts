@@ -2,17 +2,21 @@ import { makeStyles, mergeClasses, shorthands } from '@griffel/react';
 import type { NewStorySlots, NewStoryState } from './NewStory.types';
 import type { SlotClassNames } from '@eevee/react-utilities';
 import { breakPoints, tokens } from '@eevee/react-theme';
+import { bottomHeight } from '@constants/css';
 
 const ClassName = 'eve-NewStory';
 const ClassNames: SlotClassNames<NewStorySlots> = {
   root: 'eve-NewStory',
   // TODO: add class names for all slots on NewStorySlots.
   // Should be of the form `<slotName>: 'eve-NewStory__<slotName>`
-  headerWrapper: '',
-  documentTitleLabel: '',
-  documentTitle: '',
-  hiddenButton: '',
+  headerWrapper: `${ClassName}__headerWrapper`,
+  documentTitleLabel: `${ClassName}__documentTitleLabel`,
+  documentTitle: `${ClassName}__documentTitle`,
+  hiddenButton: `${ClassName}__hiddenButton`,
   editor: 'eve-NewStory-Editor',
+  middleLayout: `${ClassName}__middleLayout`,
+  rightLayout: `${ClassName}__rightLayout`,
+  blurSystem: `${ClassName}__blurSystem`,
 };
 
 /**
@@ -23,6 +27,7 @@ const useStyles = makeStyles({
     // TODO Add default styles for the root element
     width: 'inherit',
     height: 'inherit',
+    flexDirection: 'row',
   },
 
   layout: {
@@ -42,7 +47,7 @@ const useStyles = makeStyles({
 
 const useHeaderStyles = makeStyles({
   root: {
-    ...shorthands.borderBottom('1px', 'groove', tokens.b2),
+    // ...shorthands.borderBottom('1px', 'groove', tokens.b2),
     position: 'relative',
     display: 'flex',
     // ...shorthands.padding('0', '16px'),
@@ -87,6 +92,43 @@ const useEditorStyles = makeStyles({
   },
 });
 
+const useActionStyles = makeStyles({
+  root: {
+    position: 'fixed',
+    alignSelf: 'center',
+    justifySelf: 'center',
+
+    [`@media ${breakPoints.lgAndLarger}`]: {
+      bottom: '16px',
+    },
+
+    [`@media ${breakPoints.lg}`]: {
+      bottom: bottomHeight,
+    },
+
+    [`@media ${breakPoints.md}`]: {
+      bottom: bottomHeight,
+    },
+
+    [`@media ${breakPoints.sm}`]: {
+      bottom: bottomHeight,
+    },
+
+    [`@media ${breakPoints.xs}`]: {
+      bottom: bottomHeight,
+    },
+  },
+});
+
+const useHiddenStyles = makeStyles({
+  root: {
+    fontSize: tokens.fontSizeBase200,
+    [`& .eve-Button__icon`]: {
+      marginRight: '8px',
+    },
+  },
+});
+
 /**
  * Apply styling to the NewStory slots based on the state
  */
@@ -94,6 +136,8 @@ export const useNewStoryStyles = (state: NewStoryState): NewStoryState => {
   const styles = useStyles();
   const headerStyles = useHeaderStyles();
   const editorStyles = useEditorStyles();
+  const actionStyles = useActionStyles();
+  const hiddenStyles = useHiddenStyles();
 
   state.root.className = mergeClasses(ClassName, styles.layout, styles.root, state.root.className);
 
@@ -106,14 +150,12 @@ export const useNewStoryStyles = (state: NewStoryState): NewStoryState => {
   );
   state.documentTitle.className = mergeClasses(headerStyles.documentTitle, state.documentTitle.className);
 
-  state.hiddenButton.style = {
-    alignSelf: 'center',
-    ...state.hiddenButton.style,
-  };
-
   state.editorClassName = editorStyles.editor;
 
   state.editor.className = mergeClasses(ClassNames.editor, editorStyles.editor, state.editor.className);
 
+  state.hiddenButton.className = mergeClasses(ClassNames.hiddenButton, hiddenStyles.root, state.hiddenButton.className);
+
+  state.actionClassName = mergeClasses('eve-NewStory__action', actionStyles.root);
   return state;
 };

@@ -17,3 +17,5 @@ export const REPO = 'lexuantien/eevee-content';
 export const REPO_ID = 'R_kgDOHjWrNg';
 export const CATEGORY = 'R_kgDOHjWrNg';
 export const CATEGORY_ID = 'DIC_kwDOHjWrNs4CQhRH';
+
+export const bottomHeight = `calc(${NAV_HEIGHT + 10}px + env(safe-area-inset-bottom))`;

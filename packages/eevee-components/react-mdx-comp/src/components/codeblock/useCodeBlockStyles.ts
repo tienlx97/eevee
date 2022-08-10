@@ -27,7 +27,6 @@ const useStyles = makeStyles({
   // TODO add additional classes for different states and/or slots
 });
 
-
 /**
  * Apply styling to the CodeBlock slots based on the state
  */

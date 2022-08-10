@@ -24,3 +24,6 @@
 - [react folder structure](https://profy.dev/article/react-folder-structure#growth-we-need-pages)
 - [hide scrollbar](https://stackoverflow.com/questions/16670931/hide-scroll-bar-but-while-still-being-able-to-scroll)
 - [Modal](https://medium.com/tinyso/how-to-create-a-modal-component-in-react-from-basic-to-advanced-a3357a2a716a)
+- [Protected route](https://www.robinwieruch.de/react-router-private-routes/)
+- [Github authen](https://www.freecodecamp.org/news/github-user-authentication-using-firebase-and-reactjs-with-hooks/)
+- [Error boundary](https://blog.logrocket.com/react-error-handling-react-error-boundary/)

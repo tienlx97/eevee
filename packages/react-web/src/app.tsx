@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { Routes, Route, Navigate, useMatch, useLocation } from 'react-router-dom';
 
-import { PageLayout, WithoutWriteLayout, WriteLayout } from '@layout/index';
+import { PageLayout, ProtectedRoute } from '@layout/index';
 import { Scroll2Top } from '@components/scroll2top/index';
 import { ErrorHandler } from '@context/index';
 import { Eye } from '@components/icons/index';
@@ -12,14 +12,6 @@ const LazyPageNotFound = React.lazy(() => import('@pages/index').then(module => 
 const LazyBlogPage = React.lazy(() => import('@pages/index').then(module => ({ default: module.BlogPage })));
 
 export const App = () => {
-  const localeMatch = useMatch('/:locale/*');
-
-  React.useEffect(() => {
-    const locale = localeMatch?.params.locale || 'en';
-
-    document.documentElement.setAttribute('lang', locale);
-  }, [localeMatch]);
-
   const [pageNotFound, setPageNotFound] = React.useState<boolean | undefined>(undefined);
   const { pathname } = useLocation();
   const initialPathname = React.useRef(pathname);
@@ -36,35 +28,27 @@ export const App = () => {
 
   const routes = (
     <Routes>
-      {/*
-        In production, all traffic at `/` is redirected to at least
-        having a locale. So it'll be `/en-US` (for example) by the
-        time it hits any React code.
-       */}
-      <Route path="/" element={<Navigate to="/:locale/*" replace />} />
+      <Route path="/" element={<Navigate to="/home" replace />} />
+      <Route path="/home" element={homePage} />
+      <Route path="/search" element={<div>Search</div>} />
+      <Route path="/blog/:slug" element={<LazyBlogPage />} />
       <Route
-        path="/:locale/*"
+        path="/new-story"
         element={
-          <Routes>
-            <Route element={<WithoutWriteLayout />}>
-              <Route path="/" element={homePage} />
-              <Route path="/new-story" element={<NewStory hiddenButton={{ icon: <Eye /> }} />} />
-              <Route path="/search" element={<div>Search</div>} />
-              <Route path="/notification" element={<div>Notification</div>} />
-              <Route path="/blog/:slug" element={<LazyBlogPage />} />
-              <Route path="*" element={<LazyPageNotFound />} />
-            </Route>
-            {/* <Route
-              path="/new-story"
-              element={
-                <WriteLayout>
-                  <NewStory hiddenButton={{ icon: <Eye /> }} />
-                </WriteLayout>
-              }
-            /> */}
-          </Routes>
+          <ProtectedRoute>
+            <NewStory hiddenButton={{ icon: <Eye /> }} />
+          </ProtectedRoute>
         }
       />
+      <Route
+        path="/notification"
+        element={
+          <ProtectedRoute>
+            <div>Notification</div>
+          </ProtectedRoute>
+        }
+      />
+      <Route path="*" element={<LazyPageNotFound />} />
     </Routes>
   );
 
@@ -72,7 +56,15 @@ export const App = () => {
     <PageLayout>
       <ErrorHandler>
         <Scroll2Top>
-          <React.Suspense fallback={<Spinner />}>{routes}</React.Suspense>
+          <React.Suspense
+            fallback={
+              <div style={{ width: '100%' }}>
+                <Spinner />
+              </div>
+            }
+          >
+            {routes}
+          </React.Suspense>
         </Scroll2Top>
       </ErrorHandler>
     </PageLayout>

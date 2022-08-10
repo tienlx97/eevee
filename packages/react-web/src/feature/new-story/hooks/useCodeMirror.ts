@@ -71,7 +71,7 @@ export const useCodeMirror = <T extends Element>(props: Props): [React.MutableRe
         // add vim key
         // vim(),
         // showline
-        lineNumbers(),
+        // lineNumbers(),
         // gutter({ class: "cm-mygutter" }),
         foldGutter(),
         // highlightActiveLineGutter(),
