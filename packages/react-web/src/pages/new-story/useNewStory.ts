@@ -17,15 +17,7 @@ import { BlurSystem } from '@components/blur-system/index';
  * @param ref - reference to root HTMLElement of NewStory
  */
 export const useNewStory = (props: NewStoryProps, ref: React.Ref<HTMLElement>): NewStoryState => {
-  const {
-
-    hiddenButton,
-    editor,
-    middleLayout,
-    rightLayout,
-    blurSystem,
-    ...rest
-  } = props;
+  const { hiddenButton, editor, middleLayout, rightLayout, blurSystem, ...rest } = props;
 
   const state: NewStoryState = {
     // TODO add appropriate props/defaults

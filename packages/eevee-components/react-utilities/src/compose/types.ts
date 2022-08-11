@@ -160,8 +160,8 @@ export type ExtractSlotProps<S> = Exclude<S, SlotShorthandValue | null | undefin
 export type ComponentProps<Slots extends SlotPropsRecord, Primary extends keyof Slots = 'root'> =
   // Include a prop for each slot (see note below about the Omit)
   Omit<Slots, Primary & 'root'> &
-  // Include all of the props of the primary slot inline in the component's props
-  PropsWithoutRef<ExtractSlotProps<Slots[Primary]>>;
+    // Include all of the props of the primary slot inline in the component's props
+    PropsWithoutRef<ExtractSlotProps<Slots[Primary]>>;
 
 // Note: the `Omit<Slots, Primary & 'root'>` above is a little tricky. Here's what it's doing:
 // * If the Primary slot is 'root', then omit the `root` slot prop.
@@ -180,16 +180,16 @@ export type ReplaceNullWithUndefined<T> = T extends null ? Exclude<T, null> | un
 export type ComponentState<Slots extends SlotPropsRecord> = {
   components: {
     [Key in keyof Slots]-?:
-    | React.ComponentType<ExtractSlotProps<Slots[Key]>>
-    | (ExtractSlotProps<Slots[Key]> extends AsIntrinsicElement<infer As> ? As : keyof JSX.IntrinsicElements);
+      | React.ComponentType<ExtractSlotProps<Slots[Key]>>
+      | (ExtractSlotProps<Slots[Key]> extends AsIntrinsicElement<infer As> ? As : keyof JSX.IntrinsicElements);
   };
 } & {
-    // Include a prop for each slot, with the shorthand resolved to a props object
-    // The root slot can never be null, so also exclude null from it
-    [Key in keyof Slots]: ReplaceNullWithUndefined<
-      Exclude<Slots[Key], SlotShorthandValue | (Key extends 'root' ? null : never)>
-    >;
-  };
+  // Include a prop for each slot, with the shorthand resolved to a props object
+  // The root slot can never be null, so also exclude null from it
+  [Key in keyof Slots]: ReplaceNullWithUndefined<
+    Exclude<Slots[Key], SlotShorthandValue | (Key extends 'root' ? null : never)>
+  >;
+};
 
 /**
  * This is part of a hack to infer the element type from a native element *props* type.
@@ -210,8 +210,8 @@ type ObscureEventName = 'onLostPointerCaptureCapture';
  */
 export type ForwardRefComponent<Props> = ObscureEventName extends keyof Props
   ? Required<Props>[ObscureEventName] extends React.PointerEventHandler<infer Element>
-  ? React.ForwardRefExoticComponent<Props & React.RefAttributes<Element>>
-  : never
+    ? React.ForwardRefExoticComponent<Props & React.RefAttributes<Element>>
+    : never
   : never;
 // A definition like this would also work, but typescript is more likely to unnecessarily expand
 // the props type with this version (and it's likely much more expensive to evaluate)

@@ -20,11 +20,11 @@ export type NewStoryProps = EeveeProps<Partial<NewStorySlots>> & {};
 export type NewStoryState = EeveeState<NewStorySlots> & {
   editorClassName?: string;
   actionClassName?: string;
-  styles: string[],
+  styles: string[];
   isOpenPreview?: boolean;
   compiledSource?: string;
-  publishAction?: React.MouseEventHandler<HTMLButtonElement>
-  titleRef?: React.RefObject<HTMLInputElement>
+  publishAction?: React.MouseEventHandler<HTMLButtonElement>;
+  titleRef?: React.RefObject<HTMLInputElement>;
   setTags?: React.Dispatch<React.SetStateAction<string[]>>;
   toc?: Toc[];
 };

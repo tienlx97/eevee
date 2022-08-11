@@ -12,7 +12,6 @@ export type { SSRContextValue } from './ssr/index';
 
 export {
   resolveShorthand,
-
   getSlots,
   resetCommonWrapperStyles,
   resetCommonTextStyles,

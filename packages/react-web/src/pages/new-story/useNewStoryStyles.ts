@@ -52,8 +52,8 @@ const useAnotherStyles = makeStyles({
 
     '& span': {
       fontWeight: 400,
-      color: tokens.f2
-    }
+      color: tokens.f2,
+    },
   },
   editor: {
     // position: 'absolute',
@@ -85,9 +85,8 @@ const useAnotherStyles = makeStyles({
     [`@media ${breakPoints.xs}`]: {
       bottom: bottomHeight,
     },
-  }
+  },
 });
-
 
 const useHiddenStyles = makeStyles({
   root: {
