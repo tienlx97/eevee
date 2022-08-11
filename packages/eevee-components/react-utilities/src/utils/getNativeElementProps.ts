@@ -1,10 +1,11 @@
 import * as React from 'react';
-import { anchorProperties, buttonProperties, htmlElementProperties, getNativeProps, olProperties } from './properties';
+import { anchorProperties, buttonProperties, htmlElementProperties, getNativeProps, olProperties, inputProperties } from './properties';
 
 const nativeElementMap: Record<string, Record<string, number>> = {
   a: anchorProperties,
   button: buttonProperties,
   ol: olProperties,
+  input: inputProperties,
 };
 
 /**
@@ -37,20 +38,20 @@ export function getNativeElementProps<TAttributes extends React.HTMLAttributes<a
 export const getPartitionedNativeProps = <
   Props extends Pick<React.HTMLAttributes<HTMLElement>, 'style' | 'className'>,
   ExcludedPropKeys extends Extract<keyof Props, string> = never,
->({
-  primarySlotTagName,
-  props,
-  excludedPropNames,
-}: {
-  /** The primary slot's element type (e.g. 'div') */
-  primarySlotTagName: keyof JSX.IntrinsicElements;
+  >({
+    primarySlotTagName,
+    props,
+    excludedPropNames,
+  }: {
+    /** The primary slot's element type (e.g. 'div') */
+    primarySlotTagName: keyof JSX.IntrinsicElements;
 
-  /** The component's props object */
-  props: Props;
+    /** The component's props object */
+    props: Props;
 
-  /** List of native props to exclude from the returned value */
-  excludedPropNames?: ExcludedPropKeys[];
-}) => {
+    /** List of native props to exclude from the returned value */
+    excludedPropNames?: ExcludedPropKeys[];
+  }) => {
   return {
     root: { style: props.style, className: props.className },
     primary: getNativeElementProps<Omit<Props, ExcludedPropKeys>>(primarySlotTagName, props, [

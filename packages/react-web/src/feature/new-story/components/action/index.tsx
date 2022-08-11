@@ -57,16 +57,22 @@ const useRootStyles = makeStyles({
   },
 });
 
-type ActionProps = JSX.IntrinsicElements['div'];
+type ActionProps = JSX.IntrinsicElements['div'] & {
+  onPublichAction: React.MouseEventHandler<HTMLButtonElement> | undefined;
+};
 
-export const Action: React.FC<ActionProps> = ({ children, ...props }: ActionProps) => {
+export const Action: React.FC<ActionProps> = ({ children, onPublichAction, ...props }: ActionProps) => {
   const styles = useRootStyles();
 
   return (
     <div {...props}>
       <div className={styles.wrapper}>
         <div className={styles.flex}>
-          <Button className={styles['text-base']} icon={{ children: <Publish />, className: styles['mr-5'] }}>
+          <Button
+            onClick={onPublichAction}
+            className={styles['text-base']}
+            icon={{ children: <Publish />, className: styles['mr-5'] }}
+          >
             Publish
           </Button>
           <div className={styles.spacing} />

@@ -10,9 +10,6 @@ export type NewStorySlots = {
   root: NonNullable<EeveeSlot<'article'>>;
   middleLayout: NonNullable<EeveeSlot<typeof MiddleLayout>>;
   rightLayout: NonNullable<EeveeSlot<typeof RightLayout>>;
-  headerWrapper: NonNullable<EeveeSlot<'div'>>;
-  documentTitleLabel: NonNullable<EeveeSlot<'h2'>>;
-  documentTitle: NonNullable<EeveeSlot<'input'>>;
   hiddenButton: NonNullable<EeveeSlot<typeof Button>>;
   editor: NonNullable<EeveeSlot<typeof Editor>>;
   blurSystem: NonNullable<EeveeSlot<typeof BlurSystem>>;
@@ -23,7 +20,11 @@ export type NewStoryProps = EeveeProps<Partial<NewStorySlots>> & {};
 export type NewStoryState = EeveeState<NewStorySlots> & {
   editorClassName?: string;
   actionClassName?: string;
+  styles: string[],
   isOpenPreview?: boolean;
   compiledSource?: string;
+  publishAction?: React.MouseEventHandler<HTMLButtonElement>
+  titleRef?: React.RefObject<HTMLInputElement>
+  setTags?: React.Dispatch<React.SetStateAction<string[]>>;
   toc?: Toc[];
 };

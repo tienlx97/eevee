@@ -176,6 +176,39 @@ export const olProperties = toObjectMap(htmlElementProperties, [
 ]);
 
 /**
+ * An array of INPUT tag properties and events.
+ *
+ * @public
+ */
+export const inputProperties = toObjectMap(buttonProperties, [
+  'accept', // input
+  'alt', // area, img, input
+  'autoCapitalize', // input, textarea
+  'autoComplete', // form, input
+  'checked', // input
+  'dirname', // input, textarea
+  'form', // button, fieldset, input, label, meter, object, output, select, textarea
+  'height', // canvas, embed, iframe, img, input, object, video
+  'inputMode', // input
+  'list', // input
+  'max', // input, meter
+  'maxLength', // input, textarea
+  'min', // input, meter
+  'multiple', // input, select
+  'pattern', // input
+  'placeholder', // input, textarea
+  'readOnly', // input, textarea
+  'required', // input, select, textarea
+  'src', // audio, embed, iframe, img, input, script, source, track, video
+  'step', // input
+  'size', // input
+  'type', // a, button, input, link, menu, object, script, source, style
+  'value', // button, input, li, option, meter, progress, param
+  'width', // canvas, embed, iframe, img, input, object, video
+]);
+
+
+/**
  * Gets native supported props for an html element provided the allowance set. Use one of the property
  * sets defined (divProperties, buttonPropertes, etc) to filter out supported properties from a given
  * props set. Note that all data- and aria- prefixed attributes will be allowed.

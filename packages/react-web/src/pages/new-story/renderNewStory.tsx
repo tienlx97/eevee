@@ -7,6 +7,8 @@ import { H1, InlineCode, Paragraph } from '@eevee/react-mdx-comp';
 import { TextLink } from '@eevee/react-link';
 import { Action } from '@feature/new-story/index';
 import { TocBeta } from '@feature/blog/index';
+import { InputGroup } from '@components/input-group/index';
+import { TagInput } from '@components/tag-input/index';
 
 const OurFallbackComponent = ({ error, componentStack, resetErrorBoundary }: any) => {
   const matches = error.message.match(/\`(.*?)\`/);
@@ -28,21 +30,32 @@ const OurFallbackComponent = ({ error, componentStack, resetErrorBoundary }: any
  * Render the final JSX of NewStory
  */
 export const renderNewStory = (state: NewStoryState) => {
-  const { editorClassName, isOpenPreview, compiledSource, actionClassName, toc } = state;
+  const { styles, isOpenPreview, compiledSource, titleRef, setTags, publishAction } = state;
   const { slots, slotProps } = getSlots<NewStorySlots>(state);
 
   // TODO Add additional slots in the appropriate place
   return (
     <slots.root {...slotProps.root}>
-      <slots.blurSystem {...slotProps.blurSystem} />
+      {/* <slots.blurSystem {...slotProps.blurSystem} /> */}
       <slots.middleLayout {...slotProps.middleLayout}>
-        <slots.headerWrapper {...slotProps.headerWrapper}>
-          <div style={{ flex: 1 }}>
-            <slots.documentTitleLabel {...slotProps.documentTitleLabel}>Title Name</slots.documentTitleLabel>
-            <slots.documentTitle {...slotProps.documentTitle} />
-          </div>
-        </slots.headerWrapper>
-        <div className={editorClassName}>
+        <InputGroup ref={titleRef} labelChildren={<>Title</>} className={styles[0]} placeholder="Title for story" />
+        <InputGroup
+          type="tag"
+          labelChildren={
+            <>
+              Topics
+              <span> (separate with spaces)</span>
+            </>
+          }
+          className={styles[1]}
+          placeholder="Enter some topic"
+        >
+          <TagInput
+            // eslint-disable-next-line react/jsx-no-bind
+            onChange={e => setTags && setTags(e)}
+          />
+        </InputGroup>
+        <div className={styles[2]}>
           <slots.editor style={{ display: !isOpenPreview ? 'block' : 'none' }} {...slotProps.editor} />
           {isOpenPreview && (
             <div
@@ -58,15 +71,10 @@ export const renderNewStory = (state: NewStoryState) => {
             </div>
           )}
         </div>
-        <Action className={actionClassName}>
+        <Action onPublichAction={publishAction} className={styles[3]}>
           <slots.hiddenButton {...slotProps.hiddenButton} />
         </Action>
       </slots.middleLayout>
-      <slots.rightLayout {...slotProps.rightLayout}>
-        <div>
-          <TocBeta toc={toc || []} />
-        </div>
-      </slots.rightLayout>
     </slots.root>
   );
 };

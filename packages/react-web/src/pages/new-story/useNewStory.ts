@@ -18,9 +18,7 @@ import { BlurSystem } from '@components/blur-system/index';
  */
 export const useNewStory = (props: NewStoryProps, ref: React.Ref<HTMLElement>): NewStoryState => {
   const {
-    headerWrapper,
-    documentTitle,
-    documentTitleLabel,
+
     hiddenButton,
     editor,
     middleLayout,
@@ -34,38 +32,18 @@ export const useNewStory = (props: NewStoryProps, ref: React.Ref<HTMLElement>): 
     components: {
       // TODO add each slot's element type or component
       root: 'article',
-      headerWrapper: 'div',
-      documentTitleLabel: 'h2',
-      documentTitle: 'input',
       hiddenButton: Button,
       editor: Editor,
       middleLayout: MiddleLayout,
       rightLayout: RightLayout,
       blurSystem: BlurSystem,
     },
+    styles: [],
     // TODO add appropriate slots, for example:
     // mySlot: resolveShorthand(props.mySlot),
     root: getNativeElementProps('article', {
       ref,
       ...rest,
-    }),
-    headerWrapper: resolveShorthand(headerWrapper, {
-      defaultProps: {
-        as: 'div',
-      },
-      required: true,
-    }),
-    documentTitleLabel: resolveShorthand(documentTitleLabel, {
-      defaultProps: {
-        as: 'h2',
-      },
-      required: true,
-    }),
-    documentTitle: resolveShorthand(documentTitle, {
-      defaultProps: {
-        as: 'input',
-      },
-      required: true,
     }),
     hiddenButton: resolveShorthand(hiddenButton, {
       defaultProps: {},

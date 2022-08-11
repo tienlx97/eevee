@@ -12,6 +12,7 @@ export type { SSRContextValue } from './ssr/index';
 
 export {
   resolveShorthand,
+
   getSlots,
   resetCommonWrapperStyles,
   resetCommonTextStyles,
@@ -20,8 +21,8 @@ export {
 } from './compose/index';
 export type {
   AsIntrinsicElement,
-  ComponentProps,
-  ComponentState,
+  // ComponentProps,
+  // ComponentState,
   ExtractSlotProps,
   ForwardRefComponent,
   IsSingleton,
@@ -29,7 +30,7 @@ export type {
   ReplaceNullWithUndefined,
   ResolveShorthandFunction,
   ResolveShorthandOptions,
-  Slot,
+  // Slot,
   Slots,
   SlotClassNames,
   SlotPropsRecord,
@@ -43,4 +44,4 @@ export type {
   EeveeState,
 } from './compose/index';
 
-export { getNativeElementProps, omit, slugify } from './utils/index';
+export { getNativeElementProps, getPartitionedNativeProps, omit, slugify } from './utils/index';

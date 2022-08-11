@@ -9,11 +9,8 @@ const ClassNames: SlotClassNames<NewStorySlots> = {
   root: 'eve-NewStory',
   // TODO: add class names for all slots on NewStorySlots.
   // Should be of the form `<slotName>: 'eve-NewStory__<slotName>`
-  headerWrapper: `${ClassName}__headerWrapper`,
-  documentTitleLabel: `${ClassName}__documentTitleLabel`,
-  documentTitle: `${ClassName}__documentTitle`,
   hiddenButton: `${ClassName}__hiddenButton`,
-  editor: 'eve-NewStory-Editor',
+  editor: `${ClassName}__Editor`,
   middleLayout: `${ClassName}__middleLayout`,
   rightLayout: `${ClassName}__rightLayout`,
   blurSystem: `${ClassName}__blurSystem`,
@@ -25,18 +22,18 @@ const ClassNames: SlotClassNames<NewStorySlots> = {
 const useStyles = makeStyles({
   root: {
     // TODO Add default styles for the root element
-    width: 'inherit',
-    height: 'inherit',
-    flexDirection: 'row',
+    // width: 'inherit',
+    // height: 'inherit',
+    // flexDirection: 'row',
   },
 
   layout: {
     display: 'flex',
     flexDirection: 'column',
     position: 'relative',
-    flexGrow: 0,
-    flexShrink: 0,
-    flexBasis: 'auto',
+    // flexGrow: 0,
+    // flexShrink: 0,
+    // flexBasis: 'auto',
     width: '100%',
     height: '100%',
     ...shorthands.overflow('hidden'),
@@ -45,55 +42,26 @@ const useStyles = makeStyles({
   // TODO add additional classes for different states and/or slots
 });
 
-const useHeaderStyles = makeStyles({
-  root: {
-    // ...shorthands.borderBottom('1px', 'groove', tokens.b2),
-    position: 'relative',
-    display: 'flex',
-    // ...shorthands.padding('0', '16px'),
-    flexDirection: 'row',
+const useAnotherStyles = makeStyles({
+  titleGroup: {
+    marginTop: '16px',
+    marginBottom: '16px',
   },
+  topicGroup: {
+    marginBottom: '16px',
 
-  documentTitleLabel: {
-    lineHeight: '1rem',
-    fontSize: '.8rem',
-    marginBottom: '.77999rem',
-    paddingTop: '.22001rem',
-    fontWeight: '500',
-    color: tokens.f8,
-    letterSpacing: '1px',
-    textTransform: 'uppercase',
-    marginTop: '1rem',
+    '& span': {
+      fontWeight: 400,
+      color: tokens.f2
+    }
   },
-
-  documentTitle: {
-    borderTopColor: 'initial',
-    borderTopStyle: 'none',
-    borderRightStyle: 'none',
-    borderBottomStyle: 'none',
-    borderLeftStyle: 'none',
-    backgroundColor: 'transparent',
-    lineHeight: '1rem',
-    fontSize: '1.25rem',
-    marginBottom: '.3rem',
-    paddingTop: '.10001rem',
-    fontWeight: '400',
-    color: tokens.f1,
-    width: '100%',
-  },
-});
-
-const useEditorStyles = makeStyles({
   editor: {
     // position: 'absolute',
     width: '100%',
     height: '100%',
     ...shorthands.overflow('auto'),
   },
-});
-
-const useActionStyles = makeStyles({
-  root: {
+  action: {
     position: 'fixed',
     alignSelf: 'center',
     justifySelf: 'center',
@@ -117,8 +85,9 @@ const useActionStyles = makeStyles({
     [`@media ${breakPoints.xs}`]: {
       bottom: bottomHeight,
     },
-  },
+  }
 });
+
 
 const useHiddenStyles = makeStyles({
   root: {
@@ -134,28 +103,14 @@ const useHiddenStyles = makeStyles({
  */
 export const useNewStoryStyles = (state: NewStoryState): NewStoryState => {
   const styles = useStyles();
-  const headerStyles = useHeaderStyles();
-  const editorStyles = useEditorStyles();
-  const actionStyles = useActionStyles();
+  const anotherStyles = useAnotherStyles();
   const hiddenStyles = useHiddenStyles();
 
   state.root.className = mergeClasses(ClassName, styles.layout, styles.root, state.root.className);
 
-  // TODO Add class names to slots, for example:
-  // state.mySlot.className = mergeClasses(styles.mySlot, state.mySlot.className);
-  state.headerWrapper.className = mergeClasses(headerStyles.root, state.headerWrapper.className);
-  state.documentTitleLabel.className = mergeClasses(
-    headerStyles.documentTitleLabel,
-    state.documentTitleLabel.className,
-  );
-  state.documentTitle.className = mergeClasses(headerStyles.documentTitle, state.documentTitle.className);
-
-  state.editorClassName = editorStyles.editor;
-
-  state.editor.className = mergeClasses(ClassNames.editor, editorStyles.editor, state.editor.className);
-
   state.hiddenButton.className = mergeClasses(ClassNames.hiddenButton, hiddenStyles.root, state.hiddenButton.className);
 
-  state.actionClassName = mergeClasses('eve-NewStory__action', actionStyles.root);
+  Object.entries(anotherStyles).map(([key, value]) => state.styles.push(mergeClasses(`${ClassName}__${key}`, value)));
+
   return state;
 };

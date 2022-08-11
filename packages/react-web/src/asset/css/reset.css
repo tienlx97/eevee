@@ -85,6 +85,11 @@ option {
   font-weight: var(--fontWeightRegular);
 }
 
+input:focus {
+  outline: none;
+  border-color: var(--f3);
+}
+
 h1,
 h2,
 h3,

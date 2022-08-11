@@ -1,9 +1,9 @@
 import * as React from 'react';
 
 import { omit } from '../utils/omit';
+import { EeveeState } from './eevee.types';
 import type {
   AsIntrinsicElement,
-  ComponentState,
   ExtractSlotProps,
   SlotPropsRecord,
   SlotRenderFunction,
@@ -12,21 +12,21 @@ import type {
 
 export type Slots<S extends SlotPropsRecord> = {
   [K in keyof S]: ExtractSlotProps<S[K]> extends AsIntrinsicElement<infer As>
-    ? // for slots with an `as` prop, the slot will be any one of the possible values of `as`
-      As
-    : ExtractSlotProps<S[K]> extends React.ComponentType<infer P> // is a class-function component
-    ? React.ElementType<NonNullable<P>> // return class-function that not null
-    : React.ElementType<ExtractSlotProps<S[K]>>; // maybe null
+  ? // for slots with an `as` prop, the slot will be any one of the possible values of `as`
+  As
+  : ExtractSlotProps<S[K]> extends React.ComponentType<infer P> // is a class-function component
+  ? React.ElementType<NonNullable<P>> // return class-function that not null
+  : React.ElementType<ExtractSlotProps<S[K]>>; // maybe null
 };
 
 type ObjectSlotProps<S extends SlotPropsRecord> = {
   [K in keyof S]-?: ExtractSlotProps<S[K]> extends AsIntrinsicElement<infer As>
-    ? // For intrinsic element types, return the intersection of all possible
-      // element's props, to be compatible with the As type returned by Slots<>
-      UnionToIntersection<JSX.IntrinsicElements[As]>
-    : ExtractSlotProps<S[K]> extends React.ComponentType<infer P>
-    ? P
-    : never;
+  ? // For intrinsic element types, return the intersection of all possible
+  // element's props, to be compatible with the As type returned by Slots<>
+  UnionToIntersection<JSX.IntrinsicElements[As]>
+  : ExtractSlotProps<S[K]> extends React.ComponentType<infer P>
+  ? P
+  : never;
 };
 
 /**
@@ -47,7 +47,7 @@ type ObjectSlotProps<S extends SlotPropsRecord> = {
  * @returns An object containing the `slots` map and `slotProps` map.
  */
 export function getSlots<R extends SlotPropsRecord>(
-  state: ComponentState<R>,
+  state: EeveeState<R>,
 ): {
   slots: Slots<R>;
   slotProps: ObjectSlotProps<R>;
@@ -65,7 +65,7 @@ export function getSlots<R extends SlotPropsRecord>(
 }
 
 function getSlot<R extends SlotPropsRecord, K extends keyof R>(
-  state: ComponentState<R>,
+  state: EeveeState<R>,
   slotName: K,
 ): readonly [React.ElementType<R[K]> | null, R[K]] {
   if (state[slotName] === undefined) {

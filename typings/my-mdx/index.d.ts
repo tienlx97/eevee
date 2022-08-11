@@ -76,7 +76,8 @@ export type PostI69n = {
   mdxCode: string;
   readTime: ReadTime;
   toc: Toc[];
-  frontmatter: FrontMatterI69n;
+  title: string;
+  tags: string[];
   slugify: string;
   date: string;
 }
