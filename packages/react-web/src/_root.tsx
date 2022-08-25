@@ -1,9 +1,12 @@
+//#region imports
+
 import * as React from 'react';
 import * as client from 'react-dom/client';
 import { BrowserRouter as Router } from 'react-router-dom';
-import { makeStyles } from '@griffel/react';
+import { makeStyles, shorthands } from '@griffel/react';
 
 import { webDarkTheme, webLightTheme, tokens } from '@eevee/react-theme';
+import { ToastPortal, ToastProvider } from '@eevee/react-toast';
 
 import { App } from './app';
 
@@ -12,33 +15,37 @@ import './asset/css/index.css';
 import '@codesandbox/sandpack-react/dist/index.css';
 
 // provider
-import { EeveeProvider } from '@eevee/react-provider';
-import { GAProvider, BlogContextProvider } from '@context/index';
+import { EeveeProvider as ConfigProvider } from '@eevee/react-provider';
+import { AuthContextProvider, GAProvider } from '@context/index';
 
 import { registerServiceWorker } from '@feature/pwa/index';
+
+//#endregion
 
 const useStyles = makeStyles({
   wrapper: {
     backgroundColor: tokens.bg1,
+    maxWidth: '1504px',
+    ...shorthands.margin('auto'),
+    display: 'block',
   },
 });
 
 const Root = () => {
-  const classes = useStyles();
+  const styles = useStyles();
 
   return (
     <Router>
-      <GAProvider>
-        <EeveeProvider
-          //
-          dir="ltr"
-          className={classes.wrapper}
-          lightTheme={webLightTheme}
-          darkTheme={webDarkTheme}
-        >
-          <App />
-        </EeveeProvider>
-      </GAProvider>
+      <AuthContextProvider>
+        <GAProvider>
+          <ConfigProvider dir="ltr" className={styles.wrapper} lightTheme={webLightTheme} darkTheme={webDarkTheme}>
+            <ToastProvider>
+              <App />
+              <ToastPortal />
+            </ToastProvider>
+          </ConfigProvider>
+        </GAProvider>
+      </AuthContextProvider>
     </Router>
   );
 };

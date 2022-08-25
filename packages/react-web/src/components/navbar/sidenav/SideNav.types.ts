@@ -1,12 +1,12 @@
-import { EeveeSlot, EeveeProps, EeveeState } from '@eevee/react-utilities';
+import { Slot, ComponentProps, ComponentState } from '@eevee/react-utilities';
 // import { Top } from './top';
 
 export type SideNavSlots = {
-  root: NonNullable<EeveeSlot<'div'>>;
-  content: NonNullable<EeveeSlot<'div'>>;
-  // top: EeveeSlot<typeof Top>;
+  root: NonNullable<Slot<'div'>>;
+  content: NonNullable<Slot<'div'>>;
+  // top: Slot<typeof Top>;
 };
 
-export type SideNavProps = EeveeProps<Partial<SideNavSlots>> & {};
+export type SideNavProps = ComponentProps<Partial<SideNavSlots>> & {};
 
-export type SideNavState = EeveeState<SideNavSlots> & {};
+export type SideNavState = ComponentState<SideNavSlots> & {};

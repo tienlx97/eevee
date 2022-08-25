@@ -23,12 +23,7 @@ export const renderCodeBlock = (state: CodeBlockState) => {
         }}
       >
         <SandpackThemeProvider theme={CustomTheme}>
-          <SandpackCodeViewer
-            //
-            key={children.trimEnd()}
-            showLineNumbers={false}
-            decorators={decorators}
-          />
+          <SandpackCodeViewer key={children.trimEnd()} showLineNumbers={false} decorators={decorators} />
         </SandpackThemeProvider>
       </SandpackProvider>
     </div>

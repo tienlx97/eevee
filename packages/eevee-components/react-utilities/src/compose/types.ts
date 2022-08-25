@@ -17,7 +17,7 @@ export type SlotPropsRecord = Record<string, UnknownSlotProps | SlotShorthandVal
  * The shorthand value of a slot allows specifying its child
  */
 export type SlotShorthandValue = React.ReactChild | React.ReactPortal;
-// | React.ReactNodeArray
+
 /**
  * Matches any slot props type.
  *
@@ -31,7 +31,7 @@ export type UnknownSlotProps = Pick<React.HTMLAttributes<HTMLElement>, 'children
 /**
  * Helper type for {@link Slot}. Adds shorthand types that are assignable to the slot's `children`.
  */
-export type WithSlotShorthandValue<Props extends { children?: unknown }> =
+type WithSlotShorthandValue<Props extends { children?: unknown }> =
   | Props
   | Extract<SlotShorthandValue, Props['children']>;
 
@@ -39,7 +39,7 @@ export type WithSlotShorthandValue<Props extends { children?: unknown }> =
  * Helper type for {@link Slot}. Takes the props we want to support for a slot and adds the ability for `children`
  * to be a render function that takes those props.
  */
-export type WithSlotRenderFunction<Props extends { children?: unknown }> = Props & {
+type WithSlotRenderFunction<Props extends { children?: unknown }> = Props & {
   children?: Props['children'] | SlotRenderFunction<Props>;
 };
 
@@ -69,9 +69,7 @@ type EmptyIntrisicElements =
  * * Removes legacy string ref.
  * * Disallows children for empty tags like 'img'.
  */
-export type IntrisicElementProps<Type extends keyof JSX.IntrinsicElements> = React.PropsWithRef<
-  JSX.IntrinsicElements[Type]
-> &
+type IntrisicElementProps<Type extends keyof JSX.IntrinsicElements> = React.PropsWithRef<JSX.IntrinsicElements[Type]> &
   (Type extends EmptyIntrisicElements ? { children?: never } : {});
 
 /**
@@ -97,7 +95,7 @@ export type IntrisicElementProps<Type extends keyof JSX.IntrinsicElements> = Rea
  * ```
  */
 export type Slot<
-  Type extends keyof JSX.IntrinsicElements | React.ComponentType | UnknownSlotProps,
+  Type extends keyof JSX.IntrinsicElements | React.ComponentType | React.VoidFunctionComponent | UnknownSlotProps,
   AlternateAs extends keyof JSX.IntrinsicElements = never,
 > = IsSingleton<Extract<Type, string>> extends true
   ?

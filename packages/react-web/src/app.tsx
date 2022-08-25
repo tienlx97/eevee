@@ -1,32 +1,79 @@
 import * as React from 'react';
-import { Routes, Route } from 'react-router-dom';
+import { Routes, Route, Navigate, useLocation } from 'react-router-dom';
 
-import { PageLayout } from '@layout/index';
-import { BlogPage } from '@pages/index';
+import { PageLayout, ProtectedRoute } from '@layout/index';
 import { Scroll2Top } from '@components/scroll2top/index';
 import { ErrorHandler } from '@context/index';
+import { Spinner } from './components/spinner-2/index';
+import { Home, PageOrPageNotFound, NewStory } from '@pages/index';
 
-const LazyPageNotFound = React.lazy(() =>
-  import('./pages/PageNotFound/index').then(module => ({ default: module.PageNotFound })),
-);
+const LazyPageNotFound = React.lazy(() => import('@pages/index').then(module => ({ default: module.PageNotFound })));
+const LazyBlogPage = React.lazy(() => import('@pages/index').then(module => ({ default: module.BlogPage })));
 
 export const App = () => {
+  const [pageNotFound, setPageNotFound] = React.useState<boolean | undefined>(undefined);
+  const { pathname } = useLocation();
+  const initialPathname = React.useRef(pathname);
+
+  React.useEffect(() => {
+    setPageNotFound(undefined && initialPathname.current === pathname);
+  }, [pathname]);
+
+  const homePage = (
+    <PageOrPageNotFound pageNotFound={pageNotFound ? pageNotFound : false}>
+      <Home />
+    </PageOrPageNotFound>
+  );
+
+  const routes = (
+    <Routes>
+      <Route path="/" element={<Navigate to="/home" replace />} />
+      <Route path="/home" element={homePage} />
+      <Route path="/search" element={<div>Search</div>} />
+      <Route path="/blog/:slug" element={<LazyBlogPage />} />
+      <Route
+        path="/new-story"
+        element={
+          <ProtectedRoute>
+            <NewStory type="new" />
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path="/p/:blogID/edit"
+        element={
+          <ProtectedRoute>
+            <NewStory type="edit" />
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path="/notification"
+        element={
+          <ProtectedRoute>
+            <div>Notification</div>
+          </ProtectedRoute>
+        }
+      />
+      <Route path="*" element={<LazyPageNotFound />} />
+    </Routes>
+  );
+
   return (
     <PageLayout>
-      <Scroll2Top>
-        <ErrorHandler>
-          <Routes>
-            <Route path="*" element={<LazyPageNotFound />} />
-            <Route path="/blog/:slug" element={<BlogPage />} />
-            <Route path="/@" element={<></>} />
-            <Route path="/home" element={<div>Home</div>} />
-            <Route path="/search" element={<div>Search</div>} />
-            <Route path="/notification" element={<div>Notification</div>} />
-            <Route path="/write" element={<div>Write sth</div>} />
-            <Route path="/404/:slug" element={<LazyPageNotFound />} />
-          </Routes>
-        </ErrorHandler>
-      </Scroll2Top>
+      <ErrorHandler>
+        <Scroll2Top>
+          <React.Suspense
+            fallback={
+              <div style={{ width: '100%' }}>
+                <Spinner />
+              </div>
+            }
+          >
+            {routes}
+          </React.Suspense>
+        </Scroll2Top>
+      </ErrorHandler>
     </PageLayout>
   );
 };

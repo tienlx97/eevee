@@ -61,69 +61,10 @@ const useRootStylesV1 = makeStyles({
   },
 });
 
-// const useRootStylesV2 = makeStyles({
-//   'section-title': {
-//     // h1 16
-//     fontSize: 'calc(16 / 16 * 1rem)',
-//     color: tokens.f5, // rgb(249,24,128)
-//     fontWeight: tokens.fontWeightMedium,
-//     // textTransform: 'uppercase',
-//     letterSpacing: '2px',
-//   },
-
-//   'small-title': {
-//     // h1 22
-//     fontSize: 'calc(22 / 16 * 1rem)',
-//     color: tokens.f10, // gray-1000
-//   },
-
-//   'medium-title': {
-//     // h1 28
-//     fontSize: 'calc(28 / 16 * 1rem)',
-//     color: tokens.f10, // gray-1000
-//     lineHeight: '1.2',
-//   },
-
-//   'large-title': {
-//     // h1 38
-//     fontSize: 'calc(38 / 16 * 1rem)',
-//     color: tokens.f10, // gray-1000
-//   },
-
-//   'major-heading': {
-//     // h2 32
-//     fontSize: 'calc(32 / 16 * 1rem)',
-//     color: tokens.f8, // hsl(53, 100%, 50%)
-//     marginTop: '66px',
-//     marginBottom: '25px',
-//   },
-
-//   'normal-heading': {
-//     // h3 25
-//     fontSize: 'calc(25 / 16 * 1rem)',
-//     color: tokens.f9, // hsl(210, 25%, 88%)
-//     marginTop: '44px',
-//     marginBottom: '15px',
-//     fontWeight: 'bolder',
-//   },
-
-//   'minor-heading': {
-//     // h4 20
-//     fontSize: 'calc(20 / 16 * 1rem)',
-//     color: tokens.f9, // hsl(210, 25%, 88%)
-//     marginTop: '24px',
-//     marginBottom: '12px',
-//   },
-// });
-
 export const useHeadingStyles = (state: HeadingState): HeadingState => {
   const rootStylesV1 = useRootStylesV1();
-  // const rootStylesV2 = useRootStylesV2();
 
   const { type } = state;
-
-  // state.root.className = mergeClasses(headingClassname.root, rootStyles[type!], state.root.className);
-  // state.root.className = mergeClasses(headingClassname.root, rootStylesV2[type!], state.root.className);
 
   state.root.className = mergeClasses(headingClassname.root, rootStylesV1[type!], state.root.className);
 

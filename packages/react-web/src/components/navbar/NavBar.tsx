@@ -12,18 +12,15 @@ import { NAV_WIDTH } from '@constants/index';
 const useMediaQueryStyles = makeStyles({
   // wrapper all navbar
   query: {
-    // width: 'auto',
-
     //  min-width: 1080
     [`@media ${breakPoints.lgAndLarger}`]: {
-      flexShrink: 1,
       width: `${NAV_WIDTH}px`,
       minHeight: '100vh',
+      flexShrink: 1,
       ...shorthands.borderRight('1px', 'solid', tokens.b2),
     },
 
     [`@media ${breakPoints.lgAndSmaller}`]: {
-      // height: `${navHeight}px`,
       width: 'auto',
     },
   },

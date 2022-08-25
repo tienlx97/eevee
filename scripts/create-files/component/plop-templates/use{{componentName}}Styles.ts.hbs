@@ -3,8 +3,8 @@ import type { {{componentName}}Slots, {{componentName}}State } from './{{compone
 import type { SlotClassNames } from '@eevee/react-utilities';
 
 
-export const {{componentNames.propertyName}}ClassName = 'eve-{{componentName}}'
-export const {{componentNames.propertyName}}ClassNames:SlotClassNames<{{componentName}}Slots> = {
+const {{componentNames.propertyName}}ClassName = 'eve-{{componentName}}'
+const {{componentNames.propertyName}}ClassNames:SlotClassNames<{{componentName}}Slots> = {
   root: 'eve-{{componentName}}'
   // TODO: add class names for all slots on {{componentName}}Slots.
   // Should be of the form `<slotName>: 'eve-{{componentName}}__<slotName>`

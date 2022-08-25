@@ -1,17 +1,17 @@
 import * as React from 'react';
-import type { EeveeProps, EeveeSlot, EeveeState } from '@eevee/react-utilities';
+import type { ComponentProps, Slot, ComponentState } from '@eevee/react-utilities';
 
 export type ButtonSlots2 = {
-  root: NonNullable<EeveeSlot<'button'>>;
-  iconAndText: NonNullable<EeveeSlot<'div'>>;
-  text: NonNullable<EeveeSlot<'span'>>;
+  root: NonNullable<Slot<'button'>>;
+  iconAndText: NonNullable<Slot<'div'>>;
+  text: NonNullable<Slot<'span'>>;
 };
 
-export type ButtonProps2 = EeveeProps<Partial<ButtonSlots2>> & {
+export type ButtonProps2 = ComponentProps<Partial<ButtonSlots2>> & {
   icon?: React.ReactNode;
 };
 
-export type ButtonState2 = EeveeState<ButtonSlots2> &
+export type ButtonState2 = ComponentState<ButtonSlots2> &
   Pick<ButtonProps2, 'icon'> & {
     /**
      * A button can contain only an icon.

@@ -1,49 +1,20 @@
 import * as React from 'react';
-import { makeStyles } from '@griffel/react';
 import { getSlots } from '@eevee/react-utilities';
 import { RightBarSlots, RightBarState } from './RightBar.types';
 import { Link } from 'react-router-dom';
-import { BlogRightBar } from '@feature/blog/index';
-
-const useRootStyles = makeStyles({
-  root: {
-    width: '100%',
-    height: '100%',
-    display: 'inline-block',
-    position: 'relative',
-  },
-
-  // div2: {
-  //   top: 0,
-  //   position: 'sticky',
-  //   display: 'flex',
-  //   flexDirection: 'column',
-  //   minHeight: '100vh',
-  // },
-
-  div3: {
-    display: 'block',
-    flexGrow: 1,
-    flexShrink: 0,
-    flexBasis: 'auto',
-    position: 'relative',
-  },
-});
 
 /**
  * Render the final JSX of Right
  */
 export const renderRightBar = (state: RightBarState) => {
-  // eslint-disable-next-line react-hooks/rules-of-hooks
-  const rootStyles = useRootStyles();
-  const { slug } = state;
+  const { styles } = state;
   const { slots, slotProps } = getSlots<RightBarSlots>(state);
 
   return (
     <slots.root {...slotProps.root}>
-      <div className={rootStyles.root}>
+      <div className={styles[0]}>
         <div style={{ opacity: 0 }}>Love Gnart</div>
-        <BlogRightBar />
+        {slotProps.root.children}
       </div>
       <div
         style={{

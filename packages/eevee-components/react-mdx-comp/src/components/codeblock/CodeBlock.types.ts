@@ -4,7 +4,18 @@ export type MetaString = {
   language?: Language;
 };
 
-type Language =
+export type CodeBlockWrapperProps = {
+  fileName?: string;
+  highlight?: string;
+  language?: Language;
+  isFromPackageImport?: boolean;
+  children: string;
+  className?: string;
+  noMargin?: boolean;
+  noMarkers?: boolean;
+};
+
+export type Language =
   | 'markup'
   | 'bash'
   | 'clike'
@@ -40,11 +51,21 @@ type Language =
 
 export type CodeBlockProps = {
   children: string;
-  metastring?: MetaString;
+  fileName?: string;
+  highlight?: string;
+  language?: Language;
   className?: string;
   noMargin?: boolean;
 };
 
+export type CodeBlockPropsV2 = {
+  children: string;
+  fileName?: string;
+  highlight?: string;
+  language?: Language;
+  className?: string;
+  noMargin?: boolean;
+};
 export interface InlineHiglight {
   step: number;
   line: number;
@@ -52,7 +73,10 @@ export interface InlineHiglight {
   endColumn: number;
 }
 
-export type CodeBlockState = Pick<CodeBlockProps, 'children' | 'className' | 'metastring' | 'noMargin'> & {
+export type CodeBlockState = Pick<
+  CodeBlockProps,
+  'children' | 'className' | 'fileName' | 'highlight' | 'language' | 'noMargin'
+> & {
   rootClasses?: string;
   inlineHiglightClasses?: string;
 

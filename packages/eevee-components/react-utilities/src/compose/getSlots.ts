@@ -14,9 +14,9 @@ export type Slots<S extends SlotPropsRecord> = {
   [K in keyof S]: ExtractSlotProps<S[K]> extends AsIntrinsicElement<infer As>
     ? // for slots with an `as` prop, the slot will be any one of the possible values of `as`
       As
-    : ExtractSlotProps<S[K]> extends React.ComponentType<infer P> // is a class-function component
-    ? React.ElementType<NonNullable<P>> // return class-function that not null
-    : React.ElementType<ExtractSlotProps<S[K]>>; // maybe null
+    : ExtractSlotProps<S[K]> extends React.ComponentType<infer P>
+    ? React.ElementType<NonNullable<P>>
+    : React.ElementType<ExtractSlotProps<S[K]>>;
 };
 
 type ObjectSlotProps<S extends SlotPropsRecord> = {

@@ -47,10 +47,20 @@ const useRootStyles = makeStyles({
   },
 });
 
+const useAnotherStyles = makeStyles({
+  root: {
+    width: '100%',
+    height: '100%',
+    display: 'inline-block',
+    position: 'relative',
+  },
+});
+
 /** Applies style classnames to slots */
 export const useRightBarStyles = (state: RightBarState) => {
   const mediaQueryStyles = useMediaQueryStyles();
   const rootStyles = useRootStyles();
+  const anotherStyles = useAnotherStyles();
 
   state.root.className = mergeClasses(
     rightClassNames.root,
@@ -58,4 +68,10 @@ export const useRightBarStyles = (state: RightBarState) => {
     mediaQueryStyles.query,
     state.root.className,
   );
+
+  Object.entries(anotherStyles).map(([key, value]) =>
+    state.styles.push(mergeClasses(`${rightClassNames.root}__${key}`, value)),
+  );
+
+  return state;
 };

@@ -1,4 +1,4 @@
-# @fluentui/react-theme
+# @eevee/react-theme
 
 **React Theme components for [Fluent UI React](https://developer.microsoft.com/en-us/fluentui)**
 

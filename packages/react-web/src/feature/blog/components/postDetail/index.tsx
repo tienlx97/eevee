@@ -1,28 +1,29 @@
 import * as React from 'react';
 import { tokens } from '@eevee/react-theme';
 import { useParams } from 'react-router-dom';
-import { CH1, H1, HorizontalRule } from '@eevee/react-mdx-comp';
-import { useBlogAPISWR, TagList } from '@feature/blog/index';
-import { MDX } from '@components/Mdx/index';
+import { CH1, CH2, CH3, H1, HorizontalRule, Paragraph } from '@eevee/react-mdx-comp';
+import { TagList } from '@feature/blog/index';
+import { MDXRemote } from '@components/Mdx/remote';
 import { getHeaderAnchors } from '../../hooks/useTocHighlight';
+import type { Blog } from 'typings/my-mdx/index';
 
-export const PostDetail = (props: JSX.IntrinsicElements['div']) => {
-  const { slug } = useParams();
-  const post = useBlogAPISWR(slug);
+type PostDetailProps = JSX.IntrinsicElements['div'] & {
+  blog: Blog;
+};
 
-  if (post) {
+export const PostDetail = ({ blog, ...props }: PostDetailProps) => {
+  if (blog) {
     getHeaderAnchors();
   }
 
-  return post ? (
+  return (
     <div style={{ height: '100%' }} {...props}>
-      <H1 style={{ color: tokens.f10, marginTop: '0' }}>{post.frontmatter.title}</H1>
-      <MDX source={post.code} />
-      <TagList tagList={post.frontmatter.tags as any} />
+      <H1 style={{ color: tokens.f10, marginTop: '0px' }}>{blog.title}</H1>
+      <Paragraph>{blog.subtitle}</Paragraph>
+      <MDXRemote lazy compiledSource={blog.compile_code} />
+      <TagList tagList={blog.tags} />
       <HorizontalRule />
     </div>
-  ) : (
-    <></>
   );
 };
 

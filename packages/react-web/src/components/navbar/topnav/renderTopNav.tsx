@@ -15,8 +15,18 @@ export const renderTopNav = (state: TopNavState) => {
   return (
     <slots.root {...slotProps.root}>
       <slots.content {...slotProps.content}>
-        <Link to="/home">
+        <Link
+          // style={{
+          //   color: 'inherit',
+          //   gap: '4px',
+          //   display: 'flex',
+          //   alignItems: 'center',
+          //   justifyContent: 'center',
+          // }}
+          to="/home"
+        >
           <Mimikyu width={35} height={35} />
+          {/* <h2 style={{ color: 'var(--f10)', fontFamily: 'var(--fontFamilySpicy)' }}>Mimikyu</h2> */}
         </Link>
         <div style={{ display: 'flex', alignItems: 'center' }}>
           <ToggleTheme />

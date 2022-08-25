@@ -27,64 +27,14 @@ const useStyles = makeStyles({
   // TODO add additional classes for different states and/or slots
 });
 
-const useInlineHiglightStyles = makeStyles({
-  root: {
-    '& *': {
-      color: tokens.f1,
-    },
-
-    '& code': {
-      backgroundImage: 'none',
-      ...shorthands.padding('2px'),
-    },
-
-    position: 'relative',
-    ...shorthands.borderRadius('.25rem'),
-    paddingLeft: '.25rem',
-    paddingRight: '.25rem',
-    paddingTop: '1.5px',
-    paddingBottom: '1.5px',
-    borderBottomWidth: '2px',
-  },
-  bgBlue: {
-    backgroundColor: tokens.f3,
-    ...shorthands.borderColor(tokens.f3),
-  },
-
-  bgYellow: {
-    backgroundColor: tokens.f8,
-    ...shorthands.borderColor(tokens.f8),
-  },
-
-  bgGreen: {
-    backgroundColor: tokens.f4,
-    ...shorthands.borderColor(tokens.f4),
-  },
-
-  bgPurple: {
-    backgroundColor: tokens.f7,
-    ...shorthands.borderColor(tokens.f7),
-  },
-
-  highlightClasses: {
-    backgroundColor: tokens.syntaxHighlight,
-  },
-});
-
 /**
  * Apply styling to the CodeBlock slots based on the state
  */
 export const useCodeBlockStyles = (state: CodeBlockState): CodeBlockState => {
   const styles = useStyles();
-  const inlineHiglightStyles = useInlineHiglightStyles();
+  // const inlineHiglightStyles = useInlineHiglightStyles();
 
   state.rootClasses = mergeClasses(styles.root, !state.noMargin && styles['my-8']);
-
-  state.inlineHiglightClasses = mergeClasses(inlineHiglightStyles.root);
-  state.bgBlue = inlineHiglightStyles.bgBlue;
-  state.bgGreen = inlineHiglightStyles.bgGreen;
-  state.bgPurple = inlineHiglightStyles.bgPurple;
-  state.bgYellow = inlineHiglightStyles.bgYellow;
 
   // TODO Add class names to slots, for example:
   // state.mySlot.className = mergeClasses(styles.mySlot, state.mySlot.className);

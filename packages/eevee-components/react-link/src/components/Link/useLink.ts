@@ -4,7 +4,7 @@ import { useLinkState } from './useLinkState';
 import { getNativeElementProps } from '@eevee/react-utilities';
 
 /**
- * Given user props, defines default props for the Link, calls useLinkState_unstable, and returns processed state.
+ * Given user props, defines default props for the Link, calls useLinkState, and returns processed state.
  * @param props - User provided props to the Link component.
  * @param ref - User provided ref to be passed to the Link component.
  */

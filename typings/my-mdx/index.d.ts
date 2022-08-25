@@ -1,27 +1,22 @@
 
-export type Author = {
-  id: number;
-  name: string;
-  nickName: string;
-  url: string;
-}
+
+export type PostType = "story" | "diary";
 
 export type FrontMatter = {
-  author: Array<string>,
-  tags: Array<string>
-  description: string,
-  id: string,
-  slugify: string,
-  title: string
+  // require
+  author: UserSchema;
+  tags: Array<string>;
+  description: string;
+  postId: string;
+  slugify: string;
+  title: string;
+  post: PostType;
+  language: string;
+  date: string;
 
   // optional
-  archived?: boolean
-  date: string
-  draft?: boolean
-  bannerCloudinaryId?: string
-  bannerCredit?: string
-  bannerAlt?: string
-  bannerTitle?: string
+  archived?: boolean;
+  draft?: boolean;
 };
 
 export type ReadTime = {
@@ -55,3 +50,41 @@ export type MorePost = {
 export type GitHubFile = { path: string; content: string }
 
 
+//
+
+export type FrontMatterI69n = {
+  // require
+  tags: Array<string>;
+  title: string;
+};
+
+type Status = 'published' | 'draft'
+
+export type BlogSchema = {
+  id?: string;
+  user_id: string;
+  compile_code: string;
+  mdx_code: string;
+  status: Status;
+  publish_date: number;
+  toc: Toc[];
+  read_time: ReadTime;
+  title: string;
+  subtitle: string;
+  slugify: string;
+  tags: string[];
+}
+
+export type UserSchema = {
+  id: string;
+  mimikyu_id: string,
+  email: string,
+  name: string;
+  nick_name: string;
+  photo_url: string;
+  description: string;
+}
+
+export type Blog = BlogSchema & {
+  author: UserSchema,
+}

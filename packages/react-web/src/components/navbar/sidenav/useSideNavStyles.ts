@@ -42,13 +42,13 @@ const useRootStyles = makeStyles({
 const useContentStyles = makeStyles({
   content: {
     backgroundColor: tokens.bg1,
-    position: 'sticky',
     top: 0,
-    height: '100vh',
     display: 'flex',
-    justifyContent: 'space-between',
     flexDirection: 'column',
-    zIndex: 1,
+    height: '100vh',
+    position: 'sticky',
+    justifyContent: 'space-between',
+    zIndex: 500,
   },
 });
 

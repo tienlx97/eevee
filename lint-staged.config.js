@@ -25,3 +25,4 @@ module.exports = {
   )}}`]: [commands.codeStyle],
   // [`**/*.{${prettierSupportedFileExtensionsByContext.js}}`]: [commands.format, commands.lint],
 };
+

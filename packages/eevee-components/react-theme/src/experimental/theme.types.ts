@@ -79,6 +79,9 @@ export type ColorTokens = {
   themeProperty: string;
   themeStatic: string;
   themeString: string;
+
+  //
+  shadow16: string;
 };
 
 export type ColorPaletteRed =

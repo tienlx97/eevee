@@ -1,9 +1,9 @@
-import { EeveeSlot, EeveeProps, EeveeState } from '@eevee/react-utilities';
+import { Slot, ComponentProps, ComponentState } from '@eevee/react-utilities';
 
 export type InlineCodeSlots = {
-  root: NonNullable<EeveeSlot<'code'>>;
+  root: NonNullable<Slot<'code'>>;
 };
 
-export type InlineCodeProps = EeveeProps<InlineCodeSlots> & {};
+export type InlineCodeProps = ComponentProps<InlineCodeSlots> & {};
 
-export type InlineCodeState = EeveeState<InlineCodeSlots> & {};
+export type InlineCodeState = ComponentState<InlineCodeSlots> & {};

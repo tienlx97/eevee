@@ -6,6 +6,7 @@ import { NAV_HEIGHT } from '@constants/index';
 export const ClassName = 'eve-BlogPage';
 export const ClassNames = {
   root: 'eve-Blog',
+  middleLayout: 'eve-Blog__middleLayout',
   // TODO: add class names for all slots on BlogSlots.
   // Should be of the form `<slotName>: 'eve-Blog__<slotName>`
   displayCenter: 'eve-BlogPage__displayCenter',
@@ -16,7 +17,10 @@ export const ClassNames = {
  * Styles for the root slot
  */
 const useStyles = makeStyles({
-  root: {},
+  root: {
+    display: 'flex',
+    flexDirection: 'row',
+  },
 
   // TODO add additional classes for different states and/or slots
 });

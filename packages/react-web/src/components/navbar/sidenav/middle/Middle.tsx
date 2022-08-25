@@ -11,6 +11,7 @@ import {
   WriteRegular,
 } from '@components/icons/index';
 import { LinkIcon } from '@eevee/react-link';
+import { useAuthContext } from '@context/AuthContext';
 
 const useRootStyles = makeStyles({
   base: {
@@ -26,6 +27,7 @@ const useRootStyles = makeStyles({
 
 export const Middle = () => {
   const styles = useRootStyles();
+  const { user } = useAuthContext();
   return (
     <div className={styles.base}>
       <div className={styles.linkIconWrapper}>
@@ -34,19 +36,23 @@ export const Middle = () => {
       <div className={styles.linkIconWrapper}>
         <LinkIcon aria-label="Search" title="Search" iconFill={SearchFill} iconRegular={SearchRegular} href="/search" />
       </div>
-      <div className={styles.linkIconWrapper}>
-        <LinkIcon
-          aria-label="Notification"
-          title="Notification"
-          iconFill={NotificationFill}
-          iconRegular={NotificationRegular}
-          href="/notification"
-        />
-      </div>
+      {user && (
+        <>
+          <div className={styles.linkIconWrapper}>
+            <LinkIcon
+              aria-label="Notification"
+              title="Notification"
+              iconFill={NotificationFill}
+              iconRegular={NotificationRegular}
+              href="/notification"
+            />
+          </div>
 
-      <div aria-label="Write" title="Write" className={styles.linkIconWrapper}>
-        <LinkIcon iconRegular={WriteRegular} iconFill={WriteFill} href="/write" />
-      </div>
+          <div aria-label="Write" title="Write" className={styles.linkIconWrapper}>
+            <LinkIcon iconRegular={WriteRegular} iconFill={WriteFill} href="/new-story" />
+          </div>
+        </>
+      )}
     </div>
   );
 };
