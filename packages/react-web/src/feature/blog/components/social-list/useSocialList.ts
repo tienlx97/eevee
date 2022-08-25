@@ -5,8 +5,8 @@ import type { SocialListProps, SocialListState } from './SocialList.types';
 /**
  * Create the state required to render SocialList.
  *
- * The returned state can be modified with hooks such as useSocialListStyles_unstable,
- * before being passed to renderSocialList_unstable.
+ * The returned state can be modified with hooks such as useSocialListStyles,
+ * before being passed to renderSocialList.
  *
  * @param props - props from this instance of SocialList
  * @param ref - reference to root HTMLElement of SocialList

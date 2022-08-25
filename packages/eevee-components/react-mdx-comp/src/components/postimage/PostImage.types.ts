@@ -1,12 +1,12 @@
-import { EeveeProps, EeveeSlot, EeveeState } from '@eevee/react-utilities';
+import { ComponentProps, Slot, ComponentState } from '@eevee/react-utilities';
 
 export type PostImageSlots = {
-  root: NonNullable<EeveeSlot<'img'>>;
-  wrap: NonNullable<EeveeSlot<'span'>>;
-  caption: NonNullable<EeveeSlot<'span'>>;
+  root: NonNullable<Slot<'img'>>;
+  wrap: NonNullable<Slot<'span'>>;
+  caption: NonNullable<Slot<'span'>>;
 };
 
-export type PostImageProps = EeveeProps<Partial<PostImageSlots>> & {
+export type PostImageProps = ComponentProps<Partial<PostImageSlots>> & {
   type?: 'native' | 'default';
   includeWhiteBackground?: boolean;
   marginBottom?: number;
@@ -14,7 +14,7 @@ export type PostImageProps = EeveeProps<Partial<PostImageSlots>> & {
   title?: string;
 };
 
-export type PostImageState = EeveeState<PostImageSlots> &
+export type PostImageState = ComponentState<PostImageSlots> &
   Pick<PostImageProps, 'includeWhiteBackground' | 'marginBottom' | 'source' | 'title' | 'type'> & {
     asBaseImg?: boolean;
     sizerSvgUrl?: string;

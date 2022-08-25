@@ -21,20 +21,19 @@ import type { BlogPageSlots, BlogPageState } from './BlogPage.types';
  * Render the final JSX of Blog
  */
 export const renderBlogPage = (state: BlogPageState) => {
-  const { reactionClassName, post, error, setOpenComment, isOpenComment } = state;
+  const { reactionClassName, blog, error, setOpenComment, isOpenComment } = state;
   const { slots, slotProps } = getSlots<BlogPageSlots>(state);
 
   return (
     <>
       <slots.middleLayout {...slotProps.middleLayout}>
         <CommentSystem
-          // eslint-disable-next-line react/jsx-no-bind
           onClose={() => setOpenComment!(false)}
           show={isOpenComment ?? false}
           closeButton={{ icon: <Close /> }}
         />
 
-        {!post && !error && (
+        {!blog && !error && (
           <>
             <PostHeaderSkeleton />
             <PostDetailSkeleton />
@@ -42,14 +41,13 @@ export const renderBlogPage = (state: BlogPageState) => {
           </>
         )}
 
-        {!post && error && <></>}
+        {!blog && error && <></>}
 
-        {post && !error && (
+        {blog && !error && (
           <>
-            <PostHeader post={post} />
-            <PostDetail post={post} />
+            <PostHeader blog={blog} />
+            <PostDetail blog={blog} />
             <Reaction
-              // eslint-disable-next-line react/jsx-no-bind
               setOpenComment={val => setOpenComment!(val)}
               id="eve-BlogPage__reaction"
               className={reactionClassName}
@@ -58,9 +56,9 @@ export const renderBlogPage = (state: BlogPageState) => {
         )}
       </slots.middleLayout>
       <slots.rightLayout>
-        {!post && !error && <BlogRightBarSkeleton />}
-        {!post && error && <></>}
-        {post && !error && <BlogRightBar post={post} />}
+        {!blog && !error && <BlogRightBarSkeleton />}
+        {!blog && error && <></>}
+        {blog && !error && <BlogRightBar blog={blog} />}
       </slots.rightLayout>
     </>
   );

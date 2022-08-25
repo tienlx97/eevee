@@ -138,4 +138,8 @@ export const tokens: Record<keyof Theme, string> = {
   bg8: 'var(--bg8)',
   bg9: '',
   bg10: '',
+
+  //
+
+  shadow16: 'var(--shadow16)',
 };

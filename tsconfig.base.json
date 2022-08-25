@@ -14,11 +14,19 @@
     "baseUrl": ".",
     "paths": {
       "@eevee/react-button": ["packages/eevee-components/react-button/src/index.ts"],
+      "@eevee/react-context-selector": ["packages/eevee-components/react-context-selector/src/index.ts"],
+      "@eevee/react-dialog": ["packages/eevee-components/react-dialog/src/index.ts"],
+      "@eevee/react-keyboard": ["packages/eevee-components/react-keyboard/src/index.ts"],
       "@eevee/react-icons": ["packages/eevee-components/react-icons/src/index.ts"],
       "@eevee/react-link": ["packages/eevee-components/react-link/src/index.ts"],
+      "@eevee/react-menu": ["packages/eevee-components/react-menu/src/index.ts"],
+      "@eevee/react-popover": ["packages/eevee-components/react-popover/src/index.ts"],
       "@eevee/react-portal": ["packages/eevee-components/react-portal/src/index.ts"],
+      "@eevee/react-positioning": ["packages/eevee-components/react-positioning/src/index.ts"],
       "@eevee/react-provider": ["packages/eevee-components/react-provider/src/index.ts"],
       "@eevee/react-shared-contexts": ["packages/eevee-components/react-shared-contexts/src/index.ts"],
+      "@eevee/react-tabster": ["packages/eevee-components/react-tabster/src/index.ts"],
+      "@eevee/react-toast": ["packages/eevee-components/react-toast/src/index.ts"],
       "@eevee/react-theme": ["packages/eevee-components/react-theme/src/index.ts"],
       "@eevee/react-utilities": ["packages/eevee-components/react-utilities/src/index.ts"],
       "@eevee/react-mdx-comp": ["packages/eevee-components/react-mdx-comp/src/index.ts"],
@@ -31,7 +39,8 @@
       "@layout/*": ["packages/react-web/src/layout/*"],
       "@libs/*": ["packages/react-web/src/libs/*"],
       "@pages/*": ["packages/react-web/src/pages/*"],
-      "@utilities/*": ["packages/react-web/src/utilities/*"]
+      "@utilities/*": ["packages/react-web/src/utilities/*"],
+      "@services/*": ["packages/react-web/src/services/*"]
     }
   },
   "exclude": ["node_modules"]

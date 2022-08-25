@@ -5,7 +5,8 @@ import * as mdx from '@mdx-js/react';
 import { MDXRemoteSerializeResult } from './types';
 
 import { MDXComponents } from '@eevee/react-mdx-comp';
-import { ErrorBoundary } from 'react-error-boundary';
+import { Spinner } from '@components/spinner-2/index';
+import { delay } from '@libs/index';
 
 // requestIdleCallback types found here: https://github.com/microsoft/TypeScript/issues/21309
 type RequestIdleCallbackHandle = number;
@@ -53,7 +54,7 @@ export const MDXRemote = ({ compiledSource, frontmatter, scope, lazy }: MDXRemot
   React.useEffect(() => {
     if (lazy) {
       const handle = window.requestIdleCallback(() => {
-        setIsReadyToRender(true);
+        delay(200).then(() => setIsReadyToRender(true));
       });
       return () => window.cancelIdleCallback(handle);
     }
@@ -85,8 +86,7 @@ export const MDXRemote = ({ compiledSource, frontmatter, scope, lazy }: MDXRemot
 
   if (!isReadyToRender) {
     // If we're not ready to render, return an empty div to preserve SSR'd markup
-    // eslint-disable-next-line react/no-danger
-    return <div dangerouslySetInnerHTML={{ __html: '' }} suppressHydrationWarning />;
+    return <Spinner />;
   }
 
   // wrapping the content with MDXProvider will allow us to customize the standard

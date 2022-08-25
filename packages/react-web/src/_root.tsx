@@ -6,6 +6,7 @@ import { BrowserRouter as Router } from 'react-router-dom';
 import { makeStyles, shorthands } from '@griffel/react';
 
 import { webDarkTheme, webLightTheme, tokens } from '@eevee/react-theme';
+import { ToastPortal, ToastProvider } from '@eevee/react-toast';
 
 import { App } from './app';
 
@@ -34,15 +35,18 @@ const Root = () => {
   const styles = useStyles();
 
   return (
-    <GAProvider>
+    <Router>
       <AuthContextProvider>
-        <ConfigProvider dir="ltr" className={styles.wrapper} lightTheme={webLightTheme} darkTheme={webDarkTheme}>
-          <Router>
-            <App />
-          </Router>
-        </ConfigProvider>
+        <GAProvider>
+          <ConfigProvider dir="ltr" className={styles.wrapper} lightTheme={webLightTheme} darkTheme={webDarkTheme}>
+            <ToastProvider>
+              <App />
+              <ToastPortal />
+            </ToastProvider>
+          </ConfigProvider>
+        </GAProvider>
       </AuthContextProvider>
-    </GAProvider>
+    </Router>
   );
 };
 

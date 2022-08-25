@@ -1,5 +1,4 @@
 import * as React from 'react';
-import { useIsSSR } from '@eevee/react-utilities';
 import { usePortalMountNode } from './usePortalMountNode';
 import { setVirtualParent } from '../../virtualParent/index';
 import type { PortalProps, PortalState } from './Portal.types';
@@ -20,7 +19,6 @@ export const usePortal = (props: PortalProps): PortalState => {
   const state: PortalState = {
     children,
     mountNode: mountNode ?? fallbackMountNode,
-    shouldRender: !useIsSSR(),
     virtualParentRootRef,
   };
 

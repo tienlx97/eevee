@@ -1,5 +1,4 @@
 import * as React from 'react';
-
 export interface ProviderContextValue {
   /** Sets the direction of text & generated styles. */
   dir: 'ltr' | 'rtl';

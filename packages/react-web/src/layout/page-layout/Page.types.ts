@@ -1,9 +1,9 @@
-import type { EeveeSlot, EeveeProps, EeveeState } from '@eevee/react-utilities';
+import type { Slot, ComponentProps, ComponentState } from '@eevee/react-utilities';
 
 export type PageLayoutSlot = {
-  root: NonNullable<EeveeSlot<'div'>>;
+  root: NonNullable<Slot<'div'>>;
 };
 
-export type PageLayoutProps = EeveeProps<PageLayoutSlot> & {};
+export type PageLayoutProps = ComponentProps<PageLayoutSlot> & {};
 
-export type PageLayoutState = EeveeState<PageLayoutSlot> & {};
+export type PageLayoutState = ComponentState<PageLayoutSlot> & {};

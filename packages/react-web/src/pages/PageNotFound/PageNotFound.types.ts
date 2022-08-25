@@ -1,11 +1,11 @@
-import type { EeveeProps, EeveeSlot, EeveeState } from '@eevee/react-utilities';
+import type { ComponentProps, Slot, ComponentState } from '@eevee/react-utilities';
 
 export type PageNotFoundSlots = {
-  root: NonNullable<EeveeSlot<'div'>>;
+  root: NonNullable<Slot<'div'>>;
 };
 
-export type PageNotFoundProps = EeveeProps<Partial<PageNotFoundSlots>> & {};
+export type PageNotFoundProps = ComponentProps<Partial<PageNotFoundSlots>> & {};
 
-export type PageNotFoundState = EeveeState<PageNotFoundSlots> & {
+export type PageNotFoundState = ComponentState<PageNotFoundSlots> & {
   url?: string;
 };

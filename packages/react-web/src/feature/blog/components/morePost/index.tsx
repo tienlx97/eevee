@@ -6,7 +6,7 @@ import { makeStyles, mergeClasses, shorthands } from '@griffel/react';
 import { tokens } from '@eevee/react-theme';
 import { Link } from 'react-router-dom';
 import { toDate } from '@utilities/toDate';
-import { Spinner } from '@components/spinner2/index';
+import { Spinner } from '@components/spinner-2/index';
 
 const useRootStyles = makeStyles({
   root: {

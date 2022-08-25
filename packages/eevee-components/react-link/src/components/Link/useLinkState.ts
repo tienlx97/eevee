@@ -2,7 +2,7 @@ import * as React from 'react';
 import type { LinkState } from './Link.types';
 import { useLocation } from 'react-router-dom';
 /**
- * The useLinkState_unstable hook processes the Link state.
+ * The useLinkState hook processes the Link state.
  * @param state - Link state to mutate.
  */
 export const useLinkState = (state: LinkState): LinkState => {

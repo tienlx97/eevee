@@ -2,7 +2,7 @@ import { makeStyles, shorthands } from '@griffel/react';
 import * as React from 'react';
 import { Link } from 'react-router-dom';
 import { tokens } from '@eevee/react-theme';
-import type { Author } from 'typings/my-mdx/index';
+import type { UserSchema } from 'typings/my-mdx/index';
 
 const useDisplayStyles = makeStyles({
   'mt-16': {
@@ -43,7 +43,7 @@ const useRootStyles = makeStyles({
 });
 
 type Props = JSX.IntrinsicElements['div'] & {
-  author: Author;
+  author: UserSchema;
 };
 
 export const Porfolio = ({ author, ...props }: Props) => {
@@ -53,11 +53,11 @@ export const Porfolio = ({ author, ...props }: Props) => {
   return (
     <div {...props}>
       <Link to={`/@${author.name}`}>
-        <img width={69} height={69} className={rootStyles.avatar} src="https://source.unsplash.com/random" />
+        <img width={69} height={69} className={rootStyles.avatar} src={author.photo_url} />
       </Link>
       <div className={displayStyles['mt-16']} />
-      <Link className={rootStyles.textInherit} to={`/@${author.nickName}`}>
-        <h2 className={rootStyles.title}>{author.nickName}</h2>
+      <Link className={rootStyles.textInherit} to={`/@${author.nick_name}`}>
+        <h2 className={rootStyles.title}>{author.nick_name}</h2>
       </Link>
       <div className={displayStyles['mt-4']} />
       <span>61 followers</span>

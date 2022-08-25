@@ -2,7 +2,7 @@ import * as React from 'react';
 import { makeStyles, mergeClasses, shorthands } from '@griffel/react';
 import { tokens } from '@eevee/react-theme';
 import { useTocHighlight } from '@feature/blog/index';
-import { Spinner } from '@components/spinner2/index';
+import { Spinner } from '@components/spinner-2/index';
 import { Heading } from '@eevee/react-mdx-comp';
 import type { Toc } from 'typings/my-mdx/index';
 

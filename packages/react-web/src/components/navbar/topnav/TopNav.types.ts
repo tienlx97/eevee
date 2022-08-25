@@ -1,11 +1,11 @@
-import { EeveeSlot, EeveeProps, EeveeState } from '@eevee/react-utilities';
+import { Slot, ComponentProps, ComponentState } from '@eevee/react-utilities';
 
 export type TopNavSlots = {
-  root: NonNullable<EeveeSlot<'div'>>;
-  content: NonNullable<EeveeSlot<'div'>>; // top nav content here
-  gap: NonNullable<EeveeSlot<'div'>>;
+  root: NonNullable<Slot<'div'>>;
+  content: NonNullable<Slot<'div'>>; // top nav content here
+  gap: NonNullable<Slot<'div'>>;
 };
 
-export type TopNavProps = EeveeProps<Partial<TopNavSlots>> & {};
+export type TopNavProps = ComponentProps<Partial<TopNavSlots>> & {};
 
-export type TopNavState = EeveeState<TopNavSlots> & {};
+export type TopNavState = ComponentState<TopNavSlots> & {};

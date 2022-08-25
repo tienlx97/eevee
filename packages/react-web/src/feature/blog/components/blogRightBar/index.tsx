@@ -4,9 +4,7 @@ import { Porfolio } from '@components/porfolio/index';
 import { PorfolioSkeleton } from '@components/skeleton/PorfolioSkeleton';
 import { useBlogParam, MorePost, TocSkeleton, MorePostSkeleton, TocBeta } from '@feature/blog/index';
 import { MockMorePostList } from '@feature/blog/mocks/MorePost';
-import { useLocation, useNavigate } from 'react-router-dom';
-import { useBlog } from '@feature/blog/index';
-import type { Post } from 'typings/my-mdx/index';
+import type { Blog } from 'typings/my-mdx/index';
 
 const useStyles = makeStyles({
   sticky: {
@@ -34,16 +32,16 @@ export const BlogRightBarSkeleton = () => {
 };
 
 type BlogRightBar = {
-  post: Post;
+  blog: Blog;
 };
 
-export const BlogRightBar = ({ post: data }: BlogRightBar) => {
+export const BlogRightBar = ({ blog: data }: BlogRightBar) => {
   const styles = useStyles();
   const slug = useBlogParam();
 
   return (
     <>
-      <Porfolio style={{ padding: '0px 16px' }} author={data.frontmatter.author} />
+      <Porfolio style={{ padding: '0px 16px' }} author={data.author} />
       <div style={{ height: '24px' }} />
       <div className={styles.sticky}>
         <TocBeta toc={data.toc} />

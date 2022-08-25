@@ -13,32 +13,6 @@ const toObjectMap = (...items: (string[] | Record<string, number>)[]) => {
 };
 
 /**
- * An array of element attributes which are allowed on every html element type.
- *
- * @public
- */
-export const baseElementProperties = toObjectMap([
-  'accessKey', // global
-  'children', // global
-  'className', // global
-  'contentEditable', // global
-  'dir', // global
-  'draggable', // global
-  'hidden', // global
-  'htmlFor', // global
-  'id', // global
-  'lang', // global
-  'ref', // global
-  'role', // global
-  'style', // global
-  'tabIndex', // global
-  'title', // global
-  'translate', // global
-  'spellCheck', // global
-  'name', // global
-]);
-
-/**
  * An array of events that are allowed on every html element type.
  *
  * @public
@@ -127,11 +101,87 @@ export const baseElementEvents = toObjectMap([
 ]);
 
 /**
+ * An array of element attributes which are allowed on every html element type.
+ *
+ * @public
+ */
+export const baseElementProperties = toObjectMap([
+  'accessKey', // global
+  'children', // global
+  'className', // global
+  'contentEditable', // global
+  'dir', // global
+  'draggable', // global
+  'hidden', // global
+  'htmlFor', // global
+  'id', // global
+  'lang', // global
+  'ref', // global
+  'role', // global
+  'style', // global
+  'tabIndex', // global
+  'title', // global
+  'translate', // global
+  'spellCheck', // global
+  'name', // global
+]);
+
+/**
  * An array of HTML element properties and events.
  *
  * @public
  */
 export const htmlElementProperties = toObjectMap(baseElementProperties, baseElementEvents);
+
+/**
+ * An array of LABEL tag properties and events.
+ *
+ * @public
+ */
+export const labelProperties = toObjectMap(htmlElementProperties, [
+  'form', // button, fieldset, input, label, meter, object, output, select, textarea
+]);
+
+/**
+ * An array of AUDIO tag properties and events.
+
+ * @public
+ */
+export const audioProperties = toObjectMap(htmlElementProperties, [
+  'height', // canvas, embed, iframe, img, input, object, video
+  'loop', // audio, video
+  'muted', // audio, video
+  'preload', // audio, video
+  'src', // audio, embed, iframe, img, input, script, source, track, video
+  'width', // canvas, embed, iframe, img, input, object, video
+]);
+
+/**
+ * An array of VIDEO tag properties and events.
+ *
+ * @public
+ */
+export const videoProperties = toObjectMap(audioProperties, [
+  'poster', // video
+]);
+
+/**
+ * An array of OL tag properties and events.
+ *
+ * @public
+ */
+export const olProperties = toObjectMap(htmlElementProperties, [
+  'start', // ol
+]);
+
+/**
+ * An array of LI tag properties and events.
+ *
+ * @public
+ */
+export const liProperties = toObjectMap(htmlElementProperties, [
+  'value', // button, input, li, option, meter, progress, param
+]);
 
 /**
  * An array of A tag properties and events.
@@ -146,6 +196,15 @@ export const anchorProperties = toObjectMap(htmlElementProperties, [
   'rel', // a, area, link
   'target', // a, area, base, form
   'type', // a, button, input, link, menu, object, script, source, style
+]);
+
+/**
+ * An array of TIME tag properties and events.
+ *
+ * @public
+ */
+export const timeProperties = toObjectMap(htmlElementProperties, [
+  'dateTime', // time
 ]);
 
 /**
@@ -164,15 +223,6 @@ export const buttonProperties = toObjectMap(htmlElementProperties, [
   'formTarget', // input, button
   'type', // a, button, input, link, menu, object, script, source, style
   'value', // button, input, li, option, meter, progress, param,
-]);
-
-/**
- * An array of OL tag properties and events.
- *
- * @public
- */
-export const olProperties = toObjectMap(htmlElementProperties, [
-  'start', // ol
 ]);
 
 /**
@@ -206,6 +256,154 @@ export const inputProperties = toObjectMap(buttonProperties, [
   'value', // button, input, li, option, meter, progress, param
   'width', // canvas, embed, iframe, img, input, object, video
 ]);
+
+/**
+ * An array of TEXTAREA tag properties and events.
+ *
+ * @public
+ */
+export const textAreaProperties = toObjectMap(buttonProperties, [
+  'autoCapitalize', // input, textarea
+  'cols', // textarea
+  'dirname', // input, textarea
+  'form', // button, fieldset, input, label, meter, object, output, select, textarea
+  'maxLength', // input, textarea
+  'placeholder', // input, textarea
+  'readOnly', // input, textarea
+  'required', // input, select, textarea
+  'rows', // textarea
+  'wrap', // textarea
+]);
+
+/**
+ * An array of SELECT tag properties and events.
+ *
+ * @public
+ */
+export const selectProperties = toObjectMap(buttonProperties, [
+  'form', // button, fieldset, input, label, meter, object, output, select, textarea
+  'multiple', // input, select
+  'required', // input, select, textarea
+]);
+
+export const optionProperties = toObjectMap(htmlElementProperties, [
+  'selected', // option
+  'value', // button, input, li, option, meter, progress, param
+]);
+
+/**
+ * An array of TABLE tag properties and events.
+ *
+ * @public
+ */
+export const tableProperties = toObjectMap(htmlElementProperties, [
+  'cellPadding', // table
+  'cellSpacing', // table
+]);
+
+/**
+ * An array of TR tag properties and events.
+ *
+ * @public
+ */
+export const trProperties = htmlElementProperties;
+
+/**
+ * An array of TH tag properties and events.
+ *
+ * @public
+ */
+export const thProperties = toObjectMap(htmlElementProperties, [
+  'rowSpan', // td, th
+  'scope', // th
+]);
+
+/**
+ * An array of TD tag properties and events.
+ *
+ * @public
+ */
+export const tdProperties = toObjectMap(htmlElementProperties, [
+  'colSpan', // td
+  'headers', // td
+  'rowSpan', // td, th
+  'scope', // th
+]);
+
+export const colGroupProperties = toObjectMap(htmlElementProperties, [
+  'span', // col, colgroup
+]);
+
+export const colProperties = toObjectMap(htmlElementProperties, [
+  'span', // col, colgroup
+]);
+
+/**
+ * An array of FIELDSET tag properties and events.
+ *
+ * @public
+ */
+export const fieldsetProperties = toObjectMap(htmlElementProperties, [
+  'disabled', // button, fieldset, input, optgroup, option, select, textarea
+  'form', // button, fieldset, input, label, meter, object, output, select, textarea
+]);
+
+/**
+ * An array of FORM tag properties and events.
+ *
+ * @public
+ */
+export const formProperties = toObjectMap(htmlElementProperties, [
+  'acceptCharset', // form
+  'action', // form
+  'encType', // form
+  'encType', // form
+  'method', // form
+  'noValidate', // form
+  'target', // form
+]);
+
+/**
+ * An array of IFRAME tag properties and events.
+ *
+ * @public
+ */
+export const iframeProperties = toObjectMap(htmlElementProperties, [
+  'allow', // iframe
+  'allowFullScreen', // iframe
+  'allowPaymentRequest', // iframe
+  'allowTransparency', // iframe
+  'csp', // iframe
+  'height', // canvas, embed, iframe, img, input, object, video
+  'importance', // iframe
+  'referrerPolicy', // iframe
+  'sandbox', // iframe
+  'src', // audio, embed, iframe, img, input, script, source, track, video
+  'srcDoc', // iframe
+  'width', // canvas, embed, iframe, img, input, object, video,
+]);
+
+/**
+ * An array of IMAGE tag properties and events.
+ *
+ * @public
+ */
+export const imgProperties = toObjectMap(htmlElementProperties, [
+  'alt', // area, img, input
+  'crossOrigin', // img
+  'height', // canvas, embed, iframe, img, input, object, video
+  'src', // audio, embed, iframe, img, input, script, source, track, video
+  'srcSet', // img, source
+  'useMap', // img, object,
+  'width', // canvas, embed, iframe, img, input, object, video
+]);
+
+/**
+ * An array of DIV tag properties and events.
+ *
+ * @public
+ */
+export const divProperties = htmlElementProperties;
 
 /**
  * Gets native supported props for an html element provided the allowance set. Use one of the property

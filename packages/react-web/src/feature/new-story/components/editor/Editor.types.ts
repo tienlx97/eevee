@@ -1,12 +1,16 @@
-import type { EeveeProps, EeveeSlot, EeveeState } from '@eevee/react-utilities';
+import type { ComponentProps, Slot, ComponentState } from '@eevee/react-utilities';
+// eslint-disable-next-line import/no-extraneous-dependencies
+import { EditorView } from '@codemirror/view';
 
 export type EditorSlots = {
-  root: NonNullable<EeveeSlot<'div'>>;
+  root: NonNullable<Slot<'div'>>;
 };
 
-export type EditorProps = EeveeProps<Partial<EditorSlots>> & {
+export type EditorProps = ComponentProps<Partial<EditorSlots>> & {
   initialDoc?: string;
   onChange?: (doc: string) => void;
+  getEditorView?: (editorView: EditorView) => void;
 };
 
-export type EditorState = EeveeState<EditorSlots> & Pick<EditorProps, 'initialDoc' | 'onChange'> & {};
+export type EditorState = ComponentState<EditorSlots> &
+  Pick<EditorProps, 'initialDoc' | 'onChange' | 'getEditorView'> & {};

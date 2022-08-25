@@ -1,4 +1,4 @@
-import type { EeveeProps, EeveeState, EeveeSlot } from '@eevee/react-utilities';
+import type { ComponentProps, ComponentState, Slot } from '@eevee/react-utilities';
 import * as React from 'react';
 import { EeveeIconsProps } from '@eevee/react-icons';
 
@@ -6,15 +6,15 @@ export type LinkIconSlots = {
   /**
    * Root of the component that renders as either an <a> or a <button> tag.
    */
-  root: EeveeSlot<'a'>;
+  root: Slot<'a'>;
 
-  iconWrap: NonNullable<EeveeSlot<'div'>>;
-  textWrap: NonNullable<EeveeSlot<'span'>>;
+  iconWrap: NonNullable<Slot<'div'>>;
+  textWrap: NonNullable<Slot<'span'>>;
 };
 
 export type LinkType = 'hash' | 'external' | 'internal';
 
-export type LinkIconProps = EeveeProps<Partial<LinkIconSlots>> & {
+export type LinkIconProps = ComponentProps<Partial<LinkIconSlots>> & {
   icon?: React.ReactNode;
   iconFill?: React.FC<EeveeIconsProps<React.SVGAttributes<SVGElement>>>;
   iconRegular?: React.FC<EeveeIconsProps<React.SVGAttributes<SVGElement>>>;
@@ -23,7 +23,7 @@ export type LinkIconProps = EeveeProps<Partial<LinkIconSlots>> & {
   // compoundIcon?: React.FC<EeveeIconsProps<React.SVGAttributes<SVGElement>>>;
 };
 
-export type LinkIconState = EeveeState<LinkIconSlots> &
+export type LinkIconState = ComponentState<LinkIconSlots> &
   Pick<LinkIconProps, 'icon'> & {
     /**
      * There are three types of links

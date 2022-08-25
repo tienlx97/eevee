@@ -3,14 +3,19 @@ import { makeStyles, mergeClasses } from '@griffel/react';
 
 import { breakPoints, tokens } from '@eevee/react-theme';
 import { ButtonR, Button } from '@eevee/react-button';
+import { Popover, PopoverItem, PopoverSurface, PopoverTrigger } from '@eevee/react-popover';
 
-import { Save } from '@components/icons/index';
+import { Menu, MenuItem, MenuList, MenuPopover, MenuTrigger } from '@eevee/react-menu';
+import { Save, ThreeDot } from '@components/icons/index';
 
 import { AuthorMore, SocialList, AuthorMoreSkeleton, SocialListSkeleton } from '@feature/blog/components/index';
 
 import { CircleAvatar, CircleSkeleton } from '@components/circle-avatar/index';
 
-import type { Post } from 'typings/my-mdx/index';
+import type { Blog } from 'typings/my-mdx/index';
+import { useAuthContext } from '@context/AuthContext';
+import { useNavigate } from 'react-router-dom';
+import { useToast } from '@eevee/react-toast';
 
 const useRootStyles = makeStyles({
   root: {
@@ -192,36 +197,70 @@ export const PostHeaderSkeleton = () => {
 };
 
 type PostHeaderProps = {
-  post: Post;
+  blog: Blog;
 };
 
-// eslint-disable-next-line @typescript-eslint/naming-convention
-export function PostHeader({ post }: PostHeaderProps) {
+export function PostHeader({ blog }: PostHeaderProps) {
   const rootStyles = useRootStyles();
   const displayStyles = useDisplayStyles();
   const socialListStyles = useSocialStyles();
+
+  const { user } = useAuthContext();
+  const navigate = useNavigate();
+  const toastify = useToast();
+
+  const onEditStoryClick = () => {
+    toastify('info', 'Navigating to edit page');
+    navigate(`/p/${blog.id}/edit`);
+  };
 
   return (
     <div className={rootStyles.root}>
       {/* > mobile */}
       <div className={displayStyles.itemStart}>
         <div className={displayStyles.flex}>
-          <CircleAvatar
-            width={48}
-            height={48}
-            className={displayStyles['mr-16']}
-            url="https://source.unsplash.com/random"
-          />
+          <CircleAvatar width={48} height={48} className={displayStyles['mr-16']} url={blog.author.photo_url} />
           <AuthorMore
-            authorName={post.frontmatter.author.name}
-            authorNickName={post.frontmatter.author.nickName}
-            date={post.frontmatter.date}
-            readTime={post.readTime}
+            authorName={blog.author?.name!}
+            authorNickName={blog.author?.nick_name!}
+            date={blog.publish_date}
+            readTime={blog.read_time}
           />
         </div>
-        <SocialList className={socialListStyles.web}>
-          <ButtonR style={{ margin: '0px 4px 0px 28px' }} aria-label="Save" title="Save" icon={<Save />} />
-        </SocialList>
+        <div
+          style={{
+            display: 'flex',
+            alignItems: 'center',
+          }}
+        >
+          <SocialList className={socialListStyles.web}>
+            <ButtonR style={{ margin: '0px 4px 0px 28px' }} aria-label="Save" title="Save" icon={<Save />} />
+          </SocialList>
+          <Popover withArrow>
+            <PopoverTrigger>
+              <div style={{ margin: '0px 4px 0px 16px' }}>
+                <ButtonR aria-label="Actions" title="Actions" icon={<ThreeDot />} />
+              </div>
+            </PopoverTrigger>
+
+            <PopoverSurface>
+              {user?.id === blog.author.id && (
+                <>
+                  <PopoverItem onClick={onEditStoryClick}>Edit story</PopoverItem>
+                  <PopoverItem disabled>Pin this story to your profile</PopoverItem>
+                  <PopoverItem disabled>Delete story</PopoverItem>
+                </>
+              )}
+              {user?.id !== blog.author.id && (
+                <>
+                  <PopoverItem>Show less like this</PopoverItem>
+                  <PopoverItem>Mute this author</PopoverItem>
+                  <PopoverItem>Report</PopoverItem>
+                </>
+              )}
+            </PopoverSurface>
+          </Popover>
+        </div>
       </div>
       {/* <= mobile */}
       <SocialList className={socialListStyles.mobile} before={true}>

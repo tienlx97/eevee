@@ -17,7 +17,9 @@ export const useEditorState = (state: EditorState): EditorState => {
   React.useEffect(() => {
     if (editorView) {
       // Do nothing for now
+      state.getEditorView?.(editorView);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [editorView]);
 
   return state;

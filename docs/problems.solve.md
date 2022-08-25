@@ -27,3 +27,5 @@
 - [Protected route](https://www.robinwieruch.de/react-router-private-routes/)
 - [Github authen](https://www.freecodecamp.org/news/github-user-authentication-using-firebase-and-reactjs-with-hooks/)
 - [Error boundary](https://blog.logrocket.com/react-error-handling-react-error-boundary/)
+- [Toast](https://github.com/adamrichardson14/forms/blob/toastCompleted/components/Toast.js)
+- [Toast 2](https://github.com/portexe/PortalsAndToast/blob/master/src/components/ToastPortal/ToastPortal.js)

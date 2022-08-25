@@ -1,20 +1,20 @@
-import type { EeveeProps, EeveeSlot, EeveeState } from '@eevee/react-utilities';
+import type { ComponentProps, Slot, ComponentState } from '@eevee/react-utilities';
 import type { ReadTime } from 'typings/my-mdx/index';
 import { Dot } from '@components/dot/index';
 
 export type AuthorMoreSlots = {
-  root: NonNullable<EeveeSlot<'div'>>;
-  dot: NonNullable<EeveeSlot<typeof Dot>>;
+  root: NonNullable<Slot<'div'>>;
+  dot: NonNullable<Slot<typeof Dot>>;
 };
 
-export type AuthorMoreProps = EeveeProps<Partial<AuthorMoreSlots>> & {
+export type AuthorMoreProps = ComponentProps<Partial<AuthorMoreSlots>> & {
   authorName: string;
   authorNickName: string;
-  date: string;
+  date: number;
   readTime: ReadTime;
 };
 
-export type AuthorMoreState = EeveeState<AuthorMoreSlots> &
+export type AuthorMoreState = ComponentState<AuthorMoreSlots> &
   Pick<AuthorMoreProps, 'authorName' | 'authorNickName' | 'date' | 'readTime'> & {
     flexCenterClassName?: string;
   };

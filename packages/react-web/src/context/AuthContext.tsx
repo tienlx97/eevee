@@ -1,56 +1,83 @@
 import * as React from 'react';
-import { onAuthStateChanged } from 'firebase/auth';
-import { auth, getAuthor } from '../libs/index';
-import type { Author } from 'typings/my-mdx/index';
+import { supabase } from '../libs/index';
+import type { UserSchema } from 'typings/my-mdx/index';
+import { createUser, getUser } from '../services/index';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 export type AuthContextValue = {
-  state: AuthReducerState;
-  dispatch: React.Dispatch<any>;
+  user: UserSchema | null;
+  isAuthReady: boolean;
+  isLoaded: boolean;
+  signIn: () => void;
+  signOut: () => void;
 };
 
 const AuthContext = React.createContext<AuthContextValue | undefined>(undefined);
 
-type AuthReducerState = {
-  user: any | null;
-  authIsReady: boolean;
-};
-
-type AuthReducerAction = {
-  type: 'LOGIN' | 'LOGOUT' | 'AUTH_IS_READY';
-  payload: Author | null;
-};
-
-export const authReducer = (state: AuthReducerState, action: AuthReducerAction) => {
-  switch (action.type) {
-    case 'LOGIN':
-      return { ...state, user: action.payload };
-    case 'LOGOUT':
-      return { ...state, user: null };
-    case 'AUTH_IS_READY':
-      return { ...state, user: action.payload, authIsReady: true };
-    default:
-      return state;
-  }
-};
-
 export const AuthContextProvider: React.FC = ({ children }) => {
-  const [state, dispatch] = React.useReducer(authReducer, {
-    user: null,
-    authIsReady: false,
-  });
+  const loc = useLocation();
+  const navigate = useNavigate();
 
-  React.useEffect(() => {
-    const unsubscribe = onAuthStateChanged(auth, user => {
-      if (!user) {
-        dispatch({ type: 'AUTH_IS_READY', payload: null });
-      } else {
-        getAuthor(user.uid).then(author => dispatch({ type: 'AUTH_IS_READY', payload: author ? author : null }));
-      }
+  const [isLoaded, setIsLoaded] = React.useState(false);
+  const [user, setUser] = React.useState<UserSchema | null>(null);
+  const [isAuthReady, setIsAuthReady] = React.useState<boolean>(false);
+
+  const signIn = React.useCallback(() => {
+    setIsLoaded(true);
+    supabase.auth.signIn({
+      provider: 'github',
     });
-    return unsubscribe;
   }, []);
 
-  return <AuthContext.Provider value={{ state, dispatch }}>{children}</AuthContext.Provider>;
+  const signOut = React.useCallback(() => {
+    supabase.auth.signOut();
+  }, []);
+
+  // Initialize the user based on the stored session
+  const initUser = React.useCallback(async () => {
+    const session = supabase.auth.session();
+    if (session) {
+      if (session.user) {
+        getUser(session.user.id).then(author => {
+          setIsAuthReady(true);
+          setUser(author ?? null);
+        });
+      }
+    } else {
+      setIsAuthReady(true);
+    }
+  }, []);
+
+  React.useEffect(() => {
+    initUser();
+  }, [initUser]);
+
+  React.useEffect(() => {
+    const { data: authListener } = supabase.auth.onAuthStateChange(async (event, session) => {
+      // update
+      if (event === 'SIGNED_IN') {
+        if (session && session.user) {
+          const author = await createUser(session.user);
+          setIsLoaded(false);
+          setUser(author ?? null);
+        }
+        if (loc.pathname === '/login') {
+          navigate('/home');
+        }
+      } else if (event === 'SIGNED_OUT') {
+        setUser(null);
+        setIsAuthReady(false);
+        navigate('/login');
+      }
+    });
+
+    return () => authListener?.unsubscribe();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [loc]);
+
+  return (
+    <AuthContext.Provider value={{ isAuthReady, isLoaded, signIn, signOut, user }}>{children}</AuthContext.Provider>
+  );
 };
 
 // context consumer hook

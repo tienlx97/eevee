@@ -18,21 +18,28 @@ export const useBlogPageState = (state: BlogPageState): BlogPageState => {
 
   state.setOpenComment = setOpenComment;
   state.isOpenComment = isOpenComment;
-  state.post = data;
+  state.blog = data;
   state.error = error;
 
   React.useEffect(() => {
-    if (!state.post && !state.error) {
+    if (!data && !error) {
       document.title = '⏳ Loading…';
-    } else if (state.error) {
+    } else if (error) {
       document.title = '💔 Loading error';
-    } else if (state.post) {
-      document.title = state.post.frontmatter.title;
+      navigate(pathname, {
+        replace: true,
+        state: {
+          errorStatusCode: 404,
+        },
+      });
+    } else if (data) {
+      document.title = data.title;
     }
-  }, [state.post, state.error]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [data, error]);
 
   React.useEffect(() => {
-    if (state.post && !state.error) {
+    if (data && !error) {
       if (mountCounter.current > 0) {
         // 'dimension19' means it's a client-side navigation.
         // I.e. not the initial load but the location has now changed.
@@ -49,7 +56,7 @@ export const useBlogPageState = (state: BlogPageState): BlogPageState => {
       // a client-side navigation happened.
       mountCounter.current++;
     }
-  }, [ga, state.post, state.error]);
+  }, [ga, data, error]);
 
   React.useEffect(() => {
     const location = document.location;
@@ -79,14 +86,14 @@ export const useBlogPageState = (state: BlogPageState): BlogPageState => {
   }, []);
 
   // navigate to error page
-  if (state.error) {
-    navigate(pathname, {
-      replace: true,
-      state: {
-        errorStatusCode: 404,
-      },
-    });
-  }
+  // if (state.error) {
+  //   navigate(pathname, {
+  //     replace: true,
+  //     state: {
+  //       errorStatusCode: 404,
+  //     },
+  //   });
+  // }
 
   return state;
 };

@@ -25,3 +25,12 @@ export const toDate = (val?: string) => {
   const month = MONTH[mydate.getMonth()];
   return month + ' ' + mydate.getDate();
 };
+
+export const blog2Date = (timestamp: number) => {
+  const date = new Date(timestamp);
+
+  if (date.getFullYear() === new Date().getFullYear()) {
+    return `${MONTH[date.getMonth()]} ${date.getDate()}`;
+  }
+  return `${MONTH[date.getMonth()]} ${date.getDate()}, ${date.getFullYear()}`;
+};

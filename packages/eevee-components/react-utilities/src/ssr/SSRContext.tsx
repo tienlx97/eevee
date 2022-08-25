@@ -20,13 +20,13 @@ export const defaultSSRContextValue: SSRContextValue = {
   current: 0,
 };
 
-export const SSRContext = React.createContext<SSRContextValue>(defaultSSRContextValue);
+export const SSRContext = React.createContext<SSRContextValue | undefined>(undefined) as React.Context<SSRContextValue>;
 
 /**
  * @internal
  */
 export function useSSRContext(): SSRContextValue {
-  return React.useContext(SSRContext);
+  return React.useContext(SSRContext) ?? defaultSSRContextValue;
 }
 
 /**
@@ -35,8 +35,7 @@ export function useSSRContext(): SSRContextValue {
  *
  * @public
  */
-/* eslint-disable @typescript-eslint/no-explicit-any */
-export const SSRProvider: React.FC = (props: any) => {
+export const SSRProvider: React.FC = props => {
   const [value] = React.useState<SSRContextValue>(() => ({ current: 0 }));
 
   return <SSRContext.Provider value={value}>{props.children}</SSRContext.Provider>;
@@ -56,8 +55,14 @@ export function useIsSSR(): boolean {
     if (!isInSSRContext && !canUseDOM()) {
       // eslint-disable-next-line no-console
       console.error(
-        'When server rendering, you must wrap your application in an <SSRProvider> to ensure consistent ids are ' +
-          'generated between the client and server.',
+        [
+          '@eevee/react-components: ',
+          'When server rendering, you must wrap your application in an <SSRProvider> to ensure consistent ids are ' +
+            'generated between the client and server.',
+          '\n',
+          '\n',
+          'Check documentation at https://aka.ms/fluentui-ssr',
+        ].join(''),
       );
     }
   }

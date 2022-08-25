@@ -216,8 +216,8 @@ export function lintImports() {
         'example files are using deep imports. To promote best practices, ' +
         `please only import from root-level files ('<package-name>' or '<package-name>/lib/<file>').`,
       pathReExported:
-        'example files are directly importing from packages that @fluentui/react re-exports. ' +
-        'Please change the following imports to reference @fluentui/react instead:',
+        'example files are directly importing from packages that @eevee/react re-exports. ' +
+        'Please change the following imports to reference @eevee/react instead:',
       importStar:
         'example files are using "import *" which causes problems with the website example editor. Please import things by name instead.',
       exportMulti:

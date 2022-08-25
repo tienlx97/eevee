@@ -1,20 +1,10 @@
 
-export type Author = {
-  id: number;
-  uid: string,
-  email: string,
-  photoURL: string;
-  name: string;
-  nickName: string;
-  url: string;
-  description: string;
-}
 
 export type PostType = "story" | "diary";
 
 export type FrontMatter = {
   // require
-  author: Author;
+  author: UserSchema;
   tags: Array<string>;
   description: string;
   postId: string;
@@ -68,16 +58,33 @@ export type FrontMatterI69n = {
   title: string;
 };
 
+type Status = 'published' | 'draft'
 
-export type PostI69n = {
-  postId?: string;
-  authorID: string;
-  compileCode: string;
-  mdxCode: string;
-  readTime: ReadTime;
+export type BlogSchema = {
+  id?: string;
+  user_id: string;
+  compile_code: string;
+  mdx_code: string;
+  status: Status;
+  publish_date: number;
   toc: Toc[];
+  read_time: ReadTime;
   title: string;
-  tags: string[];
+  subtitle: string;
   slugify: string;
-  date: string;
+  tags: string[];
+}
+
+export type UserSchema = {
+  id: string;
+  mimikyu_id: string,
+  email: string,
+  name: string;
+  nick_name: string;
+  photo_url: string;
+  description: string;
+}
+
+export type Blog = BlogSchema & {
+  author: UserSchema,
 }

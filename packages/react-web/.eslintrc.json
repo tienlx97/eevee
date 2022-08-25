@@ -5,7 +5,9 @@
     "@typescript-eslint/no-explicit-any": "off",
     "@typescript-eslint/explicit-member-accessibility": "off",
     "@typescript-eslint/member-ordering": "off",
-    "deprecation/deprecation": "off"
+    "react/jsx-no-bind": "off",
+    "deprecation/deprecation": "off",
+    "@typescript-eslint/naming-convention": "off"
   },
   "overrides": [
     {

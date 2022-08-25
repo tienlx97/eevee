@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { getSlots } from '@eevee/react-utilities';
 import type { AuthorMoreState, AuthorMoreSlots } from './AuthorMore.types';
-import { toDate } from '@utilities/toDate';
+import { blog2Date } from '@utilities/toDate';
 
 /**
  * Render the final JSX of AuthorMore
@@ -17,7 +17,7 @@ export const renderAuthorMore = (state: AuthorMoreState) => {
       <div className={flexCenterClassName}>
         <p>@{authorNickName}</p>
         <slots.dot {...slotProps.dot} />
-        <p>{toDate(date)}</p>
+        <p>{blog2Date(date)}</p>
         <slots.dot {...slotProps.dot} />
         <p>{readTime.text}</p>
       </div>
