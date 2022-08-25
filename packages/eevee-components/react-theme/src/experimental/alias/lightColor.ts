@@ -81,4 +81,7 @@ export const generateColorTokens = (brand: BrandVariants): ColorTokens => ({
   bg8: '#1d9bf0',
   bg9: '',
   bg10: '',
+  //
+
+  shadow16: '0 0 2px rgba(0,0,0,0.12), 0 8px 16px rgba(0,0,0,0.14)',
 });

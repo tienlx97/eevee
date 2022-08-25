@@ -1,12 +1,12 @@
-import type { EeveeProps, EeveeSlot, EeveeState } from '@eevee/react-utilities';
+import type { ComponentProps, Slot, ComponentState } from '@eevee/react-utilities';
 
 export type ButtonSlots = {
-  root: NonNullable<EeveeSlot<'button'>>;
+  root: NonNullable<Slot<'button'>>;
 
-  icon?: EeveeSlot<'span'>;
+  icon?: Slot<'span'>;
 };
 
-export type ButtonProps = EeveeProps<ButtonSlots> & {
+export type ButtonProps = ComponentProps<ButtonSlots> & {
   /**
    * A button can have its content and borders styled for greater emphasis or to be subtle.
    * - 'transparent': Removes background and border styling.
@@ -52,7 +52,7 @@ export type ButtonProps = EeveeProps<ButtonSlots> & {
   size?: 'small' | 'medium' | 'large';
 };
 
-export type ButtonState = EeveeState<ButtonSlots> &
+export type ButtonState = ComponentState<ButtonSlots> &
   Required<Pick<ButtonProps, 'appearance' | 'disabledFocusable' | 'disabled' | 'iconPosition' | 'shape'>> &
   Pick<ButtonProps, 'size'> & {
     /**

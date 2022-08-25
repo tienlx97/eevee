@@ -1,15 +1,16 @@
-import { makeStyles, shorthands } from '@griffel/react';
+import { makeStyles, mergeClasses, shorthands } from '@griffel/react';
 import * as React from 'react';
 import { tokens } from '@eevee/react-theme';
-import { Button } from '../../../../eevee-components/react-button/src/Button';
-import { ButtonR } from '../../../../eevee-components/react-button/src/index';
+import { slugify } from '@eevee/react-utilities';
+import { Enter, Backspace } from '@eevee/react-keyboard';
 
 type TagInputProps = {
   id?: string;
   name?: string;
   placeholder?: string;
-  onChange: (value: string[]) => void;
+  onTagChange: (value: string[]) => void;
   defaultTags?: string[];
+  className?: string;
 };
 
 const useStyles = makeStyles({
@@ -101,24 +102,20 @@ const useTagStyles = makeStyles({
 });
 
 export const TagInput = React.forwardRef<HTMLInputElement, TagInputProps>(
-  ({ defaultTags, name, onChange, placeholder, id }, ref) => {
+  ({ defaultTags, name, onTagChange, placeholder, id, className }, ref) => {
     const styles = useStyles();
     const inputStyles = useInputStyles();
     const tagStyles = useTagStyles();
 
     const inputRef = React.useRef<HTMLInputElement>(null);
-    const [value, setValue] = React.useState('');
     const [tags, setTags] = React.useState(defaultTags ? defaultTags : []);
 
-    const changeHandler = (e: any) => {
-      setValue(e.target.value);
-      onChange(tags);
-    };
-
-    const removeTag = (tag: string) => {
-      const arr = tags.filter(t => t !== tag);
+    const removeTag = (tag: string, i: number) => {
+      const arr = [...tags];
+      arr.splice(i, 1);
       setTags(arr);
-      onChange(arr);
+
+      onTagChange(arr);
     };
 
     const inputFocus = () => {
@@ -129,44 +126,41 @@ export const TagInput = React.forwardRef<HTMLInputElement, TagInputProps>(
 
     const updateTagsHandler = (e: any) => {
       e.preventDefault();
+      if (!inputRef.current) {
+        return;
+      }
 
+      let newTag = e.target.value.trim();
       // Add tags if input is not empty and if input value is not comma
-      if (e.target.value !== '') {
-        if (e.key === 'Spacebar' || e.key === ' ') {
-          const newTag = value.trim().split(',')[0];
-          if (!tags.includes(newTag) && newTag !== '') {
-            const arr = [...tags, newTag];
-            setTags(arr);
-            onChange(arr);
-          }
-          setValue('');
-        } else if (e.key === 'Enter') {
-          const newTag = value.trim();
-          if (!tags.includes(newTag) && newTag !== '') {
-            const arr = [...tags, newTag];
-            setTags(arr);
-            onChange(arr);
-          }
-          setValue('');
+      if (e.key === Enter && newTag !== '') {
+        newTag = slugify(newTag);
+        if (!tags.includes(newTag)) {
+          const arr = [...tags, newTag];
+          setTags(arr);
+          onTagChange(arr);
+        } else {
+          inputRef.current.placeholder = ' Duplicated';
         }
+        inputRef.current.value = '';
       }
 
       // Remove tags if backspace is pressed
-      if (e.key === 'Backspace' && e.target.value === '' && tags.length > 0) {
+      if (e.key === Backspace && e.target.value === '' && tags.length > 0) {
+        inputRef.current.placeholder = '';
         const copyOfTags = [...tags];
         copyOfTags.pop();
         setTags(copyOfTags);
-        onChange(copyOfTags);
+        onTagChange(copyOfTags);
       }
     };
 
     return (
-      <div className={styles.root} onClick={inputFocus}>
+      <div className={mergeClasses(styles.root, className)} onClick={inputFocus}>
         <ul className={tagStyles.root}>
           {tags.map((tag, i) => (
             <li key={i} className={tagStyles.tagItem}>
               {tag}{' '}
-              <button className={tagStyles.removeButton} onClick={() => removeTag(tag)} type="button">
+              <button className={tagStyles.removeButton} onClick={() => removeTag(tag, i)} type="button">
                 <svg
                   aria-label="Remove topic"
                   role="img"
@@ -182,9 +176,6 @@ export const TagInput = React.forwardRef<HTMLInputElement, TagInputProps>(
                   />
                 </svg>
               </button>
-              <span onClick={() => removeTag(tag)}>
-                <i className="fas fa-times-circle" />
-              </span>
             </li>
           ))}
         </ul>
@@ -194,9 +185,7 @@ export const TagInput = React.forwardRef<HTMLInputElement, TagInputProps>(
           type="text"
           placeholder={placeholder}
           name={name}
-          value={value}
           id={id ? id : name}
-          onChange={changeHandler}
           onKeyUp={updateTagsHandler}
         />
       </div>

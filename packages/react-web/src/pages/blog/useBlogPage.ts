@@ -7,8 +7,8 @@ import { MiddleLayout, RightLayout } from '@layout/index';
 /**
  * Create the state required to render Blog.
  *
- * The returned state can be modified with hooks such as useBlogStyles_unstable,
- * before being passed to renderBlog_unstable.
+ * The returned state can be modified with hooks such as useBlogStyles,
+ * before being passed to renderBlog.
  *
  * @param props - props from this instance of Blog
  * @param ref - reference to root HTMLElement of Blog

@@ -6,8 +6,8 @@ import { useMiddleLayoutState } from './useMiddleLayoutState';
 /**
  * Create the state required to render WriteLayout.
  *
- * The returned state can be modified with hooks such as useWriteLayoutStyles_unstable,
- * before being passed to renderWriteLayout_unstable.
+ * The returned state can be modified with hooks such as useWriteLayoutStyles,
+ * before being passed to renderWriteLayout.
  *
  * @param props - props from this instance of WriteLayout
  * @param ref - reference to root HTMLElement of WriteLayout

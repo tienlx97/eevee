@@ -5,6 +5,10 @@ export {
   usePrevious,
   usePrefersReducedMotion,
   useBoop,
+  useControllableState,
+  useMergedRefs,
+  useOnClickOutside,
+  useOnScrollOutside,
 } from './hooks/index';
 
 export { canUseDOM, defaultSSRContextValue, useIsSSR, useSSRContext, SSRProvider } from './ssr/index';
@@ -20,8 +24,8 @@ export {
 } from './compose/index';
 export type {
   AsIntrinsicElement,
-  // ComponentProps,
-  // ComponentState,
+  ComponentProps,
+  ComponentState,
   ExtractSlotProps,
   ForwardRefComponent,
   IsSingleton,
@@ -29,7 +33,7 @@ export type {
   ReplaceNullWithUndefined,
   ResolveShorthandFunction,
   ResolveShorthandOptions,
-  // Slot,
+  Slot,
   Slots,
   SlotClassNames,
   SlotPropsRecord,
@@ -37,10 +41,18 @@ export type {
   SlotShorthandValue,
   UnionToIntersection,
   UnknownSlotProps,
-  //
-  EeveeProps,
-  EeveeSlot,
-  EeveeState,
 } from './compose/index';
 
-export { getNativeElementProps, getPartitionedNativeProps, omit, slugify } from './utils/index';
+export { applyTriggerPropsToChildren, getTriggerChild } from './trigger/index';
+
+export type { EeveeTriggerComponent } from './trigger/index';
+export type { RefObjectFunction, UseControllableStateOptions, UseOnClickOrScrollOutsideOptions } from './hooks/index';
+export {
+  getNativeElementProps,
+  getPartitionedNativeProps,
+  omit,
+  slugify,
+  genTimeStampHash,
+  mergeCallbacks,
+  shouldPreventDefaultOnKeyDown,
+} from './utils/index';

@@ -1,18 +1,18 @@
-import type { EeveeProps, EeveeSlot, EeveeState } from '@eevee/react-utilities';
+import type { ComponentProps, Slot, ComponentState } from '@eevee/react-utilities';
 
 export type CircleAvatarSlots = {
-  root: NonNullable<EeveeSlot<'div'>>;
-  img: NonNullable<EeveeSlot<'img'>>;
+  root: NonNullable<Slot<'div'>>;
+  img: NonNullable<Slot<'img'>>;
 };
 
-export type CircleAvatarProps = EeveeProps<Partial<CircleAvatarSlots>> & {
+export type CircleAvatarProps = ComponentProps<Partial<CircleAvatarSlots>> & {
   width?: number;
   height?: number;
   url: string;
   title?: string;
 };
 
-export type CircleAvatarState = EeveeState<CircleAvatarSlots> &
+export type CircleAvatarState = ComponentState<CircleAvatarSlots> &
   Pick<CircleAvatarProps, 'width' | 'height' | 'url' | 'title'> & {
     linkClassName?: string;
   };

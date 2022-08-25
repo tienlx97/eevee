@@ -6,8 +6,8 @@ import { useBlurSystemState } from './useBlurSystemState';
 /**
  * Create the state required to render BlurSystem.
  *
- * The returned state can be modified with hooks such as useBlurSystemStyles_unstable,
- * before being passed to renderBlurSystem_unstable.
+ * The returned state can be modified with hooks such as useBlurSystemStyles,
+ * before being passed to renderBlurSystem.
  *
  * @param props - props from this instance of BlurSystem
  * @param ref - reference to root HTMLElement of BlurSystem

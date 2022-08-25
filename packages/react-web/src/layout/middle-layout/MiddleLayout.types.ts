@@ -1,11 +1,11 @@
-import type { EeveeProps, EeveeSlot, EeveeState } from '@eevee/react-utilities';
+import type { ComponentProps, Slot, ComponentState } from '@eevee/react-utilities';
 
 export type MiddleLayoutSlots = {
-  root: NonNullable<EeveeSlot<'main'>>;
+  root: NonNullable<Slot<'main'>>;
 };
 
-export type MiddleLayoutProps = EeveeProps<Partial<MiddleLayoutSlots>> & {};
+export type MiddleLayoutProps = ComponentProps<Partial<MiddleLayoutSlots>> & {};
 
-export type MiddleLayoutState = EeveeState<MiddleLayoutSlots> & {
+export type MiddleLayoutState = ComponentState<MiddleLayoutSlots> & {
   styles: string[];
 };

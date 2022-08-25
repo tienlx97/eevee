@@ -1,2 +1,2 @@
-export * from './firebase/index';
 export * from './suspense/index';
+export * from './supabase/supabaseClient';

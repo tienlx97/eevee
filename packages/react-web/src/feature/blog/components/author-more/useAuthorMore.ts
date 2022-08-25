@@ -6,8 +6,8 @@ import { Dot } from '@components/dot/index';
 /**
  * Create the state required to render AuthorMore.
  *
- * The returned state can be modified with hooks such as useAuthorMoreStyles_unstable,
- * before being passed to renderAuthorMore_unstable.
+ * The returned state can be modified with hooks such as useAuthorMoreStyles,
+ * before being passed to renderAuthorMore.
  *
  * @param props - props from this instance of AuthorMore
  * @param ref - reference to root HTMLElement of AuthorMore

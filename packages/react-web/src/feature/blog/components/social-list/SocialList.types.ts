@@ -1,11 +1,11 @@
-import type { EeveeProps, EeveeSlot, EeveeState } from '@eevee/react-utilities';
+import type { ComponentProps, Slot, ComponentState } from '@eevee/react-utilities';
 
 export type SocialListSlots = {
-  root: NonNullable<EeveeSlot<'div'>>;
+  root: NonNullable<Slot<'div'>>;
 };
 
-export type SocialListProps = EeveeProps<Partial<SocialListSlots>> & {
+export type SocialListProps = ComponentProps<Partial<SocialListSlots>> & {
   before?: boolean;
 };
 
-export type SocialListState = EeveeState<SocialListSlots> & Pick<SocialListProps, 'before'> & {};
+export type SocialListState = ComponentState<SocialListSlots> & Pick<SocialListProps, 'before'> & {};

@@ -10,7 +10,7 @@ Usage: in your [ESLint config file](https://eslint.org/docs/user-guide/configuri
 - `node`: node specific configuration for fluentui vNext
 - `react--legacy`: react specific configuration for fluentui v7,8
 - `node--legacy`: node specific configuration for fluentui v7,8
-- `react-northstar`: For `@fluentui/react-northstar` and related packages
+- `react-northstar`: For `@eevee/react-northstar` and related packages
 - `imports`: auto import statements sorting configuration
 
 Helpers for customizing configuration are exported under a `configHelpers` object.
@@ -105,4 +105,4 @@ Ban `tslint:disable` and `tslint:enable` comments.
 
 Prevent visibility modifiers (`public`, `protected`, `private`) from being specified on class members/methods.
 
-Used in Fluent UI only by [`@fluentui/react-northstar`](https://aka.ms/fluent-ui), not `@fluentui/react`.
+Used in Fluent UI only by [`@eevee/react-northstar`](https://aka.ms/fluent-ui), not `@fluentui/react`.

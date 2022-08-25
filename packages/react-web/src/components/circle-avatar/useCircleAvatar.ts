@@ -6,8 +6,8 @@ import { useCircleAvatarState } from './useCircleAvatarState';
 /**
  * Create the state required to render CircleAvatar.
  *
- * The returned state can be modified with hooks such as useCircleAvatarStyles_unstable,
- * before being passed to renderCircleAvatar_unstable.
+ * The returned state can be modified with hooks such as useCircleAvatarStyles,
+ * before being passed to renderCircleAvatar.
  *
  * @param props - props from this instance of CircleAvatar
  * @param ref - reference to root HTMLElement of CircleAvatar

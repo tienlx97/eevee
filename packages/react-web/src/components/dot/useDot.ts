@@ -6,8 +6,8 @@ import { useDotState } from './useDotState';
 /**
  * Create the state required to render Dot.
  *
- * The returned state can be modified with hooks such as useDotStyles_unstable,
- * before being passed to renderDot_unstable.
+ * The returned state can be modified with hooks such as useDotStyles,
+ * before being passed to renderDot.
  *
  * @param props - props from this instance of Dot
  * @param ref - reference to root HTMLElement of Dot

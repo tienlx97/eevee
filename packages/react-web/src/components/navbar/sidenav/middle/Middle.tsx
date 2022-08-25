@@ -27,7 +27,7 @@ const useRootStyles = makeStyles({
 
 export const Middle = () => {
   const styles = useRootStyles();
-  const { state } = useAuthContext();
+  const { user } = useAuthContext();
   return (
     <div className={styles.base}>
       <div className={styles.linkIconWrapper}>
@@ -36,7 +36,7 @@ export const Middle = () => {
       <div className={styles.linkIconWrapper}>
         <LinkIcon aria-label="Search" title="Search" iconFill={SearchFill} iconRegular={SearchRegular} href="/search" />
       </div>
-      {state.user && (
+      {user && (
         <>
           <div className={styles.linkIconWrapper}>
             <LinkIcon

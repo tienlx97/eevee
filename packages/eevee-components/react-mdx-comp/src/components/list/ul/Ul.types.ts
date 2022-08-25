@@ -1,9 +1,9 @@
-import { EeveeSlot, EeveeProps, EeveeState } from '@eevee/react-utilities';
+import { Slot, ComponentProps, ComponentState } from '@eevee/react-utilities';
 
 export type UlSlots = {
-  root: NonNullable<EeveeSlot<'ul'>>;
+  root: NonNullable<Slot<'ul'>>;
 };
 
-export type UlProps = EeveeProps<UlSlots> & {};
+export type UlProps = ComponentProps<UlSlots> & {};
 
-export type UlState = EeveeState<UlSlots> & {};
+export type UlState = ComponentState<UlSlots> & {};

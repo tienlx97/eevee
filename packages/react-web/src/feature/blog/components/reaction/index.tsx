@@ -82,7 +82,6 @@ export const Reaction = ({ setOpenComment, ...props }: ReactionProps) => {
           </Button>
           <div className={styles.spacing} />
           <Button
-            // eslint-disable-next-line react/jsx-no-bind
             onClick={() => setOpenComment(true)}
             className={styles['text-base']}
             icon={{ children: <Comment />, className: styles['mr-5'] }}

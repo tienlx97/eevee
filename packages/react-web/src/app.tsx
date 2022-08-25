@@ -1,11 +1,10 @@
 import * as React from 'react';
-import { Routes, Route, Navigate, useMatch, useLocation } from 'react-router-dom';
+import { Routes, Route, Navigate, useLocation } from 'react-router-dom';
 
 import { PageLayout, ProtectedRoute } from '@layout/index';
 import { Scroll2Top } from '@components/scroll2top/index';
 import { ErrorHandler } from '@context/index';
-import { Eye } from '@components/icons/index';
-import { Spinner } from './components/spinner2/index';
+import { Spinner } from './components/spinner-2/index';
 import { Home, PageOrPageNotFound, NewStory } from '@pages/index';
 
 const LazyPageNotFound = React.lazy(() => import('@pages/index').then(module => ({ default: module.PageNotFound })));
@@ -36,7 +35,15 @@ export const App = () => {
         path="/new-story"
         element={
           <ProtectedRoute>
-            <NewStory hiddenButton={{ icon: <Eye /> }} />
+            <NewStory type="new" />
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path="/p/:blogID/edit"
+        element={
+          <ProtectedRoute>
+            <NewStory type="edit" />
           </ProtectedRoute>
         }
       />

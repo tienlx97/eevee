@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import * as React from 'react';
 import { makeStyles, mergeClasses, shorthands } from '@griffel/react';
 import { tokens } from '@eevee/react-theme';

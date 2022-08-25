@@ -2,6 +2,7 @@ import * as React from 'react';
 import { makeStyles, mergeClasses, shorthands } from '@griffel/react';
 import { breakPoints, tokens } from '@eevee/react-theme';
 import { useId } from '@eevee/react-utilities';
+import { TagInput } from '@components/tag-input/index';
 
 /**
  * Styles for the root slot
@@ -43,15 +44,35 @@ const useInputStyles = makeStyles({
     color: tokens.f1,
     width: '100%',
   },
+
+  textArea: {
+    resize: 'none',
+  },
 });
 
 type InputGroupProps = JSX.IntrinsicElements['div'] & {
-  type?: 'input' | 'tag';
+  inputClassName?: string;
+  type?: 'input' | 'tag' | 'text-area';
   labelChildren?: React.ReactNode;
+  onTagChange?: (value: string[]) => void;
+  defaultTags?: string[];
 };
 
-export const InputGroup = React.forwardRef<HTMLInputElement, InputGroupProps>(
-  ({ className, children, labelChildren, type = 'input', placeholder, ...props }, ref) => {
+export const InputGroup = React.forwardRef<any, InputGroupProps>(
+  (
+    {
+      className,
+      onTagChange,
+      children,
+      labelChildren,
+      type = 'input',
+      defaultTags,
+      placeholder,
+      inputClassName,
+      ...props
+    },
+    ref,
+  ) => {
     const styles = useStyles();
     const labelStyles = useLabelStyles();
     const inputStyles = useInputStyles();
@@ -59,15 +80,30 @@ export const InputGroup = React.forwardRef<HTMLInputElement, InputGroupProps>(
 
     return (
       <div className={mergeClasses(styles.root, className)} {...props}>
-        <div>
-          <label htmlFor={genID} className={labelStyles.root}>
-            {labelChildren && labelChildren}
-          </label>
+        <div className={labelStyles.root}>
+          <label htmlFor={genID}>{labelChildren && labelChildren}</label>
         </div>
         {type === 'input' && (
-          <input ref={ref} spellCheck={false} placeholder={placeholder} id={genID} className={inputStyles.root} />
+          <input
+            ref={ref}
+            spellCheck={false}
+            placeholder={placeholder}
+            id={genID}
+            className={mergeClasses(inputStyles.root, inputClassName)}
+          />
         )}
-        {type === 'tag' && children && children}
+        {type === 'text-area' && (
+          <textarea
+            ref={ref}
+            spellCheck={false}
+            placeholder={placeholder}
+            id={genID}
+            className={mergeClasses(inputStyles.root, inputStyles.textArea, inputClassName)}
+          />
+        )}
+        {type === 'tag' && (
+          <TagInput defaultTags={defaultTags} className={inputClassName} id={genID} onTagChange={onTagChange!} />
+        )}
       </div>
     );
   },

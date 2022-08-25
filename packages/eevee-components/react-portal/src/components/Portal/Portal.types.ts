@@ -15,9 +15,6 @@ type PortalCommons = {
 export type PortalProps = Partial<PortalCommons>;
 
 export type PortalState = PortalCommons & {
-  /** Indicates if a Portal should be rendered. */
-  shouldRender: boolean;
-
   /**
    * Ref to the root span element as virtual parent
    */

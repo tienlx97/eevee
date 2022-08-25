@@ -1,11 +1,11 @@
-import { EeveeSlot, EeveeProps, EeveeState } from '@eevee/react-utilities';
+import { Slot, ComponentProps, ComponentState } from '@eevee/react-utilities';
 
 export type RightLayoutSlots = {
-  root: NonNullable<EeveeSlot<'div'>>;
+  root: NonNullable<Slot<'div'>>;
 };
 
-export type RightLayoutProps = EeveeProps<Partial<RightLayoutSlots>> & {};
+export type RightLayoutProps = ComponentProps<Partial<RightLayoutSlots>> & {};
 
-export type RightLayoutState = EeveeState<RightLayoutSlots> & {
+export type RightLayoutState = ComponentState<RightLayoutSlots> & {
   styles: string[];
 };

@@ -6,8 +6,8 @@ import { usePublishInState } from './usePublishInState';
 /**
  * Create the state required to render PublishIn.
  *
- * The returned state can be modified with hooks such as usePublishInStyles_unstable,
- * before being passed to renderPublishIn_unstable.
+ * The returned state can be modified with hooks such as usePublishInStyles,
+ * before being passed to renderPublishIn.
  *
  * @param props - props from this instance of PublishIn
  * @param ref - reference to root HTMLElement of PublishIn

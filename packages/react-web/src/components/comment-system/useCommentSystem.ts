@@ -7,8 +7,8 @@ import { ButtonR } from '@eevee/react-button';
 /**
  * Create the state required to render CommentSystem.
  *
- * The returned state can be modified with hooks such as useCommentSystemStyles_unstable,
- * before being passed to renderCommentSystem_unstable.
+ * The returned state can be modified with hooks such as useCommentSystemStyles,
+ * before being passed to renderCommentSystem.
  *
  * @param props - props from this instance of CommentSystem
  * @param ref - reference to root HTMLElement of CommentSystem

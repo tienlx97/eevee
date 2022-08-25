@@ -1,13 +1,13 @@
-import { EeveeSlot, EeveeProps, EeveeState } from '@eevee/react-utilities';
+import { Slot, ComponentProps, ComponentState } from '@eevee/react-utilities';
 
 export type OlSlots = {
-  root: NonNullable<EeveeSlot<'ol'>>;
+  root: NonNullable<Slot<'ol'>>;
 };
 
 export type OlType = 'original' | 'ordered';
 
-export type OlProps = EeveeProps<OlSlots> & {
+export type OlProps = ComponentProps<OlSlots> & {
   olType: OlType;
 };
 
-export type OlState = EeveeState<OlSlots> & Pick<OlProps, 'olType'> & {};
+export type OlState = ComponentState<OlSlots> & Pick<OlProps, 'olType'> & {};

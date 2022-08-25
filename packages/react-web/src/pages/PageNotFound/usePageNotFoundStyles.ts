@@ -1,6 +1,7 @@
 import { makeStyles, mergeClasses, shorthands } from '@griffel/react';
 import type { PageNotFoundSlots, PageNotFoundState } from './PageNotFound.types';
 import type { SlotClassNames } from '@eevee/react-utilities';
+import { breakPoints } from '@eevee/react-theme';
 
 export const ClassName = 'eve-PageNotFound';
 export const ClassNames: SlotClassNames<PageNotFoundSlots> = {
@@ -15,7 +16,27 @@ export const ClassNames: SlotClassNames<PageNotFoundSlots> = {
 const useStyles = makeStyles({
   root: {
     // TODO Add default styles for the root element
-    ...shorthands.padding(0, '15px'),
+    width: '100%',
+
+    [`@media ${breakPoints.lgAndLarger}`]: {
+      ...shorthands.padding(0, '45px'),
+    },
+
+    [`@media ${breakPoints.lg}`]: {
+      ...shorthands.padding(0, '45px'),
+    },
+
+    [`@media ${breakPoints.md}`]: {
+      ...shorthands.padding(0, '45px'),
+    },
+
+    [`@media ${breakPoints.sm}`]: {
+      ...shorthands.padding(0, '24px'),
+    },
+
+    [`@media ${breakPoints.xs}`]: {
+      ...shorthands.padding(0, '24px'),
+    },
   },
 
   // TODO add additional classes for different states and/or slots

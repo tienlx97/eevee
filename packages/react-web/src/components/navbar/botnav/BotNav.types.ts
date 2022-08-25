@@ -1,16 +1,16 @@
-import { EeveeSlot, EeveeProps, EeveeState } from '@eevee/react-utilities';
+import { Slot, ComponentProps, ComponentState } from '@eevee/react-utilities';
 
 export type BotNavSlots = {
   // for media query
-  root: NonNullable<EeveeSlot<'div'>>;
+  root: NonNullable<Slot<'div'>>;
   // change position
-  postition: NonNullable<EeveeSlot<'div'>>;
+  postition: NonNullable<Slot<'div'>>;
   // bot nav content here
-  content: NonNullable<EeveeSlot<'div'>>;
+  content: NonNullable<Slot<'div'>>;
 };
 
-export type BotNavProps = EeveeProps<Partial<BotNavSlots>> & {};
+export type BotNavProps = ComponentProps<Partial<BotNavSlots>> & {};
 
-export type BotNavState = EeveeState<BotNavSlots> & {
+export type BotNavState = ComponentState<BotNavSlots> & {
   linkIconWrapperClassName?: string;
 };
