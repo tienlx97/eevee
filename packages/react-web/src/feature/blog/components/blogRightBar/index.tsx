@@ -46,7 +46,8 @@ export const BlogRightBar = ({ blog: data }: BlogRightBar) => {
       <div className={styles.sticky}>
         <TocBeta toc={data.toc} />
         <div style={{ height: '24px' }} />
-        <MorePost slug={slug!} morePostList={MockMorePostList} />
+        <MorePostSkeleton />
+        {/* <MorePost slug={slug!} morePostList={MockMorePostList} /> */}
       </div>
     </>
   );

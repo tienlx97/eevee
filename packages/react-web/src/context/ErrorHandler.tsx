@@ -4,6 +4,7 @@ import { PageNotFound } from '@pages/index';
 
 type ErrorHandlerState = {
   errorStatusCode: number;
+  from?: string;
 };
 
 export const ErrorHandler: React.FC = ({ children }) => {
@@ -18,7 +19,7 @@ export const ErrorHandler: React.FC = ({ children }) => {
 
     switch (state.errorStatusCode) {
       case 404:
-        return <PageNotFound />;
+        return <PageNotFound from={state.from} />;
       default:
         return children;
     }

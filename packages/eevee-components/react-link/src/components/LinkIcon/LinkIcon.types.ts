@@ -20,11 +20,12 @@ export type LinkIconProps = ComponentProps<Partial<LinkIconSlots>> & {
   iconRegular?: React.FC<EeveeIconsProps<React.SVGAttributes<SVGElement>>>;
   rootColor?: string;
   iconWrapColor?: string;
+  linkState?: object;
   // compoundIcon?: React.FC<EeveeIconsProps<React.SVGAttributes<SVGElement>>>;
 };
 
 export type LinkIconState = ComponentState<LinkIconSlots> &
-  Pick<LinkIconProps, 'icon'> & {
+  Pick<LinkIconProps, 'icon' | 'linkState'> & {
     /**
      * There are three types of links
      * - Internal links to other pages within the same app

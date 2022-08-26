@@ -4,8 +4,11 @@ export type PageNotFoundSlots = {
   root: NonNullable<Slot<'div'>>;
 };
 
-export type PageNotFoundProps = ComponentProps<Partial<PageNotFoundSlots>> & {};
-
-export type PageNotFoundState = ComponentState<PageNotFoundSlots> & {
-  url?: string;
+export type PageNotFoundProps = ComponentProps<Partial<PageNotFoundSlots>> & {
+  from?: string;
 };
+
+export type PageNotFoundState = ComponentState<PageNotFoundSlots> &
+  Pick<PageNotFoundProps, 'from'> & {
+    url?: string;
+  };

@@ -2,7 +2,7 @@ import * as React from 'react';
 import { makeStyles, mergeClasses, shorthands } from '@griffel/react';
 import { breakPoints, tokens } from '@eevee/react-theme';
 import { Button } from '@eevee/react-button';
-import { Clap, Comment } from '@components/icons/index';
+import { Edit, Preview } from '@components/icons/index';
 
 const useRootStyles = makeStyles({
   wrapper: {
@@ -42,14 +42,6 @@ const useRootStyles = makeStyles({
     alignItems: 'center',
   },
 
-  'mr-5': {
-    marginRight: '5px',
-  },
-
-  'text-base': {
-    fontSize: tokens.fontSizeBase200,
-  },
-
   spacing: {
     height: '12px',
     ...shorthands.borderRight('1px', 'solid', tokens.b1),
@@ -65,41 +57,15 @@ const useRootStyles = makeStyles({
   },
 });
 
-type ReactionProps = JSX.IntrinsicElements['div'] & {
-  setOpenComment: (value: boolean) => void;
-};
-
-export const Reaction = ({ setOpenComment, ...props }: ReactionProps) => {
-  const styles = useRootStyles();
-
-  return (
-    <div {...props}>
-      <div className={styles.wrapper}>
-        <div className={styles.flex}>
-          <Button className={styles['text-base']} icon={{ children: <Clap />, className: styles['mr-5'] }}>
-            250
-          </Button>
-          <div className={styles.spacing} />
-          <Button
-            onClick={() => setOpenComment(true)}
-            className={styles['text-base']}
-            icon={{ children: <Comment />, className: styles['mr-5'] }}
-          />
-        </div>
-      </div>
-    </div>
-  );
-};
-
-export const ReactionSkeleton = ({ className, ...props }: JSX.IntrinsicElements['div']) => {
+export const ActionSkeleton = ({ className, ...props }: JSX.IntrinsicElements['div']) => {
   const styles = useRootStyles();
   return (
     <div className={mergeClasses('tweet-text', className)} {...props}>
       <div className={styles.wrapper}>
         <div className={styles.flex}>
-          <Button icon={{ children: <Clap /> }} />
+          <Button icon={{ children: <Preview /> }} />
           <div className={styles.spacing} />
-          <Button icon={{ children: <Comment /> }} />
+          <Button icon={{ children: <Edit /> }} />
         </div>
       </div>
     </div>
