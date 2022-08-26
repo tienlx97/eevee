@@ -207,10 +207,8 @@ export function PostHeader({ blog }: PostHeaderProps) {
 
   const { user } = useAuthContext();
   const navigate = useNavigate();
-  const toastify = useToast();
 
   const onEditStoryClick = () => {
-    toastify('info', 'Navigating to edit page');
     navigate(`/p/${blog.id}/edit`);
   };
 
@@ -236,30 +234,33 @@ export function PostHeader({ blog }: PostHeaderProps) {
           <SocialList className={socialListStyles.web}>
             <ButtonR style={{ margin: '0px 4px 0px 28px' }} aria-label="Save" title="Save" icon={<Save />} />
           </SocialList>
-          <Popover withArrow>
-            <PopoverTrigger>
-              <div style={{ margin: '0px 4px 0px 16px' }}>
-                <ButtonR aria-label="Actions" title="Actions" icon={<ThreeDot />} />
-              </div>
-            </PopoverTrigger>
 
-            <PopoverSurface>
-              {user?.id === blog.author.id && (
-                <>
-                  <PopoverItem onClick={onEditStoryClick}>Edit story</PopoverItem>
-                  <PopoverItem disabled>Pin this story to your profile</PopoverItem>
-                  <PopoverItem disabled>Delete story</PopoverItem>
-                </>
-              )}
-              {user?.id !== blog.author.id && (
-                <>
-                  <PopoverItem>Show less like this</PopoverItem>
-                  <PopoverItem>Mute this author</PopoverItem>
-                  <PopoverItem>Report</PopoverItem>
-                </>
-              )}
-            </PopoverSurface>
-          </Popover>
+          {user && (
+            <Popover withArrow>
+              <PopoverTrigger>
+                <div style={{ margin: '0px 4px 0px 16px' }}>
+                  <ButtonR aria-label="Actions" title="Actions" icon={<ThreeDot />} />
+                </div>
+              </PopoverTrigger>
+
+              <PopoverSurface>
+                {user?.id === blog.author.id && (
+                  <>
+                    <PopoverItem onClick={onEditStoryClick}>Edit story</PopoverItem>
+                    <PopoverItem disabled>Pin this story to your profile</PopoverItem>
+                    <PopoverItem disabled>Delete story</PopoverItem>
+                  </>
+                )}
+                {user?.id !== blog.author.id && (
+                  <>
+                    <PopoverItem disabled>Show less like this</PopoverItem>
+                    <PopoverItem disabled>Mute this author</PopoverItem>
+                    <PopoverItem disabled>Report</PopoverItem>
+                  </>
+                )}
+              </PopoverSurface>
+            </Popover>
+          )}
         </div>
       </div>
       {/* <= mobile */}

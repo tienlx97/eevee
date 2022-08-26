@@ -14,18 +14,13 @@ export const createUser = async (user: User) => {
     // add new author
     const { avatar_url, email, name } = user.user_metadata;
 
-    const { body: newAuthor } = await supabase.from<UserSchema>('user').insert(
-      {
-        id,
-        email,
-        name,
-        nick_name: `${slugify((email as string).split('@')[0])}${generateHash(3)}`,
-        photo_url: avatar_url,
-      },
-      {
-        returning: 'minimal',
-      },
-    );
+    const { body: newAuthor } = await supabase.from<UserSchema>('user').insert({
+      id,
+      email,
+      name,
+      nick_name: `${slugify((email as string).split('@')[0])}${generateHash(3)}`,
+      photo_url: avatar_url,
+    });
 
     return newAuthor?.[0];
   }

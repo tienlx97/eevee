@@ -9,17 +9,15 @@ import { H1, Paragraph, InlineCode } from '@eevee/react-mdx-comp';
  */
 export const renderPageNotFound = (state: PageNotFoundState) => {
   const { slots, slotProps } = getSlots<PageNotFoundSlots>(state);
-  const { url } = state;
+  const { url, from } = state;
 
   // TODO Add additional slots in the appropriate place
   return (
     <slots.root {...slotProps.root}>
       <H1>Page not found</H1>
-      {url && url !== '' && (
-        <Paragraph>
-          Sorry, the page <InlineCode>{url}</InlineCode> could not be found.
-        </Paragraph>
-      )}
+      <Paragraph>
+        Sorry, the page <InlineCode>{from || url}</InlineCode> could not be found.
+      </Paragraph>
 
       <Paragraph>
         <TextLink href="/home">Go back to the home page</TextLink>

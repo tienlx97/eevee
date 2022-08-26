@@ -47,7 +47,13 @@ export const renderBotNav = (state: BotNavState) => {
             />
           </div>
           <div className={linkIconWrapperClassName}>
-            <LinkIcon aria-label="Write" title="Write" iconRegular={WriteRegular} iconFill={WriteFill} href="/write" />
+            <LinkIcon
+              aria-label="Write"
+              title="Write"
+              iconRegular={WriteRegular}
+              iconFill={WriteFill}
+              href="/new-story"
+            />
           </div>
         </slots.content>
       </slots.postition>

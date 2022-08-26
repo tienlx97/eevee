@@ -7,7 +7,7 @@ import type { BlogSchema } from 'typings/my-mdx/index';
 
 import { useAuthContext } from '@context/AuthContext';
 
-import { slugify } from '@eevee/react-utilities';
+import { slugify, usePrevious } from '@eevee/react-utilities';
 import { breakPoints, tokens } from '@eevee/react-theme';
 import { TextLink } from '@eevee/react-link';
 import { H1, InlineCode, Paragraph } from '@eevee/react-mdx-comp';
@@ -21,6 +21,7 @@ import { serialize } from '@components/Mdx/serialize';
 
 import {
   Action,
+  ActionSkeleton,
   EditBlog,
   Editor,
   Publishdialog,
@@ -31,13 +32,14 @@ import {
 } from '@feature/new-story/index';
 
 import { bottomHeight } from '@constants/index';
-import { useNavigate, useParams } from 'react-router-dom';
+import { useLocation, useNavigate, useParams } from 'react-router-dom';
 import { generateHash } from '@utilities/index';
 import { getDate } from '@feature/new-story/index';
 import { useEevee } from '@eevee/react-shared-contexts';
 import { useToast } from '@eevee/react-toast';
 // eslint-disable-next-line import/no-extraneous-dependencies
 import { EditorView } from '@codemirror/view';
+import { ReactionSkeleton } from '../../feature/blog/index';
 
 const useStyles = makeStyles({
   root: {
@@ -114,6 +116,55 @@ const useActionStyles = makeStyles({
   },
 });
 
+const useSkeletonStyles = makeStyles({
+  wrapper: {
+    height: '100vh',
+    display: 'flex',
+    flexDirection: 'column',
+  },
+
+  title: {
+    marginTop: '16px',
+    marginBottom: '16px',
+    height: '35px',
+  },
+
+  subtitle: {
+    marginBottom: '16px',
+    height: '70px',
+  },
+
+  editor: {
+    height: '100vh',
+  },
+
+  action: {
+    position: 'fixed',
+    alignSelf: 'center',
+    justifySelf: 'center',
+
+    [`@media ${breakPoints.lgAndLarger}`]: {
+      bottom: '16px',
+    },
+
+    [`@media ${breakPoints.lg}`]: {
+      bottom: bottomHeight,
+    },
+
+    [`@media ${breakPoints.md}`]: {
+      bottom: bottomHeight,
+    },
+
+    [`@media ${breakPoints.sm}`]: {
+      bottom: bottomHeight,
+    },
+
+    [`@media ${breakPoints.xs}`]: {
+      bottom: bottomHeight,
+    },
+  },
+});
+
 const OurFallbackComponent = ({ error, componentStack, resetErrorBoundary }: any) => {
   const matches = error.message.match(/\`(.*?)\`/);
   return (
@@ -137,40 +188,44 @@ type NewStoryProps = {
   type?: 'edit' | 'new';
 };
 
+type CustomLocationState = {
+  fromEdit2New?: boolean;
+};
+
 export const NewStory = ({ type = 'new' }: NewStoryProps) => {
   // style hook
   const styles = useStyles();
   const inputGroupStyles = useInputGroupStyles();
   const editorPreviewStyles = useEditorPreviewStyles();
   const actionStyles = useActionStyles();
+  const skeletonStyles = useSkeletonStyles();
 
-  // can fetch data
+  // hooks
+  const navigate = useNavigate();
+  const loc = useLocation();
+  const { blogID } = useParams();
+  const toastify = useToast();
+  const { user: author } = useAuthContext();
+
   const titleRef = React.useRef<HTMLInputElement>(null);
   const subtitleRef = React.useRef<HTMLTextAreaElement>(null);
-  const [tags, setTags] = React.useState<any>();
-  const [editorSource, setEditorSource] = React.useState(type === 'edit' ? '' : text);
-
-  const [editorView, setEditorView] = React.useState<EditorView | undefined>(undefined);
-
-  // logic data
-  const [compiledSource, setCompiledSource] = React.useState('');
-
-  const [isOpenPreview, setOpenPreview] = React.useState(false);
-  const [publishValue, setPublishValue] = React.useState<BlogSchema | null>(null);
-  const [loading, setLoading] = React.useState(false);
-
-  const [open, setOpen] = React.useState(false);
-  const [isSchedule, setSchedule] = React.useState(true);
   const datePickerRef = React.useRef<HTMLInputElement>(null);
 
-  // logical hook
-  const { user: author } = useAuthContext();
-  const navigate = useNavigate();
-  const { blogID } = useParams();
-  const { data, error } = useSWR(!publishValue ? null : publishValue, publishStory);
-  const { data: blogData } = useSWR(type === 'edit' ? [blogID, author?.id] : null, EditBlog);
+  const preType = usePrevious(type);
 
-  const toastify = useToast();
+  const [tags, setTags] = React.useState<any>();
+  const [editorSource, setEditorSource] = React.useState(type === 'edit' ? '' : text);
+  const [compiledSource, setCompiledSource] = React.useState('');
+  const [editorView, setEditorView] = React.useState<EditorView | undefined>(undefined);
+  const [publishValue, setPublishValue] = React.useState<BlogSchema | null>(null);
+
+  const [loading, setLoading] = React.useState(true);
+  const [isOpenPreview, setOpenPreview] = React.useState(false);
+  const [openPublishDialog, setOpenPublishDialog] = React.useState(false);
+  const [isScheduleBlog, setScheduleBlog] = React.useState(true);
+
+  const { data, error } = useSWR(!publishValue ? null : publishValue, publishStory);
+  const { data: blogData, error: editBlogError } = useSWR(type === 'edit' ? [blogID, author?.id] : null, EditBlog);
 
   React.useEffect(() => {
     if (data) {
@@ -181,28 +236,38 @@ export const NewStory = ({ type = 'new' }: NewStoryProps) => {
   }, [data]);
 
   React.useEffect(() => {
+    if (editBlogError) {
+      navigate('/404', {
+        replace: true,
+        state: {
+          errorStatusCode: 404,
+          from: loc.pathname,
+        },
+      });
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [editBlogError]);
+
+  React.useEffect(() => {
     if (type === 'new') {
-      setLoading(false);
-
-      if (titleRef.current) {
-        titleRef.current.value = '';
+      if (!preType || preType !== 'edit') {
+        setLoading(false);
+        return;
       }
 
-      if (subtitleRef.current) {
-        subtitleRef.current.value = '';
+      if (!editorView || !titleRef.current || !subtitleRef.current) {
+        return;
       }
 
-      if (editorView) {
-        editorView.dispatch({
-          changes: {
-            from: 0,
-            to: editorSource.length,
-            insert: text,
-          },
-        });
-      }
-
-      setTags([]);
+      titleRef.current.value = '';
+      subtitleRef.current.value = '';
+      editorView.dispatch({
+        changes: {
+          from: 0,
+          to: editorSource.length,
+          insert: text,
+        },
+      });
 
       if (datePickerRef.current) {
         datePickerRef.current.defaultValue = setDefaultDate();
@@ -210,11 +275,11 @@ export const NewStory = ({ type = 'new' }: NewStoryProps) => {
         datePickerRef.current.max = setDefaultMaxDate();
       }
 
-      setSchedule(true);
+      setTags([]);
+
+      setScheduleBlog(true);
     } else if (type === 'edit') {
-      if (!blogData) {
-        setLoading(true);
-      }
+      setLoading(true);
 
       if (!editorView) {
         return;
@@ -238,7 +303,7 @@ export const NewStory = ({ type = 'new' }: NewStoryProps) => {
     }
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [blogData, type, editorView]);
+  }, [blogData, type, editorView, loc]);
 
   const getEditorView = (e?: EditorView) => {
     if (e) {
@@ -270,11 +335,11 @@ export const NewStory = ({ type = 'new' }: NewStoryProps) => {
   );
 
   const onPublishToggle = () => {
-    setOpen(true);
+    setOpenPublishDialog(true);
   };
 
   const onPublishClick = () => {
-    setOpen(false);
+    setOpenPublishDialog(false);
 
     if (!titleRef.current || !datePickerRef.current || !subtitleRef.current) {
       return;
@@ -308,7 +373,7 @@ export const NewStory = ({ type = 'new' }: NewStoryProps) => {
     if (errorCounter === 0) {
       serialize(editorSource).then(({ compiledSource: cSource, readTime, toc }) => {
         setLoading(true);
-        const publishDate = isSchedule ? getDate(dateInput) ?? new Date().getTime() : new Date().getTime();
+        const publishDate = isScheduleBlog ? getDate(dateInput) ?? new Date().getTime() : new Date().getTime();
         setPublishValue({
           compile_code: cSource,
           mdx_code: editorSource,
@@ -335,38 +400,62 @@ export const NewStory = ({ type = 'new' }: NewStoryProps) => {
         }}
       />
       <MiddleLayout>
-        <InputGroup
-          ref={titleRef}
-          className={inputGroupStyles.title}
-          labelChildren={<>Title</>}
-          placeholder="Write a preview title ..."
-        />
-        <InputGroup
-          ref={subtitleRef}
-          className={inputGroupStyles.tag}
-          labelChildren={<>Subtitle</>}
-          type="text-area"
-          placeholder="Write a preview subtitle ..."
-        />
-        {/* wrapper */}
-        <div className={editorPreviewStyles.root}>
-          <Editor
-            style={{ display: !isOpenPreview ? 'block' : 'none' }}
-            initialDoc={editorSource}
-            onChange={onEditorChange}
-            getEditorView={getEditorView}
+        <div style={{ display: loading ? 'none' : 'block' }}>
+          <InputGroup
+            ref={titleRef}
+            className={inputGroupStyles.title}
+            labelChildren={<>Title</>}
+            placeholder="Write a preview title ..."
           />
-          {isOpenPreview && (
-            <div className={editorPreviewStyles.previewWrapper}>
-              {/* eslint-disable-next-line @typescript-eslint/ban-ts-comment */}
-              {/* @ts-ignore */}
-              <ErrorBoundary FallbackComponent={OurFallbackComponent}>
-                <MDXRemote lazy compiledSource={compiledSource} />
-              </ErrorBoundary>
-            </div>
-          )}
+          <InputGroup
+            ref={subtitleRef}
+            className={inputGroupStyles.tag}
+            labelChildren={<>Subtitle</>}
+            type="text-area"
+            placeholder="Write a preview subtitle ..."
+          />
+          {/* wrapper */}
+          <div className={editorPreviewStyles.root}>
+            <Editor
+              style={{ display: !isOpenPreview ? 'block' : 'none' }}
+              initialDoc={editorSource}
+              onChange={onEditorChange}
+              getEditorView={getEditorView}
+            />
+            {isOpenPreview && (
+              <div className={editorPreviewStyles.previewWrapper}>
+                {/* eslint-disable-next-line @typescript-eslint/ban-ts-comment */}
+                {/* @ts-ignore */}
+                <ErrorBoundary FallbackComponent={OurFallbackComponent}>
+                  <MDXRemote lazy compiledSource={compiledSource} />
+                </ErrorBoundary>
+              </div>
+            )}
+          </div>
         </div>
+
+        {type === 'edit' && loading && (
+          <>
+            <div className={mergeClasses('tweet-text', skeletonStyles.wrapper)}>
+              <div
+                className={mergeClasses('skeleton-line', 'heading', skeletonStyles.title)}
+                style={{ width: '100%' }}
+              />
+              <div
+                className={mergeClasses('skeleton-line', 'heading', skeletonStyles.subtitle)}
+                style={{ width: '100%' }}
+              />
+              <div
+                className={mergeClasses('skeleton-line', 'heading', skeletonStyles.editor)}
+                style={{ width: '100%' }}
+              />
+            </div>
+            <ActionSkeleton className={skeletonStyles.action} />
+          </>
+        )}
+
         <Action
+          style={{ display: loading ? 'none' : 'block' }}
           className={actionStyles.root}
           publish={{ onClick: onPublishToggle }}
           onEditPreviewChange={onEditPreviewChange}
@@ -375,12 +464,12 @@ export const NewStory = ({ type = 'new' }: NewStoryProps) => {
       <Publishdialog
         onPublishClick={onPublishClick}
         datePickerRef={datePickerRef}
-        isSchedule={isSchedule}
-        setSchedule={setSchedule}
+        isSchedule={isScheduleBlog}
+        setSchedule={setScheduleBlog}
         tags={tags}
         setTagChange={setTagChange}
-        open={open}
-        setOpen={setOpen}
+        open={openPublishDialog}
+        setOpen={setOpenPublishDialog}
       />
     </article>
   );

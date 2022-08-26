@@ -13,17 +13,19 @@ import { usePageNotFoundState } from './usePageNotFoundState';
  * @param ref - reference to root HTMLElement of PageNotFound
  */
 export const usePageNotFound = (props: PageNotFoundProps, ref: React.Ref<HTMLElement>): PageNotFoundState => {
+  const { from, ...rest } = props;
   const state: PageNotFoundState = {
     // TODO add appropriate props/defaults
     components: {
       // TODO add each slot's element type or component
       root: 'div',
     },
+    from,
     // TODO add appropriate slots, for example:
     // mySlot: resolveShorthand(props.mySlot),
     root: getNativeElementProps('div', {
       ref,
-      ...props,
+      ...rest,
     }),
   };
 

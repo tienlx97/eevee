@@ -21,6 +21,7 @@ export const useLinkIcon = (props: LinkIconProps, ref: React.Ref<HTMLAnchorEleme
     iconWrapColor = tokens.f1,
     rootColor = tokens.f3,
     icon,
+    linkState,
     ...rest
   } = props;
 
@@ -36,7 +37,7 @@ export const useLinkIcon = (props: LinkIconProps, ref: React.Ref<HTMLAnchorEleme
     icon,
     iconOnly: Boolean(!props.children && (!icon || !compoundIcon)),
     compoundIcon,
-
+    linkState,
     // Slots definition
     components: {
       root: 'a',
