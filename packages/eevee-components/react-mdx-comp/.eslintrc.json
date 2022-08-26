@@ -1,4 +1,8 @@
 {
   "extends": ["plugin:@eevee/eslint-plugin/react"],
-  "root": true
+  "root": true,
+  "rules": {
+    "@eevee/max-len": "off",
+    "no-misleading-character-class": "off"
+  }
 }
