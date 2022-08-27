@@ -5,7 +5,8 @@ import { PageLayout, ProtectedRoute } from '@layout/index';
 import { Scroll2Top } from '@components/scroll2top/index';
 import { ErrorHandler } from '@context/index';
 import { Spinner } from './components/spinner-2/index';
-import { Home, PageOrPageNotFound, NewStory } from '@pages/index';
+import { Home, PageOrPageNotFound, NewStory, Profile } from '@pages/index';
+import { ProfileHome } from './feature/profile/index';
 
 const LazyPageNotFound = React.lazy(() => import('@pages/index').then(module => ({ default: module.PageNotFound })));
 const LazyBlogPage = React.lazy(() => import('@pages/index').then(module => ({ default: module.BlogPage })));
@@ -28,9 +29,14 @@ export const App = () => {
   const routes = (
     <Routes>
       <Route path="/" element={<Navigate to="/home" replace />} />
-      <Route path="/home" element={homePage} />
-      <Route path="/search" element={<div>Search</div>} />
-      <Route path="/blog/:slug" element={<LazyBlogPage />} />
+      <Route path="home" element={homePage} />
+      <Route path="search" element={<div>Search</div>} />
+      <Route path="blog/:slug" element={<LazyBlogPage />} />
+      <Route path="@:nickname" element={<Profile />}>
+        <Route index element={<ProfileHome />} />
+        <Route path="lists" element={<div>Lists</div>} />
+        <Route path="about" element={<div>About</div>} />
+      </Route>
       <Route
         path="/new-story"
         element={

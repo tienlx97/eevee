@@ -386,6 +386,7 @@ export const NewStory = ({ type = 'new' }: NewStoryProps) => {
           title: titleVal,
           subtitle: subtitleVal,
           status: 'published',
+          id: type === 'edit' ? blogData?.id : undefined,
         });
       });
     }

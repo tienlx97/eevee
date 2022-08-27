@@ -65,6 +65,11 @@ const useRootStyles = makeStyles({
       },
     },
   },
+
+  medium: {
+    ...shorthands.border('inherit'),
+    fill: 'inherit',
+  },
 });
 
 export const useLinkStyles = (state: LinkState): LinkState => {
@@ -74,7 +79,8 @@ export const useLinkStyles = (state: LinkState): LinkState => {
     linkClassNames.root,
     rootStyles.reset,
     rootStyles.focusIndicator,
-    rootStyles.root,
+    state.appearance === 'twitter' && rootStyles.root,
+    state.appearance === 'medium' && rootStyles.medium,
     state.root.className,
   );
 

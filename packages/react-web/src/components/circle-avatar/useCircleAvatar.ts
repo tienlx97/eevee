@@ -13,7 +13,7 @@ import { useCircleAvatarState } from './useCircleAvatarState';
  * @param ref - reference to root HTMLElement of CircleAvatar
  */
 export const useCircleAvatar = (props: CircleAvatarProps, ref: React.Ref<HTMLElement>): CircleAvatarState => {
-  const { url, title, width = 48, height = 48, img, ...rest } = props;
+  const { url, title, width = 48, height = 48, img, href = '', ...rest } = props;
 
   const state: CircleAvatarState = {
     // TODO add appropriate props/defaults
@@ -26,6 +26,7 @@ export const useCircleAvatar = (props: CircleAvatarProps, ref: React.Ref<HTMLEle
     title,
     width,
     height,
+    href,
     // TODO add appropriate slots, for example:
     // mySlot: resolveShorthand(props.mySlot),
     root: getNativeElementProps('div', {

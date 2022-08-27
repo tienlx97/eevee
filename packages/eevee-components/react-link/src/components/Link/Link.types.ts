@@ -9,18 +9,21 @@ export type LinkSlots = {
 
 export type LinkType = 'hash' | 'external' | 'internal';
 
-export type LinkProps = ComponentProps<Partial<LinkSlots>> & {};
-
-export type LinkState = ComponentState<LinkSlots> & {
-  /**
-   * There are three types of links
-   * - Internal links to other pages within the same app
-   * - External links, to other domains
-   * - Hash links (#introduction), for the same page.
-   * @type
-   * @default 'internal'
-   */
-  linkType: LinkType;
-
-  isCurrentLoc: boolean;
+export type LinkProps = ComponentProps<Partial<LinkSlots>> & {
+  appearance?: 'medium' | 'twitter';
 };
+
+export type LinkState = ComponentState<LinkSlots> &
+  Pick<LinkProps, 'appearance'> & {
+    /**
+     * There are three types of links
+     * - Internal links to other pages within the same app
+     * - External links, to other domains
+     * - Hash links (#introduction), for the same page.
+     * @type
+     * @default 'internal'
+     */
+    linkType: LinkType;
+
+    isCurrentLoc: boolean;
+  };

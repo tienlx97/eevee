@@ -9,11 +9,13 @@ import { getNativeElementProps } from '@eevee/react-utilities';
  * @param ref - User provided ref to be passed to the Link component.
  */
 export const useLink = (props: LinkProps, ref: React.Ref<HTMLAnchorElement>): LinkState => {
+  const { appearance = 'twitter', ...rest } = props;
+
   const state: LinkState = {
     // Props passed at the top-level
     linkType: 'internal',
     isCurrentLoc: false,
-
+    appearance,
     // Slots definition
     components: {
       root: 'a',
@@ -21,7 +23,7 @@ export const useLink = (props: LinkProps, ref: React.Ref<HTMLAnchorElement>): Li
 
     root: getNativeElementProps('a', {
       ref,
-      ...props,
+      ...rest,
     }),
   };
 
