@@ -26,7 +26,7 @@ const blogQuery = `
 export const BlogFetcher = async (slug?: string) => {
   const { data, error } = await supabase.from<Blog>('blog').select(blogQuery).eq('slugify', slug).single();
 
-  await delay(400);
+  // await delay(400);
   if (error) {
     throw error;
   }

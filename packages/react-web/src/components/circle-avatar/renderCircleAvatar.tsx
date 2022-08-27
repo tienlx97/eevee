@@ -12,7 +12,7 @@ export const renderCircleAvatar = (state: CircleAvatarState) => {
   // TODO Add additional slots in the appropriate place
   return (
     <slots.root {...slotProps.root}>
-      <Link className={state.linkClassName} to="" rel="noopener follow">
+      <Link className={state.linkClassName} to={state.href} rel="noopener follow">
         <slots.img {...slotProps.img} />
         {slotProps.root.children && slotProps.root.children}
       </Link>

@@ -1,8 +1,9 @@
 import * as React from 'react';
 import { useLocation, useMatch, useNavigate, useParams } from 'react-router-dom';
 import { useGA } from '@context/GaContext';
-import { useBlog } from '@feature/blog/index';
+import { BlogFetcher, useBlog } from '@feature/blog/index';
 import type { BlogPageState } from './BlogPage.types';
+import useSWR from 'swr';
 
 export const useBlogPageState = (state: BlogPageState): BlogPageState => {
   const { slug } = useParams();
@@ -10,7 +11,7 @@ export const useBlogPageState = (state: BlogPageState): BlogPageState => {
   const { pathname } = useLocation();
 
   const ga = useGA();
-  const { data, error } = useBlog(slug);
+  const { data: blogData, error } = useSWR(slug, BlogFetcher);
 
   const mountCounter = React.useRef(0);
 
@@ -18,28 +19,28 @@ export const useBlogPageState = (state: BlogPageState): BlogPageState => {
 
   state.setOpenComment = setOpenComment;
   state.isOpenComment = isOpenComment;
-  state.blog = data;
+  state.blog = blogData;
   state.error = error;
 
-  React.useEffect(() => {
-    if (!data && !error) {
-      document.title = '⏳ Loading…';
-    } else if (error) {
-      document.title = '💔 Loading error';
-      navigate(pathname, {
-        replace: true,
-        state: {
-          errorStatusCode: 404,
-        },
-      });
-    } else if (data) {
-      document.title = data.title;
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [data, error]);
+  // React.useEffect(() => {
+  //   if (!blogData && !error) {
+  //     // document.title = '⏳ Loading…';
+  //   } else if (error) {
+  //     // document.title = '💔 Loading error';
+  //     navigate(pathname, {
+  //       replace: true,
+  //       state: {
+  //         errorStatusCode: 404,
+  //       },
+  //     });
+  //   } else if (blogData) {
+  //     // document.title = blogData.title;
+  //   }
+  //   // eslint-disable-next-line react-hooks/exhaustive-deps
+  // }, [blogData, error]);
 
   React.useEffect(() => {
-    if (data && !error) {
+    if (blogData && !error) {
       if (mountCounter.current > 0) {
         // 'dimension19' means it's a client-side navigation.
         // I.e. not the initial load but the location has now changed.
@@ -55,8 +56,16 @@ export const useBlogPageState = (state: BlogPageState): BlogPageState => {
       // By counting every time a document is mounted, we can use this to know if
       // a client-side navigation happened.
       mountCounter.current++;
+    } else if (error) {
+      navigate(pathname, {
+        replace: true,
+        state: {
+          errorStatusCode: 404,
+        },
+      });
     }
-  }, [ga, data, error]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [ga, blogData, error]);
 
   React.useEffect(() => {
     const location = document.location;

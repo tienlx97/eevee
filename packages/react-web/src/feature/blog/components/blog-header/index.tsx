@@ -217,7 +217,13 @@ export function PostHeader({ blog }: PostHeaderProps) {
       {/* > mobile */}
       <div className={displayStyles.itemStart}>
         <div className={displayStyles.flex}>
-          <CircleAvatar width={48} height={48} className={displayStyles['mr-16']} url={blog.author.photo_url} />
+          <CircleAvatar
+            width={48}
+            height={48}
+            href={`/@${blog.author.nick_name}`}
+            className={displayStyles['mr-16']}
+            url={blog.author.photo_url}
+          />
           <AuthorMore
             authorName={blog.author?.name!}
             authorNickName={blog.author?.nick_name!}

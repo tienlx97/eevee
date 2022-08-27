@@ -10,9 +10,11 @@ export type CircleAvatarProps = ComponentProps<Partial<CircleAvatarSlots>> & {
   height?: number;
   url: string;
   title?: string;
+  href?: string;
 };
 
 export type CircleAvatarState = ComponentState<CircleAvatarSlots> &
+  Required<Pick<CircleAvatarProps, 'href'>> &
   Pick<CircleAvatarProps, 'width' | 'height' | 'url' | 'title'> & {
     linkClassName?: string;
   };

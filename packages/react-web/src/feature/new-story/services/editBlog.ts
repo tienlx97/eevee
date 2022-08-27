@@ -31,7 +31,7 @@ export const EditBlog = async (id: string, authorId: string) => {
     .eq('id', id)
     .single();
 
-  await delay(400);
+  // await delay(400);
   if (error) {
     throw error;
   }
