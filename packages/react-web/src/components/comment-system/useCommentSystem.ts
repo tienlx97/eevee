@@ -27,6 +27,7 @@ export const useCommentSystem = (props: CommentSystemProps, ref: React.Ref<HTMLE
     },
     show,
     onClose,
+    reset: true,
     // TODO add appropriate slots, for example:
     // mySlot: resolveShorthand(props.mySlot),
     root: getNativeElementProps('div', {

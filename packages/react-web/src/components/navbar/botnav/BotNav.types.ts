@@ -13,4 +13,6 @@ export type BotNavProps = ComponentProps<Partial<BotNavSlots>> & {};
 
 export type BotNavState = ComponentState<BotNavSlots> & {
   linkIconWrapperClassName?: string;
+  onToggle: (e: boolean) => void;
+  open: boolean;
 };

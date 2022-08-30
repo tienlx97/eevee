@@ -2,22 +2,22 @@
 
 export type PostType = "story" | "diary";
 
-export type FrontMatter = {
-  // require
-  author: UserSchema;
-  tags: Array<string>;
-  description: string;
-  postId: string;
-  slugify: string;
-  title: string;
-  post: PostType;
-  language: string;
-  date: string;
+// export type FrontMatter = {
+//   // require
+//   author: UserSchema;
+//   tags: Array<string>;
+//   description: string;
+//   postId: string;
+//   slugify: string;
+//   title: string;
+//   post: PostType;
+//   language: string;
+//   date: string;
 
-  // optional
-  archived?: boolean;
-  draft?: boolean;
-};
+//   // optional
+//   archived?: boolean;
+//   draft?: boolean;
+// };
 
 export type ReadTime = {
   minutes: number;
@@ -32,12 +32,12 @@ export type Toc = {
   value: string;
 };
 
-export type Post = {
-  code: string;
-  frontmatter: FrontMatter;
-  readTime: ReadTime;
-  toc: Toc[];
-}
+// export type Post = {
+//   code: string;
+//   frontmatter: FrontMatter;
+//   readTime: ReadTime;
+//   toc: Toc[];
+// }
 
 export type MorePost = {
   postTitle: string;
@@ -49,31 +49,32 @@ export type MorePost = {
 
 export type GitHubFile = { path: string; content: string }
 
-
 //
-
-export type FrontMatterI69n = {
-  // require
-  tags: Array<string>;
-  title: string;
-};
-
 type Status = 'published' | 'draft'
 
-export type BlogSchema = {
+export type SBBlog = {
   id?: string;
   user_id: string;
-  compile_code: string;
-  mdx_code: string;
   status: Status;
   publish_date: number;
-  toc: Toc[];
-  read_time: ReadTime;
   title: string;
-  subtitle: string;
   slugify: string;
   tags: string[];
+  sha?: string;
+  hash?: string
 }
+
+export type GithubBlog = {
+  id: string;
+  user_id: string;
+  toc: Toc[],
+  read_time: ReadTime,
+  mdx_code: string;
+  compile_code: string;
+  subtitle: string;
+}
+
+export type BlogSchema = SBBlog & Pick<GithubBlog, 'toc' | 'read_time' | 'mdx_code' | 'compile_code' | 'subtitle'>
 
 export type UserSchema = {
   id: string;

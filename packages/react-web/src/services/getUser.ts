@@ -7,11 +7,7 @@ export const getUser = async (id: string) => {
 };
 
 export const getAuthorIDByNickName = async (nickName: string) => {
-  const { data, error } = await supabase
-    .from<UserSchema>('user')
-    .select('id, nick_name, photo_url')
-    .eq('nick_name', nickName)
-    .single();
+  const { data, error } = await supabase.from<UserSchema>('user').select('*').eq('nick_name', nickName).single();
 
   if (error) {
     throw error;

@@ -8,7 +8,7 @@ import { Tag } from '@components/tag/index';
 import { ThreeDot, Save } from '@components/icons/index';
 
 import { useBlogCardDetailStyles, useBlogCardStyles } from './styles';
-import type { BlogSchema } from 'typings/my-mdx/index';
+import type { Blog, BlogSchema, UserSchema } from 'typings/my-mdx/index';
 import { blog2Date } from '@utilities/toDate';
 import { useAuthContext } from '@context/AuthContext';
 import { useNavigate } from 'react-router-dom';
@@ -16,15 +16,14 @@ import { useNavigate } from 'react-router-dom';
 type BlogCardProps = {
   first?: boolean;
   blog: BlogSchema;
-  authorID: string;
+  author: UserSchema;
 };
 
 type BlogCardDetailProps = {
-  blog: BlogSchema;
-  authorID: string;
+  blog: Blog;
 };
 
-const BlogCardDetail = ({ blog, authorID }: BlogCardDetailProps) => {
+const BlogCardDetail = ({ blog }: BlogCardDetailProps) => {
   const { tags, read_time } = blog;
   const styles = useBlogCardDetailStyles();
   const { user } = useAuthContext();
@@ -40,7 +39,7 @@ const BlogCardDetail = ({ blog, authorID }: BlogCardDetailProps) => {
       <div className={styles.leftWarpper}>
         {/* title - subtitle */}
         <div>
-          <TextLink appearance="medium" href={`/blog/${blog.slugify}`}>
+          <TextLink linkState={{ data: blog }} appearance="medium" href={`/blog/${blog.slugify}`}>
             {/* title */}
             <h2 className={styles.title}>{blog.title}</h2>
             {/* subtitle */}
@@ -56,7 +55,7 @@ const BlogCardDetail = ({ blog, authorID }: BlogCardDetailProps) => {
             <div className={styles.tagReadTimeWrapper}>
               <div className={styles.tadReadTimeWrapper1}>
                 <Tag tag={tags[0]} />
-                <TextLink appearance="medium" href={`/blog/${blog.slugify}`}>
+                <TextLink linkState={{ data: blog }} appearance="medium" href={`/blog/${blog.slugify}`}>
                   <span className={styles.readTime}>{read_time.text}</span>
                 </TextLink>
               </div>
@@ -75,7 +74,7 @@ const BlogCardDetail = ({ blog, authorID }: BlogCardDetailProps) => {
 
                   <PopoverSurface>
                     {/* is same */}
-                    {user.id === authorID && (
+                    {user.id === blog.author.id && (
                       <>
                         <PopoverItem onClick={onEditStoryClick}>Edit story</PopoverItem>
                         <PopoverItem disabled>Pin story</PopoverItem>
@@ -85,7 +84,7 @@ const BlogCardDetail = ({ blog, authorID }: BlogCardDetailProps) => {
                       </>
                     )}
                     {/* not same */}
-                    {user.id !== authorID && (
+                    {user.id !== blog.author.id && (
                       <>
                         <PopoverItem disabled>Report this story</PopoverItem>
                         <PopoverItem disabled>Mute this story</PopoverItem>
@@ -130,8 +129,10 @@ const BlogCardDetail = ({ blog, authorID }: BlogCardDetailProps) => {
   );
 };
 
-export const BlogCard = ({ first = false, blog, authorID }: BlogCardProps) => {
+export const BlogCard = ({ first = false, blog, author }: BlogCardProps) => {
   const styles = useBlogCardStyles();
+
+  const [blogCombine, _] = React.useState<Blog>({ ...blog, author });
 
   return (
     <article className={styles.root}>
@@ -144,10 +145,10 @@ export const BlogCard = ({ first = false, blog, authorID }: BlogCardProps) => {
 
       <div>
         {/* header -> publish_date */}
-        <TextLink appearance="medium" href="">
+        <TextLink linkState={{ data: blogCombine }} appearance="medium" href={`/blog/${blog.slugify}`}>
           <span className={styles.publishDate}>{blog2Date(blog.publish_date)}</span>
         </TextLink>
-        <BlogCardDetail authorID={authorID} blog={blog} />
+        <BlogCardDetail blog={blogCombine} />
       </div>
     </article>
   );

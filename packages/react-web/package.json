@@ -109,6 +109,7 @@
     "@eevee/react-menu": "*",
     "@eevee/react-popover": "*",
     "@griffel/react": "1.3.1",
+    "octokit": "2.0.7",
     "react": "*",
     "react-dom": "*",
     "react-router-dom": "6",

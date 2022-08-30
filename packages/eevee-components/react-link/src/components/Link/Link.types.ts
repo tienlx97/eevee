@@ -11,6 +11,7 @@ export type LinkType = 'hash' | 'external' | 'internal';
 
 export type LinkProps = ComponentProps<Partial<LinkSlots>> & {
   appearance?: 'medium' | 'twitter';
+  linkState?: unknown;
 };
 
 export type LinkState = ComponentState<LinkSlots> &
@@ -26,4 +27,6 @@ export type LinkState = ComponentState<LinkSlots> &
     linkType: LinkType;
 
     isCurrentLoc: boolean;
+
+    linkState?: unknown;
   };
