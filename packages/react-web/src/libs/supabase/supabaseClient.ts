@@ -9,3 +9,31 @@ const supabaseAnonKey =
     : process.env.REACT_APP_SUPABASE_ANON_KEY_DEV;
 
 export const supabase = createClient(supabaseUrl!, supabaseAnonKey!);
+
+export const upsert = async <T>(table: string, values: T) => {
+  const { data, error } = await supabase.from<T>(table).upsert(values);
+
+  if (error) {
+    throw error;
+  }
+
+  if (!data || data.length === 0) {
+    throw new Error('upsert retrurn fail');
+  }
+
+  return data;
+};
+
+export const update = async <T>(table: string, value: Partial<T>, query: Record<string, unknown>) => {
+  const { data, error } = await supabase.from<T>(table).update(value).match(query);
+
+  if (error) {
+    throw error;
+  }
+
+  if (!data || data.length === 0) {
+    throw new Error('update retrurn fail');
+  }
+
+  return data;
+};

@@ -5,10 +5,11 @@ import { Spinner } from '@components/spinner-2/index';
 import { getBlogListWithAuthorID } from '../../services/index';
 
 import { BlogCard } from '../blog-card/index';
+import type { UserSchema } from 'typings/my-mdx/index';
 
 export const ProfileHome = () => {
-  const [authorID] = useOutletContext<string>();
-  const { data, error } = useSWR(authorID, getBlogListWithAuthorID);
+  const author = useOutletContext<UserSchema>();
+  const { data, error } = useSWR(author.id, getBlogListWithAuthorID);
 
   if (!data && !error) {
     return <Spinner />;
@@ -17,7 +18,7 @@ export const ProfileHome = () => {
   return !error && data ? (
     <div>
       {data.map((blog, index) => (
-        <BlogCard authorID={authorID} blog={blog} key={index} first={index === 0} />
+        <BlogCard author={author} blog={blog} key={index} first={index === 0} />
       ))}
     </div>
   ) : (

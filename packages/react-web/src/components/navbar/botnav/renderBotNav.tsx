@@ -13,6 +13,8 @@ import {
 } from '@components/icons/index';
 
 import { LinkIcon } from '@eevee/react-link';
+import { ToggleAuthor } from './ToggleAuthor';
+import { LaunchPadMenu } from './LaunchPadMenu';
 
 /**
  * Render the final JSX of BotNav
@@ -26,10 +28,18 @@ export const renderBotNav = (state: BotNavState) => {
       <slots.postition {...slotProps.postition}>
         <slots.content {...slotProps.content}>
           <div className={linkIconWrapperClassName}>
-            <LinkIcon aria-label="Home" title="Home" iconFill={HomeFill} iconRegular={HomeRegular} href="/home" />
+            <LinkIcon
+              onClick={() => state.onToggle(false)}
+              aria-label="Home"
+              title="Home"
+              iconFill={HomeFill}
+              iconRegular={HomeRegular}
+              href="/home"
+            />
           </div>
           <div className={linkIconWrapperClassName}>
             <LinkIcon
+              onClick={() => state.onToggle(false)}
               aria-label="Search"
               title="Search"
               iconFill={SearchFill}
@@ -37,17 +47,10 @@ export const renderBotNav = (state: BotNavState) => {
               href="/search"
             />
           </div>
+
           <div className={linkIconWrapperClassName}>
             <LinkIcon
-              aria-label="Notification"
-              title="Notification"
-              iconFill={NotificationFill}
-              iconRegular={NotificationRegular}
-              href="/notification"
-            />
-          </div>
-          <div className={linkIconWrapperClassName}>
-            <LinkIcon
+              onClick={() => state.onToggle(false)}
               aria-label="Write"
               title="Write"
               iconRegular={WriteRegular}
@@ -55,7 +58,12 @@ export const renderBotNav = (state: BotNavState) => {
               href="/new-story"
             />
           </div>
+
+          <div className={linkIconWrapperClassName}>
+            <ToggleAuthor toggle={state.open} onToggle={state.onToggle} />
+          </div>
         </slots.content>
+        {state.open && <LaunchPadMenu setOpen={state.onToggle} />}
       </slots.postition>
     </slots.root>
   );

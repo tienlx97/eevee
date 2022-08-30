@@ -22,3 +22,5 @@ export * from './Preview';
 export * from './Edit';
 export * from './Publish';
 export * from './ThreeDot';
+export * from './Story';
+export * from './Stat';

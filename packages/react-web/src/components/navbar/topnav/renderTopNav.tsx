@@ -1,7 +1,8 @@
 import * as React from 'react';
 import { getSlots } from '@eevee/react-utilities';
-import { Mimikyu } from '@components/icons/index';
+import { Mimikyu, NotificationFill, NotificationRegular } from '@components/icons/index';
 import { ToggleTheme } from '@components/toggleTheme/index';
+import { LinkIcon } from '@eevee/react-link';
 
 import { TopNavSlots, TopNavState } from './TopNav.types';
 import { Link } from 'react-router-dom';

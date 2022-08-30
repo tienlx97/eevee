@@ -1,5 +1,5 @@
 import * as React from 'react';
-import useSWR from 'swr';
+import useSWR, { useSWRConfig } from 'swr';
 import { ErrorBoundary } from 'react-error-boundary';
 import { makeStyles, mergeClasses, shorthands } from '@griffel/react';
 
@@ -35,11 +35,9 @@ import { bottomHeight } from '@constants/index';
 import { useLocation, useNavigate, useParams } from 'react-router-dom';
 import { generateHash } from '@utilities/index';
 import { getDate } from '@feature/new-story/index';
-import { useEevee } from '@eevee/react-shared-contexts';
 import { useToast } from '@eevee/react-toast';
 // eslint-disable-next-line import/no-extraneous-dependencies
 import { EditorView } from '@codemirror/view';
-import { ReactionSkeleton } from '../../feature/blog/index';
 
 const useStyles = makeStyles({
   root: {
@@ -226,11 +224,13 @@ export const NewStory = ({ type = 'new' }: NewStoryProps) => {
 
   const { data, error } = useSWR(!publishValue ? null : publishValue, publishStory);
   const { data: blogData, error: editBlogError } = useSWR(type === 'edit' ? [blogID, author?.id] : null, EditBlog);
+  const { cache } = useSWRConfig();
 
   React.useEffect(() => {
     if (data) {
+      cache.delete(data.authorID);
       toastify('success', 'Publishing story success');
-      navigate(`/blog/${data}`);
+      navigate(`/blog/${data.slugify}`);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [data]);
@@ -374,15 +374,17 @@ export const NewStory = ({ type = 'new' }: NewStoryProps) => {
       serialize(editorSource).then(({ compiledSource: cSource, readTime, toc }) => {
         setLoading(true);
         const publishDate = isScheduleBlog ? getDate(dateInput) ?? new Date().getTime() : new Date().getTime();
+        const hash = type === 'edit' ? blogData?.hash : generateHash();
         setPublishValue({
           compile_code: cSource,
           mdx_code: editorSource,
           publish_date: publishDate,
           toc,
           read_time: readTime,
-          slugify: `${slugify(titleVal)}-${generateHash()}`,
+          slugify: `${slugify(titleVal)}-${hash}`,
           user_id: author?.id!,
           tags,
+          hash,
           title: titleVal,
           subtitle: subtitleVal,
           status: 'published',
@@ -435,7 +437,7 @@ export const NewStory = ({ type = 'new' }: NewStoryProps) => {
           </div>
         </div>
 
-        {type === 'edit' && loading && (
+        {type === 'edit' && loading && !blogData && (
           <>
             <div className={mergeClasses('tweet-text', skeletonStyles.wrapper)}>
               <div

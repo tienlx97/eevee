@@ -49,7 +49,7 @@ export const Profile = () => {
       <>
         <MiddleLayout>
           <Header author={author!} />
-          <TabLayout>{author && <Outlet context={[author.id]} />}</TabLayout>
+          <TabLayout>{author && <Outlet context={author} />}</TabLayout>
         </MiddleLayout>
         <RightLayout>2</RightLayout>
       </>

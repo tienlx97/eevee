@@ -358,7 +358,7 @@ export const Header = ({ author }: HeaderProps) => {
       <div className={styles.flex}>
         <div className={styles.mediaQuerySize}>
           <div className={styles.mediaQueryMarginY}>
-            <UserView nickName={author.nick_name} photoURL={author.photo_url} />
+            <UserView nickName={author.name} photoURL={author.photo_url} />
             <NavBar />
           </div>
         </div>

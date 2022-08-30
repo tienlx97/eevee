@@ -2,8 +2,7 @@ import * as React from 'react';
 import { makeStyles } from '@griffel/react';
 import { Porfolio } from '@components/porfolio/index';
 import { PorfolioSkeleton } from '@components/skeleton/PorfolioSkeleton';
-import { useBlogParam, MorePost, TocSkeleton, MorePostSkeleton, TocBeta } from '@feature/blog/index';
-import { MockMorePostList } from '@feature/blog/mocks/MorePost';
+import { MorePost, TocSkeleton, MorePostSkeleton, TocBeta } from '@feature/blog/index';
 import type { Blog } from 'typings/my-mdx/index';
 
 const useStyles = makeStyles({
@@ -37,7 +36,6 @@ type BlogRightBar = {
 
 export const BlogRightBar = ({ blog: data }: BlogRightBar) => {
   const styles = useStyles();
-  const slug = useBlogParam();
 
   return (
     <>
