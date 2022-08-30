@@ -189,6 +189,8 @@ function loadResolve(isEnvProductionProfile) {
     fallback: {
       path: require.resolve('path-browserify'),
       stream: require.resolve('stream-browserify'),
+      fs: false,
+      buffer: require.resolve('buffer'),
     },
 
     // This allows you to set a fallback for where webpack should look for modules.
@@ -430,6 +432,9 @@ function loadModuleRule(isEnvDevelopment, shouldUseReactRefresh, isEnvProduction
 
 function loadPluginList(isEnvProduction, env, isEnvDevelopment, shouldUseReactRefresh) {
   return [
+    new webpack.ProvidePlugin({
+      Buffer: ['buffer', 'Buffer'],
+    }),
     // Generates an `index.html` file with the <script> injected.
     new HtmlWebpackPlugin({
       inject: true,

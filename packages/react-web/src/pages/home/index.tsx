@@ -1,10 +1,6 @@
 import * as React from 'react';
-import { PostImage } from '@eevee/react-mdx-comp';
+import { MiddleLayout } from '@layout/index';
 
 export const Home = () => {
-  return (
-    <>
-      <div>122</div>
-    </>
-  );
+  return <MiddleLayout />;
 };

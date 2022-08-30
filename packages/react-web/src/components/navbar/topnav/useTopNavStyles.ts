@@ -64,6 +64,7 @@ export const useTopNavStyles = (state: TopNavState) => {
   const mediaQueryStyles = useMediaQueryStyles();
   const contentStyles = useContentStyles();
   const gapStyles = useGapStyles();
+
   state.root.className = mergeClasses(topNavClassNames.root, mediaQueryStyles.query, state.root.className);
 
   state.gap.className = mergeClasses(topNavClassNames.gap, gapStyles.gapHeight, state.gap.className);

@@ -7,7 +7,7 @@ import type { LinkSlots, LinkState } from './Link.types';
  * Renders a Link component by passing the state defined props to the appropriate slots.
  */
 export const renderLink = (state: LinkState) => {
-  const { linkType } = state;
+  const { linkType, linkState } = state;
   const { slots, slotProps } = getSlots<LinkSlots>(state);
   const { target, rel, href, ref, children, ...rest } = slotProps.root;
 
@@ -18,6 +18,7 @@ export const renderLink = (state: LinkState) => {
         target={target}
         rel={rel}
         to={href as string}
+        state={linkState ?? undefined}
         {...rest}
       >
         {children}

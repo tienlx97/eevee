@@ -5,11 +5,13 @@ import { PageLayout, ProtectedRoute } from '@layout/index';
 import { Scroll2Top } from '@components/scroll2top/index';
 import { ErrorHandler } from '@context/index';
 import { Spinner } from './components/spinner-2/index';
-import { Home, PageOrPageNotFound, NewStory, Profile } from '@pages/index';
+import { Home, PageOrPageNotFound, NewStory, Profile, Settings } from '@pages/index';
 import { ProfileHome } from './feature/profile/index';
+import { SWRConfig } from 'swr';
 
 const LazyPageNotFound = React.lazy(() => import('@pages/index').then(module => ({ default: module.PageNotFound })));
-const LazyBlogPage = React.lazy(() => import('@pages/index').then(module => ({ default: module.BlogPage })));
+// const LazyBlogPage = React.lazy(() => import('@pages/index').then(module => ({ default: module.BlogPage })));
+const LazyBlogPage = React.lazy(() => import('@pages/index').then(module => ({ default: module.ViewBlog })));
 
 export const App = () => {
   const [pageNotFound, setPageNotFound] = React.useState<boolean | undefined>(undefined);
@@ -45,6 +47,16 @@ export const App = () => {
           </ProtectedRoute>
         }
       />
+
+      <Route
+        path="/me/settings"
+        element={
+          <ProtectedRoute>
+            <Settings />
+          </ProtectedRoute>
+        }
+      />
+
       <Route
         path="/p/:blogID/edit"
         element={

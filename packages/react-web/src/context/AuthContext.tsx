@@ -10,6 +10,7 @@ export type AuthContextValue = {
   isLoaded: boolean;
   signIn: () => void;
   signOut: () => void;
+  refetch: () => void;
 };
 
 const AuthContext = React.createContext<AuthContextValue | undefined>(undefined);
@@ -31,7 +32,16 @@ export const AuthContextProvider: React.FC = ({ children }) => {
 
   const signOut = React.useCallback(() => {
     supabase.auth.signOut();
+    localStorage.removeItem('giscus-session');
   }, []);
+
+  const refetch = () => {
+    if (user) {
+      getUser(user?.id).then(u => {
+        setUser(u ?? null);
+      });
+    }
+  };
 
   // Initialize the user based on the stored session
   const initUser = React.useCallback(async () => {
@@ -76,7 +86,9 @@ export const AuthContextProvider: React.FC = ({ children }) => {
   }, [loc]);
 
   return (
-    <AuthContext.Provider value={{ isAuthReady, isLoaded, signIn, signOut, user }}>{children}</AuthContext.Provider>
+    <AuthContext.Provider value={{ isAuthReady, isLoaded, signIn, signOut, user, refetch }}>
+      {children}
+    </AuthContext.Provider>
   );
 };
 

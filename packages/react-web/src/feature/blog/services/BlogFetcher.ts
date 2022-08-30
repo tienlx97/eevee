@@ -1,17 +1,14 @@
 import { delay, supabase } from '@libs/index';
-import type { Blog } from 'typings/my-mdx/index';
+import type { Blog, GithubBlog } from 'typings/my-mdx/index';
+import { downloadFileBySha } from '@utilities/github.server';
 
 const blogQuery = `
   id,
-  compile_code,
-  mdx_code,
   publish_date,
-  toc,
-  read_time,
   title,
   slugify,
   tags,
-  subtitle,
+  sha,
   author: user!user_id(
     id,
     mimikyu_id,
@@ -31,5 +28,18 @@ export const BlogFetcher = async (slug?: string) => {
     throw error;
   }
 
-  return data;
+  if (!data) {
+    throw new Error('Blog fetcher fail');
+  }
+
+  const githubContent = await downloadFileBySha(data.sha!);
+
+  const ghBlogData = JSON.parse(githubContent) as GithubBlog;
+
+  const combine = {
+    ...data,
+    ...ghBlogData,
+  };
+
+  return combine;
 };

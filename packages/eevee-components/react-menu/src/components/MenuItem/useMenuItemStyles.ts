@@ -17,7 +17,7 @@ const useStyles = makeStyles({
   root: {
     ...shorthands.borderRadius(tokens.borderRadiusMedium),
     position: 'relative',
-    color: tokens.f2,
+    color: tokens.f10,
     fontFamily: tokens.fontFamily,
     paddingRight: '10px',
     paddingLeft: '10px',
@@ -63,9 +63,11 @@ const useStyles = makeStyles({
   },
 
   disabled: {
+    opacity: 0.7,
     color: tokens.fDisable,
     ':hover': {
-      color: tokens.fDisable,
+      color: '#5c5c5c', // tokens.fDisable,
+      backgroundColor: tokens.bgDisable,
     },
 
     ':focus': {
@@ -81,7 +83,7 @@ export const useMenuItemStyles_unstable = (state: MenuItemState) => {
     menuItemClassNames.root,
     styles.root,
     styles.focusIndicator,
-    // state.disabled && styles.disabled,
+    state.disabled && styles.disabled,
     state.root.className,
   );
 

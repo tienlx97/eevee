@@ -18,4 +18,5 @@ export type CommentSystemState = ComponentState<CommentSystemSlots> &
     theme?: string;
     buttonWrapperClassName?: string;
     responseTitleClassName?: string;
+    reset: boolean;
   };
