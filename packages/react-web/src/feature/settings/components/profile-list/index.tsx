@@ -4,7 +4,7 @@ import { useAuthContext } from '@context/AuthContext';
 
 import { TextLink } from '@eevee/react-link';
 import { useToast } from '@eevee/react-toast';
-import { Heading } from '@components/medium/index';
+import { Heading, TextArea } from '@components/medium/index';
 
 import { InputGroup } from '../input-group/index';
 import { updateDescription, updateName, updateNickname } from '../../services/updateName';
@@ -119,6 +119,7 @@ export const ProfileList = () => {
     if (edit) {
       nicknameRef.current.focus();
     } else {
+      setNickNameError(null);
       nicknameRef.current.value = user?.nick_name!;
     }
   };
@@ -152,6 +153,7 @@ export const ProfileList = () => {
 
     if (nicknameRef.current.value === user?.nick_name) {
       toastify('error', `Nickname isn't changed`);
+      setNickNameError(null);
     } else if (nickNameError?.type === 'success') {
       setOnSaveNickname(true);
     }
@@ -230,7 +232,7 @@ export const ProfileList = () => {
           </div>
         }
       >
-        <textarea
+        <TextArea
           rows={3}
           ref={descriptionRef}
           maxLength={160}

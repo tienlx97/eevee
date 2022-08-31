@@ -12,10 +12,11 @@ export type LinkType = 'hash' | 'external' | 'internal';
 export type LinkProps = ComponentProps<Partial<LinkSlots>> & {
   appearance?: 'medium' | 'twitter';
   linkState?: unknown;
+  disabled?: boolean;
 };
 
 export type LinkState = ComponentState<LinkSlots> &
-  Pick<LinkProps, 'appearance'> & {
+  Pick<LinkProps, 'appearance' | 'disabled'> & {
     /**
      * There are three types of links
      * - Internal links to other pages within the same app
