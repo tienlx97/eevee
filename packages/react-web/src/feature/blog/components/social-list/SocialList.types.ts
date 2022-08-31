@@ -8,4 +8,7 @@ export type SocialListProps = ComponentProps<Partial<SocialListSlots>> & {
   before?: boolean;
 };
 
-export type SocialListState = ComponentState<SocialListSlots> & Pick<SocialListProps, 'before'> & {};
+export type SocialListState = ComponentState<SocialListSlots> &
+  Pick<SocialListProps, 'before'> & {
+    onCopyLink: () => void;
+  };

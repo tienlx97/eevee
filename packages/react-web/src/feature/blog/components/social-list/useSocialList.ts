@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { getNativeElementProps } from '@eevee/react-utilities';
 import type { SocialListProps, SocialListState } from './SocialList.types';
+import { useToast } from '@eevee/react-toast';
 
 /**
  * Create the state required to render SocialList.
@@ -13,12 +14,17 @@ import type { SocialListProps, SocialListState } from './SocialList.types';
  */
 export const useSocialList = (props: SocialListProps, ref: React.Ref<HTMLElement>): SocialListState => {
   const { before } = props;
+  const toastify = useToast();
 
   const state: SocialListState = {
     // TODO add appropriate props/defaults
     components: {
       // TODO add each slot's element type or component
       root: 'div',
+    },
+    onCopyLink: () => {
+      navigator.clipboard.writeText(window.location.href);
+      toastify('info', 'Copied url');
     },
     before,
     // TODO add appropriate slots, for example:

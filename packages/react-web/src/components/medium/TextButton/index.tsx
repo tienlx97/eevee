@@ -27,15 +27,15 @@ const useStyles = makeStyles({
   },
 });
 
-type TextButtonProps = {
+type TextButtonProps = JSX.IntrinsicElements['a'] & {
   to: string;
 };
 
-export const TextButton: React.FC<TextButtonProps> = ({ children, to }) => {
+export const TextButton: React.FC<TextButtonProps> = ({ children, to, onClick }) => {
   const styles = useStyles();
 
   return (
-    <Link to={to} className={styles.root}>
+    <Link onClick={onClick} to={to} className={styles.root}>
       <div style={{ textAlign: 'center' }}>{children}</div>
     </Link>
   );

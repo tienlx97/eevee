@@ -1,17 +1,26 @@
+/* eslint-disable no-console */
 // import nodePath from 'path'
-import { Octokit } from 'octokit';
+import { Octokit as createOctokit } from '@octokit/rest';
+import { throttling } from '@octokit/plugin-throttling';
 import type { GitHubFile } from 'typings/my-mdx/index';
 import { Buffer } from 'buffer';
+
 type ThrottleOptions = {
   method: string;
   url: string;
   request: { retryCount: number };
 };
 
+const Octokit = createOctokit.plugin(throttling);
+
 const octokit = new Octokit({
   auth: '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',
   throttle: {
     onRateLimit: (retryAfter: number, options: ThrottleOptions) => {
+      console.log(
+        `Request quota exhausted for request ${options.method} ${options.url}. Retrying after ${retryAfter} seconds.`,
+      );
+
       return true;
     },
     onAbuseLimit: (retryAfter: number, options: ThrottleOptions) => {
@@ -49,11 +58,19 @@ async function downloadDirList(path: string) {
  * @returns a promise that resolves to a string of the contents of the file
  */
 export async function downloadFileBySha(sha: string) {
-  const { data } = await octokit.request('GET /repos/{owner}/{repo}/git/blobs/{file_sha}', {
-    owner: 'yugi0h',
-    repo: process.env.NODE_ENV === 'production' ? 'mimikyu-content' : 'mimikyu_content_dev',
-    file_sha: sha,
-  });
+  // const { data } = await octokit.request('GET /repos/{owner}/{repo}/git/blobs/{file_sha}', {
+  //   owner: 'yugi0h',
+  //   repo: process.env.NODE_ENV === 'production' ? 'mimikyu-content' : 'mimikyu_content_dev',
+  //   file_sha: sha,
+  // });
+
+  const response = await fetch(
+    `https://api.github.com/repos/yugi0h/${
+      process.env.NODE_ENV === 'production' ? 'mimikyu-content' : 'mimikyu_content_dev'
+    }/git/blobs/${sha}`,
+  );
+  const data = await response.json();
+
   //                                lol
   const encoding = data.encoding as Parameters<typeof Buffer.from>['1'];
   return Buffer.from(data.content, encoding).toString();

@@ -23,6 +23,7 @@ const useStyles = makeStyles({
     display: 'flex',
     flexDirection: 'row',
     color: 'inherit',
+    width: 'max-content',
   },
 
   img: {

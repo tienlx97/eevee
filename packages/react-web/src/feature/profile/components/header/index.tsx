@@ -7,6 +7,7 @@ import { CircleAvatar } from '@components/circle-avatar/CircleAvatar';
 import { ThreeDot } from '@components/icons/index';
 import { ButtonR } from '@eevee/react-button';
 import type { UserSchema } from 'typings/my-mdx/index';
+import { useToast } from '@eevee/react-toast';
 
 const useStyles = makeStyles({
   flex: {
@@ -221,6 +222,13 @@ type UserViewProps = {
 };
 const UserView = ({ photoURL, nickName }: UserViewProps) => {
   const userViewStyles = useUserViewStyles();
+  const toastify = useToast();
+
+  const onCopyLink = () => {
+    navigator.clipboard.writeText(window.location.href);
+    toastify('info', 'Copied profile');
+  };
+
   return (
     <div className={userViewStyles.mediaQueryWrapper}>
       <div className={userViewStyles.mediaQueryView}>
@@ -250,7 +258,7 @@ const UserView = ({ photoURL, nickName }: UserViewProps) => {
         </PopoverTrigger>
 
         <PopoverSurface>
-          <PopoverItem>Copy link to profile</PopoverItem>
+          <PopoverItem onClick={onCopyLink}>Copy link to profile</PopoverItem>
           <PopoverItem disabled>Mute this author</PopoverItem>
           <PopoverItem disabled>Block this author</PopoverItem>
           <PopoverItem disabled>Report this author</PopoverItem>

@@ -15,8 +15,8 @@ export const renderAuthorMore = (state: AuthorMoreState) => {
     <slots.root {...slotProps.root}>
       <div>{authorName}</div>
       <div className={flexCenterClassName}>
-        <p>@{authorNickName}</p>
-        <slots.dot {...slotProps.dot} />
+        {/* <p>@{authorNickName}</p> */}
+        {/* <slots.dot {...slotProps.dot} /> */}
         <p>{blog2Date(date)}</p>
         <slots.dot {...slotProps.dot} />
         <p>{readTime.text}</p>

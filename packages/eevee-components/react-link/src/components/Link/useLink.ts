@@ -9,7 +9,7 @@ import { getNativeElementProps } from '@eevee/react-utilities';
  * @param ref - User provided ref to be passed to the Link component.
  */
 export const useLink = (props: LinkProps, ref: React.Ref<HTMLAnchorElement>): LinkState => {
-  const { appearance = 'twitter', linkState, ...rest } = props;
+  const { appearance = 'twitter', linkState, disabled, ...rest } = props;
 
   const state: LinkState = {
     // Props passed at the top-level
@@ -17,6 +17,7 @@ export const useLink = (props: LinkProps, ref: React.Ref<HTMLAnchorElement>): Li
     isCurrentLoc: false,
     appearance,
     linkState,
+    disabled,
     // Slots definition
     components: {
       root: 'a',

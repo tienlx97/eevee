@@ -9,7 +9,6 @@ import { CopyLink, Facebook, LinkedIn, Save, Twitter } from '@components/icons/i
  */
 export const renderSocialList = (state: SocialListState) => {
   const { slots, slotProps } = getSlots<SocialListSlots>(state);
-
   // TODO Add additional slots in the appropriate place
   return (
     <slots.root {...slotProps.root}>
@@ -17,7 +16,7 @@ export const renderSocialList = (state: SocialListState) => {
       <ButtonR aria-label="Facebook" title="Share on Facebook" icon={<Facebook />} />
       <ButtonR aria-label="Twitter" title="Share on Twitter" icon={<Twitter />} />
       <ButtonR aria-label="LinkedIn" title="Share on LinkedIn" icon={<LinkedIn />} />
-      <ButtonR aria-label="Copy link" title="Copy link" icon={<CopyLink />} />
+      <ButtonR aria-label="Copy link" onClick={state.onCopyLink} title="Copy link" icon={<CopyLink />} />
       {!state.before && slotProps.root.children}
     </slots.root>
   );

@@ -1,11 +1,11 @@
 import * as React from 'react';
 import { makeStyles, shorthands } from '@griffel/react';
-import { breakPoints, tokens } from '@eevee/react-theme';
-import { Paragraph, TextButton } from '../../medium/index';
 import { TextLink } from '@eevee/react-link';
-import { NotificationRegularIcon, Story, Stat } from '../../icons/index';
-import { useAuthContext } from '@context/AuthContext';
 import { Button } from '@eevee/react-button';
+import { breakPoints, tokens } from '@eevee/react-theme';
+import { useAuthContext } from '@context/AuthContext';
+import { Paragraph, TextButton } from '../../medium/index';
+import { NotificationRegularIcon, Story, Stat } from '../../icons/index';
 
 const useStyles = makeStyles({
   root: {
@@ -97,7 +97,11 @@ export const LaunchPadMenu = ({ setOpen }: LaunchPadMenuProps) => {
   const itemStyles = useItemStyles();
   const { user, signOut } = useAuthContext();
 
-  const onClick = () => setOpen(false);
+  const onResetOpen = () => setOpen(false);
+  const onSignOut = () => {
+    signOut();
+    onResetOpen();
+  };
 
   return (
     <div className={styles.root}>
@@ -111,7 +115,7 @@ export const LaunchPadMenu = ({ setOpen }: LaunchPadMenuProps) => {
                   <Paragraph>{user?.name}</Paragraph>
                   <Paragraph type="minimal">{user?.email}</Paragraph>
                 </div>
-                <TextButton to={`/@${user?.nick_name}`}>
+                <TextButton onClick={onResetOpen} to={`/@${user?.nick_name}`}>
                   <div>View profile</div>
                 </TextButton>
               </div>
@@ -120,7 +124,7 @@ export const LaunchPadMenu = ({ setOpen }: LaunchPadMenuProps) => {
           <hr className={styles.divider} />
           <ul>
             <li className={itemStyles.li}>
-              <TextLink onClick={onClick} href="/notification" appearance="medium">
+              <TextLink onClick={onResetOpen} href="/notification" appearance="medium">
                 <div className={itemStyles.flex}>
                   <NotificationRegularIcon fill="currentColor" />
                   <div className={itemStyles.ml24}>Notifications</div>
@@ -129,12 +133,7 @@ export const LaunchPadMenu = ({ setOpen }: LaunchPadMenuProps) => {
             </li>
 
             <li className={itemStyles.li}>
-              <TextLink
-                style={{ pointerEvents: 'none', color: tokens.f2 }}
-                onClick={onClick}
-                href="/me/stories"
-                appearance="medium"
-              >
+              <TextLink disabled onClick={onResetOpen} href="/me/stories" appearance="medium">
                 <div className={itemStyles.flex}>
                   <Story />
                   <div className={itemStyles.ml24}>Stories</div>
@@ -143,12 +142,7 @@ export const LaunchPadMenu = ({ setOpen }: LaunchPadMenuProps) => {
             </li>
 
             <li className={itemStyles.li}>
-              <TextLink
-                style={{ pointerEvents: 'none', color: tokens.f2 }}
-                onClick={onClick}
-                href=""
-                appearance="medium"
-              >
+              <TextLink disabled onClick={onResetOpen} href="" appearance="medium">
                 <div className={itemStyles.flex}>
                   <Stat />
                   <div className={itemStyles.ml24}>Stats</div>
@@ -159,27 +153,22 @@ export const LaunchPadMenu = ({ setOpen }: LaunchPadMenuProps) => {
           <hr className={styles.divider} />
           <ul>
             <li className={itemStyles.li}>
-              <TextLink onClick={onClick} href="/me/settings" appearance="medium">
+              <TextLink onClick={onResetOpen} href="/me/settings" appearance="medium">
                 <div>Settings</div>
               </TextLink>
             </li>
             <li className={itemStyles.li}>
-              <TextLink style={{ pointerEvents: 'none', color: tokens.f2 }} href="" appearance="medium">
+              <TextLink disabled href="" appearance="medium">
                 <div>Manage publications</div>
               </TextLink>
             </li>
             <li className={itemStyles.li}>
-              <TextLink
-                style={{ pointerEvents: 'none', color: tokens.f2 }}
-                onClick={onClick}
-                href=""
-                appearance="medium"
-              >
+              <TextLink disabled onClick={onResetOpen} href="" appearance="medium">
                 <div>Refine recommendations</div>
               </TextLink>
             </li>
             <li className={itemStyles.li}>
-              <Button style={{ padding: '0' }} onClick={signOut}>
+              <Button style={{ padding: '0' }} onClick={onSignOut}>
                 Sign out
               </Button>
             </li>
@@ -187,22 +176,12 @@ export const LaunchPadMenu = ({ setOpen }: LaunchPadMenuProps) => {
           <hr className={styles.divider} />
           <ul>
             <li className={itemStyles.li}>
-              <TextLink
-                style={{ pointerEvents: 'none', color: tokens.f2 }}
-                onClick={onClick}
-                href=""
-                appearance="medium"
-              >
+              <TextLink disabled onClick={onResetOpen} href="" appearance="medium">
                 <div>Mimikyu Partner Program</div>
               </TextLink>
             </li>
             <li className={itemStyles.li}>
-              <TextLink
-                style={{ pointerEvents: 'none', color: tokens.f2 }}
-                onClick={onClick}
-                href=""
-                appearance="medium"
-              >
+              <TextLink disabled onClick={onResetOpen} href="" appearance="medium">
                 <div>Gift a menbership</div>
               </TextLink>
             </li>
@@ -210,17 +189,17 @@ export const LaunchPadMenu = ({ setOpen }: LaunchPadMenuProps) => {
           <hr className={styles.divider} />
           <ul>
             <li className={itemStyles.li}>
-              <TextLink onClick={onClick} href="" appearance="medium">
+              <TextLink onClick={onResetOpen} href="" appearance="medium">
                 <div>Helps</div>
               </TextLink>
             </li>
             <li className={itemStyles.li}>
-              <TextLink onClick={onClick} href="" appearance="medium">
+              <TextLink onClick={onResetOpen} href="" appearance="medium">
                 <div>Privacy</div>
               </TextLink>
             </li>
             <li className={itemStyles.li}>
-              <TextLink onClick={onClick} href="" appearance="medium">
+              <TextLink onClick={onResetOpen} href="" appearance="medium">
                 <div>Terms</div>
               </TextLink>
             </li>

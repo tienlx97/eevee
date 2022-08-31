@@ -8,6 +8,8 @@ import { Header, TabLayout } from '@feature/profile/index';
 import { Spinner } from '@components/spinner-2/index';
 
 import { getAuthorIDByNickName } from '@services/index';
+import { Porfolio } from '@components/porfolio/index';
+import { MorePostSkeleton } from '@feature/blog/index';
 
 export const Profile = () => {
   const { nickname } = useParams();
@@ -51,7 +53,11 @@ export const Profile = () => {
           <Header author={author!} />
           <TabLayout>{author && <Outlet context={author} />}</TabLayout>
         </MiddleLayout>
-        <RightLayout>2</RightLayout>
+        <RightLayout>
+          <Porfolio style={{ padding: '0px 16px' }} author={author} />
+          <div style={{ height: '24px' }} />
+          <MorePostSkeleton />
+        </RightLayout>
       </>
     );
   }

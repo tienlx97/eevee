@@ -3432,6 +3432,11 @@
   dependencies:
     "@octokit/types" "^7.1.1"
 
+"@octokit/plugin-request-log@^1.0.4":
+  version "1.0.4"
+  resolved "https://registry.yarnpkg.com/@octokit/plugin-request-log/-/plugin-request-log-1.0.4.tgz#5e50ed7083a613816b1e4a28aeec5fb7f1462e85"
+  integrity sha512-mLUsMkgP7K/cnFEw07kWqXGF5LKrOkD+lhCrKvPHXWDywAwuDUeDwWBpc69XK3pNX0uKiVt8g5z96PJ6z9xCFA==
+
 "@octokit/plugin-rest-endpoint-methods@^6.0.0":
   version "6.3.0"
   resolved "https://registry.yarnpkg.com/@octokit/plugin-rest-endpoint-methods/-/plugin-rest-endpoint-methods-6.3.0.tgz#81549334ce020169b84bd4a7fa2577e9d725d829"
@@ -3448,7 +3453,7 @@
     "@octokit/types" "^6.0.3"
     bottleneck "^2.15.3"
 
-"@octokit/plugin-throttling@^4.0.1":
+"@octokit/plugin-throttling@4.2.0", "@octokit/plugin-throttling@^4.0.1":
   version "4.2.0"
   resolved "https://registry.yarnpkg.com/@octokit/plugin-throttling/-/plugin-throttling-4.2.0.tgz#261f265426dcf2f5126e60b75edf547e57e24def"
   integrity sha512-5QilB43MU9MgKfrQh7ZBJ/sPwasoNOazHVZd77xS7iMRu81qxH9uOt31t2QXNx6Jnc29h7eiLZIRrJAVn+7kJA==
@@ -3497,6 +3502,16 @@
     is-plain-object "^5.0.0"
     node-fetch "^2.6.7"
     universal-user-agent "^6.0.0"
+
+"@octokit/rest@19.0.4":
+  version "19.0.4"
+  resolved "https://registry.yarnpkg.com/@octokit/rest/-/rest-19.0.4.tgz#fd8bed1cefffa486e9ae46a9dc608ce81bcfcbdd"
+  integrity sha512-LwG668+6lE8zlSYOfwPj4FxWdv/qFXYBpv79TWIQEpBLKA9D/IMcWsF/U9RGpA3YqMVDiTxpgVpEW3zTFfPFTA==
+  dependencies:
+    "@octokit/core" "^4.0.0"
+    "@octokit/plugin-paginate-rest" "^4.0.0"
+    "@octokit/plugin-request-log" "^1.0.4"
+    "@octokit/plugin-rest-endpoint-methods" "^6.0.0"
 
 "@octokit/types@^6.0.3", "@octokit/types@^6.12.2", "@octokit/types@^6.16.1":
   version "6.41.0"
@@ -8913,16 +8928,6 @@ csstype@^3.0.10, csstype@^3.0.2:
   resolved "https://registry.yarnpkg.com/csstype/-/csstype-3.1.0.tgz#4ddcac3718d787cf9df0d1b7d15033925c8f29f2"
   integrity sha512-uX1KG+x9h5hIJsaKR9xHUeUraxf8IODOwq9JLNPq6BwB04a/xgpq3rcx47l5BZu5zBPlgD342tdke3Hom/nJRA==
 
-csv-parse@^4.12.0:
-  version "4.16.3"
-  resolved "https://registry.yarnpkg.com/csv-parse/-/csv-parse-4.16.3.tgz#7ca624d517212ebc520a36873c3478fa66efbaf7"
-  integrity sha512-cO1I/zmz4w2dcKHVvpCr7JVRu8/FymG5OEpmvsZYlccYolPBLoVGKUHgNoc4ZGkFeFlWGEDmMyBM+TTqRdW/wg==
-
-csv-stringify@^5.5.1:
-  version "5.6.5"
-  resolved "https://registry.yarnpkg.com/csv-stringify/-/csv-stringify-5.6.5.tgz#c6d74badda4b49a79bf4e72f91cce1e33b94de00"
-  integrity sha512-PjiQ659aQ+fUTQqSrd1XEDnOr52jh30RBurfzkscaE2tPaFsDH5wOAHJiw8XAHphRknCwMUE9KRayc4K/NbO8A==
-
 currently-unhandled@^0.4.1:
   version "0.4.1"
   resolved "https://registry.yarnpkg.com/currently-unhandled/-/currently-unhandled-0.4.1.tgz#988df33feab191ef799a61369dd76c17adf957ea"
@@ -11496,16 +11501,6 @@ github-slugger@1.4.0, github-slugger@^1.0.0:
   resolved "https://registry.yarnpkg.com/github-slugger/-/github-slugger-1.4.0.tgz#206eb96cdb22ee56fdc53a28d5a302338463444e"
   integrity sha512-w0dzqw/nt51xMVmlaV1+JRzN+oCa1KfcgGEWhxUG16wbdA+Xnt/yoFO8Z8x/V82ZcZ0wy6ln9QDup5avbhiDhQ==
 
-gitrows@0.9.0:
-  version "0.9.0"
-  resolved "https://registry.yarnpkg.com/gitrows/-/gitrows-0.9.0.tgz#0647336aeeddd953c6ed6645d4872a5f227de519"
-  integrity sha512-kg06kHvr5AgSFanR5DH0ABasmqUkxu+975XFzQguTBUMGDLbXevUE+uyEpCE5pQYSSKX6t+OgiII8FXcB426CQ==
-  dependencies:
-    csv-parse "^4.12.0"
-    csv-stringify "^5.5.1"
-    node-fetch "^2.6.0"
-    yamljs "^0.3.0"
-
 glob-parent@^3.1.0:
   version "3.1.0"
   resolved "https://registry.yarnpkg.com/glob-parent/-/glob-parent-3.1.0.tgz#9e6af6299d8d3bd2bd40430832bd113df906c5ae"
@@ -11550,7 +11545,7 @@ glob@7.1.6:
     once "^1.3.0"
     path-is-absolute "^1.0.0"
 
-glob@^7.0.3, glob@^7.0.5, glob@^7.1.1, glob@^7.1.2, glob@^7.1.3, glob@^7.1.4, glob@^7.1.6, glob@^7.1.7, glob@^7.2.0:
+glob@^7.0.3, glob@^7.1.1, glob@^7.1.2, glob@^7.1.3, glob@^7.1.4, glob@^7.1.6, glob@^7.1.7, glob@^7.2.0:
   version "7.2.3"
   resolved "https://registry.yarnpkg.com/glob/-/glob-7.2.3.tgz#b8df0fb802bbfa8e89bd1d938b4e16578ed44f2b"
   integrity sha512-nFR0zLpU2YCaRxwoCJvL6UvCH2JFyFVIvwTLsIf21AuHlMskA1hhTdk+LlYJtOlYt9v6dvszD2BGRqBL+iQK9Q==
@@ -21921,14 +21916,6 @@ yaml@^1.10.0, yaml@^1.10.2, yaml@^1.7.2:
   version "1.10.2"
   resolved "https://registry.yarnpkg.com/yaml/-/yaml-1.10.2.tgz#2301c5ffbf12b467de8da2333a459e29e7920e4b"
   integrity sha512-r3vXyErRCYJ7wg28yvBY5VSoAF8ZvlcW9/BwUzEtUsjvX/DKs24dIkuwjtuprwJJHsbyUbLApepYTR1BN4uHrg==
-
-yamljs@^0.3.0:
-  version "0.3.0"
-  resolved "https://registry.yarnpkg.com/yamljs/-/yamljs-0.3.0.tgz#dc060bf267447b39f7304e9b2bfbe8b5a7ddb03b"
-  integrity sha512-C/FsVVhht4iPQYXOInoxUM/1ELSf9EsgKH34FofQOp6hwCPrW4vG4w5++TED3xRUo8gD7l0P1J1dLlDYzODsTQ==
-  dependencies:
-    argparse "^1.0.7"
-    glob "^7.0.5"
 
 yargs-parser@13.1.2:
   version "13.1.2"
