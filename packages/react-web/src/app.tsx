@@ -5,12 +5,10 @@ import { PageLayout, ProtectedRoute } from '@layout/index';
 import { Scroll2Top } from '@components/scroll2top/index';
 import { ErrorHandler } from '@context/index';
 import { Spinner } from './components/spinner-2/index';
-import { Home, PageOrPageNotFound, NewStory, Profile, Settings, UI } from '@pages/index';
+import { Home, PageOrPageNotFound, NewStory, Profile, Settings, UI, Search, Notification } from '@pages/index';
 import { ProfileHome } from './feature/profile/index';
-import { SWRConfig } from 'swr';
 
 const LazyPageNotFound = React.lazy(() => import('@pages/index').then(module => ({ default: module.PageNotFound })));
-// const LazyBlogPage = React.lazy(() => import('@pages/index').then(module => ({ default: module.BlogPage })));
 const LazyBlogPage = React.lazy(() => import('@pages/index').then(module => ({ default: module.ViewBlog })));
 
 export const App = () => {
@@ -33,7 +31,7 @@ export const App = () => {
       <Route path="/" element={<Navigate to="/home" replace />} />
       <Route path="home" element={homePage} />
       <Route path="ui" element={<UI />} />
-      <Route path="search" element={<div>Search</div>} />
+      <Route path="search" element={<Search />} />
       <Route path="blog/:slug" element={<LazyBlogPage />} />
       <Route path="@:nickname" element={<Profile />}>
         <Route index element={<ProfileHome />} />
@@ -70,7 +68,7 @@ export const App = () => {
         path="/notification"
         element={
           <ProtectedRoute>
-            <div>Notification</div>
+            <Notification />
           </ProtectedRoute>
         }
       />
