@@ -2,7 +2,7 @@ import * as React from 'react';
 // eslint-disable-next-line import/no-extraneous-dependencies
 import { BrowserHistory } from 'history';
 import { UNSAFE_NavigationContext } from 'react-router-dom';
-import { PageNotFound } from '../pages/PageNotFound/PageNotFound';
+import { PageNotFound } from '../pages/page-not-found/PageNotFound';
 
 export type ErrorContextValue = {
   setErrorStatusCode: (val: number) => void;

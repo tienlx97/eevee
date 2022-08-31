@@ -2,10 +2,10 @@ import * as React from 'react';
 import { MiddleLayout } from '@layout/index';
 import { ComingSoon } from '@components/coming-soon/index';
 
-export const Home = () => {
+export const Search = () => {
   return (
     <MiddleLayout>
-      <ComingSoon date="2022-09-05 00:00:00" />
+      <ComingSoon date="2022-10-25 00:00:00" />
     </MiddleLayout>
   );
 };

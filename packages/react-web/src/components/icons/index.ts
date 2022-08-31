@@ -24,3 +24,4 @@ export * from './Publish';
 export * from './ThreeDot';
 export * from './Story';
 export * from './Stat';
+export * from './Gear';

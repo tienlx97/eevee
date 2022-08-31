@@ -148,7 +148,8 @@
     "@codemirror/search": "^0.19.5",
     "@supabase/supabase-js": "1.35.6",
     "@octokit/rest": "19.0.4",
-    "@octokit/plugin-throttling": "4.2.0"
+    "@octokit/plugin-throttling": "4.2.0",
+    "moment": "2.29.4"
   },
   "browserslist": {
     "production": [

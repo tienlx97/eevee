@@ -1,5 +1,4 @@
-export { PageNotFound } from './PageNotFound/index';
-export { BlogPage } from './blog/index';
+export { PageNotFound } from './page-not-found/index';
 export { PageOrPageNotFound } from './common/index';
 export * from './home/index';
 export * from './new-story/index';
@@ -7,3 +6,5 @@ export * from './profile/index';
 export * from './view-blog/index';
 export * from './settings/index';
 export * from './ui/index';
+export * from './search/index';
+export * from './notification/index';
