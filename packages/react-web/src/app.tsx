@@ -5,7 +5,7 @@ import { PageLayout, ProtectedRoute } from '@layout/index';
 import { Scroll2Top } from '@components/scroll2top/index';
 import { ErrorHandler } from '@context/index';
 import { Spinner } from './components/spinner-2/index';
-import { Home, PageOrPageNotFound, NewStory, Profile, Settings } from '@pages/index';
+import { Home, PageOrPageNotFound, NewStory, Profile, Settings, UI } from '@pages/index';
 import { ProfileHome } from './feature/profile/index';
 import { SWRConfig } from 'swr';
 
@@ -32,6 +32,7 @@ export const App = () => {
     <Routes>
       <Route path="/" element={<Navigate to="/home" replace />} />
       <Route path="home" element={homePage} />
+      <Route path="ui" element={<UI />} />
       <Route path="search" element={<div>Search</div>} />
       <Route path="blog/:slug" element={<LazyBlogPage />} />
       <Route path="@:nickname" element={<Profile />}>

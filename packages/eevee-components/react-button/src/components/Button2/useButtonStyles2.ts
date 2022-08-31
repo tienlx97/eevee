@@ -41,6 +41,22 @@ const useButtonStyles = makeStyles({
       },
     },
   },
+
+  disabled: {
+    opacity: 0.7,
+    userSelect: 'none',
+    pointerEvents: 'none',
+    cursor: 'not-allowed',
+    color: tokens.fDisable,
+    ':hover': {
+      color: '#5c5c5c', // tokens.fDisable,
+      backgroundColor: tokens.bgDisable,
+    },
+
+    ':focus': {
+      color: tokens.fDisable,
+    },
+  },
 });
 
 const useIconAndTextStyles = makeStyles({
@@ -85,6 +101,7 @@ export const useButtonStyles2 = (state: ButtonState2): ButtonState2 => {
     buttonClassNames.root,
     buttonStyles.base,
     buttonStyles.root,
+    state.root.disabled && buttonStyles.disabled,
     state.root.className,
   );
 

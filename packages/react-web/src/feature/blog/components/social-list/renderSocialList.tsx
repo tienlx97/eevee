@@ -13,9 +13,9 @@ export const renderSocialList = (state: SocialListState) => {
   return (
     <slots.root {...slotProps.root}>
       {state.before && slotProps.root.children}
-      <ButtonR aria-label="Facebook" title="Share on Facebook" icon={<Facebook />} />
-      <ButtonR aria-label="Twitter" title="Share on Twitter" icon={<Twitter />} />
-      <ButtonR aria-label="LinkedIn" title="Share on LinkedIn" icon={<LinkedIn />} />
+      <ButtonR disabled aria-label="Facebook" title="Share on Facebook" icon={<Facebook />} />
+      <ButtonR disabled aria-label="Twitter" title="Share on Twitter" icon={<Twitter />} />
+      <ButtonR disabled aria-label="LinkedIn" title="Share on LinkedIn" icon={<LinkedIn />} />
       <ButtonR aria-label="Copy link" onClick={state.onCopyLink} title="Copy link" icon={<CopyLink />} />
       {!state.before && slotProps.root.children}
     </slots.root>
