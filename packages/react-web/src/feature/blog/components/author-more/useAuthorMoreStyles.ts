@@ -1,6 +1,7 @@
-import { makeStyles, mergeClasses } from '@griffel/react';
+import { makeStyles, mergeClasses, shorthands } from '@griffel/react';
 import type { AuthorMoreSlots, AuthorMoreState } from './AuthorMore.types';
 import type { SlotClassNames } from '@eevee/react-utilities';
+import { breakPoints } from '@eevee/react-theme';
 
 const ClassName = 'eve-AuthorMore';
 const ClassNames: SlotClassNames<AuthorMoreSlots> = {
@@ -8,6 +9,7 @@ const ClassNames: SlotClassNames<AuthorMoreSlots> = {
   // TODO: add class names for all slots on AuthorMoreSlots.
   // Should be of the form `<slotName>: 'eve-AuthorMore__<slotName>`
   dot: 'eve-AuthorMore__dot',
+  follow: 'eve-AuthorMore__dot',
 };
 
 /**
@@ -21,6 +23,34 @@ const useStyles = makeStyles({
   },
 
   // TODO add additional classes for different states and/or slots
+  follow: {
+    fontSize: '14px',
+    color: '#fff',
+    ...shorthands.borderColor('#1a8917'),
+    backgroundColor: '#1a8917',
+    ...shorthands.padding('0px', '8px'),
+    marginLeft: '12px',
+
+    [`@media ${breakPoints.lgAndLarger}`]: {
+      display: 'none',
+    },
+
+    [`@media ${breakPoints.lg}`]: {
+      display: 'inline-block',
+    },
+
+    [`@media ${breakPoints.md}`]: {
+      display: 'inline-block',
+    },
+
+    [`@media ${breakPoints.sm}`]: {
+      display: 'inline-block',
+    },
+
+    [`@media ${breakPoints.xs}`]: {
+      display: 'inline-block',
+    },
+  },
 });
 
 /**
@@ -34,6 +64,7 @@ export const useAuthorMoreStyles = (state: AuthorMoreState): AuthorMoreState => 
   // state.mySlot.className = mergeClasses(styles.mySlot, state.mySlot.className);
   state.dot.className = mergeClasses(ClassNames.dot, state.dot.className);
   state.flexCenterClassName = styles.flexCenter;
+  state.follow.className = mergeClasses(ClassNames.follow, styles.follow);
 
   return state;
 };

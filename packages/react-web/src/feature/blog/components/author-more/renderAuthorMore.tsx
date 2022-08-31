@@ -13,7 +13,10 @@ export const renderAuthorMore = (state: AuthorMoreState) => {
   // TODO Add additional slots in the appropriate place
   return (
     <slots.root {...slotProps.root}>
-      <div>{authorName}</div>
+      <div style={{ display: 'flex', flexDirection: 'row', marginBottom: '4px' }}>
+        <div>{authorName}</div>
+        {/* {!state.hideFollow && <slots.follow {...slotProps.follow} />} */}
+      </div>
       <div className={flexCenterClassName}>
         {/* <p>@{authorNickName}</p> */}
         {/* <slots.dot {...slotProps.dot} /> */}

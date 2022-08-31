@@ -51,7 +51,7 @@ export const renderCommentSystem = (state: CommentSystemState) => {
             inputPosition="top"
             lang="en"
             loading="lazy"
-            reactionsEnabled="0"
+            reactionsEnabled="1"
           />
         )}
       </slots.commentWrapper>

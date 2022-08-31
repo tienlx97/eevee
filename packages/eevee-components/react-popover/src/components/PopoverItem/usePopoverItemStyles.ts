@@ -42,6 +42,8 @@ const useStyles = makeStyles({
 
   disabled: {
     opacity: 0.7,
+    userSelect: 'none',
+    cursor: 'not-allowed',
     color: tokens.fDisable,
     ':hover': {
       color: '#5c5c5c', // tokens.fDisable,

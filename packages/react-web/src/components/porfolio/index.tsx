@@ -1,8 +1,10 @@
 import { makeStyles, shorthands } from '@griffel/react';
 import * as React from 'react';
 import { Link } from 'react-router-dom';
+import { Button } from '@eevee/react-button';
 import { tokens } from '@eevee/react-theme';
 import type { UserSchema } from 'typings/my-mdx/index';
+import { useAuthContext } from '../../context/AuthContext';
 
 const useDisplayStyles = makeStyles({
   'mt-16': {
@@ -49,6 +51,7 @@ type Props = JSX.IntrinsicElements['div'] & {
 export const Porfolio = ({ author, ...props }: Props) => {
   const rootStyles = useRootStyles();
   const displayStyles = useDisplayStyles();
+  const { user } = useAuthContext();
 
   return (
     <div {...props}>
@@ -60,9 +63,25 @@ export const Porfolio = ({ author, ...props }: Props) => {
         <h2 className={rootStyles.title}>{author.nick_name}</h2>
       </Link>
       <div className={displayStyles['mt-4']} />
-      <span>61 followers</span>
+      {/* <span>61 followers</span> */}
       <div className={displayStyles['mt-12']} />
       <p>{author.description}</p>
+      <div className={displayStyles['mt-12']} />
+      {/* {user?.id !== author.id && (
+        <Button
+          appearance="unstyled"
+          shape="circular"
+          style={{
+            fontSize: '14px',
+            color: '#fff',
+            borderColor: '#1a8917',
+            backgroundColor: '#1a8917',
+            padding: '3px 16px',
+          }}
+        >
+          Follow
+        </Button>
+      )} */}
     </div>
   );
 };

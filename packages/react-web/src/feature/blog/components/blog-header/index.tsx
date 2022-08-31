@@ -229,6 +229,7 @@ export function PostHeader({ blog }: PostHeaderProps) {
             authorNickName={blog.author?.nick_name!}
             date={blog.publish_date}
             readTime={blog.read_time}
+            hideFollow={blog.author.id === user?.id}
           />
         </div>
         <div
@@ -238,7 +239,7 @@ export function PostHeader({ blog }: PostHeaderProps) {
           }}
         >
           <SocialList className={socialListStyles.web}>
-            <ButtonR style={{ margin: '0px 4px 0px 28px' }} aria-label="Save" title="Save" icon={<Save />} />
+            <ButtonR style={{ margin: '0px 4px 0px 28px' }} disabled aria-label="Save" title="Save" icon={<Save />} />
           </SocialList>
 
           {user && (
@@ -272,6 +273,7 @@ export function PostHeader({ blog }: PostHeaderProps) {
       {/* <= mobile */}
       <SocialList className={socialListStyles.mobile} before={true}>
         <Button
+          disabled
           iconPosition="before"
           appearance="unstyled"
           shape="circular"

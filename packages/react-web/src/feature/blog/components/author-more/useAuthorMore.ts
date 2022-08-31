@@ -2,6 +2,8 @@ import * as React from 'react';
 import { getNativeElementProps, resolveShorthand } from '@eevee/react-utilities';
 import type { AuthorMoreProps, AuthorMoreState } from './AuthorMore.types';
 import { Dot } from '@components/dot/index';
+import { Button } from '@eevee/react-button';
+import { S } from '../../../../../../eevee-components/react-keyboard/src/keyCodes';
 
 /**
  * Create the state required to render AuthorMore.
@@ -13,7 +15,7 @@ import { Dot } from '@components/dot/index';
  * @param ref - reference to root HTMLElement of AuthorMore
  */
 export const useAuthorMore = (props: AuthorMoreProps, ref: React.Ref<HTMLElement>): AuthorMoreState => {
-  const { authorName, authorNickName, date, readTime, dot, ...rest } = props;
+  const { authorName, authorNickName, date, readTime, hideFollow, follow, dot, ...rest } = props;
 
   const state: AuthorMoreState = {
     // TODO add appropriate props/defaults
@@ -21,9 +23,11 @@ export const useAuthorMore = (props: AuthorMoreProps, ref: React.Ref<HTMLElement
       // TODO add each slot's element type or component
       root: 'div',
       dot: Dot,
+      follow: Button,
     },
     authorName,
     authorNickName,
+    hideFollow,
     date,
     readTime,
     // TODO add appropriate slots, for example:
@@ -36,7 +40,15 @@ export const useAuthorMore = (props: AuthorMoreProps, ref: React.Ref<HTMLElement
       defaultProps: {},
       required: true,
     }),
+    follow: resolveShorthand(follow, {
+      defaultProps: {},
+      required: true,
+    }),
   };
+
+  state.follow.appearance = 'unstyled';
+  state.follow.shape = 'circular';
+  state.follow.children = 'Follow';
 
   return state;
 };
