@@ -8,6 +8,7 @@ import { removeImportsExportsPlugin } from './plugins/remove-imports-exports';
 import { remarkTocHeadings } from './plugins/remark-toc-headings';
 import { remarkReadingTime } from './plugins/remark-reading-time';
 import { getReadingTime } from './plugins/getReadingTime';
+import { remarkEmbedImage } from './plugins/remark-embed-image';
 
 import type { Toc } from 'typings/my-mdx/index';
 
@@ -49,6 +50,7 @@ export const serialize = async (
       [remarkMdxCodeMeta],
       [remarkTocHeadings, { exportRef: toc }],
       [remarkReadingTime, { exportRef: readingArr }],
+      // [remarkEmbedImage]
     ],
     outputFormat: 'function-body',
     providerImportSource: '@mdx-js/react',

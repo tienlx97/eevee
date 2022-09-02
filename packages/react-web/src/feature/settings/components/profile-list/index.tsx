@@ -195,7 +195,14 @@ export const ProfileList = () => {
           </div>
         }
       >
-        <input spellCheck={false} ref={nameRef} disabled={true} maxLength={50} defaultValue={user?.name} />
+        <input
+          autoComplete="off"
+          spellCheck={false}
+          ref={nameRef}
+          disabled={true}
+          maxLength={50}
+          defaultValue={user?.name}
+        />
       </InputGroup>
 
       <InputGroup
@@ -212,6 +219,7 @@ export const ProfileList = () => {
         <input
           ref={nicknameRef}
           spellCheck={false}
+          autoComplete="off"
           disabled
           onKeyUp={onNicknameKeyup}
           maxLength={50}

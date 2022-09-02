@@ -25,3 +25,5 @@ export * from './ThreeDot';
 export * from './Story';
 export * from './Stat';
 export * from './Gear';
+export * from './Image';
+export * from './Delete';

@@ -5,3 +5,4 @@ export * from './checkValidity';
 export * from './jsGMT';
 //
 export * from './github.server';
+export * from './base64ArrayBuffer';

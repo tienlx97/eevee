@@ -88,9 +88,7 @@ export const ComingSoon = ({ date }: ComingSoonProps) => {
       <div style={{ height: '16px' }} />
       <Title text="Coming Soon!" />
       <div style={{ height: '16px' }} />
-      <p style={{ alignSelf: 'center', textAlign: 'center' }}>
-        We are working very hard on the new version of out site.
-      </p>
+      <p style={{ alignSelf: 'center', textAlign: 'center' }}>We're working hard on the new version of out site.</p>
       <p style={{ alignSelf: 'center', textAlign: 'center' }}>I will bring a lot of new feature. Stay tuned!</p>
     </>
   );
