@@ -77,7 +77,7 @@ export const AuthContextProvider: React.FC = ({ children }) => {
       } else if (event === 'SIGNED_OUT') {
         setUser(null);
         setIsAuthReady(false);
-        navigate('/login');
+        navigate('/home');
       }
     });
 

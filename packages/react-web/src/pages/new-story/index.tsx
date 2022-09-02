@@ -24,6 +24,7 @@ import {
   ActionSkeleton,
   EditBlog,
   Editor,
+  ImgUpload,
   Publishdialog,
   publishStory,
   setDefaultDate,
@@ -416,6 +417,11 @@ export const NewStory = ({ type = 'new' }: NewStoryProps) => {
             type="text-area"
             placeholder="Write a preview subtitle ..."
           />
+
+          <ImgUpload />
+
+          <div style={{ height: '16px' }} />
+
           {/* wrapper */}
           <div className={editorPreviewStyles.root}>
             <Editor

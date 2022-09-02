@@ -1,9 +1,10 @@
 import * as React from 'react';
-
-import { useLocation, useMatch, useNavigate, useParams } from 'react-router-dom';
-import { useGA } from '@context/GaContext';
-import { BlogFetcher, useBlog } from '@feature/blog/index';
 import useSWR from 'swr';
+import { useLocation, useMatch, useNavigate, useParams } from 'react-router-dom';
+import type { Blog } from 'typings/my-mdx';
+
+import { useGA } from '@context/GaContext';
+import { BlogFetcher } from '@feature/blog/index';
 
 import { MiddleLayout, RightLayout } from '@layout/index';
 
@@ -18,11 +19,9 @@ import {
   BlogRightBarSkeleton,
 } from '@feature/blog/index';
 
-import { CommentSystem } from '@components/comment-system/index';
 import { Close } from '@components/icons/Close';
-import { useReactionStyles, useStyles } from './styles';
-
-import type { Blog } from 'typings/my-mdx';
+import { useReactionStyles } from './styles';
+import { CommentSystem } from '@components/comment-system/index';
 
 export const ViewBlog = () => {
   // styles

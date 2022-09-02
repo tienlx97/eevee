@@ -86,6 +86,7 @@ export const InputGroup = React.forwardRef<any, InputGroupProps>(
         {type === 'input' && (
           <input
             ref={ref}
+            autoComplete="off"
             spellCheck={false}
             placeholder={placeholder}
             id={genID}
