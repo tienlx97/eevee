@@ -35,6 +35,8 @@ import { SideNote, Expanded } from './SideNote';
 
 import { CodeBlock } from './CodeBlock';
 
+import { YouTube, Spotify } from './Embed';
+
 const Strong = (strong: JSX.IntrinsicElements['strong']) => <strong style={{ fontWeight: 700 }} {...strong} />;
 
 export const MDXComponents = {
@@ -117,7 +119,6 @@ export const MDXComponents = {
   Ul,
   Ol,
   Li,
-  // eslint-disable-next-line @typescript-eslint/naming-convention
   I: (props: JSX.IntrinsicElements['em']) => <em {...props} />,
   Em,
   PostImage,
@@ -135,4 +136,9 @@ export const MDXComponents = {
   SideNote,
   Expanded,
   CodeBlock,
+
+  //
+
+  YouTube,
+  Spotify,
 };

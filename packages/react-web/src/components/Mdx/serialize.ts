@@ -22,6 +22,7 @@ export const serialize = async (
   /** Raw MDX contents as a string. */
   source: string,
   {
+    imagesSrc = [],
     scope = {},
     mdxOptions = {
       remarkPlugins: [],
@@ -50,7 +51,7 @@ export const serialize = async (
       [remarkMdxCodeMeta],
       [remarkTocHeadings, { exportRef: toc }],
       [remarkReadingTime, { exportRef: readingArr }],
-      // [remarkEmbedImage]
+      [remarkEmbedImage, { imagesSrc: imagesSrc }],
     ],
     outputFormat: 'function-body',
     providerImportSource: '@mdx-js/react',

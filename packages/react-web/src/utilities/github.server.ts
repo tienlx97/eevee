@@ -14,7 +14,7 @@ type ThrottleOptions = {
 const Octokit = createOctokit.plugin(throttling);
 
 const octokit = new Octokit({
-  auth: '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',
+  auth: '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',
   throttle: {
     onRateLimit: (retryAfter: number, options: ThrottleOptions) => {
       console.log(

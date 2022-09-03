@@ -149,7 +149,9 @@
     "@supabase/supabase-js": "1.35.6",
     "@octokit/rest": "19.0.4",
     "@octokit/plugin-throttling": "4.2.0",
-    "moment": "2.29.4"
+    "moment": "2.29.4",
+    "mdast": "3.0.0",
+    "@types/mdast": "3.0.10"
   },
   "browserslist": {
     "production": [

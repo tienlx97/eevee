@@ -72,9 +72,10 @@ export type GithubBlog = {
   mdx_code: string;
   compile_code: string;
   subtitle: string;
+  imagesSrc: string[]
 }
 
-export type BlogSchema = SBBlog & Pick<GithubBlog, 'toc' | 'read_time' | 'mdx_code' | 'compile_code' | 'subtitle'>
+export type BlogSchema = SBBlog & Pick<GithubBlog, 'toc' | 'read_time' | 'mdx_code' | 'compile_code' | 'subtitle' | 'imagesSrc'>
 
 export type UserSchema = {
   id: string;

@@ -1,14 +1,13 @@
 import * as React from 'react';
 import useSWR, { useSWRConfig } from 'swr';
 import { ErrorBoundary } from 'react-error-boundary';
-import { makeStyles, mergeClasses, shorthands } from '@griffel/react';
+import { mergeClasses } from '@griffel/react';
 
 import type { BlogSchema } from 'typings/my-mdx/index';
 
 import { useAuthContext } from '@context/AuthContext';
 
 import { slugify, usePrevious } from '@eevee/react-utilities';
-import { breakPoints, tokens } from '@eevee/react-theme';
 import { TextLink } from '@eevee/react-link';
 import { H1, InlineCode, Paragraph } from '@eevee/react-mdx-comp';
 
@@ -32,137 +31,13 @@ import {
   setDefaultMinDate,
 } from '@feature/new-story/index';
 
-import { bottomHeight } from '@constants/index';
 import { useLocation, useNavigate, useParams } from 'react-router-dom';
 import { generateHash } from '@utilities/index';
 import { getDate } from '@feature/new-story/index';
 import { useToast } from '@eevee/react-toast';
 // eslint-disable-next-line import/no-extraneous-dependencies
 import { EditorView } from '@codemirror/view';
-
-const useStyles = makeStyles({
-  root: {
-    display: 'flex',
-    flexDirection: 'column',
-    position: 'relative',
-    width: '100%',
-    height: '100%',
-    ...shorthands.overflow('hidden'),
-  },
-});
-
-const useInputGroupStyles = makeStyles({
-  title: {
-    marginTop: '16px',
-    marginBottom: '16px',
-  },
-
-  tag: {
-    marginBottom: '16px',
-
-    '& span': {
-      fontWeight: 400,
-      color: tokens.f2,
-    },
-  },
-});
-
-const useEditorPreviewStyles = makeStyles({
-  root: {
-    width: '100%',
-    height: '100%',
-    ...shorthands.overflow('auto'),
-  },
-
-  previewWrapper: {
-    ...shorthands.padding('10px', '16px'),
-  },
-
-  editorNone: {
-    display: 'none',
-  },
-
-  editorBlock: {
-    display: 'block',
-  },
-});
-
-const useActionStyles = makeStyles({
-  root: {
-    position: 'fixed',
-    alignSelf: 'center',
-    justifySelf: 'center',
-
-    [`@media ${breakPoints.lgAndLarger}`]: {
-      bottom: '16px',
-    },
-
-    [`@media ${breakPoints.lg}`]: {
-      bottom: bottomHeight,
-    },
-
-    [`@media ${breakPoints.md}`]: {
-      bottom: bottomHeight,
-    },
-
-    [`@media ${breakPoints.sm}`]: {
-      bottom: bottomHeight,
-    },
-
-    [`@media ${breakPoints.xs}`]: {
-      bottom: bottomHeight,
-    },
-  },
-});
-
-const useSkeletonStyles = makeStyles({
-  wrapper: {
-    height: '100vh',
-    display: 'flex',
-    flexDirection: 'column',
-  },
-
-  title: {
-    marginTop: '16px',
-    marginBottom: '16px',
-    height: '35px',
-  },
-
-  subtitle: {
-    marginBottom: '16px',
-    height: '70px',
-  },
-
-  editor: {
-    height: '100vh',
-  },
-
-  action: {
-    position: 'fixed',
-    alignSelf: 'center',
-    justifySelf: 'center',
-
-    [`@media ${breakPoints.lgAndLarger}`]: {
-      bottom: '16px',
-    },
-
-    [`@media ${breakPoints.lg}`]: {
-      bottom: bottomHeight,
-    },
-
-    [`@media ${breakPoints.md}`]: {
-      bottom: bottomHeight,
-    },
-
-    [`@media ${breakPoints.sm}`]: {
-      bottom: bottomHeight,
-    },
-
-    [`@media ${breakPoints.xs}`]: {
-      bottom: bottomHeight,
-    },
-  },
-});
+import { useActionStyles, useEditorPreviewStyles, useInputGroupStyles, useSkeletonStyles, useStyles } from './styles';
 
 const OurFallbackComponent = ({ error, componentStack, resetErrorBoundary }: any) => {
   const matches = error.message.match(/\`(.*?)\`/);
@@ -210,6 +85,8 @@ export const NewStory = ({ type = 'new' }: NewStoryProps) => {
   const datePickerRef = React.useRef<HTMLInputElement>(null);
 
   const preType = usePrevious(type);
+
+  const [selectedImageList, setSelectedImageList] = React.useState<string[]>([]);
 
   const [tags, setTags] = React.useState<any>();
   const [editorSource, setEditorSource] = React.useState(type === 'edit' ? '' : text);
@@ -276,6 +153,7 @@ export const NewStory = ({ type = 'new' }: NewStoryProps) => {
       }
 
       setTags([]);
+      setSelectedImageList([]);
 
       setScheduleBlog(true);
     } else if (type === 'edit') {
@@ -298,6 +176,7 @@ export const NewStory = ({ type = 'new' }: NewStoryProps) => {
         });
         setCompiledSource(blogData.compile_code);
         setTags(blogData.tags);
+        setSelectedImageList(blogData.imagesSrc ?? []);
         setLoading(false);
       }
     }
@@ -323,7 +202,7 @@ export const NewStory = ({ type = 'new' }: NewStoryProps) => {
   const onEditPreviewChange = React.useCallback(
     (val: boolean) => {
       if (!val) {
-        serialize(editorSource, { parseFrontmatter: true }).then(p => {
+        serialize(editorSource, { parseFrontmatter: true, imagesSrc: selectedImageList }).then(p => {
           setCompiledSource(p.compiledSource);
           setOpenPreview(true);
         });
@@ -331,7 +210,7 @@ export const NewStory = ({ type = 'new' }: NewStoryProps) => {
         setOpenPreview(false);
       }
     },
-    [editorSource],
+    [editorSource, selectedImageList],
   );
 
   const onPublishToggle = () => {
@@ -371,7 +250,7 @@ export const NewStory = ({ type = 'new' }: NewStoryProps) => {
     }
 
     if (errorCounter === 0) {
-      serialize(editorSource).then(({ compiledSource: cSource, readTime, toc }) => {
+      serialize(editorSource, { imagesSrc: selectedImageList }).then(({ compiledSource: cSource, readTime, toc }) => {
         setLoading(true);
         const publishDate = isScheduleBlog ? getDate(dateInput) ?? new Date().getTime() : new Date().getTime();
         const hash = type === 'edit' ? blogData?.hash : generateHash();
@@ -389,6 +268,7 @@ export const NewStory = ({ type = 'new' }: NewStoryProps) => {
           subtitle: subtitleVal,
           status: 'published',
           id: type === 'edit' ? blogData?.id : undefined,
+          imagesSrc: selectedImageList,
         });
       });
     }
@@ -418,7 +298,7 @@ export const NewStory = ({ type = 'new' }: NewStoryProps) => {
             placeholder="Write a preview subtitle ..."
           />
 
-          <ImgUpload />
+          <ImgUpload selectedImageList={selectedImageList} setSelectedImageList={setSelectedImageList} />
 
           <div style={{ height: '16px' }} />
 

@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { ButtonR } from '@eevee/react-button';
-import { CopyLink, Delete, Image } from '@components/icons/index';
+import { Delete, Image } from '@components/icons/index';
 import { useStyles } from './styles';
 
 const convertBase64 = (file: Blob) => {
@@ -16,17 +16,13 @@ const convertBase64 = (file: Blob) => {
   });
 };
 
-export const ImgUpload = () => {
+type ImgUploadProps = {
+  selectedImageList: string[];
+  setSelectedImageList: React.Dispatch<React.SetStateAction<string[]>>;
+};
+
+export const ImgUpload = ({ selectedImageList, setSelectedImageList }: ImgUploadProps) => {
   const styles = useStyles();
-  const [selectedImages, setSelectedImages] = React.useState<string[]>([]);
-
-  const [selectedImageList, setSelectedImageList] = React.useState<
-    {
-      src: string;
-      base64: string;
-    }[]
-  >([]);
-
   const inputRef = React.useRef<HTMLInputElement>(null);
 
   const onUpLoad = () => {
@@ -50,25 +46,22 @@ export const ImgUpload = () => {
     const imagesArray = await Promise.all(
       selectedFilesArray.map(async file => {
         const base64 = (await convertBase64(file)) as string;
-        return {
-          src: URL.createObjectURL(file),
-          base64,
-        };
+        return base64;
       }),
     );
     setSelectedImageList(previous => previous.concat(imagesArray));
-
-    // const imagesArray = selectedFilesArray.map(file => {
-    //   return URL.createObjectURL(file);
-    // });
-    // setSelectedImages(previousImages => previousImages.concat(imagesArray));
 
     // FOR BUG IN CHROME
     (event.target as HTMLInputElement).value = '';
   };
 
-  function deleteHandler(image: string) {
-    setSelectedImageList(selectedImageList.filter(e => e.src !== image));
+  function deleteHandler(image: string, index: number) {
+    // setSelectedImageList(selectedImageList.filter(e => e !== image));
+
+    const arr = [...selectedImageList];
+    arr.splice(index, 1);
+    setSelectedImageList(arr);
+
     URL.revokeObjectURL(image);
   }
   return (
@@ -94,10 +87,9 @@ export const ImgUpload = () => {
         {selectedImageList &&
           selectedImageList.map((image, index) => {
             return (
-              <div key={image.src} className={styles.image}>
-                <img src={image.src} height="100" width="auto" alt="upload" />
-                <ButtonR className={styles.copy} onClick={() => copy(image.src)} icon={<CopyLink />} />
-                <ButtonR className={styles.delete} onClick={() => deleteHandler(image.src)} icon={<Delete />} />
+              <div key={image} className={styles.image}>
+                <img onClick={() => copy(index.toString())} src={image} height="100" width="auto" alt="upload" />
+                <ButtonR className={styles.delete} onClick={() => deleteHandler(image, index)} icon={<Delete />} />
               </div>
             );
           })}

@@ -13,8 +13,10 @@ import {
   Ol,
   Paragraph,
   PostImage,
+  Spotify,
   Strike,
   Ul,
+  YouTube,
 } from '@eevee/react-mdx-comp';
 import { makeStyles, shorthands } from '@griffel/react';
 import { breakPoints, tokens } from '@eevee/react-theme';
@@ -188,7 +190,23 @@ console.log(r);`}</CodeBlock>
         />
       </Item>
       <div style={{ marginTop: '40px' }} />
-      <Heading>Custom components</Heading>
+      <Heading>YouTube</Heading>
+      <Item
+        from={`
+        <Youtube youTubeId="vBKwIDKNFAE" />
+      `}
+      >
+        <YouTube youTubeId="vBKwIDKNFAE" />
+      </Item>
+      <div style={{ marginTop: '40px' }} />
+      <Heading>Spotify</Heading>
+      <Item
+        from={`
+        <Spotify spotifyLink="album/2miKCUKYhXGekJDx4ZsxiI" height="80px" />
+      `}
+      >
+        <Spotify spotifyLink="album/2miKCUKYhXGekJDx4ZsxiI" height="80px" />
+      </Item>
     </MiddleLayout>
   );
 };

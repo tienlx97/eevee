@@ -3,6 +3,15 @@
   "root": true,
   "rules": {
     "@eevee/max-len": "off",
-    "no-misleading-character-class": "off"
-  }
+    "no-misleading-character-class": "off",
+    "@typescript-eslint/naming-convention": "off"
+  },
+  "overrides": [
+    {
+      "files": ["*.ts", "*.tsx"], // Your TypeScript files extension
+      "parserOptions": {
+        "project": ["./tsconfig.eslint.json"]
+      }
+    }
+  ]
 }

@@ -6,3 +6,4 @@ export * from './jsGMT';
 //
 export * from './github.server';
 export * from './base64ArrayBuffer';
+export * from './isNumeric';

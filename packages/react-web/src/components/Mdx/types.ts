@@ -17,6 +17,8 @@ export interface SerializeOptions {
    * Indicate whether or not frontmatter should be parsed out of the MDX. Defaults to false
    */
   parseFrontmatter?: boolean;
+
+  imagesSrc?: string[];
 }
 
 /**

@@ -10,9 +10,6 @@ type ProtectedRouteProps = {
 
 export const ProtectedRoute: React.FC<ProtectedRouteProps> = ({ children, redirectPath = '/home' }) => {
   const { isAuthReady, user } = useAuthContext();
-  const { pathname } = useLocation();
-
-  const toastify = useToast();
 
   if (!isAuthReady && !user) {
     return (
@@ -23,8 +20,6 @@ export const ProtectedRoute: React.FC<ProtectedRouteProps> = ({ children, redire
   }
 
   if (isAuthReady && !user) {
-    toastify('warning', `Must login to access ${pathname}`, true, 3000);
-    toastify('info', `Redirect to home page`, true, 4000);
     return <Navigate to={redirectPath} replace />;
   }
 

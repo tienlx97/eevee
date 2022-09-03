@@ -28,6 +28,7 @@ export const useStyles = makeStyles({
     ...shorthands.margin('1rem', '0.5rem'),
     position: 'relative',
     boxShadow: `${tokens.shadow16} 0px 1px 2px 0px`,
+    maxWidth: '200px',
 
     '& svg': {
       fill: tokens.bImportant,
