@@ -11,6 +11,16 @@ export interface IYouTubeProps {
   title?: string;
   /** Aspect ratio of YouTube video */
   aspectRatio?: '1:1' | '16:9' | '4:3' | '3:2' | '8:5';
+  /** Skip to a time in the video */
+  skipTo?: {
+    h?: number;
+    m: number;
+    s: number;
+  };
+  /** Auto play the video */
+  autoPlay?: boolean;
+  /** No Cookie option */
+  noCookie?: boolean;
 }
 
 export const YouTube: React.FunctionComponent<IYouTubeProps> = ({
@@ -18,9 +28,23 @@ export const YouTube: React.FunctionComponent<IYouTubeProps> = ({
   youTubePlaylistId,
   title,
   aspectRatio = '16:9',
+  autoPlay = false,
+  skipTo = { h: 0, m: 0, s: 0 },
+  noCookie = false,
 }: IYouTubeProps) => {
   const [loading, setLoading] = React.useState(true);
+  const { h, m, s } = skipTo;
 
+  const tH = h! * 60;
+  const tM = m * 60;
+
+  const startTime = tH + tM + s;
+
+  const provider = noCookie ? 'https://www.youtube-nocookie.com' : 'https://www.youtube.com';
+  const baseUrl = `${provider}/embed/`;
+  const src = `${baseUrl}${
+    youTubeId ? `${youTubeId}?&autoplay=${autoPlay}&start=${startTime}` : `&videoseries?list=${youTubePlaylistId}`
+  }`;
   return (
     <GeneralObserver>
       {loading && (
@@ -46,9 +70,7 @@ export const YouTube: React.FunctionComponent<IYouTubeProps> = ({
             height: '100%',
           }}
           onLoad={() => setLoading(false)}
-          // width={width}
-          // height={height}
-          src={`https://www.youtube.com/embed/${youTubeId ?? youTubePlaylistId}`}
+          src={src}
           title={`${title ?? youTubeId ?? youTubePlaylistId}`}
           frameBorder="0"
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"

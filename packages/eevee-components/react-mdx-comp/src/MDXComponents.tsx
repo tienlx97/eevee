@@ -35,7 +35,7 @@ import { SideNote, Expanded } from './SideNote';
 
 import { CodeBlock } from './CodeBlock';
 
-import { YouTube, Spotify } from './Embed';
+import { YouTube, Spotify, SoundCloud } from './Embed';
 
 const Strong = (strong: JSX.IntrinsicElements['strong']) => <strong style={{ fontWeight: 700 }} {...strong} />;
 
@@ -141,4 +141,5 @@ export const MDXComponents = {
 
   YouTube,
   Spotify,
+  SoundCloud,
 };

@@ -128,3 +128,12 @@ code {
 ::-webkit-calendar-picker-indicator {
   filter: invert(0.7);
 }
+
+/* iframe */
+.js .mdx-embed iframe {
+  opacity: 0;
+}
+
+.js .mdx-embed iframe.loaded {
+  opacity: 1;
+}
