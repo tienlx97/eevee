@@ -37,7 +37,7 @@ export const GeneralObserver: React.FunctionComponent<IGeneralObserverProps> = (
       }}
       ref={ref as React.RefObject<HTMLDivElement>}
       data-testid="general-observer"
-      className="mdx-embed"
+      className="mdx-embed-wrapper"
     >
       {isChildVisible ? children : <div style={{ height, width: '100%' }} />}
     </div>

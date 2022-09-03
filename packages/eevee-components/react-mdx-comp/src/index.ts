@@ -13,4 +13,4 @@ export { HorizontalRule } from './HorizontalRule';
 // export { SandPack } from './SandPack';
 export { MDXComponents } from './MDXComponents';
 export { CodeBlock } from './CodeBlock';
-export { YouTube, Spotify } from "./Embed"
+export { YouTube, Spotify, SoundCloud } from './Embed';
