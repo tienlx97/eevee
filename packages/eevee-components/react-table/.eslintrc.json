@@ -1,0 +1,13 @@
+{
+  "extends": ["plugin:@eevee/eslint-plugin/react"],
+  "root": true,
+  "overrides": [
+    {
+      "files": ["*.ts", "*.tsx"], // Your TypeScript files extension
+
+      "parserOptions": {
+        "project": ["./tsconfig.eslint.json"]
+      }
+    }
+  ]
+}

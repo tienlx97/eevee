@@ -88,7 +88,15 @@ export const ImgUpload = ({ selectedImageList, setSelectedImageList }: ImgUpload
           selectedImageList.map((image, index) => {
             return (
               <div key={image} className={styles.image}>
-                <img onClick={() => copy(index.toString())} src={image} height="100" width="auto" alt="upload" />
+                <img
+                  title="Click to copy"
+                  style={{ cursor: 'pointer' }}
+                  onClick={() => copy(index.toString())}
+                  src={image}
+                  height="100"
+                  width="auto"
+                  alt="upload"
+                />
                 <ButtonR className={styles.delete} onClick={() => deleteHandler(image, index)} icon={<Delete />} />
               </div>
             );

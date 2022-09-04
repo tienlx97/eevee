@@ -240,6 +240,7 @@ const useShowMoreStyles = makeStyles({
     display: 'flex',
     alignItems: 'center',
     ...shorthands.gap('4px'),
+    paddingLeft: '0px',
     color: tokens.f1,
     fontWeight: tokens.fontWeightSemibold,
   },
