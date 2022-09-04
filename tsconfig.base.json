@@ -26,6 +26,7 @@
       "@eevee/react-provider": ["packages/eevee-components/react-provider/src/index.ts"],
       "@eevee/react-shared-contexts": ["packages/eevee-components/react-shared-contexts/src/index.ts"],
       "@eevee/react-tabster": ["packages/eevee-components/react-tabster/src/index.ts"],
+      "@eevee/react-table": ["packages/eevee-components/react-table/src/index.ts"],
       "@eevee/react-toast": ["packages/eevee-components/react-toast/src/index.ts"],
       "@eevee/react-theme": ["packages/eevee-components/react-theme/src/index.ts"],
       "@eevee/react-utilities": ["packages/eevee-components/react-utilities/src/index.ts"],

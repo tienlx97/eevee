@@ -100,31 +100,23 @@ const BlogCardDetail = ({ blog }: BlogCardDetailProps) => {
         </div>
       </div>
       {/* Right contain image */}
-      <div className={styles.rightWrapper}>
-        <TextLink
-          appearance="medium"
-          href={`/blog/${blog.slugify}`}
-          aria-label="Post Preview Image"
-          rel="noopener follow"
-        >
-          <div className={styles.mediaQueryImageWeb}>
-            <img
-              src="https://images.unsplash.com/5/unsplash-kitsune-4.jpg?ixlib=rb-0.3.5&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=1080&fit=max&ixid=eyJhcHBfaWQiOjEyMDd9&s=fb86e2e09fceac9b363af536b93a1275"
-              width={112}
-              height={112}
-              alt="Các bộ thủ cơ bản trong tiếng Nhật"
-            />
-          </div>
-          <div className={styles.mediaQueryImageMobile}>
-            <img
-              src="https://miro.medium.com/fit/c/56/56/0*kai0vdVtN2NxFvW_"
-              width={56}
-              height={56}
-              alt="Các bộ thủ cơ bản trong tiếng Nhật"
-            />
-          </div>
-        </TextLink>
-      </div>
+      {blog.imagesSrc && blog.imagesSrc.length > 0 && (
+        <div className={styles.rightWrapper}>
+          <TextLink
+            appearance="medium"
+            href={`/blog/${blog.slugify}`}
+            aria-label="Post Preview Image"
+            rel="noopener follow"
+          >
+            <div className={styles.mediaQueryImageWeb}>
+              <img src={blog.imagesSrc[0]} width={112} height={112} alt="Các bộ thủ cơ bản trong tiếng Nhật" />
+            </div>
+            <div className={styles.mediaQueryImageMobile}>
+              <img src={blog.imagesSrc[0]} width={56} height={56} alt="Các bộ thủ cơ bản trong tiếng Nhật" />
+            </div>
+          </TextLink>
+        </div>
+      )}
     </div>
   );
 };

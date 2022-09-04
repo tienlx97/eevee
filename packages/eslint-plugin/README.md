@@ -105,4 +105,4 @@ Ban `tslint:disable` and `tslint:enable` comments.
 
 Prevent visibility modifiers (`public`, `protected`, `private`) from being specified on class members/methods.
 
-Used in Fluent UI only by [`@eevee/react-northstar`](https://aka.ms/fluent-ui), not `@fluentui/react`.
+Used in Fluent UI only by [`@eevee/react-northstar`](https://aka.ms/fluent-ui), not `@eevee/react`.

@@ -1,20 +1,20 @@
 var h = Object.defineProperty,
-  m = Object.defineProperties;
-var c = Object.getOwnPropertyDescriptors;
-var a = Object.getOwnPropertySymbols;
-var r = Object.prototype.hasOwnProperty,
-  s = Object.prototype.propertyIsEnumerable;
+  c = Object.defineProperties;
+var m = Object.getOwnPropertyDescriptors;
+var o = Object.getOwnPropertySymbols;
+var s = Object.prototype.hasOwnProperty,
+  r = Object.prototype.propertyIsEnumerable;
 var l = (t, n, i) => (n in t ? h(t, n, { enumerable: !0, configurable: !0, writable: !0, value: i }) : (t[n] = i)),
   e = (t, n) => {
-    for (var i in n || (n = {})) r.call(n, i) && l(t, i, n[i]);
-    if (a) for (var i of a(n)) s.call(n, i) && l(t, i, n[i]);
+    for (var i in n || (n = {})) s.call(n, i) && l(t, i, n[i]);
+    if (o) for (var i of o(n)) r.call(n, i) && l(t, i, n[i]);
     return t;
   },
-  p = (t, n) => m(t, c(n));
+  p = (t, n) => c(t, m(n));
 var d = (t, n) => {
   var i = {};
-  for (var o in t) r.call(t, o) && n.indexOf(o) < 0 && (i[o] = t[o]);
-  if (t != null && a) for (var o of a(t)) n.indexOf(o) < 0 && s.call(t, o) && (i[o] = t[o]);
+  for (var a in t) s.call(t, a) && n.indexOf(a) < 0 && (i[a] = t[a]);
+  if (t != null && o) for (var a of o(t)) n.indexOf(a) < 0 && r.call(t, a) && (i[a] = t[a]);
   return i;
 };
 const makeShortcode = t =>
@@ -24,902 +24,241 @@ const makeShortcode = t =>
         mdx('div', e({}, i))
       );
     },
+  Playground = makeShortcode('Playground'),
   Sidenote = makeShortcode('Sidenote'),
-  TerminalScreenshot = makeShortcode('TerminalScreenshot'),
-  Save = makeShortcode('Save'),
-  VimeoVideoPlayer = makeShortcode('VimeoVideoPlayer'),
-  VideoGif = makeShortcode('VideoGif'),
   Asterisk = makeShortcode('Asterisk'),
-  PostImage = makeShortcode('PostImage'),
-  NewsletterSignup = makeShortcode('NewsletterSignup'),
+  Spacer = makeShortcode('Spacer'),
+  EnvelopeDemo = makeShortcode('EnvelopeDemo'),
+  EnvelopeLayers = makeShortcode('EnvelopeLayers'),
+  VideoGif = makeShortcode('VideoGif'),
   layoutProps = {},
   MDXLayout = 'wrapper';
 function MDXContent(i) {
-  var o = i,
-    { components: t } = o,
-    n = d(o, ['components']);
+  var a = i,
+    { components: t } = a,
+    n = d(a, ['components']);
   return mdx(
     MDXLayout,
     p(e(e({}, layoutProps), n), { components: t, mdxType: 'MDXLayout' }),
     mdx(
       'p',
       null,
-      "Modern front-end frameworks like React, Angular, and Vue rely heavily on the terminal. If you're not comfortable with command line interfaces, you'll struggle to run a local development server or build your application!",
-    ),
-    mdx(
-      'p',
-      null,
-      "There's something deeply ironic about this. Our whole job is to build ",
-      mdx('em', { parentName: 'p' }, 'graphical user interfaces'),
-      ', but the tools we use in our development are mostly command-line based!',
-    ),
-    mdx(
-      'p',
-      null,
-      "Unless you have a Computer Science background, or grew up using a computer in the 80s, you probably won't have very much terminal experience. And yet, most online resources assume that you're already proficient!",
-    ),
-    mdx(
-      'p',
-      null,
-      'It takes years of practice to become a terminal guru, ',
-      mdx('strong', { parentName: 'p' }, "but here's the good news:"),
-      " we can take a shortcut. We don't really need to know 98% of the stuff you can do with a terminal. If we focus on the most-important critical fundamentals, we should be able to become comfortable with the command line in a remarkably short amount of time. \u2728",
-    ),
-    mdx(
-      'p',
-      null,
-      mdx('strong', { parentName: 'p' }, "That's what this blog post is all about."),
-      " It's the missing manual of terminal fundamentals needed to work with modern JS frameworks like React, so you can move onto the fun stuff: building user interfaces!",
-    ),
-    mdx(
-      'p',
-      null,
-      "I'll also share all of my favourite ",
-      mdx('em', { parentName: 'p' }, 'tips and tricks'),
-      ' for getting the most out of the terminal, the stuff I wish someone had shown me when I was first getting started.',
-    ),
-    mdx('h1', null, 'Getting set up'),
-    mdx('p', null, "Alright, so there's two things we need to do before anything else."),
-    mdx(
-      'p',
-      null,
-      'First, we need some terminal software. This is the application that runs the command-line environment.',
-    ),
-    mdx(
-      'p',
-      null,
-      "Just about every operating system will come with a built-in terminal, like MacOS' Terminal.app, or Windows' Command Prompt. These applications work, but they're pretty underwhelming. Most developers opt to use something else.",
-    ),
-    mdx(
-      'p',
-      null,
-      "The choice of terminal application isn't ",
-      mdx('em', { parentName: 'p' }, 'super'),
-      " important, as long as you're using something modern. That said, I have two main recommendations:",
-    ),
-    mdx(
-      'ol',
-      null,
-      mdx(
-        'li',
-        { parentName: 'ol' },
-        mdx('a', e({ parentName: 'li' }, { href: 'https://hyper.is/' }), 'Hyper'),
-        ". Hyper is a modern, multi-platform terminal application. It's beautiful, and comes with some handy modern features, like the ability to split into multiple panes.",
-      ),
-      mdx(
-        'li',
-        { parentName: 'ol' },
-        'If you use VS Code as your code editor, VS Code comes with a powerful, modern terminal built in. This is nice, since it means your code and terminal can run side-by-side in the same application. You can pop open the terminal in VS Code by selecting View \u2192 Terminal.',
-      ),
-    ),
-    mdx('p', null, "I'll be using Hyper for all the examples in this blog post."),
-    mdx(
-      'p',
-      null,
-      "Now, the terminal application is only half of the equation. We also need to make sure we're running the right ",
-      mdx('em', { parentName: 'p' }, 'shell language'),
-      '.',
-    ),
-    mdx(
-      'p',
-      null,
-      "When we type a command into the terminal and press \u201Center\u201D, that command will be interpreted by the shell language. It's essentially the environment running within the terminal application.",
-    ),
-    mdx(
-      'p',
-      null,
-      'The most popular shell language is ',
-      mdx('strong', { parentName: 'p' }, 'Bash'),
-      ". When you see command-line instructions online, it's likely that the instructions are assuming Bash. This is the default shell language used by most Linux distributions.",
-    ),
-    mdx(
-      'p',
-      null,
-      'Modern MacOS versions ship with ',
-      mdx('strong', { parentName: 'p' }, 'Zsh'),
-      ` instead of Bash, but Zsh is very similar: it's part of the same "family", and shares almost all of the same commands. For our purposes, they can be used interchangeably.`,
-    ),
-    mdx(
-      'p',
-      null,
-      `If you're using either Linux or MacOS, you're good to go. Your computer is already using an "industry standard" shell language. If you're using Windows, however, we have a bit of work to do.`,
-    ),
-    mdx(
-      Sidenote,
-      { title: 'A helpful analogy', mdxType: 'Sidenote' },
-      mdx(
-        'p',
-        null,
-        'Have you ever popped open the developer console in your web browser to run some arbitrary JavaScript code?',
-      ),
-      mdx('img', {
-        alt: "Screenshot of the Chrome developer tools' console tab, showing a couple of basic JS statements being executed",
-        src: '/images/terminal-for-js-devs/js-console.png',
-      }),
-      mdx(
-        'p',
-        null,
-        'In this case, the application is Chrome, and the language is JavaScript. Chrome provides the command-line interface, but when we run commands, those commands are interpreted using JavaScript.',
-      ),
-      mdx(
-        'p',
-        null,
-        "It's the same setup when it comes to the terminal. A terminal application like Hyper might be running the Bash shell language. Unlike web browsers, however, terminal applications can switch between multiple shell languages!",
-      ),
-    ),
-    mdx('h2', null, 'Windows setup'),
-    mdx(
-      'p',
-      null,
-      'Alright, first, let me preface this by emphatically admitting that I am ',
-      mdx('em', { parentName: 'p' }, 'not'),
-      " an expert when it comes to Windows development. Please take everything I'm about to say with a grain of salt. \u{1F605}",
-    ),
-    mdx(
-      'p',
-      null,
-      "Bash is a Linux-based shell language, and it won't run natively in Windows. Fortunately, newer versions of Windows come with the ability to install and run Linux as if it were any other application. This is known as ",
-      mdx('i', null, 'Windows Subsystem for Linux'),
-      ', commonly abbreviated to WSL.',
-    ),
-    mdx(
-      'p',
-      null,
-      "Here's a tutorial that runs through the steps required: ",
-      mdx(
-        'a',
-        e({ parentName: 'p' }, { href: 'https://candid.technology/zsh-windows-10/' }),
-        'How to install and use Zsh in Windows 10',
-      ),
-      '.',
-    ),
-    mdx('p', null, "I ran through these steps myself, and while it's definitely a bit tedious, it does the job!"),
-    mdx(
-      'p',
-      null,
-      "Once it's set up, you'll be able to configure your terminal application to use Bash or Zsh. Here are some instructions for ",
-      mdx(
-        'a',
-        e(
-          { parentName: 'p' },
-          {
-            href: 'https://hashnode.com/post/customize-hyper-terminal-in-windows-using-oh-my-zsh-and-powerline-fonts-ckggfmcwc00brrls1f8va9jfl#install-hyper-terminal',
-          },
-        ),
-        'configuring Hyper to use Zsh',
-      ),
-      '.',
-    ),
-    mdx(
-      'p',
-      null,
-      'If you have trouble with any of these steps, there are other solutions you can try. A popular method is ',
-      mdx('a', e({ parentName: 'p' }, { href: 'https://www.atlassian.com/git/tutorials/git-bash' }), 'Git Bash'),
-      ', which allows you to run Bash within Windows using emulation.',
-    ),
-    mdx(
-      'p',
-      null,
-      "Ultimately, it doesn't matter how you get there. The important thing is for you to be able to use either Bash or Zsh within Windows.",
-    ),
-    mdx(
-      Sidenote,
-      { title: 'Cmder', mdxType: 'Sidenote' },
-      mdx(
-        'p',
-        null,
-        'Lou from France reached out to recommend ',
-        mdx('a', e({ parentName: 'p' }, { href: 'https://cmder.net/' }), 'Cmder'),
-        ', a terminal emulator for Windows.',
-      ),
-      mdx(
-        'p',
-        null,
-        "I haven't personally tried it, but it seems to offer everything you need in 1 quick and simple install. If you've struggled with some of the other methods mentioned here, it might be worth a shot!",
-      ),
-    ),
-    mdx('h1', null, 'Hello World'),
-    mdx('p', null, "When you first open the terminal application, you're met with this rather unhelpful interface:"),
-    mdx(TerminalScreenshot, {
-      slug: 'initial',
-      alt: 'A terminal application showing a default prompt',
-      mdxType: 'TerminalScreenshot',
-    }),
-    mdx(
-      'p',
-      null,
-      "Your terminal will likely look a bit different, based on your operating system / terminal application / shell language. Ultimately, however, you'll probably be looking at a single line of text, and a bunch of empty space.",
-    ),
-    mdx(
-      'p',
-      null,
-      'The single line of text is known as a ',
-      mdx('em', { parentName: 'p' }, 'prompt'),
-      ". It's called a \u201Cprompt\u201D because it's waiting for you to provide some sort of instruction.",
-    ),
-    mdx(
-      'p',
-      null,
-      'For our first command, enter the text ',
-      mdx('inlineCode', { parentName: 'p' }, 'echo "hello world"'),
-      ' and press enter:',
-    ),
-    mdx(TerminalScreenshot, {
-      slug: 'echo',
-      alt: "Running the 'echo' command, repeating a short string",
-      mdxType: 'TerminalScreenshot',
-    }),
-    mdx(
-      'p',
-      null,
-      'The syntax is a bit different, but you can think of commands like built-in JavaScript functions. The ',
-      mdx('inlineCode', { parentName: 'p' }, 'echo'),
-      ' command is very similar to the ',
-      mdx('inlineCode', { parentName: 'p' }, 'console.log'),
-      ' function in JavaScript.',
-    ),
-    mdx(
-      'p',
-      null,
-      'Like functions, commands take arguments. In this case, ',
-      mdx('inlineCode', { parentName: 'p' }, 'echo'),
-      ' takes a single argument, the string to output.',
-    ),
-    mdx(
-      'p',
-      null,
-      "When we press \u201Center\u201D, the command is immediately executed, and our value is logged. A fresh prompt is rendered below, to let us know that it's ready to receive the next instruction.",
-    ),
-    mdx('p', null, "And just like that, you've run your first terminal command!"),
-    mdx(
-      Sidenote,
-      { title: 'Skip the \u201C$\u201D!', mdxType: 'Sidenote' },
-      mdx('p', null, "When reading installation instructions for an NPM package, you'll often see things like this:"),
-      mdx(
-        'pre',
-        null,
-        mdx(
-          'code',
-          e(
-            { parentName: 'pre' },
-            { className: 'language-null', metastring: 'lessBottomMargin', lessBottomMargin: !0 },
-          ),
-          `$ npm install some-package
-`,
-        ),
-      ),
-      mdx(
-        'p',
-        null,
-        "If you try and run this entire bit of text, you'll get an error. This is because the dollar sign (",
-        mdx('inlineCode', { parentName: 'p' }, '$'),
-        ") isn't meant to be included. You're meant to type everything ",
-        mdx('i', null, 'after'),
-        ' the dollar sign.',
-      ),
-      mdx(
-        'p',
-        null,
-        "Why would the installation instructions include a random symbol that isn't actually part of the command!? Well, in the Bash shell language, ",
-        mdx('inlineCode', { parentName: 'p' }, '$'),
-        ' is the "prompt character", shown at the end of the prompt.',
-      ),
-      mdx(
-        'p',
-        null,
-        `It's essentially a symbol that says "Hey, this stuff over here is meant to be run in the terminal!"`,
-      ),
-      mdx(
-        'p',
-        null,
-        'Even though ',
-        mdx('inlineCode', { parentName: 'p' }, '$'),
-        " isn't actually used as the prompt character in many modern shell languages like Zsh, the symbolism lives on, like how the \u201Csave\u201D icon is a floppy disk (",
-        mdx(Save, { size: 16, style: { display: 'inline' }, mdxType: 'Save' }),
-        ") even though we haven't used floppy disks in decades.",
-      ),
-    ),
-    mdx('h1', null, 'Navigation'),
-    mdx(
-      'p',
-      null,
-      "The main purpose of a terminal is to enable you to move around the file system and open/run things. It's essentially a text-based version of the GUI file explorers we use every day (eg. Finder, Windows Explorer).",
-    ),
-    mdx(
-      'p',
-      null,
-      "To help us navigate around, there are lots of terminal commands we can use. Let's explore some of them.",
-    ),
-    mdx(
-      'p',
-      null,
-      'The ',
-      mdx('inlineCode', { parentName: 'p' }, 'pwd'),
-      ` command stands for \u201CPrint Working Directory\u201D, and it's sorta like the "You are here" arrow on shopping mall directories. It tells you where you are right now:`,
-    ),
-    mdx(TerminalScreenshot, {
-      slug: 'pwd',
-      alt: "Running the 'pwd' command, which shows the current path (/Users/joshu)",
-      mdxType: 'TerminalScreenshot',
-    }),
-    mdx(
-      'p',
-      null,
-      `When you open the terminal application, you're generally tossed into the "home" directory, the one that contains the Documents and Desktop directories. On my particular machine, this directory is located at `,
-      mdx('inlineCode', { parentName: 'p' }, '/Users/joshu'),
-      '.',
-    ),
-    mdx(
-      'p',
-      null,
-      'You can see the contents of the current directory using the ',
-      mdx('inlineCode', { parentName: 'p' }, 'ls'),
-      ' command (short for \u201CList\u201D):',
-    ),
-    mdx(TerminalScreenshot, {
-      slug: 'ls-v2',
-      alt: "Running the 'ls' command, showing a set of all files and folders in the current working directory",
-      mdxType: 'TerminalScreenshot',
-    }),
-    mdx(
-      'p',
-      null,
-      'In my particular terminal, directories are bold and written in a light aqua color, while single files are regular weight and written in white.',
-    ),
-    mdx(
-      'p',
-      null,
-      'We can move around the file system with the ',
-      mdx('inlineCode', { parentName: 'p' }, 'cd'),
-      ' (\u201CChange Directory\u201D) command:',
-    ),
-    mdx(TerminalScreenshot, {
-      slug: 'cd',
-      alt: "Running the 'cd' command, to enter one of the directories shown in the previous 'ls'. Afterwards, 'pwd' is run to confirm the new location",
-      mdxType: 'TerminalScreenshot',
-    }),
-    mdx('p', null, 'This is equivalent to double-clicking the \u201Cstuff\u201D directory in a GUI file explorer.'),
-    mdx(
-      Sidenote,
-      { type: 'warning', mdxType: 'Sidenote' },
-      mdx(
-        'p',
-        null,
-        'Notice that the prompt changes from the tilde character (~) to \u201Cstuff\u201D. In the Zsh shell language, the default prompt consists of an arrow and the name of the current directory, like \u201C\u2192 Documents\u201D.',
-      ),
-      mdx(
-        'p',
-        null,
-        "But wait, why was it a tilde character before, instead of the name of the parent directory? On MacOS and Linux, the tilde character is shorthand for the user's home directory. On my machine, \u201C~\u201D is equivalent to \u201C/Users/joshu\u201D.",
-      ),
-      mdx(
-        'p',
-        null,
-        "It's very easy to mistakenly assume that \u201C~\u201D is a prompt character, like \u201C\\$\u201D is in Bash.",
-      ),
-    ),
-    mdx(
-      'p',
-      null,
-      'What if I want to go up one level, back to the home directory? I can use the ',
-      mdx('inlineCode', { parentName: 'p' }, 'cd'),
-      ' command for this as well, with two dots (',
-      mdx('inlineCode', { parentName: 'p' }, '..'),
-      ').',
-    ),
-    mdx(TerminalScreenshot, {
-      slug: 'cd-up',
-      alt: "Running 'cd ..', which takes the user back up to the previous directory.",
-      mdxType: 'TerminalScreenshot',
-    }),
-    mdx(
-      'p',
-      null,
-      'The dot character (',
-      mdx('inlineCode', { parentName: 'p' }, '.'),
-      ') has a special meaning in most shell languages:',
-    ),
-    mdx(
-      'ul',
-      null,
-      mdx(
-        'li',
-        { parentName: 'ul' },
-        'A single dot (',
-        mdx('inlineCode', { parentName: 'li' }, '.'),
-        ') refers to the ',
-        mdx('em', { parentName: 'li' }, 'current directory'),
-        '.',
-      ),
-      mdx(
-        'li',
-        { parentName: 'ul' },
-        'Two dots (',
-        mdx('inlineCode', { parentName: 'li' }, '..'),
-        ') refer to the ',
-        mdx('em', { parentName: 'li' }, 'parent directory'),
-        '.',
-      ),
-    ),
-    mdx(
-      'p',
-      null,
-      "If you've worked with module systems in JavaScript, you're probably already familiar with this convention. It uses the same notation, using two dots to refer to the parent directory:",
-    ),
-    mdx(
-      'pre',
-      null,
-      mdx(
-        'code',
-        e({ parentName: 'pre' }, { className: 'language-js', metastring: 'lessBottomMargin', lessBottomMargin: !0 }),
-        `import { COLORS } from '../../constants';
-import Button from '../Button';
-`,
-      ),
-    ),
-    mdx(
-      'p',
-      null,
-      'One important thing to know about ',
-      mdx('inlineCode', { parentName: 'p' }, 'cd'),
-      ' is that it can take complex paths. Terminal beginners will often go one step at a time, like they would in a GUI file explorer:',
-    ),
-    mdx(TerminalScreenshot, {
-      slug: 'cd-step-by-step',
-      alt: "Using 'cd' to step down through 4 different directories",
-      mdxType: 'TerminalScreenshot',
-    }),
-    mdx('p', null, "This works, but it's a lot of extra work. We can make the same jump in a single step like this:"),
-    mdx(TerminalScreenshot, {
-      slug: 'cd-single-bound',
-      alt: "Running the 'cd' command to make the same transition as before, but doing it in 1 single step: 'cd things/some-project/src/components'",
-      mdxType: 'TerminalScreenshot',
-    }),
-    mdx('h2', null, 'Tab auto-completion'),
-    mdx(
-      'p',
-      null,
-      "One of the most intimidating things about the terminal is that it doesn't give you any clues or hints. With a GUI file explorer, you can see a full list of files and folders, to refresh your memory and help you find what you're looking for.",
-    ),
-    mdx(
-      'p',
-      null,
-      'If you want to use ',
-      mdx('inlineCode', { parentName: 'p' }, 'cd'),
-      " as I propose, leaping from 1 spot to another in a single bound, it might seem like you'd need a photographic memory. You can't do it unless you remember the exact name of every directory in the chain, right?",
-    ),
-    mdx(
-      'p',
-      null,
-      'Fortunately, an incredibly-handy trick makes this much easier: ',
-      mdx('em', { parentName: 'p' }, 'tab autocompletion'),
-      '.',
-    ),
-    mdx('p', null, "It'll be easier for me to show you how this works in a short video:"),
-    mdx(
-      'div',
-      { style: { maxWidth: 1144 / 2, marginLeft: 'auto', marginRight: 'auto' } },
-      mdx(VimeoVideoPlayer, {
-        playbackId: '700226454',
-        width: 1144 / 2,
-        aspectRatio: 668 / 1144,
-        mdxType: 'VimeoVideoPlayer',
-      }),
-    ),
-    mdx(
-      'p',
-      null,
-      'The Tab key is critically important when it comes to using the terminal effectively. In addition to the navigation tricks shown here, we can also use Tab to auto-complete Git branches, or fill in the rest of a command.',
-    ),
-    mdx('p', null, 'Try pressing Tab in different circumstances, and see what happens!'),
-    mdx(
-      Sidenote,
-      { title: 'Visual autocomplete', mdxType: 'Sidenote' },
-      mdx(
-        'p',
-        null,
-        "If you're finding it difficult to get the hang of tab autocompletion, you might be interested in ",
-        mdx('a', e({ parentName: 'p' }, { href: 'https://fig.io/' }), 'Fig'),
-        '. Fig is a terminal plugin which adds editor-style autocompletion:',
-      ),
-      mdx(VideoGif, { src: 'https://fig.io/videos/main-demo-grey.mp4', mdxType: 'VideoGif' }),
-      mdx(
-        'p',
-        null,
-        "I've also just started experimenting with ",
-        mdx('a', e({ parentName: 'p' }, { href: 'https://www.warp.dev/' }), 'Warp'),
-        ", a modern terminal built for speed and user experience. At the time of writing, it's MacOS-exclusive, but they do plan on porting it to Windows and Linux after the beta.",
-      ),
-      mdx(
-        'p',
-        null,
-        "We're living in a bit of a terminal renaissance, and there's lots of tools that aim to make it a bit less intimidating!",
-      ),
-    ),
-    mdx('h1', null, 'Flags'),
-    mdx(
-      'p',
-      null,
-      'Earlier, I said that commands in Bash/Zsh are like functions in JavaScript. The analogy breaks down a bit when it comes to ',
-      mdx('em', { parentName: 'p' }, 'flags'),
-      '.',
-    ),
-    mdx('p', null, 'Flags are modifiers that tweak the behaviour of commands in predefined ways.'),
-    mdx(
-      'p',
-      null,
-      "For example, let's look at the ",
-      mdx('inlineCode', { parentName: 'p' }, 'rm'),
-      ' command. This command allows us to delete individual files:',
-    ),
-    mdx(TerminalScreenshot, {
-      slug: 'rm-1',
-      alt: "Running 'rm theme-song.mp3', and then running 'ls' to show that the file was deleted.",
-      mdxType: 'TerminalScreenshot',
-    }),
-    mdx(
-      'p',
-      null,
-      "We don't get any sort of confirmation, but if we check, the ",
-      mdx('inlineCode', { parentName: 'p' }, 'theme-song.mp3'),
-      ' file has indeed been deleted.',
-      mdx(Asterisk, { content: 'Having my own theme song was a silly idea anyway.', mdxType: 'Asterisk' }),
-    ),
-    mdx(
-      Sidenote,
-      { type: 'warning', title: 'Proceed with caution!', mdxType: 'Sidenote' },
-      mdx('p', null, 'Before we go any further, I should warn you: terminals can be pretty unforgiving.'),
-      mdx(
-        'p',
-        null,
-        'The ',
-        mdx('inlineCode', { parentName: 'p' }, 'rm'),
-        ` command doesn't have an "Are you sure?" confirmation prompt. And there's no undo. When you delete a file with `,
-        mdx('inlineCode', { parentName: 'p' }, 'rm'),
-        ", it doesn't go to the recycle bin / trash can. It's ",
-        mdx('strong', { parentName: 'p' }, 'permanently and irrevocably deleted'),
-        '.',
-        mdx(Asterisk, {
-          content:
-            'It can be possible to recover deleted data using specialized software, but this is a hit-or-miss process.',
-          mdxType: 'Asterisk',
-        }),
-      ),
-      mdx(
-        'p',
-        null,
-        "This is a common theme with the terminal. There aren't many safety mechanisms. So please, ",
-        mdx('strong', { parentName: 'p' }, 'be very careful when using commands like \u201Crm\u201D!'),
-      ),
-    ),
-    mdx(
-      'p',
-      null,
-      'If you try and use the ',
-      mdx('inlineCode', { parentName: 'p' }, 'rm'),
-      " command on a directory, you'll get an error:",
-    ),
-    mdx(TerminalScreenshot, {
-      slug: 'rm-error',
-      alt: "Running the 'rm' command on a directory, and getting an error",
-      mdxType: 'TerminalScreenshot',
-    }),
-    mdx(
-      'p',
-      null,
-      'By default, ',
-      mdx('inlineCode', { parentName: 'p' }, 'rm'),
-      ' can only remove individual files, but we can change this rule with the ',
-      mdx('inlineCode', { parentName: 'p' }, 'r'),
-      ' flag:',
-    ),
-    mdx(TerminalScreenshot, {
-      slug: 'rm-r',
-      alt: "Running the 'rm' command with the 'r' flag, and successfully deleting the directory",
-      mdxType: 'TerminalScreenshot',
-    }),
-    mdx(
-      'p',
-      null,
-      'The ',
-      mdx('inlineCode', { parentName: 'p' }, 'r'),
-      ' flag stands for \u201Crecursive\u201D. It will delete everything inside the ',
-      mdx('inlineCode', { parentName: 'p' }, 'stuff'),
-      ' directory, anything inside the directories inside the ',
-      mdx('inlineCode', { parentName: 'p' }, 'stuff'),
-      ' directory, anything inside directories inside the directories inside the ',
-      mdx('inlineCode', { parentName: 'p' }, 'stuff'),
-      ' directory, and so on.',
-      mdx(Asterisk, {
-        content:
-          "It's easy to take this for granted, but when we delete a directory, the computer has to do a non-trivial amount of work to figure out exactly which files should be removed from the disk drive!",
-        mdxType: 'Asterisk',
-      }),
-    ),
-    mdx(
-      'p',
-      null,
-      'You might also run into some file permission issues. For that reason, the ',
-      mdx('inlineCode', { parentName: 'p' }, 'f'),
-      ' flag (Force) is commonly used as well. We can group multiple flags with a single dash, like this:',
-    ),
-    mdx(TerminalScreenshot, {
-      slug: 'rm-rf',
-      alt: "Running the 'rm' command with the 'r' and 'f' flags",
-      mdxType: 'TerminalScreenshot',
-    }),
-    mdx(
-      'p',
-      null,
-      "Flags take many shapes and sizes. By convention, it's common for flags to have a short form (eg. ",
-      mdx('inlineCode', { parentName: 'p' }, '-f'),
-      ') and a long form (',
-      mdx('inlineCode', { parentName: 'p' }, '--force'),
-      '). The long form typically uses two dashes, and uses whole words instead of individual letters.',
-    ),
-    mdx(
-      'p',
-      null,
-      "Let's look at one more example. the ",
-      mdx('inlineCode', { parentName: 'p' }, 'ls'),
-      ' command we saw earlier is commonly called with two flags:',
-    ),
-    mdx(
-      'ul',
-      null,
-      mdx(
-        'li',
-        { parentName: 'ul' },
-        'The ',
-        mdx('inlineCode', { parentName: 'li' }, 'l'),
-        ' flag, \u201Clong\u201D, which prints the directory contents in a detailed list with metadata.',
-      ),
-      mdx(
-        'li',
-        { parentName: 'ul' },
-        'The ',
-        mdx('inlineCode', { parentName: 'li' }, 'a'),
-        ` flag, "all", which'll include hidden files and directories.`,
-      ),
-    ),
-    mdx('p', null, 'This changes the output considerably:'),
-    mdx(TerminalScreenshot, {
-      slug: 'ls-la',
-      alt: "Running 'ls -la'. A detailed list is shown, along with hidden files and folders.",
-      mdxType: 'TerminalScreenshot',
-    }),
-    mdx(
-      'p',
-      null,
-      "There's a lot of noise here, including the ridiculously-obfuscated permission glyphs. But some of the metadata, like the dates that show when a file was last updated, can be useful!",
-    ),
-    mdx(
-      Sidenote,
-      { title: 'The manual', mdxType: 'Sidenote' },
-      mdx(
-        'p',
-        null,
-        'In order to learn more about commands, you can use the ',
-        mdx('inlineCode', { parentName: 'p' }, 'man'),
-        ' command (short for \u201Cmanual\u201D) to pull up the built-in documentation for it:',
-      ),
-      mdx(TerminalScreenshot, {
-        slug: 'man',
-        alt: "Running the 'man' command to view 'ls' documentation",
-        mdxType: 'TerminalScreenshot',
-      }),
-      mdx(
-        'p',
-        null,
-        "I'll warn you now, the ",
-        mdx('inlineCode', { parentName: 'p' }, 'man'),
-        ' documentation is dense and often hard to parse. But it can still be useful to learn what flags are available for certain commands.',
-      ),
-      mdx(
-        'p',
-        null,
-        "In some cases, the file will open in your default text editor, but often it'll open \u201Cin-terminal\u201D, as shown in this image. This uses a program known as ",
-        mdx('inlineCode', { parentName: 'p' }, 'less'),
-        '.',
-      ),
-      mdx(
-        'p',
-        null,
-        'To scroll the document in ',
-        mdx('inlineCode', { parentName: 'p' }, 'less'),
-        ', use the up/down arrow keys. On modern versions of MacOS, you can also use the mousewheel to scroll, though this may lead to buggy behaviour on other platforms.',
-      ),
-      mdx(
-        'p',
-        null,
-        "When you're finished, press ",
-        mdx('inlineCode', { parentName: 'p' }, 'q'),
-        ' to quit. It should restore the typical terminal view.',
-      ),
-    ),
-    mdx('h1', null, 'Interrupting commands'),
-    mdx('p', null, 'Some processes are long-running, and will need to be interrupted.'),
-    mdx(
-      'p',
-      null,
-      'For example, open your terminal application and try running the following command: ',
-      mdx('inlineCode', { parentName: 'p' }, 'ping 8.8.8.8'),
-      '.',
-    ),
-    mdx(
-      'p',
-      null,
-      'The ',
-      mdx('inlineCode', { parentName: 'p' }, 'ping'),
-      " command will check the latency against a given IP address. It's useful for checking whether a given server is online or not. ",
-      mdx('inlineCode', { parentName: 'p' }, '8.8.8.8'),
-      " is the IP address for Google's DNS server.",
-    ),
-    mdx(TerminalScreenshot, {
-      slug: 'ping',
-      alt: "Running 'ping 8.8.8.8'. The terminal fills up with results, showing that the pings come back after 30-45 milliseconds.",
-      mdxType: 'TerminalScreenshot',
-    }),
-    mdx(
-      'p',
-      null,
-      "Unlike the commands we've seen so far, ",
-      mdx('inlineCode', { parentName: 'p' }, 'ping'),
-      " is a long-running process. It never stops; by default, it'll keep pinging Google's DNS server until the end of time.",
-    ),
-    mdx(
-      'p',
-      null,
-      "When we're satisfied with the results, we can interrupt it by holding ",
-      mdx('inlineCode', { parentName: 'p' }, 'ctrl'),
-      ' and pressing ',
-      mdx('inlineCode', { parentName: 'p' }, 'c'),
-      '. Even on MacOS, where most shortcuts use the ',
-      mdx('inlineCode', { parentName: 'p' }, '\u2318'),
-      ' modifier, we use ',
-      mdx('inlineCode', { parentName: 'p' }, 'ctrl'),
-      '.',
-    ),
-    mdx(
-      'p',
-      null,
-      'Another helpful command is ',
-      mdx('inlineCode', { parentName: 'p' }, 'ctrl'),
-      ' + ',
-      mdx('inlineCode', { parentName: 'p' }, 'd'),
-      '. This will end the current session. If ',
-      mdx('inlineCode', { parentName: 'p' }, 'ctrl'),
-      ' + ',
-      mdx('inlineCode', { parentName: 'p' }, 'c'),
-      " isn't working for some reason, ",
-      mdx('inlineCode', { parentName: 'p' }, 'ctrl'),
-      ' + ',
-      mdx('inlineCode', { parentName: 'p' }, 'd'),
-      ' may work instead.',
-    ),
-    mdx(
-      'p',
-      null,
-      'Finally, if all else fails, you can close the current tab/window. The shortcut depends on the OS and terminal application. Using Hyper on MacOS, this is done with ',
-      mdx('inlineCode', { parentName: 'p' }, '\u2318'),
-      ' + ',
-      mdx('inlineCode', { parentName: 'p' }, 'w'),
-      '.',
-    ),
-    mdx(
-      Sidenote,
-      { title: 'Exiting Vi / Vim', mdxType: 'Sidenote' },
-      mdx(
-        'p',
-        null,
-        'Occasionally, you might find yourself editing a file using either Vi or Vim. These editors are notoriously difficult to quit; ',
-        mdx('inlineCode', { parentName: 'p' }, 'ctrl'),
-        ' + ',
-        mdx('inlineCode', { parentName: 'p' }, 'c'),
-        " won't help you here!",
-      ),
-      mdx('p', null, 'To quit without saving, follow these steps:'),
-      mdx(
-        'ul',
-        null,
-        mdx('li', { parentName: 'ul' }, 'Press ', mdx('inlineCode', { parentName: 'li' }, 'Escape'), '.'),
-        mdx(
-          'li',
-          { parentName: 'ul' },
-          'Press ',
-          mdx('inlineCode', { parentName: 'li' }, ':'),
-          '. This should add a prompt at the bottom of the terminal.',
-        ),
-        mdx('li', { parentName: 'ul' }, 'Type ', mdx('inlineCode', { parentName: 'li' }, 'q!'), ' and press Enter.'),
-      ),
-    ),
-    mdx('h1', null, 'Common development tasks'),
-    mdx(
-      'p',
-      null,
-      "So far, we've seen lots of general-computing examples of how to do stuff with the terminal. Let's look at how we'd accomplish some typical development tasks!",
-    ),
-    mdx(
-      'p',
-      null,
-      "These examples assume that you have Node.js installed. If you haven't installed it yet, you can ",
-      mdx('a', e({ parentName: 'p' }, { href: 'https://nodejs.org/en/' }), 'download a copy from the Node homepage'),
-      '.',
-    ),
-    mdx('h2', null, 'Managing dependencies'),
-    mdx(
-      'p',
-      null,
-      "Let's imagine it's your first day on the job. The team has given you access to the source code, and you've downloaded it onto your machine. Now what?",
-    ),
-    mdx('p', null, "Well, the first step is to download the project's third-party dependencies!"),
-    mdx('p', null, 'Here are the steps to follow:'),
-    mdx(
-      'pre',
-      null,
-      mdx(
-        'code',
-        e({ parentName: 'pre' }, {}),
-        `cd path/to/project
-npm install
-`,
-      ),
-    ),
-    mdx(
-      'p',
-      null,
-      mdx('inlineCode', { parentName: 'p' }, 'npm'),
-      " stands for Node Package Manager. It's installed automatically when you install Node.js.",
-    ),
-    mdx(
-      'p',
-      null,
-      'Running this command will download all of the third-party code that the project depends on from the NPM repository. This code will live in a local ',
-      mdx('inlineCode', { parentName: 'p' }, 'node_modules'),
-      ' directory.',
-    ),
-    mdx('h2', null, 'Running NPM scripts'),
-    mdx('p', null, "Alright, so you've got the third-party code downloaded. Now what?"),
-    mdx(
-      'p',
-      null,
-      "If you check out the project's ",
-      mdx('inlineCode', { parentName: 'p' }, 'package.json'),
-      ", you'll likely see a section that looks like this:",
-    ),
-    mdx(
-      'pre',
-      null,
-      mdx(
-        'code',
-        e({ parentName: 'pre' }, { className: 'language-json' }),
-        `{
-  "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
+      "In CSS, we're given a tool to explicitly control the stacking order of HTML elements: ",
+      mdx('inlineCode', { parentName: 'p' }, 'z-index'),
+      '. Elements with a higher value will appear on top:',
+    ),
+    mdx(Playground, {
+      id: 'z-index',
+      splitRatio: 0.55,
+      layoutMode: 'tabbed',
+      layoutMode: 'tabbed',
+      html: `
+<style>
+  .box {
+    position: relative;
   }
+  .first.box {
+    z-index: 2;
+    background-color: peachpuff;
+  }
+  .second.box {
+    z-index: 1;
+    margin-top: -20px;
+    margin-left: 20px;
+  }
+</style>
+
+<div class="first box"></div>
+<div class="second box"></div>
+  `,
+      cssCode: `
+/*
+  This tab includes cosmetic styles
+  that aren't as relevant.
+*/
+.box {
+  width: 50px;
+  height: 50px;
+  border: 3px solid;
+  background: silver;
+}
+  `,
+      mdxType: 'Playground',
+    }),
+    mdx(
+      'p',
+      null,
+      'Because ',
+      mdx('inlineCode', { parentName: 'p' }, '.first.box'),
+      ' has a larger z-index than ',
+      mdx('inlineCode', { parentName: 'p' }, '.second.box'),
+      ', it stacks in front. If we remove that z-index declaration, it falls to the back. The code above is editable\u2014give it a shot!',
+    ),
+    mdx(
+      'p',
+      null,
+      "Things aren't always so simple, however. Sometimes, the larger z-index value ",
+      mdx('em', { type: 'original' }, "doesn't"),
+      ' win.',
+    ),
+    mdx('p', null, "Check out what's going on here:"),
+    mdx(Playground, {
+      id: 'parent-child',
+      splitRatio: 0.55,
+      layoutMode: 'tabbed',
+      html: `
+<style>
+  header {
+    position: relative;
+    z-index: 2;
+  }
+  .tooltip {
+    position: absolute;
+    z-index: 999999;
+  }
+  main {
+    position: relative;
+    z-index: 1;
+  }
+</style>
+
+<header>
+  My Cool Site
+</header>
+<main>
+  <div class="tooltip">
+    A tooltip
+  </div>
+  <p>Some main content</p>
+</main>
+  `,
+      cssCode: `
+body {
+  background: #eee;
+}
+
+header {
+  height: 60px;
+  line-height: 60px;
+  background: pink;
+  text-align: center;
+}
+
+main {
+  padding: 32px;
+}
+
+.tooltip {
+  top: -12px;
+  left: 0px;
+  right: 0px;
+  margin: 0 auto;
+  width: 90px;
+  text-align: center;
+  padding: 8px;
+  background: white;
+  box-shadow: 1px 2px 8px hsla(0deg, 0%, 0%, 0.25);
+  border-radius: 6px;
+}
+  `,
+      mdxType: 'Playground',
+    }),
+    mdx(
+      'p',
+      null,
+      mdx('inlineCode', { parentName: 'p' }, '.tooltip'),
+      ' has a ',
+      mdx('strong', { parentName: 'p' }, 'much'),
+      ' larger z-index than ',
+      mdx('inlineCode', { parentName: 'p' }, 'header'),
+      '! So why on earth is the header on top?',
+    ),
+    mdx(
+      'p',
+      null,
+      "To unravel this mystery, we'll need to learn about ",
+      mdx('em', { parentName: 'p' }, 'stacking contexts'),
+      ", an obscure-yet-fundamental CSS mechanism. In this article, we'll explore what they are, how they work, and how we can use them to our advantage.",
+    ),
+    mdx(
+      Sidenote,
+      { title: 'Intended audience', mdxType: 'Sidenote' },
+      mdx(
+        'p',
+        null,
+        'This tutorial is written for front-end developers of all experience levels. Especially folks who have struggled with z-index issues before.',
+      ),
+    ),
+    mdx('h1', null, 'Layers and groups'),
+    mdx(
+      'p',
+      null,
+      "If you've ever used image-editing software like Photoshop or Figma, you're probably familiar with the concept of layers:",
+    ),
+    mdx('img', {
+      alt: '3 layers in a Photoshop document: a cat photo (bottom), a moustache (mid), and a halo (top)',
+      src: '/images/stacking-contexts/photoshop-layers.png',
+      width: 576 / 2,
+      height: 488 / 2,
+    }),
+    mdx(
+      'p',
+      null,
+      'Our image has 3 separate canvases, stacked like pancakes. The bottom layer is a cat photo, with 2 layers on top that add silly details. By flattening these layers, we wind up with a final composition:',
+    ),
+    mdx('img', {
+      alt: 'A cat photo with a poorly-drawn moustache and halo',
+      src: '/images/stacking-contexts/cat-layers.jpg',
+      width: 300,
+      height: 300,
+    }),
+    mdx('p', null, 'In these programs, we can also ', mdx('em', { type: 'original' }, 'group layers'), ':'),
+    mdx('img', {
+      alt: 'The 3 layers from the previous drawing are in a group, \u201CCat\u201D. Another group, \u201CDog\u201D, includes a top hat and a dog photo',
+      src: '/images/stacking-contexts/photoshop-groups.png',
+      width: 576 / 2,
+      height: 762 / 2,
+    }),
+    mdx(
+      'p',
+      null,
+      "Like files in a folder, a group allows us to segment our layers. In terms of stacking order, layers aren't allowed to \u201Cintermingle\u201D between groups: All of ",
+      mdx('inlineCode', { parentName: 'p' }, 'dog'),
+      "'s layers will appear on top of all of ",
+      mdx('inlineCode', { parentName: 'p' }, 'cat'),
+      "'s layers.",
+    ),
+    mdx('p', null, "When we export the composition, we don't see the cat at all, since it's behind the dog:"),
+    mdx('img', {
+      alt: 'A dog photo with a poorly-drawn top hat',
+      src: '/images/stacking-contexts/dog-layers.jpg',
+      width: 300,
+      height: 300,
+    }),
+    mdx(
+      'p',
+      null,
+      'When it comes to CSS, things work in a similar way: elements are grouped into ',
+      mdx('strong', { parentName: 'p' }, 'stacking contexts'),
+      '. When we give an element a z-index, that value is only compared ',
+      mdx('em', { type: 'original' }, 'against other elements in the same context'),
+      '. z-index values are not global.',
+    ),
+    mdx(
+      'p',
+      null,
+      'By default, a plain HTML document will have a single stacking context that encompasses all nodes. But we can create additional contexts!',
+    ),
+    mdx('p', null, "There are many ways to create stacking contexts, but here's the most common:"),
+    mdx(
+      'pre',
+      null,
+      mdx(
+        'code',
+        e({ parentName: 'pre' }, { className: 'language-css' }),
+        `.some-element {
+  position: relative;
+  z-index: 1;
 }
 `,
       ),
@@ -927,264 +266,219 @@ npm install
     mdx(
       'p',
       null,
-      'These \u201Cscripts\u201D are tasks that can be run with the NPM utility. They can be executed by running ',
-      mdx('inlineCode', { parentName: 'p' }, 'npm run [name]'),
-      ". For example, to boot up a local development server, we'd run:",
+      'By combining these two declarations, a secret mechanism is triggered: a stacking context is created, forming a group around this element and all of its children.',
     ),
+    mdx('p', null, "Let's take another look at our problem from above:"),
     mdx(
       'pre',
       null,
       mdx(
         'code',
-        e({ parentName: 'pre' }, {}),
-        `cd path/to/project
-npm run start
+        e({ parentName: 'pre' }, { className: 'language-html' }),
+        `<style>
+  header {
+    position: relative;
+    z-index: 2;
+  }
+  .tooltip {
+    position: absolute;
+    z-index: 999999;
+  }
+  main {
+    position: relative;
+    z-index: 1;
+  }
+</style>
+
+<header>
+  My Cool Site
+</header>
+<main>
+  <div class="tooltip">
+    A tooltip
+  </div>
+  <p>Some main content</p>
+</main>
 `,
       ),
     ),
+    mdx('p', null, 'We can map out the stacking contexts being created in this snippet:'),
     mdx(
-      'p',
-      null,
-      'Running this command starts a long-running process. It launches a Node server that allows us to work on our application, watching for changes to the files and re-bundling when we edit them.',
-    ),
-    mdx(
-      'p',
-      null,
-      "When we're done, we can kill the server with ",
-      mdx('inlineCode', { parentName: 'p' }, 'ctrl'),
-      ' + ',
-      mdx('inlineCode', { parentName: 'p' }, 'c'),
-      '.',
-    ),
-    mdx(
-      'p',
-      null,
-      'The beautiful thing about NPM scripts is that they ',
-      mdx('em', { parentName: 'p' }, 'standardize'),
-      ' things. ',
-      mdx('inlineCode', { parentName: 'p' }, 'start'),
-      ', ',
-      mdx('inlineCode', { parentName: 'p' }, 'build'),
-      ', and ',
-      mdx('inlineCode', { parentName: 'p' }, 'test'),
-      " are conventional names for these standard tasks. As a result, we don't have to memorize bespoke commands for each project, even if the projects use radically different tools.",
-      mdx(Asterisk, {
-        content:
-          "That said, there are some tools that don't follow these conventions. Be sure to check the project's package.json file for a full list of available scripts.",
-        mdxType: 'Asterisk',
-      }),
-    ),
-    mdx(
-      'p',
-      null,
-      "(We can also create our own NPM scripts! This is something I do extensively in my projects. I'll be publishing a blog post all about this at some point, ",
-      mdx('a', e({ parentName: 'p' }, { href: 'https://joshwcomeau.com/subscribe' }), 'subscribe'),
-      " so you don't miss it!)",
-    ),
-    mdx('h2', null, 'Opening the project in your IDE'),
-    mdx(
-      'p',
-      null,
-      "When I want to start working on a project, I start by navigating to the project's root directory in the terminal. Then I run the following command:",
-    ),
-    mdx(
-      'pre',
+      'ul',
       null,
       mdx(
-        'code',
-        e({ parentName: 'pre' }, { className: 'language-null', metastring: 'lessBottomMargin', lessBottomMargin: !0 }),
-        `cd path/to/project
-code .
-`,
+        'li',
+        { parentName: 'ul' },
+        'The root context',
+        mdx(
+          'ul',
+          { parentName: 'li' },
+          mdx('li', { parentName: 'ul' }, mdx('inlineCode', { parentName: 'li' }, '<header>')),
+          mdx(
+            'li',
+            { parentName: 'ul' },
+            mdx('inlineCode', { parentName: 'li' }, '<main>'),
+            mdx(
+              'ul',
+              { parentName: 'li' },
+              mdx('li', { parentName: 'ul' }, mdx('inlineCode', { parentName: 'li' }, '<div class="tooltip">')),
+            ),
+          ),
+        ),
       ),
     ),
     mdx(
       'p',
       null,
-      'As discussed, ',
-      mdx('inlineCode', { parentName: 'p' }, '.'),
-      ' refers to the current working directory. ',
-      mdx('inlineCode', { parentName: 'p' }, 'code'),
-      ' is a command added by my code editor, VS Code. Running this command opens the entire project in my code editor, making it easy for me to jump between files as-needed.',
+      'Our ',
+      mdx('inlineCode', { parentName: 'p' }, '.tooltip'),
+      ' element has a z-index of 999999, but that value is only relevant within the ',
+      mdx('inlineCode', { parentName: 'p' }, '<main>'),
+      ' stacking context. It controls whether the tooltip shows up above or below the adjacent ',
+      mdx('inlineCode', { parentName: 'p' }, '<p>'),
+      ' tag, nothing more.',
     ),
     mdx(
       'p',
       null,
-      "Note that the command will vary depending on your editor. And, for folks on MacOS who use VS Code, you'll need to ",
-      mdx('a', e({ parentName: 'p' }, { href: 'https://code.visualstudio.com/docs/setup/mac' }), 'do a bit of work'),
-      ' to enable the ',
-      mdx('inlineCode', { parentName: 'p' }, 'code'),
-      ' command.',
-    ),
-    mdx('h2', null, 'Reinstalling dependencies'),
-    mdx(
-      'p',
-      null,
-      'You know how the standard advice for ',
-      mdx('em', { parentName: 'p' }, 'any'),
-      ' computer problem is to turn it off and on again?',
+      'Meanwhile, in the parent context, ',
+      mdx('inlineCode', { parentName: 'p' }, '<header>'),
+      ' and ',
+      mdx('inlineCode', { parentName: 'p' }, '<main>'),
+      ' are compared. Because ',
+      mdx('inlineCode', { parentName: 'p' }, '<main>'),
+      ' has a smaller z-index, it shows up underneath ',
+      mdx('inlineCode', { parentName: 'p' }, '<header>'),
+      '. ',
+      mdx('strong', { parentName: 'p' }, 'All of its children come along for the ride.'),
     ),
     mdx(
-      'p',
-      null,
-      'The JavaScript version of that is to reinstall the NPM dependencies. Sometimes, they just need to be erased and re-downloaded. This is ',
-      mdx('em', { parentName: 'p' }, 'especially'),
-      ' true if you occasionally pop into your ',
-      mdx('inlineCode', { parentName: 'p' }, 'node_modules'),
-      ' and edit the files to help with debugging.',
-      mdx(Asterisk, {
-        content: "This is a debugging superpower. Don't be afraid to tinker with the code inside node_modules!",
-        mdxType: 'Asterisk',
-      }),
-    ),
-    mdx('p', null, "Here's how we can do this:"),
-    mdx(
-      'pre',
-      null,
+      Sidenote,
+      { title: "It's like semantic versioning", mdxType: 'Sidenote' },
       mdx(
-        'code',
-        e({ parentName: 'pre' }, { className: 'language-null', metastring: 'lessBottomMargin', lessBottomMargin: !0 }),
-        `cd path/to/project
-rm -rf node_modules
-npm install
-`,
+        'p',
+        null,
+        "I recognize that not everyone has experience with software like Photoshop / Figma / Sketch. If the analogy above didn't resonate, I have another one that you're more likely to be familiar with: ",
+        mdx('em', { parentName: 'p' }, 'semantic versioning.'),
       ),
-    ),
-    mdx(
-      'p',
-      null,
-      "Once we're in the correct directory, we delete all third-party code with the ",
-      mdx('inlineCode', { parentName: 'p' }, 'rm'),
-      ' command, and then re-install it with ',
-      mdx('inlineCode', { parentName: 'p' }, 'npm install'),
-      '.',
-    ),
-    mdx('h2', null, 'Working with Git'),
-    mdx(
-      'p',
-      null,
-      'While there ',
-      mdx('em', { parentName: 'p' }, 'are'),
-      ' GUI applications for working with Git, many developers prefer to use the command line for Git-related tasks.',
-    ),
-    mdx(
-      'p',
-      null,
-      "A full command-line Git tutorial is well beyond the scope of this blog post, but here's a quick cheat-sheet of the commands I use often:",
-    ),
-    mdx(
-      'pre',
-      null,
       mdx(
-        'code',
-        e({ parentName: 'pre' }, {}),
-        `// Download a Git repository onto
-// your local machine
-git clone [URL]
-
-// Check which files have been modified
-git status -s
-
-// View changes
-git diff
-
-// Stage all files
-git add .
-
-// Commit staged files
-git commit -m "Short descriptive message"
-
-// Create a new local branch
-git switch -c [new branch name]
-
-// Switch branches
-git switch [branch name]
-
-// Push your code to Github (or wherever
-// the project lives)
-git push origin [branch name]
-
-// Start an interactive rebase
-git rebase -i [branch name or commit hash]
+        'expanded',
+        null,
+        mdx(
+          'p',
+          null,
+          `In semantic versioning, different "tiers" of versions are separated by dots. For example, version 2.0 of a package is a larger version than 1.0, but it's also a larger version than 1.999.`,
+        ),
+        mdx(
+          'p',
+          null,
+          'z-indexes are like version numbers, and stacking contexts are like tiers. Every time a stacking context is created, we add a dot to our version:',
+        ),
+        mdx(
+          'pre',
+          null,
+          mdx(
+            'code',
+            e(
+              { parentName: 'pre' },
+              { className: 'language-html', metastring: 'lessBottomMargin', lessBottomMargin: !0 },
+            ),
+            `<header> <!-- 2.0 -->
+  My Cool Site
+</header>
+<main> <!-- 1.0 -->
+  <div class="tooltip"> <!-- 1.999999 -->
+    A tooltip
+  </div>
+</main>
 `,
+          ),
+        ),
+        mdx(
+          'p',
+          null,
+          'Our tooltip shows up underneath our ',
+          mdx('inlineCode', { parentName: 'p' }, '<header>'),
+          " because 1.999999 is a lower version than 2.0. It doesn't matter how many 9s we add to the minor version, it'll never eclipse a larger major version.",
+        ),
       ),
     ),
-    mdx('h1', null, 'Lil\u2019 tricks'),
+    mdx('h1', null, 'Fixing our example'),
     mdx(
       'p',
       null,
-      "Over the years, I've picked up some nifty little terminal tips. They aren't ",
-      mdx('em', { parentName: 'p' }, 'critical'),
-      ', but they help improve the developer experience of using the terminal.',
+      "How do we solve our tooltip problem? Well, in this case, we don't actually need to create a stacking context on our ",
+      mdx('inlineCode', { parentName: 'p' }, '<main>'),
+      ':',
     ),
-    mdx('h2', null, 'Cycling and toggling commands'),
+    mdx(Playground, {
+      id: 'fixing-our-example',
+      splitRatio: 0.65,
+      layoutMode: 'tabbed',
+      html: `
+<style>
+  header {
+    position: relative;
+    z-index: 2;
+  }
+  .tooltip {
+    position: absolute;
+    z-index: 999999;
+  }
+  main {
+    position: relative;
+    /* No more z-index here! */
+  }
+</style>
+
+<header>
+  My Cool Site
+</header>
+<main>
+  <div class="tooltip">
+    A tooltip
+  </div>
+  <p>Some main content</p>
+</main>
+  `,
+      cssCode: `
+/* These styles are purely cosmetic */
+body {
+  background: #eee;
+}
+
+header {
+  height: 60px;
+  line-height: 60px;
+  background: pink;
+  text-align: center;
+}
+
+main {
+  padding: 32px;
+}
+
+.tooltip {
+  top: -12px;
+  left: 0px;
+  right: 0px;
+  margin: 0 auto;
+  width: 90px;
+  text-align: center;
+  padding: 8px;
+  background: white;
+  box-shadow: 1px 2px 8px hsla(0deg, 0%, 0%, 0.25);
+  border-radius: 6px;
+}
+  `,
+      mdxType: 'Playground',
+    }),
     mdx(
       'p',
       null,
-      `Many terminal applications will keep a log of every command you've run in a given session. You can cycle through previous commands using the "up" arrow.`,
-    ),
-    mdx(
-      'p',
-      null,
-      `If I know I've run a command recently, it's usually faster to hit "up" a couple times rather than typing it out from scratch!`,
-    ),
-    mdx(
-      'p',
-      null,
-      "Here's one more ",
-      mdx('em', { parentName: 'p' }, 'amazing'),
-      ' little trick I learned a while back: the ',
-      mdx('inlineCode', { parentName: 'p' }, '-'),
-      ' character.',
-    ),
-    mdx(
-      'p',
-      null,
-      'Suppose we want to bounce back and forth between two directories with ',
-      mdx('inlineCode', { parentName: 'p' }, 'cd'),
-      '. We can do that by typing out the whole path, over and over and over:',
-    ),
-    mdx(
-      'div',
-      { style: { maxWidth: 1144 / 2, marginLeft: 'auto', marginRight: 'auto' } },
-      mdx(VimeoVideoPlayer, {
-        playbackId: '700229679',
-        width: 1144 / 2,
-        aspectRatio: 668 / 1144,
-        mdxType: 'VimeoVideoPlayer',
-      }),
-    ),
-    mdx('h2', null, 'Clearing the terminal'),
-    mdx('p', null, 'Like a clear desk, a clear terminal can lead to a clear mind.'),
-    mdx(
-      'p',
-      null,
-      "There are a few ways to accomplish this. There's a ",
-      mdx('inlineCode', { parentName: 'p' }, 'clear'),
-      ' command, which will erase all previously-entered commands, and making it seem like you just started a new terminal session.',
-    ),
-    mdx(
-      'p',
-      null,
-      "There's also a universal shortcut, ",
-      mdx('inlineCode', { parentName: 'p' }, 'ctrl'),
-      ' + ',
-      mdx('inlineCode', { parentName: 'p' }, 'L'),
-      '. This has the same effect as the ',
-      mdx('inlineCode', { parentName: 'p' }, 'clear'),
-      ' command. It should work across MacOS, Windows, and Linux.',
-    ),
-    mdx(
-      'p',
-      null,
-      "This command/shortcut is implemented within Bash/Zsh. It's part of the shell environment. This means that it only works while the shell is idle, when you have a prompt waiting to receive instructions.",
-    ),
-    mdx(
-      'p',
-      null,
-      'Certain terminal applications also implement their own shortcuts, and these shortcuts can work ',
-      mdx('strong', { parentName: 'p' }, 'even while the shell is busy.'),
-      " Here are the list of shortcuts I'm aware of:",
+      'Without a z-index, ',
+      mdx('inlineCode', { parentName: 'p' }, '<main>'),
+      " won't create a stacking context. Our hierarchy, then, looks like this:",
     ),
     mdx(
       'ul',
@@ -1192,77 +486,779 @@ git rebase -i [branch name or commit hash]
       mdx(
         'li',
         { parentName: 'ul' },
-        'On MacOS, across just about any shell (Terminal.app, iTerm2, Hyper), the shortcut is ',
-        mdx('inlineCode', { parentName: 'li' }, '\u2318'),
-        ' + ',
-        mdx('inlineCode', { parentName: 'li' }, 'k'),
+        'The root context',
+        mdx(
+          'ul',
+          { parentName: 'li' },
+          mdx('li', { parentName: 'ul' }, mdx('inlineCode', { parentName: 'li' }, '<header>')),
+          mdx('li', { parentName: 'ul' }, mdx('inlineCode', { parentName: 'li' }, '<div class="tooltip">')),
+        ),
+      ),
+    ),
+    mdx(
+      'p',
+      null,
+      'Because the header and our tooltip are now in the same context, their z-index values face off, and the tooltip emerges as the victor.',
+    ),
+    mdx(
+      'p',
+      null,
+      mdx('strong', { parentName: 'p' }, 'An important distinction:'),
+      " we're not talking about parent/child relationships here. It doesn't matter that the tooltip is more deeply nested than the header. The browser only cares about stacking contexts.",
+    ),
+    mdx(
+      Sidenote,
+      { title: 'Breaking the rules', mdxType: 'Sidenote' },
+      mdx(
+        'p',
+        null,
+        'In this contrived example, we can remove the z-index from ',
+        mdx('inlineCode', { parentName: 'p' }, '<main>'),
+        " because it wasn't really doing anything. But what if we actually did need ",
+        mdx('inlineCode', { parentName: 'p' }, '<main>'),
+        ' to use z-index / create a stacking context?',
+      ),
+      mdx(
+        'p',
+        null,
+        'According to the rules of CSS, there is no way for us to "break free" of the stacking context. An element inside one stacking context can never be compared against elements in another.',
+      ),
+      mdx(
+        'p',
+        null,
+        'We can still achieve the desired result, however, with a bit of out-of-the-box',
+        mdx(Asterisk, { content: 'Pun intended \u{1F604}', mdxType: 'Asterisk' }),
+        ' thinking.',
+      ),
+      mdx(
+        'expanded',
+        null,
+        mdx(
+          'p',
+          null,
+          'We can render our tooltip outside of ',
+          mdx('inlineCode', { parentName: 'p' }, '<main>'),
+          ' by appending it to the ',
+          mdx('inlineCode', { parentName: 'p' }, '<body>'),
+          " tag. We can then use some CSS to position it accordingly, to make it seem as though it's a child of that element.",
+        ),
+        mdx(
+          'p',
+          null,
+          "This is an advanced technique, and it requires careful planning to make sure that we don't inadvertently break the experience for folks using a keyboard to navigate. Thankfully, libraries like ",
+          mdx('a', e({ parentName: 'p' }, { href: 'https://reach.tech/' }), 'Reach UI'),
+          ' use this technique under-the-hood, and solve for all the accessibility and usability challenges.',
+        ),
+        mdx(
+          'p',
+          null,
+          "It's beyond the scope of this tutorial, but if you're interested in learning more, research ",
+          mdx(
+            'a',
+            e({ parentName: 'p' }, { href: 'https://reactjs.org/docs/portals.html' }),
+            'how Portals work in React',
+          ),
+          ', and check out ',
+          mdx('a', e({ parentName: 'p' }, { href: 'https://github.com/reach/reach-ui' }), "Reach UI's source code"),
+          '.',
+        ),
+      ),
+    ),
+    mdx('h1', null, 'Creating stacking contexts'),
+    mdx(
+      'p',
+      null,
+      "We've seen how we can create a stacking context by combining relative or absolute positioning with ",
+      mdx('inlineCode', { parentName: 'p' }, 'z-index'),
+      ", but it's not the only way! Here are some others:",
+    ),
+    mdx(
+      'ul',
+      null,
+      mdx(
+        'li',
+        { parentName: 'ul' },
+        'Setting ',
+        mdx('inlineCode', { parentName: 'li' }, 'opacity'),
+        ' to a value less than ',
+        mdx('inlineCode', { parentName: 'li' }, '1'),
       ),
       mdx(
         'li',
         { parentName: 'ul' },
-        'If you use Hyper on non-MacOS platforms, the shortcut is ',
-        mdx('inlineCode', { parentName: 'li' }, 'ctrl'),
-        ' + ',
-        mdx('inlineCode', { parentName: 'li' }, 'shift'),
-        ' + ',
-        mdx('inlineCode', { parentName: 'li' }, 'k'),
-        '.',
+        'Setting ',
+        mdx('inlineCode', { parentName: 'li' }, 'position'),
+        ' to ',
+        mdx('inlineCode', { parentName: 'li' }, 'fixed'),
+        ' or ',
+        mdx('inlineCode', { parentName: 'li' }, 'sticky'),
+        ' (No z-index needed for these values!)',
+      ),
+      mdx(
+        'li',
+        { parentName: 'ul' },
+        'Applying a ',
+        mdx('inlineCode', { parentName: 'li' }, 'mix-blend-mode'),
+        ' other than ',
+        mdx('inlineCode', { parentName: 'li' }, 'normal'),
+      ),
+      mdx(
+        'li',
+        { parentName: 'ul' },
+        'Adding a ',
+        mdx('inlineCode', { parentName: 'li' }, 'z-index'),
+        ' to a child inside a ',
+        mdx('inlineCode', { parentName: 'li' }, 'display: flex'),
+        ' or ',
+        mdx('inlineCode', { parentName: 'li' }, 'display: grid'),
+        ' container',
+      ),
+      mdx(
+        'li',
+        { parentName: 'ul' },
+        'Using ',
+        mdx('inlineCode', { parentName: 'li' }, 'transform'),
+        ', ',
+        mdx('inlineCode', { parentName: 'li' }, 'filter'),
+        ', ',
+        mdx('inlineCode', { parentName: 'li' }, 'clip-path'),
+        ', or ',
+        mdx('inlineCode', { parentName: 'li' }, 'perspective'),
+      ),
+      mdx(
+        'li',
+        { parentName: 'ul' },
+        'Using ',
+        mdx('inlineCode', { parentName: 'li' }, 'will-change'),
+        ' with a value like ',
+        mdx('inlineCode', { parentName: 'li' }, 'opacity'),
+        ' or ',
+        mdx('inlineCode', { parentName: 'li' }, 'transform'),
+      ),
+      mdx(
+        'li',
+        { parentName: 'ul' },
+        'Explicitly creating a context with ',
+        mdx('inlineCode', { parentName: 'li' }, 'isolation: isolate'),
+        ' (More on this soon!)',
       ),
     ),
     mdx(
       'p',
       null,
-      mdx('strong', { parentName: 'p' }, 'These application-level shortcuts are way better.'),
-      ' You can use them even when the shell is busy.',
-    ),
-    mdx(
-      'p',
-      null,
-      "For example, let's say you're running a dev server. This is a long-running process, and so the ",
-      mdx('inlineCode', { parentName: 'p' }, 'ctrl'),
-      ' + ',
-      mdx('inlineCode', { parentName: 'p' }, 'L'),
-      " shortcut won't work. As you work on the project, lots of messages will be logged in the terminal window. The application shortcuts allow you to clear away stale logs, as if archiving old emails. ",
-      mdx('strong', { parentName: 'p' }, 'This is really helpful,'),
-      ' and a great example of how modern terminal applications make our lives easier.',
-    ),
-    mdx(
-      'p',
-      null,
-      'Thanks to ',
+      'There are a few other ways as well. You can find ',
       mdx(
         'a',
-        e({ parentName: 'p' }, { href: 'https://twitter.com/hovhaDovah/status/1516444641960382466' }),
-        'Aleksandr',
+        e(
+          { parentName: 'p' },
+          {
+            href: 'https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Positioning/Understanding_z_index/The_stacking_context#the_stacking_context',
+          },
+        ),
+        'the full list on MDN',
       ),
-      ' and Joseph Cagle for helping me understand how this works on non-MacOS platforms!',
-    ),
-    mdx('h2', null, 'Aliases'),
-    mdx(
-      'p',
-      null,
-      "Every now and then, I'll find myself typing out the same command over and over. If this command is long or complex, it's annoying to have to type it out every time, and to remember it verbatim.",
+      '.',
     ),
     mdx(
       'p',
       null,
-      'Bash and Zsh support ',
-      mdx('em', { parentName: 'p' }, 'aliases'),
-      ', a way of creating custom shortcuts. For example, I can set it up so that whenever I enter ',
-      mdx('inlineCode', { parentName: 'p' }, 'hi'),
-      ', it automatically runs ',
-      mdx('inlineCode', { parentName: 'p' }, 'echo "Hello World!"'),
-      ':',
+      mdx('strong', { parentName: 'p' }, 'This can lead to some surprising situations.'),
+      " Check out what's happening here:",
     ),
-    mdx(TerminalScreenshot, {
-      slug: 'alias',
-      alt: "Running the 'alias' command, to create an alias for the echo command",
-      mdxType: 'TerminalScreenshot',
+    mdx(Playground, {
+      id: 'broken-with-will-change',
+      splitRatio: 0.65,
+      layoutMode: 'tabbed',
+      html: `
+<style>
+  header {
+    position: relative;
+    z-index: 2;
+  }
+  .tooltip {
+    position: absolute;
+    z-index: 999999;
+  }
+  main {
+    position: relative;
+    /*
+      No more z-index\u2026
+      but it's still broken??
+    */
+    will-change: transform;
+  }
+</style>
+
+<header>
+  My Cool Site
+</header>
+<main>
+  <div class="tooltip">
+    A tooltip
+  </div>
+  <p>Some main content</p>
+</main>
+  `,
+      cssCode: `
+/* These styles are purely cosmetic */
+body {
+  background: #eee;
+}
+
+header {
+  height: 60px;
+  line-height: 60px;
+  background: pink;
+  text-align: center;
+}
+
+main {
+  padding: 32px;
+}
+
+.tooltip {
+  top: -12px;
+  left: 0px;
+  right: 0px;
+  margin: 0 auto;
+  width: 90px;
+  text-align: center;
+  padding: 8px;
+  background: white;
+  box-shadow: 1px 2px 8px hsla(0deg, 0%, 0%, 0.25);
+  border-radius: 6px;
+}
+  `,
+      mdxType: 'Playground',
     }),
     mdx(
       'p',
       null,
-      'Setting up aliases is a bit beyond the scope of this tutorial, and the instructions are a bit different depending on your shell language. Here are some helpful tutorials that go into more depth:',
+      mdx('inlineCode', { parentName: 'p' }, 'main'),
+      " doesn't set a z-index anymore, but it uses ",
+      mdx('inlineCode', { parentName: 'p' }, 'will-change'),
+      ', a property that can create a stacking context all on its own.',
+    ),
+    mdx('h1', null, 'A common misconception about z-index'),
+    mdx(
+      'p',
+      null,
+      'In order for z-index to work, we need to set ',
+      mdx('inlineCode', { parentName: 'p' }, 'position'),
+      ' to something like ',
+      mdx('inlineCode', { parentName: 'p' }, 'relative'),
+      ' or ',
+      mdx('inlineCode', { parentName: 'p' }, 'absolute'),
+      ', right?',
+    ),
+    mdx('p', null, "Not quite. Check out what's happening here:"),
+    mdx(Playground, {
+      splitRatio: 0.55,
+      id: 'z-index-without-position',
+      layoutMode: 'tabbed',
+      html: `
+<style>
+  .wrapper {
+    display: flex;
+  }
+  .second.box {
+    z-index: 1;
+    background: hotpink;
+    margin-top: 20px;
+    margin-left: -20px;
+    margin-right: -20px;
+  }
+</style>
+
+<div class="wrapper">
+  <div class="first box"></div>
+  <div class="second box"></div>
+  <div class="third box"></div>
+</div>
+  `,
+      cssCode: `
+.box {
+  width: 50px;
+  height: 50px;
+  border: 3px solid;
+  background: silver;
+}
+  `,
+      mdxType: 'Playground',
+    }),
+    mdx(
+      'p',
+      null,
+      'The second box is lifted above its siblings using ',
+      mdx('inlineCode', { parentName: 'p' }, 'z-index'),
+      '. There are no ',
+      mdx('inlineCode', { parentName: 'p' }, 'position'),
+      ' declarations anywhere in the snippet, though!',
+    ),
+    mdx(
+      'p',
+      null,
+      'In general, ',
+      mdx('inlineCode', { parentName: 'p' }, 'z-index'),
+      ' only works with "positioned" elements (elements that set ',
+      mdx('inlineCode', { parentName: 'p' }, 'position'),
+      ' to something other than the default \u201Cstatic\u201D). But the Flexbox specification adds an exception: flex children can use ',
+      mdx('inlineCode', { parentName: 'p' }, 'z-index'),
+      " even if they're statically-positioned.",
+    ),
+    mdx(
+      'p',
+      null,
+      'An earlier version of this post said that all elements that create a stacking context can use ',
+      mdx('inlineCode', { parentName: 'p' }, 'z-index'),
+      ', but that was incorrect. \u{1F62C}',
+    ),
+    mdx('h1', null, 'Hold on a minute\u2026'),
+    mdx('p', null, "There's a Weird Thing here, and I think it's worth pondering about for a minute or two."),
+    mdx(
+      'p',
+      null,
+      'In our Photoshop analogy, there is a clear distinction between groups and layers. All of the visual elements are layers, and groups can be conjured as structural helpers to contain them. They are distinct ideas.',
+    ),
+    mdx(
+      'p',
+      null,
+      'On the web, however, the distinction is a bit less clear. Every element that uses z-index must ',
+      mdx('em', { type: 'original' }, 'also'),
+      ' create a stacking context.',
+    ),
+    mdx(
+      'p',
+      null,
+      'When we decide to give an element a z-index, our goal is typically to lift or lower that element above/below some other element in the parent stacking context. ',
+      mdx('em', { type: 'original' }, "We aren't intending to produce a stacking context on that element!"),
+      " But it's important that we consider it.",
+    ),
+    mdx(
+      'p',
+      null,
+      "When a stacking context is created, it \u201Cflattens\u201D all of its descendants. Those children can still be rearranged internally, but we've essentially locked those children in.",
+    ),
+    mdx('p', null, "Let's take another look at the markup from earlier:"),
+    mdx(
+      'pre',
+      null,
+      mdx(
+        'code',
+        e({ parentName: 'pre' }, { className: 'language-html' }),
+        `<header>
+  My Cool Site
+</header>
+<main>
+  <div class="tooltip">
+    A tooltip
+  </div>
+  <p>Some main content</p>
+</main>
+`,
+      ),
+    ),
+    mdx(
+      'p',
+      null,
+      'By default, HTML elements will be stacked according to their DOM order. Without any CSS interference, ',
+      mdx('inlineCode', { parentName: 'p' }, 'main'),
+      ' will render on top of ',
+      mdx('inlineCode', { parentName: 'p' }, 'header'),
+      '.',
+    ),
+    mdx(
+      'p',
+      null,
+      'We can lift ',
+      mdx('inlineCode', { parentName: 'p' }, 'header'),
+      ' to the front by giving it a z-index, but not without flattening all of its children. This mechanism is what led to the bug we discussed earlier.',
+    ),
+    mdx(
+      'p',
+      null,
+      "We shouldn't think of ",
+      mdx('inlineCode', { parentName: 'p' }, 'z-index'),
+      " purely as a way to change an element's order. We should ",
+      mdx('em', { parentName: 'p' }, 'also'),
+      " think of it as a way to form a group around that element's children. z-index won't work unless a group is formed.",
+    ),
+    mdx(
+      Sidenote,
+      { title: 'Believe it or not, this is a good thing', mdxType: 'Sidenote' },
+      mdx(
+        'p',
+        null,
+        "As we've seen in our tooltip demo, stacking contexts can cause subtle, hard-to-diagnose bugs. Wouldn't it be better if z-index values were compared globally instead?",
+      ),
+      mdx(
+        'expanded',
+        null,
+        mdx('p', null, "I don't think so, and I can think of a few reasons why:"),
+        mdx(
+          'ul',
+          null,
+          mdx(
+            'li',
+            { parentName: 'ul' },
+            'As it stands, z-index inflation (the ever-creeping-upwards trend of huge z-index values) is an epidemic. Imagine how much worse it would be if ',
+            mdx('em', { type: 'original' }, 'every single element with a z-index'),
+            ' had to fit in the same scale?',
+          ),
+          mdx(
+            'li',
+            { parentName: 'ul' },
+            "I'm not a browser engineer, but I'd guess that stacking contexts are good for performance. Without them, the browser would have to compare every item with a z-index against every other item with a z-index. Sounds like a lot more work.",
+          ),
+          mdx(
+            'li',
+            { parentName: 'ul' },
+            'Once we understand stacking contexts, we can use them to our advantage to "seal off" elements. This is an especially powerful pattern with component-driven frameworks like React.',
+          ),
+        ),
+        mdx('p', null, "That last point is especially interesting. Let's dig deeper into it."),
+      ),
+    ),
+    mdx('h1', null, 'Airtight abstractions with \u201Cisolation\u201D'),
+    mdx(
+      'p',
+      null,
+      "One of my favourite CSS properties is also one of the most obscure. I'd like to introduce you to the ",
+      mdx('inlineCode', { parentName: 'p' }, 'isolation'),
+      ' property, a hidden gem in the language.',
+    ),
+    mdx('p', null, "Here's how you'd use it:"),
+    mdx(
+      'pre',
+      null,
+      mdx(
+        'code',
+        e({ parentName: 'pre' }, { className: 'language-css', metastring: 'lessBottomMargin', lessBottomMargin: !0 }),
+        `.wrapper {
+  isolation: isolate;
+}
+`,
+      ),
+    ),
+    mdx(
+      'p',
+      null,
+      'When we apply this declaration to an element, it does precisely 1 thing: it creates a new stacking context.',
+    ),
+    mdx(
+      'p',
+      null,
+      'With so many different ways to create a stacking context, why do we need another one? Well, with every other method, stacking contexts are created implicitly, as the result of some other change. ',
+      mdx('inlineCode', { parentName: 'p' }, 'isolation'),
+      ' creates a stacking context in the purest way possible:',
+    ),
+    mdx(
+      'ul',
+      null,
+      mdx('li', { parentName: 'ul' }, 'No need to prescribe a z-index value'),
+      mdx(
+        'li',
+        { parentName: 'ul' },
+        'Can be used on statically-positioned',
+        mdx(Asterisk, {
+          content:
+            "A \u201Cstatic\u201D element is one that doesn't set 'position' to relative, absolute, fixed, or sticky.",
+          mdxType: 'Asterisk',
+        }),
+        ' elements',
+      ),
+      mdx('li', { parentName: 'ul' }, "Doesn't affect the child's rendering in any way"),
+    ),
+    mdx(
+      'p',
+      null,
+      'This is ',
+      mdx('strong', { parentName: 'p' }, 'incredibly useful'),
+      `, since it lets us "seal off" an element's children.`,
+    ),
+    mdx(
+      'p',
+      null,
+      "Let's look at an example. Recently, I built this neat envelope component. ",
+      mdx('strong', { parentName: 'p' }, 'Hover or focus'),
+      ' to see it open:',
+    ),
+    mdx(Spacer, { size: 32, mdxType: 'Spacer' }),
+    mdx(EnvelopeDemo, { mdxType: 'EnvelopeDemo' }, mdx('p', null, 'Hello World!')),
+    mdx(Spacer, { size: 32, mdxType: 'Spacer' }),
+    mdx('p', null, 'It consists of several layers:'),
+    mdx(EnvelopeLayers, { mdxType: 'EnvelopeLayers' }),
+    mdx(Spacer, { size: 96, mdxType: 'Spacer' }),
+    mdx(
+      'p',
+      null,
+      'I packaged this effect up in a React component, ',
+      mdx('inlineCode', { parentName: 'p' }, '<Envelope>'),
+      '. It looks something like this (inline styles used for brevity):',
+    ),
+    mdx(
+      'pre',
+      null,
+      mdx(
+        'code',
+        e({ parentName: 'pre' }, { className: 'language-jsx', metastring: 'lessBottomMargin', lessBottomMargin: !0 }),
+        `function Envelope({ children }) {
+  return (
+    <div>
+      <BackPane style={{ zIndex: 1 }} />
+      <Letter style={{ zIndex: 3 }}>
+        {children}
+      </Letter>
+      <Shell style={{ zIndex: 4 }} />
+      <Flap style={{ zIndex: isOpen ? 2 : 5 }} />
+    </div>
+  )
+}
+`,
+      ),
+    ),
+    mdx(
+      'p',
+      null,
+      "(If you're wondering why ",
+      mdx('inlineCode', { parentName: 'p' }, 'Flap'),
+      " has a dynamic z-index, it's because it needs to shift behind the letter when the envelope is open.)",
+    ),
+    mdx(
+      'p',
+      null,
+      'A good React component is sealed off from its environment, like a spacesuit. ',
+      mdx('em', { type: 'original' }, 'This'),
+      ' spacesuit, however, has sprung a leak. Check out what happens when I use it near a ',
+      mdx('inlineCode', { parentName: 'p' }, '<header>'),
+      ' with ',
+      mdx('inlineCode', { parentName: 'p' }, 'z-index: 3'),
+      ':',
+    ),
+    mdx(VideoGif, {
+      src: '/images/stacking-contexts/glitch-city.mp4',
+      alt: 'An envelope opens, and intersects a header above, with the envelope flap behind, but the letter in front',
+      maxWidth: 400,
+      noBorder: !0,
+      includeShadow: !0,
+      mdxType: 'VideoGif',
+    }),
+    mdx(
+      'p',
+      null,
+      'Our ',
+      mdx('inlineCode', { parentName: 'p' }, '<Envelope>'),
+      " component wraps the 4 layers in a div, but it doesn't create a stacking context. As a result, those layers can become \u201Cintertwined\u201D with other components, like the world's most boring game of Twister",
+      mdx(Asterisk, {
+        content: 'A party game involving coloured circles and tangled humans, from the pre-COVID era.',
+        mdxType: 'Asterisk',
+      }),
+      '.',
+    ),
+    mdx(
+      'p',
+      null,
+      'By using ',
+      mdx('inlineCode', { parentName: 'p' }, 'isolation: isolate'),
+      ' on the top-level element within ',
+      mdx('inlineCode', { parentName: 'p' }, '<Envelope>'),
+      ', ',
+      mdx('strong', { parentName: 'p' }, "we guarantee that it'll be positioned as a group"),
+      ':',
+    ),
+    mdx(
+      'pre',
+      null,
+      mdx(
+        'code',
+        e({ parentName: 'pre' }, { className: 'language-jsx', metastring: 'highlight=[[2,2]]', highlight: '[[2,2]]' }),
+        `function Envelope({ children }) {
+  return (
+    <div style={{ isolation: 'isolate' }}>
+      <BackPane style={{ zIndex: 1 }} />
+      <Letter style={{ zIndex: 3 }}>
+        {children}
+      </Letter>
+      <Shell style={{ zIndex: 4 }} />
+      <Flap style={{ zIndex: isOpen ? 2 : 5 }} />
+    </div>
+  )
+}
+`,
+      ),
+    ),
+    mdx(
+      'p',
+      null,
+      'Why not create a stacking context the old-fashioned way, with ',
+      mdx('inlineCode', { parentName: 'p' }, 'position: relative; z-index: 1'),
+      '? Well, React components are meant to be reusable; is ',
+      mdx('inlineCode', { parentName: 'p' }, '1'),
+      ' really the right z-index value for this component in ',
+      mdx('em', { type: 'original' }, 'all'),
+      ' circumstances? The beauty of ',
+      mdx('inlineCode', { parentName: 'p' }, 'isolation'),
+      ' is that it keeps our components unopinionated and flexible.',
+    ),
+    mdx(
+      'p',
+      null,
+      'More and more, ',
+      mdx('strong', { parentName: 'p' }, "I'm starting to believe that z-index is an escape hatch"),
+      ', similar to ',
+      mdx('inlineCode', { parentName: 'p' }, '!important'),
+      '. This is one trick that allows us to control stacking order without pulling the big red z-index lever.',
+    ),
+    mdx(
+      'p',
+      null,
+      "I'm working on a follow-up tutorial where we look at some other tricks to keep z-index inflation down. Watch this space!",
+    ),
+    mdx(
+      Sidenote,
+      { title: 'Browser support', mdxType: 'Sidenote' },
+      mdx(
+        'p',
+        null,
+        'The ',
+        mdx('inlineCode', { parentName: 'p' }, 'isolation'),
+        ' property is not new, and it has ',
+        mdx(
+          'a',
+          e({ parentName: 'p' }, { href: 'https://caniuse.com/?search=isolation' }),
+          'very good browser support',
+        ),
+        ': it works in every browser except Internet Explorer.',
+      ),
+      mdx(
+        'p',
+        null,
+        'If I needed to support Internet Explorer, I would consider using ',
+        mdx('inlineCode', { parentName: 'p' }, 'transform: translate(0px);'),
+        " instead. I haven't tested it, but I believe it would achieve the same result: creating a stacking context without any meaningful side-effect.",
+      ),
+    ),
+    mdx('h1', null, 'Debugging stacking context issues'),
+    mdx('p', null, "Unfortunately, I haven't found much tooling to help debug stacking-context issues."),
+    mdx(
+      'p',
+      null,
+      'Microsoft Edge has an interesting \u201C',
+      mdx(
+        'a',
+        e(
+          { parentName: 'p' },
+          { href: 'https://docs.microsoft.com/en-us/microsoft-edge/devtools-guide-chromium/3d-view/' },
+        ),
+        '3D view',
+      ),
+      '\u201D that allows us to view stacking contexts:',
+    ),
+    mdx(VideoGif, {
+      src: '/images/stacking-contexts/3d-view.mp4',
+      alt: 'A bunch of boxes floating in space, while the camera pans around. Each box has a different background color and a label like \u201Cz-index: auto\u201D.',
+      maxWidth: 760 / 2,
+      mdxType: 'VideoGif',
+    }),
+    mdx(
+      'p',
+      null,
+      "This is an ambitious idea, but honestly I find it pretty overwhelming. It's hard to locate a specific element in this view, and I don't really feel like it helps me understand the stacking contexts in my app.",
+    ),
+    mdx(
+      'p',
+      null,
+      "There's one other neat trick you can use sometimes: ",
+      mdx('inlineCode', { parentName: 'p' }, 'offsetParent'),
+      '.',
+    ),
+    mdx(
+      'pre',
+      null,
+      mdx(
+        'code',
+        e({ parentName: 'pre' }, { className: 'language-js' }),
+        `const element = document.querySelector('.tooltip');
+
+console.log(element.offsetParent); // <main>
+`,
+      ),
+    ),
+    mdx(
+      'p',
+      null,
+      mdx('inlineCode', { parentName: 'p' }, 'offsetParent'),
+      ' returns the closest ancestor rendered with a ',
+      mdx('inlineCode', { parentName: 'p' }, 'position'),
+      ' value other than ',
+      mdx('inlineCode', { parentName: 'p' }, 'static'),
+      '. It crawls up the tree looking for relative / absolute / fixed / sticky ancestors.',
+    ),
+    mdx(
+      'p',
+      null,
+      "This is not a perfect solution. Not all stacking contexts use positioned layout, and not all positioned elements create a stacking context! That said, in practice, there does tend to be a pretty strong correlation between these two things. At the very least, it's a starting point.",
+    ),
+    mdx(
+      'p',
+      null,
+      'If you know of any tooling that can help here (or if you create one!), ',
+      mdx('a', { href: 'https://twitter.com/JoshWComeau' }, 'let me know on Twitter'),
+    ),
+    mdx(
+      'p',
+      null,
+      mdx('strong', { parentName: 'p' }, 'Update:'),
+      ' Felix Becker reached out to share a ',
+      mdx(
+        'a',
+        e(
+          { parentName: 'p' },
+          { href: 'https://marketplace.visualstudio.com/items?itemName=felixfbecker.css-stacking-contexts' },
+        ),
+        'VSCode extension that highlights when stacking contexts are created',
+      ),
+      ':',
+    ),
+    mdx('img', {
+      src: '/images/vscode-stacking-contexts.gif',
+      alt: 'A CSS code snippet showing that z-index has no effect, and how to fix it',
+    }),
+    mdx('p', null, 'This extension works on .css and .scss files (no CSS-in-JS support).'),
+    mdx(
+      'p',
+      null,
+      mdx('strong', { parentName: 'p' }, 'Update 2:'),
+      ' Giuseppe Gurgone reached out to let me know about this ',
+      mdx(
+        'a',
+        e(
+          { parentName: 'p' },
+          { href: 'https://chrome.google.com/webstore/detail/z-context/jigamimbjojkdgnlldajknogfgncplbh' },
+        ),
+        'Chrome extension',
+      ),
+      ' which adds a new \u201Cz-index\u201D pane to the devtools.',
+    ),
+    mdx(
+      'p',
+      null,
+      mdx('strong', { parentName: 'p' }, 'Update 3:'),
+      ' Andrea Dragotta created an ',
+      mdx('em', { parentName: 'p' }, 'incredible'),
+      ' browser extension that adds a bunch of super-important information about z-index and stacking contexts:',
+    ),
+    mdx('img', {
+      src: '/images/chrome-stacking-context.png',
+      alt: "Screenshot of the Chrome devtools with a new pane that shows info about the element's current stacking context",
+      style: { maxWidth: 600 },
+    }),
+    mdx(
+      'p',
+      null,
+      'This is an ',
+      mdx('strong', { parentName: 'p' }, 'awesome'),
+      " tool, and I've been using it regularly. Install CSS Stacking Context Inspector:",
     ),
     mdx(
       'ul',
@@ -1272,279 +1268,115 @@ git rebase -i [branch name or commit hash]
         { parentName: 'ul' },
         mdx(
           'a',
-          e({ parentName: 'li' }, { href: 'https://linuxize.com/post/how-to-create-bash-aliases/' }),
-          'Bash aliases',
+          e(
+            { parentName: 'li' },
+            {
+              href: 'https://chrome.google.com/webstore/detail/css-stacking-context-insp/apjeljpachdcjkgnamgppgfkmddadcki',
+            },
+          ),
+          'For Chrome',
         ),
       ),
       mdx(
         'li',
         { parentName: 'ul' },
-        mdx('a', e({ parentName: 'li' }, { href: 'https://linuxhint.com/configure-use-aliases-zsh/' }), 'Zsh aliases'),
+        mdx(
+          'a',
+          e(
+            { parentName: 'li' },
+            { href: 'https://addons.mozilla.org/en-US/firefox/addon/css-stacking-context-inspector/' },
+          ),
+          'For Firefox',
+        ),
       ),
-    ),
-    mdx('h2', null, 'Switching to a GUI file explorer'),
-    mdx(
-      'p',
-      null,
-      "Unless you've reached black-belt status with the terminal, there will be times when you want to open the working directory in a GUI file explorer.",
-    ),
-    mdx('p', null, 'On MacOS, the ', mdx('inlineCode', { parentName: 'p' }, 'open .'), ' command will do this:'),
-    mdx(VideoGif, {
-      src: 'https://storage.googleapis.com/joshwcomeau/t-open.mp4',
-      alt: "The 'open' command is run, opening the current directory",
-      mdxType: 'VideoGif',
-    }),
-    mdx(
-      'p',
-      null,
-      'The ',
-      mdx('inlineCode', { parentName: 'p' }, 'open'),
-      ' command is generally used to open a file, the same way double-clicking a file opens it in a GUI file explorer.',
-    ),
-    mdx(
-      'p',
-      null,
-      'When we try to open a ',
-      mdx('em', { parentName: 'p' }, 'directory'),
-      ", however, it'll choose to pop open a new Finder window, showing the contents of that directory.",
-    ),
-    mdx(
-      'p',
-      null,
-      'And since the dot character (',
-      mdx('inlineCode', { parentName: 'p' }, '.'),
-      ') refers to the current directory, ',
-      mdx('inlineCode', { parentName: 'p' }, 'open .'),
-      ' allows us to switch from the terminal to Finder, to continue our work outside of the terminal.',
-    ),
-    mdx(
-      'p',
-      null,
-      'On Windows, you can use ',
-      mdx('inlineCode', { parentName: 'p' }, 'explorer .'),
-      ' to accomplish the same goal! Thanks to ',
-      mdx('a', e({ parentName: 'p' }, { href: 'https://twitter.com/luniestro/status/1516427957467852802' }), 'Lukas'),
-      ' and ',
-      mdx(
-        'a',
-        e({ parentName: 'p' }, { href: 'https://twitter.com/ZagglesZurek/status/1516447452726894596' }),
-        'Agata',
-      ),
-      ' for letting me know. \u{1F604}',
-    ),
-    mdx(
-      'p',
-      null,
-      'On Linux, ',
-      mdx('inlineCode', { parentName: 'p' }, 'xdg-open'),
-      ' can be used to open files, or the current directory, so long as the Linux distro implements the FreeDesktop standard. Thanks to ',
-      mdx(
-        'a',
-        e({ parentName: 'p' }, { href: 'https://twitter.com/thedaviddelta/status/1516417270343471113' }),
-        'David',
-      ),
-      ' for letting me know!',
-    ),
-    mdx('h2', null, 'Chaining commands'),
-    mdx('p', null, 'Whenever I clone a new project from Github, I generally want to do two things in a row:'),
-    mdx(
-      'ul',
-      null,
-      mdx(
-        'li',
-        { parentName: 'ul' },
-        mdx('inlineCode', { parentName: 'li' }, 'npm install'),
-        ', to fetch third-party dependencies',
-      ),
-      mdx(
-        'li',
-        { parentName: 'ul' },
-        mdx('inlineCode', { parentName: 'li' }, 'npm run start'),
-        ', to boot up a local development server',
-      ),
-    ),
-    mdx(
-      'p',
-      null,
-      'The ',
-      mdx('inlineCode', { parentName: 'p' }, 'npm install'),
-      " command typically takes a few minutes. I don't have the attention span to sit and watch dependencies download, and so I'll often distract myself with Twitter. The next thing I know, 20 minutes have passed, and I totally forgot I was going to start a dev server. \u{1F62C}",
-    ),
-    mdx(
-      'p',
-      null,
-      'We can solve this problem using ',
-      mdx('em', { parentName: 'p' }, 'chaining'),
-      ". Here's how it works:",
-    ),
-    mdx(TerminalScreenshot, {
-      slug: 'chain',
-      alt: 'Chaining two NPM commands with double ampersands',
-      mdxType: 'TerminalScreenshot',
-    }),
-    mdx(
-      'p',
-      null,
-      'The ',
-      mdx('inlineCode', { parentName: 'p' }, '&&'),
-      ' operator allows us to chain multiple commands together. The first command will be executed, ',
-      mdx('inlineCode', { parentName: 'p' }, 'npm install'),
-      '. The moment it finishes, the second command will be run automatically.',
-    ),
-    mdx(
-      'p',
-      null,
-      'This is a particularly neat trick because ',
-      mdx('inlineCode', { parentName: 'p' }, 'npm run start'),
-      " generally opens a browser window, capturing my attention and letting me know that everything's ready for me. ",
-      mdx('inlineCode', { parentName: 'p' }, 'npm install'),
-      ', by contrast, finishes silently.',
-    ),
-    mdx(
-      'p',
-      null,
-      "Once I got the hang of chaining, I started using it everywhere. I'll often queue up a bunch of Git commands:",
-    ),
-    mdx(
-      'pre',
-      null,
-      mdx(
-        'code',
-        e({ parentName: 'pre' }, {}),
-        `git add . && git commit -m "Stuff" && git push origin main
-`,
-      ),
-    ),
-    mdx('h2', null, 'Terminal tiling and tabs'),
-    mdx('p', null, "Alright, so let's talk about how to keep our workspace organized."),
-    mdx(
-      'p',
-      null,
-      'Running a dev server with ',
-      mdx('inlineCode', { parentName: 'p' }, 'npm run start'),
-      ' is a long-running process. I often have dev servers run uninterrupted for weeks at a time!',
-    ),
-    mdx(
-      'p',
-      null,
-      "When a terminal session is busy on a task, it isn't able to accept additional commands. Remember, the prompt is used to show that the terminal is waiting for a command; if we don't see a prompt, we can't run anything in that given session!",
-    ),
-    mdx(
-      'p',
-      null,
-      'Fortunately, modern terminal applications make it easy to run many terminal sessions in the same application.',
-    ),
-    mdx(
-      'p',
-      null,
-      'In Hyper, we can split the window into multiple vertical panes by selecting Shell -> Split down. On MacOS, the shortcut is ',
-      mdx('inlineCode', { parentName: 'p' }, 'Shift'),
-      ' + ',
-      mdx('inlineCode', { parentName: 'p' }, '\u2318'),
-      ' + ',
-      mdx('inlineCode', { parentName: 'p' }, 'd'),
-      '. This creates two independent sessions:',
-    ),
-    mdx(TerminalScreenshot, {
-      slug: 'tiled',
-      alt: 'Two terminal sessions, one on top of the other',
-      height: 1462,
-      mdxType: 'TerminalScreenshot',
-    }),
-    mdx(
-      'p',
-      null,
-      'By splitting the window into multiple sessions, the top session can focus on running the dev server, and highlighting errors and other important information. The bottom session can be used to run shorter tasks.',
-    ),
-    mdx(
-      'p',
-      null,
-      'Sometimes, projects will require multiple long-running tasks; maybe we have a dev server ',
-      mdx('i', null, 'and'),
-      " a test watcher. In that case, we'd split the window into 3 sessions.",
-    ),
-    mdx(
-      'p',
-      null,
-      'In Hyper, we can also create ',
-      mdx('em', { parentName: 'p' }, 'multiple tabs'),
-      '. New tabs can be created with Shell -> New Tab. On MacOS, the shortcut is the same as it is to create new tabs in a web browser: ',
-      mdx('inlineCode', { parentName: 'p' }, '\u2318'),
-      ' + ',
-      mdx('inlineCode', { parentName: 'p' }, 't'),
-      '.',
-    ),
-    mdx(
-      'p',
-      null,
-      mdx('strong', { parentName: 'p' }, 'When do we use tabs vs. tiles?'),
-      ' I like to have 1 tab per project. Each tab can be split into as many sessions are required for that specific project.',
     ),
     mdx(
       Sidenote,
-      { title: 'Editor + Terminal arrangements', mdxType: 'Sidenote' },
-      mdx('p', null, "Here's how I arrange my code editor and terminal application:"),
-      mdx(PostImage, {
-        src: '/images/terminal-for-js-devs/editor-terminal-layout.png',
-        width: 4096,
-        height: 2258,
-        alt: 'Screenshot of my code setup, with a two-pane code editor on the left and a terminal column on the right, split vertically into 2 sessions',
-        mdxType: 'PostImage',
-      }),
+      { title: 'Stacking contexts vs. layers', mdxType: 'Sidenote' },
       mdx(
         'p',
         null,
-        'I use a 27" monitor, and this size is just large enough to support two full-height code views and a terminal application with up to 3 split panes. The code editor takes up 2/3rds of the available horizontal space.',
+        'In the Chrome devtools, there is a \u201CLayers\u201D pane that shows individual element layers. Are layers the same thing as stacking contexts?',
       ),
+      mdx('p', null, "Unfortunately not. They're similar if you squint, but they're fundamentally different concepts."),
       mdx(
-        'p',
+        'expanded',
         null,
-        'I use ',
-        mdx('a', e({ parentName: 'p' }, { href: 'https://rectangleapp.com/' }), 'Rectangle'),
-        ' to manage the window positions. Using keyboard shortcuts, I can quickly snap my editor and terminal application into place.',
+        mdx(
+          'p',
+          null,
+          "Stacking contexts are a \u201Cthing\u201D in the CSS specification. They're a fundamental part of how the language works, and browsers are meant to implement them according to the specification.",
+        ),
+        mdx(
+          'p',
+          null,
+          "Layers, on the other hand, aren't mentioned in the spec. Rather, they're an implementation detail that some browsers (like Chrome) use to optimize performance.",
+        ),
+        mdx(
+          'p',
+          null,
+          "For example: by promoting an element that will be animated to its own layer, the browser can defer that work to the GPU, leading to smoother transitions. If you're keen to learn more about this, I recently wrote an ",
+          mdx('a', e({ parentName: 'p' }, { href: '/animation/css-transitions' }), 'article about CSS transitions'),
+          ', and we take a brief look at this concept.',
+        ),
+        mdx(
+          'p',
+          null,
+          "At first blush, this concept sounds a lot like stacking contexts, but they're separate mechanisms. Whenever a layer is created, it must also define a stacking context, but the inverse is not necessarily true (multiple stacking contexts might be rendered on the same layer).",
+        ),
+        mdx(
+          'p',
+          null,
+          'You can learn more about how the browser uses layers in ',
+          mdx(
+            'a',
+            e({ parentName: 'p' }, { href: 'https://developers.google.com/web/updates/2018/09/inside-browser-part3' }),
+            'this wonderful series by Mariko Kosako',
+          ),
+          ' on the Chrome Web blog.',
+        ),
       ),
+    ),
+    mdx('h1', null, 'Going deeper'),
+    mdx(
+      'p',
+      null,
+      'Stacking contexts are a good example of how CSS is built on "hidden mechanisms". You can spend years building interfaces with CSS without knowing that they exist.',
+    ),
+    mdx(
+      'p',
+      null,
+      'Unless you explicitly take the time to learn about these mechanisms, your mental model will always be missing pieces. And if your mental model is even ',
+      mdx('em', { parentName: 'p' }, 'slightly'),
+      " misaligned, it's only a matter of time until that discrepancy causes problems.",
+    ),
+    mdx(
+      'p',
+      null,
+      `CSS doesn't have warnings or error messages. When something surprising happens, there's no clear "next step" to figure out what went wrong. These disruptions take us out of flow state and shake our confidence. I think this is why so many front-end developers don't enjoy writing CSS.`,
+    ),
+    mdx(
+      'p',
+      null,
+      'Once you build up an intuition for the language, though, CSS becomes an absolute joy. I ',
+      mdx('em', { parentName: 'p' }, 'love'),
+      ' writing CSS nowadays.',
+    ),
+    mdx(
+      'p',
+      null,
+      "I want to help other developers discover this joy. I've created a comprehensive self-paced online course that explains how CSS works at a deeper level, and teaches the practical skills I use every day to build all kinds of user interfaces.",
+    ),
+    mdx(
+      'p',
+      null,
+      "It's called ",
       mdx(
-        'p',
-        null,
-        'This stuff is ',
-        mdx('em', { parentName: 'p' }, 'super'),
-        " subjective, and there's no right/wrong way to do it, but this has been my go-to layout for years now, and it's helped me a ton!",
+        'a',
+        e({ parentName: 'p' }, { href: 'https://css-for-js.dev/' }),
+        '\u201CCSS for JavaScript Developers\u201D',
       ),
-    ),
-    mdx('h1', null, 'The journey continues'),
-    mdx('p', null, "Phew! We covered a lot of ground in this one. Hopefully, you aren't feeling too overwhelmed!"),
-    mdx(
-      'p',
-      null,
-      "The terminal has a well-earned reputation for being intimidating and tricky for beginners. It's totally normal if you struggle with it!",
-    ),
-    mdx(
-      'p',
-      null,
-      'Hopefully, though, this blog post has at least cut down the scope of what you need to learn. There is a lot you can do with the terminal, but we can get by just fine focusing on a (relatively) narrow sliver.',
-    ),
-    mdx('p', null, 'If you found this blog post helpful, please share it with someone!'),
-    mdx(
-      'p',
-      null,
-      mdx('em', { parentName: 'p' }, 'Also:'),
-      " I have a bunch of other blog posts planned, all about JavaScript and React. If you'd like to follow along, the best way is to sign up for my newsletter! \u{1F604}",
-    ),
-    mdx(
-      'p',
-      null,
-      "I'll let you know whenever I publish new content, about once or twice a month. I also send occasional subscriber-only goodies. \u{1F36C}",
-    ),
-    mdx(
-      'div',
-      { style: { marginBottom: 48 } },
-      mdx(NewsletterSignup, { variant: 'minimal', mdxType: 'NewsletterSignup' }),
-    ),
-    mdx(
-      'p',
-      null,
-      mdx('strong', { parentName: 'p' }, 'I hate spam as much as you do.'),
-      " If you decide you don't want to receive my newsletter anymore, you can unsubscribe in a single click. \u{1F4A8}",
+      ", and it's available now. \u{1F604}",
     ),
   );
 }
