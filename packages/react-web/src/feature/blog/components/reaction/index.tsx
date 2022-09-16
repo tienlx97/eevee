@@ -90,18 +90,3 @@ export const Reaction = ({ setOpenComment, ...props }: ReactionProps) => {
     </div>
   );
 };
-
-export const ReactionSkeleton = ({ className, ...props }: JSX.IntrinsicElements['div']) => {
-  const styles = useRootStyles();
-  return (
-    <div className={mergeClasses('tweet-text', className)} {...props}>
-      <div className={styles.wrapper}>
-        <div className={styles.flex}>
-          <Button icon={{ children: <Clap /> }} />
-          <div className={styles.spacing} />
-          <Button icon={{ children: <Comment /> }} />
-        </div>
-      </div>
-    </div>
-  );
-};

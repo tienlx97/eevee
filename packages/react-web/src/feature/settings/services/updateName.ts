@@ -1,9 +1,9 @@
 import { update } from '@libs/index';
-import type { UserSchema } from 'typings/my-mdx/index';
+import type { UserSchema1 } from 'typings/my-mdx/index';
 
 export const updateName = async (name: string, id: string) => {
   const data = (
-    await update<UserSchema>(
+    await update<UserSchema1>(
       'user',
       {
         name,
@@ -19,7 +19,7 @@ export const updateName = async (name: string, id: string) => {
 
 export const updateDescription = async (description: string, id: string) => {
   const data = (
-    await update<UserSchema>(
+    await update<UserSchema1>(
       'user',
       {
         description,
@@ -35,7 +35,7 @@ export const updateDescription = async (description: string, id: string) => {
 
 export const updateNickname = async (nickname: string, id: string) => {
   const data = (
-    await update<UserSchema>(
+    await update<UserSchema1>(
       'user',
       {
         nick_name: nickname,

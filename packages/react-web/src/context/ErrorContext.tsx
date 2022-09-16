@@ -1,6 +1,4 @@
 import * as React from 'react';
-// eslint-disable-next-line import/no-extraneous-dependencies
-import { BrowserHistory } from 'history';
 import { UNSAFE_NavigationContext } from 'react-router-dom';
 import { PageNotFound } from '../pages/page-not-found/PageNotFound';
 
@@ -11,7 +9,7 @@ export type ErrorContextValue = {
 const ErrorContext = React.createContext<ErrorContextValue | undefined>(undefined);
 
 export const ErrorStatusContextProvider: React.FC = ({ children }) => {
-  const history = React.useContext(UNSAFE_NavigationContext).navigator as BrowserHistory;
+  const history = React.useContext(UNSAFE_NavigationContext).navigator as any;
   const [errorStatusCode, setErrorStatusCode] = React.useState<number>();
 
   const renderContent = () => {

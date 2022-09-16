@@ -1,4 +1,4 @@
-export * from './postDetail/index';
+export * from './blog-detail/index';
 export * from './publishIn/index';
 export * from './blog-header/index';
 export * from './reaction/index';

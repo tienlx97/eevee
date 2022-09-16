@@ -99,17 +99,18 @@ export type Slot<
   AlternateAs extends keyof JSX.IntrinsicElements = never,
 > = IsSingleton<Extract<Type, string>> extends true
   ?
-      | WithSlotShorthandValue<
-          Type extends keyof JSX.IntrinsicElements // Intrinsic elements like `div`
-            ? { as?: Type } & WithSlotRenderFunction<IntrisicElementProps<Type>>
-            : Type extends React.ComponentType<infer Props> // Component types like `typeof Button`
-            ? WithSlotRenderFunction<Props>
-            : Type // Props types like `ButtonProps`
-        >
-      | {
-          [As in AlternateAs]: { as: As } & WithSlotRenderFunction<IntrisicElementProps<As>>;
-        }[AlternateAs]
-      | null
+  | WithSlotShorthandValue<
+    Type extends keyof JSX.IntrinsicElements // Intrinsic elements like `div`
+    ? { as?: Type } & WithSlotRenderFunction<IntrisicElementProps<Type>>
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    : Type extends React.ComponentType<infer Props extends { children?: any; }>
+    ? WithSlotRenderFunction<Props>
+    : Type // Props types like `ButtonProps`
+  >
+  | {
+    [As in AlternateAs]: { as: As } & WithSlotRenderFunction<IntrisicElementProps<As>>;
+  }[AlternateAs]
+  | null
   : 'Error: First parameter to Slot must not be not a union of types. See documentation of Slot type.';
 
 /**
@@ -158,8 +159,8 @@ export type ExtractSlotProps<S> = Exclude<S, SlotShorthandValue | null | undefin
 export type ComponentProps<Slots extends SlotPropsRecord, Primary extends keyof Slots = 'root'> =
   // Include a prop for each slot (see note below about the Omit)
   Omit<Slots, Primary & 'root'> &
-    // Include all of the props of the primary slot inline in the component's props
-    PropsWithoutRef<ExtractSlotProps<Slots[Primary]>>;
+  // Include all of the props of the primary slot inline in the component's props
+  PropsWithoutRef<ExtractSlotProps<Slots[Primary]>>;
 
 // Note: the `Omit<Slots, Primary & 'root'>` above is a little tricky. Here's what it's doing:
 // * If the Primary slot is 'root', then omit the `root` slot prop.
@@ -178,16 +179,16 @@ export type ReplaceNullWithUndefined<T> = T extends null ? Exclude<T, null> | un
 export type ComponentState<Slots extends SlotPropsRecord> = {
   components: {
     [Key in keyof Slots]-?:
-      | React.ComponentType<ExtractSlotProps<Slots[Key]>>
-      | (ExtractSlotProps<Slots[Key]> extends AsIntrinsicElement<infer As> ? As : keyof JSX.IntrinsicElements);
+    | React.ComponentType<ExtractSlotProps<Slots[Key]>>
+    | (ExtractSlotProps<Slots[Key]> extends AsIntrinsicElement<infer As> ? As : keyof JSX.IntrinsicElements);
   };
 } & {
-  // Include a prop for each slot, with the shorthand resolved to a props object
-  // The root slot can never be null, so also exclude null from it
-  [Key in keyof Slots]: ReplaceNullWithUndefined<
-    Exclude<Slots[Key], SlotShorthandValue | (Key extends 'root' ? null : never)>
-  >;
-};
+    // Include a prop for each slot, with the shorthand resolved to a props object
+    // The root slot can never be null, so also exclude null from it
+    [Key in keyof Slots]: ReplaceNullWithUndefined<
+      Exclude<Slots[Key], SlotShorthandValue | (Key extends 'root' ? null : never)>
+    >;
+  };
 
 /**
  * This is part of a hack to infer the element type from a native element *props* type.
@@ -208,8 +209,8 @@ type ObscureEventName = 'onLostPointerCaptureCapture';
  */
 export type ForwardRefComponent<Props> = ObscureEventName extends keyof Props
   ? Required<Props>[ObscureEventName] extends React.PointerEventHandler<infer Element>
-    ? React.ForwardRefExoticComponent<Props & React.RefAttributes<Element>>
-    : never
+  ? React.ForwardRefExoticComponent<Props & React.RefAttributes<Element>>
+  : never
   : never;
 // A definition like this would also work, but typescript is more likely to unnecessarily expand
 // the props type with this version (and it's likely much more expensive to evaluate)

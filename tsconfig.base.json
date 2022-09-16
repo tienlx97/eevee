@@ -41,7 +41,8 @@
       "@libs/*": ["packages/react-web/src/libs/*"],
       "@pages/*": ["packages/react-web/src/pages/*"],
       "@utilities/*": ["packages/react-web/src/utilities/*"],
-      "@services/*": ["packages/react-web/src/services/*"]
+      "@services/*": ["packages/react-web/src/services/*"],
+      "@routes/*": ["packages/react-web/src/routes/*"]
     }
   },
   "exclude": ["node_modules"]

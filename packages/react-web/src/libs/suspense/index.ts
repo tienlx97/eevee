@@ -3,28 +3,17 @@ import { NavigateFunction } from 'react-router-dom';
 type SuspenseStatus = 'pending' | 'success' | 'error';
 
 export const withPromise = <T = any>(
-  promise: Promise<T>,
-  navigate: NavigateFunction,
-  pathName: string,
+  promise: (...inputs: any) => Promise<T>,
+  inputs: Array<any> = [],
 ): SuspenseResponse<T> => {
   let status: SuspenseStatus = 'pending';
   let result: T | null;
   let error: Error;
 
-  const suspense = promise.then(
+  const suspense = promise(...inputs).then(
     (val: T) => {
       status = 'success';
-
-      if (val === null) {
-        navigate(pathName, {
-          replace: true,
-          state: {
-            errorStatusCode: 404,
-          },
-        });
-      } else {
-        result = val;
-      }
+      result = val;
     },
     (err: Error) => {
       status = 'error';

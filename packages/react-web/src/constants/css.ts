@@ -12,7 +12,7 @@ export const THEME_MAPPING = {
 };
 
 export const COMMENT_WIDTH = '414px';
-
+export const PUBLISH_WIDTH = '70vw';
 export const REPO = process.env.NODE_ENV === 'production' ? 'yugi0h/mimikyu_content' : 'yugi0h/mimikyu_content_dev';
 export const REPO_ID = process.env.NODE_ENV === 'production' ? 'R_kgDOH5nf4A' : 'R_kgDOH5nV_w';
 export const CATEGORY = 'Announcements';

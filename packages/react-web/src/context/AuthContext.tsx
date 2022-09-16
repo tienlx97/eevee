@@ -1,11 +1,11 @@
 import * as React from 'react';
 import { supabase } from '../libs/index';
-import type { UserSchema } from 'typings/my-mdx/index';
+import type { UserSchema1 } from 'typings/my-mdx/index';
 import { createUser, getUser } from '../services/index';
 import { useLocation, useNavigate } from 'react-router-dom';
 
 export type AuthContextValue = {
-  user: UserSchema | null;
+  user: UserSchema1 | null;
   isAuthReady: boolean;
   isLoaded: boolean;
   signIn: () => void;
@@ -20,7 +20,7 @@ export const AuthContextProvider: React.FC = ({ children }) => {
   const navigate = useNavigate();
 
   const [isLoaded, setIsLoaded] = React.useState(false);
-  const [user, setUser] = React.useState<UserSchema | null>(null);
+  const [user, setUser] = React.useState<UserSchema1 | null>(null);
   const [isAuthReady, setIsAuthReady] = React.useState<boolean>(false);
 
   const signIn = React.useCallback(() => {

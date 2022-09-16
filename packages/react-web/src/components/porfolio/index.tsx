@@ -1,9 +1,8 @@
 import { makeStyles, shorthands } from '@griffel/react';
 import * as React from 'react';
 import { Link } from 'react-router-dom';
-import { Button } from '@eevee/react-button';
 import { tokens } from '@eevee/react-theme';
-import type { UserSchema } from 'typings/my-mdx/index';
+import type { UserSchema } from 'typings/schema/index';
 import { useAuthContext } from '../../context/AuthContext';
 
 const useDisplayStyles = makeStyles({

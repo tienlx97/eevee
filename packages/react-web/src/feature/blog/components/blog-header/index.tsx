@@ -1,21 +1,19 @@
 import * as React from 'react';
-import { makeStyles, mergeClasses } from '@griffel/react';
+import { makeStyles } from '@griffel/react';
 
 import { breakPoints, tokens } from '@eevee/react-theme';
 import { ButtonR, Button } from '@eevee/react-button';
 import { Popover, PopoverItem, PopoverSurface, PopoverTrigger } from '@eevee/react-popover';
 
-import { Menu, MenuItem, MenuList, MenuPopover, MenuTrigger } from '@eevee/react-menu';
 import { Save, ThreeDot } from '@components/icons/index';
 
-import { AuthorMore, SocialList, AuthorMoreSkeleton, SocialListSkeleton } from '@feature/blog/components/index';
+import { AuthorMore, SocialList } from '@feature/blog/components/index';
 
-import { CircleAvatar, CircleSkeleton } from '@components/circle-avatar/index';
+import { CircleAvatar } from '@components/circle-avatar/index';
 
-import type { Blog } from 'typings/my-mdx/index';
 import { useAuthContext } from '@context/AuthContext';
 import { useNavigate } from 'react-router-dom';
-import { useToast } from '@eevee/react-toast';
+import type { BlogQuery } from 'typings/schema/index';
 
 const useRootStyles = makeStyles({
   root: {
@@ -116,91 +114,11 @@ const useSocialStyles = makeStyles({
   },
 });
 
-const useSkeletonStyles = makeStyles({
-  web: {
-    [`@media ${breakPoints.lgAndLarger}`]: {
-      display: 'inline-flex',
-    },
-    [`@media ${breakPoints.lg}`]: {
-      display: 'inline-flex',
-    },
-    [`@media ${breakPoints.md}`]: {
-      display: 'inline-flex',
-    },
-    [`@media ${breakPoints.sm}`]: {
-      display: 'none',
-    },
-    [`@media ${breakPoints.xs}`]: {
-      display: 'none',
-    },
-  },
-
-  mobile: {
-    paddingTop: tokens.spacingVerticalXXL,
-
-    [`@media ${breakPoints.lgAndLarger}`]: {
-      display: 'none',
-    },
-
-    [`@media ${breakPoints.lg}`]: {
-      display: 'none',
-    },
-
-    [`@media ${breakPoints.md}`]: {
-      display: 'none',
-    },
-
-    [`@media ${breakPoints.sm}`]: {
-      display: 'inline-flex',
-    },
-
-    [`@media ${breakPoints.xs}`]: {
-      display: 'inline-flex',
-    },
-  },
-});
-
-export const PostHeaderSkeleton = () => {
-  const rootStyles = useRootStyles();
-  const displayStyles = useDisplayStyles();
-  const skeletonStyles = useSkeletonStyles();
-
-  return (
-    <div className={mergeClasses(rootStyles.root, 'skeleton-wrapper')}>
-      <div className={displayStyles.itemStart}>
-        <div className={displayStyles.flex}>
-          <CircleSkeleton />
-          <AuthorMoreSkeleton />
-        </div>
-        <SocialListSkeleton className={skeletonStyles.web}>
-          <div
-            className="skeleton-line heading"
-            style={{ margin: '0px 4px 0px 28px', width: '24px', height: '24px', alignSelf: 'center' }}
-          />
-        </SocialListSkeleton>
-      </div>
-      <SocialListSkeleton before={true} className={skeletonStyles.mobile}>
-        <div
-          className="skeleton-line"
-          style={{
-            marginRight: '8px',
-            borderRadius: '50px',
-            marginBottom: '0px',
-            width: '80px',
-            height: '36px',
-            alignSelf: 'center',
-          }}
-        />
-      </SocialListSkeleton>
-    </div>
-  );
-};
-
 type PostHeaderProps = {
-  blog: Blog;
+  blog: BlogQuery;
 };
 
-export function PostHeader({ blog }: PostHeaderProps) {
+export function BlogHeader({ blog }: PostHeaderProps) {
   const rootStyles = useRootStyles();
   const displayStyles = useDisplayStyles();
   const socialListStyles = useSocialStyles();
@@ -209,7 +127,7 @@ export function PostHeader({ blog }: PostHeaderProps) {
   const navigate = useNavigate();
 
   const onEditStoryClick = () => {
-    navigate(`/p/${blog.id}/edit`);
+    navigate(`/p/${blog.short_id}/edit`);
   };
 
   return (
@@ -227,7 +145,7 @@ export function PostHeader({ blog }: PostHeaderProps) {
           <AuthorMore
             authorName={blog.author?.name!}
             authorNickName={blog.author?.nick_name!}
-            date={blog.publish_date}
+            date={blog.publish_date!}
             readTime={blog.read_time}
             hideFollow={blog.author.id === user?.id}
           />

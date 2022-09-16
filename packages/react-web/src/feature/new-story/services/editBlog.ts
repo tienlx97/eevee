@@ -1,5 +1,5 @@
 import { delay, supabase } from '@libs/index';
-import type { Blog, BlogSchema, SBBlog, GithubBlog } from 'typings/my-mdx/index';
+import type { Blog1, BlogSchema1, SBBlog, GithubBlog } from 'typings/my-mdx/index';
 import { downloadFileBySha } from '@utilities/github.server';
 
 const blogQuery = `
@@ -39,7 +39,7 @@ export const EditBlog = async (id: string, authorId: string) => {
   const combine = {
     ...data,
     ...ghBlogData,
-  } as BlogSchema;
+  } as BlogSchema1;
 
   return combine;
 };

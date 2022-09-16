@@ -4,6 +4,7 @@ export type TitleProps = {
 
 export type ComingSoonProps = {
   date: string;
+  disableOption?: boolean;
 };
 
 export type CountDownProps = {

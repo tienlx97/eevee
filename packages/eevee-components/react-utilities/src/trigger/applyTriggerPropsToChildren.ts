@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import * as React from 'react';
 import { isFluentTrigger } from './isFluentTrigger';
 
@@ -37,6 +38,6 @@ const cloneTriggerTree = <TTriggerProps>(child: React.ReactNode, triggerProps: T
     const grandchild = cloneTriggerTree(child.props.children, triggerProps);
     return React.cloneElement(child, undefined, grandchild);
   } else {
-    return React.cloneElement(child, triggerProps);
+    return React.cloneElement(child, triggerProps as any);
   }
 };

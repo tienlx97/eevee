@@ -2,23 +2,6 @@
 
 export type PostType = "story" | "diary";
 
-// export type FrontMatter = {
-//   // require
-//   author: UserSchema;
-//   tags: Array<string>;
-//   description: string;
-//   postId: string;
-//   slugify: string;
-//   title: string;
-//   post: PostType;
-//   language: string;
-//   date: string;
-
-//   // optional
-//   archived?: boolean;
-//   draft?: boolean;
-// };
-
 export type ReadTime = {
   minutes: number;
   text: string;
@@ -31,13 +14,6 @@ export type Toc = {
   url: string;
   value: string;
 };
-
-// export type Post = {
-//   code: string;
-//   frontmatter: FrontMatter;
-//   readTime: ReadTime;
-//   toc: Toc[];
-// }
 
 export type MorePost = {
   postTitle: string;
@@ -75,9 +51,9 @@ export type GithubBlog = {
   imagesSrc: string[]
 }
 
-export type BlogSchema = SBBlog & Pick<GithubBlog, 'toc' | 'read_time' | 'mdx_code' | 'compile_code' | 'subtitle' | 'imagesSrc'>
+export type BlogSchema1 = SBBlog & Pick<GithubBlog, 'toc' | 'read_time' | 'mdx_code' | 'compile_code' | 'subtitle' | 'imagesSrc'>
 
-export type UserSchema = {
+export type UserSchema1 = {
   id: string;
   mimikyu_id: string,
   email: string,
@@ -87,6 +63,6 @@ export type UserSchema = {
   description: string;
 }
 
-export type Blog = BlogSchema & {
-  author: UserSchema,
+export type Blog1 = BlogSchema1 & {
+  author: UserSchema1,
 }

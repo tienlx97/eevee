@@ -12,9 +12,8 @@ type ThrottleOptions = {
 };
 
 const Octokit = createOctokit.plugin(throttling);
-
 const octokit = new Octokit({
-  auth: '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',
+  auth: process.env.BOT_GITHUB_TOKEN,
   throttle: {
     onRateLimit: (retryAfter: number, options: ThrottleOptions) => {
       console.log(
@@ -137,4 +136,31 @@ export async function addOrUpdateFile(options: { path: string; message: string; 
   });
 
   return { status: response.status, sha: response.data.content?.sha };
+}
+
+export async function addOrUpdateFileWithFetch(options: { path: string; message: string; content: any; sha?: string }) {
+  const { content, message, path, sha } = options;
+
+  const url = `https://api.github.com/repos/yugi0h/${
+    process.env.NODE_ENV === 'production' ? 'mimikyu-content' : 'mimikyu_content_dev'
+  }/contents/${path}`;
+
+  const body = {
+    content: Buffer.from(JSON.stringify(content)).toString('base64'),
+    path,
+    message,
+    owner: 'yugi0h',
+    repo: process.env.NODE_ENV === 'production' ? 'mimikyu-content' : 'mimikyu_content_dev',
+    branch: 'main',
+    sha,
+  };
+
+  fetch(url, {
+    method: 'PUT',
+    headers: {
+      Authorization: `Bearer ${process.env.BOT_GITHUB_TOKEN}`,
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(body),
+  });
 }

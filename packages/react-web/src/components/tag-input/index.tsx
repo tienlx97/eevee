@@ -108,7 +108,7 @@ export const TagInput = React.forwardRef<HTMLInputElement, TagInputProps>(
     const tagStyles = useTagStyles();
 
     const inputRef = React.useRef<HTMLInputElement>(null);
-    const [tags, setTags] = React.useState(defaultTags ? defaultTags : []);
+    const [tags, setTags] = React.useState<string[]>([]);
 
     const removeTag = (tag: string, i: number) => {
       const arr = [...tags];
@@ -153,6 +153,12 @@ export const TagInput = React.forwardRef<HTMLInputElement, TagInputProps>(
         onTagChange(copyOfTags);
       }
     };
+
+    React.useEffect(() => {
+      if (defaultTags) {
+        setTags(defaultTags);
+      }
+    }, [defaultTags]);
 
     return (
       <div className={mergeClasses(styles.root, className)} onClick={inputFocus}>

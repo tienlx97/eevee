@@ -14,7 +14,7 @@
     "strictNullChecks": true,
     "noImplicitAny": true,
     "lib": ["es6", "dom", "dom.iterable", "esnext"],
-    "types": ["react-dom-18", "static-assets", "webpack-env"],
+    "types": ["react-dom-18", "static-assets", "webpack-env", "environment", "schema"],
     "skipLibCheck": true,
 
     "allowJs": true,

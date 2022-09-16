@@ -1,5 +1,5 @@
 import { delay, supabase } from '@libs/index';
-import type { Blog, GithubBlog } from 'typings/my-mdx/index';
+import type { Blog1, GithubBlog } from 'typings/my-mdx/index';
 import { downloadFileBySha } from '@utilities/github.server';
 
 const blogQuery = `
@@ -21,7 +21,7 @@ const blogQuery = `
 `;
 
 export const BlogFetcher = async (slug?: string) => {
-  const { data, error } = await supabase.from<Blog>('blog').select(blogQuery).eq('slugify', slug).single();
+  const { data, error } = await supabase.from<Blog1>('blog').select(blogQuery).eq('slugify', slug).single();
 
   // await delay(400);
   if (error) {

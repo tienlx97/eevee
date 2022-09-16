@@ -5,6 +5,11 @@ declare namespace NodeJS {
     LAGE_PACKAGE_NAME?: string;
     CI?: string;
     TF_BUILD?: string;
+    BOT_GITHUB_TOKEN: string;
+    GITHUB_OWNER: string;
+    GITHUB_USER: string;
+    GITHUB_BRANCH: string;
+    NS: 'github' | 'gitlab'
   }
 
   /**
@@ -14,7 +19,7 @@ declare namespace NodeJS {
    * To make it work with and without node globals it need to use same token name
    * @see https://github.com/DefinitelyTyped/DefinitelyTyped/blob/master/types/node/v12/globals.d.ts#L764
    */
-  export interface ProcessEnv extends ExtendedProcessEnv {}
+  export interface ProcessEnv extends ExtendedProcessEnv { }
 
   /**
    * extending/creating `Process` interface which is used in @types/node to define `process` global

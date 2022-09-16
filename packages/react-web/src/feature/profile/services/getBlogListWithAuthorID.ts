@@ -1,5 +1,5 @@
 import { delay, supabase } from '@libs/index';
-import type { BlogSchema, GithubBlog, SBBlog } from 'typings/my-mdx/index';
+import type { BlogSchema1, GithubBlog, SBBlog } from 'typings/my-mdx/index';
 import { downloadFileBySha } from '../../../utilities/github.server';
 
 const blogQuery = `
@@ -22,7 +22,7 @@ export const getBlogListWithAuthorID = async (id: string) => {
     throw new Error('empty');
   }
 
-  const combineArr = new Array<BlogSchema>(sbBlogList.length);
+  const combineArr = new Array<BlogSchema1>(sbBlogList.length);
 
   await Promise.all(
     sbBlogList.map(async (sbBlog, index) => {

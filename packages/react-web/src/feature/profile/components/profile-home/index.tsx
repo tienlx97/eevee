@@ -5,23 +5,26 @@ import { Spinner } from '@components/spinner-2/index';
 import { getBlogListWithAuthorID } from '../../services/index';
 
 import { BlogCard } from '../blog-card/index';
-import type { UserSchema } from 'typings/my-mdx/index';
+import type { UserSchema } from 'typings/schema/index';
+import { useBlogs } from '../../hooks/useBlogs';
 
 export const ProfileHome = () => {
   const author = useOutletContext<UserSchema>();
-  const { data, error } = useSWR(author.id, getBlogListWithAuthorID);
+  const { data: blogList } = useBlogs({
+    options: {
+      nick_name: author.nick_name,
+    },
+  });
 
-  if (!data && !error) {
-    return <Spinner />;
+  if (blogList) {
+    return (
+      <div>
+        {blogList.map((blog, index) => (
+          <BlogCard author={author} blog={blog} key={index} first={index === 0} />
+        ))}
+      </div>
+    );
   }
 
-  return !error && data ? (
-    <div>
-      {data.map((blog, index) => (
-        <BlogCard author={author} blog={blog} key={index} first={index === 0} />
-      ))}
-    </div>
-  ) : (
-    <></>
-  );
+  return <Spinner />;
 };

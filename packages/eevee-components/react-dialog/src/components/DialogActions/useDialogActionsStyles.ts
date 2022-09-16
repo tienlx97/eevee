@@ -36,7 +36,6 @@ const useStyles = makeStyles({
     ...localShorthands.gridArea(ACTIONS_START_GRID_AREA),
   },
 });
-
 /**
  * Apply styling to the DialogActions slots based on the state
  */

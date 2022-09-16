@@ -1,9 +1,9 @@
 import * as React from 'react';
 import { makeStyles } from '@griffel/react';
 import { Porfolio } from '@components/porfolio/index';
-import { PorfolioSkeleton } from '@components/skeleton/PorfolioSkeleton';
-import { MorePost, TocSkeleton, MorePostSkeleton, TocBeta } from '@feature/blog/index';
-import type { Blog } from 'typings/my-mdx/index';
+import type { BlogQuery } from 'typings/schema/index';
+import { TocBeta } from '../toc-beta/index';
+import { MorePostSkeleton } from '@components/skeleton/more-post-skeleton/index';
 
 const useStyles = makeStyles({
   sticky: {
@@ -15,23 +15,8 @@ const useStyles = makeStyles({
   },
 });
 
-export const BlogRightBarSkeleton = () => {
-  const styles = useStyles();
-  return (
-    <>
-      <PorfolioSkeleton style={{ padding: '0px 16px' }} />
-      <div style={{ height: '24px' }} />
-      <div className={styles.sticky}>
-        <TocSkeleton />
-        <div style={{ height: '24px' }} />
-        <MorePostSkeleton />
-      </div>
-    </>
-  );
-};
-
 type BlogRightBar = {
-  blog: Blog;
+  blog: BlogQuery;
 };
 
 export const BlogRightBar = ({ blog: data }: BlogRightBar) => {

@@ -8,7 +8,7 @@ import { Tag } from '@components/tag/index';
 import { ThreeDot, Save } from '@components/icons/index';
 
 import { useBlogCardDetailStyles, useBlogCardStyles } from './styles';
-import type { Blog, BlogSchema, UserSchema } from 'typings/my-mdx/index';
+import type { BlogQuery, BlogSchema, UserSchema } from 'typings/schema/index';
 import { blog2Date } from '@utilities/toDate';
 import { useAuthContext } from '@context/AuthContext';
 import { useNavigate } from 'react-router-dom';
@@ -20,7 +20,7 @@ type BlogCardProps = {
 };
 
 type BlogCardDetailProps = {
-  blog: Blog;
+  blog: BlogQuery;
 };
 
 const BlogCardDetail = ({ blog }: BlogCardDetailProps) => {
@@ -30,7 +30,7 @@ const BlogCardDetail = ({ blog }: BlogCardDetailProps) => {
   const navigate = useNavigate();
 
   const onEditStoryClick = () => {
-    navigate(`/p/${blog.id}/edit`);
+    navigate(`/p/${blog.short_id}/edit`);
   };
 
   return (
@@ -39,7 +39,13 @@ const BlogCardDetail = ({ blog }: BlogCardDetailProps) => {
       <div className={styles.leftWarpper}>
         {/* title - subtitle */}
         <div>
-          <TextLink linkState={{ data: blog }} appearance="medium" href={`/blog/${blog.slugify}`}>
+          <TextLink
+            onClick={() => {
+              history.pushState({ nick_name: 'tienlx97' }, 'pushState example');
+            }}
+            appearance="medium"
+            href={`/b/${blog.slugify}`}
+          >
             {/* title */}
             <h2 className={styles.title}>{blog.title}</h2>
             {/* subtitle */}
@@ -54,8 +60,14 @@ const BlogCardDetail = ({ blog }: BlogCardDetailProps) => {
             {/* tag - read_time */}
             <div className={styles.tagReadTimeWrapper}>
               <div className={styles.tadReadTimeWrapper1}>
-                <Tag tag={tags[0]} />
-                <TextLink linkState={{ data: blog }} appearance="medium" href={`/blog/${blog.slugify}`}>
+                <Tag tag={tags?.[0]!} />
+                <TextLink
+                  onClick={() => {
+                    history.pushState({ nick_name: 'tienlx97' }, 'pushState example');
+                  }}
+                  appearance="medium"
+                  href={`/b/${blog.slugify}`}
+                >
                   <span className={styles.readTime}>{read_time.text}</span>
                 </TextLink>
               </div>
@@ -103,16 +115,19 @@ const BlogCardDetail = ({ blog }: BlogCardDetailProps) => {
       {blog.imagesSrc && blog.imagesSrc.length > 0 && (
         <div className={styles.rightWrapper}>
           <TextLink
+            onClick={() => {
+              history.pushState({ nick_name: 'tienlx97' }, 'pushState example');
+            }}
             appearance="medium"
-            href={`/blog/${blog.slugify}`}
+            href={`/b/${blog.slugify}`}
             aria-label="Post Preview Image"
             rel="noopener follow"
           >
             <div className={styles.mediaQueryImageWeb}>
-              <img src={blog.imagesSrc[0]} width={112} height={112} alt="Các bộ thủ cơ bản trong tiếng Nhật" />
+              <img src={blog.imagesSrc[0]} width={112} height={112} alt="Title" />
             </div>
             <div className={styles.mediaQueryImageMobile}>
-              <img src={blog.imagesSrc[0]} width={56} height={56} alt="Các bộ thủ cơ bản trong tiếng Nhật" />
+              <img src={blog.imagesSrc[0]} width={56} height={56} alt="Title" />
             </div>
           </TextLink>
         </div>
@@ -124,7 +139,7 @@ const BlogCardDetail = ({ blog }: BlogCardDetailProps) => {
 export const BlogCard = ({ first = false, blog, author }: BlogCardProps) => {
   const styles = useBlogCardStyles();
 
-  const [blogCombine, _] = React.useState<Blog>({ ...blog, author });
+  const [blogCombine, _] = React.useState<BlogQuery>({ ...blog, author });
 
   return (
     <article className={styles.root}>
@@ -137,8 +152,14 @@ export const BlogCard = ({ first = false, blog, author }: BlogCardProps) => {
 
       <div>
         {/* header -> publish_date */}
-        <TextLink linkState={{ data: blogCombine }} appearance="medium" href={`/blog/${blog.slugify}`}>
-          <span className={styles.publishDate}>{blog2Date(blog.publish_date)}</span>
+        <TextLink
+          onClick={() => {
+            history.pushState({ nick_name: 'tienlx97' }, 'pushState example');
+          }}
+          appearance="medium"
+          href={`/b/${blog.slugify}`}
+        >
+          <span className={styles.publishDate}>{blog2Date(blog.publish_date!)}</span>
         </TextLink>
         <BlogCardDetail blog={blogCombine} />
       </div>

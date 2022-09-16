@@ -19,11 +19,10 @@ type MDXExport<ExportObject extends {}, Frontmatter = { [key: string]: unknown }
  * @param {Record<string, unknown>} [globals] - Any variables your MDX needs to have accessible when it runs
  *
  */
-export const getMDXExport = <ExportedObject, Frontmatter>(
+export const getMDXExport = <ExportedObject extends {}, Frontmatter>(
   code: string,
   globals?: Record<string, unknown> | undefined,
 ): MDXExport<ExportedObject, Frontmatter> => {
-  // eslint-disable-next-line @typescript-eslint/naming-convention
   const scope = { React, ReactDOM, _jsx_runtime, ...globals };
   // eslint-disable-next-line
   const fn = new Function(...Object.keys(scope), code);

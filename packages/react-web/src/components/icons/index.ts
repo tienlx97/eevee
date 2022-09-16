@@ -27,3 +27,4 @@ export * from './Stat';
 export * from './Gear';
 export * from './Image';
 export * from './Delete';
+export * from './Draft';

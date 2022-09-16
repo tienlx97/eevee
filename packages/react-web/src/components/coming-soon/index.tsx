@@ -78,18 +78,26 @@ const Title = ({ text }: TitleProps) => {
   return <h1 className={styles.title}>{text}</h1>;
 };
 
-export const ComingSoon = ({ date }: ComingSoonProps) => {
+export const ComingSoon = ({ date, disableOption: disableOption = false }: ComingSoonProps) => {
   return (
     <>
-      <div style={{ height: '40px' }} />
-      <CountDown date={date} />
+      {!disableOption && (
+        <>
+          <div style={{ height: '40px' }} />
+          <CountDown date={date} />
+        </>
+      )}
       <div style={{ height: '16px' }} />
       <Logo />
       <div style={{ height: '16px' }} />
       <Title text="Coming Soon!" />
       <div style={{ height: '16px' }} />
-      <p style={{ alignSelf: 'center', textAlign: 'center' }}>We're working hard on the new version of out site.</p>
-      <p style={{ alignSelf: 'center', textAlign: 'center' }}>I will bring a lot of new feature. Stay tuned!</p>
+      {!disableOption && (
+        <>
+          <p style={{ alignSelf: 'center', textAlign: 'center' }}>We're working hard on the new version of out site.</p>
+          <p style={{ alignSelf: 'center', textAlign: 'center' }}>I will bring a lot of new feature. Stay tuned!</p>
+        </>
+      )}
     </>
   );
 };

@@ -1,9 +1,11 @@
 import * as React from 'react';
 import useSWR, { useSWRConfig } from 'swr';
+import useSWRImmutable from 'swr/immutable';
+
 import { ErrorBoundary } from 'react-error-boundary';
 import { mergeClasses } from '@griffel/react';
 
-import type { BlogSchema } from 'typings/my-mdx/index';
+import type { BlogSchema1 } from 'typings/my-mdx/index';
 
 import { useAuthContext } from '@context/AuthContext';
 
@@ -92,15 +94,18 @@ export const NewStory = ({ type = 'new' }: NewStoryProps) => {
   const [editorSource, setEditorSource] = React.useState(type === 'edit' ? '' : text);
   const [compiledSource, setCompiledSource] = React.useState('');
   const [editorView, setEditorView] = React.useState<EditorView | undefined>(undefined);
-  const [publishValue, setPublishValue] = React.useState<BlogSchema | null>(null);
+  const [publishValue, setPublishValue] = React.useState<BlogSchema1 | null>(null);
 
   const [loading, setLoading] = React.useState(true);
   const [isOpenPreview, setOpenPreview] = React.useState(false);
   const [openPublishDialog, setOpenPublishDialog] = React.useState(false);
   const [isScheduleBlog, setScheduleBlog] = React.useState(true);
 
-  const { data, error } = useSWR(!publishValue ? null : publishValue, publishStory);
-  const { data: blogData, error: editBlogError } = useSWR(type === 'edit' ? [blogID, author?.id] : null, EditBlog);
+  const { data, error } = useSWRImmutable(!publishValue ? null : publishValue, publishStory);
+  const { data: blogData, error: editBlogError } = useSWRImmutable(
+    type === 'edit' ? [blogID, author?.id] : null,
+    EditBlog,
+  );
   const { cache } = useSWRConfig();
 
   React.useEffect(() => {

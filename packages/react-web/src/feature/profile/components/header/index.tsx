@@ -6,7 +6,7 @@ import { Popover, PopoverItem, PopoverSurface, PopoverTrigger } from '@eevee/rea
 import { CircleAvatar } from '@components/circle-avatar/CircleAvatar';
 import { ThreeDot } from '@components/icons/index';
 import { ButtonR } from '@eevee/react-button';
-import type { UserSchema } from 'typings/my-mdx/index';
+import type { UserSchema } from 'typings/schema/index';
 import { useToast } from '@eevee/react-toast';
 
 const useStyles = makeStyles({

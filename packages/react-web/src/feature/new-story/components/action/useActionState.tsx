@@ -1,6 +1,6 @@
 import * as React from 'react';
 import type { ActionState } from './Action.types';
-import { Edit, Preview, Publish } from '@components/icons/index';
+import { Draft, Edit, Preview, Publish } from '@components/icons/index';
 
 export const useActionState = (state: ActionState): ActionState => {
   const { onEditPreviewChange } = state;

@@ -1,8 +1,8 @@
-import type { SBBlog, GithubBlog, BlogSchema } from 'typings/my-mdx/index';
+import type { SBBlog, GithubBlog, BlogSchema1 } from 'typings/my-mdx/index';
 import { delay, supabase, upsert, update } from '@libs/index';
 import { addOrUpdateFile } from '@utilities/github.server';
 
-export const publishStory = async (blog: BlogSchema) => {
+export const publishStory = async (blog: BlogSchema1) => {
   const { id, user_id, publish_date, slugify, status, tags, title, sha, ...rest } = blog;
 
   // 1. add to supabse
